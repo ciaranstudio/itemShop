@@ -1,0 +1,43 @@
+html,
+body,
+#root {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #e8e8e8;
+}
+/* .loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 50px;
+} */
+#initialLoad {
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+  align-items: center;
+  /* padding: 10% 10%; */
+  width: 100%;
+  height: 100%;
+  /* margin: auto; */
+  color: #3992ff;
+  cursor: wait;
+}
+
+.loader {
+  border: 0.1rem solid #232222; /* Light grey */
+  border-top: 0.1rem solid #2f302f; /* Medium grey */
+  border-radius: 50%;
+  width: min(7.5vw, 7.5vh);
+  height: min(7.5vw, 7.5vh);
+  animation: spin 2s linear infinite;
+}
