@@ -3,7 +3,7 @@ import { useLoader } from "@react-three/fiber";
 import { TextureLoader } from "three/src/loaders/TextureLoader";
 import {
   useGLTF,
-  // useHelper,
+  useHelper,
   SoftShadows,
   Edges,
   // Billboard,
@@ -13,7 +13,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import controls from "./debugControls";
 // import { PointLightHelper } from "three";
-// import { SpotLightHelper } from "three";
+import { DirectionalLightHelper } from "three";
 import { forwardRef } from "react";
 // import * as THREE from "three";
 
@@ -77,9 +77,9 @@ export default forwardRef(function Stool(props, ref) {
     aoMap: marbleAoMap,
     wireframe: debugControls.wireframe,
   };
-
-  const spotLightTop = useRef();
   // const pointLightBottom = useRef();
+  const dirLightTableTop = useRef();
+  const tableTopRef = useRef();
   const circleEdgeRef = useRef();
   const positionOffset = { value: 0 };
   const verticalOffset = { value: 0 };
@@ -87,6 +87,7 @@ export default forwardRef(function Stool(props, ref) {
   const [offset, setOffset] = useState(positionOffset.value);
   const [jumpOffset, setJumpOffset] = useState(verticalOffset.value);
   const [animActive, setAnimActive] = useState(false);
+  useHelper(dirLightTableTop, DirectionalLightHelper, 1, "red");
 
   const handleStoolClick = () => {
     console.log("handleStoolClick()");
@@ -175,15 +176,15 @@ export default forwardRef(function Stool(props, ref) {
         <pointLight
           ref={ref}
           color="white"
-          position={[8.216, 3 + offset * 5 + jumpOffset, -8.216]}
-          intensity={2 + offset * 20}
+          position={[0, 8 + offset * 4 + jumpOffset, 0]}
+          intensity={4 + offset * 3}
         />
-        <spotLight
+        {/* <directionalLight
           castShadow
-          ref={spotLightTop}
+          ref={dirLightTableTop}
           color="white"
-          position={[14.216, 28 + offset * 4 + jumpOffset, -28.216]}
-          intensity={200}
+          position={[14.216, 36, -28.216]}
+          intensity={debugControls.directionalAintensity}
           shadow-normalBias={0.04}
           shadow-mapSize-width={1024}
           shadow-mapSize-height={1024}
@@ -193,7 +194,8 @@ export default forwardRef(function Stool(props, ref) {
           shadow-camera-bottom={-20}
           shadow-camera-right={20}
           shadow-camera-top={20}
-        />
+          target={tableTopRef.current}
+        /> */}
         {/* 
       
         <pointLight
@@ -204,7 +206,7 @@ export default forwardRef(function Stool(props, ref) {
         /> */}
         <mesh
           receiveShadow
-          position={[8.25, 0 - offset, -8.25]}
+          position={[0, 0 - offset, 0]}
           rotation-x={-Math.PI * 0.5}
           scale={1}
           // onClick={handleClick}
@@ -221,7 +223,7 @@ export default forwardRef(function Stool(props, ref) {
         </mesh>
 
         <group
-          position={[0, 0 + offset * 2 + jumpOffset, 0]}
+          position={[-8.26, 0 + offset * 2 + jumpOffset, 8.26]}
           scale={1}
           visible={debugControls.visible}
         >
@@ -329,7 +331,6 @@ export default forwardRef(function Stool(props, ref) {
           >
             <meshStandardMaterial {...woodMaterial} />
           </mesh>
-          <SoftShadows size={20} samples={20} focus={1} />
         </group>
       </group>
     </>

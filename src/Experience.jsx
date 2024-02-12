@@ -1,8 +1,8 @@
 import {
   OrbitControls,
-  // useHelper,
+  useHelper,
   // Environment,
-  SoftShadows,
+  // SoftShadows,
 } from "@react-three/drei";
 import { Perf } from "r3f-perf";
 import {
@@ -22,7 +22,7 @@ export default function Experience() {
   // const [loaded, setLoaded] = useState(false);
   const orbitRef = useRef();
   const stoolRef = useRef();
-  const dirLightA = useRef();
+  // const dirLightA = useRef();
   // const dirLightB = useRef();
   // const dirLightC = useRef();
   // const dirLightD = useRef();
@@ -55,23 +55,23 @@ export default function Experience() {
       <color args={["#e8e8e8"]} attach="background" />
       <OrbitControls makeDefault ref={orbitRef} enablePan={false} />
       <directionalLight
-        ref={dirLightA}
-        // castShadow
+        // ref={dirLightA}
+        castShadow
         position={[
           debugControls.directionalAposition.x,
           debugControls.directionalAposition.y,
           debugControls.directionalAposition.z,
         ]}
         intensity={debugControls.directionalAintensity}
-        // shadow-normalBias={0.04}
-        // shadow-mapSize-width={1024}
-        // shadow-mapSize-height={1024}
-        // shadow-camera-near={0.5}
-        // shadow-camera-far={50}
-        // shadow-camera-left={-20}
-        // shadow-camera-bottom={-20}
-        // shadow-camera-right={20}
-        // shadow-camera-top={20}
+        shadow-normalBias={0.04}
+        shadow-mapSize-width={1024}
+        shadow-mapSize-height={1024}
+        shadow-camera-near={0.5}
+        shadow-camera-far={55}
+        shadow-camera-left={-10}
+        shadow-camera-bottom={-10}
+        shadow-camera-right={10}
+        shadow-camera-top={10}
         // target-position={[0, 6, 0]}
         target={stoolRef.current}
       />
@@ -86,18 +86,18 @@ export default function Experience() {
         ]}
         intensity={debugControls.directionalBintensity}
         shadow-normalBias={0.04}
-        shadow-mapSize-width={512}
-        shadow-mapSize-height={512}
+        shadow-mapSize-width={1024}
+        shadow-mapSize-height={1024}
         shadow-camera-near={0.5}
-        shadow-camera-far={100}
-        shadow-camera-left={-20}
-        shadow-camera-bottom={-20}
-        shadow-camera-right={20}
-        shadow-camera-top={20}
+        shadow-camera-far={50}
+        shadow-camera-left={-10}
+        shadow-camera-bottom={-10}
+        shadow-camera-right={10}
+        shadow-camera-top={10}
         // target-position={[0, 6, 0]}
         target={stoolRef.current}
-      />
-      <directionalLight
+      /> */}
+      {/* <directionalLight
         ref={dirLightC}
         castShadow
         position={[
@@ -155,9 +155,10 @@ export default function Experience() {
       <Stool
         ref={stoolRef}
         scale={debugControls.itemScale}
-        position={[-8.25, 8, 8.25]}
+        position={[0, 0, 0]}
         onPointerMissed={() => (orbitRef.current.autoRotate = false)}
       />
+      {/* <SoftShadows size={20} samples={20} focus={1} /> */}
     </>
   );
 }

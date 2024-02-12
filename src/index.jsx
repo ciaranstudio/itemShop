@@ -1,4 +1,5 @@
 import "./style.css";
+import { SoftShadows } from "@react-three/drei";
 import ReactDOM from "react-dom/client";
 import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
@@ -38,6 +39,7 @@ root.render(
         }}
       >
         <Suspense fallback={<Placeholder />}>
+          <SoftShadows size={20} samples={20} focus={1} />
           <Experience />
         </Suspense>
       </Canvas>
