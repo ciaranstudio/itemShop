@@ -155,7 +155,7 @@ export default function Experience() {
       <Stool
         ref={stoolRef}
         scale={debugControls.itemScale}
-        position={[0, 0, 0]}
+        position={[0, 6, 0]}
         onPointerMissed={() => (orbitRef.current.autoRotate = false)}
       />
       {/* <SoftShadows size={20} samples={20} focus={1} /> */}

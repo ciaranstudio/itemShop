@@ -31,9 +31,9 @@ export default function BottomAppBar() {
   const [item, setItem] = useState(10);
   const [cartCount, setCartCount] = useState(0);
 
-  function addClick() {
-    setCartCount(cartCount + 1);
-  }
+  // function addClick() {
+  //   setCartCount(cartCount + 1);
+  // }
 
   const handleChange = (event) => {
     setItem(event.target.value);
