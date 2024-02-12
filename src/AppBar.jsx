@@ -8,7 +8,6 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import Fab from "@mui/material/Fab";
-// import AddIcon from "@mui/icons-material/Add";
 import { createTheme } from "@mui/material";
 import { ThemeProvider } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
@@ -17,11 +16,8 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { Global } from "@emotion/react";
-// import Button from "@mui/material/Button";
 import Skeleton from "@mui/material/Skeleton";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
-// import SwipeUpAltIcon from "@mui/icons-material/SwipeUpAlt";
-// import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import NorthIcon from "@mui/icons-material/North";
 
 export default function BottomAppBar() {
@@ -29,11 +25,7 @@ export default function BottomAppBar() {
   const [open, setOpen] = useState(false);
 
   const [item, setItem] = useState(10);
-  const [cartCount, setCartCount] = useState(0);
-
-  // function addClick() {
-  //   setCartCount(cartCount + 1);
-  // }
+  // const [cartCount, setCartCount] = useState(0);
 
   const handleChange = (event) => {
     setItem(event.target.value);
@@ -58,7 +50,6 @@ export default function BottomAppBar() {
     components: {
       MuiDrawer: {
         styleOverrides: {
-          // this will only apply to drawer modals
           modal: {
             ".MuiModal-backdrop": {
               background: "none",
@@ -68,7 +59,6 @@ export default function BottomAppBar() {
       },
       MuiBadge: {
         styleOverrides: {
-          // Name of the slot
           colorSecondary: {
             color: "#757575",
           },
@@ -135,33 +125,12 @@ export default function BottomAppBar() {
           sx={{ top: 0 }}
         >
           <Toolbar>
-            {/* <IconButton color="inherit">
-              <InfoIcon sx={{ color: "primary.light" }} />
-            </IconButton> */}
             <Box component={"div"} sx={{ flexGrow: 1 }}>
-              <Typography
-                variant="h6"
-                component="div"
-                color="primary"
-                // sx={{
-                //   flexGrow: 1,
-                //   display: { xs: "none", sm: "block" },
-                // }}
-              >
+              <Typography variant="h6" component="div" color="primary">
                 eli gfell
               </Typography>
             </Box>
-            {/* <Button
-              sx={{
-                color: "primary.light",
-                textTransform: "lowercase",
-                py: 0,
-              }}
-            >
-              <Typography variant="h7" component="div" color="primary">
-                collection
-              </Typography>
-            </Button> */}
+
             <FormControl
               variant="standard"
               size="small"
@@ -202,15 +171,12 @@ export default function BottomAppBar() {
             <Box component={"div"} sx={{ flexGrow: 1 }} />
             <IconButton color="inherit">
               <Badge
-                badgeContent={cartCount}
+                // badgeContent={cartCount}
                 color="primary"
-                // overlap="circular"
                 anchorOrigin={{
                   vertical: "top",
                   horizontal: "right",
                 }}
-                // size="small"
-                // variant="dot"
               >
                 <ShoppingCartIcon sx={{ color: "primary.light" }} />
               </Badge>
@@ -251,11 +217,6 @@ export default function BottomAppBar() {
           onOpen={toggleDrawer(true)}
           swipeAreaWidth={drawerBleeding}
           disableSwipeToOpen={false}
-          // PaperProps={{
-          //   style: {
-          //     //style props for your drawer menu here
-          //   },
-          // }}
           ModalProps={{
             keepMounted: true,
             slotProps: {

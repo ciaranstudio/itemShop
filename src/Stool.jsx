@@ -1,21 +1,11 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useLoader } from "@react-three/fiber";
 import { TextureLoader } from "three/src/loaders/TextureLoader";
-import {
-  useGLTF,
-  useHelper,
-  SoftShadows,
-  Edges,
-  // Billboard,
-  // Text,
-} from "@react-three/drei";
+import { useGLTF, Edges } from "@react-three/drei";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import controls from "./debugControls";
-// import { PointLightHelper } from "three";
-import { DirectionalLightHelper } from "three";
 import { forwardRef } from "react";
-// import * as THREE from "three";
 
 export default forwardRef(function Stool(props, ref) {
   const { nodes, materials } = useGLTF("/oakStool.glb");
@@ -28,7 +18,6 @@ export default forwardRef(function Stool(props, ref) {
     roughnessMap,
     aoMap,
   ] = useLoader(TextureLoader, [
-    // "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_COL_2K_METALNESS.png",
     "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_COL_2K_METALNESS.png",
     "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_DISP_2K_METALNESS.png",
     "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_NRM_2K_METALNESS.png",
@@ -77,9 +66,6 @@ export default forwardRef(function Stool(props, ref) {
     aoMap: marbleAoMap,
     wireframe: debugControls.wireframe,
   };
-  // const pointLightBottom = useRef();
-  const dirLightTableTop = useRef();
-  const tableTopRef = useRef();
   const circleEdgeRef = useRef();
   const positionOffset = { value: 0 };
   const verticalOffset = { value: 0 };
@@ -87,7 +73,6 @@ export default forwardRef(function Stool(props, ref) {
   const [offset, setOffset] = useState(positionOffset.value);
   const [jumpOffset, setJumpOffset] = useState(verticalOffset.value);
   const [animActive, setAnimActive] = useState(false);
-  useHelper(dirLightTableTop, DirectionalLightHelper, 1, "red");
 
   const handleStoolClick = () => {
     console.log("handleStoolClick()");
@@ -100,7 +85,6 @@ export default forwardRef(function Stool(props, ref) {
 
   useEffect(() => {
     if (toggled) {
-      // console.log("toggled: ", toggled);
       circleEdgeRef.current.visible = true;
     } else {
       circleEdgeRef.current.visible = false;
@@ -116,9 +100,7 @@ export default forwardRef(function Stool(props, ref) {
           value: debugControls.jumpOffset,
           duration: debugControls.jumpUpDuration,
           ease: "expoIn",
-          // repeat: -1,
-          // yoyo: true,
-          // repeatDelay: 5,
+
           onUpdate: () => {
             setJumpOffset(verticalOffset.value);
           },
@@ -127,25 +109,18 @@ export default forwardRef(function Stool(props, ref) {
           value: debugControls.mainOffset,
           duration: debugControls.mainUpDuration,
           ease: "expoIn",
-          // repeat: -1,
-          // yoyo: true,
-          // repeatDelay: 5,
+
           delay: debugControls.beforeMainUpDelay,
           onUpdate: () => {
             setOffset(positionOffset.value);
           },
-          // onComplete: () => {
-          //   setOffset(0);
-          // },
         });
         tl.to(positionOffset, {
           value: 0,
           duration: debugControls.mainDownDuration,
           ease: "expoOut",
           delay: debugControls.afterMainUpDelay,
-          // repeat: -1,
-          // yoyo: true,
-          // repeatDelay: 5,
+
           onUpdate: () => {
             setOffset(positionOffset.value);
           },
@@ -179,44 +154,19 @@ export default forwardRef(function Stool(props, ref) {
           position={[0, 8 + offset * 4 + jumpOffset, 0]}
           intensity={4 + offset * 3}
         />
-        {/* <directionalLight
-          castShadow
-          ref={dirLightTableTop}
-          color="white"
-          position={[14.216, 36, -28.216]}
-          intensity={debugControls.directionalAintensity}
-          shadow-normalBias={0.04}
-          shadow-mapSize-width={1024}
-          shadow-mapSize-height={1024}
-          shadow-camera-near={0.5}
-          shadow-camera-far={50}
-          shadow-camera-left={-20}
-          shadow-camera-bottom={-20}
-          shadow-camera-right={20}
-          shadow-camera-top={20}
-          target={tableTopRef.current}
-        /> */}
-        {/* 
-      
-        <pointLight
-          // ref={pointLightBottom}
-          color="white"
-          position={[8.216, 4 + offset + jumpOffset, -8.216]}
-          intensity={10 + offset * 50}
-        /> */}
+
         <mesh
           receiveShadow
           position={[0, 0 - offset, 0]}
           rotation-x={-Math.PI * 0.5}
           scale={1}
-          // onClick={handleClick}
         >
           <circleGeometry args={[20, 128]} />
           <meshStandardMaterial {...marbleMaterial} />
           <Edges
             ref={circleEdgeRef}
             scale={1}
-            threshold={90} // Display edges only when the angle between two faces exceeds this value (default=15 degrees)
+            threshold={90}
             color="brown"
             visible={true}
           />

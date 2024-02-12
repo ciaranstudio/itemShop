@@ -8,15 +8,6 @@ import { Leva } from "leva";
 import Placeholder from "./Placeholder.jsx";
 import BottomAppBar from "./AppBar.jsx";
 
-// import { Loader } from "@react-three/drei";
-// import { useProgress, Html } from "@react-three/drei";
-
-// function Loader() {
-//   const { active, progress, errors, item, loaded, total } = useProgress();
-//   console.log(active);
-//   return <Html center>{progress} % loaded</Html>;
-// }
-
 const root = ReactDOM.createRoot(document.querySelector("#root"));
 
 root.render(
@@ -44,7 +35,6 @@ root.render(
         </Suspense>
       </Canvas>
       <BottomAppBar />
-      {/* <Loader /> */}
     </Suspense>
   </>,
 );
