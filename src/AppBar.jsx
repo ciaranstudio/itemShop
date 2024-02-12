@@ -19,6 +19,10 @@ import { Global } from "@emotion/react";
 import Skeleton from "@mui/material/Skeleton";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import NorthIcon from "@mui/icons-material/North";
+import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
+import Paper from "@mui/material/Paper";
+import { products } from "./products";
 
 export default function BottomAppBar() {
   const drawerBleeding = 56;
@@ -247,7 +251,38 @@ export default function BottomAppBar() {
               overflow: "auto",
             }}
           >
-            <Skeleton variant="rounded" height="100%" animation={false} />
+            {products.map((product) => (
+              <Grid
+                container
+                sx={{
+                  m: "auto",
+                  maxWidth: "50ch",
+                }}
+              >
+                <Grid item xs={6}>
+                  <Box
+                    sx={{
+                      p: 2,
+                    }}
+                  >
+                    <img
+                      src={product.image}
+                      alt={`${product.name}`}
+                      width="100%"
+                      style={{ borderRadius: "16px" }}
+                    />
+                  </Box>
+                </Grid>
+                <Grid item xs={6}>
+                  <Box sx={{ textAlign: "center", p: 2 }}>
+                    <Box sx={{ pb: 2 }}> {product.name}</Box>
+                    <Box sx={{ pb: 2 }}> {product.price}</Box>
+                    <Box sx={{ pb: 2 }}> {product.description}</Box>
+                  </Box>
+                </Grid>
+              </Grid>
+            ))}
+            {/* <Skeleton variant="rounded" height="100%" animation={false} /> */}
           </StyledBox>
         </SwipeableDrawer>
       </ThemeProvider>
