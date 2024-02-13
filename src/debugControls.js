@@ -18,11 +18,11 @@ export default function debugControls() {
   const { directionalAposition, directionalAintensity, ambientLight } =
     useControls("lights", {
       directionalAposition: {
-        value: { x: 0, y: 20, z: 15 },
+        value: { x: 5, y: 20, z: 30 },
         step: 1.0,
       },
       directionalAintensity: {
-        value: 1,
+        value: 1.5,
         step: 0.01,
         min: 0,
         max: 8,

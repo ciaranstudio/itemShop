@@ -26,7 +26,7 @@ root.render(
           fov: 45,
           near: 0.1,
           far: 1000,
-          position: [-10, 60, -85],
+          position: [5, 100, -5],
         }}
       >
         <Suspense fallback={<Placeholder />}>
