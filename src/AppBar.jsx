@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { styled } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -16,23 +16,28 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { Global } from "@emotion/react";
-import Skeleton from "@mui/material/Skeleton";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import NorthIcon from "@mui/icons-material/North";
-import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import { products } from "./products";
+import Button from "@mui/material/Button";
+import ButtonGroup from "@mui/material/ButtonGroup";
 
 export default function BottomAppBar() {
-  const drawerBleeding = 56;
+  const drawerBleeding = 24;
   const [open, setOpen] = useState(false);
 
   const [item, setItem] = useState(10);
   // const [cartCount, setCartCount] = useState(0);
+  const [variant, setVariant] = React.useState("");
 
-  const handleChange = (event) => {
+  const handleItemChange = (event) => {
     setItem(event.target.value);
+  };
+
+  const handleVariantChange = (event) => {
+    setVariant(event.target.value);
   };
 
   const toggleDrawer = (newOpen) => () => {
@@ -46,11 +51,20 @@ export default function BottomAppBar() {
         main: "#424242",
         light: "#757575",
       },
+
       secondary: {
         main: "#9E9E9E",
         light: "#E0E0E0",
       },
     },
+    shadows: Array(25).fill("none"),
+    // overrides: {
+    //   MuiAppBar: {
+    //     root: {
+    //       "box-shadow": "none",
+    //     },
+    //   },
+    // },
     components: {
       MuiDrawer: {
         styleOverrides: {
@@ -68,17 +82,6 @@ export default function BottomAppBar() {
           },
         },
       },
-      MuiSelect: {
-        styleOverrides: {
-          standard: {
-            backgroundColor: "#e8e8e8",
-            color: "#757575",
-            "&:hover": {
-              color: "#424242",
-            },
-          },
-        },
-      },
     },
   });
 
@@ -92,7 +95,7 @@ export default function BottomAppBar() {
   });
 
   const StyledBox = styled("div")(({ theme }) => ({
-    backgroundColor: theme.palette.secondary.light,
+    backgroundColor: "theme.palette.secondary.light",
   }));
 
   const Puller = styled("div")(({ theme }) => ({
@@ -109,6 +112,12 @@ export default function BottomAppBar() {
     typeof navigator !== "undefined" &&
     /iPad|iPhone|iPod/.test(navigator.userAgent);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setOpen(true);
+    }, "1000");
+  }, []);
+
   return (
     <React.Fragment>
       <ThemeProvider theme={theme}>
@@ -118,6 +127,7 @@ export default function BottomAppBar() {
             ".MuiDrawer-root > .MuiPaper-root": {
               height: `calc(40% - ${drawerBleeding}px)`,
               overflow: "visible",
+              background: "#e8e8e8",
             },
           }}
         />
@@ -136,14 +146,14 @@ export default function BottomAppBar() {
             </Box>
 
             <FormControl
-              variant="standard"
+              variant="outlined"
               size="small"
               sx={{ minWidth: 90, scale: "0.8" }}
             >
               <Select
                 autoWidth
                 value={item}
-                onChange={handleChange}
+                onChange={handleItemChange}
                 inputProps={{
                   MenuProps: {
                     PaperProps: {
@@ -155,19 +165,37 @@ export default function BottomAppBar() {
                     },
                   },
                 }}
+                // sx={{
+                //   // ":before": { borderBottomColor: "secondary.light" },
+                //   // ":after": { borderBottomColor: "secondary.light" },
+                //   // "&.MuiInput-underline:hover:before": {
+                //   //   borderColor: "secondary.light",
+                //   // },
+                //   },
+                // }}
                 sx={{
-                  ":before": { borderBottomColor: "secondary.light" },
-                  ":after": { borderBottomColor: "secondary.light" },
-                  "&.MuiInput-underline:hover:before": {
+                  color: "primary.light",
+                  ".MuiOutlinedInput-notchedOutline": {
+                    borderColor: "secondary.main",
+                  },
+                  "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
                     borderColor: "secondary.light",
+                  },
+                  "&:hover .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "secondary.main",
+                  },
+                  ".MuiSvgIcon-root ": {
+                    fill: "secondary !important",
                   },
                 }}
               >
-                <MenuItem value={10}>stool</MenuItem>
-                <MenuItem value={20} disabled>
+                <MenuItem key={1} value={10}>
+                  stool
+                </MenuItem>
+                <MenuItem key={2} value={20} disabled>
                   squatter
                 </MenuItem>
-                <MenuItem value={30} disabled>
+                <MenuItem key={3} value={30} disabled>
                   shelf
                 </MenuItem>
               </Select>
@@ -237,10 +265,31 @@ export default function BottomAppBar() {
               visibility: "visible",
               right: 0,
               left: 0,
+              margin: "auto",
+              background: "transparent",
+              maxWidth: "50ch",
+              zIndex: 1,
+              border: "1px solid #9E9E9E",
+              borderBottom: "0px",
             }}
           >
             <Puller />
-
+            <Typography sx={{ p: 4, color: "text.secondary" }}></Typography>
+          </StyledBox>
+          <StyledBox
+            sx={{
+              position: "absolute",
+              top: -drawerBleeding,
+              borderTopLeftRadius: 8,
+              borderTopRightRadius: 8,
+              visibility: "visible",
+              right: 0,
+              left: 0,
+              margin: "auto",
+              background: "transparent",
+            }}
+          >
+            <Puller />
             <Typography sx={{ p: 4, color: "text.secondary" }}></Typography>
           </StyledBox>
           <StyledBox
@@ -251,38 +300,68 @@ export default function BottomAppBar() {
               overflow: "auto",
             }}
           >
-            {products.map((product) => (
+            {products.map((product, index) => (
               <Grid
                 container
                 sx={{
                   m: "auto",
                   maxWidth: "50ch",
                 }}
+                key={index}
               >
-                <Grid item xs={6}>
-                  <Box
+                <Grid item xs={12}>
+                  <Paper
                     sx={{
+                      mt: 0,
                       p: 2,
+                      borderTopLeftRadius: "0px",
+                      borderTopRightRadius: "0px",
+                      borderBottomLeftRadius: "8px",
+                      borderBottomRightRadius: "8px",
+                      background: "#e8e8e8",
+                      border: "1px solid #9E9E9E",
+                      borderTop: "0px",
                     }}
                   >
-                    <img
-                      src={product.image}
-                      alt={`${product.name}`}
-                      width="100%"
-                      style={{ borderRadius: "16px" }}
-                    />
-                  </Box>
-                </Grid>
-                <Grid item xs={6}>
-                  <Box sx={{ textAlign: "center", p: 2 }}>
-                    <Box sx={{ pb: 2 }}> {product.name}</Box>
-                    <Box sx={{ pb: 2 }}> {product.price}</Box>
-                    <Box sx={{ pb: 2 }}> {product.description}</Box>
-                  </Box>
+                    <Box sx={{ textAlign: "center", p: 1, pt: 0 }}>
+                      <Typography variant="h6" color="primary">
+                        <Box sx={{ pb: 2 }}> {product.name}</Box>
+                      </Typography>
+
+                      <ButtonGroup
+                        variant="outlined"
+                        aria-label="Basic button group"
+                        sx={{ pb: 2 }}
+                        size="small"
+                      >
+                        <Button>white</Button>
+                        <Button>natural</Button>
+                        <Button>black</Button>
+                        <Button>all black</Button>
+                      </ButtonGroup>
+
+                      <Box sx={{ pb: 1 }}>
+                        <Typography variant="subtitle2" color="primary">
+                          {product.description}
+                        </Typography>
+                      </Box>
+                      <Box sx={{ pb: 2 }}>
+                        <Typography variant="subtitle1" color="primary">
+                          {product.price}
+                        </Typography>
+                      </Box>
+                      <Button
+                        variant="contained"
+                        color="secondary"
+                        sx={{ color: "secondary.light" }}
+                      >
+                        add to cart
+                      </Button>
+                    </Box>
+                  </Paper>
                 </Grid>
               </Grid>
             ))}
-            {/* <Skeleton variant="rounded" height="100%" animation={false} /> */}
           </StyledBox>
         </SwipeableDrawer>
       </ThemeProvider>
