@@ -43,7 +43,7 @@ export default function Experience() {
       <Stool
         ref={stoolRef}
         scale={debugControls.itemScale}
-        position={[0, -10, 0]}
+        position={[0, -12, 0]}
         onPointerMissed={() => (orbitRef.current.autoRotate = false)}
       />
     </>

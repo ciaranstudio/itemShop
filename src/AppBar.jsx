@@ -27,6 +27,7 @@ import ButtonGroup from "@mui/material/ButtonGroup";
 import { keyframes } from "@mui/system";
 
 export default function BottomAppBar() {
+  const drawerBleeding = 24;
   const spinUp = keyframes`
   from {
     transform: rotate(0deg);
@@ -49,20 +50,18 @@ export default function BottomAppBar() {
     transform: translate(0, 0 );
   }
   to {
-     transform: translate(0, -48vh );
+     transform: translate(0, -48svh );
 
   }`;
 
   const moveDown = keyframes`
   from {
-    transform: translate(0, -48vh );
+    transform: translate(0, -48svh );
   }
   to {
      transform: translate(0, 0);
 
   }`;
-
-  const drawerBleeding = 24;
 
   const [open, setOpen] = useState(false);
   const [item, setItem] = useState(10);
@@ -128,7 +127,7 @@ export default function BottomAppBar() {
     // bottom: open
     //   ? `calc(50vh + ${drawerBleeding * 2.25}px)`
     //   : drawerBleeding + 52,
-    bottom: drawerBleeding + 52,
+    bottom: drawerBleeding + 58,
     left: 0,
     right: 0,
     margin: "0 auto",
@@ -299,7 +298,7 @@ export default function BottomAppBar() {
               },
               animation: open
                 ? `${moveUp} 0.5s forwards`
-                : `${moveDown} 0.5s forwards`,
+                : `${moveDown} 0.75s forwards`,
             }}
           >
             {/* {open ? (
@@ -316,7 +315,7 @@ export default function BottomAppBar() {
             )} */}
             <NorthIcon
               sx={{
-                color: "primary.light",
+                color: open ? "secondary.light" : "primary.light",
                 // transform: open ? `translate(0, -48vh )` : "",
                 animation: open
                   ? `${spinUp} 1s forwards`
