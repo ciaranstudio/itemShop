@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { styled } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -18,16 +18,53 @@ import Select from "@mui/material/Select";
 import { Global } from "@emotion/react";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import NorthIcon from "@mui/icons-material/North";
+// import SouthIcon from "@mui/icons-material/South";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import { products } from "./products";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
+import { keyframes } from "@mui/system";
 
 export default function BottomAppBar() {
-  const drawerBleeding = 24;
-  const [open, setOpen] = useState(false);
+  const spinUp = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(540deg);
 
+  }`;
+
+  const spinDown = keyframes`
+  from {
+   transform: rotate(540deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }`;
+
+  const moveUp = keyframes`
+  from {
+    transform: translate(0, 0 );
+  }
+  to {
+     transform: translate(0, -48vh );
+
+  }`;
+
+  const moveDown = keyframes`
+  from {
+    transform: translate(0, -48vh );
+  }
+  to {
+     transform: translate(0, 0);
+
+  }`;
+
+  const drawerBleeding = 24;
+
+  const [open, setOpen] = useState(false);
   const [item, setItem] = useState(10);
   // const [cartCount, setCartCount] = useState(0);
   const [variant, setVariant] = React.useState("");
@@ -88,10 +125,19 @@ export default function BottomAppBar() {
   const StyledFab = styled(Fab)({
     position: "absolute",
     zIndex: 1,
-    bottom: drawerBleeding + 3,
+    // bottom: open
+    //   ? `calc(50vh + ${drawerBleeding * 2.25}px)`
+    //   : drawerBleeding + 52,
+    bottom: drawerBleeding + 52,
     left: 0,
     right: 0,
     margin: "0 auto",
+    // transitionDuration: "3s",
+    // transitionProperty: "transform",
+    // transitionDelay: "3s",
+
+    // transform: "translate(0, -48vh )",
+    // transition: "transform 1.5s linear",
   });
 
   const StyledBox = styled("div")(({ theme }) => ({
@@ -100,7 +146,7 @@ export default function BottomAppBar() {
 
   const Puller = styled("div")(({ theme }) => ({
     width: 30,
-    height: 6,
+    height: 4,
     backgroundColor: theme.palette.secondary.main,
     borderRadius: 3,
     position: "absolute",
@@ -125,7 +171,7 @@ export default function BottomAppBar() {
         <Global
           styles={{
             ".MuiDrawer-root > .MuiPaper-root": {
-              height: `calc(32.5% - ${drawerBleeding}px)`,
+              height: `calc(50% - ${drawerBleeding}px)`,
               overflow: "visible",
               background: "transparent",
             },
@@ -215,7 +261,7 @@ export default function BottomAppBar() {
             </IconButton>
           </Toolbar>
         </AppBar>
-        <AppBar
+        {/* <AppBar
           position="fixed"
           component="nav"
           color="transparent"
@@ -239,8 +285,46 @@ export default function BottomAppBar() {
             </StyledFab>
             <Box component={"div"} sx={{ flexGrow: 1 }} />
           </Toolbar>
-        </AppBar>
+        </AppBar> */}
 
+        <Toolbar>
+          <StyledFab
+            aria-label="show sale options"
+            onClick={toggleDrawer(!open)}
+            size="small"
+            sx={{
+              backgroundColor: "transparent",
+              "&:hover": {
+                backgroundColor: "secondary.light",
+              },
+              animation: open
+                ? `${moveUp} 0.5s forwards`
+                : `${moveDown} 0.5s forwards`,
+            }}
+          >
+            {/* {open ? (
+              <SouthIcon
+                sx={{
+                  color: "primary.light",
+                  animation: `${spinDown} 1s ease`,
+                }}
+              />
+            ) : (
+              <NorthIcon
+                sx={{ color: "primary.light", animation: `${spinUp} 1s ease` }}
+              />
+            )} */}
+            <NorthIcon
+              sx={{
+                color: "primary.light",
+                // transform: open ? `translate(0, -48vh )` : "",
+                animation: open
+                  ? `${spinUp} 1s forwards`
+                  : `${spinDown} 1s forwards`,
+              }}
+            />
+          </StyledFab>
+        </Toolbar>
         <SwipeableDrawer
           disableBackdropTransition={!iOS}
           disableDiscovery={iOS}
@@ -260,7 +344,7 @@ export default function BottomAppBar() {
           <StyledBox
             sx={{
               position: "absolute",
-              top: -drawerBleeding,
+              top: -drawerBleeding - 1,
               borderTopLeftRadius: 8,
               borderTopRightRadius: 8,
               visibility: "visible",
@@ -273,10 +357,11 @@ export default function BottomAppBar() {
               maxWidth: "50ch",
               zIndex: 1,
               border: "1px solid #9E9E9E",
-              borderBottom: "0px",
+              // borderBottom: "0px",
             }}
           >
             <Puller />
+
             <Typography sx={{ p: 4, color: "text.secondary" }}></Typography>
           </StyledBox>
           <StyledBox
@@ -288,6 +373,7 @@ export default function BottomAppBar() {
               overflow: "auto",
               m: "auto",
               maxWidth: "50ch",
+              background: "transparent",
             }}
           >
             {products.map((product, index) => (
@@ -305,7 +391,7 @@ export default function BottomAppBar() {
                       background: "#e8e8e8",
                       opacity: 0.75,
                       border: "1px solid #9E9E9E",
-                      borderTop: "0px",
+                      // borderTop: "0px",
                     }}
                   >
                     <Box
