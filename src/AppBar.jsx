@@ -125,7 +125,7 @@ export default function BottomAppBar() {
         <Global
           styles={{
             ".MuiDrawer-root > .MuiPaper-root": {
-              height: `calc(40% - ${drawerBleeding}px)`,
+              height: `calc(32.5% - ${drawerBleeding}px)`,
               overflow: "visible",
               background: "transparent",
             },
@@ -286,7 +286,6 @@ export default function BottomAppBar() {
               left: 0,
               height: "100%",
               overflow: "auto",
-
               m: "auto",
               maxWidth: "50ch",
             }}
