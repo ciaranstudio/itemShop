@@ -1,7 +1,7 @@
 export const products = [
   {
     meta: {
-      id: 125151,
+      id: 1001,
     },
     id: "1",
     name: "Stool",

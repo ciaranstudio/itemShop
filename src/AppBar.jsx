@@ -45,7 +45,7 @@ export default function BottomAppBar() {
   };
 
   const theme = createTheme({
-    shadows: ["none"],
+    // shadows: ["none"],
     palette: {
       primary: {
         main: "#424242",
@@ -95,7 +95,7 @@ export default function BottomAppBar() {
   });
 
   const StyledBox = styled("div")(({ theme }) => ({
-    backgroundColor: "theme.palette.secondary.light",
+    // backgroundColor: "theme.palette.secondary.light",
   }));
 
   const Puller = styled("div")(({ theme }) => ({
@@ -127,7 +127,7 @@ export default function BottomAppBar() {
             ".MuiDrawer-root > .MuiPaper-root": {
               height: `calc(40% - ${drawerBleeding}px)`,
               overflow: "visible",
-              background: "#e8e8e8",
+              background: "transparent",
             },
           }}
         />
@@ -159,8 +159,8 @@ export default function BottomAppBar() {
                     PaperProps: {
                       sx: {
                         scale: "0.8",
-                        backgroundColor: "secondary.light",
-                        color: "primary.light",
+                        backgroundColor: "transparent",
+                        color: "secondary",
                       },
                     },
                   },
@@ -174,7 +174,7 @@ export default function BottomAppBar() {
                 //   },
                 // }}
                 sx={{
-                  color: "primary.light",
+                  color: "secondary",
                   ".MuiOutlinedInput-notchedOutline": {
                     borderColor: "secondary.main",
                   },
@@ -232,9 +232,10 @@ export default function BottomAppBar() {
                 "&:hover": {
                   backgroundColor: "secondary.light",
                 },
+                display: open ? "none" : "flex",
               }}
             >
-              <NorthIcon sx={{ color: "secondary.main" }} />
+              <NorthIcon sx={{ color: "primary.light" }} />
             </StyledFab>
             <Box component={"div"} sx={{ flexGrow: 1 }} />
           </Toolbar>
@@ -265,8 +266,10 @@ export default function BottomAppBar() {
               visibility: "visible",
               right: 0,
               left: 0,
+              background: "#e8e8e8",
+              opacity: 0.75,
+              height: drawerBleeding,
               margin: "auto",
-              background: "transparent",
               maxWidth: "50ch",
               zIndex: 1,
               border: "1px solid #9E9E9E",
@@ -279,36 +282,17 @@ export default function BottomAppBar() {
           <StyledBox
             sx={{
               position: "absolute",
-              top: -drawerBleeding,
-              borderTopLeftRadius: 8,
-              borderTopRightRadius: 8,
-              visibility: "visible",
               right: 0,
               left: 0,
-              margin: "auto",
-              background: "transparent",
-            }}
-          >
-            <Puller />
-            <Typography sx={{ p: 4, color: "text.secondary" }}></Typography>
-          </StyledBox>
-          <StyledBox
-            sx={{
-              px: 2,
-              pb: 2,
               height: "100%",
               overflow: "auto",
+
+              m: "auto",
+              maxWidth: "50ch",
             }}
           >
             {products.map((product, index) => (
-              <Grid
-                container
-                sx={{
-                  m: "auto",
-                  maxWidth: "50ch",
-                }}
-                key={index}
-              >
+              <Grid container key={index}>
                 <Grid item xs={12}>
                   <Paper
                     sx={{
@@ -318,12 +302,21 @@ export default function BottomAppBar() {
                       borderTopRightRadius: "0px",
                       borderBottomLeftRadius: "8px",
                       borderBottomRightRadius: "8px",
+                      // background: "#e8e8e8",
                       background: "#e8e8e8",
+                      opacity: 0.75,
                       border: "1px solid #9E9E9E",
                       borderTop: "0px",
                     }}
                   >
-                    <Box sx={{ textAlign: "center", p: 1, pt: 0 }}>
+                    <Box
+                      sx={{
+                        textAlign: "center",
+                        p: 1,
+                        pt: 0,
+                        background: "transparent",
+                      }}
+                    >
                       <Typography variant="h6" color="primary">
                         <Box sx={{ pb: 2 }}> {product.name}</Box>
                       </Typography>
@@ -352,7 +345,7 @@ export default function BottomAppBar() {
                       </Box>
                       <Button
                         variant="contained"
-                        color="secondary"
+                        color="primary"
                         sx={{ color: "secondary.light" }}
                       >
                         add to cart

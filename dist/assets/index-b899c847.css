@@ -1,1 +1,0 @@
-html,body,#root{position:fixed;top:0;left:0;width:100%;height:100%;background:#e8e8e8}#initialLoad{display:flex;justify-content:center;align-items:center;width:100%;height:100%;color:#3992ff;cursor:wait}.loader{border:.1rem solid #232222;border-top:.1rem solid #2f302f;border-radius:50%;width:min(7.5vw,7.5vh);height:min(7.5vw,7.5vh);animation:spin 2s linear infinite}
