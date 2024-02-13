@@ -112,11 +112,11 @@ export default function BottomAppBar() {
     typeof navigator !== "undefined" &&
     /iPad|iPhone|iPod/.test(navigator.userAgent);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setOpen(true);
-    }, "1000");
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setOpen(true);
+  //   }, "1000");
+  // }, []);
 
   return (
     <React.Fragment>

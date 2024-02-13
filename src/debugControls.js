@@ -98,7 +98,7 @@ export default function debugControls() {
     });
   const { itemScale } = useControls("scale", {
     itemScale: {
-      value: 2,
+      value: 1.25,
       step: 0.01,
       min: 0,
       max: 1.5,
