@@ -1,13 +1,19 @@
 import React, { useRef, useState, useEffect } from "react";
-import { useLoader } from "@react-three/fiber";
+import { useFrame, useLoader } from "@react-three/fiber";
 import { TextureLoader } from "three/src/loaders/TextureLoader";
 import { useGLTF, Edges } from "@react-three/drei";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import controls from "./debugControls";
 import { forwardRef } from "react";
+import * as THREE from "three";
 
 export default forwardRef(function Stool(props, ref) {
+  const [loaded, setLoaded] = useState(false);
+  const [introComplete, setIntroComplete] = useState(false);
+  // const markerRef = useRef();
+  const vec = new THREE.Vector3();
+
   const { nodes, materials } = useGLTF("/oakStool.glb");
   const debugControls = controls();
   const [
@@ -91,6 +97,18 @@ export default forwardRef(function Stool(props, ref) {
     }
   }, [toggled]);
 
+  useEffect(() => {
+    console.log("loaded = ", loaded);
+    setTimeout(() => {
+      setLoaded(true);
+      setTimeout(() => {
+        setToggled(!toggled);
+      }, "3000");
+    }, "6000");
+
+    return () => {};
+  }, []);
+
   useGSAP(
     () => {
       if (toggled) {
@@ -137,6 +155,7 @@ export default forwardRef(function Stool(props, ref) {
             circleEdgeRef.current.visible = false;
             setAnimActive(false);
             setToggled(false);
+            setIntroComplete(true);
           },
         });
       }
@@ -145,9 +164,31 @@ export default forwardRef(function Stool(props, ref) {
     true,
   );
 
+  useFrame((state) => {
+    if (loaded && !introComplete) {
+      state.controls.autoRotate = false;
+      setTimeout(() => {
+        state.camera.position.lerp(vec.set(80, 40, -45), 0.005);
+        state.camera.updateProjectionMatrix();
+      }, "600");
+      // state.camera.lookAt(markerRef.current.position);
+
+      // console.log(state.controls);
+      // state.controls.update();
+    } else {
+      state.controls.autoRotate = true;
+    }
+    return null;
+  });
+
   return (
     <>
-      <group {...props} dispose={null} onClick={handleStoolClick}>
+      <group
+        {...props}
+        dispose={null}
+        onClick={handleStoolClick}
+        // ref={markerRef}
+      >
         <pointLight
           ref={ref}
           color="white"

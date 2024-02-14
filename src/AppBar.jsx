@@ -50,13 +50,13 @@ export default function BottomAppBar() {
     transform: translate(0, 0 );
   }
   to {
-     transform: translate(0, -48svh );
+     transform: translate(0, -85svh );
 
   }`;
 
   const moveDown = keyframes`
   from {
-    transform: translate(0, -48svh );
+    transform: translate(0, -85svh );
   }
   to {
      transform: translate(0, 0);
@@ -170,7 +170,7 @@ export default function BottomAppBar() {
         <Global
           styles={{
             ".MuiDrawer-root > .MuiPaper-root": {
-              height: `calc(50% - ${drawerBleeding}px)`,
+              height: `calc(88% - ${drawerBleeding}px)`,
               overflow: "visible",
               background: "transparent",
             },
@@ -315,7 +315,7 @@ export default function BottomAppBar() {
             )} */}
             <NorthIcon
               sx={{
-                color: open ? "secondary.light" : "primary.light",
+                color: open ? "primary.light" : "primary.light",
                 // transform: open ? `translate(0, -48vh )` : "",
                 animation: open
                   ? `${spinUp} 1s forwards`
@@ -401,9 +401,9 @@ export default function BottomAppBar() {
                         background: "transparent",
                       }}
                     >
-                      <Typography variant="h6" color="primary">
+                      {/* <Typography variant="h6" color="primary">
                         <Box sx={{ pb: 2 }}> {product.name}</Box>
-                      </Typography>
+                      </Typography> */}
 
                       <ButtonGroup
                         variant="outlined"
@@ -417,11 +417,11 @@ export default function BottomAppBar() {
                         <Button>all black</Button>
                       </ButtonGroup>
 
-                      <Box sx={{ pb: 1 }}>
+                      {/* <Box sx={{ pb: 1 }}>
                         <Typography variant="subtitle2" color="primary">
                           {product.description}
                         </Typography>
-                      </Box>
+                      </Box> */}
                       <Box sx={{ pb: 2 }}>
                         <Typography variant="subtitle1" color="primary">
                           {product.price}
