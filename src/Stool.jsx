@@ -103,7 +103,7 @@ export default forwardRef(function Stool(props, ref) {
       setLoaded(true);
       setTimeout(() => {
         setToggled(!toggled);
-      }, "3000");
+      }, "8000");
     }, "6000");
 
     return () => {};
@@ -112,6 +112,7 @@ export default forwardRef(function Stool(props, ref) {
   useGSAP(
     () => {
       if (toggled) {
+        setIntroComplete(true);
         let tl = gsap.timeline();
         setAnimActive(true);
         tl.to(verticalOffset, {
@@ -155,7 +156,6 @@ export default forwardRef(function Stool(props, ref) {
             circleEdgeRef.current.visible = false;
             setAnimActive(false);
             setToggled(false);
-            setIntroComplete(true);
           },
         });
       }
@@ -168,7 +168,7 @@ export default forwardRef(function Stool(props, ref) {
     if (loaded && !introComplete) {
       state.controls.autoRotate = false;
       setTimeout(() => {
-        state.camera.position.lerp(vec.set(80, 40, -45), 0.005);
+        state.camera.position.lerp(vec.set(80, 40, -45), 0.01);
         state.camera.updateProjectionMatrix();
       }, "600");
       // state.camera.lookAt(markerRef.current.position);

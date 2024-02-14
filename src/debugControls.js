@@ -18,7 +18,7 @@ export default function debugControls() {
   const { directionalAposition, directionalAintensity, ambientLight } =
     useControls("lights", {
       directionalAposition: {
-        value: { x: 5, y: 20, z: 30 },
+        value: { x: 5, y: 28, z: 30 },
         step: 1.0,
       },
       directionalAintensity: {
@@ -36,7 +36,7 @@ export default function debugControls() {
     });
   const { mainOffset, jumpOffset } = useControls("animation distance", {
     mainOffset: {
-      value: 3.25,
+      value: 3, // 3.25
       step: 0.01,
       min: 0,
       max: 10,
@@ -98,7 +98,7 @@ export default function debugControls() {
     });
   const { itemScale } = useControls("scale", {
     itemScale: {
-      value: 1.25,
+      value: 0.9,
       step: 0.01,
       min: 0,
       max: 1.5,

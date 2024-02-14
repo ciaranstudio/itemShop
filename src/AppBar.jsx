@@ -50,13 +50,13 @@ export default function BottomAppBar() {
     transform: translate(0, 0 );
   }
   to {
-     transform: translate(0, -85svh );
+     transform: translate(0, -29svh );
 
   }`;
 
   const moveDown = keyframes`
   from {
-    transform: translate(0, -85svh );
+    transform: translate(0, -29svh );
   }
   to {
      transform: translate(0, 0);
@@ -170,7 +170,7 @@ export default function BottomAppBar() {
         <Global
           styles={{
             ".MuiDrawer-root > .MuiPaper-root": {
-              height: `calc(88% - ${drawerBleeding}px)`,
+              height: `calc(32% - ${drawerBleeding}px)`,
               overflow: "visible",
               background: "transparent",
             },
