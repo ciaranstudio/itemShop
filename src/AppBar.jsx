@@ -25,8 +25,11 @@ import { products } from "./products";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import { keyframes } from "@mui/system";
+import controls from "./debugControls";
+import { useControls } from "leva";
 
 export default function BottomAppBar() {
+  const debugControls = controls();
   const drawerBleeding = 24;
   const spinUp = keyframes`
   from {
@@ -65,8 +68,19 @@ export default function BottomAppBar() {
 
   const [open, setOpen] = useState(false);
   const [item, setItem] = useState(10);
-  // const [cartCount, setCartCount] = useState(0);
+  const [color, setColor] = useState("");
   const [variant, setVariant] = React.useState("");
+  const [{ stainColor }, set] = useControls(() => ({
+    stainColor: "#ff0000",
+  }));
+  // const [{ stainColor }, set] = useControls(() => ({
+  //   stainColor: {
+  //     value: "#ff0000",
+  //     // onChange: (value) => {
+  //     //   // imperatively update the world after Leva input changes
+  //     // },
+  //   },
+  // }));
 
   const handleItemChange = (event) => {
     setItem(event.target.value);
@@ -74,6 +88,17 @@ export default function BottomAppBar() {
 
   const handleVariantChange = (event) => {
     setVariant(event.target.value);
+  };
+
+  const handleSelect = () => {
+    console.log("handle select clicked");
+    // console.log(debugControls.stainColor);
+    // setColor("#ffffff");
+    // console.log("debugControls value: ", debugControls.stainColor);
+    debugControls.stainColor = "#00ff00";
+    console.log(debugControls.stainColor);
+    set({ stainColor: "#ff0000" });
+    // set({ stainColor: "#00ff00" });
   };
 
   const toggleDrawer = (newOpen) => () => {
@@ -162,6 +187,12 @@ export default function BottomAppBar() {
       setOpen(true);
     }, "3000");
   }, []);
+
+  // const [{ stainColor }, set] = useControls(() => ({ stainColor: "#ff0000" }));
+
+  // useEffect(() => {
+  //   console.log(debugControls.stainColor);
+  // }, []);
 
   return (
     <React.Fragment>
@@ -412,7 +443,7 @@ export default function BottomAppBar() {
                         sx={{ pb: 1.5 }}
                         size="small"
                       >
-                        <Button>white</Button>
+                        <Button onClick={handleSelect}>white</Button>
                         <Button>natural</Button>
                         <Button>black</Button>
                         <Button>all black</Button>

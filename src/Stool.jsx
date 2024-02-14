@@ -104,7 +104,7 @@ export default forwardRef(function Stool(props, ref) {
     setTimeout(() => {
       setIntroComplete(true);
       setToggled(!toggled);
-    }, "6500");
+    }, "4500");
 
     return () => {};
   }, []);
@@ -188,12 +188,12 @@ export default forwardRef(function Stool(props, ref) {
         onClick={handleStoolClick}
         // ref={markerRef}
       >
-        <pointLight
-          ref={ref}
+        {/* <pointLight
+          // ref={ref}
           color="white"
           position={[0, 8 + offset * 4 + jumpOffset, 0]}
-          intensity={4 + offset * 3}
-        />
+          intensity={0}
+        /> */}
 
         <mesh
           receiveShadow
@@ -303,6 +303,7 @@ export default forwardRef(function Stool(props, ref) {
             <meshStandardMaterial {...woodMaterial} />
           </mesh>
           <mesh
+            ref={ref}
             castShadow
             receiveShadow
             geometry={nodes.tableTop.geometry}

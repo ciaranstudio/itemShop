@@ -1,5 +1,5 @@
 import "./style.css";
-import { SoftShadows } from "@react-three/drei";
+// import { SoftShadows } from "@react-three/drei";
 import ReactDOM from "react-dom/client";
 import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
@@ -8,6 +8,7 @@ import { Leva } from "leva";
 import Placeholder from "./Placeholder.jsx";
 import BottomAppBar from "./AppBar.jsx";
 import Loading from "./Loading.jsx";
+import * as THREE from "three";
 
 const root = ReactDOM.createRoot(document.querySelector("#root"));
 
@@ -16,16 +17,17 @@ root.render(
     <Suspense fallback={<Loading />}>
       <Leva hidden oneLineLabels />
       <Canvas
-        shadows
+        // shadows
+        shadows={{ type: THREE.PCFSoftShadowMap }}
         camera={{
           fov: 45,
-          near: 0.1,
-          far: 1000,
+          near: 1,
+          far: 100,
           position: [0, 60, 0],
         }}
       >
         <Suspense fallback={<Placeholder />}>
-          <SoftShadows size={25} samples={10} focus={0} />
+          {/* <SoftShadows size={10} samples={10} focus={1} /> */}
           <Experience />
         </Suspense>
       </Canvas>
