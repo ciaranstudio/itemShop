@@ -22,7 +22,7 @@ export default function debugControls() {
         step: 1.0,
       },
       directionalAintensity: {
-        value: 1.5,
+        value: 1.25,
         step: 0.01,
         min: 0,
         max: 8,

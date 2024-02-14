@@ -103,7 +103,7 @@ export default forwardRef(function Stool(props, ref) {
       setLoaded(true);
       setTimeout(() => {
         setToggled(!toggled);
-      }, "8000");
+      }, "6000");
     }, "6000");
 
     return () => {};

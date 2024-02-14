@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { styled } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -50,13 +50,13 @@ export default function BottomAppBar() {
     transform: translate(0, 0 );
   }
   to {
-     transform: translate(0, -29svh );
+     transform: translate(0, -29.5svh );
 
   }`;
 
   const moveDown = keyframes`
   from {
-    transform: translate(0, -29svh );
+    transform: translate(0, -29.5svh );
   }
   to {
      transform: translate(0, 0);
@@ -157,20 +157,21 @@ export default function BottomAppBar() {
     typeof navigator !== "undefined" &&
     /iPad|iPhone|iPod/.test(navigator.userAgent);
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setOpen(true);
-  //   }, "1000");
-  // }, []);
+  useEffect(() => {
+    setTimeout(() => {
+      setOpen(true);
+    }, "12000");
+  }, []);
 
   return (
     <React.Fragment>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Global
+          // TO DO: increase from 32% for landscape mobile media query
           styles={{
             ".MuiDrawer-root > .MuiPaper-root": {
-              height: `calc(32% - ${drawerBleeding}px)`,
+              height: `calc(32.25% - ${drawerBleeding}px)`,
               overflow: "visible",
               background: "transparent",
             },
@@ -401,9 +402,9 @@ export default function BottomAppBar() {
                         background: "transparent",
                       }}
                     >
-                      {/* <Typography variant="h6" color="primary">
+                      <Typography variant="h6" color="primary">
                         <Box sx={{ pb: 2 }}> {product.name}</Box>
-                      </Typography> */}
+                      </Typography>
 
                       <ButtonGroup
                         variant="outlined"
