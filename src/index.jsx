@@ -26,11 +26,11 @@ root.render(
           fov: 45,
           near: 0.1,
           far: 1000,
-          position: [5, 100, -5],
+          position: [0, 60, 0],
         }}
       >
         <Suspense fallback={<Placeholder />}>
-          <SoftShadows size={20} samples={20} focus={1} />
+          <SoftShadows size={25} samples={10} focus={0} />
           <Experience />
         </Suspense>
       </Canvas>

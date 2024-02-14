@@ -160,7 +160,7 @@ export default function BottomAppBar() {
   useEffect(() => {
     setTimeout(() => {
       setOpen(true);
-    }, "12000");
+    }, "3000");
   }, []);
 
   return (
@@ -403,13 +403,13 @@ export default function BottomAppBar() {
                       }}
                     >
                       <Typography variant="h6" color="primary">
-                        <Box sx={{ pb: 2 }}> {product.name}</Box>
+                        <Box sx={{ pb: 1 }}> {product.name}</Box>
                       </Typography>
 
                       <ButtonGroup
                         variant="outlined"
                         aria-label="Basic button group"
-                        sx={{ pb: 2 }}
+                        sx={{ pb: 1.5 }}
                         size="small"
                       >
                         <Button>white</Button>
@@ -423,7 +423,7 @@ export default function BottomAppBar() {
                           {product.description}
                         </Typography>
                       </Box> */}
-                      <Box sx={{ pb: 2 }}>
+                      <Box sx={{ pb: 1 }}>
                         <Typography variant="subtitle1" color="primary">
                           {product.price}
                         </Typography>

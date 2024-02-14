@@ -82,7 +82,7 @@ export default forwardRef(function Stool(props, ref) {
 
   const handleStoolClick = () => {
     console.log("handleStoolClick()");
-    if (animActive) {
+    if (animActive || !introComplete) {
       return;
     } else {
       setToggled(!toggled);
@@ -99,19 +99,19 @@ export default forwardRef(function Stool(props, ref) {
 
   useEffect(() => {
     console.log("loaded = ", loaded);
+
+    setLoaded(true);
     setTimeout(() => {
-      setLoaded(true);
-      setTimeout(() => {
-        setToggled(!toggled);
-      }, "6000");
-    }, "6000");
+      setIntroComplete(true);
+      setToggled(!toggled);
+    }, "6500");
 
     return () => {};
   }, []);
 
   useGSAP(
     () => {
-      if (toggled) {
+      if (toggled && introComplete) {
         setIntroComplete(true);
         let tl = gsap.timeline();
         setAnimActive(true);
@@ -167,14 +167,13 @@ export default forwardRef(function Stool(props, ref) {
   useFrame((state) => {
     if (loaded && !introComplete) {
       state.controls.autoRotate = false;
-      setTimeout(() => {
-        state.camera.position.lerp(vec.set(80, 40, -45), 0.01);
-        state.camera.updateProjectionMatrix();
-      }, "600");
+      state.camera.position.lerp(vec.set(0, 30, 80), 0.01);
+      state.camera.updateProjectionMatrix();
+      // setTimeout(() => {
+      //   state.camera.position.lerp(vec.set(50, 20, -50), 0.01);
+      //   state.camera.updateProjectionMatrix();
+      // }, "1000");
       // state.camera.lookAt(markerRef.current.position);
-
-      // console.log(state.controls);
-      // state.controls.update();
     } else {
       state.controls.autoRotate = true;
     }

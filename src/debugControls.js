@@ -5,11 +5,11 @@ export default function debugControls() {
     stainColor: { value: "#ffffff" },
   });
   const { metalness } = useControls("metalness", {
-    metalness: { value: 0.5, step: 0.01, min: 0, max: 1.0 },
+    metalness: { value: 0.75, step: 0.01, min: 0, max: 1.0 },
   });
   const { roughness } = useControls("roughness", {
     roughness: {
-      value: 0.75,
+      value: 0.5,
       step: 0.01,
       min: 0,
       max: 1.0,
@@ -18,17 +18,17 @@ export default function debugControls() {
   const { directionalAposition, directionalAintensity, ambientLight } =
     useControls("lights", {
       directionalAposition: {
-        value: { x: 5, y: 28, z: 30 },
+        value: { x: 5, y: 25, z: 30 },
         step: 1.0,
       },
       directionalAintensity: {
-        value: 1.25,
+        value: 1.5,
         step: 0.01,
         min: 0,
         max: 8,
       },
       ambientLight: {
-        value: 0.75,
+        value: 0.65,
         step: 0.01,
         min: 0,
         max: 2.0,
@@ -98,7 +98,7 @@ export default function debugControls() {
     });
   const { itemScale } = useControls("scale", {
     itemScale: {
-      value: 0.9,
+      value: 0.75,
       step: 0.01,
       min: 0,
       max: 1.5,

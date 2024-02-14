@@ -32,7 +32,7 @@ export default function Experience() {
         shadow-mapSize-width={1024}
         shadow-mapSize-height={1024}
         shadow-camera-near={0.5}
-        shadow-camera-far={100}
+        shadow-camera-far={60}
         shadow-camera-left={-20}
         shadow-camera-bottom={-20}
         shadow-camera-right={20}
