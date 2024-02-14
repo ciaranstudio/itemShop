@@ -6,12 +6,19 @@ export default function Placeholder(props) {
 
   useFrame((state, delta) => {
     const angle = state.clock.elapsedTime;
-    boxRef.current.rotation.y = angle;
+    boxRef.current.rotation.y = angle * 2;
   });
 
   return (
-    <mesh {...props} ref={boxRef}>
-      <boxGeometry args={[10, 15, 10, 4, 4, 4]} />
+    <mesh
+      {...props}
+      ref={boxRef}
+      scale={0.35}
+      position={[0, 0, 0]}
+      rotation-x={-Math.PI * 0.5}
+    >
+      {/* <boxGeometry args={[10, 15, 10, 4, 4, 4]} /> */}
+      <circleGeometry args={[20, 64]} />
       <meshBasicMaterial wireframe color="lightBlue" />
     </mesh>
   );

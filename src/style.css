@@ -6,8 +6,17 @@ body,
   left: 0;
   width: 100%;
   height: 100%;
-  /* background: #e8e8e8; */
+  background: #e8e8e8;
   /* background: transparent; */
+}
+
+.loader {
+  border: 0.1rem solid #232222;
+  border-top: 0.1rem solid #2f302f;
+  border-radius: 50%;
+  width: min(7.5vw, 7.5vh);
+  height: min(7.5vw, 7.5vh);
+  animation: spin 2s linear infinite;
 }
 
 #initialLoad {
@@ -18,13 +27,4 @@ body,
   height: 100%;
   color: #3992ff;
   cursor: wait;
-}
-
-.loader {
-  border: 0.1rem solid #232222;
-  border-top: 0.1rem solid #2f302f;
-  border-radius: 50%;
-  width: min(7.5vw, 7.5vh);
-  height: min(7.5vw, 7.5vh);
-  animation: spin 2s linear infinite;
 }

@@ -7,18 +7,13 @@ import Experience from "./Experience.jsx";
 import { Leva } from "leva";
 import Placeholder from "./Placeholder.jsx";
 import BottomAppBar from "./AppBar.jsx";
+import Loading from "./Loading.jsx";
 
 const root = ReactDOM.createRoot(document.querySelector("#root"));
 
 root.render(
   <>
-    <Suspense
-      fallback={
-        <div id="initialLoad">
-          <div className="loader"></div>
-        </div>
-      }
-    >
+    <Suspense fallback={<Loading />}>
       <Leva hidden oneLineLabels />
       <Canvas
         shadows
