@@ -9,26 +9,32 @@ export default function debugControls() {
   });
   const { roughness } = useControls("roughness", {
     roughness: {
-      value: 0.5,
+      value: 0.0,
       step: 0.01,
       min: 0,
       max: 1.0,
     },
   });
+  const { positionY } = useControls("stool position (start)", {
+    positionY: {
+      value: -14,
+      step: 1.0,
+    },
+  });
   const { directionalAposition, directionalAintensity, ambientLight } =
     useControls("lights", {
       directionalAposition: {
-        value: { x: -8, y: 24, z: 24 },
+        value: { x: -13, y: 28, z: 24 },
         step: 1.0,
       },
       directionalAintensity: {
-        value: 1.55,
+        value: 1,
         step: 0.01,
         min: 0,
         max: 8,
       },
       ambientLight: {
-        value: 1.0,
+        value: 0.75,
         step: 0.01,
         min: 0,
         max: 2.0,
@@ -98,7 +104,7 @@ export default function debugControls() {
     });
   const { itemScale } = useControls("scale", {
     itemScale: {
-      value: 0.75,
+      value: 1.15,
       step: 0.01,
       min: 0,
       max: 1.5,
@@ -117,6 +123,7 @@ export default function debugControls() {
     metalness: metalness,
     roughness: roughness,
     stainColor: stainColor,
+    positionY: positionY,
     directionalAposition: directionalAposition,
     directionalAintensity: directionalAintensity,
     ambientLight: ambientLight,

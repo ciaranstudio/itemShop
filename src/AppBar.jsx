@@ -18,7 +18,6 @@ import Select from "@mui/material/Select";
 import { Global } from "@emotion/react";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import NorthIcon from "@mui/icons-material/North";
-// import SouthIcon from "@mui/icons-material/South";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import { products } from "./products";
@@ -26,11 +25,11 @@ import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import { keyframes } from "@mui/system";
 import controls from "./debugControls";
-import { useControls } from "leva";
 
-export default function BottomAppBar() {
+export default function BottomAppBar({ open, setOpen, modelLoaded }) {
   const debugControls = controls();
   const drawerBleeding = 24;
+
   const spinUp = keyframes`
   from {
     transform: rotate(0deg);
@@ -66,13 +65,10 @@ export default function BottomAppBar() {
 
   }`;
 
-  const [open, setOpen] = useState(false);
   const [item, setItem] = useState(10);
-  const [color, setColor] = useState("");
-  const [variant, setVariant] = React.useState("");
-  const [{ stainColor }, set] = useControls(() => ({
-    stainColor: "#ff0000",
-  }));
+  // const [{ stainColor }, set] = useControls(() => ({
+  //   stainColor: "#ff0000",
+  // }));
   // const [{ stainColor }, set] = useControls(() => ({
   //   stainColor: {
   //     value: "#ff0000",
@@ -92,13 +88,9 @@ export default function BottomAppBar() {
 
   const handleSelect = () => {
     console.log("handle select clicked");
-    // console.log(debugControls.stainColor);
-    // setColor("#ffffff");
-    // console.log("debugControls value: ", debugControls.stainColor);
     debugControls.stainColor = "#00ff00";
     console.log(debugControls.stainColor);
-    set({ stainColor: "#ff0000" });
-    // set({ stainColor: "#00ff00" });
+    // set({ stainColor: "#ff0000" });
   };
 
   const toggleDrawer = (newOpen) => () => {
@@ -106,7 +98,6 @@ export default function BottomAppBar() {
   };
 
   const theme = createTheme({
-    // shadows: ["none"],
     palette: {
       primary: {
         main: "#424242",
@@ -119,13 +110,6 @@ export default function BottomAppBar() {
       },
     },
     shadows: Array(25).fill("none"),
-    // overrides: {
-    //   MuiAppBar: {
-    //     root: {
-    //       "box-shadow": "none",
-    //     },
-    //   },
-    // },
     components: {
       MuiDrawer: {
         styleOverrides: {
@@ -149,24 +133,13 @@ export default function BottomAppBar() {
   const StyledFab = styled(Fab)({
     position: "absolute",
     zIndex: 1,
-    // bottom: open
-    //   ? `calc(50vh + ${drawerBleeding * 2.25}px)`
-    //   : drawerBleeding + 52,
     bottom: drawerBleeding + 58,
     left: 0,
     right: 0,
     margin: "0 auto",
-    // transitionDuration: "3s",
-    // transitionProperty: "transform",
-    // transitionDelay: "3s",
-
-    // transform: "translate(0, -48vh )",
-    // transition: "transform 1.5s linear",
   });
 
-  const StyledBox = styled("div")(({ theme }) => ({
-    // backgroundColor: "theme.palette.secondary.light",
-  }));
+  const StyledBox = styled("div")(({ theme }) => ({}));
 
   const Puller = styled("div")(({ theme }) => ({
     width: 30,
@@ -181,18 +154,6 @@ export default function BottomAppBar() {
   const iOS =
     typeof navigator !== "undefined" &&
     /iPad|iPhone|iPod/.test(navigator.userAgent);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setOpen(true);
-    }, "3000");
-  }, []);
-
-  // const [{ stainColor }, set] = useControls(() => ({ stainColor: "#ff0000" }));
-
-  // useEffect(() => {
-  //   console.log(debugControls.stainColor);
-  // }, []);
 
   return (
     <React.Fragment>
@@ -292,31 +253,6 @@ export default function BottomAppBar() {
             </IconButton>
           </Toolbar>
         </AppBar>
-        {/* <AppBar
-          position="fixed"
-          component="nav"
-          color="transparent"
-          elevation={0}
-          sx={{ top: "auto", bottom: 0 }}
-        >
-          <Toolbar>
-            <StyledFab
-              aria-label="show sale options"
-              onClick={toggleDrawer(true)}
-              size="small"
-              sx={{
-                backgroundColor: "transparent",
-                "&:hover": {
-                  backgroundColor: "secondary.light",
-                },
-                display: open ? "none" : "flex",
-              }}
-            >
-              <NorthIcon sx={{ color: "primary.light" }} />
-            </StyledFab>
-            <Box component={"div"} sx={{ flexGrow: 1 }} />
-          </Toolbar>
-        </AppBar> */}
 
         <Toolbar>
           <StyledFab
@@ -333,18 +269,6 @@ export default function BottomAppBar() {
                 : `${moveDown} 0.75s forwards`,
             }}
           >
-            {/* {open ? (
-              <SouthIcon
-                sx={{
-                  color: "primary.light",
-                  animation: `${spinDown} 1s ease`,
-                }}
-              />
-            ) : (
-              <NorthIcon
-                sx={{ color: "primary.light", animation: `${spinUp} 1s ease` }}
-              />
-            )} */}
             <NorthIcon
               sx={{
                 color: open ? "primary.light" : "primary.light",
@@ -365,6 +289,7 @@ export default function BottomAppBar() {
           onOpen={toggleDrawer(true)}
           swipeAreaWidth={drawerBleeding}
           disableSwipeToOpen={false}
+          transitionDuration={500}
           ModalProps={{
             keepMounted: true,
             slotProps: {

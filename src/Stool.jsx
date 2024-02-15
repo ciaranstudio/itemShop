@@ -1,21 +1,17 @@
 import React, { useRef, useState, useEffect } from "react";
-import { useFrame, useLoader } from "@react-three/fiber";
+import { useLoader } from "@react-three/fiber";
 import { TextureLoader } from "three/src/loaders/TextureLoader";
 import { useGLTF, Edges } from "@react-three/drei";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import controls from "./debugControls";
 import { forwardRef } from "react";
-import * as THREE from "three";
 
 export default forwardRef(function Stool(props, ref) {
-  const [loaded, setLoaded] = useState(false);
   const [introComplete, setIntroComplete] = useState(false);
-  // const markerRef = useRef();
-  const vec = new THREE.Vector3();
-
   const { nodes, materials } = useGLTF("/oakStool.glb");
   const debugControls = controls();
+
   const [
     colorMap,
     displacementMap,
@@ -72,12 +68,15 @@ export default forwardRef(function Stool(props, ref) {
     aoMap: marbleAoMap,
     wireframe: debugControls.wireframe,
   };
+  const [menuOpen, setMenuOpen] = useState(null);
   const circleEdgeRef = useRef();
   const positionOffset = { value: 0 };
   const verticalOffset = { value: 0 };
+  const totalPositionY = { value: 0 };
   const [toggled, setToggled] = useState(false);
   const [offset, setOffset] = useState(positionOffset.value);
   const [jumpOffset, setJumpOffset] = useState(verticalOffset.value);
+  const [stoolY, setStoolY] = useState(totalPositionY.value);
   const [animActive, setAnimActive] = useState(false);
 
   const handleStoolClick = () => {
@@ -90,6 +89,14 @@ export default forwardRef(function Stool(props, ref) {
   };
 
   useEffect(() => {
+    setMenuOpen(props.open);
+  }, []);
+
+  useEffect(() => {
+    setMenuOpen(props.open);
+  }, [props.open]);
+
+  useEffect(() => {
     if (toggled) {
       circleEdgeRef.current.visible = true;
     } else {
@@ -98,13 +105,10 @@ export default forwardRef(function Stool(props, ref) {
   }, [toggled]);
 
   useEffect(() => {
-    console.log("loaded = ", loaded);
-
-    setLoaded(true);
     setTimeout(() => {
       setIntroComplete(true);
       setToggled(!toggled);
-    }, "4500");
+    }, "2500");
 
     return () => {};
   }, []);
@@ -115,11 +119,21 @@ export default forwardRef(function Stool(props, ref) {
         setIntroComplete(true);
         let tl = gsap.timeline();
         setAnimActive(true);
+
+        tl.to(totalPositionY, {
+          value: debugControls.positionY,
+          duration: debugControls.mainDownDuration,
+          ease: "expoIn",
+          onUpdate: () => {
+            console.log("moving totalPositionY up");
+            setStoolY(totalPositionY.value);
+          },
+        });
+
         tl.to(verticalOffset, {
           value: debugControls.jumpOffset,
           duration: debugControls.jumpUpDuration,
           ease: "expoIn",
-
           onUpdate: () => {
             setJumpOffset(verticalOffset.value);
           },
@@ -128,7 +142,6 @@ export default forwardRef(function Stool(props, ref) {
           value: debugControls.mainOffset,
           duration: debugControls.mainUpDuration,
           ease: "expoIn",
-
           delay: debugControls.beforeMainUpDelay,
           onUpdate: () => {
             setOffset(positionOffset.value);
@@ -139,7 +152,6 @@ export default forwardRef(function Stool(props, ref) {
           duration: debugControls.mainDownDuration,
           ease: "expoOut",
           delay: debugControls.afterMainUpDelay,
-
           onUpdate: () => {
             setOffset(positionOffset.value);
           },
@@ -152,10 +164,26 @@ export default forwardRef(function Stool(props, ref) {
           onUpdate: () => {
             setJumpOffset(verticalOffset.value);
           },
+        });
+
+        tl.to(totalPositionY, {
+          value: 0,
+          duration: debugControls.mainDownDuration,
+          ease: "expoIn",
+          onUpdate: () => {
+            console.log("moving totalPositionY up");
+            setStoolY(totalPositionY.value);
+          },
           onComplete: () => {
             circleEdgeRef.current.visible = false;
             setAnimActive(false);
             setToggled(false);
+            // if (modelLoaded) {
+            //   props.setModelLoaded(true);
+            // } else {
+            //   props.setOpen(true);
+            // }
+            props.setOpen(true);
           },
         });
       }
@@ -164,37 +192,14 @@ export default forwardRef(function Stool(props, ref) {
     true,
   );
 
-  useFrame((state) => {
-    if (loaded && !introComplete) {
-      state.controls.autoRotate = false;
-      state.camera.position.lerp(vec.set(0, 30, 80), 0.01);
-      state.camera.updateProjectionMatrix();
-      // setTimeout(() => {
-      //   state.camera.position.lerp(vec.set(50, 20, -50), 0.01);
-      //   state.camera.updateProjectionMatrix();
-      // }, "1000");
-      // state.camera.lookAt(markerRef.current.position);
-    } else {
-      state.controls.autoRotate = true;
-    }
-    return null;
-  });
-
   return (
     <>
       <group
         {...props}
         dispose={null}
         onClick={handleStoolClick}
-        // ref={markerRef}
+        position={[0, stoolY, 0]}
       >
-        {/* <pointLight
-          // ref={ref}
-          color="white"
-          position={[0, 8 + offset * 4 + jumpOffset, 0]}
-          intensity={0}
-        /> */}
-
         <mesh
           receiveShadow
           position={[0, 0 - offset, 0]}
