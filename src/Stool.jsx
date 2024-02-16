@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useLoader } from "@react-three/fiber";
 import { TextureLoader } from "three/src/loaders/TextureLoader";
-import { useGLTF, Edges } from "@react-three/drei";
+import { useGLTF, Edges, useTexture } from "@react-three/drei";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import controls from "./debugControls";
@@ -11,22 +11,6 @@ export default forwardRef(function Stool(props, ref) {
   const [introComplete, setIntroComplete] = useState(false);
   const { nodes, materials } = useGLTF("/oakStool.glb");
   const debugControls = controls();
-
-  const [
-    colorMap,
-    displacementMap,
-    normalMap,
-    metalnessMap,
-    roughnessMap,
-    aoMap,
-  ] = useLoader(TextureLoader, [
-    "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_COL_2K_METALNESS.png",
-    "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_DISP_2K_METALNESS.png",
-    "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_NRM_2K_METALNESS.png",
-    "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_METALNESS_2K_METALNESS.png",
-    "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_ROUGHNESS_2K_METALNESS.png",
-    "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_AO_2K_METALNESS.png",
-  ]);
 
   const [
     marbleColorMap,
@@ -47,14 +31,14 @@ export default forwardRef(function Stool(props, ref) {
   const woodMaterial = {
     metalness: debugControls.metalness,
     roughness: debugControls.roughness,
-    color: debugControls.stainColor,
     displacementScale: 0,
-    map: colorMap,
-    displacementMap: displacementMap,
-    normalMap: normalMap,
-    metalnessMap: metalnessMap,
-    roughnessMap: roughnessMap,
-    aoMap: aoMap,
+    map: props.colorMap,
+    displacementMap: props.displacementMap,
+    normalMap: props.normalMap,
+    metalnessMap: props.metalnessMap,
+    roughnessMap: props.roughnessMap,
+    aoMap: props.aoMap,
+    color: props.currentColor,
     wireframe: debugControls.wireframe,
   };
 
@@ -94,6 +78,7 @@ export default forwardRef(function Stool(props, ref) {
 
   useEffect(() => {
     setMenuOpen(props.open);
+    console.log("props.currentTexture: ", props.currentTexture);
   }, []);
 
   useEffect(() => {
@@ -162,7 +147,7 @@ export default forwardRef(function Stool(props, ref) {
         });
         tl.to(stoolSpin, {
           value: 0,
-          duration: debugControls.stoolSpinDuration,
+          duration: debugControls.stoolSpinDuration + 0.25,
           ease: "easeOut",
           onUpdate: () => {
             setStoolSpinAmount(stoolSpin.value);
@@ -208,6 +193,40 @@ export default forwardRef(function Stool(props, ref) {
     [toggled],
     true,
   );
+
+  // useLayoutEffect(() => {
+  //   Object.assign(materials.Material, {
+  //     displacementScale: 0,
+  //     map: props.colorMap,
+  //     displacementMap: props.displacementMap,
+  //     normalMap: props.normalMap,
+  //     metalnessMap: props.metalnessMap,
+  //     roughnessMap: props.roughnessMap,
+  //     aoMap: props.aoMap,
+  //     color: props.currentColor,
+  //   });
+
+  //   //   metalness: debugControls.metalness,
+  //   //   roughness: debugControls.roughness,
+  //   //   color: debugControls.stainColor,
+
+  //   //   displacementScale: 0,
+  //   //   map: colorMap,
+  //   //   displacementMap: displacementMap,
+  //   //   normalMap: normalMap,
+  //   //   metalnessMap: metalnessMap,
+  //   //   roughnessMap: roughnessMap,
+  //   //   aoMap: aoMap,
+  // }, [
+  //   nodes,
+  //   materials,
+  //   currentColor,
+  //   currentTexture,
+  //   props.colorMap,
+  //   props.normalMap,
+  //   props.roughnessMap,
+  //   props.metalnessMap,
+  // ]);
 
   return (
     <>

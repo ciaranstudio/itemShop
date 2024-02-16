@@ -26,7 +26,12 @@ import ButtonGroup from "@mui/material/ButtonGroup";
 import { keyframes } from "@mui/system";
 import controls from "./debugControls";
 
-export default function BottomAppBar({ open, setOpen, modelLoaded }) {
+export default function BottomAppBar({
+  open,
+  setOpen,
+  handleColorChange,
+  handleTextureChange,
+}) {
   const debugControls = controls();
   const drawerBleeding = 24;
 
@@ -82,16 +87,16 @@ export default function BottomAppBar({ open, setOpen, modelLoaded }) {
     setItem(event.target.value);
   };
 
-  const handleVariantChange = (event) => {
-    setVariant(event.target.value);
-  };
+  // const handleVariantChange = (event) => {
+  //   setVariant(event.target.value);
+  // };
 
-  const handleSelect = () => {
-    console.log("handle select clicked");
-    debugControls.stainColor = "#00ff00";
-    console.log(debugControls.stainColor);
-    // set({ stainColor: "#ff0000" });
-  };
+  // const handleSelect = () => {
+  //   console.log("handle select clicked");
+  //   debugControls.stainColor = "#00ff00";
+  //   console.log(debugControls.stainColor);
+  //   // set({ stainColor: "#ff0000" });
+  // };
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
@@ -368,10 +373,26 @@ export default function BottomAppBar({ open, setOpen, modelLoaded }) {
                         sx={{ pb: 1.5 }}
                         size="small"
                       >
-                        <Button onClick={handleSelect}>white</Button>
-                        <Button>natural</Button>
-                        <Button>black</Button>
-                        <Button>all black</Button>
+                        <Button
+                          onClick={(e) => handleColorChange(e, "superWhite")}
+                        >
+                          white
+                        </Button>
+                        <Button
+                          onClick={(e) => handleColorChange(e, "naturalStain")}
+                        >
+                          natural
+                        </Button>
+                        <Button
+                          onClick={(e) => handleColorChange(e, "blackStain")}
+                        >
+                          black
+                        </Button>
+                        <Button
+                          onClick={(e) => handleColorChange(e, "allBlackStain")}
+                        >
+                          all black
+                        </Button>
                       </ButtonGroup>
 
                       {/* <Box sx={{ pb: 1 }}>

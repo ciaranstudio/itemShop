@@ -1,5 +1,5 @@
 import { useFrame } from "@react-three/fiber";
-import { OrbitControls, useHelper } from "@react-three/drei";
+import { OrbitControls, useHelper, useTexture } from "@react-three/drei";
 import { Perf } from "r3f-perf";
 import { useRef, useState, useEffect } from "react";
 import Stool from "./Stool.jsx";
@@ -7,7 +7,12 @@ import controls from "./debugControls";
 import { CameraHelper } from "three";
 import * as THREE from "three";
 
-export default function Experience({ open, setOpen }) {
+export default function Experience({
+  open,
+  setOpen,
+  currentColor,
+  currentTexture,
+}) {
   const debugControls = controls();
   const [initialLoad, setInitialLoad] = useState(false);
   const [controlsDragging, setControlsDragging] = useState(false);
@@ -17,6 +22,19 @@ export default function Experience({ open, setOpen }) {
   const shadowCameraRef = useRef();
   useHelper(shadowCameraRef, CameraHelper, 1, "lightBlue");
   const vec = new THREE.Vector3();
+  console.log(
+    "current texture from Experience (prop from App): ",
+    currentTexture,
+  );
+
+  const [
+    colorMap,
+    displacementMap,
+    normalMap,
+    metalnessMap,
+    roughnessMap,
+    aoMap,
+  ] = useTexture(currentTexture);
 
   const handleOffClick = () => {
     if (orbitRef.current) setCameraPosition(orbitRef.current.object.position);
@@ -123,8 +141,8 @@ export default function Experience({ open, setOpen }) {
         shadow-normalBias={0.04}
         shadow-mapSize-width={512}
         shadow-mapSize-height={512}
-        shadow-camera-near={0.1}
-        shadow-camera-far={75}
+        shadow-camera-near={65}
+        shadow-camera-far={115}
         shadow-camera-left={-10}
         shadow-camera-bottom={-25}
         shadow-camera-right={20}
@@ -140,6 +158,14 @@ export default function Experience({ open, setOpen }) {
         open={open}
         setOpen={setOpen}
         onPointerMissed={handleOffClick}
+        colorMap={colorMap}
+        displacementMap={displacementMap}
+        normalMap={normalMap}
+        metalnessMap={metalnessMap}
+        roughnessMap={roughnessMap}
+        aoMap={aoMap}
+        currentColor={currentColor}
+        currentTexture={currentTexture}
       />
     </>
   );
