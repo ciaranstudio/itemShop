@@ -68,15 +68,19 @@ export default forwardRef(function Stool(props, ref) {
     aoMap: marbleAoMap,
     wireframe: debugControls.wireframe,
   };
+
   const [menuOpen, setMenuOpen] = useState(null);
   const circleEdgeRef = useRef();
+  const tableTopPaddingY = 2.25;
   const positionOffset = { value: 0 };
   const verticalOffset = { value: 0 };
   const totalPositionY = { value: 0 };
+  const stoolSpin = { value: 0 };
   const [toggled, setToggled] = useState(false);
   const [offset, setOffset] = useState(positionOffset.value);
   const [jumpOffset, setJumpOffset] = useState(verticalOffset.value);
   const [stoolY, setStoolY] = useState(totalPositionY.value);
+  const [stoolSpinAmount, setStoolSpinAmount] = useState(stoolSpin.value);
   const [animActive, setAnimActive] = useState(false);
 
   const handleStoolClick = () => {
@@ -108,7 +112,7 @@ export default forwardRef(function Stool(props, ref) {
     setTimeout(() => {
       setIntroComplete(true);
       setToggled(!toggled);
-    }, "2500");
+    }, "3000");
 
     return () => {};
   }, []);
@@ -122,7 +126,7 @@ export default forwardRef(function Stool(props, ref) {
 
         tl.to(totalPositionY, {
           value: debugControls.positionY,
-          duration: debugControls.mainDownDuration,
+          duration: debugControls.durationDownPositionY,
           ease: "expoIn",
           onUpdate: () => {
             console.log("moving totalPositionY up");
@@ -147,6 +151,24 @@ export default forwardRef(function Stool(props, ref) {
             setOffset(positionOffset.value);
           },
         });
+
+        tl.to(stoolSpin, {
+          value: debugControls.stoolSpin,
+          duration: debugControls.stoolSpinDuration,
+          ease: "easeIn",
+          onUpdate: () => {
+            setStoolSpinAmount(stoolSpin.value);
+          },
+        });
+        tl.to(stoolSpin, {
+          value: 0,
+          duration: debugControls.stoolSpinDuration,
+          ease: "easeOut",
+          onUpdate: () => {
+            setStoolSpinAmount(stoolSpin.value);
+          },
+        });
+
         tl.to(positionOffset, {
           value: 0,
           duration: debugControls.mainDownDuration,
@@ -167,8 +189,8 @@ export default forwardRef(function Stool(props, ref) {
         });
 
         tl.to(totalPositionY, {
-          value: 0,
-          duration: debugControls.mainDownDuration,
+          value: 2,
+          duration: debugControls.durationUpPositionY,
           ease: "expoIn",
           onUpdate: () => {
             console.log("moving totalPositionY up");
@@ -178,11 +200,6 @@ export default forwardRef(function Stool(props, ref) {
             circleEdgeRef.current.visible = false;
             setAnimActive(false);
             setToggled(false);
-            // if (modelLoaded) {
-            //   props.setModelLoaded(true);
-            // } else {
-            //   props.setOpen(true);
-            // }
             props.setOpen(true);
           },
         });
@@ -197,8 +214,8 @@ export default forwardRef(function Stool(props, ref) {
       <group
         {...props}
         dispose={null}
-        onClick={handleStoolClick}
         position={[0, stoolY, 0]}
+        rotation={[0, stoolSpinAmount, 0]}
       >
         <mesh
           receiveShadow
@@ -221,13 +238,18 @@ export default forwardRef(function Stool(props, ref) {
           position={[-8.26, 0 + offset * 2 + jumpOffset, 8.26]}
           scale={1}
           visible={debugControls.visible}
+          onClick={handleStoolClick}
         >
           <mesh
             castShadow
             receiveShadow
             geometry={nodes.blockA.geometry}
             material={materials.VeneerWhiteOakRandomMatched001_2K}
-            position={[0.765, 16.5 + offset * 2 + offset / 1.5, -0.753]}
+            position={[
+              0.765,
+              16.5 + offset * tableTopPaddingY + offset / 1.5,
+              -0.753,
+            ]}
           >
             <meshStandardMaterial {...woodMaterial} />
           </mesh>
@@ -236,7 +258,11 @@ export default forwardRef(function Stool(props, ref) {
             receiveShadow
             geometry={nodes.blockB.geometry}
             material={materials.VeneerWhiteOakRandomMatched001_2K}
-            position={[0.765, 16.5 + offset * 2 + offset / 1.5, -0.753]}
+            position={[
+              0.765,
+              16.5 + offset * tableTopPaddingY + offset / 1.5,
+              -0.753,
+            ]}
           >
             <meshStandardMaterial {...woodMaterial} />
           </mesh>
@@ -245,7 +271,11 @@ export default forwardRef(function Stool(props, ref) {
             receiveShadow
             geometry={nodes.blockC.geometry}
             material={materials.VeneerWhiteOakRandomMatched001_2K}
-            position={[0.765, 16.5 + offset * 2 + offset / 1.5, -0.753]}
+            position={[
+              0.765,
+              16.5 + offset * tableTopPaddingY + offset / 1.5,
+              -0.753,
+            ]}
           >
             <meshStandardMaterial {...woodMaterial} />
           </mesh>
@@ -254,7 +284,11 @@ export default forwardRef(function Stool(props, ref) {
             receiveShadow
             geometry={nodes.blockD.geometry}
             material={materials.VeneerWhiteOakRandomMatched001_2K}
-            position={[0.765, 16.5 + offset * 2 + offset / 1.5, -0.753]}
+            position={[
+              0.765,
+              16.5 + offset * tableTopPaddingY + offset / 1.5,
+              -0.753,
+            ]}
           >
             <meshStandardMaterial {...woodMaterial} />
           </mesh>
@@ -313,7 +347,11 @@ export default forwardRef(function Stool(props, ref) {
             receiveShadow
             geometry={nodes.tableTop.geometry}
             material={materials.VeneerWhiteOakRandomMatched001_2K}
-            position={[0.765, 16.5 + offset * 2 + offset / 1.5, -0.753]}
+            position={[
+              0.765,
+              16.5 + offset * tableTopPaddingY + offset / 1.5,
+              -0.753,
+            ]}
           >
             <meshStandardMaterial {...woodMaterial} />
           </mesh>

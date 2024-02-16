@@ -27,7 +27,7 @@ export default function Experience({ open, setOpen }) {
       setCameraPosition(orbitRef.current.object.position);
       console.log("open value from Experience useEffect: ", open);
       if (orbitRef.current) {
-        orbitRef.current.autoRotateSpeed = 1.25;
+        orbitRef.current.autoRotateSpeed = 0.75;
         orbitRef.current.autoRotate = true;
 
         console.log(
@@ -38,7 +38,7 @@ export default function Experience({ open, setOpen }) {
     } else if (!open) {
       console.log("open value from Experience useEffect: ", open);
       if (orbitRef.current) {
-        orbitRef.current.autoRotateSpeed = 0.75;
+        orbitRef.current.autoRotateSpeed = 1.25;
         orbitRef.current.autoRotate = true;
         console.log(
           "orbitRef.current.autoRotate: ",
@@ -50,6 +50,7 @@ export default function Experience({ open, setOpen }) {
 
   useEffect(() => {
     setInitialLoad(true);
+
     if (orbitRef.current) {
       orbitRef.current.addEventListener("start", () => {
         console.log("started dragging!");
@@ -63,10 +64,8 @@ export default function Experience({ open, setOpen }) {
         "end",
         () => {
           console.log("stopped dragging!");
-          setTimeout(() => {
-            setCameraPosition(orbitRef.current.object.position);
-            setControlsDragging(false);
-          }, "500");
+          // setCameraPosition(orbitRef.current.object.position);
+          setControlsDragging(false);
         },
         true,
       );
@@ -89,9 +88,9 @@ export default function Experience({ open, setOpen }) {
   }, []);
 
   useFrame(() => {
-    if (initialLoad && !controlsDragging && orbitRef.current) {
+    if (initialLoad && !controlsDragging && orbitRef.current && !open) {
       if (cameraPosition == null) {
-        orbitRef.current.object.position.lerp(vec.set(25, 36, 70), 0.01);
+        orbitRef.current.object.position.lerp(vec.set(35, 48, 85), 0.01);
         orbitRef.current.object.updateProjectionMatrix();
         orbitRef.current.update();
       }
@@ -110,7 +109,6 @@ export default function Experience({ open, setOpen }) {
         enablePan={false}
         maxDistance={100}
         minDistance={70}
-        minPolarAngle={0}
         maxPolarAngle={Math.PI / 2}
         enableDamping={true}
       />
@@ -126,7 +124,7 @@ export default function Experience({ open, setOpen }) {
         shadow-mapSize-width={512}
         shadow-mapSize-height={512}
         shadow-camera-near={0.1}
-        shadow-camera-far={70}
+        shadow-camera-far={75}
         shadow-camera-left={-10}
         shadow-camera-bottom={-25}
         shadow-camera-right={20}

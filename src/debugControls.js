@@ -15,16 +15,11 @@ export default function debugControls() {
       max: 1.0,
     },
   });
-  const { positionY } = useControls("stool position (start)", {
-    positionY: {
-      value: -14,
-      step: 1.0,
-    },
-  });
+
   const { directionalAposition, directionalAintensity, ambientLight } =
     useControls("lights", {
       directionalAposition: {
-        value: { x: -13, y: 28, z: 24 },
+        value: { x: -15, y: 32, z: 30 },
         step: 1.0,
       },
       directionalAintensity: {
@@ -34,21 +29,65 @@ export default function debugControls() {
         max: 8,
       },
       ambientLight: {
-        value: 0.75,
+        value: 0.65,
         step: 0.01,
         min: 0,
         max: 2.0,
       },
     });
+
+  const { positionY } = useControls("stool vertical target", {
+    positionY: {
+      value: -14.5,
+      step: 1.0,
+    },
+  });
+
+  const { durationUpPositionY } = useControls("stool duration up", {
+    durationUpPositionY: {
+      value: 1,
+      step: 0.01,
+      min: 0,
+      max: 4,
+    },
+  });
+
+  const { durationDownPositionY } = useControls("stool duration down", {
+    durationDownPositionY: {
+      value: 1,
+      step: 0.01,
+      min: 0,
+      max: 4,
+    },
+  });
+
+  const { stoolSpin } = useControls("stool duration up", {
+    stoolSpin: {
+      value: Math.PI / 3,
+      step: 0.01,
+      min: 0,
+      max: 4,
+    },
+  });
+
+  const { stoolSpinDuration } = useControls("stool duration down", {
+    stoolSpinDuration: {
+      value: 1,
+      step: 0.01,
+      min: 0,
+      max: 4,
+    },
+  });
+
   const { mainOffset, jumpOffset } = useControls("animation distance", {
     mainOffset: {
-      value: 3, // 3.25
+      value: 3.25, // 3.25
       step: 0.01,
       min: 0,
       max: 10,
     },
     jumpOffset: {
-      value: 2.0,
+      value: 1.0,
       step: 0.01,
       min: 0,
       max: 5,
@@ -57,25 +96,25 @@ export default function debugControls() {
   const { mainUpDuration, jumpUpDuration, mainDownDuration, jumpDownDuration } =
     useControls("animation duration", {
       mainUpDuration: {
-        value: 0.75,
+        value: 1,
         step: 0.01,
         min: 0,
         max: 4,
       },
       jumpUpDuration: {
-        value: 0.3,
+        value: 0.25,
         step: 0.01,
         min: 0,
         max: 4,
       },
       mainDownDuration: {
-        value: 0.8,
+        value: 1.25,
         step: 0.01,
         min: 0,
         max: 4,
       },
       jumpDownDuration: {
-        value: 0.15,
+        value: 0.18,
         step: 0.01,
         min: 0,
         max: 4,
@@ -84,19 +123,19 @@ export default function debugControls() {
   const { beforeMainUpDelay, afterMainUpDelay, afterJumpDownDelay } =
     useControls("animation delay", {
       beforeMainUpDelay: {
-        value: 0.25,
+        value: 0.15,
         step: 0.01,
         min: 0,
         max: 2,
       },
       afterMainUpDelay: {
-        value: 3.0,
+        value: 0.15,
         step: 0.01,
         min: 0,
         max: 6,
       },
       afterJumpDownDelay: {
-        value: 0.25,
+        value: 0.05,
         step: 0.01,
         min: 0,
         max: 6,
@@ -124,6 +163,10 @@ export default function debugControls() {
     roughness: roughness,
     stainColor: stainColor,
     positionY: positionY,
+    durationUpPositionY: durationUpPositionY,
+    durationDownPositionY: durationDownPositionY,
+    stoolSpin: stoolSpin,
+    stoolSpinDuration: stoolSpinDuration,
     directionalAposition: directionalAposition,
     directionalAintensity: directionalAintensity,
     ambientLight: ambientLight,
