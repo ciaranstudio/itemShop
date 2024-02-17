@@ -55,7 +55,7 @@ function App() {
 
   const [currentTexture, setCurrentTexture] = useState(allBlackTexture);
   const [currentColor, setCurrentColor] = useState(blackStain);
-  const [currentSelect, setCurrentSelect] = useState(currentColor);
+  const [currentSelect, setCurrentSelect] = useState("black");
 
   const handleColorChange = (event, color) => {
     event.preventDefault();
