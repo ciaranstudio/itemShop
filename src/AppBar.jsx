@@ -32,6 +32,7 @@ export default function BottomAppBar({
   handleColorChange,
   handleTextureChange,
   currentColor,
+  currentSelect,
   toggled,
   setToggled,
   animActive,
@@ -364,19 +365,39 @@ export default function BottomAppBar({
                         sx={{ pb: 1 }}
                         size="small"
                       >
-                        <Button onClick={(e) => handleColorChange(e, "white")}>
+                        <Button
+                          onClick={(e) => handleColorChange(e, "white")}
+                          variant={
+                            currentSelect === "white" ? "contained" : "outlined"
+                          }
+                        >
                           white
                         </Button>
                         <Button
                           onClick={(e) => handleColorChange(e, "natural")}
+                          variant={
+                            currentSelect === "natural"
+                              ? "contained"
+                              : "outlined"
+                          }
                         >
                           natural
                         </Button>
-                        <Button onClick={(e) => handleColorChange(e, "black")}>
+                        <Button
+                          onClick={(e) => handleColorChange(e, "black")}
+                          variant={
+                            currentSelect === "black" ? "contained" : "outlined"
+                          }
+                        >
                           black
                         </Button>
                         <Button
                           onClick={(e) => handleColorChange(e, "allBlack")}
+                          variant={
+                            currentSelect === "allBlack"
+                              ? "contained"
+                              : "outlined"
+                          }
                         >
                           all black
                         </Button>

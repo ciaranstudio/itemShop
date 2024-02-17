@@ -54,10 +54,12 @@ function App() {
   ];
 
   const [currentTexture, setCurrentTexture] = useState(allBlackTexture);
-  const [currentColor, setCurrentColor] = useState(allBlackStain);
+  const [currentColor, setCurrentColor] = useState(blackStain);
+  const [currentSelect, setCurrentSelect] = useState(currentColor);
 
   const handleColorChange = (event, color) => {
     event.preventDefault();
+    setCurrentSelect(color);
     if (color === "white") {
       setCurrentColor(whiteStain);
     } else if (color === "natural") {
@@ -85,7 +87,7 @@ function App() {
   };
 
   // useEffect(() => {
-  //   console.log("currentTexture: ", currentTexture);
+  //   setCurrentSelect()
   // }, []);
 
   return (
@@ -123,6 +125,7 @@ function App() {
         handleColorChange={handleColorChange}
         handleTextureChange={handleTextureChange}
         currentColor={currentColor}
+        currentSelect={currentSelect}
         animActive={animActive}
       />
     </>
