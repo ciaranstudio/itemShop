@@ -49,7 +49,7 @@ export default function Experience({
       setCameraPosition(orbitRef.current.object.position);
       console.log("open value from Experience useEffect: ", open);
       if (orbitRef.current) {
-        orbitRef.current.autoRotateSpeed = 0.75;
+        orbitRef.current.autoRotateSpeed = 0.95;
         orbitRef.current.autoRotate = true;
 
         console.log(
@@ -60,7 +60,7 @@ export default function Experience({
     } else if (!open) {
       console.log("open value from Experience useEffect: ", open);
       if (orbitRef.current) {
-        orbitRef.current.autoRotateSpeed = 1.25;
+        orbitRef.current.autoRotateSpeed = 1.5;
         orbitRef.current.autoRotate = true;
         console.log(
           "orbitRef.current.autoRotate: ",

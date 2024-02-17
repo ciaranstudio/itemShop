@@ -160,7 +160,9 @@ export default function BottomAppBar({
   const Puller = styled("div")(({ theme }) => ({
     width: 30,
     height: 4,
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: open
+      ? theme.palette.primary.main
+      : theme.palette.primary.light,
     borderRadius: 3,
     position: "absolute",
     top: 10,
@@ -302,7 +304,7 @@ export default function BottomAppBar({
                 variant="contained"
                 size="small"
                 sx={{ p: 0, scale: "0.65" }}
-                color="primary"
+                color="secondary"
               >
                 info
               </Button>
@@ -354,22 +356,24 @@ export default function BottomAppBar({
                         background: "transparent",
                       }}
                     >
-                      <Box sx={{ pt: 0, pb: 1 }}>
-                        <Typography variant="h6" color="primary">
+                      <Box sx={{ pt: 0, pb: 0.5 }}>
+                        <Typography variant="h6" color="primary.light">
                           {product.name}
                         </Typography>
                       </Box>
                       <ButtonGroup
                         variant="outlined"
                         aria-label="Basic button group"
-                        sx={{ pb: 1 }}
+                        sx={{ pb: 1, scale: "0.95" }}
                         size="small"
+                        color="primary"
                       >
                         <Button
                           onClick={(e) => handleColorChange(e, "white")}
                           variant={
                             currentSelect === "white" ? "contained" : "outlined"
                           }
+                          color="primary"
                         >
                           white
                         </Button>
@@ -408,15 +412,15 @@ export default function BottomAppBar({
                           {product.description}
                         </Typography>
                       </Box> */}
-                      <Box sx={{ pb: 1 }}>
-                        <Typography variant="subtitle1" color="primary">
+                      <Box sx={{ pb: 0.25 }}>
+                        <Typography variant="subtitle1" color="primary.light">
                           {product.price}
                         </Typography>
                       </Box>
                       <Button
                         variant="contained"
                         color="primary"
-                        sx={{ color: "secondary.light" }}
+                        sx={{ color: "secondary.light", scale: "0.9" }}
                         size="small"
                       >
                         add to cart
