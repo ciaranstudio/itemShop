@@ -6,18 +6,18 @@ import Placeholder from "./Placeholder.jsx";
 import BottomAppBar from "./AppBar.jsx";
 import * as THREE from "three";
 import "./style.css";
-// import { useLoader } from "@react-three/fiber";
-// import { TextureLoader } from "three/src/loaders/TextureLoader";
 
 function App() {
   const [open, setOpen] = useState(false);
+  const [toggled, setToggled] = useState(false);
+  const [animActive, setAnimActive] = useState(false);
 
-  const superWhite = new THREE.Color(0xffffff);
+  const whiteStain = new THREE.Color(0xffffff);
   const naturalStain = new THREE.Color(0xdddddd);
   const blackStain = new THREE.Color(0xbababa);
   const allBlackStain = new THREE.Color(0x585858);
 
-  const white = [
+  const whiteTexture = [
     "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_COL_2K_METALNESS.png",
     "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_DISP_2K_METALNESS.png",
     "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_NRM_2K_METALNESS.png",
@@ -26,7 +26,7 @@ function App() {
     "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_AO_2K_METALNESS.png",
   ];
 
-  const natural = [
+  const naturalTexture = [
     "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_COL_2K_METALNESS.png",
     "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_DISP_2K_METALNESS.png",
     "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_NRM_2K_METALNESS.png",
@@ -35,7 +35,7 @@ function App() {
     "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_AO_2K_METALNESS.png",
   ];
 
-  const black = [
+  const blackTexture = [
     "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_COL_2K_METALNESS.png",
     "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_DISP_2K_METALNESS.png",
     "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_NRM_2K_METALNESS.png",
@@ -44,7 +44,7 @@ function App() {
     "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_AO_2K_METALNESS.png",
   ];
 
-  const allBlack = [
+  const allBlackTexture = [
     "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_COL_2K_METALNESS.png",
     "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_DISP_2K_METALNESS.png",
     "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_NRM_2K_METALNESS.png",
@@ -53,20 +53,20 @@ function App() {
     "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_AO_2K_METALNESS.png",
   ];
 
-  const [currentTexture, setCurrentTexture] = useState(white);
+  const [currentTexture, setCurrentTexture] = useState(allBlackTexture);
   const [currentColor, setCurrentColor] = useState(allBlackStain);
 
   const handleColorChange = (event, color) => {
     event.preventDefault();
-    if (color === "superWhite") {
-      setCurrentColor(superWhite);
-    } else if (color === "naturalStain") {
+    if (color === "white") {
+      setCurrentColor(whiteStain);
+    } else if (color === "natural") {
       setCurrentColor(naturalStain);
-    } else if (color === "blackStain") {
+    } else if (color === "black") {
       setCurrentColor(blackStain);
-    } else if (color === "blackStain") {
+    } else if (color === "black") {
       setCurrentColor(blackStain);
-    } else if (color === "allBlackStain") {
+    } else if (color === "allBlack") {
       setCurrentColor(allBlackStain);
     }
   };
@@ -74,19 +74,19 @@ function App() {
   const handleTextureChange = (event, texture) => {
     event.preventDefault();
     if (texture === "white") {
-      setCurrentTexture(white);
+      setCurrentTexture(whiteTexture);
     } else if (texture === "natural") {
-      setCurrentTexture(natural);
+      setCurrentTexture(naturalTexture);
     } else if (texture === "black") {
-      setCurrentTexture(black);
+      setCurrentTexture(blackTexture);
     } else if (texture === "allBlack") {
-      setCurrentTexture(allBlack);
+      setCurrentTexture(allBlackTexture);
     }
   };
 
-  useEffect(() => {
-    console.log("currentTexture: ", currentTexture);
-  }, []);
+  // useEffect(() => {
+  //   console.log("currentTexture: ", currentTexture);
+  // }, []);
 
   return (
     <>
@@ -104,18 +104,26 @@ function App() {
       >
         <Suspense fallback={<Placeholder />}>
           <Experience
+            toggled={toggled}
+            setToggled={setToggled}
             open={open}
             setOpen={setOpen}
             currentTexture={currentTexture}
             currentColor={currentColor}
+            animActive={animActive}
+            setAnimActive={setAnimActive}
           />
         </Suspense>
       </Canvas>
       <BottomAppBar
+        toggled={toggled}
+        setToggled={setToggled}
         open={open}
         setOpen={setOpen}
         handleColorChange={handleColorChange}
         handleTextureChange={handleTextureChange}
+        currentColor={currentColor}
+        animActive={animActive}
       />
     </>
   );

@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useLoader } from "@react-three/fiber";
 import { TextureLoader } from "three/src/loaders/TextureLoader";
-import { useGLTF, Edges, useTexture } from "@react-three/drei";
+import { useGLTF, Edges } from "@react-three/drei";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import controls from "./debugControls";
@@ -53,50 +53,38 @@ export default forwardRef(function Stool(props, ref) {
     wireframe: debugControls.wireframe,
   };
 
-  const [menuOpen, setMenuOpen] = useState(null);
   const circleEdgeRef = useRef();
   const tableTopPaddingY = 2.25;
   const positionOffset = { value: 0 };
   const verticalOffset = { value: 0 };
   const totalPositionY = { value: 0 };
   const stoolSpin = { value: 0 };
-  const [toggled, setToggled] = useState(false);
   const [offset, setOffset] = useState(positionOffset.value);
   const [jumpOffset, setJumpOffset] = useState(verticalOffset.value);
   const [stoolY, setStoolY] = useState(totalPositionY.value);
   const [stoolSpinAmount, setStoolSpinAmount] = useState(stoolSpin.value);
-  const [animActive, setAnimActive] = useState(false);
 
   const handleStoolClick = () => {
     console.log("handleStoolClick()");
-    if (animActive || !introComplete) {
+    if (props.animActive || !introComplete) {
       return;
     } else {
-      setToggled(!toggled);
+      props.setToggled(!props.toggled);
     }
   };
 
   useEffect(() => {
-    setMenuOpen(props.open);
-    console.log("props.currentTexture: ", props.currentTexture);
-  }, []);
-
-  useEffect(() => {
-    setMenuOpen(props.open);
-  }, [props.open]);
-
-  useEffect(() => {
-    if (toggled) {
+    if (props.toggled) {
       circleEdgeRef.current.visible = true;
     } else {
       circleEdgeRef.current.visible = false;
     }
-  }, [toggled]);
+  }, [props.toggled]);
 
   useEffect(() => {
     setTimeout(() => {
       setIntroComplete(true);
-      setToggled(!toggled);
+      props.setToggled(!props.toggled);
     }, "3000");
 
     return () => {};
@@ -104,10 +92,10 @@ export default forwardRef(function Stool(props, ref) {
 
   useGSAP(
     () => {
-      if (toggled && introComplete) {
+      if (props.toggled && introComplete) {
         setIntroComplete(true);
         let tl = gsap.timeline();
-        setAnimActive(true);
+        props.setAnimActive(true);
 
         tl.to(totalPositionY, {
           value: debugControls.positionY,
@@ -183,14 +171,14 @@ export default forwardRef(function Stool(props, ref) {
           },
           onComplete: () => {
             circleEdgeRef.current.visible = false;
-            setAnimActive(false);
-            setToggled(false);
+            props.setAnimActive(false);
+            props.setToggled(false);
             props.setOpen(true);
           },
         });
       }
     },
-    [toggled],
+    [props.toggled],
     true,
   );
 

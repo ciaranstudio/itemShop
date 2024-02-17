@@ -12,6 +12,10 @@ export default function Experience({
   setOpen,
   currentColor,
   currentTexture,
+  toggled,
+  setToggled,
+  animActive,
+  setAnimActive,
 }) {
   const debugControls = controls();
   const [initialLoad, setInitialLoad] = useState(false);
@@ -73,6 +77,7 @@ export default function Experience({
       orbitRef.current.addEventListener("start", () => {
         console.log("started dragging!");
         setControlsDragging(true);
+        setOpen(false);
       }),
         true;
       // orbitRef.current.addEventListener("change", () =>
@@ -84,6 +89,7 @@ export default function Experience({
           console.log("stopped dragging!");
           // setCameraPosition(orbitRef.current.object.position);
           setControlsDragging(false);
+          setOpen(true);
         },
         true,
       );
@@ -157,6 +163,8 @@ export default function Experience({
         scale={debugControls.itemScale}
         open={open}
         setOpen={setOpen}
+        toggled={toggled}
+        setToggled={setToggled}
         onPointerMissed={handleOffClick}
         colorMap={colorMap}
         displacementMap={displacementMap}
@@ -166,6 +174,8 @@ export default function Experience({
         aoMap={aoMap}
         currentColor={currentColor}
         currentTexture={currentTexture}
+        animActive={animActive}
+        setAnimActive={setAnimActive}
       />
     </>
   );

@@ -7,7 +7,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
-import Fab from "@mui/material/Fab";
+// import Fab from "@mui/material/Fab";
 import { createTheme } from "@mui/material";
 import { ThemeProvider } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
@@ -31,9 +31,13 @@ export default function BottomAppBar({
   setOpen,
   handleColorChange,
   handleTextureChange,
+  currentColor,
+  toggled,
+  setToggled,
+  animActive,
 }) {
   const debugControls = controls();
-  const drawerBleeding = 24;
+  const drawerBleeding = 28;
 
   const spinUp = keyframes`
   from {
@@ -135,24 +139,30 @@ export default function BottomAppBar({
     },
   });
 
-  const StyledFab = styled(Fab)({
-    position: "absolute",
-    zIndex: 1,
-    bottom: drawerBleeding + 58,
-    left: 0,
-    right: 0,
-    margin: "0 auto",
-  });
+  // const StyledFab = styled(Fab)({
+  //   position: "absolute",
+  //   zIndex: 1,
+  //   bottom: drawerBleeding + 58,
+  //   left: 0,
+  //   right: 0,
+  //   margin: "0 auto",
+  // });
 
-  const StyledBox = styled("div")(({ theme }) => ({}));
+  const StyledBox = styled("div")(({ theme }) => ({
+    position: "absolute",
+    right: 0,
+    left: 0,
+    margin: "auto",
+    maxWidth: "50ch",
+  }));
 
   const Puller = styled("div")(({ theme }) => ({
     width: 30,
     height: 4,
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: theme.palette.primary.main,
     borderRadius: 3,
     position: "absolute",
-    top: 8,
+    top: 10,
     left: "calc(50% - 15px)",
   }));
 
@@ -184,14 +194,14 @@ export default function BottomAppBar({
           <Toolbar>
             <Box component={"div"} sx={{ flexGrow: 1 }}>
               <Typography variant="h6" component="div" color="primary">
-                eli gfell
+                Eli Gfell
               </Typography>
             </Box>
 
             <FormControl
               variant="outlined"
               size="small"
-              sx={{ minWidth: 90, scale: "0.8" }}
+              sx={{ minWidth: 90, scale: "0.8", left: "calc(0% - 24px)" }}
             >
               <Select
                 autoWidth
@@ -202,33 +212,26 @@ export default function BottomAppBar({
                     PaperProps: {
                       sx: {
                         scale: "0.8",
-                        backgroundColor: "transparent",
+                        background: "transparent",
                         color: "secondary",
                       },
                     },
                   },
                 }}
-                // sx={{
-                //   // ":before": { borderBottomColor: "secondary.light" },
-                //   // ":after": { borderBottomColor: "secondary.light" },
-                //   // "&.MuiInput-underline:hover:before": {
-                //   //   borderColor: "secondary.light",
-                //   // },
-                //   },
-                // }}
                 sx={{
                   color: "secondary",
                   ".MuiOutlinedInput-notchedOutline": {
                     borderColor: "secondary.main",
                   },
                   "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                    borderColor: "secondary.light",
+                    borderWidth: "1px",
+                    borderColor: "secondary.main",
                   },
                   "&:hover .MuiOutlinedInput-notchedOutline": {
                     borderColor: "secondary.main",
                   },
                   ".MuiSvgIcon-root ": {
-                    fill: "secondary !important",
+                    fill: "primary !important",
                   },
                 }}
               >
@@ -253,38 +256,11 @@ export default function BottomAppBar({
                   horizontal: "right",
                 }}
               >
-                <ShoppingCartIcon sx={{ color: "primary.light" }} />
+                <ShoppingCartIcon sx={{ color: "primary.main" }} />
               </Badge>
             </IconButton>
           </Toolbar>
         </AppBar>
-
-        <Toolbar>
-          <StyledFab
-            aria-label="show sale options"
-            onClick={toggleDrawer(!open)}
-            size="small"
-            sx={{
-              backgroundColor: "transparent",
-              "&:hover": {
-                backgroundColor: "secondary.light",
-              },
-              animation: open
-                ? `${moveUp} 0.5s forwards`
-                : `${moveDown} 0.75s forwards`,
-            }}
-          >
-            <NorthIcon
-              sx={{
-                color: open ? "primary.light" : "primary.light",
-                // transform: open ? `translate(0, -48vh )` : "",
-                animation: open
-                  ? `${spinUp} 1s forwards`
-                  : `${spinDown} 1s forwards`,
-              }}
-            />
-          </StyledFab>
-        </Toolbar>
         <SwipeableDrawer
           disableBackdropTransition={!iOS}
           disableDiscovery={iOS}
@@ -293,8 +269,8 @@ export default function BottomAppBar({
           onClose={toggleDrawer(false)}
           onOpen={toggleDrawer(true)}
           swipeAreaWidth={drawerBleeding}
-          disableSwipeToOpen={false}
-          transitionDuration={500}
+          disableSwipeToOpen={true}
+          transitionDuration={800}
           ModalProps={{
             keepMounted: true,
             slotProps: {
@@ -304,36 +280,52 @@ export default function BottomAppBar({
         >
           <StyledBox
             sx={{
-              position: "absolute",
               top: -drawerBleeding - 1,
               borderTopLeftRadius: 8,
               borderTopRightRadius: 8,
               visibility: "visible",
-              right: 0,
-              left: 0,
+
               background: "#e8e8e8",
               opacity: 0.75,
               height: drawerBleeding,
-              margin: "auto",
-              maxWidth: "50ch",
+
               zIndex: 1,
               border: "1px solid #9E9E9E",
               // borderBottom: "0px",
             }}
           >
-            <Puller />
+            <Puller onClick={toggleDrawer(!open)} />
 
-            <Typography sx={{ p: 4, color: "text.secondary" }}></Typography>
+            <Box sx={{ position: "absolute", top: 0, left: 0 }}>
+              <Button
+                variant="contained"
+                size="small"
+                sx={{ p: 0, scale: "0.65" }}
+                color="primary"
+              >
+                info
+              </Button>
+            </Box>
+            <Box sx={{ position: "absolute", top: 0, right: 0 }}>
+              <Button
+                variant="contained"
+                size="small"
+                sx={{ p: 0, scale: "0.65" }}
+                onClick={() => {
+                  setToggled(!toggled);
+                }}
+                color="primary"
+                disabled={animActive ? true : false}
+              >
+                move
+              </Button>
+            </Box>
           </StyledBox>
           <StyledBox
             sx={{
-              position: "absolute",
-              right: 0,
-              left: 0,
-              height: "100%",
+              height: `100%-${drawerBleeding}`,
               overflow: "auto",
-              m: "auto",
-              maxWidth: "50ch",
+
               background: "transparent",
             }}
           >
@@ -348,11 +340,9 @@ export default function BottomAppBar({
                       borderTopRightRadius: "0px",
                       borderBottomLeftRadius: "8px",
                       borderBottomRightRadius: "8px",
-                      // background: "#e8e8e8",
                       background: "#e8e8e8",
                       opacity: 0.75,
                       border: "1px solid #9E9E9E",
-                      // borderTop: "0px",
                     }}
                   >
                     <Box
@@ -363,33 +353,30 @@ export default function BottomAppBar({
                         background: "transparent",
                       }}
                     >
-                      <Typography variant="h6" color="primary">
-                        <Box sx={{ pb: 1 }}> {product.name}</Box>
-                      </Typography>
-
+                      <Box sx={{ pt: 0, pb: 1 }}>
+                        <Typography variant="h6" color="primary">
+                          {product.name}
+                        </Typography>
+                      </Box>
                       <ButtonGroup
                         variant="outlined"
                         aria-label="Basic button group"
-                        sx={{ pb: 1.5 }}
+                        sx={{ pb: 1 }}
                         size="small"
                       >
-                        <Button
-                          onClick={(e) => handleColorChange(e, "superWhite")}
-                        >
+                        <Button onClick={(e) => handleColorChange(e, "white")}>
                           white
                         </Button>
                         <Button
-                          onClick={(e) => handleColorChange(e, "naturalStain")}
+                          onClick={(e) => handleColorChange(e, "natural")}
                         >
                           natural
                         </Button>
-                        <Button
-                          onClick={(e) => handleColorChange(e, "blackStain")}
-                        >
+                        <Button onClick={(e) => handleColorChange(e, "black")}>
                           black
                         </Button>
                         <Button
-                          onClick={(e) => handleColorChange(e, "allBlackStain")}
+                          onClick={(e) => handleColorChange(e, "allBlack")}
                         >
                           all black
                         </Button>
@@ -409,6 +396,7 @@ export default function BottomAppBar({
                         variant="contained"
                         color="primary"
                         sx={{ color: "secondary.light" }}
+                        size="small"
                       >
                         add to cart
                       </Button>
