@@ -181,7 +181,7 @@ export default function BottomAppBar({
           // TO DO: increase from 32% for landscape mobile media query
           styles={{
             ".MuiDrawer-root > .MuiPaper-root": {
-              height: `calc(32.25% - ${drawerBleeding}px)`,
+              height: `calc(30% - ${drawerBleeding}px)`,
               overflow: "visible",
               background: "transparent",
             },
@@ -206,8 +206,8 @@ export default function BottomAppBar({
               size="small"
               sx={{
                 minWidth: 90,
+                maxWidth: 45,
                 // scale: "0.8",
-                left: "calc(0% - 24px)",
               }}
             >
               <Select
@@ -230,6 +230,8 @@ export default function BottomAppBar({
                   ".MuiOutlinedInput-notchedOutline": {
                     borderWidth: "0.98px",
                     borderColor: "secondary.main",
+                    height: "90%",
+                    top: -1,
                   },
                   "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
                     borderWidth: "0.98px",
@@ -254,7 +256,7 @@ export default function BottomAppBar({
                 </MenuItem>
               </Select>
             </FormControl>
-            <Box component={"div"} sx={{ flexGrow: 1 }} />
+            {/* <Box component={"div"} sx={{ flexGrow: 1 }} /> */}
             <IconButton color="inherit">
               <Badge
                 badgeContent={1}
