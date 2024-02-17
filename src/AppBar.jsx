@@ -364,11 +364,17 @@ export default function BottomAppBar({
                           {product.name}
                         </Typography>
                       </Box> */}
+                      <Box sx={{ pb: 0.75 }}>
+                        <Typography variant="h6" color="primary.light">
+                          {product.name}
+                        </Typography>
+                      </Box>
                       <ButtonGroup
                         variant="outlined"
                         aria-label="Basic button group"
                         sx={{ mb: 1 }}
                         color="primary"
+                        size="small"
                       >
                         <Button
                           onClick={(e) => handleColorChange(e, "white")}
@@ -413,14 +419,12 @@ export default function BottomAppBar({
                           {product.description}
                         </Typography>
                       </Box> */}
-                      <Box sx={{ pb: 0.75 }}>
-                        <Typography variant="h6" color="primary.light">
+
+                      <Box sx={{ pt: 1 }}>
+                        <Button variant="contained" color="primary">
                           {product.price}
-                        </Typography>
+                        </Button>
                       </Box>
-                      <Button variant="contained" color="primary">
-                        add to cart
-                      </Button>
                     </Box>
                   </Paper>
                 </Grid>
