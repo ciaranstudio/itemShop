@@ -38,7 +38,7 @@ export default function BottomAppBar({
   animActive,
 }) {
   const debugControls = controls();
-  const drawerBleeding = 28;
+  const drawerBleeding = 34;
 
   const spinUp = keyframes`
   from {
@@ -133,7 +133,7 @@ export default function BottomAppBar({
       MuiBadge: {
         styleOverrides: {
           colorSecondary: {
-            color: "#757575",
+            color: "#E0E0E0",
           },
         },
       },
@@ -159,13 +159,13 @@ export default function BottomAppBar({
 
   const Puller = styled("div")(({ theme }) => ({
     width: 30,
-    height: 4,
+    height: 4.5,
     backgroundColor: open
-      ? theme.palette.primary.main
+      ? theme.palette.secondary.main
       : theme.palette.primary.light,
     borderRadius: 3,
     position: "absolute",
-    top: 10,
+    top: 21,
     left: "calc(50% - 15px)",
   }));
 
@@ -196,7 +196,7 @@ export default function BottomAppBar({
         >
           <Toolbar>
             <Box component={"div"} sx={{ flexGrow: 1 }}>
-              <Typography variant="h6" component="div" color="primary">
+              <Typography variant="h4" component="div" color="primary">
                 Eli Gfell
               </Typography>
             </Box>
@@ -204,7 +204,11 @@ export default function BottomAppBar({
             <FormControl
               variant="outlined"
               size="small"
-              sx={{ minWidth: 90, scale: "0.8", left: "calc(0% - 24px)" }}
+              sx={{
+                minWidth: 90,
+                // scale: "0.8",
+                left: "calc(0% - 24px)",
+              }}
             >
               <Select
                 autoWidth
@@ -214,7 +218,7 @@ export default function BottomAppBar({
                   MenuProps: {
                     PaperProps: {
                       sx: {
-                        scale: "0.8",
+                        // scale: "0.8",
                         background: "transparent",
                         color: "secondary",
                       },
@@ -224,10 +228,11 @@ export default function BottomAppBar({
                 sx={{
                   color: "secondary",
                   ".MuiOutlinedInput-notchedOutline": {
+                    borderWidth: "0.98px",
                     borderColor: "secondary.main",
                   },
                   "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                    borderWidth: "1px",
+                    borderWidth: "0.98px",
                     borderColor: "secondary.main",
                   },
                   "&:hover .MuiOutlinedInput-notchedOutline": {
@@ -252,8 +257,8 @@ export default function BottomAppBar({
             <Box component={"div"} sx={{ flexGrow: 1 }} />
             <IconButton color="inherit">
               <Badge
-                // badgeContent={cartCount}
-                color="primary"
+                badgeContent={1}
+                color="secondary"
                 anchorOrigin={{
                   vertical: "top",
                   horizontal: "right",
@@ -273,7 +278,7 @@ export default function BottomAppBar({
           onOpen={toggleDrawer(true)}
           swipeAreaWidth={drawerBleeding}
           disableSwipeToOpen={true}
-          transitionDuration={800}
+          transitionDuration={500}
           ModalProps={{
             keepMounted: true,
             slotProps: {
@@ -283,7 +288,7 @@ export default function BottomAppBar({
         >
           <StyledBox
             sx={{
-              top: -drawerBleeding - 1,
+              top: -drawerBleeding - 12,
               borderTopLeftRadius: 8,
               borderTopRightRadius: 8,
               visibility: "visible",
@@ -291,7 +296,7 @@ export default function BottomAppBar({
               background: "#e8e8e8",
               opacity: 0.75,
               height: drawerBleeding,
-
+              p: 2.75,
               zIndex: 1,
               border: "1px solid #9E9E9E",
               // borderBottom: "0px",
@@ -303,24 +308,34 @@ export default function BottomAppBar({
               <Button
                 variant="contained"
                 size="small"
-                sx={{ p: 0, scale: "0.65" }}
-                color="secondary"
+                sx={{
+                  py: 0,
+                  ml: 1.5,
+                  mt: 1.5,
+                  // scale: "0.65"
+                }}
+                color="primary"
               >
                 info
               </Button>
             </Box>
             <Box sx={{ position: "absolute", top: 0, right: 0 }}>
               <Button
-                variant="contained"
+                variant="outlined"
                 size="small"
-                sx={{ p: 0, scale: "0.65" }}
+                sx={{
+                  py: 0,
+                  mr: 1.5,
+                  mt: 1.25,
+                  // scale: "0.65"
+                }}
                 onClick={() => {
                   setToggled(!toggled);
                 }}
                 color="primary"
                 disabled={animActive ? true : false}
               >
-                move
+                show design
               </Button>
             </Box>
           </StyledBox>
@@ -328,7 +343,6 @@ export default function BottomAppBar({
             sx={{
               height: `100%-${drawerBleeding}`,
               overflow: "auto",
-
               background: "transparent",
             }}
           >
@@ -356,8 +370,8 @@ export default function BottomAppBar({
                         background: "transparent",
                       }}
                     >
-                      <Box sx={{ pt: 0, pb: 0.5 }}>
-                        <Typography variant="h6" color="primary.light">
+                      <Box sx={{ pt: 0, pb: 1 }}>
+                        <Typography variant="h5" color="primary.main">
                           {product.name}
                         </Typography>
                       </Box>
@@ -365,15 +379,13 @@ export default function BottomAppBar({
                         variant="outlined"
                         aria-label="Basic button group"
                         sx={{ pb: 1, scale: "0.95" }}
-                        size="small"
-                        color="primary"
+                        color="secondary"
                       >
                         <Button
                           onClick={(e) => handleColorChange(e, "white")}
                           variant={
                             currentSelect === "white" ? "contained" : "outlined"
                           }
-                          color="primary"
                         >
                           white
                         </Button>
@@ -412,17 +424,12 @@ export default function BottomAppBar({
                           {product.description}
                         </Typography>
                       </Box> */}
-                      <Box sx={{ pb: 0.25 }}>
-                        <Typography variant="subtitle1" color="primary.light">
+                      <Box sx={{ pb: 0.75 }}>
+                        <Typography variant="h6" color="primary.light">
                           {product.price}
                         </Typography>
                       </Box>
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        sx={{ color: "secondary.light", scale: "0.9" }}
-                        size="small"
-                      >
+                      <Button variant="contained" color="primary">
                         add to cart
                       </Button>
                     </Box>
