@@ -17,14 +17,14 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { Global } from "@emotion/react";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
-import NorthIcon from "@mui/icons-material/North";
+// import NorthIcon from "@mui/icons-material/North";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import { products } from "./products";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import { keyframes } from "@mui/system";
-import controls from "./debugControls";
+// import controls from "./debugControls";
 
 export default function BottomAppBar({
   open,
@@ -37,7 +37,7 @@ export default function BottomAppBar({
   setToggled,
   animActive,
 }) {
-  const debugControls = controls();
+  // const debugControls = controls();
   const drawerBleeding = 34;
 
   const spinUp = keyframes`
@@ -91,17 +91,6 @@ export default function BottomAppBar({
   const handleItemChange = (event) => {
     setItem(event.target.value);
   };
-
-  // const handleVariantChange = (event) => {
-  //   setVariant(event.target.value);
-  // };
-
-  // const handleSelect = () => {
-  //   console.log("handle select clicked");
-  //   debugControls.stainColor = "#00ff00";
-  //   console.log(debugControls.stainColor);
-  //   // set({ stainColor: "#ff0000" });
-  // };
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
@@ -178,10 +167,10 @@ export default function BottomAppBar({
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Global
-          // TO DO: increase from 32% for landscape mobile media query
+          // TO DO: get current window height and compare it to breakpoint value, use 100svh - drawerBleeding in that case (for landscape mobile)
           styles={{
             ".MuiDrawer-root > .MuiPaper-root": {
-              height: `calc(30% - ${drawerBleeding}px)`,
+              height: `calc((35svh + ${drawerBleeding}px))`,
               overflow: "visible",
               background: "transparent",
             },
@@ -207,7 +196,7 @@ export default function BottomAppBar({
               sx={{
                 minWidth: 90,
                 maxWidth: 45,
-                // scale: "0.8",
+                mr: 2,
               }}
             >
               <Select
@@ -218,7 +207,6 @@ export default function BottomAppBar({
                   MenuProps: {
                     PaperProps: {
                       sx: {
-                        // scale: "0.8",
                         background: "transparent",
                         color: "secondary",
                       },
@@ -250,9 +238,6 @@ export default function BottomAppBar({
                 </MenuItem>
                 <MenuItem key={2} value={20} disabled>
                   squatter
-                </MenuItem>
-                <MenuItem key={3} value={30} disabled>
-                  shelf
                 </MenuItem>
               </Select>
             </FormControl>
@@ -294,14 +279,12 @@ export default function BottomAppBar({
               borderTopLeftRadius: 8,
               borderTopRightRadius: 8,
               visibility: "visible",
-
               background: "#e8e8e8",
               opacity: 0.75,
               height: drawerBleeding,
               p: 2.75,
               zIndex: 1,
               border: "1px solid #9E9E9E",
-              // borderBottom: "0px",
             }}
           >
             <Puller onClick={toggleDrawer(!open)} />
@@ -314,7 +297,6 @@ export default function BottomAppBar({
                   py: 0,
                   ml: 1.5,
                   mt: 1.5,
-                  // scale: "0.65"
                 }}
                 color="primary"
               >
@@ -329,7 +311,6 @@ export default function BottomAppBar({
                   py: 0,
                   mr: 1.5,
                   mt: 1.25,
-                  // scale: "0.65"
                 }}
                 onClick={() => {
                   setToggled(!toggled);
@@ -343,7 +324,7 @@ export default function BottomAppBar({
           </StyledBox>
           <StyledBox
             sx={{
-              height: `100%-${drawerBleeding}`,
+              height: `100svh-${drawerBleeding}`,
               overflow: "auto",
               background: "transparent",
             }}
@@ -372,16 +353,16 @@ export default function BottomAppBar({
                         background: "transparent",
                       }}
                     >
-                      <Box sx={{ pt: 0, pb: 1 }}>
+                      {/* <Box sx={{ pt: 0, pb: 1 }}>
                         <Typography variant="h5" color="primary.main">
                           {product.name}
                         </Typography>
-                      </Box>
+                      </Box> */}
                       <ButtonGroup
                         variant="outlined"
                         aria-label="Basic button group"
-                        sx={{ pb: 1, scale: "0.95" }}
-                        color="secondary"
+                        sx={{ mb: 1 }}
+                        color="primary"
                       >
                         <Button
                           onClick={(e) => handleColorChange(e, "white")}
