@@ -176,7 +176,7 @@ export default function BottomAppBar({
           // TO DO: get current window height and compare it to breakpoint value, use 100svh - drawerBleeding in that case (for landscape mobile)
           styles={{
             ".MuiDrawer-root > .MuiPaper-root": {
-              height: `calc(( ${height <= 400 ? "50svh" : height <= 860 ? "35svh" : "25svh"} + ${drawerBleeding}px))`,
+              height: `calc(( ${height <= 400 ? "50svh" : height <= 600 ? "35svh" : "25svh"} + ${drawerBleeding}px))`,
               overflow: "visible",
               background: "transparent",
             },
