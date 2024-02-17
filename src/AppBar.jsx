@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { styled } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -25,6 +25,7 @@ import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import { keyframes } from "@mui/system";
 // import controls from "./debugControls";
+import useWindowDimensions from "./useWindowDimensions";
 
 export default function BottomAppBar({
   open,
@@ -39,6 +40,11 @@ export default function BottomAppBar({
 }) {
   // const debugControls = controls();
   const drawerBleeding = 34;
+  const { height, width } = useWindowDimensions();
+
+  useEffect(() => {
+    console.log("window.innerHeight: ", height);
+  }, [height]);
 
   const spinUp = keyframes`
   from {
@@ -170,7 +176,7 @@ export default function BottomAppBar({
           // TO DO: get current window height and compare it to breakpoint value, use 100svh - drawerBleeding in that case (for landscape mobile)
           styles={{
             ".MuiDrawer-root > .MuiPaper-root": {
-              height: `calc((35svh + ${drawerBleeding}px))`,
+              height: `calc(( ${height <= 400 ? "50svh" : height <= 860 ? "35svh" : "25svh"} + ${drawerBleeding}px))`,
               overflow: "visible",
               background: "transparent",
             },

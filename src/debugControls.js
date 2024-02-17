@@ -108,13 +108,13 @@ export default function debugControls() {
         max: 4,
       },
       mainDownDuration: {
-        value: 1.25,
+        value: 1,
         step: 0.01,
         min: 0,
         max: 4,
       },
       jumpDownDuration: {
-        value: 0.18,
+        value: 0.25,
         step: 0.01,
         min: 0,
         max: 4,
@@ -129,13 +129,13 @@ export default function debugControls() {
         max: 2,
       },
       afterMainUpDelay: {
-        value: 0.15,
+        value: 0.0,
         step: 0.01,
         min: 0,
         max: 6,
       },
       afterJumpDownDelay: {
-        value: 0.05,
+        value: 0,
         step: 0.01,
         min: 0,
         max: 6,
