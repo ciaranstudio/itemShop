@@ -153,7 +153,7 @@ export default function BottomAppBar({
   }));
 
   const Puller = styled("div")(({ theme }) => ({
-    width: 30,
+    width: 35,
     height: 4.5,
     backgroundColor: open
       ? theme.palette.secondary.main
@@ -191,7 +191,7 @@ export default function BottomAppBar({
         >
           <Toolbar>
             <Box component={"div"} sx={{ flexGrow: 1 }}>
-              <Typography variant="h4" component="div" color="primary">
+              <Typography variant="h5" component="div" color="primary">
                 Eli Gfell
               </Typography>
             </Box>
@@ -293,9 +293,9 @@ export default function BottomAppBar({
               border: "1px solid #9E9E9E",
             }}
           >
-            <Puller onClick={toggleDrawer(!open)} />
+            <Puller />
 
-            <Box sx={{ position: "absolute", top: 0, left: 0 }}>
+            {/* <Box sx={{ position: "absolute", top: 0, left: 0 }}>
               <Button
                 variant="contained"
                 size="small"
@@ -326,7 +326,7 @@ export default function BottomAppBar({
               >
                 show design
               </Button>
-            </Box>
+            </Box> */}
           </StyledBox>
           <StyledBox
             sx={{
@@ -364,8 +364,8 @@ export default function BottomAppBar({
                           {product.name}
                         </Typography>
                       </Box> */}
-                      <Box sx={{ pb: 0.75 }}>
-                        <Typography variant="h6" color="primary.light">
+                      <Box sx={{ pt: 1.5, pb: 1.5 }}>
+                        <Typography variant="h5" color="primary.main">
                           {product.name}
                         </Typography>
                       </Box>
@@ -421,6 +421,38 @@ export default function BottomAppBar({
                       </Box> */}
 
                       <Box sx={{ pt: 1 }}>
+                        <Box sx={{ position: "absolute", top: 0, left: 0 }}>
+                          <Button
+                            variant="outlined"
+                            size="small"
+                            sx={{
+                              py: 0,
+                              ml: 1.5,
+                              mt: 1.25,
+                            }}
+                            color="primary"
+                          >
+                            info
+                          </Button>
+                        </Box>
+                        <Box sx={{ position: "absolute", top: 0, right: 0 }}>
+                          <Button
+                            variant="outlined"
+                            size="small"
+                            sx={{
+                              py: 0,
+                              mr: 1.5,
+                              mt: 1.25,
+                            }}
+                            onClick={() => {
+                              setToggled(!toggled);
+                            }}
+                            color="primary"
+                            disabled={animActive ? true : false}
+                          >
+                            animate
+                          </Button>
+                        </Box>
                         <Button variant="contained" color="primary">
                           {product.price}
                         </Button>

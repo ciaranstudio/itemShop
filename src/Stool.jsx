@@ -65,7 +65,10 @@ export default forwardRef(function Stool(props, ref) {
   const [stoolSpinAmount, setStoolSpinAmount] = useState(stoolSpin.value);
 
   const handleStoolClick = () => {
+    props.setOpen(true);
+    props.setSelectedItem("stool");
     console.log("handleStoolClick()");
+    console.log("setting selectedItem state value to ", props.selectedItem);
     if (props.animActive || !introComplete) {
       return;
     } else {
@@ -79,6 +82,7 @@ export default forwardRef(function Stool(props, ref) {
     } else {
       circleEdgeRef.current.visible = false;
     }
+    console.log("selectedItem: ", props.selectedItem);
   }, [props.toggled]);
 
   useEffect(() => {
@@ -229,8 +233,9 @@ export default forwardRef(function Stool(props, ref) {
           position={[0, 0 - offset, 0]}
           rotation-x={-Math.PI * 0.5}
           scale={1}
+          visible={props.includeFloor}
         >
-          <circleGeometry args={[20, 128]} />
+          <circleGeometry args={[40, 128]} />
           <meshStandardMaterial {...marbleMaterial} />
           <Edges
             ref={circleEdgeRef}

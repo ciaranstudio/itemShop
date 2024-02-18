@@ -16,6 +16,8 @@ export default function Experience({
   setToggled,
   animActive,
   setAnimActive,
+  selectedItem,
+  setSelectedItem,
 }) {
   const debugControls = controls();
   const [initialLoad, setInitialLoad] = useState(false);
@@ -26,10 +28,10 @@ export default function Experience({
   const shadowCameraRef = useRef();
   useHelper(shadowCameraRef, CameraHelper, 1, "lightBlue");
   const vec = new THREE.Vector3();
-  console.log(
-    "current texture from Experience (prop from App): ",
-    currentTexture,
-  );
+  // console.log(
+  //   "current texture from Experience (prop from App): ",
+  //   currentTexture,
+  // );
 
   const [
     colorMap,
@@ -47,25 +49,24 @@ export default function Experience({
   useEffect(() => {
     if (open) {
       setCameraPosition(orbitRef.current.object.position);
-      console.log("open value from Experience useEffect: ", open);
+      // console.log("open value from Experience useEffect: ", open);
       if (orbitRef.current) {
-        orbitRef.current.autoRotateSpeed = 0.95;
-        orbitRef.current.autoRotate = true;
-
-        console.log(
-          "orbitRef.current.autoRotate: ",
-          orbitRef.current.autoRotate,
-        );
+        // orbitRef.current.autoRotateSpeed = 0.95;
+        // orbitRef.current.autoRotate = true;
+        // console.log(
+        //   "orbitRef.current.autoRotate: ",
+        //   orbitRef.current.autoRotate,
+        // );
       }
     } else if (!open) {
-      console.log("open value from Experience useEffect: ", open);
+      // console.log("open value from Experience useEffect: ", open);
       if (orbitRef.current) {
-        orbitRef.current.autoRotateSpeed = 1.5;
-        orbitRef.current.autoRotate = true;
-        console.log(
-          "orbitRef.current.autoRotate: ",
-          orbitRef.current.autoRotate,
-        );
+        // orbitRef.current.autoRotateSpeed = 1.5;
+        // orbitRef.current.autoRotate = true;
+        // console.log(
+        //   "orbitRef.current.autoRotate: ",
+        //   orbitRef.current.autoRotate,
+        // );
       }
     }
   }, [open]);
@@ -89,7 +90,7 @@ export default function Experience({
           console.log("stopped dragging!");
           // setCameraPosition(orbitRef.current.object.position);
           setControlsDragging(false);
-          setOpen(true);
+          // setOpen(true);
         },
         true,
       );
@@ -148,8 +149,8 @@ export default function Experience({
         shadow-mapSize-width={512}
         shadow-mapSize-height={512}
         shadow-camera-near={65}
-        shadow-camera-far={115}
-        shadow-camera-left={-10}
+        shadow-camera-far={150}
+        shadow-camera-left={-20}
         shadow-camera-bottom={-25}
         shadow-camera-right={20}
         shadow-camera-top={20}
@@ -176,6 +177,101 @@ export default function Experience({
         currentTexture={currentTexture}
         animActive={animActive}
         setAnimActive={setAnimActive}
+        selectedItem={selectedItem}
+        setSelectedItem={setSelectedItem}
+        includeFloor={true}
+      />
+
+      <Stool
+        ref={stoolRef}
+        scale={0.15}
+        open={open}
+        setOpen={setOpen}
+        toggled={toggled}
+        setToggled={setToggled}
+        onPointerMissed={handleOffClick}
+        colorMap={colorMap}
+        displacementMap={displacementMap}
+        normalMap={normalMap}
+        metalnessMap={metalnessMap}
+        roughnessMap={roughnessMap}
+        aoMap={aoMap}
+        currentColor={currentColor}
+        currentTexture={currentTexture}
+        animActive={animActive}
+        setAnimActive={setAnimActive}
+        selectedItem={selectedItem}
+        setSelectedItem={setSelectedItem}
+        includeFloor={false}
+      />
+
+      <Stool
+        ref={stoolRef}
+        scale={0.28}
+        open={open}
+        setOpen={setOpen}
+        toggled={toggled}
+        setToggled={setToggled}
+        onPointerMissed={handleOffClick}
+        colorMap={colorMap}
+        displacementMap={displacementMap}
+        normalMap={normalMap}
+        metalnessMap={metalnessMap}
+        roughnessMap={roughnessMap}
+        aoMap={aoMap}
+        currentColor={currentColor}
+        currentTexture={currentTexture}
+        animActive={animActive}
+        setAnimActive={setAnimActive}
+        selectedItem={selectedItem}
+        setSelectedItem={setSelectedItem}
+        includeFloor={false}
+      />
+
+      <Stool
+        ref={stoolRef}
+        scale={0.45}
+        open={open}
+        setOpen={setOpen}
+        toggled={toggled}
+        setToggled={setToggled}
+        onPointerMissed={handleOffClick}
+        colorMap={colorMap}
+        displacementMap={displacementMap}
+        normalMap={normalMap}
+        metalnessMap={metalnessMap}
+        roughnessMap={roughnessMap}
+        aoMap={aoMap}
+        currentColor={currentColor}
+        currentTexture={currentTexture}
+        animActive={animActive}
+        setAnimActive={setAnimActive}
+        selectedItem={selectedItem}
+        setSelectedItem={setSelectedItem}
+        includeFloor={false}
+      />
+
+      <Stool
+        ref={stoolRef}
+        scale={0.72}
+        open={open}
+        setOpen={setOpen}
+        toggled={toggled}
+        setToggled={setToggled}
+        onPointerMissed={handleOffClick}
+        colorMap={colorMap}
+        displacementMap={displacementMap}
+        normalMap={normalMap}
+        metalnessMap={metalnessMap}
+        roughnessMap={roughnessMap}
+        aoMap={aoMap}
+        currentColor={currentColor}
+        currentTexture={currentTexture}
+        animActive={animActive}
+        setAnimActive={setAnimActive}
+        selectedItem={selectedItem}
+        setSelectedItem={setSelectedItem}
+        includeFloor={false}
       />
     </>
   );

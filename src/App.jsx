@@ -11,6 +11,7 @@ function App() {
   const [open, setOpen] = useState(false);
   const [toggled, setToggled] = useState(false);
   const [animActive, setAnimActive] = useState(false);
+  const [selectedItem, setSelectedItem] = useState("");
 
   const whiteStain = new THREE.Color(0xffffff);
   const naturalStain = new THREE.Color(0xdddddd);
@@ -100,7 +101,7 @@ function App() {
         camera={{
           fov: 45,
           near: 20,
-          far: 140,
+          far: 150,
           position: [0, 60, 0],
         }}
       >
@@ -114,6 +115,8 @@ function App() {
             currentColor={currentColor}
             animActive={animActive}
             setAnimActive={setAnimActive}
+            selectedItem={selectedItem}
+            setSelectedItem={setSelectedItem}
           />
         </Suspense>
       </Canvas>
