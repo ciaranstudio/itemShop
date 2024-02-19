@@ -32,8 +32,9 @@ export default function BottomAppBar({
   setOpen,
   handleColorChange,
   handleTextureChange,
-  currentColor,
-  currentSelect,
+  currentItemSelected,
+  setCurrentItemSelected,
+  currentOptionSelected,
   toggled,
   setToggled,
   animActive,
@@ -45,6 +46,14 @@ export default function BottomAppBar({
   useEffect(() => {
     console.log("window.innerHeight: ", height);
   }, [height]);
+
+  useEffect(() => {
+    console.log("currentItemSelected: ", currentItemSelected);
+  }, [currentItemSelected]);
+
+  useEffect(() => {
+    console.log("currentOptionSelected: ", currentOptionSelected);
+  }, [currentOptionSelected]);
 
   const spinUp = keyframes`
   from {
@@ -173,7 +182,6 @@ export default function BottomAppBar({
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Global
-          // TO DO: get current window height and compare it to breakpoint value, use 100svh - drawerBleeding in that case (for landscape mobile)
           styles={{
             ".MuiDrawer-root > .MuiPaper-root": {
               height: `calc(( ${height <= 400 ? "50svh" : height <= 600 ? "35svh" : "25svh"} + ${drawerBleeding}px))`,
@@ -379,7 +387,9 @@ export default function BottomAppBar({
                         <Button
                           onClick={(e) => handleColorChange(e, "white")}
                           variant={
-                            currentSelect === "white" ? "contained" : "outlined"
+                            currentOptionSelected === "white"
+                              ? "contained"
+                              : "outlined"
                           }
                         >
                           white
@@ -387,7 +397,7 @@ export default function BottomAppBar({
                         <Button
                           onClick={(e) => handleColorChange(e, "natural")}
                           variant={
-                            currentSelect === "natural"
+                            currentOptionSelected === "natural"
                               ? "contained"
                               : "outlined"
                           }
@@ -397,7 +407,9 @@ export default function BottomAppBar({
                         <Button
                           onClick={(e) => handleColorChange(e, "black")}
                           variant={
-                            currentSelect === "black" ? "contained" : "outlined"
+                            currentOptionSelected === "black"
+                              ? "contained"
+                              : "outlined"
                           }
                         >
                           black
@@ -405,7 +417,7 @@ export default function BottomAppBar({
                         <Button
                           onClick={(e) => handleColorChange(e, "allBlack")}
                           variant={
-                            currentSelect === "allBlack"
+                            currentOptionSelected === "allBlack"
                               ? "contained"
                               : "outlined"
                           }

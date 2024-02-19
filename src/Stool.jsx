@@ -1,12 +1,9 @@
 import React, { useRef, useState, useEffect } from "react";
-import { useLoader } from "@react-three/fiber";
-import { TextureLoader } from "three/src/loaders/TextureLoader";
-import { useGLTF, Edges } from "@react-three/drei";
+import { useTexture, useGLTF, Edges } from "@react-three/drei";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import controls from "./debugControls";
 import { forwardRef } from "react";
-import * as THREE from "three";
 
 export default forwardRef(function Stool(props, ref) {
   const [introComplete, setIntroComplete] = useState(false);
@@ -14,43 +11,25 @@ export default forwardRef(function Stool(props, ref) {
   const debugControls = controls();
 
   const [
-    marbleColorMap,
-    marbleDisplacementMap,
-    marbleNormalMap,
-    marbleMetalnessMap,
-    marbleRoughnessMap,
-    marbleAoMap,
-  ] = useLoader(TextureLoader, [
-    "./ConcretePoured001/ConcretePoured001_COL_2K_METALNESS.png",
-    "./ConcretePoured001/ConcretePoured001_DISP_2K_METALNESS.png",
-    "./ConcretePoured001/ConcretePoured001_NRM_2K_METALNESS.png",
-    "./ConcretePoured001/ConcretePoured001_METALNESS_2K_METALNESS.png",
-    "./ConcretePoured001/ConcretePoured001_ROUGHNESS_2K_METALNESS.png",
-    "./ConcretePoured001/ConcretePoured001_AO_2K_METALNESS.png",
-  ]);
+    colorMap,
+    displacementMap,
+    normalMap,
+    metalnessMap,
+    roughnessMap,
+    aoMap,
+  ] = useTexture(props.data.itemTexture);
 
   const woodMaterial = {
     metalness: debugControls.metalness,
     roughness: debugControls.roughness,
     displacementScale: 0,
-    map: props.colorMap,
-    displacementMap: props.displacementMap,
-    normalMap: props.normalMap,
-    metalnessMap: props.metalnessMap,
-    roughnessMap: props.roughnessMap,
-    aoMap: props.aoMap,
-    color: props.currentColor,
-    wireframe: debugControls.wireframe,
-  };
-
-  const marbleMaterial = {
-    displacementScale: 0,
-    map: marbleColorMap,
-    displacementMap: marbleDisplacementMap,
-    normalMap: marbleNormalMap,
-    metalnessMap: marbleMetalnessMap,
-    roughnessMap: marbleRoughnessMap,
-    aoMap: marbleAoMap,
+    map: colorMap,
+    displacementMap: displacementMap,
+    normalMap: normalMap,
+    metalnessMap: metalnessMap,
+    roughnessMap: roughnessMap,
+    aoMap: aoMap,
+    color: props.data.itemColor,
     wireframe: debugControls.wireframe,
   };
 
@@ -67,9 +46,10 @@ export default forwardRef(function Stool(props, ref) {
 
   const handleStoolClick = () => {
     props.setOpen(true);
-    props.setSelectedItem("stool");
+    props.setCurrentItemSelected(props.data);
+    props.setCurrentOptionSelected(props.data.optionSelect);
     console.log("handleStoolClick()");
-    console.log("setting selectedItem state value to ", props.selectedItem);
+    console.log("setting selectedItem state value to ", props.data);
     if (props.animActive || !introComplete) {
       return;
     } else {

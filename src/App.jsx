@@ -8,11 +8,6 @@ import * as THREE from "three";
 import "./style.css";
 
 function App() {
-  const [open, setOpen] = useState(false);
-  const [toggled, setToggled] = useState(false);
-  const [animActive, setAnimActive] = useState(false);
-  const [selectedItem, setSelectedItem] = useState("");
-
   const whiteStain = new THREE.Color(0xffffff);
   const naturalStain = new THREE.Color(0xdddddd);
   const blackStain = new THREE.Color(0xbababa);
@@ -54,23 +49,100 @@ function App() {
     "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_AO_2K_METALNESS.png",
   ];
 
-  const [currentTexture, setCurrentTexture] = useState(allBlackTexture);
-  const [currentColor, setCurrentColor] = useState(blackStain);
-  const [currentSelect, setCurrentSelect] = useState("black");
+  const [stoolATexture, setStoolATexture] = useState(whiteTexture);
+  const [stoolAColor, setStoolAColor] = useState(whiteStain);
+  const [stoolASelectedOption, setStoolASelectedOption] = useState("white");
+
+  const [stoolBTexture, setStoolBTexture] = useState(allBlackTexture);
+  const [stoolBColor, setStoolBColor] = useState(blackStain);
+  const [stoolBSelectedOption, setStoolBSelectedOption] = useState("black");
+
+  const [stoolCTexture, setStoolCTexture] = useState(allBlackTexture);
+  const [stoolCColor, setStoolCColor] = useState(allBlackStain);
+  const [stoolCSelectedOption, setStoolCSelectedOption] = useState("allBlack");
+
+  const [stoolDTexture, setStoolDTexture] = useState(naturalTexture);
+  const [stoolDColor, setStoolDColor] = useState(naturalStain);
+  const [stoolDSelectedOption, setStoolDSelectedOption] = useState("natural");
+
+  const [open, setOpen] = useState(false);
+  const [toggled, setToggled] = useState(false);
+  const [animActive, setAnimActive] = useState(false);
+
+  const stoolDataA = {
+    itemType: "stool",
+    itemNo: 1,
+    optionSelect: stoolASelectedOption,
+    setOptionSelect: setStoolASelectedOption,
+    itemColor: stoolAColor,
+    setItemColor: setStoolAColor,
+    itemTexture: stoolATexture,
+    setItemTexture: setStoolATexture,
+  };
+
+  const stoolDataB = {
+    itemType: "stool",
+    itemNo: 2,
+    optionSelect: stoolBSelectedOption,
+    setOptionSelect: setStoolBSelectedOption,
+    itemColor: stoolBColor,
+    setItemColor: setStoolBColor,
+    itemTexture: stoolBTexture,
+    setItemTexture: setStoolBTexture,
+  };
+
+  const stoolDataC = {
+    itemType: "stool",
+    itemNo: 3,
+    optionSelect: stoolCSelectedOption,
+    setOptionSelect: setStoolCSelectedOption,
+    itemColor: stoolCColor,
+    setItemColor: setStoolCColor,
+    itemTexture: stoolCTexture,
+    setItemTexture: setStoolCTexture,
+  };
+
+  const stoolDataD = {
+    itemType: "stool",
+    itemNo: 4,
+    optionSelect: stoolDSelectedOption,
+    setOptionSelect: setStoolDSelectedOption,
+    itemColor: stoolDColor,
+    setItemColor: setStoolDColor,
+    itemTexture: stoolDTexture,
+    setItemTexture: setStoolDTexture,
+  };
+
+  const [currentItemSelected, setCurrentItemSelected] = useState(stoolDataA);
+  const [currentOptionSelected, setCurrentOptionSelected] =
+    useState(stoolASelectedOption);
 
   const handleColorChange = (event, color) => {
+    // these will instead set their unique stoolDataD object values with its object setter methods
     event.preventDefault();
-    setCurrentSelect(color);
+
+    // currentItemSelected.setOptionSelect(color);
+    // setCurrentSelect(color);
     if (color === "white") {
-      setCurrentColor(whiteStain);
+      currentItemSelected.setItemColor(whiteStain);
+      currentItemSelected.setOptionSelect("white");
+      setCurrentOptionSelected("white");
+      // setCurrentColor(whiteStain);
     } else if (color === "natural") {
-      setCurrentColor(naturalStain);
+      currentItemSelected.setItemColor(naturalStain);
+      currentItemSelected.setOptionSelect("natural");
+      setCurrentOptionSelected("natural");
+      // setCurrentColor(naturalStain);
     } else if (color === "black") {
-      setCurrentColor(blackStain);
-    } else if (color === "black") {
-      setCurrentColor(blackStain);
+      currentItemSelected.setItemColor(blackStain);
+      currentItemSelected.setOptionSelect("black");
+      setCurrentOptionSelected("black");
+      // setCurrentColor(blackStain);
     } else if (color === "allBlack") {
-      setCurrentColor(allBlackStain);
+      currentItemSelected.setItemColor(allBlackStain);
+      currentItemSelected.setOptionSelect("allBlack");
+      setCurrentOptionSelected("allBlack");
+      // setCurrentColor(allBlackStain);
     }
   };
 
@@ -88,8 +160,25 @@ function App() {
   };
 
   // useEffect(() => {
-  //   setCurrentSelect()
-  // }, []);
+  //   console.log("stoolAColor", stoolAColor);
+  //   console.log("stoolASelectedOption", stoolASelectedOption);
+  //   console.log("stoolBColor", stoolBColor);
+  //   console.log("stoolBSelectedOption", stoolBSelectedOption);
+
+  //   console.log("stoolCColor", stoolCColor);
+  //   console.log("stoolCSelectedOption", stoolCSelectedOption);
+  //   console.log("stoolDColor", stoolDColor);
+  //   console.log("stoolDSelectedOption", stoolDSelectedOption);
+  // }, [
+  //   stoolAColor,
+  //   stoolASelectedOption,
+  //   stoolBColor,
+  //   stoolBSelectedOption,
+  //   stoolCColor,
+  //   stoolCSelectedOption,
+  //   stoolDColor,
+  //   stoolDSelectedOption,
+  // ]);
 
   return (
     <>
@@ -107,16 +196,21 @@ function App() {
       >
         <Suspense fallback={<Placeholder />}>
           <Experience
-            toggled={toggled}
-            setToggled={setToggled}
             open={open}
             setOpen={setOpen}
-            currentTexture={currentTexture}
-            currentColor={currentColor}
+            toggled={toggled}
+            setToggled={setToggled}
             animActive={animActive}
             setAnimActive={setAnimActive}
-            selectedItem={selectedItem}
-            setSelectedItem={setSelectedItem}
+            // currentTexture={currentTexture}
+            // currentColor={currentColor}
+            stoolDataA={stoolDataA}
+            stoolDataB={stoolDataB}
+            stoolDataC={stoolDataC}
+            stoolDataD={stoolDataD}
+            currentItemSelected={currentItemSelected}
+            setCurrentItemSelected={setCurrentItemSelected}
+            setCurrentOptionSelected={setCurrentOptionSelected}
           />
         </Suspense>
       </Canvas>
@@ -127,9 +221,12 @@ function App() {
         setOpen={setOpen}
         handleColorChange={handleColorChange}
         handleTextureChange={handleTextureChange}
-        currentColor={currentColor}
-        currentSelect={currentSelect}
+        currentItemSelected={currentItemSelected}
+        setCurrentItemSelected={setCurrentItemSelected}
+        // currentColor={currentColor}
+        // currentSelect={currentSelect}
         animActive={animActive}
+        currentOptionSelected={currentOptionSelected}
       />
     </>
   );

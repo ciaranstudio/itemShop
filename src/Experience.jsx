@@ -1,25 +1,27 @@
 import { useFrame } from "@react-three/fiber";
-import { OrbitControls, useHelper, useTexture } from "@react-three/drei";
+import { OrbitControls, useHelper } from "@react-three/drei";
 import { Perf } from "r3f-perf";
 import { useRef, useState, useEffect } from "react";
 import Stool from "./Stool.jsx";
 import controls from "./debugControls";
 import { CameraHelper } from "three";
 import * as THREE from "three";
-import Lights from "./Lights.jsx";
 import Floor from "./Setting.jsx";
 
 export default function Experience({
   open,
   setOpen,
-  currentColor,
-  currentTexture,
   toggled,
   setToggled,
   animActive,
   setAnimActive,
-  selectedItem,
-  setSelectedItem,
+  stoolDataA,
+  stoolDataB,
+  stoolDataC,
+  stoolDataD,
+  currentItemSelected,
+  setCurrentItemSelected,
+  setCurrentOptionSelected,
 }) {
   const debugControls = controls();
   const [initialLoad, setInitialLoad] = useState(false);
@@ -30,27 +32,14 @@ export default function Experience({
   const [stoolBPosition, setStoolBPosition] = useState([-8, 0, -15]);
   const [stoolCPosition, setStoolCPosition] = useState([8, 0, 0]);
   const [stoolDPosition, setStoolDPosition] = useState([24, 0, -15]);
-  const [stoolEPosition, setStoolEPosition] = useState([-8, 0, 15]);
-  const [stoolFPosition, setStoolDFosition] = useState([24, 0, 15]);
+  // const [stoolEPosition, setStoolEPosition] = useState([-8, 0, 15]);
+  // const [stoolFPosition, setStoolDFosition] = useState([24, 0, 15]);
 
   const orbitRef = useRef();
   const stoolRef = useRef();
   const shadowCameraRef = useRef();
   useHelper(shadowCameraRef, CameraHelper, 1, "lightBlue");
   const vec = new THREE.Vector3();
-  // console.log(
-  //   "current texture from Experience (prop from App): ",
-  //   currentTexture,
-  // );
-
-  const [
-    colorMap,
-    displacementMap,
-    normalMap,
-    metalnessMap,
-    roughnessMap,
-    aoMap,
-  ] = useTexture(currentTexture);
 
   const handleOffClick = () => {
     if (orbitRef.current) setCameraPosition(orbitRef.current.object.position);
@@ -149,6 +138,10 @@ export default function Experience({
       />
       <group position={[0, -15, 0]}>
         <Stool
+          data={stoolDataA}
+          currentItemSelected={currentItemSelected}
+          setCurrentItemSelected={setCurrentItemSelected}
+          setCurrentOptionSelected={setCurrentOptionSelected}
           ref={stoolRef}
           position={stoolAPosition}
           scale={0.72}
@@ -157,21 +150,15 @@ export default function Experience({
           toggled={toggled}
           setToggled={setToggled}
           onPointerMissed={handleOffClick}
-          colorMap={colorMap}
-          displacementMap={displacementMap}
-          normalMap={normalMap}
-          metalnessMap={metalnessMap}
-          roughnessMap={roughnessMap}
-          aoMap={aoMap}
-          currentColor={currentColor}
-          currentTexture={currentTexture}
           animActive={animActive}
           setAnimActive={setAnimActive}
-          selectedItem={selectedItem}
-          setSelectedItem={setSelectedItem}
           includeFloor={false}
         />
         <Stool
+          data={stoolDataB}
+          currentItemSelected={currentItemSelected}
+          setCurrentItemSelected={setCurrentItemSelected}
+          setCurrentOptionSelected={setCurrentOptionSelected}
           ref={stoolRef}
           position={stoolBPosition}
           scale={0.72}
@@ -180,21 +167,15 @@ export default function Experience({
           toggled={toggled}
           setToggled={setToggled}
           onPointerMissed={handleOffClick}
-          colorMap={colorMap}
-          displacementMap={displacementMap}
-          normalMap={normalMap}
-          metalnessMap={metalnessMap}
-          roughnessMap={roughnessMap}
-          aoMap={aoMap}
-          currentColor={currentColor}
-          currentTexture={currentTexture}
           animActive={animActive}
           setAnimActive={setAnimActive}
-          selectedItem={selectedItem}
-          setSelectedItem={setSelectedItem}
           includeFloor={false}
         />
         <Stool
+          data={stoolDataC}
+          currentItemSelected={currentItemSelected}
+          setCurrentItemSelected={setCurrentItemSelected}
+          setCurrentOptionSelected={setCurrentOptionSelected}
           ref={stoolRef}
           position={stoolCPosition}
           scale={0.72}
@@ -203,21 +184,15 @@ export default function Experience({
           toggled={toggled}
           setToggled={setToggled}
           onPointerMissed={handleOffClick}
-          colorMap={colorMap}
-          displacementMap={displacementMap}
-          normalMap={normalMap}
-          metalnessMap={metalnessMap}
-          roughnessMap={roughnessMap}
-          aoMap={aoMap}
-          currentColor={currentColor}
-          currentTexture={currentTexture}
           animActive={animActive}
           setAnimActive={setAnimActive}
-          selectedItem={selectedItem}
-          setSelectedItem={setSelectedItem}
           includeFloor={false}
         />
         <Stool
+          data={stoolDataD}
+          currentItemSelected={currentItemSelected}
+          setCurrentItemSelected={setCurrentItemSelected}
+          setCurrentOptionSelected={setCurrentOptionSelected}
           ref={stoolRef}
           position={stoolDPosition}
           scale={0.72}
@@ -226,21 +201,11 @@ export default function Experience({
           toggled={toggled}
           setToggled={setToggled}
           onPointerMissed={handleOffClick}
-          colorMap={colorMap}
-          displacementMap={displacementMap}
-          normalMap={normalMap}
-          metalnessMap={metalnessMap}
-          roughnessMap={roughnessMap}
-          aoMap={aoMap}
-          currentColor={currentColor}
-          currentTexture={currentTexture}
           animActive={animActive}
           setAnimActive={setAnimActive}
-          selectedItem={selectedItem}
-          setSelectedItem={setSelectedItem}
           includeFloor={false}
         />
-        <Stool
+        {/* <Stool
           ref={stoolRef}
           position={stoolEPosition}
           scale={0.72}
@@ -248,19 +213,9 @@ export default function Experience({
           setOpen={setOpen}
           toggled={toggled}
           setToggled={setToggled}
-          onPointerMissed={handleOffClick}
-          colorMap={colorMap}
-          displacementMap={displacementMap}
-          normalMap={normalMap}
-          metalnessMap={metalnessMap}
-          roughnessMap={roughnessMap}
-          aoMap={aoMap}
-          currentColor={currentColor}
-          currentTexture={currentTexture}
+          onPointerMissed={handleOffClick}          
           animActive={animActive}
           setAnimActive={setAnimActive}
-          selectedItem={selectedItem}
-          setSelectedItem={setSelectedItem}
           includeFloor={false}
         />
 
@@ -272,33 +227,25 @@ export default function Experience({
           setOpen={setOpen}
           toggled={toggled}
           setToggled={setToggled}
-          onPointerMissed={handleOffClick}
-          colorMap={colorMap}
-          displacementMap={displacementMap}
-          normalMap={normalMap}
-          metalnessMap={metalnessMap}
-          roughnessMap={roughnessMap}
-          aoMap={aoMap}
-          currentColor={currentColor}
-          currentTexture={currentTexture}
+          onPointerMissed={handleOffClick}          
           animActive={animActive}
           setAnimActive={setAnimActive}
-          selectedItem={selectedItem}
-          setSelectedItem={setSelectedItem}
           includeFloor={false}
-        />
+        /> */}
         <Floor
           scale={0.72}
-          colorMap={colorMap}
-          displacementMap={displacementMap}
-          normalMap={normalMap}
-          metalnessMap={metalnessMap}
-          roughnessMap={roughnessMap}
-          aoMap={aoMap}
-          currentColor={currentColor}
-          currentTexture={currentTexture}
-          selectedItem={selectedItem}
-          setSelectedItem={setSelectedItem}
+          // colorMap={colorMap}
+          // displacementMap={displacementMap}
+          // normalMap={normalMap}
+          // metalnessMap={metalnessMap}
+          // roughnessMap={roughnessMap}
+          // aoMap={aoMap}
+          // currentColor={currentColor}
+          // currentTexture={currentTexture}
+          currentItemSelected={currentItemSelected}
+          setCurrentItemSelected={setCurrentItemSelected}
+          // selectedItem={selectedItem}
+          // setSelectedItem={setSelectedItem}
           includeFloor={true}
         />
       </group>
