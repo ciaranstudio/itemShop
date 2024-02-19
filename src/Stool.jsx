@@ -6,6 +6,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import controls from "./debugControls";
 import { forwardRef } from "react";
+import * as THREE from "three";
 
 export default forwardRef(function Stool(props, ref) {
   const [introComplete, setIntroComplete] = useState(false);
@@ -57,11 +58,11 @@ export default forwardRef(function Stool(props, ref) {
   const tableTopPaddingY = 2.25;
   const positionOffset = { value: 0 };
   const verticalOffset = { value: 0 };
-  const totalPositionY = { value: 0 };
+  // const totalPositionY = { value: 0 };
   const stoolSpin = { value: 0 };
   const [offset, setOffset] = useState(positionOffset.value);
   const [jumpOffset, setJumpOffset] = useState(verticalOffset.value);
-  const [stoolY, setStoolY] = useState(totalPositionY.value);
+  // const [stoolY, setStoolY] = useState(totalPositionY.value);
   const [stoolSpinAmount, setStoolSpinAmount] = useState(stoolSpin.value);
 
   const handleStoolClick = () => {
@@ -101,15 +102,15 @@ export default forwardRef(function Stool(props, ref) {
         let tl = gsap.timeline();
         props.setAnimActive(true);
 
-        tl.to(totalPositionY, {
-          value: debugControls.positionY,
-          duration: debugControls.durationDownPositionY,
-          ease: "expoIn",
-          onUpdate: () => {
-            console.log("moving totalPositionY up");
-            setStoolY(totalPositionY.value);
-          },
-        });
+        // tl.to(totalPositionY, {
+        //   value: debugControls.positionY,
+        //   duration: debugControls.durationDownPositionY,
+        //   ease: "expoIn",
+        //   onUpdate: () => {
+        //     console.log("moving totalPositionY up");
+        //     setStoolY(totalPositionY.value);
+        //   },
+        // });
 
         tl.to(verticalOffset, {
           value: debugControls.jumpOffset,
@@ -129,22 +130,22 @@ export default forwardRef(function Stool(props, ref) {
           },
         });
 
-        tl.to(stoolSpin, {
-          value: debugControls.stoolSpin,
-          duration: debugControls.stoolSpinDuration,
-          ease: "easeIn",
-          onUpdate: () => {
-            setStoolSpinAmount(stoolSpin.value);
-          },
-        });
-        tl.to(stoolSpin, {
-          value: 0,
-          duration: debugControls.stoolSpinDuration + 0.25,
-          ease: "easeOut",
-          onUpdate: () => {
-            setStoolSpinAmount(stoolSpin.value);
-          },
-        });
+        // tl.to(stoolSpin, {
+        //   value: debugControls.stoolSpin,
+        //   duration: debugControls.stoolSpinDuration,
+        //   ease: "easeIn",
+        //   onUpdate: () => {
+        //     setStoolSpinAmount(stoolSpin.value);
+        //   },
+        // });
+        // tl.to(stoolSpin, {
+        //   value: 0,
+        //   duration: debugControls.stoolSpinDuration + 0.25,
+        //   ease: "easeOut",
+        //   onUpdate: () => {
+        //     setStoolSpinAmount(stoolSpin.value);
+        //   },
+        // });
 
         tl.to(positionOffset, {
           value: 0,
@@ -163,16 +164,6 @@ export default forwardRef(function Stool(props, ref) {
           onUpdate: () => {
             setJumpOffset(verticalOffset.value);
           },
-        });
-
-        tl.to(totalPositionY, {
-          value: 2,
-          duration: debugControls.durationUpPositionY,
-          ease: "expoIn",
-          onUpdate: () => {
-            console.log("moving totalPositionY up");
-            setStoolY(totalPositionY.value);
-          },
           onComplete: () => {
             circleEdgeRef.current.visible = false;
             props.setAnimActive(false);
@@ -180,6 +171,22 @@ export default forwardRef(function Stool(props, ref) {
             props.setOpen(true);
           },
         });
+
+        // tl.to(totalPositionY, {
+        //   value: 2,
+        //   duration: debugControls.durationUpPositionY,
+        //   ease: "expoIn",
+        //   onUpdate: () => {
+        //     console.log("moving totalPositionY up");
+        //     setStoolY(totalPositionY.value);
+        //   },
+        //   onComplete: () => {
+        //     circleEdgeRef.current.visible = false;
+        //     props.setAnimActive(false);
+        //     props.setToggled(false);
+        //     props.setOpen(true);
+        //   },
+        // });
       }
     },
     [props.toggled],
@@ -225,8 +232,9 @@ export default forwardRef(function Stool(props, ref) {
       <group
         {...props}
         dispose={null}
-        position={[0, stoolY, 0]}
-        rotation={[0, stoolSpinAmount, 0]}
+        // position={[0, stoolY, 0]}
+        position={props.position}
+        // rotation={[0, stoolSpinAmount, 0]} // ^
       >
         <mesh
           receiveShadow
@@ -235,8 +243,28 @@ export default forwardRef(function Stool(props, ref) {
           scale={1}
           visible={props.includeFloor}
         >
-          <circleGeometry args={[40, 128]} />
+          {/* <circleGeometry args={[40, 128]} /> */}
+          <planeGeometry args={[80, 60]} />
           <meshStandardMaterial {...marbleMaterial} />
+          <Edges
+            ref={circleEdgeRef}
+            scale={1}
+            threshold={90}
+            color="brown"
+            visible={true}
+          />
+        </mesh>
+
+        <mesh
+          receiveShadow
+          position={[0, 20 - offset, -30]}
+          rotation-x={-Math.PI}
+          scale={1}
+          visible={props.includeFloor}
+        >
+          {/* <circleGeometry args={[40, 128]} /> */}
+          <planeGeometry args={[80, 40]} />
+          <meshStandardMaterial {...woodMaterial} side={THREE.DoubleSide} />
           <Edges
             ref={circleEdgeRef}
             scale={1}

@@ -23,7 +23,7 @@ export default function debugControls() {
         step: 1.0,
       },
       directionalAintensity: {
-        value: 1.95,
+        value: 1,
         step: 0.01,
         min: 0,
         max: 8,
@@ -87,7 +87,7 @@ export default function debugControls() {
       max: 10,
     },
     jumpOffset: {
-      value: 1.0,
+      value: 6.0,
       step: 0.01,
       min: 0,
       max: 5,
@@ -96,25 +96,25 @@ export default function debugControls() {
   const { mainUpDuration, jumpUpDuration, mainDownDuration, jumpDownDuration } =
     useControls("animation duration", {
       mainUpDuration: {
-        value: 1,
+        value: 1.0,
         step: 0.01,
         min: 0,
         max: 4,
       },
       jumpUpDuration: {
-        value: 0.25,
+        value: 1.0,
         step: 0.01,
         min: 0,
         max: 4,
       },
       mainDownDuration: {
-        value: 0.9,
+        value: 1.0,
         step: 0.01,
         min: 0,
         max: 4,
       },
       jumpDownDuration: {
-        value: 0.1,
+        value: 1.0,
         step: 0.01,
         min: 0,
         max: 4,
@@ -123,19 +123,19 @@ export default function debugControls() {
   const { beforeMainUpDelay, afterMainUpDelay, afterJumpDownDelay } =
     useControls("animation delay", {
       beforeMainUpDelay: {
-        value: 0.15,
+        value: 0.05,
         step: 0.01,
         min: 0,
         max: 2,
       },
       afterMainUpDelay: {
-        value: 0.0,
+        value: 0.25,
         step: 0.01,
         min: 0,
         max: 6,
       },
       afterJumpDownDelay: {
-        value: 0,
+        value: 0.05,
         step: 0.01,
         min: 0,
         max: 6,
