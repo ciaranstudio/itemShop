@@ -191,7 +191,7 @@ export default function BottomAppBar({
         >
           <Toolbar>
             <Box component={"div"} sx={{ flexGrow: 1 }}>
-              <Typography variant="h5" component="div" color="primary">
+              <Typography variant="h4" component="div" color="primary.light">
                 Eli Gfell
               </Typography>
             </Box>
@@ -202,7 +202,7 @@ export default function BottomAppBar({
               sx={{
                 minWidth: 90,
                 maxWidth: 45,
-                mr: 2,
+                mr: 3,
               }}
             >
               <Select
@@ -214,13 +214,13 @@ export default function BottomAppBar({
                     PaperProps: {
                       sx: {
                         background: "transparent",
-                        color: "secondary",
+                        color: "secondary.light",
                       },
                     },
                   },
                 }}
                 sx={{
-                  color: "secondary",
+                  color: "primary.light",
                   ".MuiOutlinedInput-notchedOutline": {
                     borderWidth: "0.98px",
                     borderColor: "secondary.main",
@@ -235,7 +235,7 @@ export default function BottomAppBar({
                     borderColor: "secondary.main",
                   },
                   ".MuiSvgIcon-root ": {
-                    fill: "primary !important",
+                    fill: `${theme.palette.primary.light} !important`,
                   },
                 }}
               >
@@ -251,13 +251,13 @@ export default function BottomAppBar({
             <IconButton color="inherit">
               <Badge
                 badgeContent={1}
-                color="secondary"
+                color="primary"
                 anchorOrigin={{
                   vertical: "top",
                   horizontal: "right",
                 }}
               >
-                <ShoppingCartIcon sx={{ color: "primary.main" }} />
+                <ShoppingCartIcon sx={{ color: "primary.light" }} />
               </Badge>
             </IconButton>
           </Toolbar>

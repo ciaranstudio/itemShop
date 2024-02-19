@@ -101,7 +101,7 @@ function App() {
         camera={{
           fov: 45,
           near: 20,
-          far: 150,
+          far: 200,
           position: [0, 60, 0],
         }}
       >

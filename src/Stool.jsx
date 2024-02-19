@@ -54,7 +54,7 @@ export default forwardRef(function Stool(props, ref) {
     wireframe: debugControls.wireframe,
   };
 
-  const circleEdgeRef = useRef();
+  // const circleEdgeRef = useRef();
   const tableTopPaddingY = 2.25;
   const positionOffset = { value: 0 };
   const verticalOffset = { value: 0 };
@@ -63,7 +63,7 @@ export default forwardRef(function Stool(props, ref) {
   const [offset, setOffset] = useState(positionOffset.value);
   const [jumpOffset, setJumpOffset] = useState(verticalOffset.value);
   // const [stoolY, setStoolY] = useState(totalPositionY.value);
-  const [stoolSpinAmount, setStoolSpinAmount] = useState(stoolSpin.value);
+  // const [stoolSpinAmount, setStoolSpinAmount] = useState(stoolSpin.value);
 
   const handleStoolClick = () => {
     props.setOpen(true);
@@ -97,7 +97,7 @@ export default forwardRef(function Stool(props, ref) {
   useGSAP(
     () => {
       if (props.toggled && introComplete) {
-        setIntroComplete(true);
+        // setIntroComplete(true);
         let tl = gsap.timeline();
         props.setAnimActive(true);
 
@@ -164,7 +164,7 @@ export default forwardRef(function Stool(props, ref) {
             setJumpOffset(verticalOffset.value);
           },
           onComplete: () => {
-            circleEdgeRef.current.visible = false;
+            // circleEdgeRef.current.visible = false;
             props.setAnimActive(false);
             props.setToggled(false);
             props.setOpen(true);
@@ -235,44 +235,6 @@ export default forwardRef(function Stool(props, ref) {
         position={props.position}
         // rotation={[0, stoolSpinAmount, 0]} // ^
       >
-        <mesh
-          receiveShadow
-          position={[0, 0 - offset, 0]}
-          rotation-x={-Math.PI * 0.5}
-          scale={1}
-          visible={props.includeFloor}
-        >
-          {/* <circleGeometry args={[40, 128]} /> */}
-          <planeGeometry args={[80, 60]} />
-          <meshStandardMaterial {...marbleMaterial} />
-          <Edges
-            ref={circleEdgeRef}
-            scale={1}
-            threshold={90}
-            color="brown"
-            visible={true}
-          />
-        </mesh>
-
-        <mesh
-          receiveShadow
-          position={[0, 20 - offset, -30]}
-          rotation-x={-Math.PI}
-          scale={1}
-          visible={props.includeFloor}
-        >
-          {/* <circleGeometry args={[40, 128]} /> */}
-          <planeGeometry args={[80, 40]} />
-          <meshStandardMaterial {...woodMaterial} side={THREE.DoubleSide} />
-          <Edges
-            ref={circleEdgeRef}
-            scale={1}
-            threshold={90}
-            color="brown"
-            visible={true}
-          />
-        </mesh>
-
         <group
           position={[-8.26, 0 + offset * 2 + jumpOffset, 8.26]}
           scale={1}

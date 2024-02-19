@@ -147,7 +147,7 @@ export default function Experience({
         maxPolarAngle={Math.PI / 2}
         enableDamping={true}
       />
-      <group position={[0, -10, 0]}>
+      <group position={[0, -15, 0]}>
         <Stool
           ref={stoolRef}
           position={stoolAPosition}

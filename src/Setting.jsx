@@ -3,7 +3,7 @@ import { useLoader } from "@react-three/fiber";
 import { TextureLoader } from "three/src/loaders/TextureLoader";
 import controls from "./debugControls";
 // import * as THREE from "three";
-import { Edges } from "@react-three/drei";
+import { Sky, Edges } from "@react-three/drei";
 import Lights from "./Lights";
 
 export default function Floor(props) {
@@ -22,6 +22,22 @@ export default function Floor(props) {
     "./ConcretePoured001/ConcretePoured001_METALNESS_2K_METALNESS.png",
     "./ConcretePoured001/ConcretePoured001_ROUGHNESS_2K_METALNESS.png",
     "./ConcretePoured001/ConcretePoured001_AO_2K_METALNESS.png",
+  ]);
+
+  const [
+    wallColorMap,
+    wallDisplacementMap,
+    wallNormalMap,
+    wallMetalnessMap,
+    wallRoughnessMap,
+    // wallAoMap,
+  ] = useLoader(TextureLoader, [
+    "./PlasterPlain001/PlasterPlain001_COL_1K_METALNESS.png",
+    "./PlasterPlain001/PlasterPlain001_DISP_1K_METALNESS.png",
+    "./PlasterPlain001/PlasterPlain001_NRM_1K_METALNESS.png",
+    "./PlasterPlain001/PlasterPlain001_METALNESS_1K_METALNESS.png",
+    "./PlasterPlain001/PlasterPlain001_ROUGHNESS_1K_METALNESS.png",
+    // "./PlasterPlain001/PlasterPlain001_BUMP_1K_METALNESS.png",
   ]);
 
   const woodMaterial = {
@@ -49,15 +65,27 @@ export default function Floor(props) {
     wireframe: debugControls.wireframe,
   };
 
+  const wallMaterial = {
+    displacementScale: 0,
+    map: wallColorMap,
+    displacementMap: wallDisplacementMap,
+    normalMap: wallNormalMap,
+    metalnessMap: wallMetalnessMap,
+    roughnessMap: wallRoughnessMap,
+    // aoMap: wallAoMap,
+    wireframe: debugControls.wireframe,
+  };
+
   const settingEdgeRef = useRef();
 
   return (
     <>
       <Lights />
-
+      <Sky />
+      {/* wood texture rectangle on wall for debugging */}
       <mesh
         receiveShadow
-        position={[0, 30, -29.99]}
+        position={[0, 30, -64.9]}
         rotation-x={-Math.PI}
         rotation-y={Math.PI}
         scale={1}
@@ -74,15 +102,96 @@ export default function Floor(props) {
         />
       </mesh>
 
+      {/* wall (back wall with wood texture, facing the camera on initial load) */}
       <mesh
         receiveShadow
-        position={[0, 25, -30]}
+        position={[0, 35, -65]}
         rotation-x={-Math.PI}
         rotation-y={Math.PI}
         scale={1}
         visible={props.includeFloor}
       >
-        <planeGeometry args={[80, 50]} />
+        <planeGeometry args={[130, 70]} />
+        <meshStandardMaterial {...wallMaterial} />
+        <Edges
+          ref={settingEdgeRef}
+          scale={1}
+          threshold={90}
+          color="brown"
+          visible={false}
+        />
+      </mesh>
+
+      {/* wall (front wall, behind the camera on initial load) */}
+      {/* <mesh
+        receiveShadow
+        position={[0, 35, 65]}
+        rotation-x={Math.PI * 2}
+        rotation-y={Math.PI}
+        scale={1}
+        visible={props.includeFloor}
+      >
+        <planeGeometry args={[130, 70]} />
+        <meshStandardMaterial {...wallMaterial} />
+        <Edges
+          ref={settingEdgeRef}
+          scale={1}
+          threshold={90}
+          color="brown"
+          visible={false}
+        />
+      </mesh> */}
+
+      {/* wall (left side wall) */}
+      <mesh
+        receiveShadow
+        position={[-65, 35, 0]}
+        rotation-x={-Math.PI}
+        rotation-y={Math.PI * 0.5}
+        scale={1}
+        visible={props.includeFloor}
+      >
+        <planeGeometry args={[130, 70]} />
+        <meshStandardMaterial {...wallMaterial} />
+        <Edges
+          ref={settingEdgeRef}
+          scale={1}
+          threshold={90}
+          color="brown"
+          visible={false}
+        />
+      </mesh>
+
+      {/* wall (right side wall) */}
+      <mesh
+        receiveShadow
+        position={[65, 35, 0]}
+        rotation-x={-Math.PI}
+        rotation-y={-Math.PI * 0.5}
+        scale={1}
+        visible={props.includeFloor}
+      >
+        <planeGeometry args={[130, 70]} />
+        <meshStandardMaterial {...wallMaterial} />
+        <Edges
+          ref={settingEdgeRef}
+          scale={1}
+          threshold={90}
+          color="brown"
+          visible={false}
+        />
+      </mesh>
+
+      {/* concrete floor */}
+      <mesh
+        receiveShadow
+        position={[0, 0, 0]}
+        rotation-x={-Math.PI * 0.5}
+        scale={1}
+        visible={props.includeFloor}
+      >
+        {/* <circleGeometry args={[40, 128]} /> */}
+        <planeGeometry args={[130, 130]} />
         <meshStandardMaterial {...marbleMaterial} />
         <Edges
           ref={settingEdgeRef}
@@ -93,16 +202,17 @@ export default function Floor(props) {
         />
       </mesh>
 
+      {/* ceiling */}
       <mesh
         receiveShadow
-        position={[0, 0, 0]}
-        rotation-x={-Math.PI * 0.5}
+        position={[0, 70, 0]}
+        rotation-x={Math.PI * 0.5}
         scale={1}
         visible={props.includeFloor}
       >
         {/* <circleGeometry args={[40, 128]} /> */}
-        <planeGeometry args={[80, 60]} />
-        <meshStandardMaterial {...marbleMaterial} />
+        <planeGeometry args={[130, 130]} />
+        <meshStandardMaterial {...wallMaterial} />
         <Edges
           ref={settingEdgeRef}
           scale={1}
