@@ -6,6 +6,7 @@ import Stool from "./Stool.jsx";
 import controls from "./debugControls";
 import { CameraHelper } from "three";
 import * as THREE from "three";
+import Lights from "./Lights.jsx";
 import Floor from "./Setting.jsx";
 
 export default function Experience({
@@ -29,6 +30,8 @@ export default function Experience({
   const [stoolBPosition, setStoolBPosition] = useState([-8, 0, -15]);
   const [stoolCPosition, setStoolCPosition] = useState([8, 0, 0]);
   const [stoolDPosition, setStoolDPosition] = useState([24, 0, -15]);
+  const [stoolEPosition, setStoolEPosition] = useState([-8, 0, 15]);
+  const [stoolFPosition, setStoolDFosition] = useState([24, 0, 15]);
 
   const orbitRef = useRef();
   const stoolRef = useRef();
@@ -145,28 +148,6 @@ export default function Experience({
         enableDamping={true}
       />
       <group position={[0, -10, 0]}>
-        <directionalLight
-          castShadow
-          position={[
-            debugControls.directionalAposition.x,
-            debugControls.directionalAposition.y,
-            debugControls.directionalAposition.z,
-          ]}
-          intensity={debugControls.directionalAintensity}
-          shadow-normalBias={0.04}
-          shadow-mapSize-width={512}
-          shadow-mapSize-height={512}
-          shadow-camera-near={60}
-          shadow-camera-far={150}
-          shadow-camera-left={-40}
-          shadow-camera-bottom={-30}
-          shadow-camera-right={10}
-          shadow-camera-top={20}
-          target={stoolRef.current}
-        >
-          {/* <orthographicCamera ref={shadowCameraRef} attach="shadow-camera" /> */}
-        </directionalLight>
-        <ambientLight intensity={debugControls.ambientLight} />
         <Stool
           ref={stoolRef}
           position={stoolAPosition}
@@ -239,6 +220,53 @@ export default function Experience({
         <Stool
           ref={stoolRef}
           position={stoolDPosition}
+          scale={0.72}
+          open={open}
+          setOpen={setOpen}
+          toggled={toggled}
+          setToggled={setToggled}
+          onPointerMissed={handleOffClick}
+          colorMap={colorMap}
+          displacementMap={displacementMap}
+          normalMap={normalMap}
+          metalnessMap={metalnessMap}
+          roughnessMap={roughnessMap}
+          aoMap={aoMap}
+          currentColor={currentColor}
+          currentTexture={currentTexture}
+          animActive={animActive}
+          setAnimActive={setAnimActive}
+          selectedItem={selectedItem}
+          setSelectedItem={setSelectedItem}
+          includeFloor={false}
+        />
+        <Stool
+          ref={stoolRef}
+          position={stoolEPosition}
+          scale={0.72}
+          open={open}
+          setOpen={setOpen}
+          toggled={toggled}
+          setToggled={setToggled}
+          onPointerMissed={handleOffClick}
+          colorMap={colorMap}
+          displacementMap={displacementMap}
+          normalMap={normalMap}
+          metalnessMap={metalnessMap}
+          roughnessMap={roughnessMap}
+          aoMap={aoMap}
+          currentColor={currentColor}
+          currentTexture={currentTexture}
+          animActive={animActive}
+          setAnimActive={setAnimActive}
+          selectedItem={selectedItem}
+          setSelectedItem={setSelectedItem}
+          includeFloor={false}
+        />
+
+        <Stool
+          ref={stoolRef}
+          position={stoolFPosition}
           scale={0.72}
           open={open}
           setOpen={setOpen}

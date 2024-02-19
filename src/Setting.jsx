@@ -2,8 +2,9 @@ import { useRef } from "react";
 import { useLoader } from "@react-three/fiber";
 import { TextureLoader } from "three/src/loaders/TextureLoader";
 import controls from "./debugControls";
-import * as THREE from "three";
+// import * as THREE from "three";
 import { Edges } from "@react-three/drei";
+import Lights from "./Lights";
 
 export default function Floor(props) {
   const debugControls = controls();
@@ -52,34 +53,17 @@ export default function Floor(props) {
 
   return (
     <>
-      <mesh
-        receiveShadow
-        position={[0, 0, 0]}
-        rotation-x={-Math.PI * 0.5}
-        scale={1}
-        visible={props.includeFloor}
-      >
-        {/* <circleGeometry args={[40, 128]} /> */}
-        <planeGeometry args={[80, 60]} />
-        <meshStandardMaterial {...marbleMaterial} />
-        <Edges
-          ref={settingEdgeRef}
-          scale={1}
-          threshold={90}
-          color="brown"
-          visible={false}
-        />
-      </mesh>
+      <Lights />
 
       <mesh
         receiveShadow
-        position={[0, 22.5, -29.99]}
+        position={[0, 30, -29.99]}
         rotation-x={-Math.PI}
         rotation-y={Math.PI}
         scale={1}
         visible={props.includeFloor}
       >
-        <planeGeometry args={[40, 20]} />
+        <planeGeometry args={[35, 20]} />
         <meshStandardMaterial {...woodMaterial} />
         <Edges
           ref={settingEdgeRef}
@@ -92,13 +76,32 @@ export default function Floor(props) {
 
       <mesh
         receiveShadow
-        position={[0, 20, -30]}
+        position={[0, 25, -30]}
         rotation-x={-Math.PI}
         rotation-y={Math.PI}
         scale={1}
         visible={props.includeFloor}
       >
-        <planeGeometry args={[80, 40]} />
+        <planeGeometry args={[80, 50]} />
+        <meshStandardMaterial {...marbleMaterial} />
+        <Edges
+          ref={settingEdgeRef}
+          scale={1}
+          threshold={90}
+          color="brown"
+          visible={false}
+        />
+      </mesh>
+
+      <mesh
+        receiveShadow
+        position={[0, 0, 0]}
+        rotation-x={-Math.PI * 0.5}
+        scale={1}
+        visible={props.includeFloor}
+      >
+        {/* <circleGeometry args={[40, 128]} /> */}
+        <planeGeometry args={[80, 60]} />
         <meshStandardMaterial {...marbleMaterial} />
         <Edges
           ref={settingEdgeRef}

@@ -77,21 +77,20 @@ export default forwardRef(function Stool(props, ref) {
     }
   };
 
-  useEffect(() => {
-    if (props.toggled) {
-      circleEdgeRef.current.visible = true;
-    } else {
-      circleEdgeRef.current.visible = false;
-    }
-    console.log("selectedItem: ", props.selectedItem);
-  }, [props.toggled]);
+  // useEffect(() => {
+  //   if (props.toggled) {
+  //     circleEdgeRef.current.visible = true;
+  //   } else {
+  //     circleEdgeRef.current.visible = false;
+  //   }
+  //   console.log("selectedItem: ", props.selectedItem);
+  // }, [props.toggled]);
 
   useEffect(() => {
     setTimeout(() => {
       setIntroComplete(true);
-      props.setToggled(!props.toggled);
+      // props.setToggled(!props.toggled);
     }, "3000");
-
     return () => {};
   }, []);
 
