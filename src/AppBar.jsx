@@ -199,7 +199,7 @@ export default function BottomAppBar({
         >
           <Toolbar>
             <Box component={"div"} sx={{ flexGrow: 1 }}>
-              <Typography variant="h4" component="div" color="primary.light">
+              <Typography variant="h4" component="div" color="primary.main">
                 Eli Gfell
               </Typography>
             </Box>
@@ -222,13 +222,13 @@ export default function BottomAppBar({
                     PaperProps: {
                       sx: {
                         background: "transparent",
-                        color: "secondary.light",
+                        color: "primary.light",
                       },
                     },
                   },
                 }}
                 sx={{
-                  color: "primary.light",
+                  color: "primary.main",
                   ".MuiOutlinedInput-notchedOutline": {
                     borderWidth: "0.98px",
                     borderColor: "secondary.main",

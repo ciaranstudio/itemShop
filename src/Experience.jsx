@@ -28,12 +28,10 @@ export default function Experience({
   const [controlsDragging, setControlsDragging] = useState(false);
   const [cameraPosition, setCameraPosition] = useState(null);
 
-  const [stoolAPosition, setStoolAPosition] = useState([-24, 0, 0]);
-  const [stoolBPosition, setStoolBPosition] = useState([-8, 0, -15]);
-  const [stoolCPosition, setStoolCPosition] = useState([8, 0, 0]);
-  const [stoolDPosition, setStoolDPosition] = useState([24, 0, -15]);
-  // const [stoolEPosition, setStoolEPosition] = useState([-8, 0, 15]);
-  // const [stoolFPosition, setStoolDFosition] = useState([24, 0, 15]);
+  const [stoolAPosition, setStoolAPosition] = useState([-10, 0, 10]);
+  const [stoolBPosition, setStoolBPosition] = useState([-10, 0, -10]);
+  const [stoolCPosition, setStoolCPosition] = useState([10, 0, 10]);
+  const [stoolDPosition, setStoolDPosition] = useState([10, 0, -10]);
 
   const orbitRef = useRef();
   const stoolRef = useRef();
@@ -114,7 +112,7 @@ export default function Experience({
   useFrame(() => {
     if (initialLoad && !controlsDragging && orbitRef.current && !open) {
       if (cameraPosition == null) {
-        orbitRef.current.object.position.lerp(vec.set(35, 40, 85), 0.01);
+        orbitRef.current.object.position.lerp(vec.set(-75, 35, 180), 0.001);
         orbitRef.current.object.updateProjectionMatrix();
         orbitRef.current.update();
       }
@@ -139,7 +137,6 @@ export default function Experience({
       <group position={[0, -15, 0]}>
         <Stool
           data={stoolDataA}
-          // currentItemSelected={currentItemSelected}
           setCurrentItemSelected={setCurrentItemSelected}
           setCurrentOptionSelected={setCurrentOptionSelected}
           ref={stoolRef}
@@ -156,7 +153,6 @@ export default function Experience({
         />
         <Stool
           data={stoolDataB}
-          // currentItemSelected={currentItemSelected}
           setCurrentItemSelected={setCurrentItemSelected}
           setCurrentOptionSelected={setCurrentOptionSelected}
           ref={stoolRef}
@@ -173,7 +169,6 @@ export default function Experience({
         />
         <Stool
           data={stoolDataC}
-          // currentItemSelected={currentItemSelected}
           setCurrentItemSelected={setCurrentItemSelected}
           setCurrentOptionSelected={setCurrentOptionSelected}
           ref={stoolRef}
@@ -190,7 +185,6 @@ export default function Experience({
         />
         <Stool
           data={stoolDataD}
-          // currentItemSelected={currentItemSelected}
           setCurrentItemSelected={setCurrentItemSelected}
           setCurrentOptionSelected={setCurrentOptionSelected}
           ref={stoolRef}
@@ -205,47 +199,9 @@ export default function Experience({
           setAnimActive={setAnimActive}
           includeFloor={false}
         />
-        {/* <Stool
-          ref={stoolRef}
-          position={stoolEPosition}
-          scale={0.72}
-          open={open}
-          setOpen={setOpen}
-          toggled={toggled}
-          setToggled={setToggled}
-          onPointerMissed={handleOffClick}          
-          animActive={animActive}
-          setAnimActive={setAnimActive}
-          includeFloor={false}
-        />
-
-        <Stool
-          ref={stoolRef}
-          position={stoolFPosition}
-          scale={0.72}
-          open={open}
-          setOpen={setOpen}
-          toggled={toggled}
-          setToggled={setToggled}
-          onPointerMissed={handleOffClick}          
-          animActive={animActive}
-          setAnimActive={setAnimActive}
-          includeFloor={false}
-        /> */}
         <Floor
           scale={0.72}
-          // colorMap={colorMap}
-          // displacementMap={displacementMap}
-          // normalMap={normalMap}
-          // metalnessMap={metalnessMap}
-          // roughnessMap={roughnessMap}
-          // aoMap={aoMap}
-          // currentColor={currentColor}
-          // currentTexture={currentTexture}
           currentItemSelected={currentItemSelected}
-          // setCurrentItemSelected={setCurrentItemSelected}
-          // selectedItem={selectedItem}
-          // setSelectedItem={setSelectedItem}
           includeFloor={true}
         />
       </group>

@@ -147,7 +147,7 @@ export default forwardRef(function Stool(props, ref) {
             // circleEdgeRef.current.visible = false;
             props.setAnimActive(false);
             props.setToggled(false);
-            props.setOpen(true);
+            // props.setOpen(true);
           },
         });
 
