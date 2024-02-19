@@ -3,7 +3,7 @@ import { useLoader } from "@react-three/fiber";
 import { TextureLoader } from "three/src/loaders/TextureLoader";
 import controls from "./debugControls";
 // import * as THREE from "three";
-import { Sky, Edges } from "@react-three/drei";
+import { Sky, Edges, useTexture } from "@react-three/drei";
 import Lights from "./Lights";
 
 export default function Floor(props) {
@@ -40,17 +40,25 @@ export default function Floor(props) {
     // "./PlasterPlain001/PlasterPlain001_BUMP_1K_METALNESS.png",
   ]);
 
+  const [
+    colorMap,
+    displacementMap,
+    normalMap,
+    metalnessMap,
+    roughnessMap,
+    aoMap,
+  ] = useTexture(props.currentItemSelected.itemTexture);
   const woodMaterial = {
     metalness: debugControls.metalness,
     roughness: debugControls.roughness,
     displacementScale: 0,
-    map: props.colorMap,
-    displacementMap: props.displacementMap,
-    normalMap: props.normalMap,
-    metalnessMap: props.metalnessMap,
-    roughnessMap: props.roughnessMap,
-    aoMap: props.aoMap,
-    color: props.currentColor,
+    map: colorMap,
+    displacementMap: displacementMap,
+    normalMap: normalMap,
+    metalnessMap: metalnessMap,
+    roughnessMap: roughnessMap,
+    aoMap: aoMap,
+    color: props.currentItemSelected.itemColor,
     wireframe: debugControls.wireframe,
   };
 

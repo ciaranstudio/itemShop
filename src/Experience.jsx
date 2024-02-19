@@ -139,7 +139,7 @@ export default function Experience({
       <group position={[0, -15, 0]}>
         <Stool
           data={stoolDataA}
-          currentItemSelected={currentItemSelected}
+          // currentItemSelected={currentItemSelected}
           setCurrentItemSelected={setCurrentItemSelected}
           setCurrentOptionSelected={setCurrentOptionSelected}
           ref={stoolRef}
@@ -156,7 +156,7 @@ export default function Experience({
         />
         <Stool
           data={stoolDataB}
-          currentItemSelected={currentItemSelected}
+          // currentItemSelected={currentItemSelected}
           setCurrentItemSelected={setCurrentItemSelected}
           setCurrentOptionSelected={setCurrentOptionSelected}
           ref={stoolRef}
@@ -173,7 +173,7 @@ export default function Experience({
         />
         <Stool
           data={stoolDataC}
-          currentItemSelected={currentItemSelected}
+          // currentItemSelected={currentItemSelected}
           setCurrentItemSelected={setCurrentItemSelected}
           setCurrentOptionSelected={setCurrentOptionSelected}
           ref={stoolRef}
@@ -190,7 +190,7 @@ export default function Experience({
         />
         <Stool
           data={stoolDataD}
-          currentItemSelected={currentItemSelected}
+          // currentItemSelected={currentItemSelected}
           setCurrentItemSelected={setCurrentItemSelected}
           setCurrentOptionSelected={setCurrentOptionSelected}
           ref={stoolRef}
@@ -243,7 +243,7 @@ export default function Experience({
           // currentColor={currentColor}
           // currentTexture={currentTexture}
           currentItemSelected={currentItemSelected}
-          setCurrentItemSelected={setCurrentItemSelected}
+          // setCurrentItemSelected={setCurrentItemSelected}
           // selectedItem={selectedItem}
           // setSelectedItem={setSelectedItem}
           includeFloor={true}
