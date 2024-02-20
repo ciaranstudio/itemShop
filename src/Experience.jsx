@@ -112,7 +112,7 @@ export default function Experience({
   useFrame(() => {
     if (initialLoad && !controlsDragging && orbitRef.current && !open) {
       if (cameraPosition == null) {
-        orbitRef.current.object.position.lerp(vec.set(-75, 35, 180), 0.002);
+        orbitRef.current.object.position.lerp(vec.set(-75, 50, 140), 0.01);
         orbitRef.current.object.updateProjectionMatrix();
         orbitRef.current.update();
       }
@@ -127,10 +127,10 @@ export default function Experience({
       <OrbitControls
         makeDefault
         ref={orbitRef}
-        enableZoom={false}
+        enableZoom={true}
         enablePan={false}
-        maxDistance={100}
-        minDistance={70}
+        maxDistance={200}
+        minDistance={100}
         maxPolarAngle={Math.PI / 2}
         enableDamping={true}
       />

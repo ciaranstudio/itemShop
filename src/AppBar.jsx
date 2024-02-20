@@ -221,8 +221,9 @@ export default function BottomAppBar({
                   MenuProps: {
                     PaperProps: {
                       sx: {
+                        opacity: "0.25",
                         background: "transparent",
-                        color: "primary.main",
+                        color: "secondary.light",
                       },
                     },
                   },
@@ -231,16 +232,16 @@ export default function BottomAppBar({
                   color: "primary.main",
                   ".MuiOutlinedInput-notchedOutline": {
                     borderWidth: "0.98px",
-                    borderColor: "secondary.main",
+                    borderColor: "primary.main",
                     height: "90%",
                     top: -1,
                   },
                   "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
                     borderWidth: "0.98px",
-                    borderColor: "secondary.main",
+                    borderColor: "primary.main",
                   },
                   "&:hover .MuiOutlinedInput-notchedOutline": {
-                    borderColor: "secondary.main",
+                    borderColor: "primary.main",
                   },
                   ".MuiSvgIcon-root ": {
                     fill: `${theme.palette.primary.light} !important`,
@@ -248,10 +249,19 @@ export default function BottomAppBar({
                 }}
               >
                 <MenuItem key={1} value={10}>
-                  stool
+                  gramps
                 </MenuItem>
                 <MenuItem key={2} value={20} disabled>
                   squatter
+                </MenuItem>
+                <MenuItem key={2} value={20} disabled>
+                  shelf
+                </MenuItem>
+                <MenuItem key={2} value={20} disabled>
+                  horse
+                </MenuItem>
+                <MenuItem key={2} value={20} disabled>
+                  block
                 </MenuItem>
               </Select>
             </FormControl>

@@ -50,11 +50,11 @@ export default forwardRef(function Stool(props, ref) {
     props.setCurrentOptionSelected(props.data.optionSelect);
     console.log("handleStoolClick()");
     console.log("setting selectedItem state value to ", props.data);
-    if (props.animActive || !introComplete) {
-      return;
-    } else {
-      props.setToggled(!props.toggled);
-    }
+    // if (props.animActive || !introComplete) {
+    //   return;
+    // } else {
+    //   // props.setToggled(!props.toggled);
+    // }
   };
 
   // useEffect(() => {

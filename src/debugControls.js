@@ -5,11 +5,11 @@ export default function debugControls() {
     stainColor: { value: "#ffffff" },
   });
   const { metalness } = useControls("metalness", {
-    metalness: { value: 0.0, step: 0.01, min: 0, max: 1.0 },
+    metalness: { value: 1.0, step: 0.01, min: 0, max: 1.0 },
   });
   const { roughness } = useControls("roughness", {
     roughness: {
-      value: 1.0,
+      value: 0.0,
       step: 0.01,
       min: 0,
       max: 1.0,
