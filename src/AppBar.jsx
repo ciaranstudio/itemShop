@@ -222,7 +222,7 @@ export default function BottomAppBar({
                     PaperProps: {
                       sx: {
                         background: "transparent",
-                        color: "primary.light",
+                        color: "primary.main",
                       },
                     },
                   },
