@@ -43,9 +43,11 @@ export default forwardRef(function Stool(props, ref) {
   const [jumpOffset, setJumpOffset] = useState(verticalOffset.value);
   // const [stoolY, setStoolY] = useState(totalPositionY.value);
   // const [stoolSpinAmount, setStoolSpinAmount] = useState(stoolSpin.value);
+  // const [selectCircle, setSelectCircle] = useState(false);
 
   const handleStoolClick = () => {
-    props.setOpen(true);
+    // props.setOpen(true);
+    // setSelectCircle(true);
     props.setCurrentItemSelected(props.data);
     props.setCurrentOptionSelected(props.data.optionSelect);
     console.log("handleStoolClick()");
@@ -55,6 +57,9 @@ export default forwardRef(function Stool(props, ref) {
     // } else {
     //   // props.setToggled(!props.toggled);
     // }
+    if (props.data.itemNo === props.currentItemSelected.itemNo) {
+      props.setOpen(true);
+    }
   };
 
   // useEffect(() => {
@@ -70,7 +75,7 @@ export default forwardRef(function Stool(props, ref) {
     setTimeout(() => {
       setIntroComplete(true);
       // props.setToggled(!props.toggled);
-    }, "3000");
+    }, "2000");
     return () => {};
   }, []);
 
@@ -216,6 +221,19 @@ export default forwardRef(function Stool(props, ref) {
         position={props.data.position}
         // rotation={[0, stoolSpinAmount, 0]} // ^
       >
+        <mesh
+          receiveShadow
+          position={[0.25, 0.01, -0.25]}
+          rotation-x={-Math.PI * 0.5}
+          visible={
+            props.data.itemNo === props.currentItemSelected.itemNo
+              ? true
+              : false
+          }
+        >
+          <circleGeometry args={[9, 64]} />
+          <meshStandardMaterial {...woodMaterial} />
+        </mesh>
         <group
           position={[-8.26, 0 + offset * 2 + jumpOffset, 8.26]}
           scale={1}
