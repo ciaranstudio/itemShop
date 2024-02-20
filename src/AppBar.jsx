@@ -137,7 +137,7 @@ export default function BottomAppBar({
       MuiBadge: {
         styleOverrides: {
           colorSecondary: {
-            color: "#E0E0E0",
+            color: "#212121",
           },
         },
       },
@@ -210,7 +210,7 @@ export default function BottomAppBar({
               size="small"
               sx={{
                 minWidth: 90,
-                maxWidth: 45,
+                maxWidth: 180,
                 mr: 3,
               }}
             >
@@ -224,7 +224,7 @@ export default function BottomAppBar({
                       sx: {
                         opacity: "0.25",
                         background: "transparent",
-                        color: "secondary.light",
+                        color: "primary.main",
                       },
                     },
                   },
@@ -270,13 +270,13 @@ export default function BottomAppBar({
             <IconButton color="inherit">
               <Badge
                 badgeContent={1}
-                color="primary"
+                color="secondary"
                 anchorOrigin={{
                   vertical: "top",
                   horizontal: "right",
                 }}
               >
-                <ShoppingCartIcon sx={{ color: "primary.light" }} />
+                <ShoppingCartIcon sx={{ color: "primary.main" }} />
               </Badge>
             </IconButton>
           </Toolbar>

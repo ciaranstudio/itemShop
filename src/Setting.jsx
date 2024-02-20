@@ -9,37 +9,37 @@ import Lights from "./Lights";
 export default function Floor(props) {
   const debugControls = controls();
 
-  // const [
-  //   concretePouredColorMap,
-  //   concretePouredDisplacementMap,
-  //   concretePouredNormalMap,
-  //   concretePouredMetalnessMap,
-  //   concretePouredRoughnessMap,
-  //   concretePouredAoMap,
-  // ] = useLoader(TextureLoader, [
-  //   "./ConcretePoured001/ConcretePoured001_COL_2K_METALNESS.png",
-  //   "./ConcretePoured001/ConcretePoured001_DISP_2K_METALNESS.png",
-  //   "./ConcretePoured001/ConcretePoured001_NRM_2K_METALNESS.png",
-  //   "./ConcretePoured001/ConcretePoured001_METALNESS_2K_METALNESS.png",
-  //   "./ConcretePoured001/ConcretePoured001_ROUGHNESS_2K_METALNESS.png",
-  //   "./ConcretePoured001/ConcretePoured001_AO_2K_METALNESS.png",
-  // ]);
+  const [
+    concretePouredColorMap,
+    concretePouredDisplacementMap,
+    concretePouredNormalMap,
+    concretePouredMetalnessMap,
+    concretePouredRoughnessMap,
+    concretePouredAoMap,
+  ] = useLoader(TextureLoader, [
+    "./ConcretePoured001/ConcretePoured001_COL_2K_METALNESS.png",
+    "./ConcretePoured001/ConcretePoured001_DISP_2K_METALNESS.png",
+    "./ConcretePoured001/ConcretePoured001_NRM_2K_METALNESS.png",
+    "./ConcretePoured001/ConcretePoured001_METALNESS_2K_METALNESS.png",
+    "./ConcretePoured001/ConcretePoured001_ROUGHNESS_2K_METALNESS.png",
+    "./ConcretePoured001/ConcretePoured001_AO_2K_METALNESS.png",
+  ]);
 
-  // const [
-  //   concretePlatesColorMap,
-  //   concretePlatesDisplacementMap,
-  //   concretePlatesNormalMap,
-  //   concretePlatesMetalnessMap,
-  //   concretePlatesRoughnessMap,
-  //   concretePlatesAoMap,
-  // ] = useLoader(TextureLoader, [
-  //   "./ConcretePrecastPlates004/ConcretePrecastPlates004_COL_2K_METALNESS.png",
-  //   "./ConcretePrecastPlates004/ConcretePrecastPlates004_DISP_2K_METALNESS.png",
-  //   "./ConcretePrecastPlates004/ConcretePrecastPlates004_NRM_2K_METALNESS.png",
-  //   "./ConcretePrecastPlates004/ConcretePrecastPlates004_METALNESS_2K_METALNESS.png",
-  //   "./ConcretePrecastPlates004/ConcretePrecastPlates004_ROUGHNESS_2K_METALNESS.png",
-  //   "./ConcretePrecastPlates004/ConcretePrecastPlates004_AO_2K_METALNESS.png",
-  // ]);
+  const [
+    concretePlatesColorMap,
+    concretePlatesDisplacementMap,
+    concretePlatesNormalMap,
+    concretePlatesMetalnessMap,
+    concretePlatesRoughnessMap,
+    concretePlatesAoMap,
+  ] = useLoader(TextureLoader, [
+    "./ConcretePrecastPlates004/ConcretePrecastPlates004_COL_2K_METALNESS.png",
+    "./ConcretePrecastPlates004/ConcretePrecastPlates004_DISP_2K_METALNESS.png",
+    "./ConcretePrecastPlates004/ConcretePrecastPlates004_NRM_2K_METALNESS.png",
+    "./ConcretePrecastPlates004/ConcretePrecastPlates004_METALNESS_2K_METALNESS.png",
+    "./ConcretePrecastPlates004/ConcretePrecastPlates004_ROUGHNESS_2K_METALNESS.png",
+    "./ConcretePrecastPlates004/ConcretePrecastPlates004_AO_2K_METALNESS.png",
+  ]);
 
   // const [
   //   bricksWhitewashedColorMap,
@@ -169,27 +169,31 @@ export default function Floor(props) {
     wireframe: debugControls.wireframe,
   };
 
-  // const concretePouredMaterial = {
-  //   displacementScale: 0,
-  //   map: concretePouredColorMap,
-  //   displacementMap: concretePouredDisplacementMap,
-  //   normalMap: concretePouredNormalMap,
-  //   metalnessMap: concretePouredMetalnessMap,
-  //   roughnessMap: concretePouredRoughnessMap,
-  //   aoMap: concretePouredAoMap,
-  //   wireframe: debugControls.wireframe,
-  // };
+  const concretePouredMaterial = {
+    // metalness: debugControls.metalness,
+    // roughness: debugControls.roughness,
+    displacementScale: 0,
+    map: concretePouredColorMap,
+    displacementMap: concretePouredDisplacementMap,
+    normalMap: concretePouredNormalMap,
+    metalnessMap: concretePouredMetalnessMap,
+    roughnessMap: concretePouredRoughnessMap,
+    aoMap: concretePouredAoMap,
+    wireframe: debugControls.wireframe,
+  };
 
-  // const concretePlatesMaterial = {
-  //   displacementScale: 0,
-  //   map: concretePlatesColorMap,
-  //   displacementMap: concretePlatesDisplacementMap,
-  //   normalMap: concretePlatesNormalMap,
-  //   metalnessMap: concretePlatesMetalnessMap,
-  //   roughnessMap: concretePlatesRoughnessMap,
-  //   aoMap: concretePlatesAoMap,
-  //   wireframe: debugControls.wireframe,
-  // };
+  const concretePlatesMaterial = {
+    // metalness: debugControls.metalness,
+    // roughness: debugControls.roughness,
+    displacementScale: 0,
+    map: concretePlatesColorMap,
+    displacementMap: concretePlatesDisplacementMap,
+    normalMap: concretePlatesNormalMap,
+    metalnessMap: concretePlatesMetalnessMap,
+    roughnessMap: concretePlatesRoughnessMap,
+    aoMap: concretePlatesAoMap,
+    wireframe: debugControls.wireframe,
+  };
 
   // const ceramicPlainWhiteMaterial = {
   //   displacementScale: 0,
@@ -213,8 +217,8 @@ export default function Floor(props) {
   // };
 
   const tilesTravertineMaterial = {
-    metalness: debugControls.metalness,
-    roughness: debugControls.roughness,
+    // metalness: debugControls.metalness,
+    // roughness: debugControls.roughness,
     displacementScale: 0,
     map: tilesTravertineColorMap,
     displacementMap: tilesTravertineDisplacementMap,
@@ -275,9 +279,9 @@ export default function Floor(props) {
       <Lights />
       <Sky
         distance={450000}
-        sunPosition={[-10, 10, 0]}
-        inclination={0}
-        azimuth={0.25}
+        sunPosition={[-5, 5, 5]}
+        // inclination={0}
+        // azimuth={0.25}
       />
       {/* wood texture rectangle on wall for debugging */}
       <mesh
@@ -329,7 +333,7 @@ export default function Floor(props) {
         visible={props.includeFloor}
       >
         <planeGeometry args={[130, 70]} />
-        <meshStandardMaterial {...tilesTravertine} />
+        <meshStandardMaterial {...tilesTravertineMaterial} />
         <Edges
           ref={settingEdgeRef}
           scale={1}
@@ -389,7 +393,7 @@ export default function Floor(props) {
       >
         {/* <circleGeometry args={[40, 128]} /> */}
         <planeGeometry args={[130, 130]} />
-        <meshStandardMaterial {...tilesTravertineMaterial} />
+        <meshStandardMaterial {...concretePouredMaterial} />
         <Edges
           ref={settingEdgeRef}
           scale={1}
@@ -408,7 +412,7 @@ export default function Floor(props) {
         visible={props.includeFloor}
       >
         <planeGeometry args={[130, 130]} />
-        <meshStandardMaterial {...tilesTravertine} />
+        <meshStandardMaterial {...tilesTravertineMaterial} />
         <Edges
           ref={settingEdgeRef}
           scale={1}

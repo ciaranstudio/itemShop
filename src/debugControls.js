@@ -5,7 +5,7 @@ export default function debugControls() {
     stainColor: { value: "#ffffff" },
   });
   const { metalness } = useControls("metalness", {
-    metalness: { value: 1.0, step: 0.01, min: 0, max: 1.0 },
+    metalness: { value: 0.0, step: 0.01, min: 0, max: 1.0 },
   });
   const { roughness } = useControls("roughness", {
     roughness: {
@@ -23,13 +23,13 @@ export default function debugControls() {
         step: 1.0,
       },
       directionalAintensity: {
-        value: 1.5,
+        value: 1.25,
         step: 0.01,
         min: 0,
         max: 8,
       },
       ambientLight: {
-        value: 0.5,
+        value: 0.65,
         step: 0.01,
         min: 0,
         max: 2.0,

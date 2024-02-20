@@ -40,12 +40,12 @@ export default function Experience({
   const vec = new THREE.Vector3();
 
   const handleOffClick = () => {
-    if (orbitRef.current) setCameraPosition(orbitRef.current.object.position);
+    // if (orbitRef.current) setCameraPosition(orbitRef.current.object.position);
   };
 
   useEffect(() => {
     if (open) {
-      setCameraPosition(orbitRef.current.object.position);
+      // setCameraPosition(orbitRef.current.object.position);
       // console.log("open value from Experience useEffect: ", open);
       if (orbitRef.current) {
         // orbitRef.current.autoRotateSpeed = 0.95;
@@ -85,7 +85,7 @@ export default function Experience({
         "end",
         () => {
           console.log("stopped dragging!");
-          // setCameraPosition(orbitRef.current.object.position);
+          setCameraPosition(orbitRef.current.object.position);
           setControlsDragging(false);
           // setOpen(true);
         },
@@ -94,7 +94,7 @@ export default function Experience({
     }
     return () => {
       if (orbitRef.current) {
-        orbitRef.current.addEventListener(
+        orbitRef.current.removeEventListener(
           "start",
           () => console.log("removed event listener, 'start'"),
           true,
@@ -110,11 +110,11 @@ export default function Experience({
   }, []);
 
   useFrame(() => {
-    if (initialLoad && !controlsDragging && orbitRef.current && !open) {
+    if (initialLoad && !controlsDragging && orbitRef.current) {
       if (cameraPosition == null) {
-        orbitRef.current.object.position.lerp(vec.set(-75, 50, 140), 0.01);
+        orbitRef.current.object.position.lerp(vec.set(100, 45, 120), 0.02);
         orbitRef.current.object.updateProjectionMatrix();
-        orbitRef.current.update();
+        // orbitRef.current.update();
       }
     }
     return null;
@@ -129,7 +129,7 @@ export default function Experience({
         ref={orbitRef}
         enableZoom={true}
         enablePan={false}
-        maxDistance={200}
+        maxDistance={300}
         minDistance={100}
         maxPolarAngle={Math.PI / 2}
         enableDamping={true}
