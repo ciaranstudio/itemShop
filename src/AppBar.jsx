@@ -184,7 +184,8 @@ export default function BottomAppBar({
         <Global
           styles={{
             ".MuiDrawer-root > .MuiPaper-root": {
-              height: `calc(( ${height <= 400 ? "50svh" : height <= 600 ? "35svh" : "25svh"} + ${drawerBleeding}px))`,
+              // height: `calc(( ${height <= 400 ? "50svh" : height <= 600 ? "35svh" : "25svh"} + ${drawerBleeding}px))`,
+              height: `calc((${drawerBleeding * 3.1}px))`, // the 0.1 over *3 is bottom gap
               overflow: "visible",
               background: "transparent",
             },
