@@ -20,6 +20,7 @@
     "@gsap/react": "^2.0.2",
     "@mui/icons-material": "^5.15.8",
     "@mui/material": "^5.15.7",
+    "@react-three/csg": "^3.2.0",
     "@react-three/drei": "^9.95.0",
     "@react-three/fiber": "^8.15.14",
     "gsap": "^3.12.4",

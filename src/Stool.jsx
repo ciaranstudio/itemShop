@@ -4,6 +4,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import controls from "./debugControls";
 import { forwardRef } from "react";
+import { Geometry, Base, Subtraction } from "@react-three/csg";
 
 export default forwardRef(function Stool(props, ref) {
   const [introComplete, setIntroComplete] = useState(false);
@@ -232,8 +233,20 @@ export default forwardRef(function Stool(props, ref) {
               : false
           }
         >
-          <circleGeometry args={[9, 64]} />
-          <meshStandardMaterial {...woodMaterial} />
+          <Geometry>
+            {/** The chain begins with a base geometry, where all operations are carried out on. */}
+            <Base>
+              <circleGeometry args={[10, 64]} />
+            </Base>
+            {/** Chain your boolean operations: Addition, Subtraction, Difference and Intersection. */}
+            <Subtraction>
+              {/** Geometry can be set by prop or by child, just like any regular <mesh>. */}
+              <circleGeometry args={[9.5, 64]} />
+            </Subtraction>
+          </Geometry>
+
+          {/* <meshStandardMaterial {...woodMaterial} /> */}
+          <meshStandardMaterial />
         </mesh>
         <group
           position={[-8.26, 0 + offset * 2 + jumpOffset, 8.26]}
