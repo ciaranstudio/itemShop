@@ -3,7 +3,7 @@ import { useLoader } from "@react-three/fiber";
 import { TextureLoader } from "three/src/loaders/TextureLoader";
 import controls from "./debugControls";
 // import * as THREE from "three";
-import { Sky, Edges, useTexture } from "@react-three/drei";
+import { SoftShadows, Sky, useTexture } from "@react-three/drei";
 import Lights from "./Lights";
 
 export default function Floor(props) {
@@ -87,21 +87,21 @@ export default function Floor(props) {
   //   "./CeramicPlainWhite001/CeramicPlainWhite001_GLOSS_2K.jpg",
   // ]);
 
-  // const [
-  //   wallColorMap,
-  //   wallDisplacementMap,
-  //   wallNormalMap,
-  //   wallMetalnessMap,
-  //   wallRoughnessMap,
-  //   // wallAoMap,
-  // ] = useLoader(TextureLoader, [
-  //   "./PlasterPlain001/PlasterPlain001_COL_1K_METALNESS.png",
-  //   "./PlasterPlain001/PlasterPlain001_DISP_1K_METALNESS.png",
-  //   "./PlasterPlain001/PlasterPlain001_NRM_1K_METALNESS.png",
-  //   "./PlasterPlain001/PlasterPlain001_METALNESS_1K_METALNESS.png",
-  //   "./PlasterPlain001/PlasterPlain001_ROUGHNESS_1K_METALNESS.png",
-  //   // "./PlasterPlain001/PlasterPlain001_BUMP_1K_METALNESS.png",
-  // ]);
+  const [
+    wallColorMap,
+    wallDisplacementMap,
+    wallNormalMap,
+    wallMetalnessMap,
+    wallRoughnessMap,
+    // wallAoMap,
+  ] = useLoader(TextureLoader, [
+    "./PlasterPlain001/PlasterPlain001_COL_1K_METALNESS.png",
+    "./PlasterPlain001/PlasterPlain001_DISP_1K_METALNESS.png",
+    "./PlasterPlain001/PlasterPlain001_NRM_1K_METALNESS.png",
+    "./PlasterPlain001/PlasterPlain001_METALNESS_1K_METALNESS.png",
+    "./PlasterPlain001/PlasterPlain001_ROUGHNESS_1K_METALNESS.png",
+    // "./PlasterPlain001/PlasterPlain001_BUMP_1K_METALNESS.png",
+  ]);
 
   // const [
   //   planksColorMap,
@@ -229,16 +229,18 @@ export default function Floor(props) {
     wireframe: debugControls.wireframe,
   };
 
-  // const wallMaterial = {
-  //   displacementScale: 0,
-  //   map: wallColorMap,
-  //   displacementMap: wallDisplacementMap,
-  //   normalMap: wallNormalMap,
-  //   metalnessMap: wallMetalnessMap,
-  //   roughnessMap: wallRoughnessMap,
-  //   // aoMap: wallAoMap,
-  //   wireframe: debugControls.wireframe,
-  // };
+  const wallMaterial = {
+    metalness: debugControls.metalness,
+    roughness: debugControls.roughness,
+    displacementScale: 0,
+    map: wallColorMap,
+    displacementMap: wallDisplacementMap,
+    normalMap: wallNormalMap,
+    metalnessMap: wallMetalnessMap,
+    roughnessMap: wallRoughnessMap,
+    // aoMap: wallAoMap,
+    wireframe: debugControls.wireframe,
+  };
 
   // const planksMaterial = {
   //   metalness: debugControls.metalness,
@@ -278,11 +280,12 @@ export default function Floor(props) {
     <>
       <Lights />
       <Sky
-        distance={450000}
-        sunPosition={[-5, 5, 5]}
-        // inclination={0}
-        // azimuth={0.25}
+        distance={400000}
+        sunPosition={[-70, 100, 100]}
+        inclination={0}
+        azimuth={0.25}
       />
+      <SoftShadows size={20} samples={30} focus={0} />
       {/* wood texture rectangle on wall for debugging */}
       <mesh
         receiveShadow
@@ -290,17 +293,18 @@ export default function Floor(props) {
         rotation-x={-Math.PI}
         rotation-y={Math.PI}
         scale={1}
-        visible={props.includeFloor}
+        // visible={props.includeFloor}
+        visible={false}
       >
         <planeGeometry args={[35, 20]} />
         <meshStandardMaterial {...woodMaterial} />
-        <Edges
+        {/* <Edges
           ref={settingEdgeRef}
           scale={1}
           threshold={90}
           color="brown"
           visible={false}
-        />
+        /> */}
       </mesh>
 
       {/* wall (back wall with wood texture, facing the camera on initial load) */}
@@ -313,14 +317,14 @@ export default function Floor(props) {
         visible={props.includeFloor}
       >
         <planeGeometry args={[130, 70]} />
-        <meshStandardMaterial {...tilesTravertineMaterial} />
-        <Edges
+        <meshStandardMaterial {...wallMaterial} />
+        {/* <Edges
           ref={settingEdgeRef}
           scale={1}
           threshold={90}
           color="brown"
           visible={false}
-        />
+        /> */}
       </mesh>
 
       {/* wall (front wall, behind the camera on initial load) */}
@@ -353,14 +357,14 @@ export default function Floor(props) {
         visible={props.includeFloor}
       >
         <planeGeometry args={[130, 70]} />
-        <meshStandardMaterial {...tilesTravertineMaterial} />
-        <Edges
+        <meshStandardMaterial {...wallMaterial} />
+        {/* <Edges
           ref={settingEdgeRef}
           scale={1}
           threshold={90}
           color="brown"
           visible={false}
-        />
+        /> */}
       </mesh>
 
       {/* wall (right side wall) */}
@@ -373,14 +377,14 @@ export default function Floor(props) {
         visible={props.includeFloor}
       >
         <planeGeometry args={[130, 70]} />
-        <meshStandardMaterial {...tilesTravertineMaterial} />
-        <Edges
+        <meshStandardMaterial {...wallMaterial} />
+        {/* <Edges
           ref={settingEdgeRef}
           scale={1}
           threshold={90}
           color="brown"
           visible={false}
-        />
+        /> */}
       </mesh>
 
       {/* floor */}
@@ -394,13 +398,13 @@ export default function Floor(props) {
         {/* <circleGeometry args={[40, 128]} /> */}
         <planeGeometry args={[130, 130]} />
         <meshStandardMaterial {...concretePouredMaterial} />
-        <Edges
+        {/* <Edges
           ref={settingEdgeRef}
           scale={1}
           threshold={90}
           color="brown"
           visible={false}
-        />
+        /> */}
       </mesh>
 
       {/* ceiling */}

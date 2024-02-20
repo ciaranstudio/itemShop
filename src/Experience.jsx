@@ -112,7 +112,7 @@ export default function Experience({
   useFrame(() => {
     if (initialLoad && !controlsDragging && orbitRef.current) {
       if (cameraPosition == null) {
-        orbitRef.current.object.position.lerp(vec.set(100, 45, 120), 0.02);
+        orbitRef.current.object.position.lerp(vec.set(0, 40, 80), 0.02);
         orbitRef.current.object.updateProjectionMatrix();
         // orbitRef.current.update();
       }
@@ -130,11 +130,11 @@ export default function Experience({
         enableZoom={true}
         enablePan={false}
         maxDistance={300}
-        minDistance={100}
+        minDistance={70}
         maxPolarAngle={Math.PI / 2}
         enableDamping={true}
       />
-      <group position={[0, -15, 0]}>
+      <group position={[0, 0, 0]}>
         <Stool
           data={stoolDataA}
           currentItemSelected={currentItemSelected}

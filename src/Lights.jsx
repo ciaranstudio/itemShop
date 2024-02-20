@@ -13,14 +13,14 @@ export default function Lights(props) {
           debugControls.directionalAposition.z,
         ]}
         intensity={debugControls.directionalAintensity}
-        shadow-normalBias={0.04}
+        shadow-normalBias={0.5}
         shadow-mapSize-width={512}
         shadow-mapSize-height={512}
         shadow-camera-near={40}
-        shadow-camera-far={150}
-        shadow-camera-left={-40}
+        shadow-camera-far={210}
+        shadow-camera-left={-30}
         shadow-camera-bottom={-30}
-        shadow-camera-right={40}
+        shadow-camera-right={30}
         shadow-camera-top={35}
         // target={stoolRef.current}
       >
@@ -28,10 +28,10 @@ export default function Lights(props) {
       </directionalLight>
 
       {/* second light in opposite x-position to interior left wall of room */}
-      <directionalLight
+      {/* <directionalLight
         castShadow
         position={[
-          -debugControls.directionalAposition.x,
+          -debugControls.directionalAposition.x / 2,
           debugControls.directionalAposition.y,
           debugControls.directionalAposition.z,
         ]}
@@ -40,15 +40,13 @@ export default function Lights(props) {
         shadow-mapSize-width={512}
         shadow-mapSize-height={512}
         shadow-camera-near={40}
-        shadow-camera-far={150}
-        shadow-camera-left={-40}
+        shadow-camera-far={180}
+        shadow-camera-left={-20}
         shadow-camera-bottom={-30}
-        shadow-camera-right={40}
+        shadow-camera-right={20}
         shadow-camera-top={35}
         // target={stoolRef.current}
-      >
-        {/* <orthographicCamera ref={shadowCameraRef} attach="shadow-camera" /> */}
-      </directionalLight>
+      ></directionalLight> */}
       <ambientLight intensity={debugControls.ambientLight} />
     </>
   );
