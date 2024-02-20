@@ -65,6 +65,11 @@ function App() {
   const [stoolDColor, setStoolDColor] = useState(naturalStain);
   const [stoolDSelectedOption, setStoolDSelectedOption] = useState("natural");
 
+  const [stoolAPosition, setStoolAPosition] = useState([-10, 0, 10]);
+  const [stoolBPosition, setStoolBPosition] = useState([-10, 0, -10]);
+  const [stoolCPosition, setStoolCPosition] = useState([10, 0, 10]);
+  const [stoolDPosition, setStoolDPosition] = useState([10, 0, -10]);
+
   const [open, setOpen] = useState(false);
   const [toggled, setToggled] = useState(false);
   const [animActive, setAnimActive] = useState(false);
@@ -78,6 +83,8 @@ function App() {
     setItemColor: setStoolAColor,
     itemTexture: stoolATexture,
     setItemTexture: setStoolATexture,
+    position: stoolAPosition,
+    setPosition: setStoolAPosition,
   };
 
   const stoolDataB = {
@@ -89,6 +96,8 @@ function App() {
     setItemColor: setStoolBColor,
     itemTexture: stoolBTexture,
     setItemTexture: setStoolBTexture,
+    position: stoolBPosition,
+    setPosition: setStoolBPosition,
   };
 
   const stoolDataC = {
@@ -100,6 +109,8 @@ function App() {
     setItemColor: setStoolCColor,
     itemTexture: stoolCTexture,
     setItemTexture: setStoolCTexture,
+    position: stoolCPosition,
+    setPosition: setStoolCPosition,
   };
 
   const stoolDataD = {
@@ -111,6 +122,8 @@ function App() {
     setItemColor: setStoolDColor,
     itemTexture: stoolDTexture,
     setItemTexture: setStoolDTexture,
+    position: stoolDPosition,
+    setPosition: setStoolDPosition,
   };
 
   const [currentItemSelected, setCurrentItemSelected] = useState(stoolDataA);

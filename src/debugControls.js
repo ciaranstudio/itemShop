@@ -29,7 +29,7 @@ export default function debugControls() {
         max: 8,
       },
       ambientLight: {
-        value: 1.0,
+        value: 0.5,
         step: 0.01,
         min: 0,
         max: 2.0,

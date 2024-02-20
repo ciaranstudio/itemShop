@@ -28,10 +28,10 @@ export default function Experience({
   const [controlsDragging, setControlsDragging] = useState(false);
   const [cameraPosition, setCameraPosition] = useState(null);
 
-  const [stoolAPosition, setStoolAPosition] = useState([-10, 0, 10]);
-  const [stoolBPosition, setStoolBPosition] = useState([-10, 0, -10]);
-  const [stoolCPosition, setStoolCPosition] = useState([10, 0, 10]);
-  const [stoolDPosition, setStoolDPosition] = useState([10, 0, -10]);
+  // const [stoolAPosition, setStoolAPosition] = useState([-10, 0, 10]);
+  // const [stoolBPosition, setStoolBPosition] = useState([-10, 0, -10]);
+  // const [stoolCPosition, setStoolCPosition] = useState([10, 0, 10]);
+  // const [stoolDPosition, setStoolDPosition] = useState([10, 0, -10]);
 
   const orbitRef = useRef();
   const stoolRef = useRef();
@@ -112,7 +112,7 @@ export default function Experience({
   useFrame(() => {
     if (initialLoad && !controlsDragging && orbitRef.current && !open) {
       if (cameraPosition == null) {
-        orbitRef.current.object.position.lerp(vec.set(-75, 35, 180), 0.001);
+        orbitRef.current.object.position.lerp(vec.set(-75, 35, 180), 0.002);
         orbitRef.current.object.updateProjectionMatrix();
         orbitRef.current.update();
       }
@@ -137,10 +137,10 @@ export default function Experience({
       <group position={[0, -15, 0]}>
         <Stool
           data={stoolDataA}
+          currentItemSelected={currentItemSelected}
           setCurrentItemSelected={setCurrentItemSelected}
           setCurrentOptionSelected={setCurrentOptionSelected}
           ref={stoolRef}
-          position={stoolAPosition}
           scale={0.72}
           open={open}
           setOpen={setOpen}
@@ -153,10 +153,10 @@ export default function Experience({
         />
         <Stool
           data={stoolDataB}
+          currentItemSelected={currentItemSelected}
           setCurrentItemSelected={setCurrentItemSelected}
           setCurrentOptionSelected={setCurrentOptionSelected}
           ref={stoolRef}
-          position={stoolBPosition}
           scale={0.72}
           open={open}
           setOpen={setOpen}
@@ -169,10 +169,10 @@ export default function Experience({
         />
         <Stool
           data={stoolDataC}
+          currentItemSelected={currentItemSelected}
           setCurrentItemSelected={setCurrentItemSelected}
           setCurrentOptionSelected={setCurrentOptionSelected}
           ref={stoolRef}
-          position={stoolCPosition}
           scale={0.72}
           open={open}
           setOpen={setOpen}
@@ -185,10 +185,10 @@ export default function Experience({
         />
         <Stool
           data={stoolDataD}
+          currentItemSelected={currentItemSelected}
           setCurrentItemSelected={setCurrentItemSelected}
           setCurrentOptionSelected={setCurrentOptionSelected}
           ref={stoolRef}
-          position={stoolDPosition}
           scale={0.72}
           open={open}
           setOpen={setOpen}

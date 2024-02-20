@@ -77,95 +77,96 @@ export default forwardRef(function Stool(props, ref) {
   useGSAP(
     () => {
       if (props.toggled && introComplete) {
-        // setIntroComplete(true);
-        let tl = gsap.timeline();
-        props.setAnimActive(true);
+        if (props.currentItemSelected.itemNo == props.data.itemNo) {
+          let tl = gsap.timeline();
+          props.setAnimActive(true);
 
-        // tl.to(totalPositionY, {
-        //   value: debugControls.positionY,
-        //   duration: debugControls.durationDownPositionY,
-        //   ease: "expoIn",
-        //   onUpdate: () => {
-        //     console.log("moving totalPositionY up");
-        //     setStoolY(totalPositionY.value);
-        //   },
-        // });
+          // tl.to(totalPositionY, {
+          //   value: debugControls.positionY,
+          //   duration: debugControls.durationDownPositionY,
+          //   ease: "expoIn",
+          //   onUpdate: () => {
+          //     console.log("moving totalPositionY up");
+          //     setStoolY(totalPositionY.value);
+          //   },
+          // });
 
-        tl.to(verticalOffset, {
-          value: debugControls.jumpOffset,
-          duration: debugControls.jumpUpDuration,
-          ease: "expoIn",
-          onUpdate: () => {
-            setJumpOffset(verticalOffset.value);
-          },
-        });
-        tl.to(positionOffset, {
-          value: debugControls.mainOffset,
-          duration: debugControls.mainUpDuration,
-          ease: "expoIn",
-          delay: debugControls.beforeMainUpDelay,
-          onUpdate: () => {
-            setOffset(positionOffset.value);
-          },
-        });
+          tl.to(verticalOffset, {
+            value: debugControls.jumpOffset,
+            duration: debugControls.jumpUpDuration,
+            ease: "expoIn",
+            onUpdate: () => {
+              setJumpOffset(verticalOffset.value);
+            },
+          });
+          tl.to(positionOffset, {
+            value: debugControls.mainOffset,
+            duration: debugControls.mainUpDuration,
+            ease: "expoIn",
+            delay: debugControls.beforeMainUpDelay,
+            onUpdate: () => {
+              setOffset(positionOffset.value);
+            },
+          });
 
-        // tl.to(stoolSpin, {
-        //   value: debugControls.stoolSpin,
-        //   duration: debugControls.stoolSpinDuration,
-        //   ease: "easeIn",
-        //   onUpdate: () => {
-        //     setStoolSpinAmount(stoolSpin.value);
-        //   },
-        // });
-        // tl.to(stoolSpin, {
-        //   value: 0,
-        //   duration: debugControls.stoolSpinDuration + 0.25,
-        //   ease: "easeOut",
-        //   onUpdate: () => {
-        //     setStoolSpinAmount(stoolSpin.value);
-        //   },
-        // });
+          // tl.to(stoolSpin, {
+          //   value: debugControls.stoolSpin,
+          //   duration: debugControls.stoolSpinDuration,
+          //   ease: "easeIn",
+          //   onUpdate: () => {
+          //     setStoolSpinAmount(stoolSpin.value);
+          //   },
+          // });
+          // tl.to(stoolSpin, {
+          //   value: 0,
+          //   duration: debugControls.stoolSpinDuration + 0.25,
+          //   ease: "easeOut",
+          //   onUpdate: () => {
+          //     setStoolSpinAmount(stoolSpin.value);
+          //   },
+          // });
 
-        tl.to(positionOffset, {
-          value: 0,
-          duration: debugControls.mainDownDuration,
-          ease: "expoOut",
-          delay: debugControls.afterMainUpDelay,
-          onUpdate: () => {
-            setOffset(positionOffset.value);
-          },
-        });
-        tl.to(verticalOffset, {
-          value: 0,
-          duration: debugControls.jumpDownDuration,
-          ease: "expoIn",
-          delay: debugControls.afterJumpDownDelay,
-          onUpdate: () => {
-            setJumpOffset(verticalOffset.value);
-          },
-          onComplete: () => {
-            // circleEdgeRef.current.visible = false;
-            props.setAnimActive(false);
-            props.setToggled(false);
-            // props.setOpen(true);
-          },
-        });
+          tl.to(positionOffset, {
+            value: 0,
+            duration: debugControls.mainDownDuration,
+            ease: "expoOut",
+            delay: debugControls.afterMainUpDelay,
+            onUpdate: () => {
+              setOffset(positionOffset.value);
+            },
+          });
+          tl.to(verticalOffset, {
+            value: 0,
+            duration: debugControls.jumpDownDuration,
+            ease: "expoIn",
+            delay: debugControls.afterJumpDownDelay,
+            onUpdate: () => {
+              setJumpOffset(verticalOffset.value);
+            },
+            onComplete: () => {
+              // circleEdgeRef.current.visible = false;
+              props.setAnimActive(false);
+              props.setToggled(false);
+              // props.setOpen(true);
+            },
+          });
 
-        // tl.to(totalPositionY, {
-        //   value: 2,
-        //   duration: debugControls.durationUpPositionY,
-        //   ease: "expoIn",
-        //   onUpdate: () => {
-        //     console.log("moving totalPositionY up");
-        //     setStoolY(totalPositionY.value);
-        //   },
-        //   onComplete: () => {
-        //     circleEdgeRef.current.visible = false;
-        //     props.setAnimActive(false);
-        //     props.setToggled(false);
-        //     props.setOpen(true);
-        //   },
-        // });
+          // tl.to(totalPositionY, {
+          //   value: 2,
+          //   duration: debugControls.durationUpPositionY,
+          //   ease: "expoIn",
+          //   onUpdate: () => {
+          //     console.log("moving totalPositionY up");
+          //     setStoolY(totalPositionY.value);
+          //   },
+          //   onComplete: () => {
+          //     circleEdgeRef.current.visible = false;
+          //     props.setAnimActive(false);
+          //     props.setToggled(false);
+          //     props.setOpen(true);
+          //   },
+          // });
+        }
       }
     },
     [props.toggled],
@@ -212,7 +213,7 @@ export default forwardRef(function Stool(props, ref) {
         {...props}
         dispose={null}
         // position={[0, stoolY, 0]}
-        position={props.position}
+        position={props.data.position}
         // rotation={[0, stoolSpinAmount, 0]} // ^
       >
         <group
