@@ -45,9 +45,10 @@ export default forwardRef(function Stool(props, ref) {
   // const [stoolSpinAmount, setStoolSpinAmount] = useState(stoolSpin.value);
   // const [selectCircle, setSelectCircle] = useState(false);
 
-  const handleStoolClick = () => {
+  const handleStoolClick = (e) => {
     // props.setOpen(true);
     // setSelectCircle(true);
+    e.stopPropagation();
     props.setCurrentItemSelected(props.data);
     props.setCurrentOptionSelected(props.data.optionSelect);
     console.log("handleStoolClick()");
