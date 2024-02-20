@@ -9,7 +9,7 @@ export default function debugControls() {
   });
   const { roughness } = useControls("roughness", {
     roughness: {
-      value: 0.0,
+      value: 1.0,
       step: 0.01,
       min: 0,
       max: 1.0,
@@ -23,7 +23,7 @@ export default function debugControls() {
         step: 1.0,
       },
       directionalAintensity: {
-        value: 1,
+        value: 1.5,
         step: 0.01,
         min: 0,
         max: 8,
