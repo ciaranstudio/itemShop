@@ -40,7 +40,7 @@ export default function BottomAppBar({
   animActive,
 }) {
   // const debugControls = controls();
-  const drawerBleeding = 34;
+  const drawerBleeding = 60;
   const { height, width } = useWindowDimensions();
 
   useEffect(() => {
@@ -162,14 +162,14 @@ export default function BottomAppBar({
   }));
 
   const Puller = styled("div")(({ theme }) => ({
-    width: 35,
-    height: 4.5,
+    width: 48,
+    height: 4,
     backgroundColor: open
       ? theme.palette.secondary.main
       : theme.palette.primary.light,
     borderRadius: 3,
     position: "absolute",
-    top: 21,
+    top: 30,
     left: "calc(50% - 15px)",
   }));
 
@@ -278,7 +278,7 @@ export default function BottomAppBar({
           onClose={toggleDrawer(false)}
           onOpen={toggleDrawer(true)}
           swipeAreaWidth={drawerBleeding}
-          disableSwipeToOpen={true}
+          disableSwipeToOpen={false}
           transitionDuration={500}
           ModalProps={{
             keepMounted: true,
@@ -288,8 +288,9 @@ export default function BottomAppBar({
           }}
         >
           <StyledBox
+            onClick={toggleDrawer(!open)}
             sx={{
-              top: -drawerBleeding - 12,
+              top: -drawerBleeding,
               borderTopLeftRadius: 8,
               borderTopRightRadius: 8,
               visibility: "visible",
@@ -338,6 +339,7 @@ export default function BottomAppBar({
           </StyledBox>
           <StyledBox
             sx={{
+              top: 0,
               height: `100svh-${drawerBleeding}`,
               overflow: "auto",
               background: "transparent",
