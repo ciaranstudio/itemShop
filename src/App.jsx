@@ -1,8 +1,7 @@
-import { useState, useEffect, Suspense } from "react";
+import { useState, Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import Experience from "./Experience.jsx";
 import { Leva } from "leva";
-import Placeholder from "./Placeholder.jsx";
 import BottomAppBar from "./AppBar.jsx";
 import * as THREE from "three";
 import "./style.css";
@@ -135,11 +134,7 @@ function App() {
     useState(stoolASelectedOption);
 
   const handleColorChange = (event, color) => {
-    // these will instead set their unique stoolDataD object values with its object setter methods
     event.preventDefault();
-
-    // currentItemSelected.setOptionSelect(color);
-    // setCurrentSelect(color);
     if (color === "white") {
       currentItemSelected.setItemColor(whiteStain);
       currentItemSelected.setOptionSelect("white");
@@ -176,27 +171,6 @@ function App() {
     }
   };
 
-  // useEffect(() => {
-  //   console.log("stoolAColor", stoolAColor);
-  //   console.log("stoolASelectedOption", stoolASelectedOption);
-  //   console.log("stoolBColor", stoolBColor);
-  //   console.log("stoolBSelectedOption", stoolBSelectedOption);
-
-  //   console.log("stoolCColor", stoolCColor);
-  //   console.log("stoolCSelectedOption", stoolCSelectedOption);
-  //   console.log("stoolDColor", stoolDColor);
-  //   console.log("stoolDSelectedOption", stoolDSelectedOption);
-  // }, [
-  //   stoolAColor,
-  //   stoolASelectedOption,
-  //   stoolBColor,
-  //   stoolBSelectedOption,
-  //   stoolCColor,
-  //   stoolCSelectedOption,
-  //   stoolDColor,
-  //   stoolDSelectedOption,
-  // ]);
-
   return (
     <>
       <Leva hidden oneLineLabels />
@@ -215,7 +189,7 @@ function App() {
           ],
         }}
       >
-        <Suspense fallback={<Placeholder />}>
+        <Suspense fallback={null}>
           <Experience
             open={open}
             setOpen={setOpen}

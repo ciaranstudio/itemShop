@@ -31,7 +31,6 @@ export default function Experience({
   const [overlayAlpha, setOverlayAlpha] = useState(1);
   const overlayGeometry = new THREE.PlaneGeometry(2, 2, 1, 1);
   const overlayMaterial = new THREE.ShaderMaterial({
-    // wireframe: true,
     transparent: true,
     uniforms: {
       uAlpha: { value: overlayAlpha },
@@ -47,7 +46,7 @@ export default function Experience({
 
         void main()
         {
-            gl_FragColor = vec4(208.0, 208.0, 208.0, uAlpha);
+            gl_FragColor = vec4(0.0, 0.0, 0.0, uAlpha);
         }
     `,
   });
@@ -56,7 +55,7 @@ export default function Experience({
     loadingBarElement.style.transform = `scaleX(${progress / 100})`;
     if (progress > 99) {
       window.setTimeout(() => {
-        // Animate overlay
+        // animate overlay
         gsap.to(overlayOpacity, {
           duration: 3,
           value: 0,
@@ -65,7 +64,7 @@ export default function Experience({
             setOverlayAlpha(overlayOpacity.value);
           },
         });
-        // Update loadingBarElement
+        // update loadingBarElement
         loadingBarElement.classList.add("ended");
         loadingBarElement.style.transform = "";
       }, 500);
@@ -76,11 +75,6 @@ export default function Experience({
   const [initialLoad, setInitialLoad] = useState(false);
   const [controlsDragging, setControlsDragging] = useState(false);
   const [cameraPosition, setCameraPosition] = useState(null);
-
-  // const [stoolAPosition, setStoolAPosition] = useState([-10, 0, 10]);
-  // const [stoolBPosition, setStoolBPosition] = useState([-10, 0, -10]);
-  // const [stoolCPosition, setStoolCPosition] = useState([10, 0, 10]);
-  // const [stoolDPosition, setStoolDPosition] = useState([10, 0, -10]);
 
   const orbitRef = useRef();
   const stoolRef = useRef();
@@ -164,7 +158,6 @@ export default function Experience({
   useFrame(() => {
     if (initialLoad && !controlsDragging && orbitRef.current) {
       if (cameraPosition == null) {
-        //   console.log("idk why");
         //   orbitRef.current.object.position.lerp(vec.set(-35, 40, 60), 0.01);
         //   orbitRef.current.object.updateProjectionMatrix();
         //   orbitRef.current.update();
@@ -187,7 +180,7 @@ export default function Experience({
   return (
     <>
       {debugControls.perfVisible && <Perf position="top-left" />}
-      <color args={["#e8e8e8"]} attach="background" />
+      <color args={["#000000"]} attach="background" />
       <mesh geometry={overlayGeometry} material={overlayMaterial}></mesh>
       {/* <mesh position={[0, 0, 0]} rotation-x={-Math.PI * 0.5}>
         <planeGeometry args={[130, 130, 16, 16]} />
