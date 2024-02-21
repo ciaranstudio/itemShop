@@ -24,13 +24,13 @@ export default function debugControls() {
         step: 1.0,
       },
       directionalAintensity: {
-        value: 1.0,
+        value: 1,
         step: 0.01,
         min: 0,
         max: 8,
       },
       ambientLight: {
-        value: 0.75,
+        value: 0.5,
         step: 0.01,
         min: 0,
         max: 2.0,
@@ -39,14 +39,14 @@ export default function debugControls() {
 
   const { positionY } = useControls("stool vertical target", {
     positionY: {
-      value: 4,
+      value: 2,
       step: 1.0,
     },
   });
 
   const { durationUpPositionY } = useControls("stool duration up", {
     durationUpPositionY: {
-      value: 0.5,
+      value: 0.25,
       step: 0.01,
       min: 0,
       max: 4,
@@ -55,7 +55,7 @@ export default function debugControls() {
 
   const { durationDownPositionY } = useControls("stool duration down", {
     durationDownPositionY: {
-      value: 0.75,
+      value: 0.5,
       step: 0.01,
       min: 0,
       max: 4,
@@ -73,7 +73,7 @@ export default function debugControls() {
 
   const { stoolSpinDuration } = useControls("stool duration down", {
     stoolSpinDuration: {
-      value: 0.75,
+      value: 1,
       step: 0.01,
       min: 0,
       max: 4,
@@ -88,7 +88,7 @@ export default function debugControls() {
       max: 10,
     },
     jumpOffset: {
-      value: 6.0,
+      value: 2,
       step: 0.01,
       min: 0,
       max: 5,
@@ -109,7 +109,7 @@ export default function debugControls() {
         max: 4,
       },
       mainDownDuration: {
-        value: 0.75,
+        value: 1,
         step: 0.01,
         min: 0,
         max: 4,
@@ -124,7 +124,7 @@ export default function debugControls() {
   const { beforeMainUpDelay, afterMainUpDelay, afterJumpDownDelay } =
     useControls("animation delay", {
       beforeMainUpDelay: {
-        value: 0.0,
+        value: 0.1,
         step: 0.01,
         min: 0,
         max: 2,
@@ -136,7 +136,7 @@ export default function debugControls() {
         max: 6,
       },
       afterJumpDownDelay: {
-        value: 0.15,
+        value: 0.1,
         step: 0.01,
         min: 0,
         max: 6,

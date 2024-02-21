@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useFrame } from "@react-three/fiber";
+import * as THREE from "three";
 import { useTexture, useGLTF } from "@react-three/drei";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -46,6 +48,8 @@ export default forwardRef(function Stool(props, ref) {
   const [stoolY, setStoolY] = useState(0);
   const [stoolSpinAmount, setStoolSpinAmount] = useState(stoolSpin.value);
 
+  const vec = new THREE.Vector3();
+
   const handleStoolClick = (e) => {
     // props.setOpen(true);
     e.stopPropagation();
@@ -76,6 +80,12 @@ export default forwardRef(function Stool(props, ref) {
     }
   }, [props.currentItemSelected.itemNo]);
 
+  useEffect(() => {
+    if (selected) {
+      console.log("move camera to look at selected item");
+    }
+  }, [selected]);
+
   useGSAP(
     () => {
       if (props.toggled) {
@@ -92,7 +102,6 @@ export default forwardRef(function Stool(props, ref) {
               setStoolY(totalPositionY.value);
             },
           });
-
           tl.to(verticalOffset, {
             value: debugControls.jumpOffset,
             duration: debugControls.jumpUpDuration,
@@ -110,12 +119,10 @@ export default forwardRef(function Stool(props, ref) {
               setOffset(positionOffset.value);
             },
           });
-
           tl.to(stoolSpin, {
             value: debugControls.stoolSpin,
             duration: debugControls.stoolSpinDuration,
             ease: "easeIn",
-
             onUpdate: () => {
               setStoolSpinAmount(stoolSpin.value);
             },
@@ -129,7 +136,6 @@ export default forwardRef(function Stool(props, ref) {
               setStoolSpinAmount(stoolSpin.value);
             },
           });
-
           tl.to(positionOffset, {
             value: 0,
             duration: debugControls.mainDownDuration,
@@ -153,7 +159,6 @@ export default forwardRef(function Stool(props, ref) {
               // props.setOpen(true);
             },
           });
-
           tl.to(totalPositionY, {
             value: 0,
             duration: debugControls.durationDownPositionY,
@@ -223,7 +228,11 @@ export default forwardRef(function Stool(props, ref) {
         ]}
         rotation={[0, stoolSpinAmount, 0]}
       >
-        <RingCircle stoolY={stoolY} selected={selected} />
+        <RingCircle
+          stoolY={stoolY}
+          selected={selected}
+          // woodMaterial={woodMaterial}
+        />
         <group
           position={[-8.26, 0 + offset * 2 + jumpOffset, 8.26]}
           scale={1}

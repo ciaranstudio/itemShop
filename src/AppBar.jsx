@@ -114,12 +114,12 @@ export default function BottomAppBar({
   const theme = createTheme({
     palette: {
       primary: {
-        main: "#424242",
+        main: "#212121",
         light: "#757575",
       },
 
       secondary: {
-        main: "#9E9E9E",
+        main: "#bdbdbd",
         light: "#E0E0E0",
       },
     },
@@ -194,9 +194,9 @@ export default function BottomAppBar({
         <AppBar
           position="fixed"
           component="nav"
-          color="transparent"
+          // color="secondary"
           elevation={0}
-          sx={{ top: 0 }}
+          sx={{ backgroundColor: "secondary.light", opacity: "0.75", top: 0 }}
         >
           <Toolbar>
             <Box component={"div"} sx={{ flexGrow: 1 }}>
@@ -220,10 +220,10 @@ export default function BottomAppBar({
                 onChange={handleItemChange}
                 inputProps={{
                   MenuProps: {
+                    sx: { opacity: "0.75" },
                     PaperProps: {
                       sx: {
-                        opacity: "0.25",
-                        background: "transparent",
+                        backgroundColor: `${theme.palette.secondary.light}`,
                         color: "primary.main",
                       },
                     },
@@ -232,21 +232,21 @@ export default function BottomAppBar({
                 sx={{
                   color: "primary.main",
                   ".MuiOutlinedInput-notchedOutline": {
-                    borderWidth: "0.98px",
-                    borderColor: "primary.main",
+                    borderWidth: "1px",
+                    borderColor: "primary.light",
                     height: "90%",
                     top: -1,
                   },
                   "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                    borderWidth: "0.98px",
-                    borderColor: "primary.main",
+                    borderWidth: "1px",
+                    borderColor: "primary.light",
                   },
                   "&:hover .MuiOutlinedInput-notchedOutline": {
-                    borderColor: "primary.main",
+                    borderColor: "primary.light",
                   },
-                  ".MuiSvgIcon-root ": {
-                    fill: `${theme.palette.primary.light} !important`,
-                  },
+                  // ".MuiSvgIcon-root ": {
+                  //   fill: `${theme.palette.secondary.main} !important`,
+                  // },
                 }}
               >
                 <MenuItem key={1} value={10}>
@@ -270,7 +270,7 @@ export default function BottomAppBar({
             <IconButton color="inherit">
               <Badge
                 badgeContent={1}
-                color="secondary"
+                color="primary"
                 anchorOrigin={{
                   vertical: "top",
                   horizontal: "right",
@@ -307,10 +307,10 @@ export default function BottomAppBar({
               visibility: "visible",
               background: "#e8e8e8",
               opacity: 0.75,
-              height: drawerBleeding,
+              height: drawerBleeding - 1,
               p: 2.75,
               zIndex: 1,
-              border: "1px solid #9E9E9E",
+              // border: "1px solid #757575",
             }}
           >
             <Puller />
@@ -453,7 +453,7 @@ export default function BottomAppBar({
                             sx={{
                               py: 0,
                               ml: 1.5,
-                              mt: 1.25,
+                              mt: 1.5,
                             }}
                             color="primary"
                           >
@@ -467,7 +467,7 @@ export default function BottomAppBar({
                             sx={{
                               py: 0,
                               mr: 1.5,
-                              mt: 1.25,
+                              mt: 1.5,
                             }}
                             onClick={() => {
                               setToggled(!toggled);

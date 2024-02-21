@@ -280,12 +280,12 @@ export default function Floor(props) {
     <>
       <Lights />
       <Sky
-        distance={400000}
-        sunPosition={[-70, 100, 100]}
+        distance={1000}
+        sunPosition={[-70, 10000, 100]}
         inclination={0}
         azimuth={0.25}
       />
-      <SoftShadows size={20} samples={30} focus={0} />
+      <SoftShadows size={25} samples={30} focus={-0.05} />
       {/* wood texture rectangle on wall for debugging */}
       <mesh
         receiveShadow
@@ -317,7 +317,7 @@ export default function Floor(props) {
         visible={props.includeFloor}
       >
         <planeGeometry args={[130, 70]} />
-        <meshStandardMaterial {...wallMaterial} />
+        <meshStandardMaterial {...tilesTravertineMaterial} />
         {/* <Edges
           ref={settingEdgeRef}
           scale={1}
@@ -348,7 +348,7 @@ export default function Floor(props) {
       </mesh> */}
 
       {/* wall (left side wall) */}
-      <mesh
+      {/* <mesh
         receiveShadow
         position={[-65, 35, 0]}
         rotation-x={-Math.PI}
@@ -357,15 +357,8 @@ export default function Floor(props) {
         visible={props.includeFloor}
       >
         <planeGeometry args={[130, 70]} />
-        <meshStandardMaterial {...wallMaterial} />
-        {/* <Edges
-          ref={settingEdgeRef}
-          scale={1}
-          threshold={90}
-          color="brown"
-          visible={false}
-        /> */}
-      </mesh>
+        <meshStandardMaterial {...tilesTravertineMaterial} />
+      </mesh> */}
 
       {/* wall (right side wall) */}
       <mesh
@@ -377,7 +370,7 @@ export default function Floor(props) {
         visible={props.includeFloor}
       >
         <planeGeometry args={[130, 70]} />
-        <meshStandardMaterial {...wallMaterial} />
+        <meshStandardMaterial {...tilesTravertineMaterial} />
         {/* <Edges
           ref={settingEdgeRef}
           scale={1}

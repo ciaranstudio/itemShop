@@ -13,7 +13,7 @@ export default function Lights(props) {
           debugControls.directionalAposition.z,
         ]}
         intensity={debugControls.directionalAintensity}
-        shadow-normalBias={0.5}
+        shadow-normalBias={0.04}
         shadow-mapSize-width={512}
         shadow-mapSize-height={512}
         shadow-camera-near={40}

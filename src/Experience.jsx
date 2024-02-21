@@ -85,7 +85,7 @@ export default function Experience({
         "end",
         () => {
           console.log("stopped dragging!");
-          setCameraPosition(orbitRef.current.object.position);
+          // setCameraPosition(orbitRef.current.object.position);
           setControlsDragging(false);
           // setOpen(true);
         },
@@ -112,12 +112,24 @@ export default function Experience({
   useFrame(() => {
     if (initialLoad && !controlsDragging && orbitRef.current) {
       if (cameraPosition == null) {
-        orbitRef.current.object.position.lerp(vec.set(-35, 40, 60), 0.01);
+        //   console.log("idk why");
+        //   orbitRef.current.object.position.lerp(vec.set(-35, 40, 60), 0.01);
+        //   orbitRef.current.object.updateProjectionMatrix();
+        //   orbitRef.current.update();
+        // } else {
+        orbitRef.current.object.position.lerp(
+          vec.set(
+            currentItemSelected.position.x,
+            currentItemSelected.position.y + 6,
+            currentItemSelected.position.z,
+          ),
+          0.04,
+        );
         orbitRef.current.object.updateProjectionMatrix();
-        // orbitRef.current.update();
+        orbitRef.current.update();
       }
+      return null;
     }
-    return null;
   });
 
   return (
@@ -127,12 +139,17 @@ export default function Experience({
       <OrbitControls
         makeDefault
         ref={orbitRef}
-        enableZoom={true}
+        enableZoom={false}
         enablePan={false}
         maxDistance={300}
         minDistance={70}
         maxPolarAngle={Math.PI / 2}
         enableDamping={true}
+        // target={[
+        //   currentItemSelected.position.x,
+        //   currentItemSelected.position.y,
+        //   currentItemSelected.position.z,
+        // ]}
       />
       <group position={[0, 0, 0]}>
         <Stool
