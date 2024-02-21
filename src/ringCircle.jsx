@@ -24,7 +24,7 @@ export default function RingCircle({
           <circleGeometry args={[9.75, 64]} />
         </Subtraction>
       </Geometry> */}
-      <meshBasicMaterial transparent opacity={0.15} />
+      <meshBasicMaterial transparent opacity={0} />
       {/* <meshStandardMaterial {...woodMaterial} /> */}
       <Edges
         scale={1 + stoolY / 8}

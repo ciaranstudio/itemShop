@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
-import { useTexture, useGLTF } from "@react-three/drei";
+import { useTexture, useGLTF, useProgress } from "@react-three/drei";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import controls from "./debugControls";
@@ -9,8 +9,56 @@ import { forwardRef } from "react";
 import RingCircle from "./RingCircle";
 
 export default forwardRef(function Stool(props, ref) {
+  // const loadingBarElement = document.querySelector(".loading-bar");
+  // const { active, progress, errors, item, loaded, total } = useProgress();
+  // const overlayOpacity = { value: 1 };
+  // const [overlayAlpha, setOverlayAlpha] = useState(1);
+  // const overlayGeometry = new THREE.PlaneGeometry(2, 2, 1, 1);
+  // const overlayMaterial = new THREE.ShaderMaterial({
+  //   // wireframe: true,
+  //   transparent: true,
+  //   uniforms: {
+  //     uAlpha: { value: overlayAlpha },
+  //   },
+  //   vertexShader: `
+  //       void main()
+  //       {
+  //           gl_Position = vec4(position, 1.0);
+  //       }
+  //   `,
+  //   fragmentShader: `
+  //       uniform float uAlpha;
+
+  //       void main()
+  //       {
+  //           gl_FragColor = vec4(0.0, 0.0, 0.0, uAlpha);
+  //       }
+  //   `,
+  // });
+
+  // useEffect(() => {
+  //   loadingBarElement.style.transform = `scaleX(${progress / 100})`;
+  //   if (progress > 99) {
+  //     window.setTimeout(() => {
+  //       // Animate overlay
+  //       gsap.to(overlayOpacity, {
+  //         duration: 3,
+  //         value: 0,
+  //         delay: 1,
+  //         onUpdate: () => {
+  //           setOverlayAlpha(overlayOpacity.value);
+  //         },
+  //       });
+  //       // Update loadingBarElement
+  //       loadingBarElement.classList.add("ended");
+  //       loadingBarElement.style.transform = "";
+  //     }, 500);
+  //   }
+  // }, [progress]);
+
   // const [introComplete, setIntroComplete] = useState(false);
   const { nodes, materials } = useGLTF("/oakStool.glb");
+
   const debugControls = controls();
 
   const [
@@ -217,6 +265,8 @@ export default forwardRef(function Stool(props, ref) {
 
   return (
     <>
+      {/* <mesh geometry={overlayGeometry} material={overlayMaterial}></mesh> */}
+      {/* <Loader /> */}
       <group
         {...props}
         dispose={null}

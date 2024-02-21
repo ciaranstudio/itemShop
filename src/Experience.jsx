@@ -7,6 +7,8 @@ import controls from "./debugControls";
 import { CameraHelper } from "three";
 import * as THREE from "three";
 import Floor from "./Setting.jsx";
+import { useProgress } from "@react-three/drei";
+import gsap from "gsap";
 
 export default function Experience({
   open,
@@ -23,6 +25,53 @@ export default function Experience({
   setCurrentItemSelected,
   setCurrentOptionSelected,
 }) {
+  const loadingBarElement = document.querySelector(".loading-bar");
+  const { active, progress, errors, item, loaded, total } = useProgress();
+  const overlayOpacity = { value: 1 };
+  const [overlayAlpha, setOverlayAlpha] = useState(1);
+  const overlayGeometry = new THREE.PlaneGeometry(2, 2, 1, 1);
+  const overlayMaterial = new THREE.ShaderMaterial({
+    // wireframe: true,
+    transparent: true,
+    uniforms: {
+      uAlpha: { value: overlayAlpha },
+    },
+    vertexShader: `
+        void main()
+        {
+            gl_Position = vec4(position, 1.0);
+        }
+    `,
+    fragmentShader: `
+        uniform float uAlpha;
+
+        void main()
+        {
+            gl_FragColor = vec4(208.0, 208.0, 208.0, uAlpha);
+        }
+    `,
+  });
+
+  useEffect(() => {
+    loadingBarElement.style.transform = `scaleX(${progress / 100})`;
+    if (progress > 99) {
+      window.setTimeout(() => {
+        // Animate overlay
+        gsap.to(overlayOpacity, {
+          duration: 3,
+          value: 0,
+          delay: 1,
+          onUpdate: () => {
+            setOverlayAlpha(overlayOpacity.value);
+          },
+        });
+        // Update loadingBarElement
+        loadingBarElement.classList.add("ended");
+        loadingBarElement.style.transform = "";
+      }, 500);
+    }
+  }, [progress]);
+
   const debugControls = controls();
   const [initialLoad, setInitialLoad] = useState(false);
   const [controlsDragging, setControlsDragging] = useState(false);
@@ -67,6 +116,9 @@ export default function Experience({
   //     }
   //   }
   // }, [open]);
+  /**
+   * Overlay
+   */
 
   useEffect(() => {
     setInitialLoad(true);
@@ -136,6 +188,15 @@ export default function Experience({
     <>
       {debugControls.perfVisible && <Perf position="top-left" />}
       <color args={["#e8e8e8"]} attach="background" />
+      <mesh geometry={overlayGeometry} material={overlayMaterial}></mesh>
+      {/* <mesh position={[0, 0, 0]} rotation-x={-Math.PI * 0.5}>
+        <planeGeometry args={[130, 130, 16, 16]} />
+        <meshBasicMaterial color="#bdbdbd" wireframe />
+      </mesh>
+      <mesh position={[0, 7, 0]}>
+        <boxGeometry args={[32, 13, 32, 8, 8, 8]} />
+        <meshBasicMaterial color="#757575" wireframe />
+      </mesh> */}
       <OrbitControls
         makeDefault
         ref={orbitRef}

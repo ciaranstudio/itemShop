@@ -10,16 +10,15 @@ export default function Placeholder(props) {
   });
 
   return (
-    <mesh
-      {...props}
-      ref={boxRef}
-      scale={0.35}
-      position={[0, 0, 0]}
-      rotation-x={-Math.PI * 0.5}
-    >
-      {/* <boxGeometry args={[10, 15, 10, 4, 4, 4]} /> */}
-      <circleGeometry args={[20, 64]} />
-      <meshBasicMaterial wireframe color="lightBlue" />
-    </mesh>
+    <>
+      <mesh position={[0, 0, 0]} rotation-x={-Math.PI * 0.5}>
+        <planeGeometry args={[130, 130, 16, 16]} />
+        <meshBasicMaterial color="#bdbdbd" wireframe />
+      </mesh>
+      <mesh ref={boxRef} position={[0, 7, 0]}>
+        <boxGeometry args={[32, 13, 32, 8, 8, 8]} />
+        <meshBasicMaterial color="grey" wireframe />
+      </mesh>
+    </>
   );
 }
