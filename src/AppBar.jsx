@@ -216,7 +216,7 @@ export default function BottomAppBar({
                   width: "15.5ch",
                   py: 0.25,
                   px: 1,
-                  borderRadius: 4.5,
+                  borderRadius: 3,
                 }}
               >
                 <Typography variant="h4" component="div" color="primary.main">
