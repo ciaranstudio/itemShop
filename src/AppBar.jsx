@@ -194,9 +194,13 @@ export default function BottomAppBar({
         <AppBar
           position="fixed"
           component="nav"
-          // color="secondary"
+          color="transparent"
           elevation={0}
-          sx={{ backgroundColor: "secondary.light", opacity: "0.75", top: 0 }}
+          sx={{
+            // backgroundColor: "secondary.light",
+            // opacity: "0.75",
+            top: 0,
+          }}
         >
           <Toolbar>
             <Box component={"div"} sx={{ flexGrow: 1 }}>
@@ -233,16 +237,16 @@ export default function BottomAppBar({
                   color: "primary.main",
                   ".MuiOutlinedInput-notchedOutline": {
                     borderWidth: "1px",
-                    borderColor: "primary.light",
+                    borderColor: "primary.main",
                     height: "90%",
                     top: -1,
                   },
                   "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
                     borderWidth: "1px",
-                    borderColor: "primary.light",
+                    borderColor: "primary.main",
                   },
                   "&:hover .MuiOutlinedInput-notchedOutline": {
-                    borderColor: "primary.light",
+                    borderColor: "primary.main",
                   },
                   // ".MuiSvgIcon-root ": {
                   //   fill: `${theme.palette.secondary.main} !important`,

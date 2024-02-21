@@ -82,7 +82,7 @@ export default function debugControls() {
 
   const { mainOffset, jumpOffset } = useControls("animation distance", {
     mainOffset: {
-      value: 3.25, // 3.25
+      value: 2.75, // 3.25
       step: 0.01,
       min: 0,
       max: 10,

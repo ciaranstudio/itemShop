@@ -123,7 +123,7 @@ export default function Experience({
             currentItemSelected.position.y + 6,
             currentItemSelected.position.z,
           ),
-          0.04,
+          0.06,
         );
         orbitRef.current.object.updateProjectionMatrix();
         orbitRef.current.update();
