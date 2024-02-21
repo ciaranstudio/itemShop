@@ -25,21 +25,21 @@ export default function Floor(props) {
     "./ConcretePoured001/ConcretePoured001_AO_2K_METALNESS.png",
   ]);
 
-  const [
-    concretePlatesColorMap,
-    concretePlatesDisplacementMap,
-    concretePlatesNormalMap,
-    concretePlatesMetalnessMap,
-    concretePlatesRoughnessMap,
-    concretePlatesAoMap,
-  ] = useLoader(TextureLoader, [
-    "./ConcretePrecastPlates004/ConcretePrecastPlates004_COL_2K_METALNESS.png",
-    "./ConcretePrecastPlates004/ConcretePrecastPlates004_DISP_2K_METALNESS.png",
-    "./ConcretePrecastPlates004/ConcretePrecastPlates004_NRM_2K_METALNESS.png",
-    "./ConcretePrecastPlates004/ConcretePrecastPlates004_METALNESS_2K_METALNESS.png",
-    "./ConcretePrecastPlates004/ConcretePrecastPlates004_ROUGHNESS_2K_METALNESS.png",
-    "./ConcretePrecastPlates004/ConcretePrecastPlates004_AO_2K_METALNESS.png",
-  ]);
+  // const [
+  //   concretePlatesColorMap,
+  //   concretePlatesDisplacementMap,
+  //   concretePlatesNormalMap,
+  //   concretePlatesMetalnessMap,
+  //   concretePlatesRoughnessMap,
+  //   concretePlatesAoMap,
+  // ] = useLoader(TextureLoader, [
+  //   "./ConcretePrecastPlates004/ConcretePrecastPlates004_COL_2K_METALNESS.png",
+  //   "./ConcretePrecastPlates004/ConcretePrecastPlates004_DISP_2K_METALNESS.png",
+  //   "./ConcretePrecastPlates004/ConcretePrecastPlates004_NRM_2K_METALNESS.png",
+  //   "./ConcretePrecastPlates004/ConcretePrecastPlates004_METALNESS_2K_METALNESS.png",
+  //   "./ConcretePrecastPlates004/ConcretePrecastPlates004_ROUGHNESS_2K_METALNESS.png",
+  //   "./ConcretePrecastPlates004/ConcretePrecastPlates004_AO_2K_METALNESS.png",
+  // ]);
 
   const [
     bricksWhitewashedColorMap,

@@ -194,95 +194,136 @@ export default function BottomAppBar({
         <AppBar
           position="fixed"
           component="nav"
-          // color="transparent"
+          color="transparent"
           elevation={0}
           sx={{
-            backgroundColor: "secondary.light",
-            opacity: "0.75",
+            // backgroundColor: "secondary.light",
+            // opacity: "0.75",
             top: 0,
           }}
         >
           <Toolbar>
-            <Box component={"div"} sx={{ flexGrow: 1 }}>
-              <Typography variant="h4" component="div" color="primary.main">
-                Eli Gfell
-              </Typography>
-            </Box>
-
-            <FormControl
-              variant="outlined"
-              size="small"
+            <Box
+              component={"div"}
               sx={{
-                minWidth: 90,
-                maxWidth: 180,
-                mr: 3,
+                flexGrow: 1,
               }}
             >
-              <Select
-                autoWidth
-                value={item}
-                onChange={handleItemChange}
-                inputProps={{
-                  MenuProps: {
-                    sx: { opacity: "0.75" },
-                    PaperProps: {
-                      sx: {
-                        backgroundColor: `${theme.palette.secondary.light}`,
-                        color: "primary.main",
+              <Box
+                sx={{
+                  backgroundColor: "secondary.light",
+                  opacity: "0.75",
+                  width: "15.5ch",
+                  py: 0.25,
+                  px: 1,
+                  borderRadius: 4.5,
+                }}
+              >
+                <Typography variant="h4" component="div" color="primary.main">
+                  Eli Gfell
+                </Typography>
+              </Box>
+            </Box>
+
+            <Box
+              sx={{
+                backgroundColor: "secondary.light",
+                opacity: "0.75",
+                borderRadius: 3,
+                mr: 2,
+                p: 1,
+                py: 0.5,
+              }}
+            >
+              {" "}
+              <FormControl
+                variant="outlined"
+                size="small"
+                sx={{
+                  minWidth: 90,
+                  maxWidth: 180,
+                  right: 0,
+                  // mr: 3,
+                }}
+              >
+                <Select
+                  autoWidth
+                  value={item}
+                  onChange={handleItemChange}
+                  inputProps={{
+                    MenuProps: {
+                      sx: { opacity: "0.75" },
+                      PaperProps: {
+                        sx: {
+                          backgroundColor: `${theme.palette.secondary.light}`,
+                          color: "primary.main",
+                        },
                       },
                     },
-                  },
-                }}
-                sx={{
-                  color: "primary.main",
-                  ".MuiOutlinedInput-notchedOutline": {
-                    borderWidth: "1px",
-                    borderColor: "primary.main",
-                    height: "90%",
-                    top: -1,
-                  },
-                  "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                    borderWidth: "1px",
-                    borderColor: "primary.main",
-                  },
-                  "&:hover .MuiOutlinedInput-notchedOutline": {
-                    borderColor: "primary.main",
-                  },
-                  // ".MuiSvgIcon-root ": {
-                  //   fill: `${theme.palette.secondary.main} !important`,
-                  // },
-                }}
-              >
-                <MenuItem key={1} value={10}>
-                  gramps
-                </MenuItem>
-                <MenuItem key={2} value={20} disabled>
-                  squatter
-                </MenuItem>
-                <MenuItem key={2} value={20} disabled>
-                  shelf
-                </MenuItem>
-                <MenuItem key={2} value={20} disabled>
-                  horse
-                </MenuItem>
-                <MenuItem key={2} value={20} disabled>
-                  block
-                </MenuItem>
-              </Select>
-            </FormControl>
+                  }}
+                  sx={{
+                    color: "primary.main",
+                    ".MuiOutlinedInput-notchedOutline": {
+                      borderWidth: "1px",
+                      borderColor: "primary.main",
+                      height: "90%",
+                      top: -1,
+                    },
+                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                      borderWidth: "1px",
+                      borderColor: "primary.main",
+                    },
+                    "&:hover .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "primary.main",
+                    },
+                    // ".MuiSvgIcon-root ": {
+                    //   fill: `${theme.palette.secondary.main} !important`,
+                    // },
+                  }}
+                >
+                  <MenuItem key={1} value={10}>
+                    gramps
+                  </MenuItem>
+                  <MenuItem key={2} value={20} disabled>
+                    squatter
+                  </MenuItem>
+                  <MenuItem key={2} value={20} disabled>
+                    shelf
+                  </MenuItem>
+                  <MenuItem key={2} value={20} disabled>
+                    horse
+                  </MenuItem>
+                  <MenuItem key={2} value={20} disabled>
+                    block
+                  </MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
+
             {/* <Box component={"div"} sx={{ flexGrow: 1 }} /> */}
-            <IconButton color="inherit">
-              <Badge
-                badgeContent={1}
-                color="primary"
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-              >
-                <ShoppingCartIcon sx={{ color: "primary.main" }} />
-              </Badge>
-            </IconButton>
+            <Box
+              sx={{
+                backgroundColor: "secondary.light",
+                opacity: "0.75",
+                borderRadius: 3,
+                mr: 0.4,
+                p: 0.5,
+              }}
+            >
+              {" "}
+              <IconButton color="inherit">
+                <Badge
+                  badgeContent={1}
+                  color="primary"
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                >
+                  <ShoppingCartIcon sx={{ color: "primary.main" }} />
+                </Badge>
+              </IconButton>
+            </Box>
           </Toolbar>
         </AppBar>
         <SwipeableDrawer
