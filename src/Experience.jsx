@@ -6,7 +6,7 @@ import Stool from "./Stool.jsx";
 import controls from "./debugControls";
 import { CameraHelper } from "three";
 import * as THREE from "three";
-import Floor from "./Setting.jsx";
+import Setting from "./Setting.jsx";
 import { useProgress } from "@react-three/drei";
 import gsap from "gsap";
 
@@ -53,7 +53,7 @@ export default function Experience({
 
   useEffect(() => {
     loadingBarElement.style.transform = `scaleX(${progress / 100})`;
-    if (progress > 99) {
+    if (progress == 100) {
       window.setTimeout(() => {
         // animate overlay
         gsap.to(overlayOpacity, {
@@ -63,12 +63,16 @@ export default function Experience({
           onUpdate: () => {
             setOverlayAlpha(overlayOpacity.value);
           },
+          onComplete: () => {
+            setOverlayAlpha(overlayOpacity.value);
+          },
         });
         // update loadingBarElement
         loadingBarElement.classList.add("ended");
         loadingBarElement.style.transform = "";
       }, 500);
     }
+    console.log(overlayGeometry);
   }, [progress]);
 
   const debugControls = controls();
@@ -168,7 +172,7 @@ export default function Experience({
             currentItemSelected.position.y + 5 * 6,
             currentItemSelected.position.z * 6,
           ),
-          0.05,
+          0.03,
         );
         orbitRef.current.object.updateProjectionMatrix();
         orbitRef.current.update();
@@ -270,7 +274,7 @@ export default function Experience({
           setAnimActive={setAnimActive}
           includeFloor={false}
         />
-        <Floor
+        <Setting
           scale={0.72}
           currentItemSelected={currentItemSelected}
           includeFloor={true}

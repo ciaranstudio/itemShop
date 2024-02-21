@@ -6,7 +6,7 @@ import controls from "./debugControls";
 import { Sky } from "@react-three/drei";
 import Lights from "./Lights";
 
-export default function Floor(props) {
+export default function Setting(props) {
   const debugControls = controls();
 
   const [
