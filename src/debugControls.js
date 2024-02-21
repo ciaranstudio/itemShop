@@ -39,7 +39,7 @@ export default function debugControls() {
 
   const { positionY } = useControls("stool vertical target", {
     positionY: {
-      value: -14.5,
+      value: 4,
       step: 1.0,
     },
   });

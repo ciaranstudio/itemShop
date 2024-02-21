@@ -65,10 +65,14 @@ function App() {
   const [stoolDColor, setStoolDColor] = useState(naturalStain);
   const [stoolDSelectedOption, setStoolDSelectedOption] = useState("natural");
 
-  const [stoolAPosition, setStoolAPosition] = useState([-10, 0, 10]);
-  const [stoolBPosition, setStoolBPosition] = useState([-10, 0, -10]);
-  const [stoolCPosition, setStoolCPosition] = useState([10, 0, 10]);
-  const [stoolDPosition, setStoolDPosition] = useState([10, 0, -10]);
+  const [stoolAPosition, setStoolAPosition] = useState({ x: -10, y: 0, z: 10 });
+  const [stoolBPosition, setStoolBPosition] = useState({
+    x: -10,
+    y: 0,
+    z: -10,
+  });
+  const [stoolCPosition, setStoolCPosition] = useState({ x: 10, y: 0, z: 10 });
+  const [stoolDPosition, setStoolDPosition] = useState({ x: 10, y: 0, z: -10 });
 
   const [open, setOpen] = useState(false);
   const [toggled, setToggled] = useState(false);

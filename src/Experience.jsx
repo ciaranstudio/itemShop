@@ -43,82 +43,82 @@ export default function Experience({
     // if (orbitRef.current) setCameraPosition(orbitRef.current.object.position);
   };
 
+  // useEffect(() => {
+  //   if (open) {
+  //     // setCameraPosition(orbitRef.current.object.position);
+  //     // console.log("open value from Experience useEffect: ", open);
+  //     if (orbitRef.current) {
+  //       // orbitRef.current.autoRotateSpeed = 0.95;
+  //       // orbitRef.current.autoRotate = true;
+  //       // console.log(
+  //       //   "orbitRef.current.autoRotate: ",
+  //       //   orbitRef.current.autoRotate,
+  //       // );
+  //     }
+  //   } else if (!open) {
+  //     // console.log("open value from Experience useEffect: ", open);
+  //     if (orbitRef.current) {
+  //       // orbitRef.current.autoRotateSpeed = 1.5;
+  //       // orbitRef.current.autoRotate = true;
+  //       // console.log(
+  //       //   "orbitRef.current.autoRotate: ",
+  //       //   orbitRef.current.autoRotate,
+  //       // );
+  //     }
+  //   }
+  // }, [open]);
+
   useEffect(() => {
-    if (open) {
-      // setCameraPosition(orbitRef.current.object.position);
-      // console.log("open value from Experience useEffect: ", open);
+    setInitialLoad(true);
+
+    if (orbitRef.current) {
+      orbitRef.current.addEventListener("start", () => {
+        console.log("started dragging!");
+        setControlsDragging(true);
+        // setOpen(false);
+      }),
+        true;
+      // orbitRef.current.addEventListener("change", () =>
+      //   console.log("dragged!"),
+      // );
+      orbitRef.current.addEventListener(
+        "end",
+        () => {
+          console.log("stopped dragging!");
+          setCameraPosition(orbitRef.current.object.position);
+          setControlsDragging(false);
+          // setOpen(true);
+        },
+        true,
+      );
+    }
+    return () => {
       if (orbitRef.current) {
-        // orbitRef.current.autoRotateSpeed = 0.95;
-        // orbitRef.current.autoRotate = true;
-        // console.log(
-        //   "orbitRef.current.autoRotate: ",
-        //   orbitRef.current.autoRotate,
-        // );
+        orbitRef.current.removeEventListener(
+          "start",
+          () => console.log("removed event listener, 'start'"),
+          true,
+        );
+        orbitRef.current.removeEventListener(
+          "end",
+          () => console.log("removed event listener, 'end'"),
+          true,
+        );
+        setControlsDragging(false);
       }
-    } else if (!open) {
-      // console.log("open value from Experience useEffect: ", open);
-      if (orbitRef.current) {
-        // orbitRef.current.autoRotateSpeed = 1.5;
-        // orbitRef.current.autoRotate = true;
-        // console.log(
-        //   "orbitRef.current.autoRotate: ",
-        //   orbitRef.current.autoRotate,
-        // );
+    };
+  }, []);
+
+  useFrame(() => {
+    if (initialLoad && !controlsDragging && orbitRef.current) {
+      if (cameraPosition == null) {
+        orbitRef.current.object.position.lerp(vec.set(-35, 40, 60), 0.01);
+        orbitRef.current.object.updateProjectionMatrix();
+        // orbitRef.current.update();
       }
     }
-  }, [open]);
-
-  // useEffect(() => {
-  //   setInitialLoad(true);
-
-  //   if (orbitRef.current) {
-  //     orbitRef.current.addEventListener("start", () => {
-  //       console.log("started dragging!");
-  //       setControlsDragging(true);
-  //       setOpen(false);
-  //     }),
-  //       true;
-  //     // orbitRef.current.addEventListener("change", () =>
-  //     //   console.log("dragged!"),
-  //     // );
-  //     orbitRef.current.addEventListener(
-  //       "end",
-  //       () => {
-  //         console.log("stopped dragging!");
-  //         setCameraPosition(orbitRef.current.object.position);
-  //         setControlsDragging(false);
-  //         // setOpen(true);
-  //       },
-  //       true,
-  //     );
-  //   }
-  //   return () => {
-  //     if (orbitRef.current) {
-  //       orbitRef.current.removeEventListener(
-  //         "start",
-  //         () => console.log("removed event listener, 'start'"),
-  //         true,
-  //       );
-  //       orbitRef.current.removeEventListener(
-  //         "end",
-  //         () => console.log("removed event listener, 'end'"),
-  //         true,
-  //       );
-  //       setControlsDragging(false);
-  //     }
-  //   };
-  // }, []);
-
-  // useFrame(() => {
-  //   if (initialLoad && !controlsDragging && orbitRef.current) {
-  //     if (cameraPosition == null) {
-  //       orbitRef.current.object.position.lerp(vec.set(-35, 40, 130), 0.01);
-  //       orbitRef.current.object.updateProjectionMatrix();
-  //       // orbitRef.current.update();
-  //     }
-  //   }
-  //   return null;
-  // });
+    return null;
+  });
 
   return (
     <>

@@ -1,13 +1,14 @@
-import React, { useRef, useState, useEffect } from "react";
-import { useTexture, useGLTF, Edges } from "@react-three/drei";
+import React, { useState, useEffect } from "react";
+import { useTexture, useGLTF } from "@react-three/drei";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import controls from "./debugControls";
 import { forwardRef } from "react";
-import { Geometry, Base, Subtraction } from "@react-three/csg";
+// import { Geometry, Base, Subtraction } from "@react-three/csg";
+import RingCircle from "./ringCircle";
 
 export default forwardRef(function Stool(props, ref) {
-  const [introComplete, setIntroComplete] = useState(false);
+  // const [introComplete, setIntroComplete] = useState(false);
   const { nodes, materials } = useGLTF("/oakStool.glb");
   const debugControls = controls();
 
@@ -34,22 +35,22 @@ export default forwardRef(function Stool(props, ref) {
     wireframe: debugControls.wireframe,
   };
 
-  // const circleEdgeRef = useRef();
   const tableTopPaddingY = 2.25;
   const positionOffset = { value: 0 };
   const verticalOffset = { value: 0 };
-  // const totalPositionY = { value: 0 };
+  const totalPositionY = { value: 0 };
   const stoolSpin = { value: 0 };
+
+  const [selected, setSelected] = useState(false);
   const [offset, setOffset] = useState(positionOffset.value);
   const [jumpOffset, setJumpOffset] = useState(verticalOffset.value);
-  // const [stoolY, setStoolY] = useState(totalPositionY.value);
-  // const [stoolSpinAmount, setStoolSpinAmount] = useState(stoolSpin.value);
-  // const [selectCircle, setSelectCircle] = useState(false);
+  const [stoolY, setStoolY] = useState(0);
+  const [stoolSpinAmount, setStoolSpinAmount] = useState(stoolSpin.value);
 
   const handleStoolClick = (e) => {
     // props.setOpen(true);
-    // setSelectCircle(true);
     e.stopPropagation();
+    setSelected(true);
     props.setCurrentItemSelected(props.data);
     props.setCurrentOptionSelected(props.data.optionSelect);
     console.log("handleStoolClick()");
@@ -64,39 +65,45 @@ export default forwardRef(function Stool(props, ref) {
     }
   };
 
-  // useEffect(() => {
-  //   if (props.toggled) {
-  //     circleEdgeRef.current.visible = true;
-  //   } else {
-  //     circleEdgeRef.current.visible = false;
-  //   }
-  //   console.log("selectedItem: ", props.selectedItem);
-  // }, [props.toggled]);
+  useEffect(() => {
+    if (props.data.itemNo === props.currentItemSelected.itemNo) {
+      setSelected(true);
+    }
+  }, []);
 
   useEffect(() => {
-    setTimeout(() => {
-      setIntroComplete(true);
-      // props.setToggled(!props.toggled);
-    }, "2000");
-    return () => {};
-  }, []);
+    if (props.data.itemNo != props.currentItemSelected.itemNo) {
+      setSelected(false);
+    }
+  }, [props.currentItemSelected.itemNo]);
+
+  // useEffect(() => {
+  //   // setTimeout(() => {
+  //   //   setIntroComplete(true);
+  //   //   // props.setToggled(!props.toggled);
+  //   // }, "2000");
+  //   // return () => {};
+  //   if (props.data.itemNo === props.currentItemSelected.itemNo) {
+  //     setSelected(true);
+  //   } else setSelected(false);
+  // }, []);
 
   useGSAP(
     () => {
-      if (props.toggled && introComplete) {
+      if (props.toggled) {
         if (props.currentItemSelected.itemNo == props.data.itemNo) {
           let tl = gsap.timeline();
           props.setAnimActive(true);
 
-          // tl.to(totalPositionY, {
-          //   value: debugControls.positionY,
-          //   duration: debugControls.durationDownPositionY,
-          //   ease: "expoIn",
-          //   onUpdate: () => {
-          //     console.log("moving totalPositionY up");
-          //     setStoolY(totalPositionY.value);
-          //   },
-          // });
+          tl.to(totalPositionY, {
+            value: debugControls.positionY,
+            duration: debugControls.durationDownPositionY,
+            ease: "expoIn",
+            onUpdate: () => {
+              console.log("moving totalPositionY up");
+              setStoolY(totalPositionY.value);
+            },
+          });
 
           tl.to(verticalOffset, {
             value: debugControls.jumpOffset,
@@ -116,22 +123,22 @@ export default forwardRef(function Stool(props, ref) {
             },
           });
 
-          // tl.to(stoolSpin, {
-          //   value: debugControls.stoolSpin,
-          //   duration: debugControls.stoolSpinDuration,
-          //   ease: "easeIn",
-          //   onUpdate: () => {
-          //     setStoolSpinAmount(stoolSpin.value);
-          //   },
-          // });
-          // tl.to(stoolSpin, {
-          //   value: 0,
-          //   duration: debugControls.stoolSpinDuration + 0.25,
-          //   ease: "easeOut",
-          //   onUpdate: () => {
-          //     setStoolSpinAmount(stoolSpin.value);
-          //   },
-          // });
+          tl.to(stoolSpin, {
+            value: debugControls.stoolSpin,
+            duration: debugControls.stoolSpinDuration,
+            ease: "easeIn",
+            onUpdate: () => {
+              setStoolSpinAmount(stoolSpin.value);
+            },
+          });
+          tl.to(stoolSpin, {
+            value: 0,
+            duration: debugControls.stoolSpinDuration + 0.25,
+            ease: "easeOut",
+            onUpdate: () => {
+              setStoolSpinAmount(stoolSpin.value);
+            },
+          });
 
           tl.to(positionOffset, {
             value: 0,
@@ -151,28 +158,27 @@ export default forwardRef(function Stool(props, ref) {
               setJumpOffset(verticalOffset.value);
             },
             onComplete: () => {
-              // circleEdgeRef.current.visible = false;
               props.setAnimActive(false);
               props.setToggled(false);
               // props.setOpen(true);
             },
           });
 
-          // tl.to(totalPositionY, {
-          //   value: 2,
-          //   duration: debugControls.durationUpPositionY,
-          //   ease: "expoIn",
-          //   onUpdate: () => {
-          //     console.log("moving totalPositionY up");
-          //     setStoolY(totalPositionY.value);
-          //   },
-          //   onComplete: () => {
-          //     circleEdgeRef.current.visible = false;
-          //     props.setAnimActive(false);
-          //     props.setToggled(false);
-          //     props.setOpen(true);
-          //   },
-          // });
+          tl.to(totalPositionY, {
+            value: 0,
+            duration: debugControls.durationUpPositionY,
+            ease: "expoIn",
+            onUpdate: () => {
+              console.log("moving totalPositionY up");
+              setStoolY(totalPositionY.value);
+            },
+            // onComplete: () => {
+            //   circleEdgeRef.current.visible = false;
+            //   props.setAnimActive(false);
+            //   props.setToggled(false);
+            //   // props.setOpen(true);
+            // },
+          });
         }
       }
     },
@@ -220,34 +226,14 @@ export default forwardRef(function Stool(props, ref) {
         {...props}
         dispose={null}
         // position={[0, stoolY, 0]}
-        position={props.data.position}
-        // rotation={[0, stoolSpinAmount, 0]} // ^
+        position={[
+          props.data.position.x,
+          props.data.position.y,
+          props.data.position.z,
+        ]}
+        rotation={[0, stoolSpinAmount, 0]}
       >
-        <mesh
-          receiveShadow
-          position={[0.25, 0.01, -0.25]}
-          rotation-x={-Math.PI * 0.5}
-          visible={
-            props.data.itemNo === props.currentItemSelected.itemNo
-              ? true
-              : false
-          }
-        >
-          <Geometry>
-            {/** The chain begins with a base geometry, where all operations are carried out on. */}
-            <Base>
-              <circleGeometry args={[10, 64]} />
-            </Base>
-            {/** Chain your boolean operations: Addition, Subtraction, Difference and Intersection. */}
-            <Subtraction>
-              {/** Geometry can be set by prop or by child, just like any regular <mesh>. */}
-              <circleGeometry args={[9.5, 64]} />
-            </Subtraction>
-          </Geometry>
-
-          {/* <meshStandardMaterial {...woodMaterial} /> */}
-          <meshStandardMaterial />
-        </mesh>
+        <RingCircle stoolY={stoolY} selected={selected} />
         <group
           position={[-8.26, 0 + offset * 2 + jumpOffset, 8.26]}
           scale={1}
