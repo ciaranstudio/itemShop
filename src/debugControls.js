@@ -46,7 +46,7 @@ export default function debugControls() {
 
   const { durationUpPositionY } = useControls("stool duration up", {
     durationUpPositionY: {
-      value: 1,
+      value: 0.5,
       step: 0.01,
       min: 0,
       max: 4,
@@ -55,7 +55,7 @@ export default function debugControls() {
 
   const { durationDownPositionY } = useControls("stool duration down", {
     durationDownPositionY: {
-      value: 1,
+      value: 0.75,
       step: 0.01,
       min: 0,
       max: 4,
@@ -64,7 +64,7 @@ export default function debugControls() {
 
   const { stoolSpin } = useControls("stool duration up", {
     stoolSpin: {
-      value: Math.PI / 3,
+      value: Math.PI / 2,
       step: 0.01,
       min: 0,
       max: 4,
@@ -73,7 +73,7 @@ export default function debugControls() {
 
   const { stoolSpinDuration } = useControls("stool duration down", {
     stoolSpinDuration: {
-      value: 1,
+      value: 0.75,
       step: 0.01,
       min: 0,
       max: 4,
@@ -103,19 +103,19 @@ export default function debugControls() {
         max: 4,
       },
       jumpUpDuration: {
-        value: 1.0,
+        value: 0.75,
         step: 0.01,
         min: 0,
         max: 4,
       },
       mainDownDuration: {
-        value: 1.0,
+        value: 0.75,
         step: 0.01,
         min: 0,
         max: 4,
       },
       jumpDownDuration: {
-        value: 1.0,
+        value: 0.75,
         step: 0.01,
         min: 0,
         max: 4,
@@ -124,7 +124,7 @@ export default function debugControls() {
   const { beforeMainUpDelay, afterMainUpDelay, afterJumpDownDelay } =
     useControls("animation delay", {
       beforeMainUpDelay: {
-        value: 0.05,
+        value: 0.0,
         step: 0.01,
         min: 0,
         max: 2,
@@ -136,7 +136,7 @@ export default function debugControls() {
         max: 6,
       },
       afterJumpDownDelay: {
-        value: 0.05,
+        value: 0.15,
         step: 0.01,
         min: 0,
         max: 6,

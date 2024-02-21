@@ -4,8 +4,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import controls from "./debugControls";
 import { forwardRef } from "react";
-// import { Geometry, Base, Subtraction } from "@react-three/csg";
-import RingCircle from "./ringCircle";
+import RingCircle from "./RingCircle";
 
 export default forwardRef(function Stool(props, ref) {
   // const [introComplete, setIntroComplete] = useState(false);
@@ -77,17 +76,6 @@ export default forwardRef(function Stool(props, ref) {
     }
   }, [props.currentItemSelected.itemNo]);
 
-  // useEffect(() => {
-  //   // setTimeout(() => {
-  //   //   setIntroComplete(true);
-  //   //   // props.setToggled(!props.toggled);
-  //   // }, "2000");
-  //   // return () => {};
-  //   if (props.data.itemNo === props.currentItemSelected.itemNo) {
-  //     setSelected(true);
-  //   } else setSelected(false);
-  // }, []);
-
   useGSAP(
     () => {
       if (props.toggled) {
@@ -97,7 +85,7 @@ export default forwardRef(function Stool(props, ref) {
 
           tl.to(totalPositionY, {
             value: debugControls.positionY,
-            duration: debugControls.durationDownPositionY,
+            duration: debugControls.durationUpPositionY,
             ease: "expoIn",
             onUpdate: () => {
               console.log("moving totalPositionY up");
@@ -127,14 +115,16 @@ export default forwardRef(function Stool(props, ref) {
             value: debugControls.stoolSpin,
             duration: debugControls.stoolSpinDuration,
             ease: "easeIn",
+
             onUpdate: () => {
               setStoolSpinAmount(stoolSpin.value);
             },
           });
           tl.to(stoolSpin, {
             value: 0,
-            duration: debugControls.stoolSpinDuration + 0.25,
+            duration: debugControls.stoolSpinDuration + 0.2,
             ease: "easeOut",
+            delay: 0.25,
             onUpdate: () => {
               setStoolSpinAmount(stoolSpin.value);
             },
@@ -166,7 +156,7 @@ export default forwardRef(function Stool(props, ref) {
 
           tl.to(totalPositionY, {
             value: 0,
-            duration: debugControls.durationUpPositionY,
+            duration: debugControls.durationDownPositionY,
             ease: "expoIn",
             onUpdate: () => {
               console.log("moving totalPositionY up");
