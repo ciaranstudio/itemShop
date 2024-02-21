@@ -194,11 +194,11 @@ export default function BottomAppBar({
         <AppBar
           position="fixed"
           component="nav"
-          color="transparent"
+          // color="transparent"
           elevation={0}
           sx={{
-            // backgroundColor: "secondary.light",
-            // opacity: "0.75",
+            backgroundColor: "secondary.light",
+            opacity: "0.75",
             top: 0,
           }}
         >

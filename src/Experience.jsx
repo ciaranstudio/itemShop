@@ -119,11 +119,11 @@ export default function Experience({
         // } else {
         orbitRef.current.object.position.lerp(
           vec.set(
-            currentItemSelected.position.x,
-            currentItemSelected.position.y + 6,
-            currentItemSelected.position.z,
+            currentItemSelected.position.x * 6,
+            currentItemSelected.position.y + 5 * 6,
+            currentItemSelected.position.z * 6,
           ),
-          0.06,
+          0.05,
         );
         orbitRef.current.object.updateProjectionMatrix();
         orbitRef.current.update();
@@ -139,7 +139,7 @@ export default function Experience({
       <OrbitControls
         makeDefault
         ref={orbitRef}
-        enableZoom={false}
+        enableZoom={true}
         enablePan={false}
         maxDistance={300}
         minDistance={70}

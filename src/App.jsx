@@ -130,7 +130,7 @@ function App() {
     setPosition: setStoolDPosition,
   };
 
-  const [currentItemSelected, setCurrentItemSelected] = useState(stoolDataA);
+  const [currentItemSelected, setCurrentItemSelected] = useState(stoolDataB);
   const [currentOptionSelected, setCurrentOptionSelected] =
     useState(stoolASelectedOption);
 
@@ -201,9 +201,9 @@ function App() {
     <>
       <Leva hidden oneLineLabels />
       <Canvas
-        shadows
+        // shadows
         dpr={[1, 2]}
-        // shadows={{ type: THREE.PCFSoftShadowMap }}
+        shadows={{ type: THREE.PCFSoftShadowMap }}
         camera={{
           fov: 45,
           near: 30,
