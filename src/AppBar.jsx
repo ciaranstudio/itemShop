@@ -169,7 +169,7 @@ export default function BottomAppBar({
       : theme.palette.primary.light,
     borderRadius: 3,
     position: "absolute",
-    top: 30,
+    top: 24,
     left: "calc(50% - 15px)",
   }));
 
@@ -216,6 +216,7 @@ export default function BottomAppBar({
                   width: "15.5ch",
                   py: 0.25,
                   px: 1,
+                  mt: 1,
                   borderRadius: 3,
                 }}
               >
@@ -233,6 +234,7 @@ export default function BottomAppBar({
                 mr: 2,
                 p: 1,
                 py: 0.5,
+                mt: 1,
               }}
             >
               {" "}
@@ -306,6 +308,7 @@ export default function BottomAppBar({
                 backgroundColor: "secondary.light",
                 opacity: "0.75",
                 borderRadius: 3,
+                mt: 1,
                 mr: 0.4,
                 p: 0.5,
               }}

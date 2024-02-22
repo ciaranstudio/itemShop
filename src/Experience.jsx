@@ -46,7 +46,7 @@ export default function Experience({
 
         void main()
         {
-            gl_FragColor = vec4(0.0, 0.0, 0.0, uAlpha);
+            gl_FragColor = vec4(0.153, 0.153, 0.102, uAlpha);
         }
     `,
   });
@@ -63,9 +63,9 @@ export default function Experience({
           onUpdate: () => {
             setOverlayAlpha(overlayOpacity.value);
           },
-          onComplete: () => {
-            setOverlayAlpha(overlayOpacity.value);
-          },
+          // onComplete: () => {
+          //   setOverlayAlpha(overlayOpacity.value);
+          // },
         });
         // update loadingBarElement
         loadingBarElement.classList.add("ended");
@@ -184,7 +184,7 @@ export default function Experience({
   return (
     <>
       {debugControls.perfVisible && <Perf position="top-left" />}
-      <color args={["#000000"]} attach="background" />
+      <color args={["#27271a"]} attach="background" />
       <mesh geometry={overlayGeometry} material={overlayMaterial}></mesh>
       {/* <mesh position={[0, 0, 0]} rotation-x={-Math.PI * 0.5}>
         <planeGeometry args={[130, 130, 16, 16]} />
