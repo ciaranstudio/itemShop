@@ -3,7 +3,7 @@ import { useLoader } from "@react-three/fiber";
 import { TextureLoader } from "three/src/loaders/TextureLoader";
 import controls from "./debugControls";
 // import * as THREE from "three";
-import { Sky } from "@react-three/drei";
+import { Sky, Edges } from "@react-three/drei";
 import Lights from "./Lights";
 
 export default function Setting(props) {
@@ -310,7 +310,9 @@ export default function Setting(props) {
         visible={props.includeFloor}
       >
         <planeGeometry args={[130, 70]} />
-        <meshStandardMaterial {...bricksWhitewashedMaterial} />
+        {/* <meshStandardMaterial {...bricksWhitewashedMaterial} /> */}
+        <meshPhongMaterial transparent opacity={0} />
+        <Edges color="grey" />
       </mesh>
 
       {/* wall (front wall, behind the camera on initial load) */}
@@ -323,7 +325,9 @@ export default function Setting(props) {
         visible={props.includeFloor}
       >
         <planeGeometry args={[130, 70]} />
-        <meshStandardMaterial {...bricksWhitewashedMaterial} />
+        {/* <meshStandardMaterial {...bricksWhitewashedMaterial} /> */}
+        <meshPhongMaterial transparent opacity={0} />
+        <Edges color="grey" />
       </mesh>
 
       {/* wall (left side wall) */}
@@ -336,7 +340,9 @@ export default function Setting(props) {
         visible={props.includeFloor}
       >
         <planeGeometry args={[130, 70]} />
-        <meshStandardMaterial {...bricksWhitewashedMaterial} />
+        {/* <meshStandardMaterial {...bricksWhitewashedMaterial} /> */}
+        <meshPhongMaterial transparent opacity={0} />
+        <Edges color="grey" />
       </mesh>
 
       {/* wall (right side wall) */}
@@ -349,7 +355,9 @@ export default function Setting(props) {
         visible={props.includeFloor}
       >
         <planeGeometry args={[130, 70]} />
-        <meshStandardMaterial {...bricksWhitewashedMaterial} />
+        {/* <meshStandardMaterial {...bricksWhitewashedMaterial} /> */}
+        <meshPhongMaterial transparent opacity={0} />
+        <Edges color="grey" />
       </mesh>
 
       {/* floor */}
@@ -390,6 +398,66 @@ export default function Setting(props) {
           visible={false}
         />
       </mesh> */}
+
+      {/* base underneath wall (left side wall) */}
+      <mesh
+        receiveShadow
+        position={[-65, -35, 0]}
+        rotation-x={-Math.PI}
+        rotation-y={-Math.PI * 0.5}
+        scale={1}
+        visible={props.includeFloor}
+      >
+        <planeGeometry args={[130, 70]} />
+        <meshStandardMaterial {...bricksWhitewashedMaterial} />
+        {/* <meshPhongMaterial transparent opacity={0} /> */}
+        {/* <Edges /> */}
+      </mesh>
+
+      {/* base underneath wall (right side wall) */}
+      <mesh
+        receiveShadow
+        position={[65, -35, 0]}
+        rotation-x={-Math.PI}
+        rotation-y={Math.PI * 0.5}
+        scale={1}
+        visible={props.includeFloor}
+      >
+        <planeGeometry args={[130, 70]} />
+        <meshStandardMaterial {...bricksWhitewashedMaterial} />
+        {/* <meshPhongMaterial transparent opacity={0} /> */}
+        {/* <Edges /> */}
+      </mesh>
+
+      {/* base underneath wall (front wall, behind the camera on initial load) */}
+      <mesh
+        receiveShadow
+        position={[0, -35, 65]}
+        rotation-x={Math.PI}
+        rotation-y={-Math.PI}
+        scale={1}
+        visible={props.includeFloor}
+      >
+        <planeGeometry args={[130, 70]} />
+        <meshStandardMaterial {...bricksWhitewashedMaterial} />
+        {/* <meshPhongMaterial transparent opacity={0} /> */}
+        {/* <Edges /> */}
+      </mesh>
+
+      {/* base underneath wall (back wall with wood texture, facing the camera on initial load) */}
+      <mesh
+        receiveShadow
+        position={[0, -35, -65]}
+        rotation-x={-Math.PI * 2}
+        rotation-y={Math.PI}
+        scale={1}
+        visible={props.includeFloor}
+      >
+        <planeGeometry args={[130, 70]} />
+        <meshStandardMaterial {...bricksWhitewashedMaterial} />
+        {/* <meshPhongMaterial transparent opacity={0} /> */}
+        <Edges />
+      </mesh>
     </>
   );
 }

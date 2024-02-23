@@ -180,7 +180,7 @@ function App() {
         shadows={{ type: THREE.PCFSoftShadowMap }}
         camera={{
           fov: 45,
-          near: 20,
+          near: 0.1,
           far: 400,
           position: [
             currentItemSelected.position.x * 6,

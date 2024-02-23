@@ -168,9 +168,9 @@ export default function Experience({
         // } else {
         orbitRef.current.object.position.lerp(
           vec.set(
-            currentItemSelected.position.x * 6,
-            currentItemSelected.position.y + 5 * 6,
-            currentItemSelected.position.z * 6,
+            currentItemSelected.position.x * 12, // * 6
+            currentItemSelected.position.y + 5 * 12, // * 6
+            currentItemSelected.position.z * 16, // * 6
           ),
           0.03,
         );
