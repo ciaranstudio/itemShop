@@ -7,7 +7,6 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
-// import Fab from "@mui/material/Fab";
 import { createTheme } from "@mui/material";
 import { ThemeProvider } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
@@ -17,31 +16,31 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { Global } from "@emotion/react";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
-// import NorthIcon from "@mui/icons-material/North";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
-import { products } from "./products";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import { keyframes } from "@mui/system";
-// import controls from "./debugControls";
 import useWindowDimensions from "./useWindowDimensions";
+// TODO: replace 'products' with data retrieved from Shopify Storefront API
+import { products } from "./products";
 
 export default function BottomAppBar({
   open,
   setOpen,
   handleColorChange,
-  handleTextureChange,
+  // handleTextureChange, // for finalizing custom wood texture files, may need to adjust all texture elements
   currentItemSelected,
-  setCurrentItemSelected,
+  // setCurrentItemSelected, // for updating type of item selected from user input in Select box top right corner
   currentOptionSelected,
   toggled,
   setToggled,
   animActive,
 }) {
-  // const debugControls = controls();
   const drawerBleeding = 60;
   const { height, width } = useWindowDimensions();
+  const [cartCount, setCartCount] = useState(0);
+  const [item, setItem] = useState(10);
 
   useEffect(() => {
     console.log("window.innerHeight: ", height);
@@ -54,6 +53,12 @@ export default function BottomAppBar({
   useEffect(() => {
     console.log("currentOptionSelected: ", currentOptionSelected);
   }, [currentOptionSelected]);
+
+  useEffect(() => {
+    console.log("item value: ", item);
+    // switch logic here for matching to object options
+    // setCurrentItemSelected()
+  }, [item]);
 
   const spinUp = keyframes`
   from {
@@ -90,7 +95,7 @@ export default function BottomAppBar({
 
   }`;
 
-  const [item, setItem] = useState(10);
+  // for updating Leva debug controls values from user input as option while developing wood textures
   // const [{ stainColor }, set] = useControls(() => ({
   //   stainColor: "#ff0000",
   // }));
@@ -103,8 +108,14 @@ export default function BottomAppBar({
   //   },
   // }));
 
+  function handleAddToCart() {
+    setCartCount(cartCount + 1);
+    console.log("cartCount: ", cartCount);
+  }
+
   const handleItemChange = (event) => {
     setItem(event.target.value);
+    console.log("item value: ", event.target.value);
   };
 
   const toggleDrawer = (newOpen) => () => {
@@ -144,15 +155,6 @@ export default function BottomAppBar({
     },
   });
 
-  // const StyledFab = styled(Fab)({
-  //   position: "absolute",
-  //   zIndex: 1,
-  //   bottom: drawerBleeding + 58,
-  //   left: 0,
-  //   right: 0,
-  //   margin: "0 auto",
-  // });
-
   const StyledBox = styled("div")(({ theme }) => ({
     position: "absolute",
     right: 0,
@@ -162,15 +164,15 @@ export default function BottomAppBar({
   }));
 
   const Puller = styled("div")(({ theme }) => ({
-    width: 48,
+    width: 56,
     height: 4,
     backgroundColor: open
       ? theme.palette.secondary.main
       : theme.palette.primary.light,
     borderRadius: 3,
     position: "absolute",
-    top: 24,
-    left: "calc(50% - 15px)",
+    top: 20,
+    left: "calc(50% - 28px)",
   }));
 
   const iOS =
@@ -211,16 +213,20 @@ export default function BottomAppBar({
             >
               <Box
                 sx={{
-                  backgroundColor: "secondary.light",
+                  backgroundColor: "primary.main",
                   opacity: "0.75",
-                  width: "15.5ch",
+                  width: "20.5ch",
                   py: 0.25,
                   px: 1,
                   mt: 1,
                   borderRadius: 3,
                 }}
               >
-                <Typography variant="h4" component="div" color="primary.main">
+                <Typography
+                  variant="h3"
+                  component="div"
+                  color="secondary.light"
+                >
                   Eli Gfell
                 </Typography>
               </Box>
@@ -283,19 +289,20 @@ export default function BottomAppBar({
                     // },
                   }}
                 >
+                  {/* TODO: replace with mapping values retrieved from Shopify storefront api */}
                   <MenuItem key={1} value={10}>
                     gramps
                   </MenuItem>
                   <MenuItem key={2} value={20} disabled>
                     squatter
                   </MenuItem>
-                  <MenuItem key={2} value={20} disabled>
+                  <MenuItem key={3} value={30} disabled>
                     shelf
                   </MenuItem>
-                  <MenuItem key={2} value={20} disabled>
+                  <MenuItem key={4} value={40} disabled>
                     horse
                   </MenuItem>
-                  <MenuItem key={2} value={20} disabled>
+                  <MenuItem key={5} value={50} disabled>
                     block
                   </MenuItem>
                 </Select>
@@ -316,14 +323,14 @@ export default function BottomAppBar({
               {" "}
               <IconButton color="inherit">
                 <Badge
-                  badgeContent={1}
+                  badgeContent={cartCount}
                   color="primary"
                   anchorOrigin={{
                     vertical: "top",
                     horizontal: "right",
                   }}
                 >
-                  <ShoppingCartIcon sx={{ color: "primary.main" }} />
+                  <ShoppingCartIcon sx={{ color: "primary.light" }} />
                 </Badge>
               </IconButton>
             </Box>
@@ -526,7 +533,11 @@ export default function BottomAppBar({
                             animate
                           </Button>
                         </Box>
-                        <Button variant="contained" color="primary">
+                        <Button
+                          variant="contained"
+                          color="primary"
+                          onClick={handleAddToCart}
+                        >
                           {product.price}
                         </Button>
                       </Box>
