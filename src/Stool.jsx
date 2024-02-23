@@ -60,8 +60,8 @@ export default forwardRef(function Stool(props, ref) {
     setSelected(true);
     props.setCurrentItemSelected(props.data);
     props.setCurrentOptionSelected(props.data.optionSelect);
-    console.log("handleStoolClick()");
-    console.log("setting selectedItem state value to ", props.data);
+    // console.log("handleStoolClick()");
+    // console.log("setting selectedItem state value to ", props.data);
     // if (props.animActive || !introComplete) {
     //   return;
     // } else {
@@ -86,7 +86,7 @@ export default forwardRef(function Stool(props, ref) {
 
   useEffect(() => {
     if (selected) {
-      console.log("move camera to look at selected item");
+      // console.log("move camera to look at selected item");
     }
   }, [selected]);
 
@@ -102,7 +102,7 @@ export default forwardRef(function Stool(props, ref) {
             duration: debugControls.durationUpPositionY,
             ease: "expoIn",
             onUpdate: () => {
-              console.log("moving totalPositionY up");
+              // console.log("moving totalPositionY up");
               setStoolY(totalPositionY.value);
             },
           });
@@ -168,7 +168,7 @@ export default forwardRef(function Stool(props, ref) {
             duration: debugControls.durationDownPositionY,
             ease: "expoIn",
             onUpdate: () => {
-              console.log("moving totalPositionY up");
+              // console.log("moving totalPositionY up");
               setStoolY(totalPositionY.value);
             },
             // onComplete: () => {

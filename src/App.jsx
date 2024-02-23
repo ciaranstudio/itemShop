@@ -179,7 +179,7 @@ function App() {
         dpr={[1, 2]}
         shadows={{ type: THREE.PCFSoftShadowMap }}
         camera={{
-          fov: 45,
+          fov: 75, // was 45
           near: 0.1,
           far: 400,
           position: [

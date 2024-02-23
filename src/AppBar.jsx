@@ -24,6 +24,7 @@ import { keyframes } from "@mui/system";
 import useWindowDimensions from "./useWindowDimensions";
 // TODO: replace 'products' with data retrieved from Shopify Storefront API
 import { products } from "./products";
+import CloseIcon from "@mui/icons-material/Close";
 
 // const theme = createTheme({
 // palette: {
@@ -56,19 +57,19 @@ export default function BottomAppBar({
   const [item, setItem] = useState(10);
 
   useEffect(() => {
-    console.log("window.innerHeight: ", height);
+    // console.log("window.innerHeight: ", height);
   }, [height]);
 
   useEffect(() => {
-    console.log("currentItemSelected: ", currentItemSelected);
+    // console.log("currentItemSelected: ", currentItemSelected);
   }, [currentItemSelected]);
 
   useEffect(() => {
-    console.log("currentOptionSelected: ", currentOptionSelected);
+    // console.log("currentOptionSelected: ", currentOptionSelected);
   }, [currentOptionSelected]);
 
   useEffect(() => {
-    console.log("item value: ", item);
+    // console.log("item value: ", item);
     // switch logic here for matching to object options
     // setCurrentItemSelected()
   }, [item]);
@@ -123,12 +124,12 @@ export default function BottomAppBar({
 
   function handleAddToCart() {
     setCartCount(cartCount + 1);
-    console.log("cartCount: ", cartCount);
+    // console.log("cartCount: ", cartCount);
   }
 
   const handleItemChange = (event) => {
     setItem(event.target.value);
-    console.log("item value: ", event.target.value);
+    // console.log("item value: ", event.target.value);
   };
 
   const toggleDrawer = (newOpen) => () => {
@@ -184,7 +185,7 @@ export default function BottomAppBar({
       : theme.palette.primary.light,
     borderRadius: 3,
     position: "absolute",
-    top: 20,
+    top: 28,
     left: "calc(50% - 28px)",
   }));
 
@@ -240,7 +241,7 @@ export default function BottomAppBar({
                   component="div"
                   color="secondary.light"
                   sx={{
-                    WebkitTextStroke: "0.75px #757575",
+                    WebkitTextStroke: "0.125px #ffffff",
                     WebkitFontSmoothing: "antialiased",
                   }}
                 >
@@ -293,18 +294,19 @@ export default function BottomAppBar({
                     opacity: "0.85",
                     color: "primary.main",
                     ".MuiOutlinedInput-notchedOutline": {
-                      borderWidth: "0.75px",
+                      borderWidth: "0px",
                       borderColor: "primary.light",
                       WebkitFontSmoothing: "antialiased",
                       // height: "90%",
                       // top: -1,
                     },
                     "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                      borderWidth: "0.75px",
+                      borderWidth: "0px",
                       borderColor: "primary.light",
                       WebkitFontSmoothing: "antialiased",
                     },
                     "&:hover .MuiOutlinedInput-notchedOutline": {
+                      borderWidth: "0px",
                       borderColor: "primary.light",
                       WebkitFontSmoothing: "antialiased",
                     },
@@ -343,8 +345,8 @@ export default function BottomAppBar({
                 borderRadius: 1.5,
                 mt: 1,
                 mr: 0.4,
-                border: "0.75px solid #757575",
-                WebkitFontSmoothing: "antialiased",
+                // border: "0.75px solid #757575",
+                // WebkitFontSmoothing: "antialiased",
               }}
             >
               <IconButton color="inherit">
@@ -395,6 +397,22 @@ export default function BottomAppBar({
             }}
           >
             <Puller />
+            {open ? (
+              <IconButton
+                color="inherit"
+                sx={{ position: "absolute", top: 8, left: 6 }}
+              >
+                <CloseIcon
+                  sx={{
+                    color: "primary.light",
+                  }}
+                />
+              </IconButton>
+            ) : (
+              ""
+            )}
+
+            {/* <Puller /> */}
 
             {/* <Box sx={{ position: "absolute", top: 0, left: 0 }}>
               <Button

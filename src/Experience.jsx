@@ -72,7 +72,7 @@ export default function Experience({
         loadingBarElement.style.transform = "";
       }, 500);
     }
-    console.log(overlayGeometry);
+    // console.log(overlayGeometry);
   }, [progress]);
 
   const debugControls = controls();
@@ -168,9 +168,9 @@ export default function Experience({
         // } else {
         orbitRef.current.object.position.lerp(
           vec.set(
-            currentItemSelected.position.x * 12, // * 6
-            currentItemSelected.position.y + 5 * 12, // * 6
-            currentItemSelected.position.z * 16, // * 6
+            currentItemSelected.position.x * 4, // * 6
+            currentItemSelected.position.y + 7 * 4, // * 6
+            currentItemSelected.position.z * 4, // * 6
           ),
           0.03,
         );

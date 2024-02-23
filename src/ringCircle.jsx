@@ -10,7 +10,7 @@ export default function RingCircle({
 }) {
   return (
     <mesh
-      position={[0.25, stoolY + 0.01, -0.25]}
+      position={[0.25, stoolY + 0.1, -0.25]}
       rotation-x={-Math.PI * 0.5}
       visible={selected}
       depthTest={false}

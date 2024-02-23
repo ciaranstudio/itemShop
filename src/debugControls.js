@@ -30,7 +30,7 @@ export default function debugControls() {
         max: 8,
       },
       ambientLight: {
-        value: 0.5,
+        value: 0.65,
         step: 0.01,
         min: 0,
         max: 2.0,
@@ -46,7 +46,7 @@ export default function debugControls() {
 
   const { durationUpPositionY } = useControls("stool duration up", {
     durationUpPositionY: {
-      value: 0.25,
+      value: 0.5,
       step: 0.01,
       min: 0,
       max: 4,
@@ -103,7 +103,7 @@ export default function debugControls() {
         max: 4,
       },
       jumpUpDuration: {
-        value: 1.25,
+        value: 1,
         step: 0.01,
         min: 0,
         max: 4,
