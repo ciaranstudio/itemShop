@@ -25,6 +25,19 @@ import useWindowDimensions from "./useWindowDimensions";
 // TODO: replace 'products' with data retrieved from Shopify Storefront API
 import { products } from "./products";
 
+// const theme = createTheme({
+// palette: {
+//   primary: {
+//     main: "#212121",
+//     light: "#757575",
+//   },
+
+//   secondary: {
+//     main: "#bdbdbd",
+//     light: "#E0E0E0",
+//   },
+// },
+
 export default function BottomAppBar({
   open,
   setOpen,
@@ -213,8 +226,8 @@ export default function BottomAppBar({
             >
               <Box
                 sx={{
-                  backgroundColor: "primary.main",
-                  opacity: "0.75",
+                  // backgroundColor: "primary.main",
+                  // opacity: "0.75",
                   width: "20.5ch",
                   py: 0.25,
                   px: 1,
@@ -226,6 +239,10 @@ export default function BottomAppBar({
                   variant="h3"
                   component="div"
                   color="secondary.light"
+                  sx={{
+                    WebkitTextStroke: "0.75px #757575",
+                    WebkitFontSmoothing: "antialiased",
+                  }}
                 >
                   Eli Gfell
                 </Typography>
@@ -234,8 +251,8 @@ export default function BottomAppBar({
 
             <Box
               sx={{
-                backgroundColor: "secondary.light",
-                opacity: "0.75",
+                // backgroundColor: "secondary.light",
+                // opacity: "0.75",
                 borderRadius: 3,
                 mr: 2,
                 p: 1,
@@ -252,6 +269,8 @@ export default function BottomAppBar({
                   maxWidth: 180,
                   right: 0,
                   // mr: 3,
+                  // backgroundColor: "secondary.light",
+                  // opacity: "0.75",
                 }}
               >
                 <Select
@@ -260,7 +279,7 @@ export default function BottomAppBar({
                   onChange={handleItemChange}
                   inputProps={{
                     MenuProps: {
-                      sx: { opacity: "0.75" },
+                      sx: { opacity: "0.85" },
                       PaperProps: {
                         sx: {
                           backgroundColor: `${theme.palette.secondary.light}`,
@@ -270,19 +289,24 @@ export default function BottomAppBar({
                     },
                   }}
                   sx={{
+                    backgroundColor: "secondary.light",
+                    opacity: "0.85",
                     color: "primary.main",
                     ".MuiOutlinedInput-notchedOutline": {
-                      borderWidth: "1px",
-                      borderColor: "primary.main",
-                      height: "90%",
-                      top: -1,
+                      borderWidth: "0.75px",
+                      borderColor: "primary.light",
+                      WebkitFontSmoothing: "antialiased",
+                      // height: "90%",
+                      // top: -1,
                     },
                     "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                      borderWidth: "1px",
-                      borderColor: "primary.main",
+                      borderWidth: "0.75px",
+                      borderColor: "primary.light",
+                      WebkitFontSmoothing: "antialiased",
                     },
                     "&:hover .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "primary.main",
+                      borderColor: "primary.light",
+                      WebkitFontSmoothing: "antialiased",
                     },
                     // ".MuiSvgIcon-root ": {
                     //   fill: `${theme.palette.secondary.main} !important`,
@@ -313,14 +337,16 @@ export default function BottomAppBar({
             <Box
               sx={{
                 backgroundColor: "secondary.light",
-                opacity: "0.75",
-                borderRadius: 3,
+                opacity: "0.85",
+                // borderColor: "primary",
+                // borderWidth: 1.5,
+                borderRadius: 1.5,
                 mt: 1,
                 mr: 0.4,
-                p: 0.5,
+                border: "0.75px solid #757575",
+                WebkitFontSmoothing: "antialiased",
               }}
             >
-              {" "}
               <IconButton color="inherit">
                 <Badge
                   badgeContent={cartCount}
