@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { useTexture, useGLTF, useProgress } from "@react-three/drei";
 import gsap from "gsap";
@@ -7,6 +6,7 @@ import { useGSAP } from "@gsap/react";
 import controls from "./debugControls";
 import { forwardRef } from "react";
 import RingCircle from "./RingCircle";
+import { useCursor } from "@react-three/drei";
 
 export default forwardRef(function Stool(props, ref) {
   // const [introComplete, setIntroComplete] = useState(false);
@@ -50,6 +50,9 @@ export default forwardRef(function Stool(props, ref) {
   const [stoolSpinAmount, setStoolSpinAmount] = useState(stoolSpin.value);
 
   const vec = new THREE.Vector3();
+
+  const [hovered, hover] = useState(false);
+  useCursor(hovered);
 
   const handleStoolClick = (e) => {
     // props.setOpen(true);
@@ -241,6 +244,8 @@ export default forwardRef(function Stool(props, ref) {
           scale={1}
           visible={debugControls.visible}
           onClick={handleStoolClick}
+          onPointerOver={() => hover(true)}
+          onPointerOut={() => hover(false)}
         >
           <mesh
             castShadow
