@@ -5,6 +5,7 @@ import { Leva } from "leva";
 import BottomAppBar from "./AppBar.jsx";
 import * as THREE from "three";
 import "./style.css";
+import Placeholder from "./Placeholder.jsx";
 
 function App() {
   const whiteStain = new THREE.Color(0xffffff);
@@ -189,7 +190,7 @@ function App() {
           ],
         }}
       >
-        <Suspense fallback={null}>
+        <Suspense fallback={<Placeholder />}>
           <Experience
             open={open}
             setOpen={setOpen}

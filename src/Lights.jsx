@@ -1,6 +1,6 @@
 import controls from "./debugControls";
 
-export default function Lights(props) {
+export default function Lights() {
   const debugControls = controls();
 
   return (
@@ -26,8 +26,19 @@ export default function Lights(props) {
       >
         {/* <orthographicCamera ref={shadowCameraRef} attach="shadow-camera" /> */}
       </directionalLight>
-
       {/* for lighting walls behind main light */}
+      {/* <pointLight position={[-50, 60, -50]} intensity={100} />
+      <pointLight position={[50, 60, 50]} intensity={100} /> */}
+      {/* {/* <pointLight position={[-50, 60, -50]} intensity={100} /> */}
+      {/* pointLight to represent dirLight source in scene, to be replaced with light fixture model */}
+      <pointLight
+        position={[
+          debugControls.directionalAposition.x / 2,
+          debugControls.directionalAposition.y / 2,
+          debugControls.directionalAposition.z / 2,
+        ]}
+        intensity={1000}
+      />{" "}
       {/* <directionalLight
         // castShadow
         position={[
@@ -37,7 +48,6 @@ export default function Lights(props) {
         ]}
         intensity={debugControls.directionalAintensity / 2}
       /> */}
-
       {/* second light in opposite x-position to interior left wall of room */}
       {/* <directionalLight
         castShadow
