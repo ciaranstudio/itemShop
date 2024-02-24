@@ -129,7 +129,7 @@ function App() {
     setPosition: setStoolDPosition,
   };
 
-  const [currentItemSelected, setCurrentItemSelected] = useState(stoolDataB);
+  const [currentItemSelected, setCurrentItemSelected] = useState(stoolDataA);
   const [currentOptionSelected, setCurrentOptionSelected] =
     useState(stoolASelectedOption);
 

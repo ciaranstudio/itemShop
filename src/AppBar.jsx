@@ -179,7 +179,7 @@ export default function BottomAppBar({
 
   const Puller = styled("div")(({ theme }) => ({
     width: 56,
-    height: 4,
+    height: 3,
     backgroundColor: open
       ? theme.palette.secondary.main
       : theme.palette.primary.light,
@@ -398,16 +398,28 @@ export default function BottomAppBar({
           >
             <Puller />
             {open ? (
-              <IconButton
-                color="inherit"
-                sx={{ position: "absolute", top: 8, left: 6 }}
-              >
-                <CloseIcon
-                  sx={{
-                    color: "primary.light",
-                  }}
-                />
-              </IconButton>
+              <>
+                <IconButton
+                  color="inherit"
+                  sx={{ position: "absolute", top: 8, left: 8 }}
+                >
+                  <CloseIcon
+                    sx={{
+                      color: "secondary.main",
+                    }}
+                  />
+                </IconButton>
+                <IconButton
+                  color="inherit"
+                  sx={{ position: "absolute", top: 8, right: 8 }}
+                >
+                  <CloseIcon
+                    sx={{
+                      color: "secondary.main",
+                    }}
+                  />
+                </IconButton>
+              </>
             ) : (
               ""
             )}
