@@ -188,7 +188,10 @@ function App() {
           //   currentItemSelected.position.y + 5 * 3,
           //   currentItemSelected.position.z * 3,
           // ],
-          position: [50, 25, -70],
+          // decent close up position that still shows all models at a diamond angle to group
+          // position: [50, 25, -70],
+          // good far away angle looking into open wall side of scene
+          position: [120, 70, -140],
         }}
       >
         <Suspense fallback={<Placeholder />}>

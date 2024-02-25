@@ -13,11 +13,11 @@ export default function Lights() {
           debugControls.directionalAposition.z,
         ]}
         intensity={debugControls.directionalAintensity}
-        shadow-normalBias={0.04}
-        shadow-mapSize-width={512}
-        shadow-mapSize-height={512}
-        shadow-camera-near={1}
-        shadow-camera-far={1000}
+        shadow-normalBias={0.001}
+        shadow-mapSize-width={1024}
+        shadow-mapSize-height={1024}
+        shadow-camera-near={350}
+        shadow-camera-far={500}
         shadow-camera-left={-100}
         shadow-camera-bottom={-100}
         shadow-camera-right={100}

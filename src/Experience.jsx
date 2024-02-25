@@ -286,7 +286,7 @@ export default function Experience({
       <Lights />
       <Sky
         distance={4000000}
-        sunPosition={[-2, 1, -1.25]}
+        sunPosition={[1.5, 2, -10]}
         // inclination={1}
         // azimuth={0.85}
       />
