@@ -239,7 +239,7 @@ export default function BottomAppBar({
                 <Typography
                   variant="h3"
                   component="div"
-                  color="primary.light"
+                  color="secondary.light"
                   // sx={{
                   //   WebkitTextStroke: "0.125px #ffffff",
                   //   WebkitFontSmoothing: "antialiased",
