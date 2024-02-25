@@ -7,8 +7,10 @@ import controls from "./debugControls";
 import { CameraHelper } from "three";
 import * as THREE from "three";
 import Setting from "./Setting.jsx";
-import { useProgress } from "@react-three/drei";
+import { useProgress, Sky } from "@react-three/drei";
 import gsap from "gsap";
+import SketchUp from "./SketchUp.jsx";
+import Lights from "./Lights.jsx";
 
 export default function Experience({
   open,
@@ -166,16 +168,17 @@ export default function Experience({
         //   orbitRef.current.object.updateProjectionMatrix();
         //   orbitRef.current.update();
         // } else {
-        orbitRef.current.object.position.lerp(
-          vec.set(
-            currentItemSelected.position.x * 4, // * 6
-            currentItemSelected.position.y + 7 * 4, // * 6
-            currentItemSelected.position.z * 4, // * 6
-          ),
-          0.03,
-        );
-        orbitRef.current.object.updateProjectionMatrix();
-        orbitRef.current.update();
+        // disabled this to test out new model 02/24/2024
+        // orbitRef.current.object.position.lerp(
+        //   vec.set(
+        //     currentItemSelected.position.x * 4, // * 6
+        //     currentItemSelected.position.y + 7 * 4, // * 6
+        //     currentItemSelected.position.z * 4, // * 6
+        //   ),
+        //   0.03,
+        // );
+        // orbitRef.current.object.updateProjectionMatrix();
+        // orbitRef.current.update();
       }
       return null;
     }
@@ -209,7 +212,8 @@ export default function Experience({
         //   currentItemSelected.position.z,
         // ]}
       />
-      <group position={[0, 0, 0]}>
+      <SketchUp />
+      {/* <group position={[0, 0, 0]}>
         <Stool
           data={stoolDataA}
           currentItemSelected={currentItemSelected}
@@ -273,13 +277,20 @@ export default function Experience({
           animActive={animActive}
           setAnimActive={setAnimActive}
           includeFloor={false}
-        />
-        <Setting
-          scale={0.72}
-          currentItemSelected={currentItemSelected}
-          includeFloor={true}
-        />
-      </group>
+        /> */}
+      {/* <Setting
+        scale={0.72}
+        currentItemSelected={currentItemSelected}
+        includeFloor={true}
+      /> */}
+      <Lights />
+      <Sky
+        distance={4000000}
+        sunPosition={[-2, 1, -1.25]}
+        // inclination={1}
+        // azimuth={0.85}
+      />
+      {/* </group> */}
     </>
   );
 }

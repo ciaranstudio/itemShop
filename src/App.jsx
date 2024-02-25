@@ -180,14 +180,15 @@ function App() {
         dpr={[1, 2]}
         shadows={{ type: THREE.PCFSoftShadowMap }}
         camera={{
-          fov: 75, // was 45
+          fov: 60, // was 45
           near: 0.1,
           far: 400,
-          position: [
-            currentItemSelected.position.x * 6,
-            currentItemSelected.position.y + 5 * 6,
-            currentItemSelected.position.z * 6,
-          ],
+          // position: [
+          //   currentItemSelected.position.x * 3,
+          //   currentItemSelected.position.y + 5 * 3,
+          //   currentItemSelected.position.z * 3,
+          // ],
+          position: [50, 25, -70],
         }}
       >
         <Suspense fallback={<Placeholder />}>

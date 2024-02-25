@@ -239,11 +239,11 @@ export default function BottomAppBar({
                 <Typography
                   variant="h3"
                   component="div"
-                  color="secondary.light"
-                  sx={{
-                    WebkitTextStroke: "0.125px #ffffff",
-                    WebkitFontSmoothing: "antialiased",
-                  }}
+                  color="primary.light"
+                  // sx={{
+                  //   WebkitTextStroke: "0.125px #ffffff",
+                  //   WebkitFontSmoothing: "antialiased",
+                  // }}
                 >
                   Eli Gfell
                 </Typography>

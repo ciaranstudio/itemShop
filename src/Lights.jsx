@@ -14,31 +14,30 @@ export default function Lights() {
         ]}
         intensity={debugControls.directionalAintensity}
         shadow-normalBias={0.04}
-        shadow-mapSize-width={2048}
-        shadow-mapSize-height={2048}
-        shadow-camera-near={40}
-        shadow-camera-far={220}
-        shadow-camera-left={-30}
-        shadow-camera-bottom={-30}
-        shadow-camera-right={30}
-        shadow-camera-top={35}
+        shadow-mapSize-width={512}
+        shadow-mapSize-height={512}
+        shadow-camera-near={1}
+        shadow-camera-far={1000}
+        shadow-camera-left={-100}
+        shadow-camera-bottom={-100}
+        shadow-camera-right={100}
+        shadow-camera-top={100}
         // target={stoolRef.current}
-      >
-        {/* <orthographicCamera ref={shadowCameraRef} attach="shadow-camera" /> */}
-      </directionalLight>
+      ></directionalLight>
+      <ambientLight intensity={debugControls.ambientLight} />
       {/* for lighting walls behind main light */}
       {/* <pointLight position={[-50, 60, -50]} intensity={100} />
       <pointLight position={[50, 60, 50]} intensity={100} /> */}
       {/* {/* <pointLight position={[-50, 60, -50]} intensity={100} /> */}
       {/* pointLight to represent dirLight source in scene, to be replaced with light fixture model */}
-      <pointLight
+      {/* <pointLight
         position={[
           debugControls.directionalAposition.x / 2,
           debugControls.directionalAposition.y / 2,
           debugControls.directionalAposition.z / 2,
         ]}
         intensity={1000}
-      />{" "}
+      /> */}
       {/* <directionalLight
         // castShadow
         position={[
@@ -68,7 +67,6 @@ export default function Lights() {
         shadow-camera-top={35}
         // target={stoolRef.current}
       ></directionalLight> */}
-      <ambientLight intensity={debugControls.ambientLight} />
     </>
   );
 }
