@@ -284,15 +284,15 @@ export default function BottomAppBar({
                       PaperProps: {
                         sx: {
                           backgroundColor: `${theme.palette.secondary.light}`,
-                          color: "primary.main",
+                          color: "primary.light",
                         },
                       },
                     },
                   }}
                   sx={{
                     backgroundColor: "secondary.light",
-                    opacity: "0.85",
-                    color: "primary.main",
+                    // opacity: "0.85",
+                    color: "primary.light",
                     ".MuiOutlinedInput-notchedOutline": {
                       borderWidth: "0px",
                       borderColor: "primary.light",
@@ -310,9 +310,9 @@ export default function BottomAppBar({
                       borderColor: "primary.light",
                       WebkitFontSmoothing: "antialiased",
                     },
-                    // ".MuiSvgIcon-root ": {
-                    //   fill: `${theme.palette.secondary.main} !important`,
-                    // },
+                    ".MuiSvgIcon-root ": {
+                      fill: `${theme.palette.secondary.main} !important`,
+                    },
                   }}
                 >
                   {/* TODO: replace with mapping values retrieved from Shopify storefront api */}
@@ -339,7 +339,7 @@ export default function BottomAppBar({
             <Box
               sx={{
                 backgroundColor: "secondary.light",
-                opacity: "0.85",
+                // opacity: "0.85",
                 // borderColor: "primary",
                 // borderWidth: 1.5,
                 borderRadius: 1.5,
