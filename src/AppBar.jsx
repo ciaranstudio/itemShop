@@ -22,22 +22,20 @@ import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import { keyframes } from "@mui/system";
 import useWindowDimensions from "./useWindowDimensions";
-// TODO: replace 'products' with data retrieved from Shopify Storefront API
-import { products } from "./products";
-// import CloseIcon from "@mui/icons-material/Close";
 import InfoIcon from "@mui/icons-material/Info";
 import Tooltip from "@mui/material/Tooltip";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
-import AdbIcon from "@mui/icons-material/Adb";
 import Container from "@mui/material/Container";
 import CarpenterIcon from "@mui/icons-material/Carpenter";
-import Avatar from "@mui/material/Avatar";
+// TODO: replace 'products' with data retrieved from Shopify Storefront API
+import { products } from "./products";
 
 export default function BottomAppBar({
   open,
   setOpen,
-  handleColorChange,
+  handleStainChange,
+  handlePaintChange,
   // handleTextureChange, // for finalizing custom wood texture files, may need to adjust all texture elements
   currentItemSelected,
   // setCurrentItemSelected, // for updating type of item selected from user input in Select box top right corner
@@ -46,14 +44,24 @@ export default function BottomAppBar({
   setToggled,
   animActive,
 }) {
-  const drawerBleeding = 42;
-
-  const pages = ["Products", "Pricing", "Blog"];
-  const settings = ["Profile", "Account", "Dashboard", "Logout"];
+  const drawerBleeding = 60;
+  // const settings = ["Profile", "Account", "Dashboard", "Logout"
+  const pages = ["Shop", "Custom", "Portfolio", "Contact"];
+  const stains = ["white", "natural", "black", "allBlack"];
+  const paints = ["alabaster", "pink", "basil", "yellow", "blue", "gray"];
+  const readymades = [
+    "GRAMPS",
+    "SQUATTER",
+    "(SHELF)",
+    "\\SHELF/",
+    "HORSE",
+    "BLOCK",
+  ];
 
   const { height, width } = useWindowDimensions();
   const [cartCount, setCartCount] = useState(0);
-  const [item, setItem] = useState(10);
+  const [itemNo, setItemNo] = useState(0);
+  const [selectedReadymade, setSelectedReadymade] = useState(readymades[0]);
   const [mobileView, setMobileView] = useState(false);
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -90,7 +98,8 @@ export default function BottomAppBar({
     // console.log("item value: ", item);
     // switch logic here for matching to object options
     // setCurrentItemSelected()
-  }, [item]);
+    console.log(selectedReadymade);
+  }, [itemNo]);
 
   const spinUp = keyframes`
   from {
@@ -133,8 +142,10 @@ export default function BottomAppBar({
   }
 
   const handleItemChange = (event) => {
-    setItem(event.target.value);
-    // console.log("item value: ", event.target.value);
+    let tempNo = event.target.value;
+    setItemNo(tempNo);
+    setSelectedReadymade(readymades[tempNo]);
+    console.log("item value: ", event.target.value);
   };
 
   const toggleDrawer = (newOpen) => () => {
@@ -207,14 +218,6 @@ export default function BottomAppBar({
       console.log("not mobile view");
       setMobileView(false);
     }
-    window.addEventListener("pointerdown", (e) => {
-      e.preventDefault;
-    });
-    return () => {
-      window.removeEventListener("pointerdown", (e) => {
-        e.preventDefault;
-      });
-    };
   }, []);
 
   return (
@@ -225,7 +228,7 @@ export default function BottomAppBar({
           styles={{
             ".MuiDrawer-root > .MuiPaper-root": {
               // height: `calc(( ${height <= 400 ? "50svh" : height <= 600 ? "35svh" : "25svh"} + ${drawerBleeding}px))`,
-              height: `calc((${drawerBleeding * 4.75}px))`, // the 0.1 over *3 is bottom gap
+              height: `calc((${drawerBleeding * 4.75}px))`,
               overflow: "visible",
               background: "transparent",
             },
@@ -285,9 +288,9 @@ export default function BottomAppBar({
                   onClose={handleCloseNavMenu}
                   sx={{
                     "& .MuiPaper-root": {
-                      backgroundColor: "secondary.light",
+                      backgroundColor: "secondary.main",
                     },
-                    opacity: "0.8",
+                    opacity: "1.0",
                     display: { xs: "block", md: "none" },
                   }}
                 >
@@ -339,124 +342,10 @@ export default function BottomAppBar({
                   </Button>
                 ))}
               </Box>
-
-              <Box
-                sx={{
-                  // backgroundColor: "secondary.light",
-                  // opacity: "0.75",
-                  borderRadius: 3,
-                  mr: 1,
-                  // p: 1,
-                  // py: 0.5,
-                  // mt: 1,
-                }}
-              >
-                {" "}
-                <FormControl
-                  variant="outlined"
-                  size="small"
-                  sx={{
-                    minWidth: 90,
-                    maxWidth: 180,
-                    right: 0,
-                    // mr: 3,
-                    // backgroundColor: "secondary.light",
-                    // opacity: "0.75",
-                  }}
-                >
-                  {/* <Tooltip title="Select item"> */}
-                  <Select
-                    autoWidth
-                    value={item}
-                    onChange={handleItemChange}
-                    inputProps={{
-                      MenuProps: {
-                        sx: { opacity: "0.8" },
-                        PaperProps: {
-                          sx: {
-                            backgroundColor: `${theme.palette.secondary.light}`,
-                            // backgroundColor: "transparent",
-                            color: "primary.light",
-                          },
-                        },
-                      },
-                    }}
-                    sx={{
-                      fontFamily: "monospace",
-                      backgroundColor: "transparent",
-                      // backgroundColor: "secondary.light",
-                      // opacity: "0.85",
-                      color: "primary.light",
-                      ".MuiOutlinedInput-notchedOutline": {
-                        borderWidth: "0.5px",
-                        borderColor: "primary.light",
-                        WebkitFontSmoothing: "antialiased",
-                        // height: "90%",
-                        // top: -1,
-                      },
-                      "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                        borderWidth: "0.5px",
-                        borderColor: "primary.light",
-                        WebkitFontSmoothing: "antialiased",
-                      },
-                      "&:hover .MuiOutlinedInput-notchedOutline": {
-                        borderWidth: "0.5px",
-                        borderColor: "primary.light",
-                        WebkitFontSmoothing: "antialiased",
-                      },
-                      ".MuiSvgIcon-root ": {
-                        fill: `${theme.palette.primary.light} !important`,
-                      },
-                    }}
-                  >
-                    {/* TODO: replace with mapping values retrieved from Shopify storefront api */}
-                    <MenuItem
-                      key={1}
-                      value={10}
-                      sx={{ fontFamily: "monospace" }}
-                    >
-                      gramps
-                    </MenuItem>
-                    <MenuItem
-                      key={2}
-                      value={20}
-                      sx={{ fontFamily: "monospace" }}
-                      disabled
-                    >
-                      squatter
-                    </MenuItem>
-                    <MenuItem
-                      key={3}
-                      value={30}
-                      sx={{ fontFamily: "monospace" }}
-                      disabled
-                    >
-                      shelf
-                    </MenuItem>
-                    <MenuItem
-                      key={4}
-                      value={40}
-                      sx={{ fontFamily: "monospace" }}
-                      disabled
-                    >
-                      horse
-                    </MenuItem>
-                    <MenuItem
-                      key={5}
-                      value={50}
-                      sx={{ fontFamily: "monospace" }}
-                      disabled
-                    >
-                      block
-                    </MenuItem>
-                  </Select>
-                  {/* </Tooltip> */}
-                </FormControl>
-              </Box>
-
               <Box
                 sx={{
                   backgroundColor: "transparent",
+                  flexGrow: 0,
                   // backgroundColor: "secondary.light",
                   // opacity: "0.85",
                   // borderColor: "primary",
@@ -469,7 +358,11 @@ export default function BottomAppBar({
                 }}
               >
                 <Tooltip title="View cart">
-                  <IconButton color="inherit">
+                  <IconButton onClick={handleOpenUserMenu}>
+                    {/* <Avatar
+                      alt="Remy Sharp"
+                      src="/static/images/avatar/2.jpg"
+                    /> */}
                     <Badge
                       badgeContent={cartCount}
                       color="transparent"
@@ -482,6 +375,28 @@ export default function BottomAppBar({
                     </Badge>
                   </IconButton>
                 </Tooltip>
+                {/* <Menu
+                  sx={{ mt: "45px" }}
+                  id="menu-appbar"
+                  anchorEl={anchorElUser}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  open={Boolean(anchorElUser)}
+                  onClose={handleCloseUserMenu}
+                >
+                  {settings.map((setting) => (
+                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                      <Typography textAlign="center">{setting}</Typography>
+                    </MenuItem>
+                  ))}
+                </Menu> */}
               </Box>
             </Toolbar>
           </Container>
@@ -489,7 +404,7 @@ export default function BottomAppBar({
         {mobileView ? (
           ""
         ) : (
-          <Tooltip title="View item details">
+          <Tooltip title="View details">
             <IconButton
               onClick={toggleDrawer(true)}
               color="inherit"
@@ -524,7 +439,7 @@ export default function BottomAppBar({
           onOpen={toggleDrawer(true)}
           swipeAreaWidth={drawerBleeding}
           disableSwipeToOpen={false}
-          transitionDuration={200}
+          transitionDuration={500}
           ModalProps={{
             keepMounted: true,
             slotProps: {
@@ -535,91 +450,40 @@ export default function BottomAppBar({
           {mobileView ? (
             <>
               <StyledBox
-                onClick={toggleDrawer(!open)}
+                // onClick={toggleDrawer(!open)}
                 sx={{
-                  top: -drawerBleeding,
+                  position: "absolute",
+                  top: -drawerBleeding / 2,
                   borderTopLeftRadius: 8,
                   borderTopRightRadius: 8,
                   visibility: "visible",
+                  right: 0,
+                  left: 0,
                   // background: "#e8e8e8",
                   opacity: 0.75,
-                  height: -drawerBleeding,
+                  height: -drawerBleeding / 2,
                   p: 2.75,
                   zIndex: 1,
                   border: "1px solid #9E9E9E",
                   borderBottomWidth: 0,
                 }}
               >
-                {open ? "" : <Puller />}
-                {/* <IconButton
-                  color="inherit"
-                  sx={{ position: "absolute", top: 2, left: 3 }}
-                >
-                  <CloseIcon
-                    sx={{
-                      color: "secondary.light",
-                    }}
-                  />
-                </IconButton> */}
+                <Puller />
               </StyledBox>
             </>
           ) : (
             ""
           )}
-          {/* <IconButton
-                  color="inherit"
-                  sx={{ position: "absolute", top: 0, right: 8 }}
-                >
-                  <CloseIcon
-                    sx={{
-                      color: "secondary.main",
-                    }}
-                  />
-                </IconButton> */}
 
-          {/* <Puller /> */}
-
-          {/* <Box sx={{ position: "absolute", top: 0, left: 0 }}>
-              <Button
-                variant="contained"
-                size="small"
-                sx={{
-                  py: 0,
-                  ml: 1.5,
-                  mt: 1.5,
-                }}
-                color="primary"
-              >
-                info
-              </Button>
-            </Box>
-            <Box sx={{ position: "absolute", top: 0, right: 0 }}>
-              <Button
-                variant="outlined"
-                size="small"
-                sx={{
-                  py: 0,
-                  mr: 1.5,
-                  mt: 1.25,
-                }}
-                onClick={() => {
-                  setToggled(!toggled);
-                }}
-                color="primary"
-                disabled={animActive ? true : false}
-              >
-                show design
-              </Button>
-            </Box> */}
           <StyledBox
             sx={{
               bottom: 0,
-              height: `100%-${drawerBleeding}`,
+              height: "100%",
               overflow: "auto",
               background: "transparent",
+              zIndex: 2,
             }}
           >
-            {mobileView ? <Puller /> : ""}
             {products.map((product, index) => (
               <Grid container key={index}>
                 <Grid item xs={12}>
@@ -627,13 +491,14 @@ export default function BottomAppBar({
                     sx={{
                       mt: 0,
                       p: 2,
-                      borderTopLeftRadius: 8,
-                      borderTopRightRadius: 8,
+                      borderTopLeftRadius: mobileView ? 0 : 8,
+                      borderTopRightRadius: mobileView ? 0 : 8,
                       borderBottomLeftRadius: 8,
                       borderBottomRightRadius: 8,
                       background: "transparent",
                       opacity: 0.75,
                       border: "1px solid #9E9E9E",
+                      borderTopWidth: mobileView ? 0 : 1,
                     }}
                   >
                     <Box
@@ -649,12 +514,104 @@ export default function BottomAppBar({
                           {product.name}
                         </Typography>
                       </Box> */}
-
-                      <Box sx={{ pt: 1.5, pb: 1.5 }}>
+                      <Box
+                        sx={{
+                          pb: 2.5,
+                          // position: "absolute",
+                          // backgroundColor: "secondary.light",
+                          // opacity: "0.75",
+                          borderRadius: 3,
+                          // top: 50,
+                          // left: `calc(100svw/2 - 5ch)`,
+                          // mr: 1,
+                          // p: 1,
+                          // py: 0.5,
+                          // mt: 1,
+                        }}
+                      >
+                        <FormControl
+                          variant="outlined"
+                          size="small"
+                          sx={{
+                            minWidth: 90,
+                            maxWidth: 180,
+                            right: 0,
+                            // mr: 3,
+                            // backgroundColor: "secondary.light",
+                            // opacity: "0.75",
+                          }}
+                        >
+                          <Select
+                            name="item-select"
+                            autoWidth
+                            value={itemNo}
+                            onChange={handleItemChange}
+                            inputProps={{
+                              MenuProps: {
+                                sx: { opacity: "1.0" },
+                                PaperProps: {
+                                  sx: {
+                                    backgroundColor: `${theme.palette.secondary.main}`,
+                                    // backgroundColor: "transparent",
+                                    color: "primary.light",
+                                  },
+                                },
+                              },
+                            }}
+                            sx={{
+                              fontFamily: "monospace",
+                              backgroundColor: "transparent",
+                              // backgroundColor: "secondary.light",
+                              // opacity: "0.85",
+                              color: "primary.main",
+                              ".MuiOutlinedInput-notchedOutline": {
+                                borderWidth: "0.5px",
+                                borderColor: "primary.light",
+                                WebkitFontSmoothing: "antialiased",
+                                // height: "90%",
+                                // top: -1,
+                              },
+                              "&.Mui-focused .MuiOutlinedInput-notchedOutline":
+                                {
+                                  borderWidth: "0.5px",
+                                  borderColor: "primary.light",
+                                  WebkitFontSmoothing: "antialiased",
+                                },
+                              "&:hover .MuiOutlinedInput-notchedOutline": {
+                                borderWidth: "0.5px",
+                                borderColor: "primary.light",
+                                WebkitFontSmoothing: "antialiased",
+                              },
+                              ".MuiSvgIcon-root ": {
+                                fill: `${theme.palette.primary.light} !important`,
+                              },
+                            }}
+                          >
+                            {readymades.map((readymade, index) => (
+                              <MenuItem
+                                key={readymade}
+                                // onClick={handleCloseNavMenu}
+                                value={index}
+                              >
+                                <Typography
+                                  textAlign="center"
+                                  sx={{
+                                    // color: "primary.main",
+                                    fontFamily: "monospace",
+                                  }}
+                                >
+                                  {readymade}
+                                </Typography>
+                              </MenuItem>
+                            ))}
+                          </Select>
+                        </FormControl>
+                      </Box>
+                      {/* <Box sx={{ pt: 1.5, pb: 1.5 }}>
                         <Typography variant="h5" color="primary.main">
                           {product.name}
                         </Typography>
-                      </Box>
+                      </Box> */}
                       <ButtonGroup
                         variant="outlined"
                         aria-label="Basic button group"
@@ -662,105 +619,59 @@ export default function BottomAppBar({
                         color="primary"
                         size="small"
                       >
-                        <Button
-                          onClick={(e) => handleColorChange(e, "white")}
-                          variant={
-                            currentOptionSelected === "white"
-                              ? "contained"
-                              : "outlined"
-                          }
-                        >
-                          white
-                        </Button>
-                        <Button
-                          onClick={(e) => handleColorChange(e, "natural")}
-                          variant={
-                            currentOptionSelected === "natural"
-                              ? "contained"
-                              : "outlined"
-                          }
-                        >
-                          natural
-                        </Button>
-                        <Button
-                          onClick={(e) => handleColorChange(e, "black")}
-                          variant={
-                            currentOptionSelected === "black"
-                              ? "contained"
-                              : "outlined"
-                          }
-                        >
-                          black
-                        </Button>
-                        <Button
-                          onClick={(e) => handleColorChange(e, "allBlack")}
-                          variant={
-                            currentOptionSelected === "allBlack"
-                              ? "contained"
-                              : "outlined"
-                          }
-                        >
-                          all black
-                        </Button>
+                        {stains.map((stain) => (
+                          <Button
+                            key={stain}
+                            onClick={(e) => handleStainChange(e, stain)}
+                            variant={
+                              currentOptionSelected === stain
+                                ? "contained"
+                                : "outlined"
+                            }
+                            sx={{ m: 0 }}
+                          >
+                            {stain}
+                          </Button>
+                        ))}
                       </ButtonGroup>
 
                       <ButtonGroup
                         variant="outlined"
                         aria-label="Basic button group"
-                        sx={{ mb: 1 }}
+                        sx={{ mb: 2 }}
                         color="primary"
                         size="small"
                       >
-                        <Button
-                          onClick={(e) => handleColorChange(e, "white")}
-                          variant={
-                            currentOptionSelected === "white"
-                              ? "contained"
-                              : "outlined"
-                          }
-                        >
-                          white
-                        </Button>
-                        <Button
-                          onClick={(e) => handleColorChange(e, "natural")}
-                          variant={
-                            currentOptionSelected === "natural"
-                              ? "contained"
-                              : "outlined"
-                          }
-                        >
-                          natural
-                        </Button>
-                        <Button
-                          onClick={(e) => handleColorChange(e, "black")}
-                          variant={
-                            currentOptionSelected === "black"
-                              ? "contained"
-                              : "outlined"
-                          }
-                        >
-                          black
-                        </Button>
-                        <Button
-                          onClick={(e) => handleColorChange(e, "allBlack")}
-                          variant={
-                            currentOptionSelected === "allBlack"
-                              ? "contained"
-                              : "outlined"
-                          }
-                        >
-                          all black
-                        </Button>
+                        {paints.map((paint) => (
+                          <Button
+                            key={paint}
+                            onClick={(e) => handlePaintChange(e, paint)}
+                            variant={
+                              currentOptionSelected === paint
+                                ? "contained"
+                                : "outlined"
+                            }
+                            sx={{ m: 0 }}
+                          >
+                            {paint}
+                          </Button>
+                        ))}
                       </ButtonGroup>
 
-                      <Box sx={{ pb: 0 }}>
+                      <Box sx={{ pb: 1 }}>
                         <Typography variant="subtitle2" color="primary">
                           {product.description}
                         </Typography>
                       </Box>
 
                       <Box sx={{ pt: 1 }}>
-                        <Box sx={{ position: "absolute", top: 0, left: 0 }}>
+                        <Box
+                          sx={{
+                            position: "absolute",
+                            top: mobileView ? -12 : 0,
+                            left: 0,
+                          }}
+                        >
                           <Button
                             variant="outlined"
                             size="small"
@@ -771,10 +682,16 @@ export default function BottomAppBar({
                             }}
                             color="primary"
                           >
-                            info
+                            images
                           </Button>
                         </Box>
-                        <Box sx={{ position: "absolute", top: 0, right: 0 }}>
+                        <Box
+                          sx={{
+                            position: "absolute",
+                            top: mobileView ? -12 : 0,
+                            right: 0,
+                          }}
+                        >
                           <Button
                             variant="outlined"
                             size="small"
@@ -785,6 +702,7 @@ export default function BottomAppBar({
                             }}
                             onClick={() => {
                               setToggled(!toggled);
+                              console.log("clicked animate");
                             }}
                             color="primary"
                             disabled={animActive ? true : false}
@@ -792,6 +710,7 @@ export default function BottomAppBar({
                             animate
                           </Button>
                         </Box>
+
                         <Button
                           variant="contained"
                           color="primary"

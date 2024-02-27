@@ -6,7 +6,7 @@ export const products = [
     id: "1",
     name: "Stool",
     price: "$ 3,000",
-    description: "Handmade wooden stool.",
+    description: "Item description (brief)",
     image: "https://cdn.buttercms.com/UqbFGAJLTGqtYqF2UajV",
   },
 ];

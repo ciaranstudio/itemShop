@@ -6,6 +6,7 @@ import BottomAppBar from "./AppBar.jsx";
 import * as THREE from "three";
 import "./style.css";
 import Placeholder from "./Placeholder.jsx";
+import Item from "./Item.jsx";
 
 function App() {
   const whiteStain = new THREE.Color(0xffffff);
@@ -50,19 +51,23 @@ function App() {
   ];
 
   const [stoolATexture, setStoolATexture] = useState(whiteTexture);
-  const [stoolAColor, setStoolAColor] = useState(whiteStain);
+  const [stoolAStain, setStoolAStain] = useState(whiteStain);
+  const [stoolAPaint, setStoolAPaint] = useState();
   const [stoolASelectedOption, setStoolASelectedOption] = useState("white");
 
   const [stoolBTexture, setStoolBTexture] = useState(allBlackTexture);
-  const [stoolBColor, setStoolBColor] = useState(blackStain);
+  const [stoolBStain, setStoolBStain] = useState(blackStain);
+  const [stoolBPaint, setStoolBPaint] = useState();
   const [stoolBSelectedOption, setStoolBSelectedOption] = useState("black");
 
   const [stoolCTexture, setStoolCTexture] = useState(allBlackTexture);
-  const [stoolCColor, setStoolCColor] = useState(allBlackStain);
+  const [stoolCStain, setStoolCStain] = useState(allBlackStain);
+  const [stoolCPaint, setStoolCPaint] = useState();
   const [stoolCSelectedOption, setStoolCSelectedOption] = useState("allBlack");
 
   const [stoolDTexture, setStoolDTexture] = useState(naturalTexture);
-  const [stoolDColor, setStoolDColor] = useState(naturalStain);
+  const [stoolDStain, setStoolDStain] = useState(naturalStain);
+  const [stoolDPaint, setStoolDPaint] = useState();
   const [stoolDSelectedOption, setStoolDSelectedOption] = useState("natural");
 
   const [stoolAPosition, setStoolAPosition] = useState({ x: -10, y: 0, z: 10 });
@@ -78,13 +83,30 @@ function App() {
   const [toggled, setToggled] = useState(false);
   const [animActive, setAnimActive] = useState(false);
 
+  const stool = new Item(
+    "stool",
+    1,
+    stoolASelectedOption,
+    setStoolASelectedOption,
+    stoolAStain,
+    setStoolAStain,
+    stoolAPaint,
+    setStoolAPaint,
+    stoolATexture,
+    setStoolATexture,
+    stoolAPosition,
+    setStoolAPosition,
+  );
+
   const stoolDataA = {
     itemType: "stool",
     itemNo: 1,
     optionSelect: stoolASelectedOption,
     setOptionSelect: setStoolASelectedOption,
-    itemColor: stoolAColor,
-    setItemColor: setStoolAColor,
+    itemStain: stoolAStain,
+    setItemStain: setStoolAStain,
+    itemPaint: stoolAPaint,
+    setItemPaint: setStoolAPaint,
     itemTexture: stoolATexture,
     setItemTexture: setStoolATexture,
     position: stoolAPosition,
@@ -96,8 +118,10 @@ function App() {
     itemNo: 2,
     optionSelect: stoolBSelectedOption,
     setOptionSelect: setStoolBSelectedOption,
-    itemColor: stoolBColor,
-    setItemColor: setStoolBColor,
+    itemStain: stoolBStain,
+    setItemStain: setStoolBStain,
+    itemPaint: stoolBPaint,
+    setItemPaint: setStoolBPaint,
     itemTexture: stoolBTexture,
     setItemTexture: setStoolBTexture,
     position: stoolBPosition,
@@ -109,8 +133,10 @@ function App() {
     itemNo: 3,
     optionSelect: stoolCSelectedOption,
     setOptionSelect: setStoolCSelectedOption,
-    itemColor: stoolCColor,
-    setItemColor: setStoolCColor,
+    itemStain: stoolCStain,
+    setItemStain: setStoolCStain,
+    itemPaint: stoolCPaint,
+    setItemPaint: setStoolCPaint,
     itemTexture: stoolCTexture,
     setItemTexture: setStoolCTexture,
     position: stoolCPosition,
@@ -122,8 +148,10 @@ function App() {
     itemNo: 4,
     optionSelect: stoolDSelectedOption,
     setOptionSelect: setStoolDSelectedOption,
-    itemColor: stoolDColor,
-    setItemColor: setStoolDColor,
+    itemStain: stoolDStain,
+    setItemStain: setStoolDStain,
+    itemPaint: stoolDPaint,
+    setItemPaint: setStoolDPaint,
     itemTexture: stoolDTexture,
     setItemTexture: setStoolDTexture,
     position: stoolDPosition,
@@ -134,28 +162,57 @@ function App() {
   const [currentOptionSelected, setCurrentOptionSelected] =
     useState(stoolASelectedOption);
 
-  const handleColorChange = (event, color) => {
+  const handleStainChange = (event, color) => {
     event.preventDefault();
     if (color === "white") {
-      currentItemSelected.setItemColor(whiteStain);
-      currentItemSelected.setOptionSelect("white");
-      setCurrentOptionSelected("white");
+      currentItemSelected.setItemStain(whiteStain);
+      currentItemSelected.setOptionSelect(color);
+      setCurrentOptionSelected(color);
       // setCurrentColor(whiteStain);
     } else if (color === "natural") {
-      currentItemSelected.setItemColor(naturalStain);
-      currentItemSelected.setOptionSelect("natural");
-      setCurrentOptionSelected("natural");
+      currentItemSelected.setItemStain(naturalStain);
+      currentItemSelected.setOptionSelect(color);
+      setCurrentOptionSelected(color);
       // setCurrentColor(naturalStain);
     } else if (color === "black") {
-      currentItemSelected.setItemColor(blackStain);
-      currentItemSelected.setOptionSelect("black");
-      setCurrentOptionSelected("black");
+      currentItemSelected.setItemStain(blackStain);
+      currentItemSelected.setOptionSelect(color);
+      setCurrentOptionSelected(color);
       // setCurrentColor(blackStain);
     } else if (color === "allBlack") {
-      currentItemSelected.setItemColor(allBlackStain);
-      currentItemSelected.setOptionSelect("allBlack");
-      setCurrentOptionSelected("allBlack");
+      currentItemSelected.setItemStain(allBlackStain);
+      currentItemSelected.setOptionSelect(color);
+      setCurrentOptionSelected(color);
       // setCurrentColor(allBlackStain);
+    }
+  };
+
+  const handlePaintChange = (event, color) => {
+    event.preventDefault();
+    if (color === "alabaster") {
+      // currentItemSelected.setItemPaint(whiteStain);
+      currentItemSelected.setOptionSelect(color);
+      setCurrentOptionSelected(color);
+    } else if (color === "pink") {
+      // currentItemSelected.setItemPaint(naturalStain);
+      currentItemSelected.setOptionSelect(color);
+      setCurrentOptionSelected(color);
+    } else if (color === "basil") {
+      // currentItemSelected.setItemPaint(blackStain);
+      currentItemSelected.setOptionSelect(color);
+      setCurrentOptionSelected(color);
+    } else if (color === "yellow") {
+      // currentItemSelected.setItemPaint(allBlackStain);
+      currentItemSelected.setOptionSelect(color);
+      setCurrentOptionSelected(color);
+    } else if (color === "blue") {
+      // currentItemSelected.setItemPaint(allBlackStain);
+      currentItemSelected.setOptionSelect(color);
+      setCurrentOptionSelected(color);
+    } else if (color === "gray") {
+      // currentItemSelected.setItemPaint(allBlackStain);
+      currentItemSelected.setOptionSelect(color);
+      setCurrentOptionSelected(color);
     }
   };
 
@@ -219,7 +276,8 @@ function App() {
         setToggled={setToggled}
         open={open}
         setOpen={setOpen}
-        handleColorChange={handleColorChange}
+        handleStainChange={handleStainChange}
+        handlePaintChange={handlePaintChange}
         handleTextureChange={handleTextureChange}
         currentItemSelected={currentItemSelected}
         setCurrentItemSelected={setCurrentItemSelected}

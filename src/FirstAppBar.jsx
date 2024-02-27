@@ -227,3 +227,96 @@
     </Toolbar>
   </Container>
 </AppBar>;
+
+<Box
+  sx={{
+    position: "absolute",
+    // backgroundColor: "secondary.light",
+    // opacity: "0.75",
+    borderRadius: 3,
+    top: 50,
+    left: `calc(100svw/2 - 5ch)`,
+    // mr: 1,
+    // p: 1,
+    // py: 0.5,
+    // mt: 1,
+  }}
+>
+  {" "}
+  <FormControl
+    variant="outlined"
+    size="small"
+    sx={{
+      minWidth: 90,
+      maxWidth: 180,
+      right: 0,
+      // mr: 3,
+      // backgroundColor: "secondary.light",
+      // opacity: "0.75",
+    }}
+  >
+    {/* <Tooltip title="Select item"> */}
+    <Select
+      autoWidth
+      value={item}
+      onChange={handleItemChange}
+      inputProps={{
+        MenuProps: {
+          sx: { opacity: "0.8" },
+          PaperProps: {
+            sx: {
+              backgroundColor: `${theme.palette.secondary.light}`,
+              // backgroundColor: "transparent",
+              color: "primary.light",
+            },
+          },
+        },
+      }}
+      sx={{
+        fontFamily: "monospace",
+        backgroundColor: "transparent",
+        // backgroundColor: "secondary.light",
+        // opacity: "0.85",
+        color: "primary.light",
+        ".MuiOutlinedInput-notchedOutline": {
+          borderWidth: "0.5px",
+          borderColor: "primary.light",
+          WebkitFontSmoothing: "antialiased",
+          // height: "90%",
+          // top: -1,
+        },
+        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+          borderWidth: "0.5px",
+          borderColor: "primary.light",
+          WebkitFontSmoothing: "antialiased",
+        },
+        "&:hover .MuiOutlinedInput-notchedOutline": {
+          borderWidth: "0.5px",
+          borderColor: "primary.light",
+          WebkitFontSmoothing: "antialiased",
+        },
+        ".MuiSvgIcon-root ": {
+          fill: `${theme.palette.primary.light} !important`,
+        },
+      }}
+    >
+      {/* TODO: replace with mapping values retrieved from Shopify storefront api */}
+      <MenuItem key={1} value={10} sx={{ fontFamily: "monospace" }}>
+        gramps
+      </MenuItem>
+      <MenuItem key={2} value={20} sx={{ fontFamily: "monospace" }} disabled>
+        squatter
+      </MenuItem>
+      <MenuItem key={3} value={30} sx={{ fontFamily: "monospace" }} disabled>
+        shelf
+      </MenuItem>
+      <MenuItem key={4} value={40} sx={{ fontFamily: "monospace" }} disabled>
+        horse
+      </MenuItem>
+      <MenuItem key={5} value={50} sx={{ fontFamily: "monospace" }} disabled>
+        block
+      </MenuItem>
+    </Select>
+    {/* </Tooltip> */}
+  </FormControl>
+</Box>;
