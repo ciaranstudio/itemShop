@@ -25,7 +25,7 @@ export default function Experience({
   stoolDataD,
   currentItemSelected,
   setCurrentItemSelected,
-  setCurrentOptionSelected,
+  // setCurrentOptionSelected,
 }) {
   const loadingBarElement = document.querySelector(".loading-bar");
   const { active, progress, errors, item, loaded, total } = useProgress();
@@ -218,7 +218,7 @@ export default function Experience({
           data={stoolDataA}
           currentItemSelected={currentItemSelected}
           setCurrentItemSelected={setCurrentItemSelected}
-          setCurrentOptionSelected={setCurrentOptionSelected}
+          // setCurrentOptionSelected={setCurrentOptionSelected}
           ref={stoolRef}
           scale={0.72}
           open={open}
@@ -234,7 +234,7 @@ export default function Experience({
           data={stoolDataB}
           currentItemSelected={currentItemSelected}
           setCurrentItemSelected={setCurrentItemSelected}
-          setCurrentOptionSelected={setCurrentOptionSelected}
+          // setCurrentOptionSelected={setCurrentOptionSelected}
           ref={stoolRef}
           scale={0.72}
           open={open}
@@ -250,7 +250,7 @@ export default function Experience({
           data={stoolDataC}
           currentItemSelected={currentItemSelected}
           setCurrentItemSelected={setCurrentItemSelected}
-          setCurrentOptionSelected={setCurrentOptionSelected}
+          // setCurrentOptionSelected={setCurrentOptionSelected}
           ref={stoolRef}
           scale={0.72}
           open={open}
@@ -266,7 +266,7 @@ export default function Experience({
           data={stoolDataD}
           currentItemSelected={currentItemSelected}
           setCurrentItemSelected={setCurrentItemSelected}
-          setCurrentOptionSelected={setCurrentOptionSelected}
+          // setCurrentOptionSelected={setCurrentOptionSelected}
           ref={stoolRef}
           scale={0.72}
           open={open}

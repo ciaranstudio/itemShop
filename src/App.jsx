@@ -1,4 +1,4 @@
-import { useState, Suspense } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import Experience from "./Experience.jsx";
 import { Leva } from "leva";
@@ -7,225 +7,289 @@ import * as THREE from "three";
 import "./style.css";
 import Placeholder from "./Placeholder.jsx";
 import Item from "./Item.jsx";
+import { textures } from "./textures.jsx";
 
 function App() {
-  const whiteStain = new THREE.Color(0xffffff);
-  const naturalStain = new THREE.Color(0xdddddd);
-  const blackStain = new THREE.Color(0xbababa);
-  const allBlackStain = new THREE.Color(0x585858);
-
-  const whiteTexture = [
-    "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_COL_2K_METALNESS.png",
-    "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_DISP_2K_METALNESS.png",
-    "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_NRM_2K_METALNESS.png",
-    "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_METALNESS_2K_METALNESS.png",
-    "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_ROUGHNESS_2K_METALNESS.png",
-    "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_AO_2K_METALNESS.png",
-  ];
-
-  const naturalTexture = [
-    "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_COL_2K_METALNESS.png",
-    "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_DISP_2K_METALNESS.png",
-    "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_NRM_2K_METALNESS.png",
-    "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_METALNESS_2K_METALNESS.png",
-    "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_ROUGHNESS_2K_METALNESS.png",
-    "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_AO_2K_METALNESS.png",
-  ];
-
-  const blackTexture = [
-    "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_COL_2K_METALNESS.png",
-    "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_DISP_2K_METALNESS.png",
-    "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_NRM_2K_METALNESS.png",
-    "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_METALNESS_2K_METALNESS.png",
-    "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_ROUGHNESS_2K_METALNESS.png",
-    "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_AO_2K_METALNESS.png",
-  ];
-
-  const allBlackTexture = [
-    "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_COL_2K_METALNESS.png",
-    "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_DISP_2K_METALNESS.png",
-    "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_NRM_2K_METALNESS.png",
-    "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_METALNESS_2K_METALNESS.png",
-    "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_ROUGHNESS_2K_METALNESS.png",
-    "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_AO_2K_METALNESS.png",
-  ];
-
-  const [stoolATexture, setStoolATexture] = useState(whiteTexture);
-  const [stoolAStain, setStoolAStain] = useState(whiteStain);
-  const [stoolAPaint, setStoolAPaint] = useState();
-  const [stoolASelectedOption, setStoolASelectedOption] = useState("white");
-
-  const [stoolBTexture, setStoolBTexture] = useState(allBlackTexture);
-  const [stoolBStain, setStoolBStain] = useState(blackStain);
-  const [stoolBPaint, setStoolBPaint] = useState();
-  const [stoolBSelectedOption, setStoolBSelectedOption] = useState("black");
-
-  const [stoolCTexture, setStoolCTexture] = useState(allBlackTexture);
-  const [stoolCStain, setStoolCStain] = useState(allBlackStain);
-  const [stoolCPaint, setStoolCPaint] = useState();
-  const [stoolCSelectedOption, setStoolCSelectedOption] = useState("allBlack");
-
-  const [stoolDTexture, setStoolDTexture] = useState(naturalTexture);
-  const [stoolDStain, setStoolDStain] = useState(naturalStain);
-  const [stoolDPaint, setStoolDPaint] = useState();
-  const [stoolDSelectedOption, setStoolDSelectedOption] = useState("natural");
-
-  const [stoolAPosition, setStoolAPosition] = useState({ x: -10, y: 0, z: 10 });
-  const [stoolBPosition, setStoolBPosition] = useState({
-    x: -10,
-    y: 0,
-    z: -10,
-  });
-  const [stoolCPosition, setStoolCPosition] = useState({ x: 10, y: 0, z: 10 });
-  const [stoolDPosition, setStoolDPosition] = useState({ x: 10, y: 0, z: -10 });
-
   const [open, setOpen] = useState(false);
   const [toggled, setToggled] = useState(false);
   const [animActive, setAnimActive] = useState(false);
 
-  const stool = new Item(
-    "stool",
-    1,
-    stoolASelectedOption,
-    setStoolASelectedOption,
-    stoolAStain,
-    setStoolAStain,
-    stoolAPaint,
-    setStoolAPaint,
-    stoolATexture,
-    setStoolATexture,
-    stoolAPosition,
-    setStoolAPosition,
+  const [grampsTexture, setGrampsTexture] = useState(textures.whiteTexture);
+  const [grampsStain, setGrampsStain] = useState(textures.whiteStain);
+  const [grampsPaint, setGrampsPaint] = useState();
+  const [grampsSelectedOption, setGrampsSelectedOption] = useState("white");
+  const [grampsSelectedOptionType, setGrampsSelectedOptionType] =
+    useState("stain");
+
+  const [squatterTexture, setSquatterTexture] = useState(
+    textures.allBlackTexture,
+  );
+  const [squatterStain, setSquatterStain] = useState(textures.blackStain);
+  const [squatterPaint, setSquatterPaint] = useState();
+  const [squatterSelectedOption, setSquatterSelectedOption] = useState("black");
+  const [squatterSelectedOptionType, setSquatterSelectedOptionType] =
+    useState("stain");
+
+  const [blockTexture, setBlockTexture] = useState(textures.allBlackTexture);
+  const [blockStain, setBlockStain] = useState(textures.allBlackStain);
+  const [blockPaint, setBlockPaint] = useState();
+  const [blockSelectedOption, setBlockSelectedOption] = useState("allBlack");
+  const [blockSelectedOptionType, setBlockSelectedOptionType] =
+    useState("stain");
+
+  const [horseTexture, setHorseTexture] = useState(textures.naturalTexture);
+  const [horseStain, setHorseStain] = useState(textures.naturalStain);
+  const [horsePaint, setHorsePaint] = useState();
+  const [horseSelectedOption, setHorseSelectedOption] = useState("natural");
+  const [horseSelectedOptionType, setHorseSelectedOptionType] =
+    useState("stain");
+
+  const [shelfATexture, setShelfATexture] = useState(textures.naturalTexture);
+  const [shelfAStain, setShelfAStain] = useState(textures.naturalStain);
+  const [shelfAPaint, setShelfAPaint] = useState();
+  const [shelfASelectedOption, setShelfASelectedOption] = useState("natural");
+  const [shelfASelectedOptionType, setShelfASelectedOptionType] =
+    useState("stain");
+
+  const [shelfBTexture, setShelfBTexture] = useState(textures.naturalTexture);
+  const [shelfBStain, setShelfBStain] = useState(textures.naturalStain);
+  const [shelfBPaint, setShelfBPaint] = useState();
+  const [shelfBSelectedOption, setShelfBSelectedOption] = useState("natural");
+  const [shelfBSelectedOptionType, setShelfBSelectedOptionType] =
+    useState("stain");
+
+  const [grampsPosition, setGrampsPosition] = useState({ x: -10, y: 0, z: 10 });
+  const [squatterPosition, setSquatterPosition] = useState({
+    x: -10,
+    y: 0,
+    z: -10,
+  });
+  const [blockPosition, setBlockPosition] = useState({ x: 10, y: 0, z: 10 });
+  const [horsePosition, setHorsePosition] = useState({ x: 10, y: 0, z: -10 });
+  const [shelfAPosition, setShelfAPosition] = useState({ x: 10, y: 0, z: 10 });
+  const [shelfBPosition, setShelfBPosition] = useState({ x: 10, y: 0, z: -10 });
+
+  const gramps = new Item(
+    "gramps",
+    0,
+    "GRAMPS",
+    "Handmade stool",
+    900,
+    750,
+    grampsSelectedOption,
+    setGrampsSelectedOption,
+    grampsSelectedOptionType,
+    setGrampsSelectedOptionType,
+    grampsStain,
+    setGrampsStain,
+    grampsPaint,
+    setGrampsPaint,
+    grampsTexture,
+    setGrampsTexture,
+    grampsPosition,
+    setGrampsPosition,
   );
 
-  const stoolDataA = {
-    itemType: "stool",
-    itemNo: 1,
-    optionSelect: stoolASelectedOption,
-    setOptionSelect: setStoolASelectedOption,
-    itemStain: stoolAStain,
-    setItemStain: setStoolAStain,
-    itemPaint: stoolAPaint,
-    setItemPaint: setStoolAPaint,
-    itemTexture: stoolATexture,
-    setItemTexture: setStoolATexture,
-    position: stoolAPosition,
-    setPosition: setStoolAPosition,
-  };
+  const squatter = new Item(
+    "squatter",
+    1,
+    "SQUATTER",
+    "Handmade end table",
+    700,
+    600,
+    squatterSelectedOption,
+    setSquatterSelectedOption,
+    squatterSelectedOptionType,
+    setSquatterSelectedOptionType,
+    squatterStain,
+    setSquatterStain,
+    squatterPaint,
+    setSquatterPaint,
+    squatterTexture,
+    setSquatterTexture,
+    squatterPosition,
+    setSquatterPosition,
+  );
 
-  const stoolDataB = {
-    itemType: "stool",
-    itemNo: 2,
-    optionSelect: stoolBSelectedOption,
-    setOptionSelect: setStoolBSelectedOption,
-    itemStain: stoolBStain,
-    setItemStain: setStoolBStain,
-    itemPaint: stoolBPaint,
-    setItemPaint: setStoolBPaint,
-    itemTexture: stoolBTexture,
-    setItemTexture: setStoolBTexture,
-    position: stoolBPosition,
-    setPosition: setStoolBPosition,
-  };
+  const block = new Item(
+    "block",
+    2,
+    "BLOCK",
+    "Handmade room block",
+    400,
+    250,
+    blockSelectedOption,
+    setBlockSelectedOption,
+    blockSelectedOptionType,
+    setBlockSelectedOptionType,
+    blockStain,
+    setBlockStain,
+    blockPaint,
+    setBlockPaint,
+    blockTexture,
+    setBlockTexture,
+    blockPosition,
+    setBlockPosition,
+  );
 
-  const stoolDataC = {
-    itemType: "stool",
-    itemNo: 3,
-    optionSelect: stoolCSelectedOption,
-    setOptionSelect: setStoolCSelectedOption,
-    itemStain: stoolCStain,
-    setItemStain: setStoolCStain,
-    itemPaint: stoolCPaint,
-    setItemPaint: setStoolCPaint,
-    itemTexture: stoolCTexture,
-    setItemTexture: setStoolCTexture,
-    position: stoolCPosition,
-    setPosition: setStoolCPosition,
-  };
+  const horse = new Item(
+    "horse",
+    3,
+    "HORSE",
+    "Handmade saw horse",
+    500,
+    400,
+    horseSelectedOption,
+    setHorseSelectedOption,
+    horseSelectedOptionType,
+    setHorseSelectedOptionType,
+    horseStain,
+    setHorseStain,
+    horsePaint,
+    setHorsePaint,
+    horseTexture,
+    setHorseTexture,
+    horsePosition,
+    setHorsePosition,
+  );
 
-  const stoolDataD = {
-    itemType: "stool",
-    itemNo: 4,
-    optionSelect: stoolDSelectedOption,
-    setOptionSelect: setStoolDSelectedOption,
-    itemStain: stoolDStain,
-    setItemStain: setStoolDStain,
-    itemPaint: stoolDPaint,
-    setItemPaint: setStoolDPaint,
-    itemTexture: stoolDTexture,
-    setItemTexture: setStoolDTexture,
-    position: stoolDPosition,
-    setPosition: setStoolDPosition,
-  };
+  const shelfA = new Item(
+    "shelfA",
+    4,
+    `\\SHELF/`,
+    "Handmade angle shelf",
+    400,
+    350,
+    shelfASelectedOption,
+    setShelfASelectedOption,
+    shelfASelectedOptionType,
+    setShelfASelectedOptionType,
+    shelfAStain,
+    setShelfAStain,
+    shelfAPaint,
+    setShelfAPaint,
+    shelfATexture,
+    setShelfATexture,
+    shelfAPosition,
+    setShelfAPosition,
+  );
 
-  const [currentItemSelected, setCurrentItemSelected] = useState(stoolDataA);
-  const [currentOptionSelected, setCurrentOptionSelected] =
-    useState(stoolASelectedOption);
+  const shelfB = new Item(
+    "shelfB",
+    5,
+    "(SHELF)",
+    "Handmade block shelf",
+    400,
+    350,
+    shelfBSelectedOption,
+    setShelfBSelectedOption,
+    shelfBSelectedOptionType,
+    setShelfBSelectedOptionType,
+    shelfBStain,
+    setShelfBStain,
+    shelfBPaint,
+    setShelfBPaint,
+    shelfBTexture,
+    setShelfBTexture,
+    shelfBPosition,
+    setShelfBPosition,
+  );
+
+  const shopItems = [gramps, squatter, block, horse, shelfA, shelfB];
+  const [currentItemSelected, setCurrentItemSelected] = useState(gramps);
+  const [currentItemOptionSelect, setCurrentItemOptionSelect] = useState(
+    gramps.optionSelect,
+  );
+  const [currentItemOptionType, setCurrentItemOptionType] = useState(
+    gramps.optionSelectType,
+  );
+  const [currentItemDescription, setCurrentItemDescription] = useState(
+    gramps.itemDescription,
+  );
+
+  useEffect(() => {
+    setCurrentItemOptionSelect(currentItemSelected.optionSelect);
+    setCurrentItemOptionType(currentItemSelected.optionSelectType);
+    setCurrentItemDescription(currentItemSelected.itemDescription);
+  }, [currentItemSelected]);
 
   const handleStainChange = (event, color) => {
     event.preventDefault();
     if (color === "white") {
-      currentItemSelected.setItemStain(whiteStain);
+      currentItemSelected.setItemStain(textures.whiteStain);
+      currentItemSelected.setItemTexture(textures.whiteStain);
       currentItemSelected.setOptionSelect(color);
-      setCurrentOptionSelected(color);
-      // setCurrentColor(whiteStain);
+      currentItemSelected.setOptionSelectType("stain");
+      setCurrentItemOptionSelect(color);
+      setCurrentItemOptionType("stain");
     } else if (color === "natural") {
-      currentItemSelected.setItemStain(naturalStain);
+      currentItemSelected.setItemStain(textures.naturalStain);
+      currentItemSelected.setItemTexture(textures.naturalTexture);
       currentItemSelected.setOptionSelect(color);
-      setCurrentOptionSelected(color);
-      // setCurrentColor(naturalStain);
+      currentItemSelected.setOptionSelectType("stain");
+      setCurrentItemOptionSelect(color);
+      setCurrentItemOptionType("stain");
     } else if (color === "black") {
-      currentItemSelected.setItemStain(blackStain);
+      currentItemSelected.setItemStain(textures.blackStain);
+      currentItemSelected.setItemTexture(textures.blackTexture);
       currentItemSelected.setOptionSelect(color);
-      setCurrentOptionSelected(color);
-      // setCurrentColor(blackStain);
+      currentItemSelected.setOptionSelectType("stain");
+      setCurrentItemOptionSelect(color);
+      setCurrentItemOptionType("stain");
     } else if (color === "allBlack") {
-      currentItemSelected.setItemStain(allBlackStain);
+      currentItemSelected.setItemStain(textures.allBlackStain);
+      currentItemSelected.setItemTexture(textures.allBlackTexture);
       currentItemSelected.setOptionSelect(color);
-      setCurrentOptionSelected(color);
-      // setCurrentColor(allBlackStain);
+      currentItemSelected.setOptionSelectType("stain");
+      setCurrentItemOptionSelect(color);
+      setCurrentItemOptionType("stain");
     }
   };
 
   const handlePaintChange = (event, color) => {
     event.preventDefault();
     if (color === "alabaster") {
-      // currentItemSelected.setItemPaint(whiteStain);
+      currentItemSelected.setItemPaint(textures.alabasterPaint);
+      currentItemSelected.setItemTexture(textures.paintTexture);
       currentItemSelected.setOptionSelect(color);
-      setCurrentOptionSelected(color);
+      currentItemSelected.setOptionSelectType("paint");
+      setCurrentItemOptionSelect(color);
+      setCurrentItemOptionType("paint");
     } else if (color === "pink") {
-      // currentItemSelected.setItemPaint(naturalStain);
+      currentItemSelected.setItemPaint(textures.pinkPaint);
+      currentItemSelected.setItemTexture(textures.paintTexture);
       currentItemSelected.setOptionSelect(color);
-      setCurrentOptionSelected(color);
+      currentItemSelected.setOptionSelectType("paint");
+      setCurrentItemOptionSelect(color);
+      setCurrentItemOptionType("paint");
     } else if (color === "basil") {
-      // currentItemSelected.setItemPaint(blackStain);
+      currentItemSelected.setItemPaint(textures.basilPaint);
+      currentItemSelected.setItemTexture(textures.paintTexture);
       currentItemSelected.setOptionSelect(color);
-      setCurrentOptionSelected(color);
+      currentItemSelected.setOptionSelectType("paint");
+      setCurrentItemOptionSelect(color);
+      setCurrentItemOptionType("paint");
     } else if (color === "yellow") {
-      // currentItemSelected.setItemPaint(allBlackStain);
+      currentItemSelected.setItemPaint(textures.yellowPaint);
+      currentItemSelected.setItemTexture(textures.paintTexture);
       currentItemSelected.setOptionSelect(color);
-      setCurrentOptionSelected(color);
+      currentItemSelected.setOptionSelectType("paint");
+      setCurrentItemOptionSelect(color);
+      setCurrentItemOptionType("paint");
     } else if (color === "blue") {
-      // currentItemSelected.setItemPaint(allBlackStain);
+      currentItemSelected.setItemPaint(textures.bluePaint);
+      currentItemSelected.setItemTexture(textures.paintTexture);
       currentItemSelected.setOptionSelect(color);
-      setCurrentOptionSelected(color);
+      currentItemSelected.setOptionSelectType("paint");
+      setCurrentItemOptionSelect(color);
+      setCurrentItemOptionType("paint");
     } else if (color === "gray") {
-      // currentItemSelected.setItemPaint(allBlackStain);
+      currentItemSelected.setItemPaint(textures.grayPaint);
+      currentItemSelected.setItemTexture(textures.paintTexture);
       currentItemSelected.setOptionSelect(color);
-      setCurrentOptionSelected(color);
-    }
-  };
-
-  const handleTextureChange = (event, texture) => {
-    event.preventDefault();
-    if (texture === "white") {
-      setCurrentTexture(whiteTexture);
-    } else if (texture === "natural") {
-      setCurrentTexture(naturalTexture);
-    } else if (texture === "black") {
-      setCurrentTexture(blackTexture);
-    } else if (texture === "allBlack") {
-      setCurrentTexture(allBlackTexture);
+      currentItemSelected.setOptionSelectType("paint");
+      setCurrentItemOptionSelect(color);
+      setCurrentItemOptionType("paint");
     }
   };
 
@@ -259,32 +323,39 @@ function App() {
             setToggled={setToggled}
             animActive={animActive}
             setAnimActive={setAnimActive}
-            // currentTexture={currentTexture}
-            // currentColor={currentColor}
-            stoolDataA={stoolDataA}
-            stoolDataB={stoolDataB}
-            stoolDataC={stoolDataC}
-            stoolDataD={stoolDataD}
+            gramps={gramps}
+            squatter={squatter}
+            block={block}
+            horse={horse}
+            shelfA={shelfA}
+            shelfB={shelfB}
+            shopItems={shopItems}
             currentItemSelected={currentItemSelected}
             setCurrentItemSelected={setCurrentItemSelected}
-            setCurrentOptionSelected={setCurrentOptionSelected}
+            setCurrentItemOptionSelect={setCurrentItemOptionSelect}
           />
         </Suspense>
       </Canvas>
       <BottomAppBar
         toggled={toggled}
         setToggled={setToggled}
+        animActive={animActive}
         open={open}
         setOpen={setOpen}
         handleStainChange={handleStainChange}
         handlePaintChange={handlePaintChange}
-        handleTextureChange={handleTextureChange}
+        gramps={gramps}
+        squatter={squatter}
+        block={block}
+        horse={horse}
+        shelfA={shelfA}
+        shelfB={shelfB}
+        shopItems={shopItems}
         currentItemSelected={currentItemSelected}
         setCurrentItemSelected={setCurrentItemSelected}
-        // currentColor={currentColor}
-        // currentSelect={currentSelect}
-        animActive={animActive}
-        currentOptionSelected={currentOptionSelected}
+        currentItemOptionSelect={currentItemOptionSelect}
+        currentItemOptionType={currentItemOptionType}
+        currentItemDescription={currentItemDescription}
       />
     </>
   );

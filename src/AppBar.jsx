@@ -34,34 +34,28 @@ import { products } from "./products";
 export default function BottomAppBar({
   open,
   setOpen,
-  handleStainChange,
-  handlePaintChange,
-  // handleTextureChange, // for finalizing custom wood texture files, may need to adjust all texture elements
-  currentItemSelected,
-  // setCurrentItemSelected, // for updating type of item selected from user input in Select box top right corner
-  currentOptionSelected,
   toggled,
   setToggled,
   animActive,
+  handleStainChange,
+  handlePaintChange,
+  shopItems,
+  currentItemSelected,
+  setCurrentItemSelected,
+  currentItemOptionSelect,
+  currentItemOptionType,
+  currentItemDescription,
 }) {
   const drawerBleeding = 60;
   // const settings = ["Profile", "Account", "Dashboard", "Logout"
   const pages = ["Shop", "Custom", "Portfolio", "Contact"];
   const stains = ["white", "natural", "black", "allBlack"];
-  const paints = ["alabaster", "pink", "basil", "yellow", "blue", "gray"];
-  const readymades = [
-    "GRAMPS",
-    "SQUATTER",
-    "(SHELF)",
-    "\\SHELF/",
-    "HORSE",
-    "BLOCK",
-  ];
+  const paints1 = ["alabaster", "pink", "basil"];
+  const paints2 = ["yellow", "blue", "gray"];
 
   const { height, width } = useWindowDimensions();
   const [cartCount, setCartCount] = useState(0);
-  const [itemNo, setItemNo] = useState(0);
-  const [selectedReadymade, setSelectedReadymade] = useState(readymades[0]);
+  const [itemNo, setItemNo] = useState(currentItemSelected.itemNo);
   const [mobileView, setMobileView] = useState(false);
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -83,23 +77,8 @@ export default function BottomAppBar({
   };
 
   useEffect(() => {
-    // console.log("window.innerHeight: ", height);
+    console.log("window.innerHeight: ", height);
   }, [height]);
-
-  useEffect(() => {
-    // console.log("currentItemSelected: ", currentItemSelected);
-  }, [currentItemSelected]);
-
-  useEffect(() => {
-    // console.log("currentOptionSelected: ", currentOptionSelected);
-  }, [currentOptionSelected]);
-
-  useEffect(() => {
-    // console.log("item value: ", item);
-    // switch logic here for matching to object options
-    // setCurrentItemSelected()
-    console.log(selectedReadymade);
-  }, [itemNo]);
 
   const spinUp = keyframes`
   from {
@@ -142,10 +121,14 @@ export default function BottomAppBar({
   }
 
   const handleItemChange = (event) => {
+    console.log("selected value: ", event.target.value);
     let tempNo = event.target.value;
     setItemNo(tempNo);
-    setSelectedReadymade(readymades[tempNo]);
-    console.log("item value: ", event.target.value);
+    let itemMatch = (element) => element.itemNo === tempNo;
+    if (itemMatch) {
+      let itemMatchIndex = shopItems.findIndex(itemMatch);
+      setCurrentItemSelected(shopItems[itemMatchIndex]);
+    }
   };
 
   const toggleDrawer = (newOpen) => () => {
@@ -210,7 +193,7 @@ export default function BottomAppBar({
     /iPad|iPhone|iPod/.test(navigator.userAgent);
 
   useEffect(() => {
-    // Check if using a touch control device, show/hide joystick
+    // Check if using a touch control device
     if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
       console.log("mobile view");
       setMobileView(true);
@@ -227,7 +210,6 @@ export default function BottomAppBar({
         <Global
           styles={{
             ".MuiDrawer-root > .MuiPaper-root": {
-              // height: `calc(( ${height <= 400 ? "50svh" : height <= 600 ? "35svh" : "25svh"} + ${drawerBleeding}px))`,
               height: `calc((${drawerBleeding * 4.75}px))`,
               overflow: "visible",
               background: "transparent",
@@ -516,7 +498,7 @@ export default function BottomAppBar({
                       </Box> */}
                       <Box
                         sx={{
-                          pb: 2.5,
+                          pb: 2,
                           // position: "absolute",
                           // backgroundColor: "secondary.light",
                           // opacity: "0.75",
@@ -587,11 +569,11 @@ export default function BottomAppBar({
                               },
                             }}
                           >
-                            {readymades.map((readymade, index) => (
+                            {shopItems.map((shopItem, index) => (
                               <MenuItem
-                                key={readymade}
+                                key={index}
                                 // onClick={handleCloseNavMenu}
-                                value={index}
+                                value={shopItem.itemNo}
                               >
                                 <Typography
                                   textAlign="center"
@@ -600,7 +582,7 @@ export default function BottomAppBar({
                                     fontFamily: "monospace",
                                   }}
                                 >
-                                  {readymade}
+                                  {shopItem.itemTitle}
                                 </Typography>
                               </MenuItem>
                             ))}
@@ -615,7 +597,10 @@ export default function BottomAppBar({
                       <ButtonGroup
                         variant="outlined"
                         aria-label="Basic button group"
-                        sx={{ mb: 1 }}
+                        sx={{
+                          mb: 1,
+                          // , flexWrap: "wrap"
+                        }}
                         color="primary"
                         size="small"
                       >
@@ -624,7 +609,7 @@ export default function BottomAppBar({
                             key={stain}
                             onClick={(e) => handleStainChange(e, stain)}
                             variant={
-                              currentOptionSelected === stain
+                              currentItemOptionSelect === stain
                                 ? "contained"
                                 : "outlined"
                             }
@@ -634,20 +619,27 @@ export default function BottomAppBar({
                           </Button>
                         ))}
                       </ButtonGroup>
-
+                      <Box sx={{ pb: 1 }}>
+                        <Typography variant="subtitle2" color="primary">
+                          {currentItemDescription}
+                        </Typography>
+                      </Box>
                       <ButtonGroup
                         variant="outlined"
                         aria-label="Basic button group"
-                        sx={{ mb: 2 }}
+                        sx={{
+                          mb: 0.15,
+                          // , flexWrap: "wrap"
+                        }}
                         color="primary"
                         size="small"
                       >
-                        {paints.map((paint) => (
+                        {paints1.map((paint) => (
                           <Button
                             key={paint}
                             onClick={(e) => handlePaintChange(e, paint)}
                             variant={
-                              currentOptionSelected === paint
+                              currentItemOptionSelect === paint
                                 ? "contained"
                                 : "outlined"
                             }
@@ -658,13 +650,33 @@ export default function BottomAppBar({
                         ))}
                       </ButtonGroup>
 
-                      <Box sx={{ pb: 1 }}>
-                        <Typography variant="subtitle2" color="primary">
-                          {product.description}
-                        </Typography>
-                      </Box>
+                      <ButtonGroup
+                        variant="outlined"
+                        aria-label="Basic button group"
+                        sx={{
+                          mb: 1,
+                          // , flexWrap: "wrap"
+                        }}
+                        color="primary"
+                        size="small"
+                      >
+                        {paints2.map((paint) => (
+                          <Button
+                            key={paint}
+                            onClick={(e) => handlePaintChange(e, paint)}
+                            variant={
+                              currentItemOptionSelect === paint
+                                ? "contained"
+                                : "outlined"
+                            }
+                            sx={{ m: 0 }}
+                          >
+                            {paint}
+                          </Button>
+                        ))}
+                      </ButtonGroup>
 
-                      <Box sx={{ pt: 1 }}>
+                      <Box sx={{ pt: 0.5 }}>
                         <Box
                           sx={{
                             position: "absolute",
@@ -716,7 +728,11 @@ export default function BottomAppBar({
                           color="primary"
                           onClick={handleAddToCart}
                         >
-                          {product.price}
+                          {currentItemOptionType === "stain"
+                            ? currentItemSelected.itemStainPrice
+                            : currentItemOptionType === "paint"
+                              ? currentItemSelected.itemPaintPrice
+                              : "error"}
                         </Button>
                       </Box>
                     </Box>
