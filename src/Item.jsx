@@ -10,6 +10,9 @@ export default class Item {
     setOptionSelect,
     optionSelectType,
     setOptionSelectType,
+    sizeSelect,
+    setSizeSelect,
+    sizes,
     itemStain,
     setItemStain,
     itemPaint,
@@ -28,6 +31,9 @@ export default class Item {
     this.optionSelect = optionSelect;
     this.setOptionSelect = setOptionSelect;
     this.optionSelectType = optionSelectType;
+    this.sizeSelect = sizeSelect;
+    this.setSizeSelect = setSizeSelect;
+    this.sizes = sizes;
     this.setOptionSelectType = setOptionSelectType;
     this.itemStain = itemStain;
     this.setItemStain = setItemStain;

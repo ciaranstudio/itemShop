@@ -45,6 +45,7 @@ export default function BottomAppBar({
   currentItemOptionSelect,
   currentItemOptionType,
   currentItemDescription,
+  currentItemSizeSelect,
 }) {
   const drawerBleeding = 60;
   // const settings = ["Profile", "Account", "Dashboard", "Logout"
@@ -210,7 +211,7 @@ export default function BottomAppBar({
         <Global
           styles={{
             ".MuiDrawer-root > .MuiPaper-root": {
-              height: `calc((${drawerBleeding * 4.75}px))`,
+              height: `calc((${drawerBleeding * 5.5}px))`,
               overflow: "visible",
               background: "transparent",
             },
@@ -251,6 +252,7 @@ export default function BottomAppBar({
                   aria-controls="menu-appbar"
                   aria-haspopup="true"
                   onClick={handleOpenNavMenu}
+                  sx={{ p: 0 }}
                 >
                   <MenuIcon sx={{ color: "primary.light" }} />
                 </IconButton>
@@ -340,7 +342,7 @@ export default function BottomAppBar({
                 }}
               >
                 <Tooltip title="View cart">
-                  <IconButton onClick={handleOpenUserMenu}>
+                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                     {/* <Avatar
                       alt="Remy Sharp"
                       src="/static/images/avatar/2.jpg"
@@ -466,280 +468,304 @@ export default function BottomAppBar({
               zIndex: 2,
             }}
           >
-            {products.map((product, index) => (
-              <Grid container key={index}>
-                <Grid item xs={12}>
-                  <Paper
+            <Grid container>
+              <Grid item xs={12}>
+                <Paper
+                  sx={{
+                    mt: 0,
+                    p: 2,
+                    borderTopLeftRadius: mobileView ? 0 : 8,
+                    borderTopRightRadius: mobileView ? 0 : 8,
+                    borderBottomLeftRadius: 8,
+                    borderBottomRightRadius: 8,
+                    background: "transparent",
+                    opacity: 0.75,
+                    border: "1px solid #9E9E9E",
+                    borderTopWidth: mobileView ? 0 : 1,
+                  }}
+                >
+                  <Box
                     sx={{
-                      mt: 0,
-                      p: 2,
-                      borderTopLeftRadius: mobileView ? 0 : 8,
-                      borderTopRightRadius: mobileView ? 0 : 8,
-                      borderBottomLeftRadius: 8,
-                      borderBottomRightRadius: 8,
+                      textAlign: "center",
+                      p: 1,
+                      pt: 0,
                       background: "transparent",
-                      opacity: 0.75,
-                      border: "1px solid #9E9E9E",
-                      borderTopWidth: mobileView ? 0 : 1,
                     }}
                   >
-                    <Box
-                      sx={{
-                        textAlign: "center",
-                        p: 1,
-                        pt: 0,
-                        background: "transparent",
-                      }}
-                    >
-                      {/* <Box sx={{ pt: 0, pb: 1 }}>
+                    {/* <Box sx={{ pt: 0, pb: 1 }}>
                         <Typography variant="h5" color="primary.main">
                           {product.name}
                         </Typography>
                       </Box> */}
-                      <Box
+                    <Box
+                      sx={{
+                        pb: 1,
+                        // position: "absolute",
+                        // backgroundColor: "secondary.light",
+                        // opacity: "0.75",
+                        borderRadius: 3,
+                        // top: 50,
+                        // left: `calc(100svw/2 - 5ch)`,
+                        // mr: 1,
+                        // p: 1,
+                        // py: 0.5,
+                        // mt: 1,
+                      }}
+                    >
+                      <FormControl
+                        variant="outlined"
+                        size="small"
                         sx={{
-                          pb: 2,
-                          // position: "absolute",
+                          minWidth: 90,
+                          maxWidth: 180,
+                          right: 0,
+                          // mr: 3,
                           // backgroundColor: "secondary.light",
                           // opacity: "0.75",
-                          borderRadius: 3,
-                          // top: 50,
-                          // left: `calc(100svw/2 - 5ch)`,
-                          // mr: 1,
-                          // p: 1,
-                          // py: 0.5,
-                          // mt: 1,
                         }}
                       >
-                        <FormControl
+                        <Select
+                          name="item-select"
+                          autoWidth
+                          value={itemNo}
+                          onChange={handleItemChange}
+                          inputProps={{
+                            MenuProps: {
+                              sx: { opacity: "1.0" },
+                              PaperProps: {
+                                sx: {
+                                  backgroundColor: `${theme.palette.secondary.main}`,
+                                  // backgroundColor: "transparent",
+                                  color: "primary.light",
+                                },
+                              },
+                            },
+                          }}
+                          sx={{
+                            fontFamily: "monospace",
+                            backgroundColor: "transparent",
+                            // backgroundColor: "secondary.light",
+                            // opacity: "0.85",
+                            color: "primary.main",
+                            ".MuiOutlinedInput-notchedOutline": {
+                              borderWidth: "0.5px",
+                              borderColor: "primary.light",
+                              WebkitFontSmoothing: "antialiased",
+                              // height: "90%",
+                              // top: -1,
+                            },
+                            "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                              borderWidth: "0.5px",
+                              borderColor: "primary.light",
+                              WebkitFontSmoothing: "antialiased",
+                            },
+                            "&:hover .MuiOutlinedInput-notchedOutline": {
+                              borderWidth: "0.5px",
+                              borderColor: "primary.light",
+                              WebkitFontSmoothing: "antialiased",
+                            },
+                            ".MuiSvgIcon-root ": {
+                              fill: `${theme.palette.primary.light} !important`,
+                            },
+                          }}
+                        >
+                          {shopItems.map((shopItem, index) => (
+                            <MenuItem
+                              key={index}
+                              // onClick={handleCloseNavMenu}
+                              value={shopItem.itemNo}
+                            >
+                              <Typography
+                                textAlign="center"
+                                sx={{
+                                  // color: "primary.main",
+                                  fontFamily: "monospace",
+                                }}
+                              >
+                                {shopItem.itemTitle}
+                              </Typography>
+                            </MenuItem>
+                          ))}
+                        </Select>
+                      </FormControl>
+                    </Box>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        pb: 1,
+                        justifyContent: "center",
+                      }}
+                    >
+                      <Typography variant="subtitle2" color="primary">
+                        {currentItemDescription}
+                      </Typography>
+                    </Box>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        pb: 1.5,
+                      }}
+                    >
+                      {currentItemSelected.sizes.map((size, index) => (
+                        <Button
+                          key={index}
+                          // onClick={(e) => handlePaintChange(e, paint)}
+                          variant={
+                            size === currentItemSizeSelect
+                              ? "contained"
+                              : "outlined"
+                          }
+                          sx={{ py: 0, px: 0.75, mx: 0.25 }}
+                        >
+                          {size}
+                        </Button>
+                      ))}
+                    </Box>
+                    {/* <Box sx={{ pt: 1.5, pb: 1.5 }}>
+                        <Typography variant="h5" color="primary.main">
+                          {product.name}
+                        </Typography>
+                      </Box> */}
+                    <ButtonGroup
+                      variant="outlined"
+                      aria-label="Basic button group"
+                      sx={{
+                        mb: 1.5,
+                        // , flexWrap: "wrap"
+                      }}
+                      color="primary"
+                      size="small"
+                    >
+                      {stains.map((stain) => (
+                        <Button
+                          key={stain}
+                          onClick={(e) => handleStainChange(e, stain)}
+                          variant={
+                            currentItemOptionSelect === stain
+                              ? "contained"
+                              : "outlined"
+                          }
+                          sx={{ m: 0 }}
+                        >
+                          {stain}
+                        </Button>
+                      ))}
+                    </ButtonGroup>
+
+                    <ButtonGroup
+                      variant="outlined"
+                      aria-label="Basic button group"
+                      sx={{
+                        mb: 0.5,
+                      }}
+                      color="primary"
+                      size="small"
+                    >
+                      {paints1.map((paint) => (
+                        <Button
+                          key={paint}
+                          onClick={(e) => handlePaintChange(e, paint)}
+                          variant={
+                            currentItemOptionSelect === paint
+                              ? "contained"
+                              : "outlined"
+                          }
+                          sx={{ m: 0 }}
+                        >
+                          {paint}
+                        </Button>
+                      ))}
+                    </ButtonGroup>
+
+                    <ButtonGroup
+                      variant="outlined"
+                      aria-label="Basic button group"
+                      sx={{
+                        mb: 1,
+                      }}
+                      color="primary"
+                      size="small"
+                    >
+                      {paints2.map((paint) => (
+                        <Button
+                          key={paint}
+                          onClick={(e) => handlePaintChange(e, paint)}
+                          variant={
+                            currentItemOptionSelect === paint
+                              ? "contained"
+                              : "outlined"
+                          }
+                          sx={{ m: 0 }}
+                        >
+                          {paint}
+                        </Button>
+                      ))}
+                    </ButtonGroup>
+
+                    <Box sx={{ pt: 0.5 }}>
+                      <Box
+                        sx={{
+                          position: "absolute",
+                          top: mobileView ? -12 : 0,
+                          left: 0,
+                        }}
+                      >
+                        <Button
                           variant="outlined"
                           size="small"
                           sx={{
-                            minWidth: 90,
-                            maxWidth: 180,
-                            right: 0,
-                            // mr: 3,
-                            // backgroundColor: "secondary.light",
-                            // opacity: "0.75",
+                            py: 0,
+                            ml: 1.5,
+                            mt: 1.5,
                           }}
-                        >
-                          <Select
-                            name="item-select"
-                            autoWidth
-                            value={itemNo}
-                            onChange={handleItemChange}
-                            inputProps={{
-                              MenuProps: {
-                                sx: { opacity: "1.0" },
-                                PaperProps: {
-                                  sx: {
-                                    backgroundColor: `${theme.palette.secondary.main}`,
-                                    // backgroundColor: "transparent",
-                                    color: "primary.light",
-                                  },
-                                },
-                              },
-                            }}
-                            sx={{
-                              fontFamily: "monospace",
-                              backgroundColor: "transparent",
-                              // backgroundColor: "secondary.light",
-                              // opacity: "0.85",
-                              color: "primary.main",
-                              ".MuiOutlinedInput-notchedOutline": {
-                                borderWidth: "0.5px",
-                                borderColor: "primary.light",
-                                WebkitFontSmoothing: "antialiased",
-                                // height: "90%",
-                                // top: -1,
-                              },
-                              "&.Mui-focused .MuiOutlinedInput-notchedOutline":
-                                {
-                                  borderWidth: "0.5px",
-                                  borderColor: "primary.light",
-                                  WebkitFontSmoothing: "antialiased",
-                                },
-                              "&:hover .MuiOutlinedInput-notchedOutline": {
-                                borderWidth: "0.5px",
-                                borderColor: "primary.light",
-                                WebkitFontSmoothing: "antialiased",
-                              },
-                              ".MuiSvgIcon-root ": {
-                                fill: `${theme.palette.primary.light} !important`,
-                              },
-                            }}
-                          >
-                            {shopItems.map((shopItem, index) => (
-                              <MenuItem
-                                key={index}
-                                // onClick={handleCloseNavMenu}
-                                value={shopItem.itemNo}
-                              >
-                                <Typography
-                                  textAlign="center"
-                                  sx={{
-                                    // color: "primary.main",
-                                    fontFamily: "monospace",
-                                  }}
-                                >
-                                  {shopItem.itemTitle}
-                                </Typography>
-                              </MenuItem>
-                            ))}
-                          </Select>
-                        </FormControl>
-                      </Box>
-                      {/* <Box sx={{ pt: 1.5, pb: 1.5 }}>
-                        <Typography variant="h5" color="primary.main">
-                          {product.name}
-                        </Typography>
-                      </Box> */}
-                      <ButtonGroup
-                        variant="outlined"
-                        aria-label="Basic button group"
-                        sx={{
-                          mb: 1,
-                          // , flexWrap: "wrap"
-                        }}
-                        color="primary"
-                        size="small"
-                      >
-                        {stains.map((stain) => (
-                          <Button
-                            key={stain}
-                            onClick={(e) => handleStainChange(e, stain)}
-                            variant={
-                              currentItemOptionSelect === stain
-                                ? "contained"
-                                : "outlined"
-                            }
-                            sx={{ m: 0 }}
-                          >
-                            {stain}
-                          </Button>
-                        ))}
-                      </ButtonGroup>
-                      <Box sx={{ pb: 1 }}>
-                        <Typography variant="subtitle2" color="primary">
-                          {currentItemDescription}
-                        </Typography>
-                      </Box>
-                      <ButtonGroup
-                        variant="outlined"
-                        aria-label="Basic button group"
-                        sx={{
-                          mb: 0.15,
-                          // , flexWrap: "wrap"
-                        }}
-                        color="primary"
-                        size="small"
-                      >
-                        {paints1.map((paint) => (
-                          <Button
-                            key={paint}
-                            onClick={(e) => handlePaintChange(e, paint)}
-                            variant={
-                              currentItemOptionSelect === paint
-                                ? "contained"
-                                : "outlined"
-                            }
-                            sx={{ m: 0 }}
-                          >
-                            {paint}
-                          </Button>
-                        ))}
-                      </ButtonGroup>
-
-                      <ButtonGroup
-                        variant="outlined"
-                        aria-label="Basic button group"
-                        sx={{
-                          mb: 1,
-                          // , flexWrap: "wrap"
-                        }}
-                        color="primary"
-                        size="small"
-                      >
-                        {paints2.map((paint) => (
-                          <Button
-                            key={paint}
-                            onClick={(e) => handlePaintChange(e, paint)}
-                            variant={
-                              currentItemOptionSelect === paint
-                                ? "contained"
-                                : "outlined"
-                            }
-                            sx={{ m: 0 }}
-                          >
-                            {paint}
-                          </Button>
-                        ))}
-                      </ButtonGroup>
-
-                      <Box sx={{ pt: 0.5 }}>
-                        <Box
-                          sx={{
-                            position: "absolute",
-                            top: mobileView ? -12 : 0,
-                            left: 0,
-                          }}
-                        >
-                          <Button
-                            variant="outlined"
-                            size="small"
-                            sx={{
-                              py: 0,
-                              ml: 1.5,
-                              mt: 1.5,
-                            }}
-                            color="primary"
-                          >
-                            images
-                          </Button>
-                        </Box>
-                        <Box
-                          sx={{
-                            position: "absolute",
-                            top: mobileView ? -12 : 0,
-                            right: 0,
-                          }}
-                        >
-                          <Button
-                            variant="outlined"
-                            size="small"
-                            sx={{
-                              py: 0,
-                              mr: 1.5,
-                              mt: 1.5,
-                            }}
-                            onClick={() => {
-                              setToggled(!toggled);
-                              console.log("clicked animate");
-                            }}
-                            color="primary"
-                            disabled={animActive ? true : false}
-                          >
-                            animate
-                          </Button>
-                        </Box>
-
-                        <Button
-                          variant="contained"
                           color="primary"
-                          onClick={handleAddToCart}
                         >
-                          {currentItemOptionType === "stain"
-                            ? currentItemSelected.itemStainPrice
-                            : currentItemOptionType === "paint"
-                              ? currentItemSelected.itemPaintPrice
-                              : "error"}
+                          images
                         </Button>
                       </Box>
+                      <Box
+                        sx={{
+                          position: "absolute",
+                          top: mobileView ? -12 : 0,
+                          right: 0,
+                        }}
+                      >
+                        <Button
+                          variant="outlined"
+                          size="small"
+                          sx={{
+                            py: 0,
+                            mr: 1.5,
+                            mt: 1.5,
+                          }}
+                          onClick={() => {
+                            setToggled(!toggled);
+                            console.log("clicked animate");
+                          }}
+                          color="primary"
+                          disabled={animActive ? true : false}
+                        >
+                          animate
+                        </Button>
+                      </Box>
+
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={handleAddToCart}
+                      >
+                        {currentItemOptionType === "stain"
+                          ? currentItemSelected.itemStainPrice
+                          : currentItemOptionType === "paint"
+                            ? currentItemSelected.itemPaintPrice
+                            : "error"}
+                      </Button>
                     </Box>
-                  </Paper>
-                </Grid>
+                  </Box>
+                </Paper>
               </Grid>
-            ))}
+            </Grid>
           </StyledBox>
         </SwipeableDrawer>
       </ThemeProvider>

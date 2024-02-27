@@ -20,6 +20,8 @@ function App() {
   const [grampsSelectedOption, setGrampsSelectedOption] = useState("white");
   const [grampsSelectedOptionType, setGrampsSelectedOptionType] =
     useState("stain");
+  const [grampsSizeSelect, setGrampsSizeSelect] = useState(0);
+  const grampSizes = ["16 x 16 x 18"]; //LDH
 
   const [squatterTexture, setSquatterTexture] = useState(
     textures.allBlackTexture,
@@ -29,6 +31,8 @@ function App() {
   const [squatterSelectedOption, setSquatterSelectedOption] = useState("black");
   const [squatterSelectedOptionType, setSquatterSelectedOptionType] =
     useState("stain");
+  const [squatterSizeSelect, setSquatterSizeSelect] = useState(0);
+  const squatterSizes = ["16 x 12 x 18"]; //LDH
 
   const [blockTexture, setBlockTexture] = useState(textures.allBlackTexture);
   const [blockStain, setBlockStain] = useState(textures.allBlackStain);
@@ -36,6 +40,8 @@ function App() {
   const [blockSelectedOption, setBlockSelectedOption] = useState("allBlack");
   const [blockSelectedOptionType, setBlockSelectedOptionType] =
     useState("stain");
+  const [blockSizeSelect, setBlockSizeSelect] = useState(0);
+  const blockSizes = ["8 x 8 x 16"]; //LDH
 
   const [horseTexture, setHorseTexture] = useState(textures.naturalTexture);
   const [horseStain, setHorseStain] = useState(textures.naturalStain);
@@ -43,13 +49,17 @@ function App() {
   const [horseSelectedOption, setHorseSelectedOption] = useState("natural");
   const [horseSelectedOptionType, setHorseSelectedOptionType] =
     useState("stain");
+  const [horseSizeSelect, setHorseSizeSelect] = useState(0);
+  const horseSizes = ["32 x 20 x 32"]; //LDH
 
   const [shelfATexture, setShelfATexture] = useState(textures.naturalTexture);
   const [shelfAStain, setShelfAStain] = useState(textures.naturalStain);
-  const [shelfAPaint, setShelfAPaint] = useState();
+  const [shelfAPaint, setShelfAPaint] = useState(); //LDH
   const [shelfASelectedOption, setShelfASelectedOption] = useState("natural");
   const [shelfASelectedOptionType, setShelfASelectedOptionType] =
     useState("stain");
+  const [shelfASizeSelect, setShelfASizeSelect] = useState(0);
+  const shelfASizes = ["16 x 4 x 4", "32 x 4 x 4"]; //LDH
 
   const [shelfBTexture, setShelfBTexture] = useState(textures.naturalTexture);
   const [shelfBStain, setShelfBStain] = useState(textures.naturalStain);
@@ -57,6 +67,8 @@ function App() {
   const [shelfBSelectedOption, setShelfBSelectedOption] = useState("natural");
   const [shelfBSelectedOptionType, setShelfBSelectedOptionType] =
     useState("stain");
+  const [shelfBSizeSelect, setShelfBSizeSelect] = useState(0);
+  const shelfBSizes = ["16 x 6 x 4", "32 x 6 x 4"]; //LDH
 
   const [grampsPosition, setGrampsPosition] = useState({ x: -10, y: 0, z: 10 });
   const [squatterPosition, setSquatterPosition] = useState({
@@ -80,6 +92,11 @@ function App() {
     setGrampsSelectedOption,
     grampsSelectedOptionType,
     setGrampsSelectedOptionType,
+    // size properties
+    grampsSizeSelect,
+    setGrampsSizeSelect,
+    grampSizes,
+    //
     grampsStain,
     setGrampsStain,
     grampsPaint,
@@ -101,6 +118,9 @@ function App() {
     setSquatterSelectedOption,
     squatterSelectedOptionType,
     setSquatterSelectedOptionType,
+    squatterSizeSelect,
+    setSquatterSizeSelect,
+    squatterSizes,
     squatterStain,
     setSquatterStain,
     squatterPaint,
@@ -122,6 +142,9 @@ function App() {
     setBlockSelectedOption,
     blockSelectedOptionType,
     setBlockSelectedOptionType,
+    blockSizeSelect,
+    setBlockSizeSelect,
+    blockSizes,
     blockStain,
     setBlockStain,
     blockPaint,
@@ -143,6 +166,9 @@ function App() {
     setHorseSelectedOption,
     horseSelectedOptionType,
     setHorseSelectedOptionType,
+    horseSizeSelect,
+    setHorseSizeSelect,
+    horseSizes,
     horseStain,
     setHorseStain,
     horsePaint,
@@ -164,6 +190,9 @@ function App() {
     setShelfASelectedOption,
     shelfASelectedOptionType,
     setShelfASelectedOptionType,
+    shelfASizeSelect,
+    setShelfASizeSelect,
+    shelfASizes,
     shelfAStain,
     setShelfAStain,
     shelfAPaint,
@@ -185,6 +214,9 @@ function App() {
     setShelfBSelectedOption,
     shelfBSelectedOptionType,
     setShelfBSelectedOptionType,
+    shelfBSizeSelect,
+    setShelfBSizeSelect,
+    shelfBSizes,
     shelfBStain,
     setShelfBStain,
     shelfBPaint,
@@ -196,6 +228,7 @@ function App() {
   );
 
   const shopItems = [gramps, squatter, block, horse, shelfA, shelfB];
+
   const [currentItemSelected, setCurrentItemSelected] = useState(gramps);
   const [currentItemOptionSelect, setCurrentItemOptionSelect] = useState(
     gramps.optionSelect,
@@ -206,11 +239,17 @@ function App() {
   const [currentItemDescription, setCurrentItemDescription] = useState(
     gramps.itemDescription,
   );
+  const [currentItemSizeSelect, setCurrentItemSizeSelect] = useState(
+    gramps.sizeSelect,
+  );
 
   useEffect(() => {
     setCurrentItemOptionSelect(currentItemSelected.optionSelect);
     setCurrentItemOptionType(currentItemSelected.optionSelectType);
     setCurrentItemDescription(currentItemSelected.itemDescription);
+    setCurrentItemSizeSelect(
+      currentItemSelected.sizes[currentItemSelected.sizeSelect],
+    );
   }, [currentItemSelected]);
 
   const handleStainChange = (event, color) => {
@@ -356,6 +395,7 @@ function App() {
         currentItemOptionSelect={currentItemOptionSelect}
         currentItemOptionType={currentItemOptionType}
         currentItemDescription={currentItemDescription}
+        currentItemSizeSelect={currentItemSizeSelect}
       />
     </>
   );
