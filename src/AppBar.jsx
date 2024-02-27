@@ -24,20 +24,15 @@ import { keyframes } from "@mui/system";
 import useWindowDimensions from "./useWindowDimensions";
 // TODO: replace 'products' with data retrieved from Shopify Storefront API
 import { products } from "./products";
-import CloseIcon from "@mui/icons-material/Close";
-
-// const theme = createTheme({
-// palette: {
-//   primary: {
-//     main: "#212121",
-//     light: "#757575",
-//   },
-
-//   secondary: {
-//     main: "#bdbdbd",
-//     light: "#E0E0E0",
-//   },
-// },
+// import CloseIcon from "@mui/icons-material/Close";
+import InfoIcon from "@mui/icons-material/Info";
+import Tooltip from "@mui/material/Tooltip";
+import Menu from "@mui/material/Menu";
+import MenuIcon from "@mui/icons-material/Menu";
+import AdbIcon from "@mui/icons-material/Adb";
+import Container from "@mui/material/Container";
+import CarpenterIcon from "@mui/icons-material/Carpenter";
+import Avatar from "@mui/material/Avatar";
 
 export default function BottomAppBar({
   open,
@@ -51,10 +46,33 @@ export default function BottomAppBar({
   setToggled,
   animActive,
 }) {
-  const drawerBleeding = 60;
+  const drawerBleeding = 42;
+
+  const pages = ["Products", "Pricing", "Blog"];
+  const settings = ["Profile", "Account", "Dashboard", "Logout"];
+
   const { height, width } = useWindowDimensions();
   const [cartCount, setCartCount] = useState(0);
   const [item, setItem] = useState(10);
+  const [mobileView, setMobileView] = useState(false);
+
+  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
+  };
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
 
   useEffect(() => {
     // console.log("window.innerHeight: ", height);
@@ -108,19 +126,6 @@ export default function BottomAppBar({
      transform: translate(0, 0);
 
   }`;
-
-  // for updating Leva debug controls values from user input as option while developing wood textures
-  // const [{ stainColor }, set] = useControls(() => ({
-  //   stainColor: "#ff0000",
-  // }));
-  // const [{ stainColor }, set] = useControls(() => ({
-  //   stainColor: {
-  //     value: "#ff0000",
-  //     // onChange: (value) => {
-  //     //   // imperatively update the world after Leva input changes
-  //     // },
-  //   },
-  // }));
 
   function handleAddToCart() {
     setCartCount(cartCount + 1);
@@ -178,20 +183,39 @@ export default function BottomAppBar({
   }));
 
   const Puller = styled("div")(({ theme }) => ({
-    width: 56,
-    height: 3,
+    width: 64,
+    height: 4,
     backgroundColor: open
-      ? theme.palette.secondary.main
+      ? theme.palette.secondary.light
       : theme.palette.primary.light,
     borderRadius: 3,
     position: "absolute",
-    top: 28,
-    left: "calc(50% - 28px)",
+    top: 5,
+    left: "calc(50% - 32px)",
   }));
 
   const iOS =
     typeof navigator !== "undefined" &&
     /iPad|iPhone|iPod/.test(navigator.userAgent);
+
+  useEffect(() => {
+    // Check if using a touch control device, show/hide joystick
+    if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
+      console.log("mobile view");
+      setMobileView(true);
+    } else {
+      console.log("not mobile view");
+      setMobileView(false);
+    }
+    window.addEventListener("pointerdown", (e) => {
+      e.preventDefault;
+    });
+    return () => {
+      window.removeEventListener("pointerdown", (e) => {
+        e.preventDefault;
+      });
+    };
+  }, []);
 
   return (
     <React.Fragment>
@@ -201,169 +225,296 @@ export default function BottomAppBar({
           styles={{
             ".MuiDrawer-root > .MuiPaper-root": {
               // height: `calc(( ${height <= 400 ? "50svh" : height <= 600 ? "35svh" : "25svh"} + ${drawerBleeding}px))`,
-              height: `calc((${drawerBleeding * 3.1}px))`, // the 0.1 over *3 is bottom gap
+              height: `calc((${drawerBleeding * 4.75}px))`, // the 0.1 over *3 is bottom gap
               overflow: "visible",
               background: "transparent",
             },
           }}
         />
-        <AppBar
-          position="fixed"
-          component="nav"
-          color="transparent"
-          elevation={0}
-          sx={{
-            // backgroundColor: "secondary.light",
-            // opacity: "0.75",
-            top: 0,
-          }}
-        >
-          <Toolbar>
-            <Box
-              component={"div"}
-              sx={{
-                flexGrow: 1,
-              }}
-            >
+        <AppBar position="fixed" color="transparent">
+          <Container maxWidth="xl">
+            <Toolbar disableGutters>
+              <CarpenterIcon
+                sx={{
+                  color: "primary.light",
+                  display: { xs: "none", md: "flex" },
+                  mr: 1,
+                }}
+              />
+              <Typography
+                variant="h6"
+                noWrap
+                component="a"
+                href="#app-bar-with-responsive-menu"
+                sx={{
+                  mr: 2,
+                  display: { xs: "none", md: "flex" },
+                  fontFamily: "monospace",
+                  fontWeight: 700,
+                  letterSpacing: ".3rem",
+                  color: "primary.light",
+                  textDecoration: "none",
+                }}
+              >
+                ELI GFELL
+              </Typography>
+
+              <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+                <IconButton
+                  size="large"
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  onClick={handleOpenNavMenu}
+                >
+                  <MenuIcon sx={{ color: "primary.light" }} />
+                </IconButton>
+                <Menu
+                  id="menu-appbar"
+                  anchorEl={anchorElNav}
+                  anchorOrigin={{
+                    vertical: "bottom",
+                    horizontal: "left",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "left",
+                  }}
+                  open={Boolean(anchorElNav)}
+                  onClose={handleCloseNavMenu}
+                  sx={{
+                    "& .MuiPaper-root": {
+                      backgroundColor: "secondary.light",
+                    },
+                    opacity: "0.8",
+                    display: { xs: "block", md: "none" },
+                  }}
+                >
+                  {pages.map((page) => (
+                    <MenuItem key={page} onClick={handleCloseNavMenu}>
+                      <Typography
+                        textAlign="center"
+                        sx={{ color: "primary.light", fontFamily: "monospace" }}
+                      >
+                        {page}
+                      </Typography>
+                    </MenuItem>
+                  ))}
+                </Menu>
+              </Box>
+              <CarpenterIcon
+                sx={{
+                  color: "primary.light",
+                  display: { xs: "flex", md: "none" },
+                  mr: 1,
+                }}
+              />
+              <Typography
+                variant="h5"
+                noWrap
+                component="a"
+                href="#app-bar-with-responsive-menu"
+                sx={{
+                  mr: 2,
+                  display: { xs: "flex", md: "none" },
+                  flexGrow: 1,
+                  fontFamily: "monospace",
+                  fontWeight: 700,
+                  letterSpacing: ".3rem",
+                  color: "primary.light",
+                  textDecoration: "none",
+                }}
+              >
+                ELI GFELL
+              </Typography>
+              <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+                {pages.map((page) => (
+                  <Button
+                    key={page}
+                    onClick={handleCloseNavMenu}
+                    sx={{ my: 2, color: "primary.light", display: "block" }}
+                  >
+                    {page}
+                  </Button>
+                ))}
+              </Box>
+
               <Box
                 sx={{
-                  // backgroundColor: "primary.main",
-                  // opacity: "0.75",
-                  width: "20.5ch",
-                  py: 0.25,
-                  px: 1,
-                  mt: 1,
-                  borderRadius: 3,
-                }}
-              >
-                <Typography
-                  variant="h3"
-                  component="div"
-                  color="secondary.light"
-                  // sx={{
-                  //   WebkitTextStroke: "0.125px #ffffff",
-                  //   WebkitFontSmoothing: "antialiased",
-                  // }}
-                >
-                  Eli Gfell
-                </Typography>
-              </Box>
-            </Box>
-
-            <Box
-              sx={{
-                // backgroundColor: "secondary.light",
-                // opacity: "0.75",
-                borderRadius: 3,
-                mr: 2,
-                p: 1,
-                py: 0.5,
-                mt: 1,
-              }}
-            >
-              {" "}
-              <FormControl
-                variant="outlined"
-                size="small"
-                sx={{
-                  minWidth: 90,
-                  maxWidth: 180,
-                  right: 0,
-                  // mr: 3,
                   // backgroundColor: "secondary.light",
                   // opacity: "0.75",
+                  borderRadius: 3,
+                  mr: 1,
+                  // p: 1,
+                  // py: 0.5,
+                  // mt: 1,
                 }}
               >
-                <Select
-                  autoWidth
-                  value={item}
-                  onChange={handleItemChange}
-                  inputProps={{
-                    MenuProps: {
-                      sx: { opacity: "0.85" },
-                      PaperProps: {
-                        sx: {
-                          backgroundColor: `${theme.palette.secondary.light}`,
-                          color: "primary.light",
+                {" "}
+                <FormControl
+                  variant="outlined"
+                  size="small"
+                  sx={{
+                    minWidth: 90,
+                    maxWidth: 180,
+                    right: 0,
+                    // mr: 3,
+                    // backgroundColor: "secondary.light",
+                    // opacity: "0.75",
+                  }}
+                >
+                  {/* <Tooltip title="Select item"> */}
+                  <Select
+                    autoWidth
+                    value={item}
+                    onChange={handleItemChange}
+                    inputProps={{
+                      MenuProps: {
+                        sx: { opacity: "0.8" },
+                        PaperProps: {
+                          sx: {
+                            backgroundColor: `${theme.palette.secondary.light}`,
+                            // backgroundColor: "transparent",
+                            color: "primary.light",
+                          },
                         },
                       },
-                    },
-                  }}
-                  sx={{
-                    backgroundColor: "secondary.light",
-                    // opacity: "0.85",
-                    color: "primary.light",
-                    ".MuiOutlinedInput-notchedOutline": {
-                      borderWidth: "0px",
-                      borderColor: "primary.light",
-                      WebkitFontSmoothing: "antialiased",
-                      // height: "90%",
-                      // top: -1,
-                    },
-                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                      borderWidth: "0px",
-                      borderColor: "primary.light",
-                      WebkitFontSmoothing: "antialiased",
-                    },
-                    "&:hover .MuiOutlinedInput-notchedOutline": {
-                      borderWidth: "0px",
-                      borderColor: "primary.light",
-                      WebkitFontSmoothing: "antialiased",
-                    },
-                    ".MuiSvgIcon-root ": {
-                      fill: `${theme.palette.secondary.main} !important`,
-                    },
-                  }}
-                >
-                  {/* TODO: replace with mapping values retrieved from Shopify storefront api */}
-                  <MenuItem key={1} value={10}>
-                    gramps
-                  </MenuItem>
-                  <MenuItem key={2} value={20} disabled>
-                    squatter
-                  </MenuItem>
-                  <MenuItem key={3} value={30} disabled>
-                    shelf
-                  </MenuItem>
-                  <MenuItem key={4} value={40} disabled>
-                    horse
-                  </MenuItem>
-                  <MenuItem key={5} value={50} disabled>
-                    block
-                  </MenuItem>
-                </Select>
-              </FormControl>
-            </Box>
+                    }}
+                    sx={{
+                      fontFamily: "monospace",
+                      backgroundColor: "transparent",
+                      // backgroundColor: "secondary.light",
+                      // opacity: "0.85",
+                      color: "primary.light",
+                      ".MuiOutlinedInput-notchedOutline": {
+                        borderWidth: "0.5px",
+                        borderColor: "primary.light",
+                        WebkitFontSmoothing: "antialiased",
+                        // height: "90%",
+                        // top: -1,
+                      },
+                      "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                        borderWidth: "0.5px",
+                        borderColor: "primary.light",
+                        WebkitFontSmoothing: "antialiased",
+                      },
+                      "&:hover .MuiOutlinedInput-notchedOutline": {
+                        borderWidth: "0.5px",
+                        borderColor: "primary.light",
+                        WebkitFontSmoothing: "antialiased",
+                      },
+                      ".MuiSvgIcon-root ": {
+                        fill: `${theme.palette.primary.light} !important`,
+                      },
+                    }}
+                  >
+                    {/* TODO: replace with mapping values retrieved from Shopify storefront api */}
+                    <MenuItem
+                      key={1}
+                      value={10}
+                      sx={{ fontFamily: "monospace" }}
+                    >
+                      gramps
+                    </MenuItem>
+                    <MenuItem
+                      key={2}
+                      value={20}
+                      sx={{ fontFamily: "monospace" }}
+                      disabled
+                    >
+                      squatter
+                    </MenuItem>
+                    <MenuItem
+                      key={3}
+                      value={30}
+                      sx={{ fontFamily: "monospace" }}
+                      disabled
+                    >
+                      shelf
+                    </MenuItem>
+                    <MenuItem
+                      key={4}
+                      value={40}
+                      sx={{ fontFamily: "monospace" }}
+                      disabled
+                    >
+                      horse
+                    </MenuItem>
+                    <MenuItem
+                      key={5}
+                      value={50}
+                      sx={{ fontFamily: "monospace" }}
+                      disabled
+                    >
+                      block
+                    </MenuItem>
+                  </Select>
+                  {/* </Tooltip> */}
+                </FormControl>
+              </Box>
 
-            {/* <Box component={"div"} sx={{ flexGrow: 1 }} /> */}
-            <Box
+              <Box
+                sx={{
+                  backgroundColor: "transparent",
+                  // backgroundColor: "secondary.light",
+                  // opacity: "0.85",
+                  // borderColor: "primary",
+                  // borderWidth: 1.5,
+                  // borderRadius: 1.5,
+                  // mt: 1,
+                  // mr: 0.4,
+                  // border: "0.75px solid #757575",
+                  // WebkitFontSmoothing: "antialiased",
+                }}
+              >
+                <Tooltip title="View cart">
+                  <IconButton color="inherit">
+                    <Badge
+                      badgeContent={cartCount}
+                      color="transparent"
+                      anchorOrigin={{
+                        vertical: "top",
+                        horizontal: "right",
+                      }}
+                    >
+                      <ShoppingCartIcon sx={{ color: "primary.light" }} />
+                    </Badge>
+                  </IconButton>
+                </Tooltip>
+              </Box>
+            </Toolbar>
+          </Container>
+        </AppBar>
+        {mobileView ? (
+          ""
+        ) : (
+          <Tooltip title="View item details">
+            <IconButton
+              onClick={toggleDrawer(true)}
+              color="inherit"
               sx={{
-                backgroundColor: "secondary.light",
-                // opacity: "0.85",
-                // borderColor: "primary",
-                // borderWidth: 1.5,
-                borderRadius: 1.5,
-                mt: 1,
-                mr: 0.4,
-                // border: "0.75px solid #757575",
-                // WebkitFontSmoothing: "antialiased",
+                position: "absolute",
+                bottom: drawerBleeding + 10,
+                left: `calc(100svw/2 - 12px)`,
               }}
             >
-              <IconButton color="inherit">
-                <Badge
-                  badgeContent={cartCount}
-                  color="primary"
-                  anchorOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
+              {!open ? (
+                <InfoIcon
+                  sx={{
+                    color: "primary.light",
+                    border: "0.75px solid #757575",
+                    borderRadius: Math.PI,
+                    fontSize: "inherit",
                   }}
-                >
-                  <ShoppingCartIcon sx={{ color: "primary.light" }} />
-                </Badge>
-              </IconButton>
-            </Box>
-          </Toolbar>
-        </AppBar>
+                />
+              ) : (
+                ""
+              )}
+            </IconButton>
+          </Tooltip>
+        )}
+
         <SwipeableDrawer
           disableBackdropTransition={!iOS}
           disableDiscovery={iOS}
@@ -373,7 +524,7 @@ export default function BottomAppBar({
           onOpen={toggleDrawer(true)}
           swipeAreaWidth={drawerBleeding}
           disableSwipeToOpen={false}
-          transitionDuration={500}
+          transitionDuration={200}
           ModalProps={{
             keepMounted: true,
             slotProps: {
@@ -381,52 +532,54 @@ export default function BottomAppBar({
             },
           }}
         >
-          <StyledBox
-            onClick={toggleDrawer(!open)}
-            sx={{
-              top: -drawerBleeding,
-              borderTopLeftRadius: 8,
-              borderTopRightRadius: 8,
-              visibility: "visible",
-              background: "#e8e8e8",
-              opacity: 0.75,
-              height: drawerBleeding - 1,
-              p: 2.75,
-              zIndex: 1,
-              // border: "1px solid #757575",
-            }}
-          >
-            <Puller />
-            {open ? (
-              <>
-                <IconButton
+          {mobileView ? (
+            <>
+              <StyledBox
+                onClick={toggleDrawer(!open)}
+                sx={{
+                  top: -drawerBleeding,
+                  borderTopLeftRadius: 8,
+                  borderTopRightRadius: 8,
+                  visibility: "visible",
+                  // background: "#e8e8e8",
+                  opacity: 0.75,
+                  height: -drawerBleeding,
+                  p: 2.75,
+                  zIndex: 1,
+                  border: "1px solid #9E9E9E",
+                  borderBottomWidth: 0,
+                }}
+              >
+                {open ? "" : <Puller />}
+                {/* <IconButton
                   color="inherit"
-                  sx={{ position: "absolute", top: 8, left: 8 }}
+                  sx={{ position: "absolute", top: 2, left: 3 }}
+                >
+                  <CloseIcon
+                    sx={{
+                      color: "secondary.light",
+                    }}
+                  />
+                </IconButton> */}
+              </StyledBox>
+            </>
+          ) : (
+            ""
+          )}
+          {/* <IconButton
+                  color="inherit"
+                  sx={{ position: "absolute", top: 0, right: 8 }}
                 >
                   <CloseIcon
                     sx={{
                       color: "secondary.main",
                     }}
                   />
-                </IconButton>
-                <IconButton
-                  color="inherit"
-                  sx={{ position: "absolute", top: 8, right: 8 }}
-                >
-                  <CloseIcon
-                    sx={{
-                      color: "secondary.main",
-                    }}
-                  />
-                </IconButton>
-              </>
-            ) : (
-              ""
-            )}
+                </IconButton> */}
 
-            {/* <Puller /> */}
+          {/* <Puller /> */}
 
-            {/* <Box sx={{ position: "absolute", top: 0, left: 0 }}>
+          {/* <Box sx={{ position: "absolute", top: 0, left: 0 }}>
               <Button
                 variant="contained"
                 size="small"
@@ -458,15 +611,15 @@ export default function BottomAppBar({
                 show design
               </Button>
             </Box> */}
-          </StyledBox>
           <StyledBox
             sx={{
-              top: 0,
-              height: `100svh-${drawerBleeding}`,
+              bottom: 0,
+              height: `100%-${drawerBleeding}`,
               overflow: "auto",
               background: "transparent",
             }}
           >
+            {mobileView ? <Puller /> : ""}
             {products.map((product, index) => (
               <Grid container key={index}>
                 <Grid item xs={12}>
@@ -474,11 +627,11 @@ export default function BottomAppBar({
                     sx={{
                       mt: 0,
                       p: 2,
-                      borderTopLeftRadius: "0px",
-                      borderTopRightRadius: "0px",
-                      borderBottomLeftRadius: "8px",
-                      borderBottomRightRadius: "8px",
-                      background: "#e8e8e8",
+                      borderTopLeftRadius: 8,
+                      borderTopRightRadius: 8,
+                      borderBottomLeftRadius: 8,
+                      borderBottomRightRadius: 8,
+                      background: "transparent",
                       opacity: 0.75,
                       border: "1px solid #9E9E9E",
                     }}
@@ -496,6 +649,7 @@ export default function BottomAppBar({
                           {product.name}
                         </Typography>
                       </Box> */}
+
                       <Box sx={{ pt: 1.5, pb: 1.5 }}>
                         <Typography variant="h5" color="primary.main">
                           {product.name}
@@ -550,11 +704,60 @@ export default function BottomAppBar({
                         </Button>
                       </ButtonGroup>
 
-                      {/* <Box sx={{ pb: 1 }}>
+                      <ButtonGroup
+                        variant="outlined"
+                        aria-label="Basic button group"
+                        sx={{ mb: 1 }}
+                        color="primary"
+                        size="small"
+                      >
+                        <Button
+                          onClick={(e) => handleColorChange(e, "white")}
+                          variant={
+                            currentOptionSelected === "white"
+                              ? "contained"
+                              : "outlined"
+                          }
+                        >
+                          white
+                        </Button>
+                        <Button
+                          onClick={(e) => handleColorChange(e, "natural")}
+                          variant={
+                            currentOptionSelected === "natural"
+                              ? "contained"
+                              : "outlined"
+                          }
+                        >
+                          natural
+                        </Button>
+                        <Button
+                          onClick={(e) => handleColorChange(e, "black")}
+                          variant={
+                            currentOptionSelected === "black"
+                              ? "contained"
+                              : "outlined"
+                          }
+                        >
+                          black
+                        </Button>
+                        <Button
+                          onClick={(e) => handleColorChange(e, "allBlack")}
+                          variant={
+                            currentOptionSelected === "allBlack"
+                              ? "contained"
+                              : "outlined"
+                          }
+                        >
+                          all black
+                        </Button>
+                      </ButtonGroup>
+
+                      <Box sx={{ pb: 0 }}>
                         <Typography variant="subtitle2" color="primary">
                           {product.description}
                         </Typography>
-                      </Box> */}
+                      </Box>
 
                       <Box sx={{ pt: 1 }}>
                         <Box sx={{ position: "absolute", top: 0, left: 0 }}>
