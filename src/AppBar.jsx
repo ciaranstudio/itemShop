@@ -28,8 +28,6 @@ import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import CarpenterIcon from "@mui/icons-material/Carpenter";
-// TODO: replace 'products' with data retrieved from Shopify Storefront API
-import { products } from "./products";
 
 export default function BottomAppBar({
   open,
@@ -39,6 +37,7 @@ export default function BottomAppBar({
   animActive,
   handleStainChange,
   handlePaintChange,
+  handleSizeChange,
   shopItems,
   currentItemSelected,
   setCurrentItemSelected,
@@ -131,6 +130,26 @@ export default function BottomAppBar({
       setCurrentItemSelected(shopItems[itemMatchIndex]);
     }
   };
+
+  function totalPrice() {
+    let calcualatedPrice = 0;
+    if (currentItemOptionType === "stain") {
+      if (currentItemSizeSelect === currentItemSelected.sizes[1]) {
+        calcualatedPrice =
+          currentItemSelected.itemStainPrice + currentItemSelected.sizeCost;
+      } else {
+        calcualatedPrice = currentItemSelected.itemStainPrice;
+      }
+    } else if (currentItemOptionType === "paint") {
+      if (currentItemSizeSelect === currentItemSelected.sizes[1]) {
+        calcualatedPrice =
+          currentItemSelected.itemPaintPrice + currentItemSelected.sizeCost;
+      } else {
+        calcualatedPrice = currentItemSelected.itemPaintPrice;
+      }
+    }
+    return calcualatedPrice;
+  }
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
@@ -610,7 +629,7 @@ export default function BottomAppBar({
                       {currentItemSelected.sizes.map((size, index) => (
                         <Button
                           key={index}
-                          // onClick={(e) => handlePaintChange(e, paint)}
+                          onClick={(e) => handleSizeChange(e, size, index)}
                           variant={
                             size === currentItemSizeSelect
                               ? "contained"
@@ -631,7 +650,7 @@ export default function BottomAppBar({
                       variant="outlined"
                       aria-label="Basic button group"
                       sx={{
-                        mb: 1.5,
+                        mb: 0.5,
                         // , flexWrap: "wrap"
                       }}
                       color="primary"
@@ -755,11 +774,7 @@ export default function BottomAppBar({
                         color="primary"
                         onClick={handleAddToCart}
                       >
-                        {currentItemOptionType === "stain"
-                          ? currentItemSelected.itemStainPrice
-                          : currentItemOptionType === "paint"
-                            ? currentItemSelected.itemPaintPrice
-                            : "error"}
+                        {totalPrice()}
                       </Button>
                     </Box>
                   </Box>

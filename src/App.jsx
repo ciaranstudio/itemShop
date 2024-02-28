@@ -88,15 +88,14 @@ function App() {
     "Handmade stool",
     900,
     750,
+    0,
     grampsSelectedOption,
     setGrampsSelectedOption,
     grampsSelectedOptionType,
     setGrampsSelectedOptionType,
-    // size properties
     grampsSizeSelect,
     setGrampsSizeSelect,
     grampSizes,
-    //
     grampsStain,
     setGrampsStain,
     grampsPaint,
@@ -114,6 +113,7 @@ function App() {
     "Handmade end table",
     700,
     600,
+    0,
     squatterSelectedOption,
     setSquatterSelectedOption,
     squatterSelectedOptionType,
@@ -138,6 +138,7 @@ function App() {
     "Handmade room block",
     400,
     250,
+    0,
     blockSelectedOption,
     setBlockSelectedOption,
     blockSelectedOptionType,
@@ -162,6 +163,7 @@ function App() {
     "Handmade saw horse",
     500,
     400,
+    0,
     horseSelectedOption,
     setHorseSelectedOption,
     horseSelectedOptionType,
@@ -186,6 +188,7 @@ function App() {
     "Handmade angle shelf",
     400,
     350,
+    200,
     shelfASelectedOption,
     setShelfASelectedOption,
     shelfASelectedOptionType,
@@ -210,6 +213,7 @@ function App() {
     "Handmade block shelf",
     400,
     350,
+    200,
     shelfBSelectedOption,
     setShelfBSelectedOption,
     shelfBSelectedOptionType,
@@ -332,6 +336,14 @@ function App() {
     }
   };
 
+  const handleSizeChange = (event, size, index) => {
+    event.preventDefault();
+    if (currentItemSelected.sizes[index] === size) {
+      currentItemSelected.setSizeSelect(index);
+      setCurrentItemSizeSelect(currentItemSelected.sizes[index]);
+    }
+  };
+
   return (
     <>
       <Leva hidden oneLineLabels />
@@ -383,6 +395,7 @@ function App() {
         setOpen={setOpen}
         handleStainChange={handleStainChange}
         handlePaintChange={handlePaintChange}
+        handleSizeChange={handleSizeChange}
         gramps={gramps}
         squatter={squatter}
         block={block}

@@ -6,6 +6,7 @@ export default class Item {
     itemDescription,
     itemStainPrice,
     itemPaintPrice,
+    sizeCost,
     optionSelect,
     setOptionSelect,
     optionSelectType,
@@ -28,6 +29,7 @@ export default class Item {
     this.itemDescription = itemDescription;
     this.itemStainPrice = itemStainPrice;
     this.itemPaintPrice = itemPaintPrice;
+    this.sizeCost = sizeCost;
     this.optionSelect = optionSelect;
     this.setOptionSelect = setOptionSelect;
     this.optionSelectType = optionSelectType;
