@@ -2,31 +2,47 @@ import { useFrame } from "@react-three/fiber";
 import { OrbitControls, useHelper } from "@react-three/drei";
 import { Perf } from "r3f-perf";
 import { useRef, useState, useEffect } from "react";
-import Stool from "./Stool.jsx";
+// import Stool from "./Stool.jsx";
 import controls from "./debugControls";
 import { CameraHelper } from "three";
 import * as THREE from "three";
-import Setting from "./Setting.jsx";
-import { useProgress, Sky } from "@react-three/drei";
+// import Setting from "./Setting.jsx";
+import { useProgress, Sky, Stage } from "@react-three/drei";
 import gsap from "gsap";
-import SketchUp from "./SketchUp.jsx";
+
 import Lights from "./Lights.jsx";
 
-export default function Experience({
-  open,
-  setOpen,
-  toggled,
-  setToggled,
-  animActive,
-  setAnimActive,
-  stoolDataA,
-  stoolDataB,
-  stoolDataC,
-  stoolDataD,
-  currentItemSelected,
-  setCurrentItemSelected,
-  // setCurrentOptionSelected,
-}) {
+import Room from "./Room.jsx";
+import Floor from "./Floor.jsx";
+
+import Stool from "./Stool.jsx";
+import Squatter from "./Squatter.jsx";
+import Block from "./Block.jsx";
+import Horse from "./Horse.jsx";
+
+import ShelfAShort from "./ShelfAShort.jsx";
+import ShelfALong from "./ShelfALong.jsx";
+
+import ShelfBShort from "./ShelfBShort.jsx";
+import ShelfBLong from "./ShelfBLong.jsx";
+
+export default function Experience(
+  {
+    // open,
+    // setOpen,
+    // toggled,
+    // setToggled,
+    // animActive,
+    // setAnimActive,
+    // stoolDataA,
+    // stoolDataB,
+    // stoolDataC,
+    // stoolDataD,
+    // currentItemSelected,
+    // setCurrentItemSelected,
+    // setCurrentOptionSelected,
+  },
+) {
   const loadingBarElement = document.querySelector(".loading-bar");
   const { active, progress, errors, item, loaded, total } = useProgress();
   const overlayOpacity = { value: 1 };
@@ -184,25 +200,18 @@ export default function Experience({
     }
   });
 
+  const stagePositionY = 60;
   return (
     <>
       {debugControls.perfVisible && <Perf position="top-left" />}
       <color args={["#27271a"]} attach="background" />
       <mesh geometry={overlayGeometry} material={overlayMaterial}></mesh>
-      {/* <mesh position={[0, 0, 0]} rotation-x={-Math.PI * 0.5}>
-        <planeGeometry args={[130, 130, 16, 16]} />
-        <meshBasicMaterial color="#bdbdbd" wireframe />
-      </mesh>
-      <mesh position={[0, 7, 0]}>
-        <boxGeometry args={[32, 13, 32, 8, 8, 8]} />
-        <meshBasicMaterial color="#757575" wireframe />
-      </mesh> */}
       <OrbitControls
         makeDefault
         ref={orbitRef}
         enableZoom={true}
         enablePan={false}
-        maxDistance={300}
+        maxDistance={500}
         minDistance={70}
         maxPolarAngle={Math.PI / 2}
         enableDamping={true}
@@ -212,7 +221,36 @@ export default function Experience({
         //   currentItemSelected.position.z,
         // ]}
       />
-      <SketchUp />
+      <group position={[0, stagePositionY, 0]}>
+        <Stage
+          shadows={{ type: "contact", opacity: 0.5, blur: 1 }}
+          environment="city"
+          preset="rembrandt"
+          adjustCamera={false}
+          intensity={0.75}
+          controls={orbitRef}
+          center={true}
+        >
+          <Room />
+          <Floor />
+          <Stool />
+          <Squatter />
+          <Block />
+          <Horse />
+          <ShelfAShort />
+          <ShelfALong />
+          <ShelfBShort />
+          <ShelfBLong />
+        </Stage>
+      </group>
+
+      <Lights />
+      <Sky
+        distance={4000000}
+        sunPosition={[1.5, 2, -10]}
+        // inclination={1}
+        // azimuth={0.85}
+      />
       {/* <group position={[0, 0, 0]}>
         <Stool
           data={stoolDataA}
@@ -230,67 +268,12 @@ export default function Experience({
           setAnimActive={setAnimActive}
           includeFloor={false}
         />
-        <Stool
-          data={stoolDataB}
-          currentItemSelected={currentItemSelected}
-          setCurrentItemSelected={setCurrentItemSelected}
-          // setCurrentOptionSelected={setCurrentOptionSelected}
-          ref={stoolRef}
-          scale={0.72}
-          open={open}
-          setOpen={setOpen}
-          toggled={toggled}
-          setToggled={setToggled}
-          onPointerMissed={handleOffClick}
-          animActive={animActive}
-          setAnimActive={setAnimActive}
-          includeFloor={false}
-        />
-        <Stool
-          data={stoolDataC}
-          currentItemSelected={currentItemSelected}
-          setCurrentItemSelected={setCurrentItemSelected}
-          // setCurrentOptionSelected={setCurrentOptionSelected}
-          ref={stoolRef}
-          scale={0.72}
-          open={open}
-          setOpen={setOpen}
-          toggled={toggled}
-          setToggled={setToggled}
-          onPointerMissed={handleOffClick}
-          animActive={animActive}
-          setAnimActive={setAnimActive}
-          includeFloor={false}
-        />
-        <Stool
-          data={stoolDataD}
-          currentItemSelected={currentItemSelected}
-          setCurrentItemSelected={setCurrentItemSelected}
-          // setCurrentOptionSelected={setCurrentOptionSelected}
-          ref={stoolRef}
-          scale={0.72}
-          open={open}
-          setOpen={setOpen}
-          toggled={toggled}
-          setToggled={setToggled}
-          onPointerMissed={handleOffClick}
-          animActive={animActive}
-          setAnimActive={setAnimActive}
-          includeFloor={false}
-        /> */}
-      {/* <Setting
+       <Setting
         scale={0.72}
         currentItemSelected={currentItemSelected}
         includeFloor={true}
-      /> */}
-      <Lights />
-      <Sky
-        distance={4000000}
-        sunPosition={[1.5, 2, -10]}
-        // inclination={1}
-        // azimuth={0.85}
       />
-      {/* </group> */}
+       </group> */}
     </>
   );
 }

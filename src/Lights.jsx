@@ -13,14 +13,14 @@ export default function Lights() {
           debugControls.directionalAposition.z,
         ]}
         intensity={debugControls.directionalAintensity}
-        shadow-normalBias={0.001}
-        shadow-mapSize-width={1024}
-        shadow-mapSize-height={1024}
-        shadow-camera-near={350}
+        // shadow-normalBias={0.001}
+        // shadow-mapSize-width={1024}
+        // shadow-mapSize-height={1024}
+        shadow-camera-near={250}
         shadow-camera-far={500}
-        shadow-camera-left={-100}
+        shadow-camera-left={-150}
         shadow-camera-bottom={-100}
-        shadow-camera-right={100}
+        shadow-camera-right={150}
         shadow-camera-top={100}
         // target={stoolRef.current}
       ></directionalLight>

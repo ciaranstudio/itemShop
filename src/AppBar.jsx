@@ -616,7 +616,8 @@ export default function BottomAppBar({
                       }}
                     >
                       <Typography variant="subtitle2" color="primary">
-                        {currentItemDescription}
+                        {currentItemDescription} with {currentItemOptionType}{" "}
+                        finish
                       </Typography>
                     </Box>
                     <Box
@@ -774,7 +775,7 @@ export default function BottomAppBar({
                         color="primary"
                         onClick={handleAddToCart}
                       >
-                        {totalPrice()}
+                        ${totalPrice()}
                       </Button>
                     </Box>
                   </Box>

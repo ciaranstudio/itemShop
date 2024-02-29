@@ -354,7 +354,7 @@ function App() {
         camera={{
           fov: 60, // was 45
           near: 0.1,
-          far: 400,
+          far: 675,
           // position: [
           //   currentItemSelected.position.x * 3,
           //   currentItemSelected.position.y + 5 * 3,
@@ -363,7 +363,7 @@ function App() {
           // decent close up position that still shows all models at a diamond angle to group
           // position: [50, 25, -70],
           // good far away angle looking into open wall side of scene
-          position: [120, 70, -140],
+          position: [350, 200, -300],
         }}
       >
         <Suspense fallback={<Placeholder />}>
