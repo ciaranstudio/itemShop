@@ -45,6 +45,8 @@ export default function BottomAppBar({
   currentItemOptionType,
   currentItemDescription,
   currentItemSizeSelect,
+  currentTexture,
+  currentColor,
 }) {
   const drawerBleeding = 60;
   // const settings = ["Profile", "Account", "Dashboard", "Logout"

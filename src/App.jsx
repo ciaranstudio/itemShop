@@ -13,73 +13,23 @@ function App() {
   const [open, setOpen] = useState(false);
   const [toggled, setToggled] = useState(false);
   const [animActive, setAnimActive] = useState(false);
-
-  const [grampsTexture, setGrampsTexture] = useState(textures.whiteTexture);
-  const [grampsStain, setGrampsStain] = useState(textures.whiteStain);
-  const [grampsPaint, setGrampsPaint] = useState();
-  const [grampsSelectedOption, setGrampsSelectedOption] = useState("white");
-  const [grampsSelectedOptionType, setGrampsSelectedOptionType] =
-    useState("stain");
-  const [grampsSizeSelect, setGrampsSizeSelect] = useState(0);
   const grampSizes = ["16 x 16 x 18"]; //LDH
-
-  const [squatterTexture, setSquatterTexture] = useState(
-    textures.allBlackTexture,
-  );
-  const [squatterStain, setSquatterStain] = useState(textures.blackStain);
-  const [squatterPaint, setSquatterPaint] = useState();
-  const [squatterSelectedOption, setSquatterSelectedOption] = useState("black");
-  const [squatterSelectedOptionType, setSquatterSelectedOptionType] =
-    useState("stain");
-  const [squatterSizeSelect, setSquatterSizeSelect] = useState(0);
   const squatterSizes = ["16 x 12 x 18"]; //LDH
-
-  const [blockTexture, setBlockTexture] = useState(textures.allBlackTexture);
-  const [blockStain, setBlockStain] = useState(textures.allBlackStain);
-  const [blockPaint, setBlockPaint] = useState();
-  const [blockSelectedOption, setBlockSelectedOption] = useState("allBlack");
-  const [blockSelectedOptionType, setBlockSelectedOptionType] =
-    useState("stain");
-  const [blockSizeSelect, setBlockSizeSelect] = useState(0);
   const blockSizes = ["8 x 8 x 16"]; //LDH
-
-  const [horseTexture, setHorseTexture] = useState(textures.naturalTexture);
-  const [horseStain, setHorseStain] = useState(textures.naturalStain);
-  const [horsePaint, setHorsePaint] = useState();
-  const [horseSelectedOption, setHorseSelectedOption] = useState("natural");
-  const [horseSelectedOptionType, setHorseSelectedOptionType] =
-    useState("stain");
-  const [horseSizeSelect, setHorseSizeSelect] = useState(0);
   const horseSizes = ["32 x 20 x 32"]; //LDH
-
-  const [shelfATexture, setShelfATexture] = useState(textures.naturalTexture);
-  const [shelfAStain, setShelfAStain] = useState(textures.naturalStain);
-  const [shelfAPaint, setShelfAPaint] = useState(); //LDH
-  const [shelfASelectedOption, setShelfASelectedOption] = useState("natural");
-  const [shelfASelectedOptionType, setShelfASelectedOptionType] =
-    useState("stain");
-  const [shelfASizeSelect, setShelfASizeSelect] = useState(0);
   const shelfASizes = ["16 x 4 x 4", "32 x 4 x 4"]; //LDH
-
-  const [shelfBTexture, setShelfBTexture] = useState(textures.naturalTexture);
-  const [shelfBStain, setShelfBStain] = useState(textures.naturalStain);
-  const [shelfBPaint, setShelfBPaint] = useState();
-  const [shelfBSelectedOption, setShelfBSelectedOption] = useState("natural");
-  const [shelfBSelectedOptionType, setShelfBSelectedOptionType] =
-    useState("stain");
-  const [shelfBSizeSelect, setShelfBSizeSelect] = useState(0);
   const shelfBSizes = ["16 x 6 x 4", "32 x 6 x 4"]; //LDH
 
-  const [grampsPosition, setGrampsPosition] = useState({ x: -10, y: 0, z: 10 });
-  const [squatterPosition, setSquatterPosition] = useState({
+  const grampsPosition = { x: -10, y: 0, z: 10 };
+  const squatterPosition = {
     x: -10,
     y: 0,
     z: -10,
-  });
-  const [blockPosition, setBlockPosition] = useState({ x: 10, y: 0, z: 10 });
-  const [horsePosition, setHorsePosition] = useState({ x: 10, y: 0, z: -10 });
-  const [shelfAPosition, setShelfAPosition] = useState({ x: 10, y: 0, z: 10 });
-  const [shelfBPosition, setShelfBPosition] = useState({ x: 10, y: 0, z: -10 });
+  };
+  const blockPosition = { x: 10, y: 0, z: 10 };
+  const horsePosition = { x: 10, y: 0, z: -10 };
+  const shelfAPosition = { x: 10, y: 0, z: 10 };
+  const shelfBPosition = { x: 10, y: 0, z: -10 };
 
   const gramps = new Item(
     "gramps",
@@ -89,21 +39,8 @@ function App() {
     900,
     750,
     0,
-    grampsSelectedOption,
-    setGrampsSelectedOption,
-    grampsSelectedOptionType,
-    setGrampsSelectedOptionType,
-    grampsSizeSelect,
-    setGrampsSizeSelect,
     grampSizes,
-    grampsStain,
-    setGrampsStain,
-    grampsPaint,
-    setGrampsPaint,
-    grampsTexture,
-    setGrampsTexture,
     grampsPosition,
-    setGrampsPosition,
   );
 
   const squatter = new Item(
@@ -114,21 +51,8 @@ function App() {
     700,
     600,
     0,
-    squatterSelectedOption,
-    setSquatterSelectedOption,
-    squatterSelectedOptionType,
-    setSquatterSelectedOptionType,
-    squatterSizeSelect,
-    setSquatterSizeSelect,
     squatterSizes,
-    squatterStain,
-    setSquatterStain,
-    squatterPaint,
-    setSquatterPaint,
-    squatterTexture,
-    setSquatterTexture,
     squatterPosition,
-    setSquatterPosition,
   );
 
   const block = new Item(
@@ -139,21 +63,8 @@ function App() {
     400,
     250,
     0,
-    blockSelectedOption,
-    setBlockSelectedOption,
-    blockSelectedOptionType,
-    setBlockSelectedOptionType,
-    blockSizeSelect,
-    setBlockSizeSelect,
     blockSizes,
-    blockStain,
-    setBlockStain,
-    blockPaint,
-    setBlockPaint,
-    blockTexture,
-    setBlockTexture,
     blockPosition,
-    setBlockPosition,
   );
 
   const horse = new Item(
@@ -164,21 +75,8 @@ function App() {
     500,
     400,
     0,
-    horseSelectedOption,
-    setHorseSelectedOption,
-    horseSelectedOptionType,
-    setHorseSelectedOptionType,
-    horseSizeSelect,
-    setHorseSizeSelect,
     horseSizes,
-    horseStain,
-    setHorseStain,
-    horsePaint,
-    setHorsePaint,
-    horseTexture,
-    setHorseTexture,
     horsePosition,
-    setHorsePosition,
   );
 
   const shelfA = new Item(
@@ -189,21 +87,8 @@ function App() {
     400,
     350,
     200,
-    shelfASelectedOption,
-    setShelfASelectedOption,
-    shelfASelectedOptionType,
-    setShelfASelectedOptionType,
-    shelfASizeSelect,
-    setShelfASizeSelect,
     shelfASizes,
-    shelfAStain,
-    setShelfAStain,
-    shelfAPaint,
-    setShelfAPaint,
-    shelfATexture,
-    setShelfATexture,
     shelfAPosition,
-    setShelfAPosition,
   );
 
   const shelfB = new Item(
@@ -214,21 +99,8 @@ function App() {
     400,
     350,
     200,
-    shelfBSelectedOption,
-    setShelfBSelectedOption,
-    shelfBSelectedOptionType,
-    setShelfBSelectedOptionType,
-    shelfBSizeSelect,
-    setShelfBSizeSelect,
     shelfBSizes,
-    shelfBStain,
-    setShelfBStain,
-    shelfBPaint,
-    setShelfBPaint,
-    shelfBTexture,
-    setShelfBTexture,
     shelfBPosition,
-    setShelfBPosition,
   );
 
   const shopItems = [gramps, squatter, block, horse, shelfA, shelfB];
@@ -247,6 +119,9 @@ function App() {
     gramps.sizeSelect,
   );
 
+  const [currentTexture, setCurrentTexture] = useState(textures.whiteTexture);
+  const [currentColor, setCurrentColor] = useState(textures.whiteStain);
+
   useEffect(() => {
     setCurrentItemOptionSelect(currentItemSelected.optionSelect);
     setCurrentItemOptionType(currentItemSelected.optionSelectType);
@@ -258,88 +133,48 @@ function App() {
 
   const handleStainChange = (event, color) => {
     event.preventDefault();
+    setCurrentItemOptionSelect(color);
+    setCurrentItemOptionType("stain");
     if (color === "white") {
-      currentItemSelected.setItemStain(textures.whiteStain);
-      currentItemSelected.setItemTexture(textures.whiteStain);
-      currentItemSelected.setOptionSelect(color);
-      currentItemSelected.setOptionSelectType("stain");
-      setCurrentItemOptionSelect(color);
-      setCurrentItemOptionType("stain");
+      setCurrentTexture(textures.whiteTexture);
+      setCurrentColor(textures.whiteStain);
     } else if (color === "natural") {
-      currentItemSelected.setItemStain(textures.naturalStain);
-      currentItemSelected.setItemTexture(textures.naturalTexture);
-      currentItemSelected.setOptionSelect(color);
-      currentItemSelected.setOptionSelectType("stain");
-      setCurrentItemOptionSelect(color);
-      setCurrentItemOptionType("stain");
+      setCurrentTexture(textures.naturalTexture);
+      setCurrentColor(textures.naturalStain);
     } else if (color === "black") {
-      currentItemSelected.setItemStain(textures.blackStain);
-      currentItemSelected.setItemTexture(textures.blackTexture);
-      currentItemSelected.setOptionSelect(color);
-      currentItemSelected.setOptionSelectType("stain");
-      setCurrentItemOptionSelect(color);
-      setCurrentItemOptionType("stain");
+      setCurrentTexture(textures.blackTexture);
+      setCurrentColor(textures.blackStain);
     } else if (color === "allBlack") {
-      currentItemSelected.setItemStain(textures.allBlackStain);
-      currentItemSelected.setItemTexture(textures.allBlackTexture);
-      currentItemSelected.setOptionSelect(color);
-      currentItemSelected.setOptionSelectType("stain");
-      setCurrentItemOptionSelect(color);
-      setCurrentItemOptionType("stain");
+      setCurrentTexture(textures.allBlackTexture);
+      setCurrentColor(textures.allBlackStain);
     }
   };
 
   const handlePaintChange = (event, color) => {
     event.preventDefault();
+    setCurrentItemOptionSelect(color);
+    setCurrentItemOptionType("paint");
+    setCurrentTexture(textures.paintTexture);
     if (color === "alabaster") {
-      currentItemSelected.setItemPaint(textures.alabasterPaint);
-      currentItemSelected.setItemTexture(textures.paintTexture);
-      currentItemSelected.setOptionSelect(color);
-      currentItemSelected.setOptionSelectType("paint");
-      setCurrentItemOptionSelect(color);
-      setCurrentItemOptionType("paint");
+      setCurrentColor(textures.alabasterPaint);
     } else if (color === "pink") {
-      currentItemSelected.setItemPaint(textures.pinkPaint);
-      currentItemSelected.setItemTexture(textures.paintTexture);
-      currentItemSelected.setOptionSelect(color);
-      currentItemSelected.setOptionSelectType("paint");
-      setCurrentItemOptionSelect(color);
-      setCurrentItemOptionType("paint");
+      setCurrentColor(textures.pinkPaint);
     } else if (color === "basil") {
-      currentItemSelected.setItemPaint(textures.basilPaint);
-      currentItemSelected.setItemTexture(textures.paintTexture);
-      currentItemSelected.setOptionSelect(color);
-      currentItemSelected.setOptionSelectType("paint");
-      setCurrentItemOptionSelect(color);
-      setCurrentItemOptionType("paint");
+      setCurrentColor(textures.basilPaint);
     } else if (color === "yellow") {
-      currentItemSelected.setItemPaint(textures.yellowPaint);
-      currentItemSelected.setItemTexture(textures.paintTexture);
-      currentItemSelected.setOptionSelect(color);
-      currentItemSelected.setOptionSelectType("paint");
-      setCurrentItemOptionSelect(color);
-      setCurrentItemOptionType("paint");
+      setCurrentColor(textures.yellowPaint);
     } else if (color === "blue") {
-      currentItemSelected.setItemPaint(textures.bluePaint);
-      currentItemSelected.setItemTexture(textures.paintTexture);
-      currentItemSelected.setOptionSelect(color);
-      currentItemSelected.setOptionSelectType("paint");
-      setCurrentItemOptionSelect(color);
-      setCurrentItemOptionType("paint");
+      setCurrentColor(textures.bluePaint);
     } else if (color === "gray") {
-      currentItemSelected.setItemPaint(textures.grayPaint);
-      currentItemSelected.setItemTexture(textures.paintTexture);
-      currentItemSelected.setOptionSelect(color);
-      currentItemSelected.setOptionSelectType("paint");
-      setCurrentItemOptionSelect(color);
-      setCurrentItemOptionType("paint");
+      setCurrentColor(textures.grayPaint);
     }
   };
 
+  // TODO: update to current sixe select general
   const handleSizeChange = (event, size, index) => {
     event.preventDefault();
     if (currentItemSelected.sizes[index] === size) {
-      currentItemSelected.setSizeSelect(index);
+      // currentItemSelected.setSizeSelect(index);
       setCurrentItemSizeSelect(currentItemSelected.sizes[index]);
     }
   };
@@ -355,6 +190,8 @@ function App() {
           fov: 60, // was 45
           near: 0.1,
           far: 675,
+          // near: 0.1,
+          // far: 5000,
           // position: [
           //   currentItemSelected.position.x * 3,
           //   currentItemSelected.position.y + 5 * 3,
@@ -374,16 +211,11 @@ function App() {
             setToggled={setToggled}
             animActive={animActive}
             setAnimActive={setAnimActive}
-            gramps={gramps}
-            squatter={squatter}
-            block={block}
-            horse={horse}
-            shelfA={shelfA}
-            shelfB={shelfB}
             shopItems={shopItems}
             currentItemSelected={currentItemSelected}
             setCurrentItemSelected={setCurrentItemSelected}
-            setCurrentItemOptionSelect={setCurrentItemOptionSelect}
+            currentTexture={currentTexture}
+            currentColor={currentColor}
           />
         </Suspense>
       </Canvas>
@@ -396,12 +228,6 @@ function App() {
         handleStainChange={handleStainChange}
         handlePaintChange={handlePaintChange}
         handleSizeChange={handleSizeChange}
-        gramps={gramps}
-        squatter={squatter}
-        block={block}
-        horse={horse}
-        shelfA={shelfA}
-        shelfB={shelfB}
         shopItems={shopItems}
         currentItemSelected={currentItemSelected}
         setCurrentItemSelected={setCurrentItemSelected}
@@ -409,6 +235,8 @@ function App() {
         currentItemOptionType={currentItemOptionType}
         currentItemDescription={currentItemDescription}
         currentItemSizeSelect={currentItemSizeSelect}
+        currentTexture={currentTexture}
+        currentColor={currentColor}
       />
     </>
   );
