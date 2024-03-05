@@ -1,18 +1,19 @@
 import { useState, useEffect, Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
-import Experience from "./Experience.jsx";
 import { Leva } from "leva";
-import BottomAppBar from "./AppBar.jsx";
 import * as THREE from "three";
+import Scene from "./components/Scene.jsx";
+import BottomAppBar from "./components/AppBar.jsx";
+import Placeholder from "./components/Placeholder.jsx";
+import Item from "./data/Item.jsx";
+import { textures } from "./data/textures.jsx";
 import "./style.css";
-import Placeholder from "./Placeholder.jsx";
-import Item from "./Item.jsx";
-import { textures } from "./textures.jsx";
 
 function App() {
   const [open, setOpen] = useState(false);
   const [toggled, setToggled] = useState(false);
   const [animActive, setAnimActive] = useState(false);
+
   const grampSizes = ["16 x 16 x 18"]; //LDH
   const squatterSizes = ["16 x 12 x 18"]; //LDH
   const blockSizes = ["8 x 8 x 16"]; //LDH
@@ -20,16 +21,16 @@ function App() {
   const shelfASizes = ["16 x 4 x 4", "32 x 4 x 4"]; //LDH
   const shelfBSizes = ["16 x 6 x 4", "32 x 6 x 4"]; //LDH
 
-  const grampsPosition = { x: -10, y: 0, z: 10 };
+  const grampsPosition = { x: 0, y: 0, z: 70 }; // [0, 0, 70]
   const squatterPosition = {
-    x: -10,
+    x: -70,
     y: 0,
-    z: -10,
-  };
-  const blockPosition = { x: 10, y: 0, z: 10 };
-  const horsePosition = { x: 10, y: 0, z: -10 };
-  const shelfAPosition = { x: 10, y: 0, z: 10 };
-  const shelfBPosition = { x: 10, y: 0, z: -10 };
+    z: 0,
+  }; // [-70, 0, 0]
+  const blockPosition = { x: 0, y: 0, z: -70 }; // [0, 0, -70]
+  const horsePosition = { x: 70, y: 0, z: 0 }; // [70, 0, 0]
+  const shelfAPosition = { x: 0, y: 0, z: 0 }; // currently [0, 0, 0] until Blender file position updated from dae default
+  const shelfBPosition = { x: 0, y: 0, z: 0 }; // currently [0, 0, 0] until Blender file position updated from dae default
 
   const gramps = new Item(
     "gramps",
@@ -106,30 +107,31 @@ function App() {
   const shopItems = [gramps, squatter, block, horse, shelfA, shelfB];
 
   const [currentItemSelected, setCurrentItemSelected] = useState(gramps);
-  const [currentItemOptionSelect, setCurrentItemOptionSelect] = useState(
-    gramps.optionSelect,
-  );
-  const [currentItemOptionType, setCurrentItemOptionType] = useState(
-    gramps.optionSelectType,
-  );
+  const [currentItemOptionSelect, setCurrentItemOptionSelect] =
+    useState("white");
+  const [currentItemOptionType, setCurrentItemOptionType] = useState("stain");
   const [currentItemDescription, setCurrentItemDescription] = useState(
     gramps.itemDescription,
   );
+  const [currentItemSizeSelectIndex, setCurrentItemSizeSelectIndex] =
+    useState(0);
   const [currentItemSizeSelect, setCurrentItemSizeSelect] = useState(
-    gramps.sizeSelect,
+    currentItemSelected.sizes[currentItemSizeSelectIndex],
   );
 
   const [currentTexture, setCurrentTexture] = useState(textures.whiteTexture);
   const [currentColor, setCurrentColor] = useState(textures.whiteStain);
 
   useEffect(() => {
-    setCurrentItemOptionSelect(currentItemSelected.optionSelect);
-    setCurrentItemOptionType(currentItemSelected.optionSelectType);
     setCurrentItemDescription(currentItemSelected.itemDescription);
-    setCurrentItemSizeSelect(
-      currentItemSelected.sizes[currentItemSelected.sizeSelect],
-    );
+    setCurrentItemSizeSelectIndex(0);
   }, [currentItemSelected]);
+
+  useEffect(() => {
+    setCurrentItemSizeSelect(
+      currentItemSelected.sizes[currentItemSizeSelectIndex],
+    );
+  }, [currentItemSizeSelectIndex]);
 
   const handleStainChange = (event, color) => {
     event.preventDefault();
@@ -170,13 +172,9 @@ function App() {
     }
   };
 
-  // TODO: update to current sixe select general
   const handleSizeChange = (event, size, index) => {
     event.preventDefault();
-    if (currentItemSelected.sizes[index] === size) {
-      // currentItemSelected.setSizeSelect(index);
-      setCurrentItemSizeSelect(currentItemSelected.sizes[index]);
-    }
+    setCurrentItemSizeSelectIndex(index);
   };
 
   return (
@@ -192,19 +190,21 @@ function App() {
           far: 675,
           // near: 0.1,
           // far: 5000,
+          position: [0, 60, 0],
+          // relative to current selected item position
           // position: [
           //   currentItemSelected.position.x * 3,
-          //   currentItemSelected.position.y + 5 * 3,
+          //   currentItemSelected.position.y + 10 * 3,
           //   currentItemSelected.position.z * 3,
           // ],
           // decent close up position that still shows all models at a diamond angle to group
           // position: [50, 25, -70],
           // good far away angle looking into open wall side of scene
-          position: [350, 200, -300],
+          // position: [350, 200, -300],
         }}
       >
         <Suspense fallback={<Placeholder />}>
-          <Experience
+          <Scene
             open={open}
             setOpen={setOpen}
             toggled={toggled}
@@ -235,6 +235,8 @@ function App() {
         currentItemOptionType={currentItemOptionType}
         currentItemDescription={currentItemDescription}
         currentItemSizeSelect={currentItemSizeSelect}
+        currentItemSizeSelectIndex={currentItemSizeSelectIndex}
+        setCurrentItemSizeSelectIndex={setCurrentItemSizeSelectIndex}
         currentTexture={currentTexture}
         currentColor={currentColor}
       />
