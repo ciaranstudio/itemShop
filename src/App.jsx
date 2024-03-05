@@ -3,7 +3,7 @@ import { Canvas } from "@react-three/fiber";
 import { Leva } from "leva";
 import * as THREE from "three";
 import Scene from "./components/Scene.jsx";
-import BottomAppBar from "./components/AppBar.jsx";
+import Menu from "./components/Menu.jsx";
 import Placeholder from "./components/Placeholder.jsx";
 import Item from "./data/Item.jsx";
 import { textures } from "./data/textures.jsx";
@@ -219,7 +219,7 @@ function App() {
           />
         </Suspense>
       </Canvas>
-      <BottomAppBar
+      <Menu
         toggled={toggled}
         setToggled={setToggled}
         animActive={animActive}
