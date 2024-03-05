@@ -22,15 +22,17 @@ function App() {
   const shelfBSizes = ["16 x 6 x 4", "32 x 6 x 4"]; //LDH
 
   const grampsPosition = { x: 0, y: 0, z: 70 }; // [0, 0, 70]
-  const squatterPosition = {
-    x: -70,
-    y: 0,
-    z: 0,
-  }; // [-70, 0, 0]
+  const squatterPosition = { x: -70, y: 0, z: 0 }; // [-70, 0, 0]
   const blockPosition = { x: 0, y: 0, z: -70 }; // [0, 0, -70]
   const horsePosition = { x: 70, y: 0, z: 0 }; // [70, 0, 0]
-  const shelfAPosition = { x: 0, y: 0, z: 0 }; // currently [0, 0, 0] until Blender file position updated from dae default
-  const shelfBPosition = { x: 0, y: 0, z: 0 }; // currently [0, 0, 0] until Blender file position updated from dae default
+  const shelfAPosition = [
+    { x: -118.3125, y: 0, z: -81.125 },
+    { x: -118.3125, y: 0, z: -40.6 },
+  ];
+  const shelfBPosition = [
+    { x: 33.685, y: 0, z: 118.25 },
+    { x: 73.685, y: 0, z: 118.25 },
+  ];
 
   const gramps = new Item(
     "gramps",

@@ -55,6 +55,8 @@ import { ShelfBLongShelf } from "./shelfBLong/ShelfBLongShelf.jsx";
 import { Floor } from "./room/Floor.jsx";
 import { Walls } from "./room/Walls.jsx";
 
+// import { ShelfPositions } from "./room/ShelfPositions.jsx";
+
 import controls from "../helpers/debugControls";
 
 export default function Scene({
@@ -653,7 +655,11 @@ export default function Scene({
           {/* shelfAShort */}
           <group
             ref={shelfAShortRef}
-            position={[shelfA.position.x, shelfA.position.y, shelfA.position.z]}
+            position={[
+              shelfA.position[0].x,
+              shelfA.position[0].y,
+              shelfA.position[0].z,
+            ]}
           >
             <mesh castShadow>
               <ShelfAShortCleat
@@ -683,7 +689,11 @@ export default function Scene({
           {/* shelfALong */}
           <group
             ref={shelfALongRef}
-            position={[shelfB.position.x, shelfB.position.y, shelfB.position.z]}
+            position={[
+              shelfA.position[1].x,
+              shelfA.position[1].y,
+              shelfA.position[1].z,
+            ]}
           >
             <mesh castShadow>
               <ShelfALongCleat
@@ -711,7 +721,14 @@ export default function Scene({
             </mesh>
           </group>
           {/* shelfBShort */}
-          <group ref={shelfBShortRef}>
+          <group
+            ref={shelfBShortRef}
+            position={[
+              shelfB.position[0].x,
+              shelfB.position[0].y,
+              shelfB.position[0].z,
+            ]}
+          >
             <mesh castShadow>
               <ShelfBShortCleat
                 map={colorMap}
@@ -738,7 +755,14 @@ export default function Scene({
             </mesh>
           </group>
           {/* shelfBLong */}
-          <group ref={shelfBLongRef}>
+          <group
+            ref={shelfBLongRef}
+            position={[
+              shelfB.position[1].x,
+              shelfB.position[1].y,
+              shelfB.position[1].z,
+            ]}
+          >
             <mesh castShadow>
               <ShelfBLongCleat
                 map={colorMap}
@@ -781,6 +805,10 @@ export default function Scene({
           <mesh receiveShadow>
             <Walls />
           </mesh>
+          {/* shelfPositions */}
+          {/* <mesh receiveShadow>
+            <ShelfPositions />
+          </mesh> */}
         </Stage>
       </group>
     </>
