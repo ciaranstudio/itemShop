@@ -8,14 +8,15 @@
 		{
 			"name":"Scene",
 			"nodes":[
-				0
+				0,
+				1
 			]
 		}
 	],
 	"nodes":[
 		{
 			"mesh":0,
-			"name":"shelfBShort",
+			"name":"shelfBShortInner",
 			"rotation":[
 				0,
 				-0.7071067094802856,
@@ -23,9 +24,24 @@
 				0.7071068286895752
 			],
 			"translation":[
-				0.0021124640479683876,
-				46.003013610839844,
-				-3.249999761581421
+				-0.000762939453125,
+				46.32771682739258,
+				-2
+			]
+		},
+		{
+			"mesh":1,
+			"name":"shelfBShortOuter",
+			"rotation":[
+				0,
+				-0.7071067094802856,
+				0,
+				0.7071068286895752
+			],
+			"translation":[
+				-0.000762939453125,
+				45.9835090637207,
+				-3.2497711181640625
 			]
 		}
 	],
@@ -47,7 +63,7 @@
 	],
 	"meshes":[
 		{
-			"name":"ID241",
+			"name":"ID247",
 			"primitives":[
 				{
 					"attributes":{
@@ -59,11 +75,59 @@
 					"material":0
 				}
 			]
+		},
+		{
+			"name":"ID241",
+			"primitives":[
+				{
+					"attributes":{
+						"POSITION":4,
+						"NORMAL":5,
+						"TEXCOORD_0":6
+					},
+					"indices":7,
+					"material":0
+				}
+			]
 		}
 	],
 	"accessors":[
 		{
 			"bufferView":0,
+			"componentType":5126,
+			"count":36,
+			"max":[
+				2,
+				0.9027776718139648,
+				7.25
+			],
+			"min":[
+				-3.25,
+				-1.5972223281860352,
+				-7.25
+			],
+			"type":"VEC3"
+		},
+		{
+			"bufferView":1,
+			"componentType":5126,
+			"count":36,
+			"type":"VEC3"
+		},
+		{
+			"bufferView":2,
+			"componentType":5126,
+			"count":36,
+			"type":"VEC2"
+		},
+		{
+			"bufferView":3,
+			"componentType":5123,
+			"count":60,
+			"type":"SCALAR"
+		},
+		{
+			"bufferView":4,
 			"componentType":5126,
 			"count":178,
 			"max":[
@@ -79,19 +143,19 @@
 			"type":"VEC3"
 		},
 		{
-			"bufferView":1,
+			"bufferView":5,
 			"componentType":5126,
 			"count":178,
 			"type":"VEC3"
 		},
 		{
-			"bufferView":2,
+			"bufferView":6,
 			"componentType":5126,
 			"count":178,
 			"type":"VEC2"
 		},
 		{
-			"bufferView":3,
+			"bufferView":7,
 			"componentType":5123,
 			"count":420,
 			"type":"SCALAR"
@@ -100,32 +164,56 @@
 	"bufferViews":[
 		{
 			"buffer":0,
-			"byteLength":2136,
+			"byteLength":432,
 			"byteOffset":0,
 			"target":34962
 		},
 		{
 			"buffer":0,
+			"byteLength":432,
+			"byteOffset":432,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":288,
+			"byteOffset":864,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":120,
+			"byteOffset":1152,
+			"target":34963
+		},
+		{
+			"buffer":0,
 			"byteLength":2136,
-			"byteOffset":2136,
+			"byteOffset":1272,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":2136,
+			"byteOffset":3408,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":1424,
-			"byteOffset":4272,
+			"byteOffset":5544,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":840,
-			"byteOffset":5696,
+			"byteOffset":6968,
 			"target":34963
 		}
 	],
 	"buffers":[
 		{
-			"byteLength":6536,
+			"byteLength":7808,
 			"uri":"shelfBShortShelf.bin"
 		}
 	]
