@@ -53,7 +53,7 @@ import { ShelfBLongCleat } from "./shelfBLong/ShelfBLongCleat.jsx";
 import { ShelfBLongShelf } from "./shelfBLong/ShelfBLongShelf.jsx";
 
 import { Floor } from "./room/Floor.jsx";
-import { WallsAndMoulding } from "./room/WallsAndMoulding.jsx";
+import { Walls } from "./room/Walls.jsx";
 
 import controls from "../helpers/debugControls";
 
@@ -767,19 +767,19 @@ export default function Scene({
           {/* floor */}
           <mesh receiveShadow>
             <Floor
-              map={colorMap}
-              // displacementMap={displacementMap}
-              normalMap={normalMap}
-              roughnessMap={roughnessMap}
-              metalnessMap={metalnessMap}
-              // aoMap={aoMap}
-              currentColor={currentColor}
-              currentTexture={currentTexture}
+            // map={colorMap}
+            // // displacementMap={displacementMap}
+            // normalMap={normalMap}
+            // roughnessMap={roughnessMap}
+            // metalnessMap={metalnessMap}
+            // // aoMap={aoMap}
+            // currentColor={currentColor}
+            // currentTexture={currentTexture}
             />
           </mesh>
           {/* wallsAndMoulding */}
           <mesh receiveShadow>
-            <WallsAndMoulding />
+            <Walls />
           </mesh>
         </Stage>
       </group>
