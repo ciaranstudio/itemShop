@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import * as THREE from "three";
 import { CameraHelper } from "three";
-import { DirectionalLightHelper } from "three";
+// import { DirectionalLightHelper } from "three";
 import { useFrame } from "@react-three/fiber";
 
 import {
@@ -98,10 +98,10 @@ export default function Scene({
 
   const [gramps, squatter, block, horse, shelfA, shelfB] = shopItems;
 
-  useHelper(dirLightA, DirectionalLightHelper, 1, "red");
-  useHelper(dirLightB, DirectionalLightHelper, 1, "blue");
-  useHelper(dirLightC, DirectionalLightHelper, 1, "green");
-  useHelper(dirLightD, DirectionalLightHelper, 1, "purple");
+  // useHelper(dirLightA, DirectionalLightHelper, 1, "red");
+  // useHelper(dirLightB, DirectionalLightHelper, 1, "blue");
+  // useHelper(dirLightC, DirectionalLightHelper, 1, "green");
+  // useHelper(dirLightD, DirectionalLightHelper, 1, "purple");
 
   const loadingBarElement = document.querySelector(".loading-bar");
   const { active, progress, errors, item, loaded, total } = useProgress();
@@ -154,13 +154,13 @@ export default function Scene({
   }, [progress]);
 
   const debugControls = controls();
-  const [initialLoad, setInitialLoad] = useState(false);
+  // const [initialLoad, setInitialLoad] = useState(false);
   const [controlsDragging, setControlsDragging] = useState(false);
-  const [cameraPosition, setCameraPosition] = useState(null);
+  // const [cameraPosition, setCameraPosition] = useState(null);
 
   const orbitRef = useRef();
-  const shadowCameraRef = useRef();
-  useHelper(shadowCameraRef, CameraHelper, 1, "lightBlue");
+  // const shadowCameraRef = useRef();
+  // useHelper(shadowCameraRef, CameraHelper, 1, "lightBlue");
   const vec = new THREE.Vector3();
 
   const handleOffClick = () => {
@@ -196,8 +196,7 @@ export default function Scene({
    */
 
   useEffect(() => {
-    setInitialLoad(true);
-
+    // setInitialLoad(true);
     if (orbitRef.current) {
       orbitRef.current.addEventListener("start", () => {
         console.log("started dragging!");
@@ -212,7 +211,7 @@ export default function Scene({
         "end",
         () => {
           console.log("stopped dragging!");
-          setCameraPosition(orbitRef.current.object.position);
+          // setCameraPosition(orbitRef.current.object.position);
           setControlsDragging(false);
           // setOpen(true);
         },
@@ -249,27 +248,42 @@ export default function Scene({
     };
   }, []);
 
-  // useFrame(() => {
-  //   if (initialLoad && !controlsDragging && orbitRef.current) {
-  //     if (cameraPosition == null) {
-  //       orbitRef.current.object.position.lerp(vec.set(-35, 40, 60), 0.01);
-  //       orbitRef.current.object.updateProjectionMatrix();
-  //       orbitRef.current.update();
-  //     } else {
-  //       orbitRef.current.object.position.lerp(
-  //         vec.set(
-  //           currentItemSelected.position.x * 4, // * 6
-  //           currentItemSelected.position.y + 7 * 4, // * 6
-  //           currentItemSelected.position.z * 4, // * 6
-  //         ),
-  //         0.03,
-  //       );
-  //       orbitRef.current.object.updateProjectionMatrix();
-  //       orbitRef.current.update();
-  //     }
-  //     return null;
-  //   }
-  // });
+  useFrame(() => {
+    if (!controlsDragging && orbitRef.current) {
+      // if (cameraPosition == null) {
+      orbitRef.current.object.position.lerp(vec.set(250, 100, -450), 0.01);
+      // orbitRef.current.object.position.lerp(
+      //   vec.set(
+      //     currentItemSelected.position.x * 4, // * 6
+      //     currentItemSelected.position.y + 7 * 4, // * 6
+      //     currentItemSelected.position.z * 4, // * 6
+      //   ),
+      //   0.03,
+      // );
+      orbitRef.current.object.updateProjectionMatrix();
+      orbitRef.current.update();
+      // } else {
+      // orbitRef.current.object.position.lerp(
+      //   vec.set(
+      //     currentItemSelected.position.x * 4, // * 6
+      //     currentItemSelected.position.y + 7 * 4, // * 6
+      //     currentItemSelected.position.z * 4, // * 6
+      //   ),
+      //   0.03,
+      // );
+      // orbitRef.current.object.target.lerp(
+      //   vec.set(
+      //     currentItemSelected.position.x,
+      //     currentItemSelected.position.y,
+      //     currentItemSelected.position.z,
+      //   ),
+      //   0.03,
+      // );
+      // orbitRef.current.object.updateProjectionMatrix();
+      // orbitRef.current.update();
+      // }
+    } else return null;
+  });
 
   const stagePositionY = 60;
 
@@ -285,19 +299,19 @@ export default function Scene({
         enablePan={false}
         maxDistance={500}
         minDistance={70}
-        maxPolarAngle={Math.PI / 2}
+        maxPolarAngle={Math.PI / 2 - Math.PI / 16}
         enableDamping={true}
-        target={[
-          currentItemSizeSelectIndex === 0
-            ? currentItemSelected.positionA.x
-            : currentItemSelected.positionB.x,
-          currentItemSizeSelectIndex === 0
-            ? currentItemSelected.positionA.y
-            : currentItemSelected.positionB.y,
-          currentItemSizeSelectIndex === 0
-            ? currentItemSelected.positionA.z
-            : currentItemSelected.positionB.z,
-        ]}
+        // target={[
+        //   currentItemSizeSelectIndex === 0
+        //     ? currentItemSelected.positionA.x
+        //     : currentItemSelected.positionB.x,
+        //   currentItemSizeSelectIndex === 0
+        //     ? currentItemSelected.positionA.y
+        //     : currentItemSelected.positionB.y,
+        //   currentItemSizeSelectIndex === 0
+        //     ? currentItemSelected.positionA.z
+        //     : currentItemSelected.positionB.z,
+        // ]}
       />
       <Sky
         distance={4000000}
