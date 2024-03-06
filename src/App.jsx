@@ -127,6 +127,7 @@ function App() {
   const shopItems = [gramps, squatter, block, horse, shelfA, shelfB];
 
   const [currentItemSelected, setCurrentItemSelected] = useState(gramps);
+  const [previousItemSelected, setPreviousItemSelected] = useState(block);
   const [currentItemOptionSelect, setCurrentItemOptionSelect] =
     useState("white");
   const [currentItemOptionType, setCurrentItemOptionType] = useState("stain");
@@ -145,6 +146,8 @@ function App() {
   useEffect(() => {
     setCurrentItemDescription(currentItemSelected.itemDescription);
     setCurrentItemSizeSelectIndex(0);
+    console.log("previous item selected: ", previousItemSelected);
+    console.log("current item selected: ", currentItemSelected);
   }, [currentItemSelected]);
 
   useEffect(() => {
@@ -207,10 +210,10 @@ function App() {
         camera={{
           fov: 60, // was 45
           near: 0.1,
-          far: 675,
+          far: 700,
           // near: 0.1,
           // far: 5000,
-          position: [0, 60, 0],
+          // position: [0, 60, 0],
           // relative to current selected item position
           // position: [
           //   currentItemSelected.position.x * 3,
@@ -220,7 +223,7 @@ function App() {
           // decent close up position that still shows all models at a diamond angle to group
           // position: [50, 25, -70],
           // good far away angle looking into open wall side of scene
-          // position: [350, 200, -300],
+          position: [350, 200, -300],
         }}
       >
         <Suspense fallback={<Placeholder />}>
@@ -234,6 +237,8 @@ function App() {
             shopItems={shopItems}
             currentItemSelected={currentItemSelected}
             setCurrentItemSelected={setCurrentItemSelected}
+            previousItemSelected={previousItemSelected}
+            setPreviousItemSelected={setPreviousItemSelected}
             currentItemSizeSelectIndex={currentItemSizeSelectIndex}
             currentTexture={currentTexture}
             currentColor={currentColor}
@@ -252,6 +257,8 @@ function App() {
         shopItems={shopItems}
         currentItemSelected={currentItemSelected}
         setCurrentItemSelected={setCurrentItemSelected}
+        previousItemSelected={previousItemSelected}
+        setPreviousItemSelected={setPreviousItemSelected}
         currentItemOptionSelect={currentItemOptionSelect}
         currentItemOptionType={currentItemOptionType}
         currentItemDescription={currentItemDescription}

@@ -1,12 +1,12 @@
 import { useRef, useState, useEffect } from "react";
 import * as THREE from "three";
-import { CameraHelper } from "three";
+// import { CameraHelper } from "three";
 // import { DirectionalLightHelper } from "three";
 import { useFrame } from "@react-three/fiber";
 
 import {
   OrbitControls,
-  useHelper,
+  // useHelper,
   useTexture,
   useProgress,
   Sky,
@@ -14,6 +14,9 @@ import {
 } from "@react-three/drei";
 
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+
+// import { useCursor } from "@react-three/drei";
 import { Perf } from "r3f-perf";
 
 import { BlockShelves } from "./block/BlockShelves.jsx";
@@ -69,6 +72,8 @@ export default function Scene({
   shopItems,
   currentItemSelected,
   setCurrentItemSelected,
+  previousItemSelected,
+  setPreviousItemSelected,
   currentItemSizeSelectIndex,
   currentTexture,
   currentColor,
@@ -141,9 +146,9 @@ export default function Scene({
           onUpdate: () => {
             setOverlayAlpha(overlayOpacity.value);
           },
-          // onComplete: () => {
-          //   setOverlayAlpha(overlayOpacity.value);
-          // },
+          onComplete: () => {
+            setInitialLoad(true);
+          },
         });
         // update loadingBarElement
         loadingBarElement.classList.add("ended");
@@ -154,14 +159,13 @@ export default function Scene({
   }, [progress]);
 
   const debugControls = controls();
-  // const [initialLoad, setInitialLoad] = useState(false);
+  const [initialLoad, setInitialLoad] = useState(false);
   const [controlsDragging, setControlsDragging] = useState(false);
   // const [cameraPosition, setCameraPosition] = useState(null);
 
   const orbitRef = useRef();
   // const shadowCameraRef = useRef();
   // useHelper(shadowCameraRef, CameraHelper, 1, "lightBlue");
-  const vec = new THREE.Vector3();
 
   const handleOffClick = () => {
     // if (orbitRef.current) setCameraPosition(orbitRef.current.object.position);
@@ -191,26 +195,34 @@ export default function Scene({
   //     }
   //   }
   // }, [open]);
-  /**
-   * Overlay
-   */
 
   useEffect(() => {
     // setInitialLoad(true);
     if (orbitRef.current) {
-      orbitRef.current.addEventListener("start", () => {
-        console.log("started dragging!");
-        setControlsDragging(true);
-        // setOpen(false);
-      }),
-        true;
-      // orbitRef.current.addEventListener("change", () =>
-      //   console.log("dragged!"),
+      console.log(orbitRef.current.object);
+      setTargetVec(currentItemSelected.positionA);
+
+      orbitRef.current.addEventListener(
+        "start",
+        () => {
+          console.log("start");
+          setControlsDragging(true);
+          // setOpen(false);
+        },
+        true,
+      );
+      // orbitRef.current.addEventListener(
+      //   "change",
+      //   () => {
+      //     console.log("change");
+      //     setControlsDragging(true);
+      //   },
+      //   true,
       // );
       orbitRef.current.addEventListener(
         "end",
         () => {
-          console.log("stopped dragging!");
+          console.log("end");
           // setCameraPosition(orbitRef.current.object.position);
           setControlsDragging(false);
           // setOpen(true);
@@ -218,19 +230,6 @@ export default function Scene({
         true,
       );
     }
-    // // get shelf posiitions
-    // if (shelfAShortRef.current) {
-    //   console.log(shelfAShortRef.current);
-    // }
-    // if (shelfALongRef.current) {
-    //   console.log(shelfALongRef.current);
-    // }
-    // if (shelfBShortRef.current) {
-    //   console.log(shelfBShortRef.current);
-    // }
-    // if (shelfBLongRef.current) {
-    //   console.log(shelfBLongRef.current);
-    // }
     return () => {
       if (orbitRef.current) {
         orbitRef.current.removeEventListener(
@@ -238,6 +237,11 @@ export default function Scene({
           () => console.log("removed event listener, 'start'"),
           true,
         );
+        // orbitRef.current.removeEventListener(
+        //   "change",
+        //   () => console.log("removed event listener, 'change'"),
+        //   true,
+        // );
         orbitRef.current.removeEventListener(
           "end",
           () => console.log("removed event listener, 'end'"),
@@ -248,12 +252,64 @@ export default function Scene({
     };
   }, []);
 
+  const controlsTargetVec = new THREE.Vector3();
+  const [targetVec, setTargetVec] = useState(new THREE.Vector3());
+
+  useGSAP(() => {
+    controlsTargetVec.set(
+      previousItemSelected.positionA.x,
+      previousItemSelected.positionA.y,
+      previousItemSelected.positionA.z,
+    );
+    let tl = gsap.timeline();
+    tl.to(controlsTargetVec, {
+      duration: 1,
+      // x: 10,
+      x: currentItemSelected.positionA.x,
+      y: currentItemSelected.positionA.y,
+      z: currentItemSelected.positionA.z,
+      ease: "easeIn",
+      onStart: () => {
+        console.log("targetVec: ", targetVec);
+      },
+      onUpdate: () => {
+        console.log("updating controlsTargetVec: ", controlsTargetVec);
+        setTargetVec(controlsTargetVec);
+        orbitRef.current.target.set(
+          controlsTargetVec.x,
+          controlsTargetVec.y,
+          controlsTargetVec.z,
+        );
+      },
+    });
+  }, [currentItemSelected]);
+
+  // useEffect(() => {
+  //   if (orbitRef.current) {
+  //     vec.set(
+  //       currentItemSelected.positionA.x,
+  //       currentItemSelected.positionA.y,
+  //       currentItemSelected.positionA.z,
+  //     );
+  //     console.log("vec: ", vec);
+  //     orbitRef.current.target.copy(vec);
+  //     console.log(orbitRef.current.target);
+  //     // orbitRef.current.object.updateProjectionMatrix();
+  //     // orbitRef.current.update();
+  //   }
+  // }, [currentItemSelected]);
+
+  const controlsPositionVec = new THREE.Vector3();
+
   useFrame(() => {
-    if (!controlsDragging && orbitRef.current) {
+    if (initialLoad && !controlsDragging && orbitRef.current) {
       // if (cameraPosition == null) {
-      orbitRef.current.object.position.lerp(vec.set(250, 100, -450), 0.01);
+      orbitRef.current.object.position.lerp(
+        controlsPositionVec.set(0, 45, 0),
+        0.01,
+      );
       // orbitRef.current.object.position.lerp(
-      //   vec.set(
+      //   controlsPositionVec.set(
       //     currentItemSelected.position.x * 4, // * 6
       //     currentItemSelected.position.y + 7 * 4, // * 6
       //     currentItemSelected.position.z * 4, // * 6
@@ -262,26 +318,6 @@ export default function Scene({
       // );
       orbitRef.current.object.updateProjectionMatrix();
       orbitRef.current.update();
-      // } else {
-      // orbitRef.current.object.position.lerp(
-      //   vec.set(
-      //     currentItemSelected.position.x * 4, // * 6
-      //     currentItemSelected.position.y + 7 * 4, // * 6
-      //     currentItemSelected.position.z * 4, // * 6
-      //   ),
-      //   0.03,
-      // );
-      // orbitRef.current.object.target.lerp(
-      //   vec.set(
-      //     currentItemSelected.position.x,
-      //     currentItemSelected.position.y,
-      //     currentItemSelected.position.z,
-      //   ),
-      //   0.03,
-      // );
-      // orbitRef.current.object.updateProjectionMatrix();
-      // orbitRef.current.update();
-      // }
     } else return null;
   });
 
@@ -313,23 +349,18 @@ export default function Scene({
         //     : currentItemSelected.positionB.z,
         // ]}
       />
-      <Sky
-        distance={4000000}
-        sunPosition={[1.5, 2, -10]}
-        // inclination={1}
-        // azimuth={0.85}
-      />
+      <Sky distance={4000000} sunPosition={[1.5, 2, -10]} />
       <group position={[0, stagePositionY, 0]}>
         <Stage
           shadows={{ type: "contact", opacity: 0.5, blur: 2 }}
           environment="night"
           preset="soft"
           adjustCamera={false}
-          intensity={3}
+          intensity={1}
           controls={orbitRef}
           center={true}
         >
-          <ambientLight intensity={0.75} />
+          <ambientLight intensity={0.15} />
           {/* grampsLight */}
           <directionalLight
             ref={dirLightA}
@@ -346,7 +377,6 @@ export default function Scene({
             shadow-camera-right={10}
             shadow-camera-top={150}
             target={grampsRef.current}
-            // target-position={[-20, -20, 20]}
           />
           <pointLight position={[0, 14, 70]} intensity={30} />
           {/* blockLight */}
@@ -355,7 +385,7 @@ export default function Scene({
             castShadow
             position={[0, 60, 0]}
             intensity={2}
-            shadow-normalBias={0.01}
+            shadow-normalBias={0.1}
             shadow-mapSize-width={2048}
             shadow-mapSize-height={2048}
             shadow-camera-near={50}
@@ -365,7 +395,6 @@ export default function Scene({
             shadow-camera-right={10}
             shadow-camera-top={150}
             target={blockRef.current}
-            // target-position={[-20, -20, 20]}
           />
           {/* horseLight */}
           <directionalLight
@@ -373,7 +402,7 @@ export default function Scene({
             castShadow
             position={[0, 60, 0]}
             intensity={2}
-            shadow-normalBias={0.01}
+            shadow-normalBias={0.1}
             shadow-mapSize-width={2048}
             shadow-mapSize-height={2048}
             shadow-camera-near={50}
@@ -383,7 +412,6 @@ export default function Scene({
             shadow-camera-right={20}
             shadow-camera-top={150}
             target={horseRef.current}
-            // target-position={[-20, -20, 20]}
           />
           {/* squatterLight */}
           <directionalLight
@@ -391,7 +419,7 @@ export default function Scene({
             castShadow
             position={[0, 60, 0]}
             intensity={2}
-            shadow-normalBias={0.01}
+            shadow-normalBias={0.1}
             shadow-mapSize-width={2048}
             shadow-mapSize-height={2048}
             shadow-camera-near={50}
@@ -401,7 +429,6 @@ export default function Scene({
             shadow-camera-right={10}
             shadow-camera-top={150}
             target={squatterRef.current}
-            // target-position={[-20, -20, 20]}
           />
           {/* gramps */}
           <group

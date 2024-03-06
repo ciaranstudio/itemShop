@@ -41,6 +41,8 @@ export default function BottomAppBar({
   shopItems,
   currentItemSelected,
   setCurrentItemSelected,
+  previousItemSelected,
+  setPreviousItemSelected,
   currentItemOptionSelect,
   currentItemOptionType,
   currentItemDescription,
@@ -131,6 +133,7 @@ export default function BottomAppBar({
     let itemMatch = (element) => element.itemNo === tempNo;
     if (itemMatch) {
       let itemMatchIndex = shopItems.findIndex(itemMatch);
+      setPreviousItemSelected(currentItemSelected);
       setCurrentItemSelected(shopItems[itemMatchIndex]);
     }
   };
