@@ -8,7 +8,8 @@ export default class Item {
     itemPaintPrice,
     sizeCost,
     sizes,
-    position,
+    positionA,
+    positionB,
   ) {
     this.itemName = itemName;
     this.itemNo = itemNo;
@@ -18,6 +19,7 @@ export default class Item {
     this.itemPaintPrice = itemPaintPrice;
     this.sizeCost = sizeCost;
     this.sizes = sizes;
-    this.position = position;
+    this.positionA = positionA;
+    this.positionB = positionB;
   }
 }

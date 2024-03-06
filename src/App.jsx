@@ -21,10 +21,22 @@ function App() {
   const shelfASizes = ["16 x 4 x 4", "32 x 4 x 4"]; //LDH
   const shelfBSizes = ["16 x 6 x 4", "32 x 6 x 4"]; //LDH
 
-  const grampsPosition = { x: 0, y: 0, z: 70 }; // [0, 0, 70]
-  const squatterPosition = { x: -70, y: 0, z: 0 }; // [-70, 0, 0]
-  const blockPosition = { x: 0, y: 0, z: -70 }; // [0, 0, -70]
-  const horsePosition = { x: 70, y: 0, z: 0 }; // [70, 0, 0]
+  const grampsPosition = [
+    { x: 0, y: 0, z: 70 },
+    { x: 0, y: 0, z: 0 },
+  ]; // [0, 0, 70]
+  const squatterPosition = [
+    { x: -70, y: 0, z: 0 },
+    { x: 0, y: 0, z: 0 },
+  ]; // [-70, 0, 0]
+  const blockPosition = [
+    { x: 0, y: 0, z: -70 },
+    { x: 0, y: 0, z: 0 },
+  ]; // [0, 0, -70]
+  const horsePosition = [
+    { x: 70, y: 0, z: 0 },
+    { x: 0, y: 0, z: 0 },
+  ]; // [70, 0, 0]
   const shelfAPosition = [
     { x: -118.3125, y: 0, z: -81.125 },
     { x: -118.3125, y: 0, z: -40.6 },
@@ -43,7 +55,8 @@ function App() {
     750,
     0,
     grampSizes,
-    grampsPosition,
+    grampsPosition[0],
+    grampsPosition[1],
   );
 
   const squatter = new Item(
@@ -55,7 +68,8 @@ function App() {
     600,
     0,
     squatterSizes,
-    squatterPosition,
+    squatterPosition[0],
+    squatterPosition[1],
   );
 
   const block = new Item(
@@ -67,7 +81,8 @@ function App() {
     250,
     0,
     blockSizes,
-    blockPosition,
+    blockPosition[0],
+    blockPosition[1],
   );
 
   const horse = new Item(
@@ -79,7 +94,8 @@ function App() {
     400,
     0,
     horseSizes,
-    horsePosition,
+    horsePosition[0],
+    horsePosition[1],
   );
 
   const shelfA = new Item(
@@ -91,7 +107,8 @@ function App() {
     350,
     200,
     shelfASizes,
-    shelfAPosition,
+    shelfAPosition[0],
+    shelfAPosition[1],
   );
 
   const shelfB = new Item(
@@ -103,7 +120,8 @@ function App() {
     350,
     200,
     shelfBSizes,
-    shelfBPosition,
+    shelfBPosition[0],
+    shelfBPosition[1],
   );
 
   const shopItems = [gramps, squatter, block, horse, shelfA, shelfB];
@@ -216,6 +234,7 @@ function App() {
             shopItems={shopItems}
             currentItemSelected={currentItemSelected}
             setCurrentItemSelected={setCurrentItemSelected}
+            currentItemSizeSelectIndex={currentItemSizeSelectIndex}
             currentTexture={currentTexture}
             currentColor={currentColor}
           />

@@ -69,6 +69,7 @@ export default function Scene({
   shopItems,
   currentItemSelected,
   setCurrentItemSelected,
+  currentItemSizeSelectIndex,
   currentTexture,
   currentColor,
 }) {
@@ -287,9 +288,15 @@ export default function Scene({
         maxPolarAngle={Math.PI / 2}
         enableDamping={true}
         target={[
-          currentItemSelected.position.x,
-          currentItemSelected.position.y,
-          currentItemSelected.position.z,
+          currentItemSizeSelectIndex === 0
+            ? currentItemSelected.positionA.x
+            : currentItemSelected.positionB.x,
+          currentItemSizeSelectIndex === 0
+            ? currentItemSelected.positionA.y
+            : currentItemSelected.positionB.y,
+          currentItemSizeSelectIndex === 0
+            ? currentItemSelected.positionA.z
+            : currentItemSelected.positionB.z,
         ]}
       />
       <Sky
@@ -385,7 +392,11 @@ export default function Scene({
           {/* gramps */}
           <group
             ref={grampsRef}
-            position={[gramps.position.x, gramps.position.y, gramps.position.z]}
+            position={[
+              gramps.positionA.x,
+              gramps.positionA.y,
+              gramps.positionA.z,
+            ]}
           >
             <mesh castShadow>
               <GrampsBarBottom
@@ -475,7 +486,7 @@ export default function Scene({
           {/* block */}
           <group
             ref={blockRef}
-            position={[block.position.x, block.position.y, block.position.z]}
+            position={[block.positionA.x, block.positionA.y, block.positionA.z]}
             rotation={[0, Math.PI / 4, 0]}
           >
             <mesh castShadow>
@@ -518,7 +529,7 @@ export default function Scene({
           {/* horse */}
           <group
             ref={horseRef}
-            position={[horse.position.x, horse.position.y, horse.position.z]}
+            position={[horse.positionA.x, horse.positionA.y, horse.positionA.z]}
           >
             <mesh castShadow>
               <HorseBarInner
@@ -597,9 +608,9 @@ export default function Scene({
           <group
             ref={squatterRef}
             position={[
-              squatter.position.x,
-              squatter.position.y,
-              squatter.position.z,
+              squatter.positionA.x,
+              squatter.positionA.y,
+              squatter.positionA.z,
             ]}
             rotation={[0, Math.PI / 4, 0]}
           >
@@ -656,9 +667,9 @@ export default function Scene({
           <group
             ref={shelfAShortRef}
             position={[
-              shelfA.position[0].x,
-              shelfA.position[0].y,
-              shelfA.position[0].z,
+              shelfA.positionA.x,
+              shelfA.positionA.y,
+              shelfA.positionA.z,
             ]}
           >
             <mesh castShadow>
@@ -690,9 +701,9 @@ export default function Scene({
           <group
             ref={shelfALongRef}
             position={[
-              shelfA.position[1].x,
-              shelfA.position[1].y,
-              shelfA.position[1].z,
+              shelfA.positionB.x,
+              shelfA.positionB.y,
+              shelfA.positionB.z,
             ]}
           >
             <mesh castShadow>
@@ -724,9 +735,9 @@ export default function Scene({
           <group
             ref={shelfBShortRef}
             position={[
-              shelfB.position[0].x,
-              shelfB.position[0].y,
-              shelfB.position[0].z,
+              shelfB.positionA.x,
+              shelfB.positionA.y,
+              shelfB.positionA.z,
             ]}
           >
             <mesh castShadow>
@@ -758,9 +769,9 @@ export default function Scene({
           <group
             ref={shelfBLongRef}
             position={[
-              shelfB.position[1].x,
-              shelfB.position[1].y,
-              shelfB.position[1].z,
+              shelfB.positionB.x,
+              shelfB.positionB.y,
+              shelfB.positionB.z,
             ]}
           >
             <mesh castShadow>
