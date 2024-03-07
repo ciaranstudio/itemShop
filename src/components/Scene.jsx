@@ -332,7 +332,7 @@ export default function Scene({
         makeDefault
         ref={orbitRef}
         enableZoom={true}
-        enablePan={false}
+        enablePan={true}
         maxDistance={600}
         minDistance={20}
         maxPolarAngle={Math.PI / 2 - Math.PI / 16}
