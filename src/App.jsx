@@ -155,7 +155,7 @@ function App() {
   );
 
   const [currentTexture, setCurrentTexture] = useState(textures.whiteTexture);
-  const [currentColor, setCurrentColor] = useState(textures.whiteStain);
+  const [currentColor, setCurrentColor] = useState(textures.noSelectWhite);
 
   useEffect(() => {
     setCurrentItemDescription(currentItemSelected.itemDescription);

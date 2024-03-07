@@ -2,6 +2,7 @@ import * as THREE from "three";
 
 export const textures = {
   floorStain: new THREE.Color(0xf4f4e6), // antique white hex from general finishes paint
+  noSelectWhite: new THREE.Color(0xffffff),
 
   whiteStain: new THREE.Color(0xc0c0c0),
   naturalStain: new THREE.Color(0x989898),

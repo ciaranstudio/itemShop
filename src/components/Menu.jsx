@@ -86,6 +86,10 @@ export default function BottomAppBar({
     console.log("window.innerHeight: ", height);
   }, [height]);
 
+  useEffect(() => {
+    setItemNo(currentItemSelected.itemNo);
+  }, [currentItemSelected]);
+
   const spinUp = keyframes`
   from {
     transform: rotate(0deg);
@@ -126,10 +130,11 @@ export default function BottomAppBar({
     // console.log("cartCount: ", cartCount);
   }
 
-  const handleItemChange = (event) => {
-    console.log("selected value: ", event.target.value);
-    let tempNo = event.target.value;
+  const handleItemChange = (e) => {
+    console.log("selected value: ", e.target.value);
+    let tempNo = e.target.value;
     setItemNo(tempNo);
+
     let itemMatch = (element) => element.itemNo === tempNo;
     if (itemMatch) {
       let itemMatchIndex = shopItems.findIndex(itemMatch);

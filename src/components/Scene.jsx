@@ -16,8 +16,8 @@ import {
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
-// import { useCursor } from "@react-three/drei";
-import { Perf } from "r3f-perf";
+import { useCursor } from "@react-three/drei";
+import { Perf, setCustomData } from "r3f-perf";
 
 import { BlockShelves } from "./block/BlockShelves.jsx";
 import { BlockSide1 } from "./block/BlockSide1.jsx";
@@ -164,13 +164,51 @@ export default function Scene({
   const [controlsDragging, setControlsDragging] = useState(false);
   // const [cameraPosition, setCameraPosition] = useState(null);
 
+  const [hovered, hover] = useState(false);
+  useCursor(hovered);
+
+  // const handleItemChange = (event) => {
+  //   console.log("selected value: ", event.target.value);
+  //   let tempNo = event.target.value;
+  //   setItemNo(tempNo);
+  //   let itemMatch = (element) => element.itemNo === tempNo;
+  //   if (itemMatch) {
+  //     let itemMatchIndex = shopItems.findIndex(itemMatch);
+  //     setPreviousItemSelected(currentItemSelected);
+  //     setCurrentItemSelected(shopItems[itemMatchIndex]);
+  //   }
+  // };
+
+  const handleClick = (e) => {
+    setOpen(true);
+    e.stopPropagation();
+    const { eventObject } = e;
+    let tempObjectPosition = eventObject.position;
+    let positionMatch = (element) =>
+      (element.positionA.x === tempObjectPosition.x &&
+        element.positionA.y === tempObjectPosition.y &&
+        element.positionA.z === tempObjectPosition.z) ||
+      (element.positionB.x === tempObjectPosition.x &&
+        element.positionB.y === tempObjectPosition.y &&
+        element.positionB.z === tempObjectPosition.z);
+    if (positionMatch) {
+      console.log(
+        "shopItems.find(positionMatch): ",
+        shopItems.find(positionMatch),
+      );
+      let matchedItem = shopItems.find(positionMatch);
+      setPreviousItemSelected(currentItemSelected);
+      setCurrentItemSelected(matchedItem);
+    }
+  };
+
+  // const handleOffClick = () => {
+  //   // if (orbitRef.current) setCameraPosition(orbitRef.current.object.position);
+  // };
+
   const orbitRef = useRef();
   // const shadowCameraRef = useRef();
   // useHelper(shadowCameraRef, CameraHelper, 1, "lightBlue");
-
-  const handleOffClick = () => {
-    // if (orbitRef.current) setCameraPosition(orbitRef.current.object.position);
-  };
 
   // useEffect(() => {
   //   if (open) {
@@ -442,6 +480,9 @@ export default function Scene({
               gramps.positionA.y,
               gramps.positionA.z,
             ]}
+            onPointerOver={() => hover(true)}
+            onPointerOut={() => hover(false)}
+            onClick={handleClick}
           >
             <mesh castShadow>
               <GrampsBarBottom
@@ -533,6 +574,9 @@ export default function Scene({
             ref={blockRef}
             position={[block.positionA.x, block.positionA.y, block.positionA.z]}
             rotation={[0, Math.PI / 4, 0]}
+            onPointerOver={() => hover(true)}
+            onPointerOut={() => hover(false)}
+            onClick={handleClick}
           >
             <mesh castShadow>
               <BlockSide1
@@ -575,6 +619,9 @@ export default function Scene({
           <group
             ref={horseRef}
             position={[horse.positionA.x, horse.positionA.y, horse.positionA.z]}
+            onPointerOver={() => hover(true)}
+            onPointerOut={() => hover(false)}
+            onClick={handleClick}
           >
             <mesh castShadow>
               <HorseBarInner
@@ -658,6 +705,9 @@ export default function Scene({
               squatter.positionA.z,
             ]}
             rotation={[0, Math.PI / 4, 0]}
+            onPointerOver={() => hover(true)}
+            onPointerOut={() => hover(false)}
+            onClick={handleClick}
           >
             <mesh castShadow>
               <SquatterCenterPanel
@@ -716,6 +766,9 @@ export default function Scene({
               shelfA.positionA.y,
               shelfA.positionA.z,
             ]}
+            onPointerOver={() => hover(true)}
+            onPointerOut={() => hover(false)}
+            onClick={handleClick}
           >
             <mesh castShadow>
               <ShelfAShortCleat
@@ -750,6 +803,9 @@ export default function Scene({
               shelfA.positionB.y,
               shelfA.positionB.z,
             ]}
+            onPointerOver={() => hover(true)}
+            onPointerOut={() => hover(false)}
+            onClick={handleClick}
           >
             <mesh castShadow>
               <ShelfALongCleat
@@ -784,6 +840,9 @@ export default function Scene({
               shelfB.positionA.y,
               shelfB.positionA.z,
             ]}
+            onPointerOver={() => hover(true)}
+            onPointerOut={() => hover(false)}
+            onClick={handleClick}
           >
             <mesh castShadow>
               <ShelfBShortCleat
@@ -818,6 +877,9 @@ export default function Scene({
               shelfB.positionB.y,
               shelfB.positionB.z,
             ]}
+            onPointerOver={() => hover(true)}
+            onPointerOut={() => hover(false)}
+            onClick={handleClick}
           >
             <mesh castShadow>
               <ShelfBLongCleat
