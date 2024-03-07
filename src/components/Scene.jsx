@@ -147,7 +147,7 @@ export default function Scene({
             setOverlayAlpha(overlayOpacity.value);
           },
           onComplete: () => {
-            setInitialLoad(true);
+            // setInitialLoad(true);
           },
         });
         // update loadingBarElement
@@ -333,8 +333,8 @@ export default function Scene({
         ref={orbitRef}
         enableZoom={true}
         enablePan={false}
-        maxDistance={500}
-        minDistance={70}
+        maxDistance={600}
+        minDistance={20}
         maxPolarAngle={Math.PI / 2 - Math.PI / 16}
         enableDamping={true}
         // target={[

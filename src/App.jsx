@@ -213,7 +213,6 @@ function App() {
           far: 700,
           // near: 0.1,
           // far: 5000,
-          // position: [0, 60, 0],
           // relative to current selected item position
           // position: [
           //   currentItemSelected.position.x * 3,
