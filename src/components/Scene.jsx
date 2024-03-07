@@ -160,6 +160,7 @@ export default function Scene({
 
   const debugControls = controls();
   const [initialLoad, setInitialLoad] = useState(false);
+  const [showBackground, setShowBackground] = useState(true);
   const [controlsDragging, setControlsDragging] = useState(false);
   // const [cameraPosition, setCameraPosition] = useState(null);
 
@@ -261,27 +262,30 @@ export default function Scene({
       previousItemSelected.positionA.y,
       previousItemSelected.positionA.z,
     );
-    let tl = gsap.timeline();
-    tl.to(controlsTargetVec, {
-      duration: 1,
-      // x: 10,
-      x: currentItemSelected.positionA.x,
-      y: currentItemSelected.positionA.y,
-      z: currentItemSelected.positionA.z,
-      ease: "easeIn",
-      onStart: () => {
-        console.log("targetVec: ", targetVec);
-      },
-      onUpdate: () => {
-        console.log("updating controlsTargetVec: ", controlsTargetVec);
-        setTargetVec(controlsTargetVec);
-        orbitRef.current.target.set(
-          controlsTargetVec.x,
-          controlsTargetVec.y,
-          controlsTargetVec.z,
-        );
-      },
-    });
+
+    if (currentItemSelected.name !== "noSelect") {
+      let tl = gsap.timeline();
+      tl.to(controlsTargetVec, {
+        duration: 1,
+        // x: 10,
+        x: currentItemSelected.positionA.x,
+        y: currentItemSelected.positionA.y,
+        z: currentItemSelected.positionA.z,
+        ease: "easeIn",
+        onStart: () => {
+          console.log("targetVec: ", targetVec);
+        },
+        onUpdate: () => {
+          console.log("updating controlsTargetVec: ", controlsTargetVec);
+          setTargetVec(controlsTargetVec);
+          orbitRef.current.target.set(
+            controlsTargetVec.x,
+            controlsTargetVec.y,
+            controlsTargetVec.z,
+          );
+        },
+      });
+    }
   }, [currentItemSelected]);
 
   // useEffect(() => {
@@ -841,7 +845,7 @@ export default function Scene({
             </mesh>
           </group>
           {/* floor */}
-          <mesh receiveShadow>
+          <mesh receiveShadow visible={showBackground}>
             <Floor
             // map={colorMap}
             // // displacementMap={displacementMap}
@@ -854,7 +858,7 @@ export default function Scene({
             />
           </mesh>
           {/* wallsAndMoulding */}
-          <mesh receiveShadow>
+          <mesh receiveShadow visible={showBackground}>
             <Walls />
           </mesh>
           {/* shelfPositions */}

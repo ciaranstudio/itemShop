@@ -46,6 +46,19 @@ function App() {
     { x: 73.685, y: 0, z: 118.25 },
   ];
 
+  const unselectedItem = new Item(
+    "noSelect",
+    -1,
+    "noSelectTitle",
+    "Select item...",
+    0,
+    "",
+    "",
+    [],
+    { x: 0, y: 0, z: 0 },
+    { x: 0, y: 0, z: 0 },
+  );
+
   const gramps = new Item(
     "gramps",
     0,
@@ -126,10 +139,11 @@ function App() {
 
   const shopItems = [gramps, squatter, block, horse, shelfA, shelfB];
 
-  const [currentItemSelected, setCurrentItemSelected] = useState(gramps);
-  const [previousItemSelected, setPreviousItemSelected] = useState(block);
-  const [currentItemOptionSelect, setCurrentItemOptionSelect] =
-    useState("white");
+  const [currentItemSelected, setCurrentItemSelected] =
+    useState(unselectedItem);
+  const [previousItemSelected, setPreviousItemSelected] =
+    useState(unselectedItem);
+  const [currentItemOptionSelect, setCurrentItemOptionSelect] = useState("");
   const [currentItemOptionType, setCurrentItemOptionType] = useState("stain");
   const [currentItemDescription, setCurrentItemDescription] = useState(
     gramps.itemDescription,
@@ -210,7 +224,7 @@ function App() {
         camera={{
           fov: 60, // was 45
           near: 0.1,
-          far: 700,
+          far: 1000,
           // near: 0.1,
           // far: 5000,
           // relative to current selected item position

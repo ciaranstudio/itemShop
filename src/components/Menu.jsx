@@ -623,8 +623,10 @@ export default function BottomAppBar({
                       }}
                     >
                       <Typography variant="subtitle2" color="primary">
-                        {currentItemDescription} with {currentItemOptionType}{" "}
-                        finish
+                        {itemNo === -1
+                          ? ""
+                          : `${currentItemDescription} with ${currentItemOptionType} 
+                        finish`}
                       </Typography>
                     </Box>
                     <Box
@@ -777,13 +779,17 @@ export default function BottomAppBar({
                         </Button>
                       </Box>
 
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={handleAddToCart}
-                      >
-                        ${totalPrice()}
-                      </Button>
+                      {itemNo < 0 ? (
+                        ""
+                      ) : (
+                        <Button
+                          variant="contained"
+                          color="primary"
+                          onClick={handleAddToCart}
+                        >
+                          ${totalPrice()}
+                        </Button>
+                      )}
                     </Box>
                   </Box>
                 </Paper>
