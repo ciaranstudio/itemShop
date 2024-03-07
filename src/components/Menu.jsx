@@ -624,7 +624,7 @@ export default function BottomAppBar({
                     >
                       <Typography variant="subtitle2" color="primary">
                         {itemNo === -1
-                          ? ""
+                          ? "Select item..."
                           : `${currentItemDescription} with ${currentItemOptionType} 
                         finish`}
                       </Typography>
