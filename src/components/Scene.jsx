@@ -180,7 +180,7 @@ export default function Scene({
   // };
 
   const handleClick = (e) => {
-    setOpen(true);
+    // setOpen(true);
     e.stopPropagation();
     const { eventObject } = e;
     let tempObjectPosition = eventObject.position;
@@ -202,9 +202,33 @@ export default function Scene({
     }
   };
 
-  // const handleOffClick = () => {
-  //   // if (orbitRef.current) setCameraPosition(orbitRef.current.object.position);
-  // };
+  const handleDoubleClick = (e) => {
+    setOpen(true);
+    setShowBackground(!showBackground);
+    e.stopPropagation();
+    const { eventObject } = e;
+    let tempObjectPosition = eventObject.position;
+    let positionMatch = (element) =>
+      (element.positionA.x === tempObjectPosition.x &&
+        element.positionA.y === tempObjectPosition.y &&
+        element.positionA.z === tempObjectPosition.z) ||
+      (element.positionB.x === tempObjectPosition.x &&
+        element.positionB.y === tempObjectPosition.y &&
+        element.positionB.z === tempObjectPosition.z);
+    if (positionMatch) {
+      console.log(
+        "shopItems.find(positionMatch): ",
+        shopItems.find(positionMatch),
+      );
+      let matchedItem = shopItems.find(positionMatch);
+      // setPreviousItemSelected(currentItemSelected);
+      // setCurrentItemSelected(matchedItem);
+    }
+  };
+
+  const handleOffClick = () => {
+    setShowBackground(true);
+  };
 
   const orbitRef = useRef();
   // const shadowCameraRef = useRef();
@@ -483,6 +507,8 @@ export default function Scene({
             onPointerOver={() => hover(true)}
             onPointerOut={() => hover(false)}
             onClick={handleClick}
+            onDoubleClick={handleDoubleClick}
+            onPointerMissed={handleOffClick}
           >
             <mesh castShadow>
               <GrampsBarBottom
@@ -577,6 +603,8 @@ export default function Scene({
             onPointerOver={() => hover(true)}
             onPointerOut={() => hover(false)}
             onClick={handleClick}
+            onDoubleClick={handleDoubleClick}
+            onPointerMissed={handleOffClick}
           >
             <mesh castShadow>
               <BlockSide1
@@ -622,6 +650,8 @@ export default function Scene({
             onPointerOver={() => hover(true)}
             onPointerOut={() => hover(false)}
             onClick={handleClick}
+            onDoubleClick={handleDoubleClick}
+            onPointerMissed={handleOffClick}
           >
             <mesh castShadow>
               <HorseBarInner
@@ -708,6 +738,8 @@ export default function Scene({
             onPointerOver={() => hover(true)}
             onPointerOut={() => hover(false)}
             onClick={handleClick}
+            onDoubleClick={handleDoubleClick}
+            onPointerMissed={handleOffClick}
           >
             <mesh castShadow>
               <SquatterCenterPanel
@@ -769,6 +801,8 @@ export default function Scene({
             onPointerOver={() => hover(true)}
             onPointerOut={() => hover(false)}
             onClick={handleClick}
+            onDoubleClick={handleDoubleClick}
+            onPointerMissed={handleOffClick}
           >
             <mesh castShadow>
               <ShelfAShortCleat
@@ -806,6 +840,8 @@ export default function Scene({
             onPointerOver={() => hover(true)}
             onPointerOut={() => hover(false)}
             onClick={handleClick}
+            onDoubleClick={handleDoubleClick}
+            onPointerMissed={handleOffClick}
           >
             <mesh castShadow>
               <ShelfALongCleat
@@ -843,6 +879,8 @@ export default function Scene({
             onPointerOver={() => hover(true)}
             onPointerOut={() => hover(false)}
             onClick={handleClick}
+            onDoubleClick={handleDoubleClick}
+            onPointerMissed={handleOffClick}
           >
             <mesh castShadow>
               <ShelfBShortCleat
@@ -880,6 +918,8 @@ export default function Scene({
             onPointerOver={() => hover(true)}
             onPointerOut={() => hover(false)}
             onClick={handleClick}
+            onDoubleClick={handleDoubleClick}
+            onPointerMissed={handleOffClick}
           >
             <mesh castShadow>
               <ShelfBLongCleat
