@@ -203,9 +203,11 @@ export default function Scene({
   };
 
   const handleDoubleClick = (e) => {
+    e.stopPropagation();
+
     setOpen(true);
     setShowBackground(!showBackground);
-    e.stopPropagation();
+
     const { eventObject } = e;
     let tempObjectPosition = eventObject.position;
     let positionMatch = (element) =>
@@ -226,7 +228,10 @@ export default function Scene({
     }
   };
 
-  const handleOffClick = () => {
+  const handleOffClick = (e) => {
+    e.stopPropagation();
+
+    console.log("onPointerMissed click");
     setShowBackground(true);
   };
 
@@ -338,7 +343,7 @@ export default function Scene({
           console.log("targetVec: ", targetVec);
         },
         onUpdate: () => {
-          console.log("updating controlsTargetVec: ", controlsTargetVec);
+          // console.log("updating controlsTargetVec: ", controlsTargetVec);
           setTargetVec(controlsTargetVec);
           orbitRef.current.target.set(
             controlsTargetVec.x,
@@ -368,23 +373,37 @@ export default function Scene({
   const controlsPositionVec = new THREE.Vector3();
 
   useFrame(() => {
-    if (initialLoad && !controlsDragging && orbitRef.current) {
+    if (
+      !controlsDragging &&
+      orbitRef.current &&
+      currentItemSelected.itemName !== "noSelect" &&
+      !showBackground
+    ) {
       // if (cameraPosition == null) {
-      orbitRef.current.object.position.lerp(
-        controlsPositionVec.set(0, 45, 0),
-        0.01,
-      );
       // orbitRef.current.object.position.lerp(
-      //   controlsPositionVec.set(
-      //     currentItemSelected.position.x * 4, // * 6
-      //     currentItemSelected.position.y + 7 * 4, // * 6
-      //     currentItemSelected.position.z * 4, // * 6
-      //   ),
-      //   0.03,
+      //   controlsPositionVec.set(0, 45, 0),
+      //   0.01,
       // );
+      orbitRef.current.object.position.lerp(
+        controlsPositionVec.set(
+          currentItemSelected.positionA.x * 4, // * 6
+          currentItemSelected.positionA.y + 7 * 4, // * 6
+          currentItemSelected.positionA.z * 4, // * 6
+        ),
+        0.03,
+      );
       orbitRef.current.object.updateProjectionMatrix();
       orbitRef.current.update();
-    } else return null;
+    }
+    // else if (!showBackground) {
+    //   orbitRef.current.object.position.lerp(
+    //     currentItemSelected.position.x * 4, // * 6
+    //     currentItemSelected.position.y + 7 * 4, // * 6
+    //     currentItemSelected.position.z * 4, // * 6
+    //     0.01,
+    //   );
+    // }
+    // return null;
   });
 
   const stagePositionY = 60;
