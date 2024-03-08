@@ -791,6 +791,12 @@ export default function BottomAppBar({
                           variant="contained"
                           color="primary"
                           onClick={handleAddToCart}
+                          className="snipcart-add-item"
+                          data-item-id={currentItemSelected.itemNo}
+                          // data-item-image={imageUrl}
+                          data-item-name={currentItemSelected.itemName}
+                          // data-item-url="/"
+                          data-item-price={currentItemSelected.itemStainPrice}
                         >
                           ${totalPrice()}
                         </Button>
@@ -806,3 +812,12 @@ export default function BottomAppBar({
     </React.Fragment>
   );
 }
+
+// itemName,
+//     itemNo,
+//     itemTitle,
+//     itemDescription,
+//     itemStainPrice,
+//     itemPaintPrice,
+//     sizeCost,
+//     sizes,
