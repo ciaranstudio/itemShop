@@ -46,3 +46,15 @@ body,
   transform-origin: 100% 0;
   transition: transform 1.5s ease-in-out;
 }
+
+.snipcart-modal__container {
+  width: 60% !important;
+  max-width: 540px !important;
+  margin-left: auto !important;
+  right: 0 !important;
+}
+
+.snipcart-modal__container.snipcart-layout--large {
+  width: 100% !important;
+  max-width: 100% !important;
+}

@@ -127,6 +127,7 @@ export default function BottomAppBar({
 
   function handleAddToCart() {
     setCartCount(cartCount + 1);
+    setOpen(false);
     // console.log("cartCount: ", cartCount);
   }
 
