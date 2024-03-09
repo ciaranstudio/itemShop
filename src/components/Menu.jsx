@@ -28,6 +28,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import CarpenterIcon from "@mui/icons-material/Carpenter";
 import useWindowDimensions from "../helpers/useWindowDimensions";
+import { useSnipcart } from "use-snipcart";
 
 export default function BottomAppBar({
   open,
@@ -66,6 +67,8 @@ export default function BottomAppBar({
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  // const [showSwipeableDrawer, setShowSwipeableDrawer] = React.useState(true);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -128,6 +131,7 @@ export default function BottomAppBar({
   function handleAddToCart() {
     setCartCount(cartCount + 1);
     setOpen(false);
+    // setShowSwipeableDrawer(false);
     // console.log("cartCount: ", cartCount);
   }
 
@@ -236,6 +240,46 @@ export default function BottomAppBar({
     }
   }, []);
 
+  const snipcart = useSnipcart();
+  const { cart = {} } = useSnipcart();
+  const { subtotal = "0.00" } = cart;
+  const [snipcartLoaded, setSnipcartLoaded] = useState(false);
+
+  useEffect(() => {
+    console.log("snipcartLoaded: ", snipcartLoaded);
+    console.log("useSnipcart: ", snipcart);
+    // let state = snipcart.getState();
+    // console.log("snipCart state: ", state);
+    console.log("cart:", cart);
+    if (cart.items) {
+      console.log("cart.items.count:", cart.items.count);
+    }
+
+    console.log("subtotal:", subtotal);
+    if (window.Snipcart) {
+      setSnipcartLoaded(true);
+      console.log("window.Snipcart.api: ", window.Snipcart);
+      // window.Snipcart.api.theme.cart.open();
+    }
+  }, [cart]);
+
+  // const unsubscribe = window.Snipcart.events.on("item.removed", (cartItem) => {
+  //   console.log("item removed: ", cartItem);
+  // });
+
+  useEffect(() => {
+    if (snipcartLoaded) {
+      console.log("snipcartLoaded: ", snipcartLoaded);
+      console.log(window.Snipcart);
+      if (window.Snipcart.events) {
+        console.log("events loaded");
+        window.Snipcart.events.on("item.removed", (cartItem) => {
+          console.log("item removed: ", cartItem);
+        });
+      }
+    }
+  }, [snipcartLoaded]);
+
   return (
     <React.Fragment>
       <ThemeProvider theme={theme}>
@@ -314,7 +358,10 @@ export default function BottomAppBar({
                     <MenuItem key={page} onClick={handleCloseNavMenu}>
                       <Typography
                         textAlign="center"
-                        sx={{ color: "primary.light", fontFamily: "monospace" }}
+                        sx={{
+                          color: "primary.light",
+                          fontFamily: "monospace",
+                        }}
                       >
                         {page}
                       </Typography>
@@ -462,6 +509,7 @@ export default function BottomAppBar({
               backdrop: { sx: { background: "none" } },
             },
           }}
+          // sx={{ display: !showSwipeableDrawer ? "none" : "block" }}
         >
           {mobileView ? (
             <>

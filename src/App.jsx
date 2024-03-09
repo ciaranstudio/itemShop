@@ -8,6 +8,7 @@ import Placeholder from "./components/Placeholder.jsx";
 import Item from "./data/Item.jsx";
 import { textures } from "./data/textures.jsx";
 import "./style.css";
+import { SnipcartProvider } from "use-snipcart";
 
 function App() {
   const [open, setOpen] = useState(false);
@@ -258,29 +259,31 @@ function App() {
           />
         </Suspense>
       </Canvas>
-      <Menu
-        toggled={toggled}
-        setToggled={setToggled}
-        animActive={animActive}
-        open={open}
-        setOpen={setOpen}
-        handleStainChange={handleStainChange}
-        handlePaintChange={handlePaintChange}
-        handleSizeChange={handleSizeChange}
-        shopItems={shopItems}
-        currentItemSelected={currentItemSelected}
-        setCurrentItemSelected={setCurrentItemSelected}
-        previousItemSelected={previousItemSelected}
-        setPreviousItemSelected={setPreviousItemSelected}
-        currentItemOptionSelect={currentItemOptionSelect}
-        currentItemOptionType={currentItemOptionType}
-        currentItemDescription={currentItemDescription}
-        currentItemSizeSelect={currentItemSizeSelect}
-        currentItemSizeSelectIndex={currentItemSizeSelectIndex}
-        setCurrentItemSizeSelectIndex={setCurrentItemSizeSelectIndex}
-        currentTexture={currentTexture}
-        currentColor={currentColor}
-      />
+      <SnipcartProvider>
+        <Menu
+          toggled={toggled}
+          setToggled={setToggled}
+          animActive={animActive}
+          open={open}
+          setOpen={setOpen}
+          handleStainChange={handleStainChange}
+          handlePaintChange={handlePaintChange}
+          handleSizeChange={handleSizeChange}
+          shopItems={shopItems}
+          currentItemSelected={currentItemSelected}
+          setCurrentItemSelected={setCurrentItemSelected}
+          previousItemSelected={previousItemSelected}
+          setPreviousItemSelected={setPreviousItemSelected}
+          currentItemOptionSelect={currentItemOptionSelect}
+          currentItemOptionType={currentItemOptionType}
+          currentItemDescription={currentItemDescription}
+          currentItemSizeSelect={currentItemSizeSelect}
+          currentItemSizeSelectIndex={currentItemSizeSelectIndex}
+          setCurrentItemSizeSelectIndex={setCurrentItemSizeSelectIndex}
+          currentTexture={currentTexture}
+          currentColor={currentColor}
+        />
+      </SnipcartProvider>
     </>
   );
 }
