@@ -835,7 +835,7 @@ export default function BottomAppBar({
                         </Button>
                       </Box>
 
-                      {itemNo === "" ? (
+                      {itemNo === "" || currentItemOptionSelect === "" ? (
                         ""
                       ) : (
                         <Button
