@@ -3,7 +3,7 @@ import { Canvas } from "@react-three/fiber";
 import { Leva } from "leva";
 import * as THREE from "three";
 import Scene from "./components/Scene.jsx";
-import Menu from "./components/Menu.jsx";
+import SelectMenu from "./components/SelectMenu.jsx";
 import Placeholder from "./components/Placeholder.jsx";
 import Item from "./data/Item.jsx";
 import { textures } from "./data/textures.jsx";
@@ -269,7 +269,7 @@ function App() {
         </Suspense>
       </Canvas>
       <SnipcartProvider>
-        <Menu
+        <SelectMenu
           toggled={toggled}
           setToggled={setToggled}
           animActive={animActive}
@@ -281,16 +281,12 @@ function App() {
           shopItems={shopItems}
           currentItemSelected={currentItemSelected}
           setCurrentItemSelected={setCurrentItemSelected}
-          previousItemSelected={previousItemSelected}
           setPreviousItemSelected={setPreviousItemSelected}
           currentItemOptionSelect={currentItemOptionSelect}
           currentItemOptionType={currentItemOptionType}
           currentItemDescription={currentItemDescription}
           currentItemSizeSelect={currentItemSizeSelect}
           currentItemSizeSelectIndex={currentItemSizeSelectIndex}
-          setCurrentItemSizeSelectIndex={setCurrentItemSizeSelectIndex}
-          currentTexture={currentTexture}
-          currentColor={currentColor}
         />
       </SnipcartProvider>
     </>
