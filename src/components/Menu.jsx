@@ -148,22 +148,24 @@ export default function BottomAppBar({
     }
   };
 
+  function handleCartClick() {
+    if (snipcartLoaded) {
+      window.Snipcart.api.theme.cart.open();
+    }
+  }
+
   function totalPrice() {
     let calcualatedPrice = 0;
     if (currentItemOptionType === "stain") {
-      if (currentItemSizeSelectIndex === 1) {
-        calcualatedPrice =
-          currentItemSelected.itemStainPrice + currentItemSelected.sizeCost;
-      } else {
-        calcualatedPrice = currentItemSelected.itemStainPrice;
-      }
+      calcualatedPrice =
+        parseInt(currentItemSelected.itemBasePrice) +
+        currentItemSelected.itemStainCost +
+        currentItemSelected.sizeCost * currentItemSizeSelectIndex;
     } else if (currentItemOptionType === "paint") {
-      if (currentItemSizeSelectIndex === 1) {
-        calcualatedPrice =
-          currentItemSelected.itemPaintPrice + currentItemSelected.sizeCost;
-      } else {
-        calcualatedPrice = currentItemSelected.itemPaintPrice;
-      }
+      calcualatedPrice =
+        currentItemSelected.itemBasePrice +
+        currentItemSelected.itemPaintCost +
+        currentItemSelected.sizeCost * currentItemSizeSelectIndex;
     }
     return calcualatedPrice;
   }
@@ -421,13 +423,13 @@ export default function BottomAppBar({
                 }}
               >
                 <Tooltip title="View cart">
-                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <IconButton onClick={handleCartClick} sx={{ p: 0 }}>
                     {/* <Avatar
                       alt="Remy Sharp"
                       src="/static/images/avatar/2.jpg"
                     /> */}
                     <Badge
-                      badgeContent={cartCount}
+                      badgeContent={cart.items ? cart.items.count : 0}
                       color="transparent"
                       anchorOrigin={{
                         vertical: "top",
@@ -833,7 +835,7 @@ export default function BottomAppBar({
                         </Button>
                       </Box>
 
-                      {itemNo < 0 ? (
+                      {itemNo === "" ? (
                         ""
                       ) : (
                         <Button
@@ -843,9 +845,27 @@ export default function BottomAppBar({
                           className="snipcart-add-item"
                           data-item-id={currentItemSelected.itemNo}
                           // data-item-image={imageUrl}
-                          data-item-name={currentItemSelected.itemName}
+                          data-item-name={currentItemSelected.itemTitle}
                           // data-item-url="/"
-                          data-item-price={currentItemSelected.itemStainPrice}
+                          data-item-description={
+                            currentItemSelected.itemDescription
+                          }
+                          data-item-price={currentItemSelected.itemBasePrice}
+                          data-item-custom1-name="Finish option"
+                          data-item-custom1-options={`white[+${currentItemSelected.itemStainCost}]|natural[+${currentItemSelected.itemStainCost}]|black[+${currentItemSelected.itemStainCost}]|allBlack[+${currentItemSelected.itemStainCost}]|alabaster|pink|basil|yellow|blue|gray`}
+                          data-item-custom1-value={currentItemOptionSelect}
+                          data-item-custom2-name="Size option"
+                          data-item-custom2-options={
+                            currentItemSelected.sizes.length > 1
+                              ? `${currentItemSelected.sizes[0]}|${currentItemSelected.sizes[1]}[+${currentItemSelected.sizeCost}]`
+                              : `${currentItemSelected.sizes[0]}`
+                          }
+                          // data-item-custom2-value={
+                          //   currentItemSelected.sizes.length === 1
+                          //     ? currentItemSelected.sizes[0]
+                          //     : currentItemSizeSelect
+                          // }
+                          data-item-custom2-value={currentItemSizeSelect}
                         >
                           ${totalPrice()}
                         </Button>
@@ -861,12 +881,3 @@ export default function BottomAppBar({
     </React.Fragment>
   );
 }
-
-// itemName,
-//     itemNo,
-//     itemTitle,
-//     itemDescription,
-//     itemStainPrice,
-//     itemPaintPrice,
-//     sizeCost,
-//     sizes,

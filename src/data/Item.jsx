@@ -4,8 +4,9 @@ export default class Item {
     itemNo,
     itemTitle,
     itemDescription,
-    itemStainPrice,
-    itemPaintPrice,
+    itemBasePrice,
+    itemStainCost, // itemStainPrice
+    itemPaintCost, // itemPaintPrice
     sizeCost,
     sizes,
     positionA,
@@ -15,8 +16,11 @@ export default class Item {
     this.itemNo = itemNo;
     this.itemTitle = itemTitle;
     this.itemDescription = itemDescription;
-    this.itemStainPrice = itemStainPrice;
-    this.itemPaintPrice = itemPaintPrice;
+
+    this.itemBasePrice = itemBasePrice;
+    this.itemStainCost = itemStainCost;
+    this.itemPaintCost = itemPaintCost;
+
     this.sizeCost = sizeCost;
     this.sizes = sizes;
     this.positionA = positionA;

@@ -48,94 +48,101 @@ function App() {
   ];
 
   const unselectedItem = new Item(
-    "noSelect",
-    -1,
-    "noSelectTitle",
-    "Select item...",
-    0,
-    "",
-    "",
-    [],
-    { x: 0, y: 0, z: 0 },
-    { x: 0, y: 0, z: 0 },
+    "noSelect", // itemName
+    "", // itemNo
+    "noSelectTitle", // itemTitle
+    "Select item", // itemDescription
+    0, // itemBasePrice
+    0, // itemStainCost
+    0, // itemPaintCost
+    0, // sizeCost
+    [], // sizes
+    { x: 0, y: 0, z: 0 }, // positionA
+    { x: 0, y: 0, z: 0 }, // positionB
   );
 
   const gramps = new Item(
-    "gramps",
-    0,
-    "GRAMPS",
-    "Handmade stool",
-    900,
-    750,
-    0,
-    grampSizes,
-    grampsPosition[0],
-    grampsPosition[1],
+    "gramps", // itemName
+    0, // itemNo
+    "GRAMPS", // itemTitle
+    "Handmade stool", // itemDescription
+    750, // itemBasePrice
+    150, // itemStainCost
+    0, // itemPaintCost
+    0, // sizeCost
+    grampSizes, // sizes
+    grampsPosition[0], // positionA
+    grampsPosition[1], // positionB
   );
 
   const squatter = new Item(
-    "squatter",
-    1,
-    "SQUATTER",
-    "Handmade end table",
-    700,
-    600,
-    0,
-    squatterSizes,
-    squatterPosition[0],
-    squatterPosition[1],
+    "squatter", // itemName
+    1, // itemNo
+    "SQUATTER", // itemTitle
+    "Handmade end table", // itemDescription
+    600, // itemBasePrice
+    100, // itemStainCost
+    0, // itemPaintCost
+    0, // sizeCost
+    squatterSizes, // sizes
+    squatterPosition[0], // positionA
+    squatterPosition[1], // positionB
   );
 
   const block = new Item(
-    "block",
-    2,
-    "BLOCK",
-    "Handmade room block",
-    400,
-    250,
-    0,
-    blockSizes,
-    blockPosition[0],
-    blockPosition[1],
+    "block", // itemName
+    2, // itemNo
+    "BLOCK", // itemTitle
+    "Handmade room block", // itemDescription
+    250, // itemBasePrice
+    150, // itemStainCost
+    0, // itemPaintCost
+    0, // sizeCost
+    blockSizes, // sizes
+    blockPosition[0], // positionA
+    blockPosition[1], // positionB
   );
 
   const horse = new Item(
-    "horse",
-    3,
-    "HORSE",
-    "Handmade saw horse",
-    500,
-    400,
-    0,
-    horseSizes,
-    horsePosition[0],
-    horsePosition[1],
+    "horse", // itemName
+    3, // itemNo
+    "HORSE", // itemTitle
+    "Handmade saw horse", // itemDescription
+    400, // itemBasePrice
+    100, // itemStainCost
+    0, // itemPaintCost
+    0, // sizeCost
+    horseSizes, // sizes
+    horsePosition[0], // positionA
+    horsePosition[1], // positionB
   );
 
   const shelfA = new Item(
-    "shelfA",
-    4,
-    `\\SHELF/`,
-    "Handmade angle shelf",
-    400,
-    350,
-    200,
-    shelfASizes,
-    shelfAPosition[0],
+    "shelfA", // itemName
+    4, // itemNo
+    `\\SHELF/`, // itemTitle
+    "Handmade angle shelf", // itemDescription
+    350, // itemBasePrice
+    50, // itemStainCost
+    0, // itemPaintCost
+    200, // sizeCost
+    shelfASizes, // sizes
+    shelfAPosition[0], // positionA
     shelfAPosition[1],
   );
 
   const shelfB = new Item(
-    "shelfB",
-    5,
-    "(SHELF)",
-    "Handmade block shelf",
-    400,
-    350,
-    200,
-    shelfBSizes,
-    shelfBPosition[0],
-    shelfBPosition[1],
+    "shelfB", // itemName
+    5, // itemNo
+    "(SHELF)", // itemTitle
+    "Handmade block shelf", // itemDescription
+    350, // itemBasePrice
+    50, // itemStainCost
+    0, // itemPaintCost
+    200, // sizeCost
+    shelfBSizes, // sizes
+    shelfBPosition[0], // positionA
+    shelfBPosition[1], // positionB
   );
 
   const shopItems = [gramps, squatter, block, horse, shelfA, shelfB];
@@ -145,7 +152,8 @@ function App() {
   const [previousItemSelected, setPreviousItemSelected] =
     useState(unselectedItem);
   const [currentItemOptionSelect, setCurrentItemOptionSelect] = useState("");
-  const [currentItemOptionType, setCurrentItemOptionType] = useState("stain");
+  const [currentItemOptionType, setCurrentItemOptionType] =
+    useState("stain or paint");
   const [currentItemDescription, setCurrentItemDescription] = useState(
     gramps.itemDescription,
   );
@@ -161,6 +169,7 @@ function App() {
   useEffect(() => {
     setCurrentItemDescription(currentItemSelected.itemDescription);
     setCurrentItemSizeSelectIndex(0);
+    setCurrentItemSizeSelect(currentItemSelected.sizes[0]);
     console.log("previous item selected: ", previousItemSelected);
     console.log("current item selected: ", currentItemSelected);
   }, [currentItemSelected]);
