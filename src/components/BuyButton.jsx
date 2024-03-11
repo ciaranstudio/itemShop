@@ -25,13 +25,13 @@ export default function BuyButton({
         data-item-id={item.itemNo}
         // data-item-image={imageUrl}
         data-item-name={item.itemTitle}
-        // data-item-url="/"
+        data-item-url={`https://elibuilds-998b8-default-rtdb.firebaseio.com/${item.itemNo}.json`}
         data-item-description={item.itemDescription}
         data-item-price={item.itemBasePrice}
-        data-item-custom1-name="Finish option"
+        data-item-custom1-name="Finish"
         data-item-custom1-options={`white[+${item.itemStainCost}]|natural[+${item.itemStainCost}]|black[+${item.itemStainCost}]|allBlack[+${item.itemStainCost}]|alabaster|pink|basil|yellow|blue|gray`}
         data-item-custom1-value={currentItemOptionSelect}
-        data-item-custom2-name="Size option"
+        data-item-custom2-name="Size"
         data-item-custom2-options={
           item.sizes.length > 1
             ? `${item.sizes[0]}|${item.sizes[1]}[+${item.sizeCost}]`
