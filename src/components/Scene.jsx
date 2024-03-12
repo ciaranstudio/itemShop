@@ -78,8 +78,8 @@ export default function Scene({
   setPreviousItemSizeSelectIndex,
   currentItemSizeSelectIndex,
   setCurrentItemSizeSelectIndex,
-  currentTexture,
-  currentColor,
+  // currentTexture,
+  // currentColor,
   currentTextureGramps,
   currentColorGramps,
   currentTextureSquatter,
@@ -94,14 +94,14 @@ export default function Scene({
   currentColorShelfB,
   sizeChangeToggle,
 }) {
-  const [
-    colorMap,
-    // displacementMap,
-    normalMap,
-    roughnessMap,
-    metalnessMap,
-    // aoMap,
-  ] = useTexture(currentTexture);
+  // const [
+  //   colorMap,
+  //   // displacementMap,
+  //   normalMap,
+  //   roughnessMap,
+  //   metalnessMap,
+  //   // aoMap,
+  // ] = useTexture(currentTexture);
 
   const [
     colorMapGramps,
@@ -444,12 +444,16 @@ export default function Scene({
           // },
           onUpdate: () => {
             // console.log("updating controlsTargetVec: ", controlsTargetVec);
+            orbitRef.current.object.updateProjectionMatrix();
+            orbitRef.current.update();
             setTargetVec(controlsTargetVec);
             orbitRef.current.target.set(
               controlsTargetVec.x,
               controlsTargetVec.y,
               controlsTargetVec.z,
             );
+            orbitRef.current.object.updateProjectionMatrix();
+            orbitRef.current.update();
           },
         });
       } else if (
@@ -469,12 +473,16 @@ export default function Scene({
           // },
           onUpdate: () => {
             // console.log("updating controlsTargetVec: ", controlsTargetVec);
+            orbitRef.current.object.updateProjectionMatrix();
+            orbitRef.current.update();
             setTargetVec(controlsTargetVec);
             orbitRef.current.target.set(
               controlsTargetVec.x,
               controlsTargetVec.y,
               controlsTargetVec.z,
             );
+            orbitRef.current.object.updateProjectionMatrix();
+            orbitRef.current.update();
           },
         });
       }

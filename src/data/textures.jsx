@@ -16,6 +16,27 @@ export const textures = {
   bluePaint: new THREE.Color(0x96b0aa),
   grayPaint: new THREE.Color(0x8c8b81),
 
+  smooth: [
+    "./textures/Metal030_1K_Color.jpg",
+    "./textures/Metal030_1K_NormalGL.jpg",
+    "./textures/Metal030_1K_Roughness.jpg",
+    "./textures/Metal030_1K_Metalness.jpg",
+  ],
+
+  rough: [
+    "./textures/Metal040_1K_Color.jpg",
+    "./textures/Metal040_1K_NormalGL.jpg",
+    "./textures/Metal040_1K_Roughness.jpg",
+    "./textures/Metal040_1K_Metalness.jpg",
+  ],
+
+  beatup: [
+    "./textures/Metal021_1K_Color.jpg",
+    "./textures/Metal021_1K_NormalGL.jpg",
+    "./textures/Metal021_1K_Roughness.jpg",
+    "./textures/Metal021_1K_Metalness.jpg",
+  ],
+
   whiteTexture: [
     "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_COL_2K_METALNESS.png",
     // "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_DISP_2K_METALNESS.png",
@@ -54,7 +75,7 @@ export const textures = {
 
   // replace with same base texture for all paint finishes, paint will be opaque, just needs to have clean paint sheen with slight recessed grain shadows
   paintTexture: [
-    "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_COL_2K_METALNESS.png",
+    "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_COL_2K_METALNESS.png", // "./VeneerWhiteOakRandomMatched001/CeramicPlainWhite001_COL_2K.jpg",  //"./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_COL_2K_METALNESS_DESAT.png", //
     // "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_DISP_2K_METALNESS.png",
     "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_NRM_2K_METALNESS.png",
     "./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_METALNESS_2K_METALNESS.png",

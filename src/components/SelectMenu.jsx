@@ -307,7 +307,7 @@ export default function SelectMenu({
         <Global
           styles={{
             ".MuiDrawer-root > .MuiPaper-root": {
-              height: `calc((${drawerBleeding * 5.5}px))`,
+              height: `calc((${drawerBleeding * 5.25}px))`, // 5.5
               overflow: "visible",
               background: "transparent",
             },
