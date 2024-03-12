@@ -11,6 +11,7 @@ export default class Item {
     sizes,
     positionA,
     positionB,
+    components,
   ) {
     this.itemName = itemName;
     this.itemNo = itemNo;
@@ -25,5 +26,6 @@ export default class Item {
     this.sizes = sizes;
     this.positionA = positionA;
     this.positionB = positionB;
+    this.components = components;
   }
 }

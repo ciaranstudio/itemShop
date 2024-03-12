@@ -74,7 +74,10 @@ export default function Scene({
   setCurrentItemSelected,
   previousItemSelected,
   setPreviousItemSelected,
+  previousItemSizeSelectIndex,
+  setPreviousItemSizeSelectIndex,
   currentItemSizeSelectIndex,
+  setCurrentItemSizeSelectIndex,
   currentTexture,
   currentColor,
 }) {
@@ -183,6 +186,7 @@ export default function Scene({
     // setOpen(true);
     e.stopPropagation();
     const { eventObject } = e;
+    console.log(eventObject.position);
     let tempObjectPosition = eventObject.position;
     let positionMatch = (element) =>
       (element.positionA.x === tempObjectPosition.x &&
@@ -191,14 +195,35 @@ export default function Scene({
       (element.positionB.x === tempObjectPosition.x &&
         element.positionB.y === tempObjectPosition.y &&
         element.positionB.z === tempObjectPosition.z);
+
     if (positionMatch) {
       console.log(
         "shopItems.find(positionMatch): ",
         shopItems.find(positionMatch),
       );
       let matchedItem = shopItems.find(positionMatch);
-      setPreviousItemSelected(currentItemSelected);
-      setCurrentItemSelected(matchedItem);
+      console.log("matchedItem.positionA: ", matchedItem.positionA);
+      if (
+        matchedItem.positionA.x === tempObjectPosition.x &&
+        matchedItem.positionA.y === tempObjectPosition.y &&
+        matchedItem.positionA.z === tempObjectPosition.z
+      ) {
+        setPreviousItemSizeSelectIndex(currentItemSizeSelectIndex);
+        setCurrentItemSizeSelectIndex(0);
+        console.log("matched positionA");
+        setPreviousItemSelected(currentItemSelected);
+        setCurrentItemSelected(matchedItem);
+      } else if (
+        matchedItem.positionB.x === tempObjectPosition.x &&
+        matchedItem.positionB.y === tempObjectPosition.y &&
+        matchedItem.positionB.z === tempObjectPosition.z
+      ) {
+        setPreviousItemSizeSelectIndex(currentItemSizeSelectIndex);
+        setCurrentItemSizeSelectIndex(1);
+        console.log("matched positionB");
+        setPreviousItemSelected(currentItemSelected);
+        setCurrentItemSelected(matchedItem);
+      }
     }
   };
 
@@ -324,34 +349,65 @@ export default function Scene({
   const [targetVec, setTargetVec] = useState(new THREE.Vector3());
 
   useGSAP(() => {
-    controlsTargetVec.set(
-      previousItemSelected.positionA.x,
-      previousItemSelected.positionA.y,
-      previousItemSelected.positionA.z,
-    );
-
+    if (previousItemSizeSelectIndex === 0) {
+      controlsTargetVec.set(
+        previousItemSelected.positionA.x,
+        previousItemSelected.positionA.y,
+        previousItemSelected.positionA.z,
+      );
+    } else if (previousItemSizeSelectIndex === 1) {
+      controlsTargetVec.set(
+        previousItemSelected.positionB.x,
+        previousItemSelected.positionB.y,
+        previousItemSelected.positionB.z,
+      );
+    }
     if (currentItemSelected.name !== "noSelect") {
-      let tl = gsap.timeline();
-      tl.to(controlsTargetVec, {
-        duration: 1,
-        // x: 10,
-        x: currentItemSelected.positionA.x,
-        y: currentItemSelected.positionA.y,
-        z: currentItemSelected.positionA.z,
-        ease: "easeIn",
-        onStart: () => {
-          console.log("targetVec: ", targetVec);
-        },
-        onUpdate: () => {
-          // console.log("updating controlsTargetVec: ", controlsTargetVec);
-          setTargetVec(controlsTargetVec);
-          orbitRef.current.target.set(
-            controlsTargetVec.x,
-            controlsTargetVec.y,
-            controlsTargetVec.z,
-          );
-        },
-      });
+      if (currentItemSizeSelectIndex === 0) {
+        let tl = gsap.timeline();
+        tl.to(controlsTargetVec, {
+          duration: 1,
+          // x: 10,
+          x: currentItemSelected.positionA.x,
+          y: currentItemSelected.positionA.y,
+          z: currentItemSelected.positionA.z,
+          ease: "easeIn",
+          onStart: () => {
+            console.log("targetVec: ", targetVec);
+          },
+          onUpdate: () => {
+            // console.log("updating controlsTargetVec: ", controlsTargetVec);
+            setTargetVec(controlsTargetVec);
+            orbitRef.current.target.set(
+              controlsTargetVec.x,
+              controlsTargetVec.y,
+              controlsTargetVec.z,
+            );
+          },
+        });
+      } else if (currentItemSizeSelectIndex === 1) {
+        let tl = gsap.timeline();
+        tl.to(controlsTargetVec, {
+          duration: 1,
+          // x: 10,
+          x: currentItemSelected.positionB.x,
+          y: currentItemSelected.positionB.y,
+          z: currentItemSelected.positionB.z,
+          ease: "easeIn",
+          onStart: () => {
+            console.log("targetVec: ", targetVec);
+          },
+          onUpdate: () => {
+            // console.log("updating controlsTargetVec: ", controlsTargetVec);
+            setTargetVec(controlsTargetVec);
+            orbitRef.current.target.set(
+              controlsTargetVec.x,
+              controlsTargetVec.y,
+              controlsTargetVec.z,
+            );
+          },
+        });
+      }
     }
   }, [currentItemSelected]);
 
@@ -384,14 +440,26 @@ export default function Scene({
       //   controlsPositionVec.set(0, 45, 0),
       //   0.01,
       // );
-      orbitRef.current.object.position.lerp(
-        controlsPositionVec.set(
-          currentItemSelected.positionA.x * 4, // * 6
-          currentItemSelected.positionA.y + 7 * 4, // * 6
-          currentItemSelected.positionA.z * 4, // * 6
-        ),
-        0.03,
-      );
+      if (currentItemSizeSelectIndex === 0) {
+        orbitRef.current.object.position.lerp(
+          controlsPositionVec.set(
+            currentItemSelected.positionA.x * 4, // * 6
+            currentItemSelected.positionA.y + 7 * 4, // * 6
+            currentItemSelected.positionA.z * 4, // * 6
+          ),
+          0.03,
+        );
+      } else if (currentItemSizeSelectIndex === 1) {
+        orbitRef.current.object.position.lerp(
+          controlsPositionVec.set(
+            currentItemSelected.positionB.x * 4, // * 6
+            currentItemSelected.positionB.y + 7 * 4, // * 6
+            currentItemSelected.positionB.z * 4, // * 6
+          ),
+          0.03,
+        );
+      }
+
       orbitRef.current.object.updateProjectionMatrix();
       orbitRef.current.update();
     }

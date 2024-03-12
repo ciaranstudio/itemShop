@@ -25,19 +25,19 @@ function App() {
   const grampsPosition = [
     { x: 0, y: 0, z: 70 },
     { x: 0, y: 0, z: 0 },
-  ]; // [0, 0, 70]
+  ];
   const squatterPosition = [
     { x: -70, y: 0, z: 0 },
-    { x: 0, y: 0, z: 0 },
-  ]; // [-70, 0, 0]
+    { x: 1, y: 1, z: 1 },
+  ];
   const blockPosition = [
     { x: 0, y: 0, z: -70 },
-    { x: 0, y: 0, z: 0 },
-  ]; // [0, 0, -70]
+    { x: 2, y: 2, z: 2 },
+  ];
   const horsePosition = [
     { x: 70, y: 0, z: 0 },
-    { x: 0, y: 0, z: 0 },
-  ]; // [70, 0, 0]
+    { x: 3, y: 3, z: 3 },
+  ];
   const shelfAPosition = [
     { x: -118.3125, y: 0, z: -81.125 },
     { x: -118.3125, y: 0, z: -40.6 },
@@ -57,8 +57,9 @@ function App() {
     0, // itemPaintCost
     0, // sizeCost
     [], // sizes
-    { x: 0, y: 0, z: 0 }, // positionA
-    { x: 0, y: 0, z: 0 }, // positionB
+    { x: 0, y: 1, z: 0 }, // positionA
+    { x: 0, y: 2, z: 0 }, // positionB
+    [0],
   );
 
   const gramps = new Item(
@@ -73,6 +74,7 @@ function App() {
     grampSizes, // sizes
     grampsPosition[0], // positionA
     grampsPosition[1], // positionB
+    [0, 1, 2, 3, 4, 5, 6],
   );
 
   const squatter = new Item(
@@ -87,6 +89,7 @@ function App() {
     squatterSizes, // sizes
     squatterPosition[0], // positionA
     squatterPosition[1], // positionB
+    [0, 1, 2, 3],
   );
 
   const block = new Item(
@@ -101,6 +104,7 @@ function App() {
     blockSizes, // sizes
     blockPosition[0], // positionA
     blockPosition[1], // positionB
+    [0, 1, 2, 3, 4],
   );
 
   const horse = new Item(
@@ -115,6 +119,7 @@ function App() {
     horseSizes, // sizes
     horsePosition[0], // positionA
     horsePosition[1], // positionB
+    [0, 1, 2, 3, 4, 5],
   );
 
   const shelfA = new Item(
@@ -129,6 +134,7 @@ function App() {
     shelfASizes, // sizes
     shelfAPosition[0], // positionA
     shelfAPosition[1],
+    [0, 1],
   );
 
   const shelfB = new Item(
@@ -143,6 +149,7 @@ function App() {
     shelfBSizes, // sizes
     shelfBPosition[0], // positionA
     shelfBPosition[1], // positionB
+    [0, 1],
   );
 
   const shopItems = [gramps, squatter, block, horse, shelfA, shelfB];
@@ -159,8 +166,10 @@ function App() {
   );
   const [currentItemSizeSelectIndex, setCurrentItemSizeSelectIndex] =
     useState(0);
+  const [previousItemSizeSelectIndex, setPreviousItemSizeSelectIndex] =
+    useState(0);
   const [currentItemSizeSelect, setCurrentItemSizeSelect] = useState(
-    currentItemSelected.sizes[currentItemSizeSelectIndex],
+    0, // currentItemSelected.sizes[currentItemSizeSelectIndex]
   );
 
   const [currentTexture, setCurrentTexture] = useState(textures.whiteTexture);
@@ -168,13 +177,20 @@ function App() {
 
   useEffect(() => {
     setCurrentItemDescription(currentItemSelected.itemDescription);
-    setCurrentItemSizeSelectIndex(0);
-    setCurrentItemSizeSelect(currentItemSelected.sizes[0]);
+    if (currentItemSelected.sizes.length === 1) {
+      setCurrentItemSizeSelect(currentItemSelected.sizes[0]);
+    } else if (currentItemSelected.sizes.length === 2) {
+      setCurrentItemSizeSelect(
+        currentItemSelected.sizes[currentItemSizeSelectIndex],
+      );
+    }
+
     console.log("previous item selected: ", previousItemSelected);
     console.log("current item selected: ", currentItemSelected);
   }, [currentItemSelected]);
 
   useEffect(() => {
+    console.log("currentItemSizeSelectIndex", currentItemSizeSelectIndex);
     setCurrentItemSizeSelect(
       currentItemSelected.sizes[currentItemSizeSelectIndex],
     );
@@ -221,6 +237,7 @@ function App() {
 
   const handleSizeChange = (event, size, index) => {
     event.preventDefault();
+    setPreviousItemSizeSelectIndex(currentItemSizeSelectIndex);
     setCurrentItemSizeSelectIndex(index);
   };
 
@@ -262,7 +279,10 @@ function App() {
             setCurrentItemSelected={setCurrentItemSelected}
             previousItemSelected={previousItemSelected}
             setPreviousItemSelected={setPreviousItemSelected}
+            previousItemSizeSelectIndex={previousItemSizeSelectIndex}
+            setPreviousItemSizeSelectIndex={setPreviousItemSizeSelectIndex}
             currentItemSizeSelectIndex={currentItemSizeSelectIndex}
+            setCurrentItemSizeSelectIndex={setCurrentItemSizeSelectIndex}
             currentTexture={currentTexture}
             currentColor={currentColor}
           />

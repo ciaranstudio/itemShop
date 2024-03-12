@@ -723,9 +723,9 @@ export default function SelectMenu({
                       color="primary"
                       size="small"
                     >
-                      {stains.map((stain) => (
+                      {stains.map((stain, index) => (
                         <Button
-                          key={stain}
+                          key={index}
                           onClick={(e) => handleStainChange(e, stain)}
                           variant={
                             currentItemOptionSelect === stain
@@ -748,9 +748,9 @@ export default function SelectMenu({
                       color="primary"
                       size="small"
                     >
-                      {paints1.map((paint) => (
+                      {paints1.map((paint, index) => (
                         <Button
-                          key={paint}
+                          key={index}
                           onClick={(e) => handlePaintChange(e, paint)}
                           variant={
                             currentItemOptionSelect === paint
@@ -773,9 +773,9 @@ export default function SelectMenu({
                       color="primary"
                       size="small"
                     >
-                      {paints2.map((paint) => (
+                      {paints2.map((paint, index) => (
                         <Button
-                          key={paint}
+                          key={index}
                           onClick={(e) => handlePaintChange(e, paint)}
                           variant={
                             currentItemOptionSelect === paint
@@ -871,9 +871,9 @@ export default function SelectMenu({
                           >
                             ${totalPrice()}
                           </Button> */}
-                          {shopItems.map((item) => (
+                          {shopItems.map((item, index) => (
                             <BuyButton
-                              key={item}
+                              key={index}
                               item={item}
                               itemNo={itemNo}
                               priceTotal={totalPrice()}
