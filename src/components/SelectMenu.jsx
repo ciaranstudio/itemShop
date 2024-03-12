@@ -51,6 +51,8 @@ export default function SelectMenu({
   currentItemSizeSelect,
   currentItemSizeSelectIndex,
   // setCurrentItemSizeSelectIndex,
+  setPreviousItemSizeSelectIndex,
+  setCurrentItemSizeSelectIndex,
   // currentTexture,
   // currentColor,
 }) {
@@ -87,7 +89,7 @@ export default function SelectMenu({
   };
 
   useEffect(() => {
-    console.log("window.innerHeight: ", height);
+    // console.log("window.innerHeight: ", height);
   }, [height]);
 
   useEffect(() => {
@@ -137,13 +139,25 @@ export default function SelectMenu({
   }
 
   const handleItemChange = (e) => {
-    console.log("selected value: ", e.target.value);
+    console.log("handleItemChange selected value: ", e.target.value);
     let tempNo = e.target.value;
     setItemNo(tempNo);
 
     let itemMatch = (element) => element.itemNo === tempNo;
     if (itemMatch) {
       let itemMatchIndex = shopItems.findIndex(itemMatch);
+      // previousItemSizeSelectIndex = { previousItemSizeSelectIndex };
+      console.log(
+        "setPreviousItemSizeSelectIndex(",
+        currentItemSizeSelectIndex,
+        ")",
+      );
+      setPreviousItemSizeSelectIndex(currentItemSizeSelectIndex);
+      if (shopItems[itemMatchIndex].sizes.length === 1) {
+        setCurrentItemSizeSelectIndex(0);
+      } else if (currentItemSelected.sizes.length === 2) {
+        setCurrentItemSizeSelectIndex(currentItemSizeSelectIndex);
+      }
       setPreviousItemSelected(currentItemSelected);
       setCurrentItemSelected(shopItems[itemMatchIndex]);
     }
@@ -250,10 +264,10 @@ export default function SelectMenu({
 
   useEffect(() => {
     console.log("snipcartLoaded: ", snipcartLoaded);
-    console.log("useSnipcart: ", snipcart);
+    // console.log("useSnipcart: ", snipcart);
     // let state = snipcart.getState();
     // console.log("snipCart state: ", state);
-    console.log("cart:", cart);
+    // console.log("cart:", cart);
     if (cart.items) {
       console.log("cart.items.count:", cart.items.count);
     }
@@ -261,7 +275,7 @@ export default function SelectMenu({
     console.log("subtotal:", subtotal);
     if (window.Snipcart) {
       setSnipcartLoaded(true);
-      console.log("window.Snipcart.api: ", window.Snipcart);
+      // console.log("window.Snipcart.api: ", window.Snipcart);
       // window.Snipcart.api.theme.cart.open();
     }
   }, [cart]);
@@ -272,10 +286,10 @@ export default function SelectMenu({
 
   useEffect(() => {
     if (snipcartLoaded) {
-      console.log("snipcartLoaded: ", snipcartLoaded);
-      console.log(window.Snipcart);
+      // console.log("snipcartLoaded: ", snipcartLoaded);
+      // console.log(window.Snipcart);
       if (window.Snipcart.events) {
-        console.log("events loaded");
+        // console.log("events loaded");
         window.Snipcart.events.on("item.removed", (cartItem) => {
           console.log("item removed: ", cartItem);
         });

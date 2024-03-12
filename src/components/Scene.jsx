@@ -80,6 +80,19 @@ export default function Scene({
   setCurrentItemSizeSelectIndex,
   currentTexture,
   currentColor,
+  currentTextureGramps,
+  currentColorGramps,
+  currentTextureSquatter,
+  currentColorSquatter,
+  currentTextureBlock,
+  currentColorBlock,
+  currentTextureHorse,
+  currentColorHorse,
+  currentTextureShelfA,
+  currentColorShelfA,
+  currentTextureShelfB,
+  currentColorShelfB,
+  sizeChangeToggle,
 }) {
   const [
     colorMap,
@@ -186,7 +199,7 @@ export default function Scene({
     // setOpen(true);
     e.stopPropagation();
     const { eventObject } = e;
-    console.log(eventObject.position);
+    // console.log(eventObject.position);
     let tempObjectPosition = eventObject.position;
     let positionMatch = (element) =>
       (element.positionA.x === tempObjectPosition.x &&
@@ -197,12 +210,12 @@ export default function Scene({
         element.positionB.z === tempObjectPosition.z);
 
     if (positionMatch) {
-      console.log(
-        "shopItems.find(positionMatch): ",
-        shopItems.find(positionMatch),
-      );
+      // console.log(
+      //   "shopItems.find(positionMatch): ",
+      //   shopItems.find(positionMatch),
+      // );
       let matchedItem = shopItems.find(positionMatch);
-      console.log("matchedItem.positionA: ", matchedItem.positionA);
+      // console.log("matchedItem.positionA: ", matchedItem.positionA);
       if (
         matchedItem.positionA.x === tempObjectPosition.x &&
         matchedItem.positionA.y === tempObjectPosition.y &&
@@ -210,7 +223,7 @@ export default function Scene({
       ) {
         setPreviousItemSizeSelectIndex(currentItemSizeSelectIndex);
         setCurrentItemSizeSelectIndex(0);
-        console.log("matched positionA");
+        // console.log("matched positionA");
         setPreviousItemSelected(currentItemSelected);
         setCurrentItemSelected(matchedItem);
       } else if (
@@ -220,7 +233,7 @@ export default function Scene({
       ) {
         setPreviousItemSizeSelectIndex(currentItemSizeSelectIndex);
         setCurrentItemSizeSelectIndex(1);
-        console.log("matched positionB");
+        // console.log("matched positionB");
         setPreviousItemSelected(currentItemSelected);
         setCurrentItemSelected(matchedItem);
       }
@@ -243,10 +256,10 @@ export default function Scene({
         element.positionB.y === tempObjectPosition.y &&
         element.positionB.z === tempObjectPosition.z);
     if (positionMatch) {
-      console.log(
-        "shopItems.find(positionMatch): ",
-        shopItems.find(positionMatch),
-      );
+      // console.log(
+      //   "shopItems.find(positionMatch): ",
+      //   shopItems.find(positionMatch),
+      // );
       let matchedItem = shopItems.find(positionMatch);
       // setPreviousItemSelected(currentItemSelected);
       // setCurrentItemSelected(matchedItem);
@@ -256,7 +269,7 @@ export default function Scene({
   const handleOffClick = (e) => {
     e.stopPropagation();
 
-    console.log("onPointerMissed click");
+    // console.log("onPointerMissed click");
     setShowBackground(true);
   };
 
@@ -292,13 +305,13 @@ export default function Scene({
   useEffect(() => {
     // setInitialLoad(true);
     if (orbitRef.current) {
-      console.log(orbitRef.current.object);
+      // console.log(orbitRef.current.object);
       setTargetVec(currentItemSelected.positionA);
 
       orbitRef.current.addEventListener(
         "start",
         () => {
-          console.log("start");
+          // console.log("start");
           setControlsDragging(true);
           // setOpen(false);
         },
@@ -372,9 +385,9 @@ export default function Scene({
           y: currentItemSelected.positionA.y,
           z: currentItemSelected.positionA.z,
           ease: "easeIn",
-          onStart: () => {
-            console.log("targetVec: ", targetVec);
-          },
+          // onStart: () => {
+          //   console.log("targetVec: ", targetVec);
+          // },
           onUpdate: () => {
             // console.log("updating controlsTargetVec: ", controlsTargetVec);
             setTargetVec(controlsTargetVec);
@@ -385,7 +398,10 @@ export default function Scene({
             );
           },
         });
-      } else if (currentItemSizeSelectIndex === 1) {
+      } else if (
+        currentItemSizeSelectIndex === 1 &&
+        currentItemSelected.sizes.length > 1
+      ) {
         let tl = gsap.timeline();
         tl.to(controlsTargetVec, {
           duration: 1,
@@ -394,9 +410,9 @@ export default function Scene({
           y: currentItemSelected.positionB.y,
           z: currentItemSelected.positionB.z,
           ease: "easeIn",
-          onStart: () => {
-            console.log("targetVec: ", targetVec);
-          },
+          // onStart: () => {
+          //   console.log("targetVec: ", targetVec);
+          // },
           onUpdate: () => {
             // console.log("updating controlsTargetVec: ", controlsTargetVec);
             setTargetVec(controlsTargetVec);
@@ -409,7 +425,7 @@ export default function Scene({
         });
       }
     }
-  }, [currentItemSelected]);
+  }, [currentItemSelected, sizeChangeToggle]);
 
   // useEffect(() => {
   //   if (orbitRef.current) {
