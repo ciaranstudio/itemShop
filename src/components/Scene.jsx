@@ -103,6 +103,60 @@ export default function Scene({
     // aoMap,
   ] = useTexture(currentTexture);
 
+  const [
+    colorMapGramps,
+    // displacementMap,
+    normalMapGramps,
+    roughnessMapGramps,
+    metalnessMapGramps,
+    // aoMap,
+  ] = useTexture(currentTextureGramps);
+
+  const [
+    colorMapSquatter,
+    // displacementMap,
+    normalMapSquatter,
+    roughnessMapSquatter,
+    metalnessMapSquatter,
+    // aoMap,
+  ] = useTexture(currentTextureSquatter);
+
+  const [
+    colorMapBlock,
+    // displacementMap,
+    normalMapBlock,
+    roughnessMapBlock,
+    metalnessMapBlock,
+    // aoMap,
+  ] = useTexture(currentTextureBlock);
+
+  const [
+    colorMapHorse,
+    // displacementMap,
+    normalMapHorse,
+    roughnessMapHorse,
+    metalnessMapHorse,
+    // aoMap,
+  ] = useTexture(currentTextureHorse);
+
+  const [
+    colorMapShelfA,
+    // displacementMap,
+    normalMapShelfA,
+    roughnessMapShelfA,
+    metalnessMapShelfA,
+    // aoMap,
+  ] = useTexture(currentTextureShelfA);
+
+  const [
+    colorMapShelfB,
+    // displacementMap,
+    normalMapShelfB,
+    roughnessMapShelfB,
+    metalnessMapShelfB,
+    // aoMap,
+  ] = useTexture(currentTextureShelfB);
+
   const dirLightA = useRef();
   const dirLightB = useRef();
   const dirLightC = useRef();
@@ -615,86 +669,86 @@ export default function Scene({
           >
             <mesh castShadow>
               <GrampsBarBottom
-                map={colorMap}
                 // displacementMap={displacementMap}
-                normalMap={normalMap}
-                roughnessMap={roughnessMap}
-                metalnessMap={metalnessMap}
                 // aoMap={aoMap}
-                currentColor={currentColor}
-                currentTexture={currentTexture}
+                map={colorMapGramps}
+                normalMap={normalMapGramps}
+                roughnessMap={roughnessMapGramps}
+                metalnessMap={metalnessMapGramps}
+                currentColor={currentColorGramps}
+                currentTexture={currentTextureGramps}
               />
             </mesh>
             <mesh castShadow>
               <GrampsBarTop
-                map={colorMap}
                 // displacementMap={displacementMap}
-                normalMap={normalMap}
-                roughnessMap={roughnessMap}
-                metalnessMap={metalnessMap}
                 // aoMap={aoMap}
-                currentColor={currentColor}
-                currentTexture={currentTexture}
+                map={colorMapGramps}
+                normalMap={normalMapGramps}
+                roughnessMap={roughnessMapGramps}
+                metalnessMap={metalnessMapGramps}
+                currentColor={currentColorGramps}
+                currentTexture={currentTextureGramps}
               />
             </mesh>
             <mesh castShadow>
               <GrampsLeg1
-                map={colorMap}
                 // displacementMap={displacementMap}
-                normalMap={normalMap}
-                roughnessMap={roughnessMap}
-                metalnessMap={metalnessMap}
                 // aoMap={aoMap}
-                currentColor={currentColor}
-                currentTexture={currentTexture}
+                map={colorMapGramps}
+                normalMap={normalMapGramps}
+                roughnessMap={roughnessMapGramps}
+                metalnessMap={metalnessMapGramps}
+                currentColor={currentColorGramps}
+                currentTexture={currentTextureGramps}
               />
             </mesh>
             <mesh castShadow>
               <GrampsLeg2
-                map={colorMap}
                 // displacementMap={displacementMap}
-                normalMap={normalMap}
-                roughnessMap={roughnessMap}
-                metalnessMap={metalnessMap}
                 // aoMap={aoMap}
-                currentColor={currentColor}
-                currentTexture={currentTexture}
+                map={colorMapGramps}
+                normalMap={normalMapGramps}
+                roughnessMap={roughnessMapGramps}
+                metalnessMap={metalnessMapGramps}
+                currentColor={currentColorGramps}
+                currentTexture={currentTextureGramps}
               />
             </mesh>
             <mesh castShadow>
               <GrampsLeg3
-                map={colorMap}
                 // displacementMap={displacementMap}
-                normalMap={normalMap}
-                roughnessMap={roughnessMap}
-                metalnessMap={metalnessMap}
                 // aoMap={aoMap}
-                currentColor={currentColor}
-                currentTexture={currentTexture}
+                map={colorMapGramps}
+                normalMap={normalMapGramps}
+                roughnessMap={roughnessMapGramps}
+                metalnessMap={metalnessMapGramps}
+                currentColor={currentColorGramps}
+                currentTexture={currentTextureGramps}
               />
             </mesh>
             <mesh castShadow>
               <GrampsLeg4
-                map={colorMap}
                 // displacementMap={displacementMap}
-                normalMap={normalMap}
-                roughnessMap={roughnessMap}
-                metalnessMap={metalnessMap}
                 // aoMap={aoMap}
-                currentColor={currentColor}
-                currentTexture={currentTexture}
+                map={colorMapGramps}
+                normalMap={normalMapGramps}
+                roughnessMap={roughnessMapGramps}
+                metalnessMap={metalnessMapGramps}
+                currentColor={currentColorGramps}
+                currentTexture={currentTextureGramps}
               />
             </mesh>
             <mesh castShadow>
               <GrampsTop
-                map={colorMap}
                 // displacementMap={displacementMap}
-                normalMap={normalMap}
-                roughnessMap={roughnessMap}
-                metalnessMap={metalnessMap}
                 // aoMap={aoMap}
-                currentColor={currentColor}
-                currentTexture={currentTexture}
+                map={colorMapGramps}
+                normalMap={normalMapGramps}
+                roughnessMap={roughnessMapGramps}
+                metalnessMap={metalnessMapGramps}
+                currentColor={currentColorGramps}
+                currentTexture={currentTextureGramps}
               />
             </mesh>
           </group>
@@ -711,38 +765,38 @@ export default function Scene({
           >
             <mesh castShadow>
               <BlockSide1
-                map={colorMap}
                 // displacementMap={displacementMap}
-                normalMap={normalMap}
-                roughnessMap={roughnessMap}
-                metalnessMap={metalnessMap}
                 // aoMap={aoMap}
-                currentColor={currentColor}
-                currentTexture={currentTexture}
+                map={colorMapBlock}
+                normalMap={normalMapBlock}
+                roughnessMap={roughnessMapBlock}
+                metalnessMap={metalnessMapBlock}
+                currentColor={currentColorBlock}
+                currentTexture={currentTextureBlock}
               />
             </mesh>
             <mesh castShadow>
               <BlockShelves
-                map={colorMap}
                 // displacementMap={displacementMap}
-                normalMap={normalMap}
-                roughnessMap={roughnessMap}
-                metalnessMap={metalnessMap}
                 // aoMap={aoMap}
-                currentColor={currentColor}
-                currentTexture={currentTexture}
+                map={colorMapBlock}
+                normalMap={normalMapBlock}
+                roughnessMap={roughnessMapBlock}
+                metalnessMap={metalnessMapBlock}
+                currentColor={currentColorBlock}
+                currentTexture={currentTextureBlock}
               />
             </mesh>
             <mesh castShadow>
               <BlockSide2
-                map={colorMap}
                 // displacementMap={displacementMap}
-                normalMap={normalMap}
-                roughnessMap={roughnessMap}
-                metalnessMap={metalnessMap}
                 // aoMap={aoMap}
-                currentColor={currentColor}
-                currentTexture={currentTexture}
+                map={colorMapBlock}
+                normalMap={normalMapBlock}
+                roughnessMap={roughnessMapBlock}
+                metalnessMap={metalnessMapBlock}
+                currentColor={currentColorBlock}
+                currentTexture={currentTextureBlock}
               />
             </mesh>
           </group>
@@ -758,74 +812,74 @@ export default function Scene({
           >
             <mesh castShadow>
               <HorseBarInner
-                map={colorMap}
                 // displacementMap={displacementMap}
-                normalMap={normalMap}
-                roughnessMap={roughnessMap}
-                metalnessMap={metalnessMap}
                 // aoMap={aoMap}
-                currentColor={currentColor}
-                currentTexture={currentTexture}
+                map={colorMapHorse}
+                normalMap={normalMapHorse}
+                roughnessMap={roughnessMapHorse}
+                metalnessMap={metalnessMapHorse}
+                currentColor={currentColorHorse}
+                currentTexture={currentTextureHorse}
               />
             </mesh>
             <mesh castShadow>
               <HorseBarTop
-                map={colorMap}
                 // displacementMap={displacementMap}
-                normalMap={normalMap}
-                roughnessMap={roughnessMap}
-                metalnessMap={metalnessMap}
                 // aoMap={aoMap}
-                currentColor={currentColor}
-                currentTexture={currentTexture}
+                map={colorMapHorse}
+                normalMap={normalMapHorse}
+                roughnessMap={roughnessMapHorse}
+                metalnessMap={metalnessMapHorse}
+                currentColor={currentColorHorse}
+                currentTexture={currentTextureHorse}
               />
             </mesh>
             <mesh castShadow>
               <HorseLeg1
-                map={colorMap}
                 // displacementMap={displacementMap}
-                normalMap={normalMap}
-                roughnessMap={roughnessMap}
-                metalnessMap={metalnessMap}
                 // aoMap={aoMap}
-                currentColor={currentColor}
-                currentTexture={currentTexture}
+                map={colorMapHorse}
+                normalMap={normalMapHorse}
+                roughnessMap={roughnessMapHorse}
+                metalnessMap={metalnessMapHorse}
+                currentColor={currentColorHorse}
+                currentTexture={currentTextureHorse}
               />
             </mesh>
             <mesh castShadow>
               <HorseLeg2
-                map={colorMap}
                 // displacementMap={displacementMap}
-                normalMap={normalMap}
-                roughnessMap={roughnessMap}
-                metalnessMap={metalnessMap}
                 // aoMap={aoMap}
-                currentColor={currentColor}
-                currentTexture={currentTexture}
+                map={colorMapHorse}
+                normalMap={normalMapHorse}
+                roughnessMap={roughnessMapHorse}
+                metalnessMap={metalnessMapHorse}
+                currentColor={currentColorHorse}
+                currentTexture={currentTextureHorse}
               />
             </mesh>
             <mesh castShadow>
               <HorseLeg3
-                map={colorMap}
                 // displacementMap={displacementMap}
-                normalMap={normalMap}
-                roughnessMap={roughnessMap}
-                metalnessMap={metalnessMap}
                 // aoMap={aoMap}
-                currentColor={currentColor}
-                currentTexture={currentTexture}
+                map={colorMapHorse}
+                normalMap={normalMapHorse}
+                roughnessMap={roughnessMapHorse}
+                metalnessMap={metalnessMapHorse}
+                currentColor={currentColorHorse}
+                currentTexture={currentTextureHorse}
               />
             </mesh>
             <mesh castShadow>
               <HorseLeg4
-                map={colorMap}
                 // displacementMap={displacementMap}
-                normalMap={normalMap}
-                roughnessMap={roughnessMap}
-                metalnessMap={metalnessMap}
                 // aoMap={aoMap}
-                currentColor={currentColor}
-                currentTexture={currentTexture}
+                map={colorMapHorse}
+                normalMap={normalMapHorse}
+                roughnessMap={roughnessMapHorse}
+                metalnessMap={metalnessMapHorse}
+                currentColor={currentColorHorse}
+                currentTexture={currentTextureHorse}
               />
             </mesh>
           </group>
@@ -846,50 +900,50 @@ export default function Scene({
           >
             <mesh castShadow>
               <SquatterCenterPanel
-                map={colorMap}
                 // displacementMap={displacementMap}
-                normalMap={normalMap}
-                roughnessMap={roughnessMap}
-                metalnessMap={metalnessMap}
                 // aoMap={aoMap}
-                currentColor={currentColor}
-                currentTexture={currentTexture}
+                map={colorMapSquatter}
+                normalMap={normalMapSquatter}
+                roughnessMap={roughnessMapSquatter}
+                metalnessMap={metalnessMapSquatter}
+                currentColor={currentColorSquatter}
+                currentTexture={currentTextureSquatter}
               />
             </mesh>
             <mesh castShadow>
               <SquatterSide1
-                map={colorMap}
                 // displacementMap={displacementMap}
-                normalMap={normalMap}
-                roughnessMap={roughnessMap}
-                metalnessMap={metalnessMap}
                 // aoMap={aoMap}
-                currentColor={currentColor}
-                currentTexture={currentTexture}
+                map={colorMapSquatter}
+                normalMap={normalMapSquatter}
+                roughnessMap={roughnessMapSquatter}
+                metalnessMap={metalnessMapSquatter}
+                currentColor={currentColorSquatter}
+                currentTexture={currentTextureSquatter}
               />
             </mesh>
             <mesh castShadow>
               <SquatterSide2
-                map={colorMap}
                 // displacementMap={displacementMap}
-                normalMap={normalMap}
-                roughnessMap={roughnessMap}
-                metalnessMap={metalnessMap}
                 // aoMap={aoMap}
-                currentColor={currentColor}
-                currentTexture={currentTexture}
+                map={colorMapSquatter}
+                normalMap={normalMapSquatter}
+                roughnessMap={roughnessMapSquatter}
+                metalnessMap={metalnessMapSquatter}
+                currentColor={currentColorSquatter}
+                currentTexture={currentTextureSquatter}
               />
             </mesh>
             <mesh castShadow>
               <SquatterTop
-                map={colorMap}
                 // displacementMap={displacementMap}
-                normalMap={normalMap}
-                roughnessMap={roughnessMap}
-                metalnessMap={metalnessMap}
                 // aoMap={aoMap}
-                currentColor={currentColor}
-                currentTexture={currentTexture}
+                map={colorMapSquatter}
+                normalMap={normalMapSquatter}
+                roughnessMap={roughnessMapSquatter}
+                metalnessMap={metalnessMapSquatter}
+                currentColor={currentColorSquatter}
+                currentTexture={currentTextureSquatter}
               />
             </mesh>
           </group>
@@ -909,26 +963,26 @@ export default function Scene({
           >
             <mesh castShadow>
               <ShelfAShortCleat
-                map={colorMap}
                 // displacementMap={displacementMap}
-                normalMap={normalMap}
-                roughnessMap={roughnessMap}
-                metalnessMap={metalnessMap}
                 // aoMap={aoMap}
-                currentColor={currentColor}
-                currentTexture={currentTexture}
+                map={colorMapShelfA}
+                normalMap={normalMapShelfA}
+                roughnessMap={roughnessMapShelfA}
+                metalnessMap={metalnessMapShelfA}
+                currentColor={currentColorShelfA}
+                currentTexture={currentTextureShelfA}
               />
             </mesh>
             <mesh castShadow>
               <ShelfAShortShelf
-                map={colorMap}
                 // displacementMap={displacementMap}
-                normalMap={normalMap}
-                roughnessMap={roughnessMap}
-                metalnessMap={metalnessMap}
                 // aoMap={aoMap}
-                currentColor={currentColor}
-                currentTexture={currentTexture}
+                map={colorMapShelfA}
+                normalMap={normalMapShelfA}
+                roughnessMap={roughnessMapShelfA}
+                metalnessMap={metalnessMapShelfA}
+                currentColor={currentColorShelfA}
+                currentTexture={currentTextureShelfA}
               />
             </mesh>
           </group>
@@ -948,26 +1002,26 @@ export default function Scene({
           >
             <mesh castShadow>
               <ShelfALongCleat
-                map={colorMap}
                 // displacementMap={displacementMap}
-                normalMap={normalMap}
-                roughnessMap={roughnessMap}
-                metalnessMap={metalnessMap}
                 // aoMap={aoMap}
-                currentColor={currentColor}
-                currentTexture={currentTexture}
+                map={colorMapShelfA}
+                normalMap={normalMapShelfA}
+                roughnessMap={roughnessMapShelfA}
+                metalnessMap={metalnessMapShelfA}
+                currentColor={currentColorShelfA}
+                currentTexture={currentTextureShelfA}
               />
             </mesh>
             <mesh castShadow>
               <ShelfALongShelf
-                map={colorMap}
                 // displacementMap={displacementMap}
-                normalMap={normalMap}
-                roughnessMap={roughnessMap}
-                metalnessMap={metalnessMap}
                 // aoMap={aoMap}
-                currentColor={currentColor}
-                currentTexture={currentTexture}
+                map={colorMapShelfA}
+                normalMap={normalMapShelfA}
+                roughnessMap={roughnessMapShelfA}
+                metalnessMap={metalnessMapShelfA}
+                currentColor={currentColorShelfA}
+                currentTexture={currentTextureShelfA}
               />
             </mesh>
           </group>
@@ -987,26 +1041,26 @@ export default function Scene({
           >
             <mesh castShadow>
               <ShelfBShortCleat
-                map={colorMap}
                 // displacementMap={displacementMap}
-                normalMap={normalMap}
-                roughnessMap={roughnessMap}
-                metalnessMap={metalnessMap}
                 // aoMap={aoMap}
-                currentColor={currentColor}
-                currentTexture={currentTexture}
+                map={colorMapShelfB}
+                normalMap={normalMapShelfB}
+                roughnessMap={roughnessMapShelfB}
+                metalnessMap={metalnessMapShelfB}
+                currentColor={currentColorShelfB}
+                currentTexture={currentTextureShelfB}
               />
             </mesh>
             <mesh castShadow>
               <ShelfBShortShelf
-                map={colorMap}
                 // displacementMap={displacementMap}
-                normalMap={normalMap}
-                roughnessMap={roughnessMap}
-                metalnessMap={metalnessMap}
                 // aoMap={aoMap}
-                currentColor={currentColor}
-                currentTexture={currentTexture}
+                map={colorMapShelfB}
+                normalMap={normalMapShelfB}
+                roughnessMap={roughnessMapShelfB}
+                metalnessMap={metalnessMapShelfB}
+                currentColor={currentColorShelfB}
+                currentTexture={currentTextureShelfB}
               />
             </mesh>
           </group>
@@ -1026,26 +1080,26 @@ export default function Scene({
           >
             <mesh castShadow>
               <ShelfBLongCleat
-                map={colorMap}
                 // displacementMap={displacementMap}
-                normalMap={normalMap}
-                roughnessMap={roughnessMap}
-                metalnessMap={metalnessMap}
                 // aoMap={aoMap}
-                currentColor={currentColor}
-                currentTexture={currentTexture}
+                map={colorMapShelfB}
+                normalMap={normalMapShelfB}
+                roughnessMap={roughnessMapShelfB}
+                metalnessMap={metalnessMapShelfB}
+                currentColor={currentColorShelfB}
+                currentTexture={currentTextureShelfB}
               />
             </mesh>
             <mesh castShadow>
               <ShelfBLongShelf
-                map={colorMap}
                 // displacementMap={displacementMap}
-                normalMap={normalMap}
-                roughnessMap={roughnessMap}
-                metalnessMap={metalnessMap}
                 // aoMap={aoMap}
-                currentColor={currentColor}
-                currentTexture={currentTexture}
+                map={colorMapShelfB}
+                normalMap={normalMapShelfB}
+                roughnessMap={roughnessMapShelfB}
+                metalnessMap={metalnessMapShelfB}
+                currentColor={currentColorShelfB}
+                currentTexture={currentTextureShelfB}
               />
             </mesh>
           </group>

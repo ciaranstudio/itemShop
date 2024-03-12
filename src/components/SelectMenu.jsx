@@ -55,13 +55,16 @@ export default function SelectMenu({
   setCurrentItemSizeSelectIndex,
   // currentTexture,
   // currentColor,
+  stainsList,
+  paintsList,
 }) {
   const drawerBleeding = 60;
   // const settings = ["Profile", "Account", "Dashboard", "Logout"
   const pages = ["Shop", "Custom", "Portfolio", "Contact"];
-  const stains = ["white", "natural", "black", "allBlack"];
-  const paints1 = ["alabaster", "pink", "basil"];
-  const paints2 = ["yellow", "blue", "gray"];
+
+  const stains = stainsList;
+  const paints1 = paintsList.slice(0, 3); // ["alabaster", "pink", "basil"];
+  const paints2 = paintsList.slice(3, 6); // ["yellow", "blue", "gray"];
 
   const { height, width } = useWindowDimensions();
   // const [cartCount, setCartCount] = useState(0);

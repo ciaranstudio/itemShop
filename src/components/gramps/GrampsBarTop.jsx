@@ -3,11 +3,9 @@ import { useGLTF } from "@react-three/drei";
 
 export const GrampsBarTop = ({
   map,
-  // displacementMap,
   normalMap,
   roughnessMap,
   metalnessMap,
-  // aoMap,
   currentColor,
   currentTexture,
 }) => {

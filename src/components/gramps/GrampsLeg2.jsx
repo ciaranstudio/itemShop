@@ -3,11 +3,9 @@ import { useGLTF } from "@react-three/drei";
 
 export const GrampsLeg2 = ({
   map,
-  // displacementMap,
   normalMap,
   roughnessMap,
   metalnessMap,
-  // aoMap,
   currentColor,
   currentTexture,
 }) => {
