@@ -37,13 +37,29 @@ export const BlockShelves = ({
     metalnessMap,
   ]);
 
-  useLayoutEffect(
-    () =>
-      scene.traverse(
-        (o) => o.isMesh && (o.castShadow = o.receiveShadow = true),
-      ),
-    [],
-  );
+  // useLayoutEffect(
+  //   () =>
+  //     scene.traverse(
+  //       (o) => o.isMesh && (o.castShadow = o.receiveShadow = true),
+  //     ),
+  //   [],
+  // );
+
+  // useLayoutEffect(
+  //   () => scene.traverse((o) => o.isMesh && (o.material.roughness = 1)),
+  //   [],
+  // );
+
+  useLayoutEffect(() => {
+    scene.traverse((o) => {
+      if (o.isMesh) {
+        o.castShadow = true;
+        o.receiveShadow = true;
+        o.material.roughness = 1;
+        o.material.metalness = 0;
+      }
+    });
+  }, []);
 
   return <primitive object={scene} />;
 };

@@ -61,6 +61,7 @@ import { Walls } from "./room/Walls.jsx";
 // import { ShelfPositions } from "./room/ShelfPositions.jsx";
 
 import controls from "../helpers/debugControls";
+import { textures } from "../data/textures.jsx";
 
 export default function Scene({
   open,
@@ -80,6 +81,10 @@ export default function Scene({
   setCurrentItemSizeSelectIndex,
   // currentTexture,
   // currentColor,
+  currentTextureFloor,
+  currentColorFloor,
+  currentTextureWalls,
+  currentColorWalls,
   currentTextureGramps,
   currentColorGramps,
   currentTextureSquatter,
@@ -102,6 +107,60 @@ export default function Scene({
   //   metalnessMap,
   //   // aoMap,
   // ] = useTexture(currentTexture);
+
+  const [
+    colorMapWhiteStain,
+    // displacementMap,
+    normalMapWhiteStain,
+    roughnessWhiteMapStain,
+    metalnessWhiteMapStain,
+    // aoMap,
+  ] = useTexture(textures.whiteTexture);
+
+  const [
+    colorMapNaturalStain,
+    // displacementMap,
+    normalMapNaturalStain,
+    roughnessNaturalMapStain,
+    metalnessNaturalMapStain,
+    // aoMap,
+  ] = useTexture(textures.naturalTexture);
+
+  const [
+    colorMapBlackStain,
+    // displacementMap,
+    normalMapBlackStain,
+    roughnessBlackMapStain,
+    metalnessBlackMapStain,
+    // aoMap,
+  ] = useTexture(textures.blackTexture);
+
+  const [
+    colorMapAllBlackStain,
+    // displacementMap,
+    normalMapAllBlackStain,
+    roughnessAllBlackMapStain,
+    metalnessAllBlackMapStain,
+    // aoMap,
+  ] = useTexture(textures.allBlackTexture);
+
+  const [
+    colorMapFloor,
+    displacementMapFloor,
+    normalMapFloor,
+    roughnessMapFloor,
+    metalnessMapFloor,
+    aoMapFloor,
+  ] = useTexture(currentTextureFloor);
+
+  const [
+    colorMapWalls,
+    // displacementMap,
+    normalMapWalls,
+    roughnessMapWalls,
+    metalnessMapWalls,
+    // aoMap,
+  ] = useTexture(currentTextureWalls);
 
   const [
     colorMapGramps,
@@ -564,7 +623,7 @@ export default function Scene({
         ref={orbitRef}
         enableZoom={true}
         enablePan={true}
-        maxDistance={600}
+        maxDistance={900}
         minDistance={20}
         maxPolarAngle={Math.PI / 2 - Math.PI / 16}
         enableDamping={true}
@@ -609,7 +668,7 @@ export default function Scene({
             shadow-camera-top={150}
             target={grampsRef.current}
           />
-          <pointLight position={[0, 14, 70]} intensity={30} />
+          {/* <pointLight position={[0, 6, 70]} intensity={10} /> */}
           {/* blockLight */}
           <directionalLight
             ref={dirLightB}
@@ -1114,19 +1173,28 @@ export default function Scene({
           {/* floor */}
           <mesh receiveShadow visible={showBackground}>
             <Floor
-            // map={colorMap}
-            // // displacementMap={displacementMap}
-            // normalMap={normalMap}
-            // roughnessMap={roughnessMap}
-            // metalnessMap={metalnessMap}
-            // // aoMap={aoMap}
-            // currentColor={currentColor}
-            // currentTexture={currentTexture}
+              displacementMap={displacementMapFloor}
+              aoMap={aoMapFloor}
+              map={colorMapFloor}
+              normalMap={normalMapFloor}
+              roughnessMap={roughnessMapFloor}
+              metalnessMap={metalnessMapFloor}
+              currentColor={currentColorFloor}
+              currentTexture={currentTextureFloor}
             />
           </mesh>
           {/* wallsAndMoulding */}
           <mesh receiveShadow visible={showBackground}>
-            <Walls />
+            <Walls
+              // displacementMap={displacementMap}
+              // aoMap={aoMap}
+              map={colorMapWalls}
+              normalMap={normalMapWalls}
+              roughnessMap={roughnessMapWalls}
+              metalnessMap={metalnessMapWalls}
+              currentColor={currentColorWalls}
+              currentTexture={currentTextureWalls}
+            />
           </mesh>
           {/* shelfPositions */}
           {/* <mesh receiveShadow>
