@@ -4,10 +4,10 @@ export const textures = {
   noSelectWhite: new THREE.Color(0xffffff),
   concreteFloor: new THREE.Color(0x909090),
 
-  whiteStain: new THREE.Color(0xc0c0c0),
+  whiteStain: new THREE.Color(0xa9a9a9),
   naturalStain: new THREE.Color(0x989898),
-  blackStain: new THREE.Color(0x696969),
-  allBlackStain: new THREE.Color(0x202020),
+  blackStain: new THREE.Color(0x787878),
+  allBlackStain: new THREE.Color(0x808080),
 
   alabasterPaint: new THREE.Color(0xfffdf0),
   pinkPaint: new THREE.Color(0xf2d1c6),
@@ -43,7 +43,7 @@ export const textures = {
 
   whiteTexture: [
     // poliigon free veneer white oak texture
-    "./textures/VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_COL_2K_METALNESS.png",
+    "./textures/VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_COL_2K_METALNESS_white4.png",
     // "./textures/VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_DISP_2K_METALNESS.png",
     "./textures/VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_NRM_2K_METALNESS.png",
     "./textures/VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_METALNESS_2K_METALNESS.png",
@@ -52,7 +52,7 @@ export const textures = {
   ],
 
   naturalTexture: [
-    "./textures/VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_COL_2K_METALNESS.png",
+    "./textures/VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_COL_2K_METALNESS_natural.png",
     // "./textures/VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_DISP_2K_METALNESS.png",
     "./textures/VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_NRM_2K_METALNESS.png",
     "./textures/VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_METALNESS_2K_METALNESS.png",
@@ -61,7 +61,7 @@ export const textures = {
   ],
 
   blackTexture: [
-    "./textures/VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_COL_2K_METALNESS.png",
+    "./textures/VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_COL_2K_METALNESS_black.png",
     // "./textures/VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_DISP_2K_METALNESS.png",
     "./textures/VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_NRM_2K_METALNESS.png",
     "./textures/VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_METALNESS_2K_METALNESS.png",
@@ -70,7 +70,7 @@ export const textures = {
   ],
 
   allBlackTexture: [
-    "./textures/VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_COL_2K_METALNESS.png",
+    "./textures/VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_COL_2K_METALNESS_allBlack.png",
     // "./textures/VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_DISP_2K_METALNESS.png",
     "./textures/VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_NRM_2K_METALNESS.png",
     "./textures/VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_METALNESS_2K_METALNESS.png",

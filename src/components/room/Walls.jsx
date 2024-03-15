@@ -1,5 +1,6 @@
 import React, { useLayoutEffect } from "react";
 import { useGLTF } from "@react-three/drei";
+import * as THREE from "three";
 
 export const Walls = ({
   map,
@@ -12,6 +13,33 @@ export const Walls = ({
   currentTexture,
 }) => {
   const { scene, nodes, materials } = useGLTF("./models/walls.gltf");
+
+  // map.minFilter = THREE.LinearFilter;
+  // map.magFilter = THREE.NearestFilter;
+  // map.colorSpace = THREE.SRGBColorSpace;
+  map.wrapS = THREE.RepeatWrapping;
+  map.wrapT = THREE.RepeatWrapping;
+  map.repeat.set(8, 8);
+
+  // displacementMap.wrapS = THREE.RepeatWrapping;
+  // displacementMap.wrapT = THREE.RepeatWrapping;
+  // displacementMap.repeat.set(8, 8);
+
+  // aoMap.wrapS = THREE.RepeatWrapping;
+  // aoMap.wrapT = THREE.RepeatWrapping;
+  // aoMap.repeat.set(8, 8);
+
+  // normalMap.minFilter = THREE.LinearFilter;
+  // normalMap.magFilter = THREE.NearestFilter;
+  normalMap.wrapS = THREE.RepeatWrapping;
+  normalMap.wrapT = THREE.RepeatWrapping;
+  normalMap.repeat.set(8, 8);
+
+  // roughnessMap.minFilter = THREE.LinearFilter;
+  // roughnessMap.magFilter = THREE.NearestFilter;
+  roughnessMap.wrapS = THREE.RepeatWrapping;
+  roughnessMap.wrapT = THREE.RepeatWrapping;
+  roughnessMap.repeat.set(8, 8);
 
   useLayoutEffect(() => {
     Object.assign(materials.Material, {

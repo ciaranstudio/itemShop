@@ -1,7 +1,6 @@
 import React, { useLayoutEffect } from "react";
 import { useGLTF } from "@react-three/drei";
 import * as THREE from "three";
-// import { textures } from "../data/textures.jsx";
 
 export const Floor = ({
   map,
