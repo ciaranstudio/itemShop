@@ -207,56 +207,56 @@ function App() {
   //   useState("stain or paint");
 
   const [currentTextureFloor, setCurrentTextureFloor] = useState(
-    textures.concreteTexture,
+    textures.portlandConcreteTexture,
   );
   const [currentColorFloor, setCurrentColorFloor] = useState(
     textures.concreteFloor,
   );
 
   const [currentTextureWalls, setCurrentTextureWalls] = useState(
-    textures.smoothStoneTexture,
+    textures.paintedTexture,
   );
   const [currentColorWalls, setCurrentColorWalls] = useState(
     textures.whiteStain,
   );
 
   const [currentTextureGramps, setCurrentTextureGramps] = useState(
-    textures.smoothMetalTexture,
+    textures.paintedTexture,
   );
   const [currentColorGramps, setCurrentColorGramps] = useState(
     textures.whiteStain,
   );
 
   const [currentTextureSquatter, setCurrentTextureSquatter] = useState(
-    textures.smoothMetalTexture,
+    textures.paintedTexture,
   );
   const [currentColorSquatter, setCurrentColorSquatter] = useState(
     textures.whiteStain,
   );
 
   const [currentTextureBlock, setCurrentTextureBlock] = useState(
-    textures.smoothMetalTexture,
+    textures.paintedTexture,
   );
   const [currentColorBlock, setCurrentColorBlock] = useState(
     textures.whiteStain,
   );
 
   const [currentTextureHorse, setCurrentTextureHorse] = useState(
-    textures.smoothMetalTexture,
+    textures.paintedTexture,
   );
   const [currentColorHorse, setCurrentColorHorse] = useState(
     textures.whiteStain,
   );
 
   const [currentTextureShelfA, setCurrentTextureShelfA] = useState(
-    textures.smoothMetalTexture,
+    textures.paintedTexture,
   );
   const [currentColorShelfA, setCurrentColorShelfA] = useState(
     textures.whiteStain,
   );
 
   const [currentTextureShelfB, setCurrentTextureShelfB] = useState(
-    textures.smoothMetalTexture,
+    textures.paintedTexture,
   );
   const [currentColorShelfB, setCurrentColorShelfB] = useState(
     textures.whiteStain,
@@ -486,22 +486,22 @@ function App() {
       setCurrentItemOptionSelectGramps(color);
       // setCurrentItemOptionTypeGramps("paint");
       if (color === "alabaster") {
-        setCurrentTextureGramps(textures.smoothMetalTexture);
+        setCurrentTextureGramps(textures.paintedTexture);
         setCurrentColorGramps(textures.alabasterPaint);
       } else if (color === "pink") {
-        setCurrentTextureGramps(textures.smoothMetalTexture);
+        setCurrentTextureGramps(textures.paintedTexture);
         setCurrentColorGramps(textures.pinkPaint);
       } else if (color === "basil") {
-        setCurrentTextureGramps(textures.smoothMetalTexture);
+        setCurrentTextureGramps(textures.paintedTexture);
         setCurrentColorGramps(textures.basilPaint);
       } else if (color === "yellow") {
-        setCurrentTextureGramps(textures.smoothMetalTexture);
+        setCurrentTextureGramps(textures.paintedTexture);
         setCurrentColorGramps(textures.yellowPaint);
       } else if (color === "blue") {
-        setCurrentTextureGramps(textures.smoothMetalTexture);
+        setCurrentTextureGramps(textures.paintedTexture);
         setCurrentColorGramps(textures.bluePaint);
       } else if (color === "gray") {
-        setCurrentTextureGramps(textures.smoothMetalTexture);
+        setCurrentTextureGramps(textures.paintedTexture);
         setCurrentColorGramps(textures.grayPaint);
       }
     } else if (currentItemSelected.itemNo === 1) {
@@ -509,110 +509,110 @@ function App() {
       // setCurrentItemOptionTypeSquatter("paint");
       if (color === "alabaster") {
         // setCurrentTextureSquatter(textures.paintTexture);
-        setCurrentTextureSquatter(textures.smoothMetalTexture);
+        setCurrentTextureSquatter(textures.paintedTexture);
         setCurrentColorSquatter(textures.alabasterPaint);
       } else if (color === "pink") {
-        setCurrentTextureSquatter(textures.smoothMetalTexture);
+        setCurrentTextureSquatter(textures.paintedTexture);
         setCurrentColorSquatter(textures.pinkPaint);
       } else if (color === "basil") {
-        setCurrentTextureSquatter(textures.smoothMetalTexture);
+        setCurrentTextureSquatter(textures.paintedTexture);
         setCurrentColorSquatter(textures.basilPaint);
       } else if (color === "yellow") {
-        setCurrentTextureSquatter(textures.smoothMetalTexture);
+        setCurrentTextureSquatter(textures.paintedTexture);
         setCurrentColorSquatter(textures.yellowPaint);
       } else if (color === "blue") {
-        setCurrentTextureSquatter(textures.smoothMetalTexture);
+        setCurrentTextureSquatter(textures.paintedTexture);
         setCurrentColorSquatter(textures.bluePaint);
       } else if (color === "gray") {
-        setCurrentTextureSquatter(textures.smoothMetalTexture);
+        setCurrentTextureSquatter(textures.paintedTexture);
         setCurrentColorSquatter(textures.grayPaint);
       }
     } else if (currentItemSelected.itemNo === 2) {
       setCurrentItemOptionSelectBlock(color);
       // setCurrentItemOptionTypeBlock("paint");
       if (color === "alabaster") {
-        setCurrentTextureBlock(textures.smoothMetalTexture);
+        setCurrentTextureBlock(textures.paintedTexture);
         setCurrentColorBlock(textures.alabasterPaint);
       } else if (color === "pink") {
-        setCurrentTextureBlock(textures.smoothMetalTexture);
+        setCurrentTextureBlock(textures.paintedTexture);
         setCurrentColorBlock(textures.pinkPaint);
       } else if (color === "basil") {
-        setCurrentTextureBlock(textures.smoothMetalTexture);
+        setCurrentTextureBlock(textures.paintedTexture);
         setCurrentColorBlock(textures.basilPaint);
       } else if (color === "yellow") {
-        setCurrentTextureBlock(textures.smoothMetalTexture);
+        setCurrentTextureBlock(textures.paintedTexture);
         setCurrentColorBlock(textures.yellowPaint);
       } else if (color === "blue") {
-        setCurrentTextureBlock(textures.smoothMetalTexture);
+        setCurrentTextureBlock(textures.paintedTexture);
         setCurrentColorBlock(textures.bluePaint);
       } else if (color === "gray") {
-        setCurrentTextureBlock(textures.smoothMetalTexture);
+        setCurrentTextureBlock(textures.paintedTexture);
         setCurrentColorBlock(textures.grayPaint);
       }
     } else if (currentItemSelected.itemNo === 3) {
       setCurrentItemOptionSelectHorse(color);
       // setCurrentItemOptionTypeHorse("paint");
       if (color === "alabaster") {
-        setCurrentTextureHorse(textures.smoothMetalTexture);
+        setCurrentTextureHorse(textures.paintedTexture);
         setCurrentColorHorse(textures.alabasterPaint);
       } else if (color === "pink") {
-        setCurrentTextureHorse(textures.smoothMetalTexture);
+        setCurrentTextureHorse(textures.paintedTexture);
         setCurrentColorHorse(textures.pinkPaint);
       } else if (color === "basil") {
-        setCurrentTextureHorse(textures.smoothMetalTexture);
+        setCurrentTextureHorse(textures.paintedTexture);
         setCurrentColorHorse(textures.basilPaint);
       } else if (color === "yellow") {
-        setCurrentTextureHorse(textures.smoothMetalTexture);
+        setCurrentTextureHorse(textures.paintedTexture);
         setCurrentColorHorse(textures.yellowPaint);
       } else if (color === "blue") {
-        setCurrentTextureHorse(textures.smoothMetalTexture);
+        setCurrentTextureHorse(textures.paintedTexture);
         setCurrentColorHorse(textures.bluePaint);
       } else if (color === "gray") {
-        setCurrentTextureHorse(textures.smoothMetalTexture);
+        setCurrentTextureHorse(textures.paintedTexture);
         setCurrentColorHorse(textures.grayPaint);
       }
     } else if (currentItemSelected.itemNo === 4) {
       setCurrentItemOptionSelectShelfA(color);
       // setCurrentItemOptionTypeShelfA("paint");
       if (color === "alabaster") {
-        setCurrentTextureShelfA(textures.smoothMetalTexture);
+        setCurrentTextureShelfA(textures.paintedTexture);
         setCurrentColorShelfA(textures.alabasterPaint);
       } else if (color === "pink") {
-        setCurrentTextureShelfA(textures.smoothMetalTexture);
+        setCurrentTextureShelfA(textures.paintedTexture);
         setCurrentColorShelfA(textures.pinkPaint);
       } else if (color === "basil") {
-        setCurrentTextureShelfA(textures.smoothMetalTexture);
+        setCurrentTextureShelfA(textures.paintedTexture);
         setCurrentColorShelfA(textures.basilPaint);
       } else if (color === "yellow") {
-        setCurrentTextureShelfA(textures.smoothMetalTexture);
+        setCurrentTextureShelfA(textures.paintedTexture);
         setCurrentColorShelfA(textures.yellowPaint);
       } else if (color === "blue") {
-        setCurrentTextureShelfA(textures.smoothMetalTexture);
+        setCurrentTextureShelfA(textures.paintedTexture);
         setCurrentColorShelfA(textures.bluePaint);
       } else if (color === "gray") {
-        setCurrentTextureShelfA(textures.smoothMetalTexture);
+        setCurrentTextureShelfA(textures.paintedTexture);
         setCurrentColorShelfA(textures.grayPaint);
       }
     } else if (currentItemSelected.itemNo === 5) {
       setCurrentItemOptionSelectShelfB(color);
       // setCurrentItemOptionTypeShelfB("paint");
       if (color === "alabaster") {
-        setCurrentTextureShelfB(textures.smoothMetalTexture);
+        setCurrentTextureShelfB(textures.paintedTexture);
         setCurrentColorShelfB(textures.alabasterPaint);
       } else if (color === "pink") {
-        setCurrentTextureShelfB(textures.smoothMetalTexture);
+        setCurrentTextureShelfB(textures.paintedTexture);
         setCurrentColorShelfB(textures.pinkPaint);
       } else if (color === "basil") {
-        setCurrentTextureShelfB(textures.smoothMetalTexture);
+        setCurrentTextureShelfB(textures.paintedTexture);
         setCurrentColorShelfB(textures.basilPaint);
       } else if (color === "yellow") {
-        setCurrentTextureShelfB(textures.smoothMetalTexture);
+        setCurrentTextureShelfB(textures.paintedTexture);
         setCurrentColorShelfB(textures.yellowPaint);
       } else if (color === "blue") {
-        setCurrentTextureShelfB(textures.smoothMetalTexture);
+        setCurrentTextureShelfB(textures.paintedTexture);
         setCurrentColorShelfB(textures.bluePaint);
       } else if (color === "gray") {
-        setCurrentTextureShelfB(textures.smoothMetalTexture);
+        setCurrentTextureShelfB(textures.paintedTexture);
         setCurrentColorShelfB(textures.grayPaint);
       }
     }

@@ -611,7 +611,7 @@ export default function Scene({
     // return null;
   });
 
-  const stagePositionY = 60;
+  const stagePositionY = 0;
 
   return (
     <>
@@ -641,566 +641,566 @@ export default function Scene({
       />
       <Sky distance={4000000} sunPosition={[1.5, 2, -10]} />
       <group position={[0, stagePositionY, 0]}>
-        <Stage
-          shadows={{ type: "contact", opacity: 0.5, blur: 2 }}
+        {/* <Stage
+          shadows={{ type: "contact", opacity: 0.25, blur: 0.5 }}
           environment="night"
           preset="soft"
           adjustCamera={false}
           intensity={1}
           controls={orbitRef}
           center={true}
+        > */}
+        <ambientLight intensity={0.75} />
+        {/* grampsLight */}
+        <directionalLight
+          ref={dirLightA}
+          castShadow
+          position={[0, 60, 0]}
+          intensity={2}
+          shadow-normalBias={0.1}
+          shadow-mapSize-width={2048} // 5120
+          shadow-mapSize-height={2048}
+          shadow-camera-near={50}
+          shadow-camera-far={115}
+          shadow-camera-left={-10}
+          shadow-camera-bottom={-10}
+          shadow-camera-right={10}
+          shadow-camera-top={150}
+          target={grampsRef.current}
+        />
+        {/* <pointLight position={[0, 6, 70]} intensity={10} /> */}
+        {/* blockLight */}
+        <directionalLight
+          ref={dirLightB}
+          castShadow
+          position={[0, 60, 0]}
+          intensity={2}
+          shadow-normalBias={0.1}
+          shadow-mapSize-width={2048}
+          shadow-mapSize-height={2048}
+          shadow-camera-near={50}
+          shadow-camera-far={115}
+          shadow-camera-left={-10}
+          shadow-camera-bottom={-10}
+          shadow-camera-right={10}
+          shadow-camera-top={150}
+          target={blockRef.current}
+        />
+        {/* horseLight */}
+        <directionalLight
+          ref={dirLightC}
+          castShadow
+          position={[0, 60, 0]}
+          intensity={2}
+          shadow-normalBias={0.1}
+          shadow-mapSize-width={2048}
+          shadow-mapSize-height={2048}
+          shadow-camera-near={50}
+          shadow-camera-far={130}
+          shadow-camera-left={-20}
+          shadow-camera-bottom={-20}
+          shadow-camera-right={20}
+          shadow-camera-top={150}
+          target={horseRef.current}
+        />
+        {/* squatterLight */}
+        <directionalLight
+          ref={dirLightD}
+          castShadow
+          position={[0, 60, 0]}
+          intensity={2}
+          shadow-normalBias={0.1}
+          shadow-mapSize-width={2048}
+          shadow-mapSize-height={2048}
+          shadow-camera-near={50}
+          shadow-camera-far={115}
+          shadow-camera-left={-10}
+          shadow-camera-bottom={-10}
+          shadow-camera-right={10}
+          shadow-camera-top={150}
+          target={squatterRef.current}
+        />
+        {/* gramps */}
+        <group
+          ref={grampsRef}
+          position={[
+            gramps.positionA.x,
+            gramps.positionA.y,
+            gramps.positionA.z,
+          ]}
+          onPointerOver={() => hover(true)}
+          onPointerOut={() => hover(false)}
+          onClick={handleClick}
+          onDoubleClick={handleDoubleClick}
+          onPointerMissed={handleOffClick}
         >
-          <ambientLight intensity={0.15} />
-          {/* grampsLight */}
-          <directionalLight
-            ref={dirLightA}
-            castShadow
-            position={[0, 60, 0]}
-            intensity={2}
-            shadow-normalBias={0.1}
-            shadow-mapSize-width={2048}
-            shadow-mapSize-height={2048}
-            shadow-camera-near={50}
-            shadow-camera-far={115}
-            shadow-camera-left={-10}
-            shadow-camera-bottom={-10}
-            shadow-camera-right={10}
-            shadow-camera-top={150}
-            target={grampsRef.current}
-          />
-          {/* <pointLight position={[0, 6, 70]} intensity={10} /> */}
-          {/* blockLight */}
-          <directionalLight
-            ref={dirLightB}
-            castShadow
-            position={[0, 60, 0]}
-            intensity={2}
-            shadow-normalBias={0.1}
-            shadow-mapSize-width={2048}
-            shadow-mapSize-height={2048}
-            shadow-camera-near={50}
-            shadow-camera-far={115}
-            shadow-camera-left={-10}
-            shadow-camera-bottom={-10}
-            shadow-camera-right={10}
-            shadow-camera-top={150}
-            target={blockRef.current}
-          />
-          {/* horseLight */}
-          <directionalLight
-            ref={dirLightC}
-            castShadow
-            position={[0, 60, 0]}
-            intensity={2}
-            shadow-normalBias={0.1}
-            shadow-mapSize-width={2048}
-            shadow-mapSize-height={2048}
-            shadow-camera-near={50}
-            shadow-camera-far={130}
-            shadow-camera-left={-20}
-            shadow-camera-bottom={-20}
-            shadow-camera-right={20}
-            shadow-camera-top={150}
-            target={horseRef.current}
-          />
-          {/* squatterLight */}
-          <directionalLight
-            ref={dirLightD}
-            castShadow
-            position={[0, 60, 0]}
-            intensity={2}
-            shadow-normalBias={0.1}
-            shadow-mapSize-width={2048}
-            shadow-mapSize-height={2048}
-            shadow-camera-near={50}
-            shadow-camera-far={115}
-            shadow-camera-left={-10}
-            shadow-camera-bottom={-10}
-            shadow-camera-right={10}
-            shadow-camera-top={150}
-            target={squatterRef.current}
-          />
-          {/* gramps */}
-          <group
-            ref={grampsRef}
-            position={[
-              gramps.positionA.x,
-              gramps.positionA.y,
-              gramps.positionA.z,
-            ]}
-            onPointerOver={() => hover(true)}
-            onPointerOut={() => hover(false)}
-            onClick={handleClick}
-            onDoubleClick={handleDoubleClick}
-            onPointerMissed={handleOffClick}
-          >
-            <mesh castShadow>
-              <GrampsBarBottom
-                // displacementMap={displacementMap}
-                // aoMap={aoMap}
-                map={colorMapGramps}
-                normalMap={normalMapGramps}
-                roughnessMap={roughnessMapGramps}
-                metalnessMap={metalnessMapGramps}
-                currentColor={currentColorGramps}
-                currentTexture={currentTextureGramps}
-              />
-            </mesh>
-            <mesh castShadow>
-              <GrampsBarTop
-                // displacementMap={displacementMap}
-                // aoMap={aoMap}
-                map={colorMapGramps}
-                normalMap={normalMapGramps}
-                roughnessMap={roughnessMapGramps}
-                metalnessMap={metalnessMapGramps}
-                currentColor={currentColorGramps}
-                currentTexture={currentTextureGramps}
-              />
-            </mesh>
-            <mesh castShadow>
-              <GrampsLeg1
-                // displacementMap={displacementMap}
-                // aoMap={aoMap}
-                map={colorMapGramps}
-                normalMap={normalMapGramps}
-                roughnessMap={roughnessMapGramps}
-                metalnessMap={metalnessMapGramps}
-                currentColor={currentColorGramps}
-                currentTexture={currentTextureGramps}
-              />
-            </mesh>
-            <mesh castShadow>
-              <GrampsLeg2
-                // displacementMap={displacementMap}
-                // aoMap={aoMap}
-                map={colorMapGramps}
-                normalMap={normalMapGramps}
-                roughnessMap={roughnessMapGramps}
-                metalnessMap={metalnessMapGramps}
-                currentColor={currentColorGramps}
-                currentTexture={currentTextureGramps}
-              />
-            </mesh>
-            <mesh castShadow>
-              <GrampsLeg3
-                // displacementMap={displacementMap}
-                // aoMap={aoMap}
-                map={colorMapGramps}
-                normalMap={normalMapGramps}
-                roughnessMap={roughnessMapGramps}
-                metalnessMap={metalnessMapGramps}
-                currentColor={currentColorGramps}
-                currentTexture={currentTextureGramps}
-              />
-            </mesh>
-            <mesh castShadow>
-              <GrampsLeg4
-                // displacementMap={displacementMap}
-                // aoMap={aoMap}
-                map={colorMapGramps}
-                normalMap={normalMapGramps}
-                roughnessMap={roughnessMapGramps}
-                metalnessMap={metalnessMapGramps}
-                currentColor={currentColorGramps}
-                currentTexture={currentTextureGramps}
-              />
-            </mesh>
-            <mesh castShadow>
-              <GrampsTop
-                // displacementMap={displacementMap}
-                // aoMap={aoMap}
-                map={colorMapGramps}
-                normalMap={normalMapGramps}
-                roughnessMap={roughnessMapGramps}
-                metalnessMap={metalnessMapGramps}
-                currentColor={currentColorGramps}
-                currentTexture={currentTextureGramps}
-              />
-            </mesh>
-          </group>
-          {/* block */}
-          <group
-            ref={blockRef}
-            position={[block.positionA.x, block.positionA.y, block.positionA.z]}
-            rotation={[0, Math.PI / 4, 0]}
-            onPointerOver={() => hover(true)}
-            onPointerOut={() => hover(false)}
-            onClick={handleClick}
-            onDoubleClick={handleDoubleClick}
-            onPointerMissed={handleOffClick}
-          >
-            <mesh castShadow>
-              <BlockSide1
-                // displacementMap={displacementMap}
-                // aoMap={aoMap}
-                map={colorMapBlock}
-                normalMap={normalMapBlock}
-                roughnessMap={roughnessMapBlock}
-                metalnessMap={metalnessMapBlock}
-                currentColor={currentColorBlock}
-                currentTexture={currentTextureBlock}
-              />
-            </mesh>
-            <mesh castShadow>
-              <BlockShelves
-                // displacementMap={displacementMap}
-                // aoMap={aoMap}
-                map={colorMapBlock}
-                normalMap={normalMapBlock}
-                roughnessMap={roughnessMapBlock}
-                metalnessMap={metalnessMapBlock}
-                currentColor={currentColorBlock}
-                currentTexture={currentTextureBlock}
-              />
-            </mesh>
-            <mesh castShadow>
-              <BlockSide2
-                // displacementMap={displacementMap}
-                // aoMap={aoMap}
-                map={colorMapBlock}
-                normalMap={normalMapBlock}
-                roughnessMap={roughnessMapBlock}
-                metalnessMap={metalnessMapBlock}
-                currentColor={currentColorBlock}
-                currentTexture={currentTextureBlock}
-              />
-            </mesh>
-          </group>
-          {/* horse */}
-          <group
-            ref={horseRef}
-            position={[horse.positionA.x, horse.positionA.y, horse.positionA.z]}
-            onPointerOver={() => hover(true)}
-            onPointerOut={() => hover(false)}
-            onClick={handleClick}
-            onDoubleClick={handleDoubleClick}
-            onPointerMissed={handleOffClick}
-          >
-            <mesh castShadow>
-              <HorseBarInner
-                // displacementMap={displacementMap}
-                // aoMap={aoMap}
-                map={colorMapHorse}
-                normalMap={normalMapHorse}
-                roughnessMap={roughnessMapHorse}
-                metalnessMap={metalnessMapHorse}
-                currentColor={currentColorHorse}
-                currentTexture={currentTextureHorse}
-              />
-            </mesh>
-            <mesh castShadow>
-              <HorseBarTop
-                // displacementMap={displacementMap}
-                // aoMap={aoMap}
-                map={colorMapHorse}
-                normalMap={normalMapHorse}
-                roughnessMap={roughnessMapHorse}
-                metalnessMap={metalnessMapHorse}
-                currentColor={currentColorHorse}
-                currentTexture={currentTextureHorse}
-              />
-            </mesh>
-            <mesh castShadow>
-              <HorseLeg1
-                // displacementMap={displacementMap}
-                // aoMap={aoMap}
-                map={colorMapHorse}
-                normalMap={normalMapHorse}
-                roughnessMap={roughnessMapHorse}
-                metalnessMap={metalnessMapHorse}
-                currentColor={currentColorHorse}
-                currentTexture={currentTextureHorse}
-              />
-            </mesh>
-            <mesh castShadow>
-              <HorseLeg2
-                // displacementMap={displacementMap}
-                // aoMap={aoMap}
-                map={colorMapHorse}
-                normalMap={normalMapHorse}
-                roughnessMap={roughnessMapHorse}
-                metalnessMap={metalnessMapHorse}
-                currentColor={currentColorHorse}
-                currentTexture={currentTextureHorse}
-              />
-            </mesh>
-            <mesh castShadow>
-              <HorseLeg3
-                // displacementMap={displacementMap}
-                // aoMap={aoMap}
-                map={colorMapHorse}
-                normalMap={normalMapHorse}
-                roughnessMap={roughnessMapHorse}
-                metalnessMap={metalnessMapHorse}
-                currentColor={currentColorHorse}
-                currentTexture={currentTextureHorse}
-              />
-            </mesh>
-            <mesh castShadow>
-              <HorseLeg4
-                // displacementMap={displacementMap}
-                // aoMap={aoMap}
-                map={colorMapHorse}
-                normalMap={normalMapHorse}
-                roughnessMap={roughnessMapHorse}
-                metalnessMap={metalnessMapHorse}
-                currentColor={currentColorHorse}
-                currentTexture={currentTextureHorse}
-              />
-            </mesh>
-          </group>
-          {/* squatter */}
-          <group
-            ref={squatterRef}
-            position={[
-              squatter.positionA.x,
-              squatter.positionA.y,
-              squatter.positionA.z,
-            ]}
-            rotation={[0, Math.PI / 4, 0]}
-            onPointerOver={() => hover(true)}
-            onPointerOut={() => hover(false)}
-            onClick={handleClick}
-            onDoubleClick={handleDoubleClick}
-            onPointerMissed={handleOffClick}
-          >
-            <mesh castShadow>
-              <SquatterCenterPanel
-                // displacementMap={displacementMap}
-                // aoMap={aoMap}
-                map={colorMapSquatter}
-                normalMap={normalMapSquatter}
-                roughnessMap={roughnessMapSquatter}
-                metalnessMap={metalnessMapSquatter}
-                currentColor={currentColorSquatter}
-                currentTexture={currentTextureSquatter}
-              />
-            </mesh>
-            <mesh castShadow>
-              <SquatterSide1
-                // displacementMap={displacementMap}
-                // aoMap={aoMap}
-                map={colorMapSquatter}
-                normalMap={normalMapSquatter}
-                roughnessMap={roughnessMapSquatter}
-                metalnessMap={metalnessMapSquatter}
-                currentColor={currentColorSquatter}
-                currentTexture={currentTextureSquatter}
-              />
-            </mesh>
-            <mesh castShadow>
-              <SquatterSide2
-                // displacementMap={displacementMap}
-                // aoMap={aoMap}
-                map={colorMapSquatter}
-                normalMap={normalMapSquatter}
-                roughnessMap={roughnessMapSquatter}
-                metalnessMap={metalnessMapSquatter}
-                currentColor={currentColorSquatter}
-                currentTexture={currentTextureSquatter}
-              />
-            </mesh>
-            <mesh castShadow>
-              <SquatterTop
-                // displacementMap={displacementMap}
-                // aoMap={aoMap}
-                map={colorMapSquatter}
-                normalMap={normalMapSquatter}
-                roughnessMap={roughnessMapSquatter}
-                metalnessMap={metalnessMapSquatter}
-                currentColor={currentColorSquatter}
-                currentTexture={currentTextureSquatter}
-              />
-            </mesh>
-          </group>
-          {/* shelfAShort */}
-          <group
-            ref={shelfAShortRef}
-            position={[
-              shelfA.positionA.x,
-              shelfA.positionA.y,
-              shelfA.positionA.z,
-            ]}
-            onPointerOver={() => hover(true)}
-            onPointerOut={() => hover(false)}
-            onClick={handleClick}
-            onDoubleClick={handleDoubleClick}
-            onPointerMissed={handleOffClick}
-          >
-            <mesh castShadow>
-              <ShelfAShortCleat
-                // displacementMap={displacementMap}
-                // aoMap={aoMap}
-                map={colorMapShelfA}
-                normalMap={normalMapShelfA}
-                roughnessMap={roughnessMapShelfA}
-                metalnessMap={metalnessMapShelfA}
-                currentColor={currentColorShelfA}
-                currentTexture={currentTextureShelfA}
-              />
-            </mesh>
-            <mesh castShadow>
-              <ShelfAShortShelf
-                // displacementMap={displacementMap}
-                // aoMap={aoMap}
-                map={colorMapShelfA}
-                normalMap={normalMapShelfA}
-                roughnessMap={roughnessMapShelfA}
-                metalnessMap={metalnessMapShelfA}
-                currentColor={currentColorShelfA}
-                currentTexture={currentTextureShelfA}
-              />
-            </mesh>
-          </group>
-          {/* shelfALong */}
-          <group
-            ref={shelfALongRef}
-            position={[
-              shelfA.positionB.x,
-              shelfA.positionB.y,
-              shelfA.positionB.z,
-            ]}
-            onPointerOver={() => hover(true)}
-            onPointerOut={() => hover(false)}
-            onClick={handleClick}
-            onDoubleClick={handleDoubleClick}
-            onPointerMissed={handleOffClick}
-          >
-            <mesh castShadow>
-              <ShelfALongCleat
-                // displacementMap={displacementMap}
-                // aoMap={aoMap}
-                map={colorMapShelfA}
-                normalMap={normalMapShelfA}
-                roughnessMap={roughnessMapShelfA}
-                metalnessMap={metalnessMapShelfA}
-                currentColor={currentColorShelfA}
-                currentTexture={currentTextureShelfA}
-              />
-            </mesh>
-            <mesh castShadow>
-              <ShelfALongShelf
-                // displacementMap={displacementMap}
-                // aoMap={aoMap}
-                map={colorMapShelfA}
-                normalMap={normalMapShelfA}
-                roughnessMap={roughnessMapShelfA}
-                metalnessMap={metalnessMapShelfA}
-                currentColor={currentColorShelfA}
-                currentTexture={currentTextureShelfA}
-              />
-            </mesh>
-          </group>
-          {/* shelfBShort */}
-          <group
-            ref={shelfBShortRef}
-            position={[
-              shelfB.positionA.x,
-              shelfB.positionA.y,
-              shelfB.positionA.z,
-            ]}
-            onPointerOver={() => hover(true)}
-            onPointerOut={() => hover(false)}
-            onClick={handleClick}
-            onDoubleClick={handleDoubleClick}
-            onPointerMissed={handleOffClick}
-          >
-            <mesh castShadow>
-              <ShelfBShortCleat
-                // displacementMap={displacementMap}
-                // aoMap={aoMap}
-                map={colorMapShelfB}
-                normalMap={normalMapShelfB}
-                roughnessMap={roughnessMapShelfB}
-                metalnessMap={metalnessMapShelfB}
-                currentColor={currentColorShelfB}
-                currentTexture={currentTextureShelfB}
-              />
-            </mesh>
-            <mesh castShadow>
-              <ShelfBShortShelf
-                // displacementMap={displacementMap}
-                // aoMap={aoMap}
-                map={colorMapShelfB}
-                normalMap={normalMapShelfB}
-                roughnessMap={roughnessMapShelfB}
-                metalnessMap={metalnessMapShelfB}
-                currentColor={currentColorShelfB}
-                currentTexture={currentTextureShelfB}
-              />
-            </mesh>
-          </group>
-          {/* shelfBLong */}
-          <group
-            ref={shelfBLongRef}
-            position={[
-              shelfB.positionB.x,
-              shelfB.positionB.y,
-              shelfB.positionB.z,
-            ]}
-            onPointerOver={() => hover(true)}
-            onPointerOut={() => hover(false)}
-            onClick={handleClick}
-            onDoubleClick={handleDoubleClick}
-            onPointerMissed={handleOffClick}
-          >
-            <mesh castShadow>
-              <ShelfBLongCleat
-                // displacementMap={displacementMap}
-                // aoMap={aoMap}
-                map={colorMapShelfB}
-                normalMap={normalMapShelfB}
-                roughnessMap={roughnessMapShelfB}
-                metalnessMap={metalnessMapShelfB}
-                currentColor={currentColorShelfB}
-                currentTexture={currentTextureShelfB}
-              />
-            </mesh>
-            <mesh castShadow>
-              <ShelfBLongShelf
-                // displacementMap={displacementMap}
-                // aoMap={aoMap}
-                map={colorMapShelfB}
-                normalMap={normalMapShelfB}
-                roughnessMap={roughnessMapShelfB}
-                metalnessMap={metalnessMapShelfB}
-                currentColor={currentColorShelfB}
-                currentTexture={currentTextureShelfB}
-              />
-            </mesh>
-          </group>
-          {/* floor */}
-          <mesh receiveShadow visible={showBackground}>
-            <Floor
-              displacementMap={displacementMapFloor}
-              aoMap={aoMapFloor}
-              map={colorMapFloor}
-              normalMap={normalMapFloor}
-              roughnessMap={roughnessMapFloor}
-              metalnessMap={metalnessMapFloor}
-              currentColor={currentColorFloor}
-              currentTexture={currentTextureFloor}
-            />
-          </mesh>
-          {/* wallsAndMoulding */}
-          <mesh receiveShadow visible={showBackground}>
-            <Walls
+          <mesh castShadow>
+            <GrampsBarBottom
               // displacementMap={displacementMap}
               // aoMap={aoMap}
-              map={colorMapWalls}
-              normalMap={normalMapWalls}
-              roughnessMap={roughnessMapWalls}
-              metalnessMap={metalnessMapWalls}
-              currentColor={currentColorWalls}
-              currentTexture={currentTextureWalls}
+              map={colorMapGramps}
+              normalMap={normalMapGramps}
+              roughnessMap={roughnessMapGramps}
+              metalnessMap={metalnessMapGramps}
+              currentColor={currentColorGramps}
+              currentTexture={currentTextureGramps}
             />
           </mesh>
-          {/* shelfPositions */}
-          {/* <mesh receiveShadow>
+          <mesh castShadow>
+            <GrampsBarTop
+              // displacementMap={displacementMap}
+              // aoMap={aoMap}
+              map={colorMapGramps}
+              normalMap={normalMapGramps}
+              roughnessMap={roughnessMapGramps}
+              metalnessMap={metalnessMapGramps}
+              currentColor={currentColorGramps}
+              currentTexture={currentTextureGramps}
+            />
+          </mesh>
+          <mesh castShadow>
+            <GrampsLeg1
+              // displacementMap={displacementMap}
+              // aoMap={aoMap}
+              map={colorMapGramps}
+              normalMap={normalMapGramps}
+              roughnessMap={roughnessMapGramps}
+              metalnessMap={metalnessMapGramps}
+              currentColor={currentColorGramps}
+              currentTexture={currentTextureGramps}
+            />
+          </mesh>
+          <mesh castShadow>
+            <GrampsLeg2
+              // displacementMap={displacementMap}
+              // aoMap={aoMap}
+              map={colorMapGramps}
+              normalMap={normalMapGramps}
+              roughnessMap={roughnessMapGramps}
+              metalnessMap={metalnessMapGramps}
+              currentColor={currentColorGramps}
+              currentTexture={currentTextureGramps}
+            />
+          </mesh>
+          <mesh castShadow>
+            <GrampsLeg3
+              // displacementMap={displacementMap}
+              // aoMap={aoMap}
+              map={colorMapGramps}
+              normalMap={normalMapGramps}
+              roughnessMap={roughnessMapGramps}
+              metalnessMap={metalnessMapGramps}
+              currentColor={currentColorGramps}
+              currentTexture={currentTextureGramps}
+            />
+          </mesh>
+          <mesh castShadow>
+            <GrampsLeg4
+              // displacementMap={displacementMap}
+              // aoMap={aoMap}
+              map={colorMapGramps}
+              normalMap={normalMapGramps}
+              roughnessMap={roughnessMapGramps}
+              metalnessMap={metalnessMapGramps}
+              currentColor={currentColorGramps}
+              currentTexture={currentTextureGramps}
+            />
+          </mesh>
+          <mesh castShadow>
+            <GrampsTop
+              // displacementMap={displacementMap}
+              // aoMap={aoMap}
+              map={colorMapGramps}
+              normalMap={normalMapGramps}
+              roughnessMap={roughnessMapGramps}
+              metalnessMap={metalnessMapGramps}
+              currentColor={currentColorGramps}
+              currentTexture={currentTextureGramps}
+            />
+          </mesh>
+        </group>
+        {/* block */}
+        <group
+          ref={blockRef}
+          position={[block.positionA.x, block.positionA.y, block.positionA.z]}
+          rotation={[0, Math.PI / 4, 0]}
+          onPointerOver={() => hover(true)}
+          onPointerOut={() => hover(false)}
+          onClick={handleClick}
+          onDoubleClick={handleDoubleClick}
+          onPointerMissed={handleOffClick}
+        >
+          <mesh castShadow>
+            <BlockSide1
+              // displacementMap={displacementMap}
+              // aoMap={aoMap}
+              map={colorMapBlock}
+              normalMap={normalMapBlock}
+              roughnessMap={roughnessMapBlock}
+              metalnessMap={metalnessMapBlock}
+              currentColor={currentColorBlock}
+              currentTexture={currentTextureBlock}
+            />
+          </mesh>
+          <mesh castShadow>
+            <BlockShelves
+              // displacementMap={displacementMap}
+              // aoMap={aoMap}
+              map={colorMapBlock}
+              normalMap={normalMapBlock}
+              roughnessMap={roughnessMapBlock}
+              metalnessMap={metalnessMapBlock}
+              currentColor={currentColorBlock}
+              currentTexture={currentTextureBlock}
+            />
+          </mesh>
+          <mesh castShadow>
+            <BlockSide2
+              // displacementMap={displacementMap}
+              // aoMap={aoMap}
+              map={colorMapBlock}
+              normalMap={normalMapBlock}
+              roughnessMap={roughnessMapBlock}
+              metalnessMap={metalnessMapBlock}
+              currentColor={currentColorBlock}
+              currentTexture={currentTextureBlock}
+            />
+          </mesh>
+        </group>
+        {/* horse */}
+        <group
+          ref={horseRef}
+          position={[horse.positionA.x, horse.positionA.y, horse.positionA.z]}
+          onPointerOver={() => hover(true)}
+          onPointerOut={() => hover(false)}
+          onClick={handleClick}
+          onDoubleClick={handleDoubleClick}
+          onPointerMissed={handleOffClick}
+        >
+          <mesh castShadow>
+            <HorseBarInner
+              // displacementMap={displacementMap}
+              // aoMap={aoMap}
+              map={colorMapHorse}
+              normalMap={normalMapHorse}
+              roughnessMap={roughnessMapHorse}
+              metalnessMap={metalnessMapHorse}
+              currentColor={currentColorHorse}
+              currentTexture={currentTextureHorse}
+            />
+          </mesh>
+          <mesh castShadow>
+            <HorseBarTop
+              // displacementMap={displacementMap}
+              // aoMap={aoMap}
+              map={colorMapHorse}
+              normalMap={normalMapHorse}
+              roughnessMap={roughnessMapHorse}
+              metalnessMap={metalnessMapHorse}
+              currentColor={currentColorHorse}
+              currentTexture={currentTextureHorse}
+            />
+          </mesh>
+          <mesh castShadow>
+            <HorseLeg1
+              // displacementMap={displacementMap}
+              // aoMap={aoMap}
+              map={colorMapHorse}
+              normalMap={normalMapHorse}
+              roughnessMap={roughnessMapHorse}
+              metalnessMap={metalnessMapHorse}
+              currentColor={currentColorHorse}
+              currentTexture={currentTextureHorse}
+            />
+          </mesh>
+          <mesh castShadow>
+            <HorseLeg2
+              // displacementMap={displacementMap}
+              // aoMap={aoMap}
+              map={colorMapHorse}
+              normalMap={normalMapHorse}
+              roughnessMap={roughnessMapHorse}
+              metalnessMap={metalnessMapHorse}
+              currentColor={currentColorHorse}
+              currentTexture={currentTextureHorse}
+            />
+          </mesh>
+          <mesh castShadow>
+            <HorseLeg3
+              // displacementMap={displacementMap}
+              // aoMap={aoMap}
+              map={colorMapHorse}
+              normalMap={normalMapHorse}
+              roughnessMap={roughnessMapHorse}
+              metalnessMap={metalnessMapHorse}
+              currentColor={currentColorHorse}
+              currentTexture={currentTextureHorse}
+            />
+          </mesh>
+          <mesh castShadow>
+            <HorseLeg4
+              // displacementMap={displacementMap}
+              // aoMap={aoMap}
+              map={colorMapHorse}
+              normalMap={normalMapHorse}
+              roughnessMap={roughnessMapHorse}
+              metalnessMap={metalnessMapHorse}
+              currentColor={currentColorHorse}
+              currentTexture={currentTextureHorse}
+            />
+          </mesh>
+        </group>
+        {/* squatter */}
+        <group
+          ref={squatterRef}
+          position={[
+            squatter.positionA.x,
+            squatter.positionA.y,
+            squatter.positionA.z,
+          ]}
+          rotation={[0, Math.PI / 4, 0]}
+          onPointerOver={() => hover(true)}
+          onPointerOut={() => hover(false)}
+          onClick={handleClick}
+          onDoubleClick={handleDoubleClick}
+          onPointerMissed={handleOffClick}
+        >
+          <mesh castShadow>
+            <SquatterCenterPanel
+              // displacementMap={displacementMap}
+              // aoMap={aoMap}
+              map={colorMapSquatter}
+              normalMap={normalMapSquatter}
+              roughnessMap={roughnessMapSquatter}
+              metalnessMap={metalnessMapSquatter}
+              currentColor={currentColorSquatter}
+              currentTexture={currentTextureSquatter}
+            />
+          </mesh>
+          <mesh castShadow>
+            <SquatterSide1
+              // displacementMap={displacementMap}
+              // aoMap={aoMap}
+              map={colorMapSquatter}
+              normalMap={normalMapSquatter}
+              roughnessMap={roughnessMapSquatter}
+              metalnessMap={metalnessMapSquatter}
+              currentColor={currentColorSquatter}
+              currentTexture={currentTextureSquatter}
+            />
+          </mesh>
+          <mesh castShadow>
+            <SquatterSide2
+              // displacementMap={displacementMap}
+              // aoMap={aoMap}
+              map={colorMapSquatter}
+              normalMap={normalMapSquatter}
+              roughnessMap={roughnessMapSquatter}
+              metalnessMap={metalnessMapSquatter}
+              currentColor={currentColorSquatter}
+              currentTexture={currentTextureSquatter}
+            />
+          </mesh>
+          <mesh castShadow>
+            <SquatterTop
+              // displacementMap={displacementMap}
+              // aoMap={aoMap}
+              map={colorMapSquatter}
+              normalMap={normalMapSquatter}
+              roughnessMap={roughnessMapSquatter}
+              metalnessMap={metalnessMapSquatter}
+              currentColor={currentColorSquatter}
+              currentTexture={currentTextureSquatter}
+            />
+          </mesh>
+        </group>
+        {/* shelfAShort */}
+        <group
+          ref={shelfAShortRef}
+          position={[
+            shelfA.positionA.x,
+            shelfA.positionA.y,
+            shelfA.positionA.z,
+          ]}
+          onPointerOver={() => hover(true)}
+          onPointerOut={() => hover(false)}
+          onClick={handleClick}
+          onDoubleClick={handleDoubleClick}
+          onPointerMissed={handleOffClick}
+        >
+          <mesh castShadow>
+            <ShelfAShortCleat
+              // displacementMap={displacementMap}
+              // aoMap={aoMap}
+              map={colorMapShelfA}
+              normalMap={normalMapShelfA}
+              roughnessMap={roughnessMapShelfA}
+              metalnessMap={metalnessMapShelfA}
+              currentColor={currentColorShelfA}
+              currentTexture={currentTextureShelfA}
+            />
+          </mesh>
+          <mesh castShadow>
+            <ShelfAShortShelf
+              // displacementMap={displacementMap}
+              // aoMap={aoMap}
+              map={colorMapShelfA}
+              normalMap={normalMapShelfA}
+              roughnessMap={roughnessMapShelfA}
+              metalnessMap={metalnessMapShelfA}
+              currentColor={currentColorShelfA}
+              currentTexture={currentTextureShelfA}
+            />
+          </mesh>
+        </group>
+        {/* shelfALong */}
+        <group
+          ref={shelfALongRef}
+          position={[
+            shelfA.positionB.x,
+            shelfA.positionB.y,
+            shelfA.positionB.z,
+          ]}
+          onPointerOver={() => hover(true)}
+          onPointerOut={() => hover(false)}
+          onClick={handleClick}
+          onDoubleClick={handleDoubleClick}
+          onPointerMissed={handleOffClick}
+        >
+          <mesh castShadow>
+            <ShelfALongCleat
+              // displacementMap={displacementMap}
+              // aoMap={aoMap}
+              map={colorMapShelfA}
+              normalMap={normalMapShelfA}
+              roughnessMap={roughnessMapShelfA}
+              metalnessMap={metalnessMapShelfA}
+              currentColor={currentColorShelfA}
+              currentTexture={currentTextureShelfA}
+            />
+          </mesh>
+          <mesh castShadow>
+            <ShelfALongShelf
+              // displacementMap={displacementMap}
+              // aoMap={aoMap}
+              map={colorMapShelfA}
+              normalMap={normalMapShelfA}
+              roughnessMap={roughnessMapShelfA}
+              metalnessMap={metalnessMapShelfA}
+              currentColor={currentColorShelfA}
+              currentTexture={currentTextureShelfA}
+            />
+          </mesh>
+        </group>
+        {/* shelfBShort */}
+        <group
+          ref={shelfBShortRef}
+          position={[
+            shelfB.positionA.x,
+            shelfB.positionA.y,
+            shelfB.positionA.z,
+          ]}
+          onPointerOver={() => hover(true)}
+          onPointerOut={() => hover(false)}
+          onClick={handleClick}
+          onDoubleClick={handleDoubleClick}
+          onPointerMissed={handleOffClick}
+        >
+          <mesh castShadow>
+            <ShelfBShortCleat
+              // displacementMap={displacementMap}
+              // aoMap={aoMap}
+              map={colorMapShelfB}
+              normalMap={normalMapShelfB}
+              roughnessMap={roughnessMapShelfB}
+              metalnessMap={metalnessMapShelfB}
+              currentColor={currentColorShelfB}
+              currentTexture={currentTextureShelfB}
+            />
+          </mesh>
+          <mesh castShadow>
+            <ShelfBShortShelf
+              // displacementMap={displacementMap}
+              // aoMap={aoMap}
+              map={colorMapShelfB}
+              normalMap={normalMapShelfB}
+              roughnessMap={roughnessMapShelfB}
+              metalnessMap={metalnessMapShelfB}
+              currentColor={currentColorShelfB}
+              currentTexture={currentTextureShelfB}
+            />
+          </mesh>
+        </group>
+        {/* shelfBLong */}
+        <group
+          ref={shelfBLongRef}
+          position={[
+            shelfB.positionB.x,
+            shelfB.positionB.y,
+            shelfB.positionB.z,
+          ]}
+          onPointerOver={() => hover(true)}
+          onPointerOut={() => hover(false)}
+          onClick={handleClick}
+          onDoubleClick={handleDoubleClick}
+          onPointerMissed={handleOffClick}
+        >
+          <mesh castShadow>
+            <ShelfBLongCleat
+              // displacementMap={displacementMap}
+              // aoMap={aoMap}
+              map={colorMapShelfB}
+              normalMap={normalMapShelfB}
+              roughnessMap={roughnessMapShelfB}
+              metalnessMap={metalnessMapShelfB}
+              currentColor={currentColorShelfB}
+              currentTexture={currentTextureShelfB}
+            />
+          </mesh>
+          <mesh castShadow>
+            <ShelfBLongShelf
+              // displacementMap={displacementMap}
+              // aoMap={aoMap}
+              map={colorMapShelfB}
+              normalMap={normalMapShelfB}
+              roughnessMap={roughnessMapShelfB}
+              metalnessMap={metalnessMapShelfB}
+              currentColor={currentColorShelfB}
+              currentTexture={currentTextureShelfB}
+            />
+          </mesh>
+        </group>
+        {/* floor */}
+        <mesh receiveShadow visible={showBackground}>
+          <Floor
+            displacementMap={displacementMapFloor}
+            aoMap={aoMapFloor}
+            map={colorMapFloor}
+            normalMap={normalMapFloor}
+            roughnessMap={roughnessMapFloor}
+            metalnessMap={metalnessMapFloor}
+            currentColor={currentColorFloor}
+            currentTexture={currentTextureFloor}
+          />
+        </mesh>
+        {/* wallsAndMoulding */}
+        <mesh receiveShadow visible={showBackground}>
+          <Walls
+            // displacementMap={displacementMap}
+            // aoMap={aoMap}
+            map={colorMapWalls}
+            normalMap={normalMapWalls}
+            roughnessMap={roughnessMapWalls}
+            metalnessMap={metalnessMapWalls}
+            currentColor={currentColorWalls}
+            currentTexture={currentTextureWalls}
+          />
+        </mesh>
+        {/* shelfPositions */}
+        {/* <mesh receiveShadow>
             <ShelfPositions />
           </mesh> */}
-        </Stage>
+        {/* </Stage> */}
       </group>
     </>
   );

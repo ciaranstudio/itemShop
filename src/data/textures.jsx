@@ -16,17 +16,10 @@ export const textures = {
   bluePaint: new THREE.Color(0x96b0aa),
   grayPaint: new THREE.Color(0x8c8b81),
 
-  smoothPlasticTexture: [
-    "./textures/Soft_Plastic_dixkqklcl_2k/Soft_Plastic_dixkqklcl_2k_Albedo.jpg",
-    "./textures/Soft_Plastic_dixkqklcl_2k/Soft_Plastic_dixkqklcl_2k_Normal.jpg",
-    "./textures/Soft_Plastic_dixkqklcl_2k/Soft_Plastic_dixkqklcl_2k_Roughness.jpg",
-    "./textures/VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_METALNESS_2K_METALNESS.png",
-  ],
-
-  smoothStoneTexture: [
-    "./textures/Super_White_Homogenueous_Serana_Stone_zwtuvgxff_2k/Super_White_Homogenueous_Serana_Stone_zwtuvgxff_2k_Albedo.jpg",
-    "./textures/Super_White_Homogenueous_Serana_Stone_zwtuvgxff_2k/Super_White_Homogenueous_Serana_Stone_zwtuvgxff_2k_Normal.jpg",
-    "./textures/Super_White_Homogenueous_Serana_Stone_zwtuvgxff_2k/Super_White_Homogenueous_Serana_Stone_zwtuvgxff_2k_Roughness.jpg",
+  paintedTexture: [
+    "./textures/MetalSteelBrushed001/CeramicPlainWhite001_COL_2K.jpg",
+    "./textures/MetalSteelBrushed001/MetalSteelBrushed001_NRM_2K_METALNESS.png",
+    "./textures/MetalSteelBrushed001/MetalSteelBrushed001_ROUGHNESS_2K_METALNESS.png",
     "./textures/VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_METALNESS_2K_METALNESS.png",
   ],
 
@@ -39,21 +32,13 @@ export const textures = {
     "./textures/Wood_Floor_kilwcuham_2k/Wood_Floor_kilwcuham_2k_AmbientOcclusion.jpg",
   ],
 
-  concreteTexture: [
+  portlandConcreteTexture: [
     "./textures/Grey_Portland_Concrete_zghgprrtc_2k/Grey_Portland_Concrete_zghgprrtc_2k_Albedo_desaturated.jpg",
     "./textures/Grey_Portland_Concrete_zghgprrtc_2k/Grey_Portland_Concrete_zghgprrtc_2k_Displacement.jpg",
     "./textures/Grey_Portland_Concrete_zghgprrtc_2k/Grey_Portland_Concrete_zghgprrtc_2k_Normal.jpg",
     "./textures/Grey_Portland_Concrete_zghgprrtc_2k/Grey_Portland_Concrete_zghgprrtc_2k_Roughness.jpg",
     "./textures/Grey_Portland_Concrete_zghgprrtc_2k/ConcretePoured001_METALNESS_2K_METALNESS.png",
     "./textures/Grey_Portland_Concrete_zghgprrtc_2k/Grey_Portland_Concrete_zghgprrtc_2k_AmbientOcclusion.jpg",
-  ],
-
-  smoothMetalTexture: [
-    // submarine metal smooth texture - replace with something more homogenous, this one has scratches
-    "./textures/SmoothMetal030/Metal030_1K_Color_desaturated.jpg",
-    "./textures/SmoothMetal030/Metal030_1K_NormalGL.jpg",
-    "./textures/SmoothMetal030/Metal030_1K_Roughness.jpg",
-    "./textures/SmoothMetal030/Metal030_1K_Metalness.jpg",
   ],
 
   whiteTexture: [
@@ -92,15 +77,6 @@ export const textures = {
     "./textures/VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_ROUGHNESS_2K_METALNESS.png",
     // "./textures/VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_AO_2K_METALNESS.png",
   ],
-
-  // paintTexture: [
-  //   "./textures/VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_COL_2K_METALNESS.png", // "./VeneerWhiteOakRandomMatched001/CeramicPlainWhite001_COL_2K.jpg",  //"./VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_COL_2K_METALNESS_DESAT.png", //
-  //   // "./textures/VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_DISP_2K_METALNESS.png",
-  //   "./textures/VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_NRM_2K_METALNESS.png",
-  //   "./textures/VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_METALNESS_2K_METALNESS.png",
-  //   "./textures/VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_ROUGHNESS_2K_METALNESS.png",
-  //   // "./textures/VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_AO_2K_METALNESS.png",
-  // ],
 
   // concreteTexture: [
   //   "./ConcretePoured001/ConcretePoured001_COL_2K_METALNESS.png",
