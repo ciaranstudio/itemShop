@@ -10,14 +10,17 @@ import {
   useTexture,
   useProgress,
   Sky,
-  Stage,
+  // Stage,
 } from "@react-three/drei";
 
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
 import { useCursor } from "@react-three/drei";
-import { Perf, setCustomData } from "r3f-perf";
+import {
+  Perf,
+  // setCustomData
+} from "r3f-perf";
 
 import { BlockShelves } from "./block/BlockShelves.jsx";
 import { BlockSide1 } from "./block/BlockSide1.jsx";
@@ -653,8 +656,8 @@ export default function Scene({
         <ambientLight intensity={0.75} />
         {/* grampsLight */}
         <directionalLight
-          ref={dirLightA}
           castShadow
+          ref={dirLightA}
           position={[0, 60, 0]}
           intensity={2}
           shadow-normalBias={0.1}
@@ -671,8 +674,8 @@ export default function Scene({
         {/* <pointLight position={[0, 6, 70]} intensity={10} /> */}
         {/* blockLight */}
         <directionalLight
-          ref={dirLightB}
           castShadow
+          ref={dirLightB}
           position={[0, 60, 0]}
           intensity={2}
           shadow-normalBias={0.1}
@@ -688,8 +691,8 @@ export default function Scene({
         />
         {/* horseLight */}
         <directionalLight
-          ref={dirLightC}
           castShadow
+          ref={dirLightC}
           position={[0, 60, 0]}
           intensity={2}
           shadow-normalBias={0.1}
@@ -705,8 +708,8 @@ export default function Scene({
         />
         {/* squatterLight */}
         <directionalLight
-          ref={dirLightD}
           castShadow
+          ref={dirLightD}
           position={[0, 60, 0]}
           intensity={2}
           shadow-normalBias={0.1}
@@ -734,7 +737,7 @@ export default function Scene({
           onDoubleClick={handleDoubleClick}
           onPointerMissed={handleOffClick}
         >
-          <mesh castShadow>
+          <mesh>
             <GrampsBarBottom
               // displacementMap={displacementMap}
               // aoMap={aoMap}
@@ -746,7 +749,7 @@ export default function Scene({
               currentTexture={currentTextureGramps}
             />
           </mesh>
-          <mesh castShadow>
+          <mesh>
             <GrampsBarTop
               // displacementMap={displacementMap}
               // aoMap={aoMap}
@@ -758,7 +761,7 @@ export default function Scene({
               currentTexture={currentTextureGramps}
             />
           </mesh>
-          <mesh castShadow>
+          <mesh>
             <GrampsLeg1
               // displacementMap={displacementMap}
               // aoMap={aoMap}
@@ -770,7 +773,7 @@ export default function Scene({
               currentTexture={currentTextureGramps}
             />
           </mesh>
-          <mesh castShadow>
+          <mesh>
             <GrampsLeg2
               // displacementMap={displacementMapGramps}
               // aoMap={aoMapGramps}
@@ -782,7 +785,7 @@ export default function Scene({
               currentTexture={currentTextureGramps}
             />
           </mesh>
-          <mesh castShadow>
+          <mesh>
             <GrampsLeg3
               // displacementMap={displacementMapGramps}
               // aoMap={aoMapGramps}
@@ -794,7 +797,7 @@ export default function Scene({
               currentTexture={currentTextureGramps}
             />
           </mesh>
-          <mesh castShadow>
+          <mesh>
             <GrampsLeg4
               // displacementMap={displacementMapGramps}
               // aoMap={aoMapGramps}
@@ -806,7 +809,7 @@ export default function Scene({
               currentTexture={currentTextureGramps}
             />
           </mesh>
-          <mesh castShadow>
+          <mesh>
             <GrampsTop
               // displacementMap={displacementMapGramps}
               // aoMap={aoMapGramps}
@@ -830,7 +833,7 @@ export default function Scene({
           onDoubleClick={handleDoubleClick}
           onPointerMissed={handleOffClick}
         >
-          <mesh castShadow>
+          <mesh>
             <BlockSide1
               // displacementMap={displacementMapBlock}
               // aoMap={aoMapBlock}
@@ -842,7 +845,7 @@ export default function Scene({
               currentTexture={currentTextureBlock}
             />
           </mesh>
-          <mesh castShadow>
+          <mesh>
             <BlockShelves
               // displacementMap={displacementMapBlock}
               // aoMap={aoMapBlock}
@@ -854,7 +857,7 @@ export default function Scene({
               currentTexture={currentTextureBlock}
             />
           </mesh>
-          <mesh castShadow>
+          <mesh>
             <BlockSide2
               // displacementMap={displacementMapBlock}
               // aoMap={aoMapBlock}
@@ -877,7 +880,7 @@ export default function Scene({
           onDoubleClick={handleDoubleClick}
           onPointerMissed={handleOffClick}
         >
-          <mesh castShadow>
+          <mesh>
             <HorseBarInner
               // displacementMap={displacementMapHorse}
               // aoMap={aoMapHorse}
@@ -889,7 +892,7 @@ export default function Scene({
               currentTexture={currentTextureHorse}
             />
           </mesh>
-          <mesh castShadow>
+          <mesh>
             <HorseBarTop
               // displacementMap={displacementMapHorse}
               // aoMap={aoMapHorse}
@@ -901,7 +904,7 @@ export default function Scene({
               currentTexture={currentTextureHorse}
             />
           </mesh>
-          <mesh castShadow>
+          <mesh>
             <HorseLeg1
               // displacementMap={displacementMapHorse}
               // aoMap={aoMapHorse}
@@ -913,7 +916,7 @@ export default function Scene({
               currentTexture={currentTextureHorse}
             />
           </mesh>
-          <mesh castShadow>
+          <mesh>
             <HorseLeg2
               // displacementMap={displacementMapHorse}
               // aoMap={aoMapHorse}
@@ -925,7 +928,7 @@ export default function Scene({
               currentTexture={currentTextureHorse}
             />
           </mesh>
-          <mesh castShadow>
+          <mesh>
             <HorseLeg3
               // displacementMap={displacementMapHorse}
               // aoMap={aoMapHorse}
@@ -937,7 +940,7 @@ export default function Scene({
               currentTexture={currentTextureHorse}
             />
           </mesh>
-          <mesh castShadow>
+          <mesh>
             <HorseLeg4
               // displacementMap={displacementMapHorse}
               // aoMap={aoMapHorse}
@@ -965,7 +968,7 @@ export default function Scene({
           onDoubleClick={handleDoubleClick}
           onPointerMissed={handleOffClick}
         >
-          <mesh castShadow>
+          <mesh>
             <SquatterCenterPanel
               // displacementMap={displacementMapSquatter}
               // aoMap={aoMapSquatter}
@@ -977,7 +980,7 @@ export default function Scene({
               currentTexture={currentTextureSquatter}
             />
           </mesh>
-          <mesh castShadow>
+          <mesh>
             <SquatterSide1
               // displacementMap={displacementMapSquatter}
               // aoMap={aoMapSquatter}
@@ -989,7 +992,7 @@ export default function Scene({
               currentTexture={currentTextureSquatter}
             />
           </mesh>
-          <mesh castShadow>
+          <mesh>
             <SquatterSide2
               // displacementMap={displacementMapSquatter}
               // aoMap={aoMapSquatter}
@@ -1001,7 +1004,7 @@ export default function Scene({
               currentTexture={currentTextureSquatter}
             />
           </mesh>
-          <mesh castShadow>
+          <mesh>
             <SquatterTop
               // displacementMap={displacementMapSquatter}
               // aoMap={aoMapSquatter}
@@ -1028,7 +1031,7 @@ export default function Scene({
           onDoubleClick={handleDoubleClick}
           onPointerMissed={handleOffClick}
         >
-          <mesh castShadow>
+          <mesh>
             <ShelfAShortCleat
               // displacementMap={displacementMapShelfA}
               // aoMap={aoMapShelfA}
@@ -1040,7 +1043,7 @@ export default function Scene({
               currentTexture={currentTextureShelfA}
             />
           </mesh>
-          <mesh castShadow>
+          <mesh>
             <ShelfAShortShelf
               // displacementMap={displacementMapShelfA}
               // aoMap={aoMapShelfA}
@@ -1067,7 +1070,7 @@ export default function Scene({
           onDoubleClick={handleDoubleClick}
           onPointerMissed={handleOffClick}
         >
-          <mesh castShadow>
+          <mesh>
             <ShelfALongCleat
               // displacementMap={displacementMapShelfA}
               // aoMap={aoMapShelfA}
@@ -1079,7 +1082,7 @@ export default function Scene({
               currentTexture={currentTextureShelfA}
             />
           </mesh>
-          <mesh castShadow>
+          <mesh>
             <ShelfALongShelf
               // displacementMap={displacementMapShelfA}
               // aoMap={aoMapShelfA}
@@ -1106,7 +1109,7 @@ export default function Scene({
           onDoubleClick={handleDoubleClick}
           onPointerMissed={handleOffClick}
         >
-          <mesh castShadow>
+          <mesh>
             <ShelfBShortCleat
               // displacementMap={displacementMapShelfB}
               // aoMap={aoMapShelfB}
@@ -1118,7 +1121,7 @@ export default function Scene({
               currentTexture={currentTextureShelfB}
             />
           </mesh>
-          <mesh castShadow>
+          <mesh>
             <ShelfBShortShelf
               // displacementMap={displacementMapShelfB}
               // aoMap={aoMapShelfB}
@@ -1145,7 +1148,7 @@ export default function Scene({
           onDoubleClick={handleDoubleClick}
           onPointerMissed={handleOffClick}
         >
-          <mesh castShadow>
+          <mesh>
             <ShelfBLongCleat
               // displacementMap={displacementMapShelfB}
               // aoMap={aoMapShelfB}
@@ -1157,7 +1160,7 @@ export default function Scene({
               currentTexture={currentTextureShelfB}
             />
           </mesh>
-          <mesh castShadow>
+          <mesh>
             <ShelfBLongShelf
               // displacementMap={displacementMapShelfB}
               // aoMap={aoMapShelfB}
@@ -1171,7 +1174,7 @@ export default function Scene({
           </mesh>
         </group>
         {/* floor */}
-        <mesh receiveShadow visible={showBackground}>
+        <mesh visible={showBackground}>
           <Floor
             displacementMap={displacementMapFloor}
             aoMap={aoMapFloor}
@@ -1184,7 +1187,7 @@ export default function Scene({
           />
         </mesh>
         {/* wallsAndMoulding */}
-        <mesh receiveShadow visible={showBackground}>
+        <mesh visible={showBackground}>
           <Walls
             // displacementMap={displacementMapPainted}
             // aoMap={aoMapPainted}
@@ -1197,7 +1200,7 @@ export default function Scene({
           />
         </mesh>
         {/* shelfPositions */}
-        {/* <mesh receiveShadow>
+        {/* <mesh >
             <ShelfPositions />
           </mesh> */}
         {/* </Stage> */}
