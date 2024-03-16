@@ -206,19 +206,19 @@ function App() {
   // const [currentItemOptionTypeShelfB, setCurrentItemOptionTypeShelfB] =
   //   useState("stain or paint");
 
-  const [currentTextureFloor, setCurrentTextureFloor] = useState(
-    textures.portlandConcreteTexture,
-  );
-  const [currentColorFloor, setCurrentColorFloor] = useState(
-    textures.concreteFloor,
-  );
+  // const [currentTextureFloor, setCurrentTextureFloor] = useState(
+  //   textures.woodFloorWornPlanksTexture,
+  // );
+  // const [currentColorFloor, setCurrentColorFloor] = useState(
+  //   textures.concreteFloor,
+  // );
 
-  const [currentTextureWalls, setCurrentTextureWalls] = useState(
-    textures.paintedTexture,
-  );
-  const [currentColorWalls, setCurrentColorWalls] = useState(
-    textures.whiteStain,
-  );
+  // const [currentTextureWalls, setCurrentTextureWalls] = useState(
+  //   textures.paintedTexture,
+  // );
+  // const [currentColorWalls, setCurrentColorWalls] = useState(
+  //   textures.whiteStain,
+  // );
 
   const [currentTextureGramps, setCurrentTextureGramps] = useState(
     textures.paintedTexture,
@@ -670,10 +670,10 @@ function App() {
             setCurrentItemSizeSelectIndex={setCurrentItemSizeSelectIndex}
             // currentTexture={currentTexture}
             // currentColor={currentColor}
-            currentTextureFloor={currentTextureFloor}
-            currentColorFloor={currentColorFloor}
-            currentTextureWalls={currentTextureWalls}
-            currentColorWalls={currentColorWalls}
+            // currentTextureFloor={currentTextureFloor}
+            // currentColorFloor={currentColorFloor}
+            // currentTextureWalls={currentTextureWalls}
+            // currentColorWalls={currentColorWalls}
             currentTextureGramps={currentTextureGramps}
             currentColorGramps={currentColorGramps}
             currentTextureSquatter={currentTextureSquatter}

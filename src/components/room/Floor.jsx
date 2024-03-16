@@ -10,7 +10,7 @@ export const Floor = ({
   metalnessMap,
   aoMap,
   currentColor,
-  currentTexture,
+  // currentTexture,
 }) => {
   const { scene, nodes, materials } = useGLTF("./models/floor.gltf");
 
@@ -19,27 +19,27 @@ export const Floor = ({
   // map.colorSpace = THREE.SRGBColorSpace;
   map.wrapS = THREE.RepeatWrapping;
   map.wrapT = THREE.RepeatWrapping;
-  map.repeat.set(8, 8);
+  map.repeat.set(6, 6);
 
   displacementMap.wrapS = THREE.RepeatWrapping;
   displacementMap.wrapT = THREE.RepeatWrapping;
-  displacementMap.repeat.set(8, 8);
+  displacementMap.repeat.set(6, 6);
 
   aoMap.wrapS = THREE.RepeatWrapping;
   aoMap.wrapT = THREE.RepeatWrapping;
-  aoMap.repeat.set(8, 8);
+  aoMap.repeat.set(6, 6);
 
   // normalMap.minFilter = THREE.LinearFilter;
   // normalMap.magFilter = THREE.NearestFilter;
   normalMap.wrapS = THREE.RepeatWrapping;
   normalMap.wrapT = THREE.RepeatWrapping;
-  normalMap.repeat.set(8, 8);
+  normalMap.repeat.set(6, 6);
 
   // roughnessMap.minFilter = THREE.LinearFilter;
   // roughnessMap.magFilter = THREE.NearestFilter;
   roughnessMap.wrapS = THREE.RepeatWrapping;
   roughnessMap.wrapT = THREE.RepeatWrapping;
-  roughnessMap.repeat.set(8, 8);
+  roughnessMap.repeat.set(6, 6);
 
   useLayoutEffect(() => {
     Object.assign(materials.Material, {
@@ -55,14 +55,14 @@ export const Floor = ({
     scene,
     nodes,
     materials,
-    currentColor,
-    currentTexture,
-    map,
-    displacementMap,
-    normalMap,
-    roughnessMap,
-    metalnessMap,
-    aoMap,
+    // currentColor,
+    // currentTexture,
+    // map,
+    // displacementMap,
+    // normalMap,
+    // roughnessMap,
+    // metalnessMap,
+    // aoMap,
   ]);
 
   // useLayoutEffect(

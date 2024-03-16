@@ -10,7 +10,7 @@ export const Walls = ({
   metalnessMap,
   // aoMap,
   currentColor,
-  currentTexture,
+  // currentTexture,
 }) => {
   const { scene, nodes, materials } = useGLTF("./models/walls.gltf");
 
@@ -55,12 +55,14 @@ export const Walls = ({
     scene,
     nodes,
     materials,
-    currentColor,
-    currentTexture,
-    map,
-    normalMap,
-    roughnessMap,
-    metalnessMap,
+    // currentColor,
+    // currentTexture,
+    // map,
+    // displacementMap,
+    // normalMap,
+    // roughnessMap,
+    // metalnessMap,
+    // aoMap,
   ]);
 
   // useLayoutEffect(

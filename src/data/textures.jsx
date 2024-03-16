@@ -7,7 +7,7 @@ export const textures = {
   whiteStain: new THREE.Color(0xa9a9a9),
   naturalStain: new THREE.Color(0x989898),
   blackStain: new THREE.Color(0x787878),
-  allBlackStain: new THREE.Color(0x808080),
+  allBlackStain: new THREE.Color(0x787878),
 
   alabasterPaint: new THREE.Color(0xfffdf0),
   pinkPaint: new THREE.Color(0xf2d1c6),
@@ -18,31 +18,32 @@ export const textures = {
 
   paintedTexture: [
     "./textures/MetalSteelBrushed001/CeramicPlainWhite001_COL_2K.jpg",
+    // "./textures/MetalSteelBrushed001/MetalSteelBrushed001_DISP_2K_METALNESS.png",
     "./textures/MetalSteelBrushed001/MetalSteelBrushed001_NRM_2K_METALNESS.png",
     "./textures/MetalSteelBrushed001/MetalSteelBrushed001_ROUGHNESS_2K_METALNESS.png",
     "./textures/VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_METALNESS_2K_METALNESS.png",
+    // "./textures/VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_AO_2K_METALNESS.png",
   ],
 
-  woodFloorTexture: [
-    "./textures/Wood_Floor_kilwcuham_2k/Wood_Floor_kilwcuham_2k_Albedo.jpg",
-    "./textures/Wood_Floor_kilwcuham_2k/Wood_Floor_kilwcuham_2k_Displacement.jpg",
-    "./textures/Wood_Floor_kilwcuham_2k/Wood_Floor_kilwcuham_2k_Normal.jpg",
-    "./textures/Wood_Floor_kilwcuham_2k/Wood_Floor_kilwcuham_2k_Roughness_inverted.jpg",
-    "./textures/VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_METALNESS_2K_METALNESS.png",
-    "./textures/Wood_Floor_kilwcuham_2k/Wood_Floor_kilwcuham_2k_AmbientOcclusion.jpg",
+  woodFloorAshWhiteTexture: [
+    "./textures/WoodFlooringAshSuperWhite001/WoodFlooringAshSuperWhite001_COL_2K.jpg",
+    "./textures/WoodFlooringAshSuperWhite001/WoodFlooringAshSuperWhite001_DISP_2K.jpg",
+    "./textures/WoodFlooringAshSuperWhite001/WoodFlooringAshSuperWhite001_NRM_2K.png",
+    "./textures/WoodFlooringAshSuperWhite001/WoodFlooringAshSuperWhite001_GLOSS_2K_inverted.jpg",
+    "./textures/VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_ROUGHNESS_2K_METALNESS.png",
+    "./textures/WoodFlooringAshSuperWhite001/WoodFlooringAshSuperWhite001_AO_2K.jpg",
   ],
 
-  portlandConcreteTexture: [
-    "./textures/Grey_Portland_Concrete_zghgprrtc_2k/Grey_Portland_Concrete_zghgprrtc_2k_Albedo_desaturated.jpg",
-    "./textures/Grey_Portland_Concrete_zghgprrtc_2k/Grey_Portland_Concrete_zghgprrtc_2k_Displacement.jpg",
-    "./textures/Grey_Portland_Concrete_zghgprrtc_2k/Grey_Portland_Concrete_zghgprrtc_2k_Normal.jpg",
-    "./textures/Grey_Portland_Concrete_zghgprrtc_2k/Grey_Portland_Concrete_zghgprrtc_2k_Roughness.jpg",
-    "./textures/Grey_Portland_Concrete_zghgprrtc_2k/ConcretePoured001_METALNESS_2K_METALNESS.png",
-    "./textures/Grey_Portland_Concrete_zghgprrtc_2k/Grey_Portland_Concrete_zghgprrtc_2k_AmbientOcclusion.jpg",
+  woodFloorWornPlanksTexture: [
+    "./textures/WoodPlanksWorn001/WoodPlanksWorn001_COL_2K.jpg",
+    "./textures/WoodPlanksWorn001/WoodPlanksWorn001_DISP_2K.jpg",
+    "./textures/WoodPlanksWorn001/WoodPlanksWorn001_NRM_2K.jpg",
+    "./textures/WoodPlanksWorn001/WoodPlanksWorn001_GLOSS_2K_inverted.jpg",
+    "./textures/VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_ROUGHNESS_2K_METALNESS.png",
+    "./textures/WoodPlanksWorn001/WoodPlanksWorn001_AO_2K.jpg",
   ],
 
   whiteTexture: [
-    // poliigon free veneer white oak texture
     "./textures/VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_COL_2K_METALNESS_white4.png",
     // "./textures/VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_DISP_2K_METALNESS.png",
     "./textures/VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_NRM_2K_METALNESS.png",
@@ -77,13 +78,4 @@ export const textures = {
     "./textures/VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_ROUGHNESS_2K_METALNESS.png",
     // "./textures/VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_AO_2K_METALNESS.png",
   ],
-
-  // concreteTexture: [
-  //   "./ConcretePoured001/ConcretePoured001_COL_2K_METALNESS.png",
-  //   // "./ConcretePoured001/ConcretePoured001_DISP_2K_METALNESS.png",
-  //   "./ConcretePoured001/ConcretePoured001_NRM_2K_METALNESS.png",
-  //   "./ConcretePoured001/ConcretePoured001_METALNESS_2K_METALNESS.png",
-  //   "./ConcretePoured001/ConcretePoured001_ROUGHNESS_2K_METALNESS.png",
-  //   // "./ConcretePoured001/ConcretePoured001_AO_2K_METALNESS_AO_2K_METALNESS.png",
-  // ],
 };

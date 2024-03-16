@@ -145,75 +145,75 @@ export default function Scene({
   ] = useTexture(textures.allBlackTexture);
 
   const [
+    colorMapPainted,
+    // displacementMapPainted,
+    normalMapPainted,
+    roughnessMapPainted,
+    metalnessMapPainted,
+    // aoMapPainted,
+  ] = useTexture(textures.paintedTexture);
+
+  const [
     colorMapFloor,
     displacementMapFloor,
     normalMapFloor,
     roughnessMapFloor,
     metalnessMapFloor,
     aoMapFloor,
-  ] = useTexture(currentTextureFloor);
-
-  const [
-    colorMapWalls,
-    // displacementMap,
-    normalMapWalls,
-    roughnessMapWalls,
-    metalnessMapWalls,
-    // aoMap,
-  ] = useTexture(currentTextureWalls);
+  ] = useTexture(textures.woodFloorWornPlanksTexture);
 
   const [
     colorMapGramps,
-    // displacementMap,
+    // displacementMapGramps,
     normalMapGramps,
     roughnessMapGramps,
     metalnessMapGramps,
-    // aoMap,
+    // aoMapGramps,
   ] = useTexture(currentTextureGramps);
 
   const [
     colorMapSquatter,
-    // displacementMap,
+    // displacementMapSquatter,
     normalMapSquatter,
     roughnessMapSquatter,
     metalnessMapSquatter,
-    // aoMap,
+    // aoMapSquatter,
   ] = useTexture(currentTextureSquatter);
 
   const [
     colorMapBlock,
-    // displacementMap,
+    // displacementMapBlock,
     normalMapBlock,
     roughnessMapBlock,
     metalnessMapBlock,
-    // aoMap,
+    // aoMapBlock,
   ] = useTexture(currentTextureBlock);
 
   const [
     colorMapHorse,
-    // displacementMap,
+    // displacementMapHorse,
     normalMapHorse,
     roughnessMapHorse,
     metalnessMapHorse,
-    // aoMap,
+    // aoMapHorse,
   ] = useTexture(currentTextureHorse);
 
   const [
     colorMapShelfA,
-    // displacementMap,
+    // displacementMapShelfA,
     normalMapShelfA,
     roughnessMapShelfA,
     metalnessMapShelfA,
-    // aoMap,
+    // aoMapShelfA,
   ] = useTexture(currentTextureShelfA);
 
   const [
     colorMapShelfB,
-    // displacementMap,
+    // displacementMapShelfB,
     normalMapShelfB,
     roughnessMapShelfB,
     metalnessMapShelfB,
-    // aoMap,
+    // aoMapShelfB,
   ] = useTexture(currentTextureShelfB);
 
   const dirLightA = useRef();
@@ -772,8 +772,8 @@ export default function Scene({
           </mesh>
           <mesh castShadow>
             <GrampsLeg2
-              // displacementMap={displacementMap}
-              // aoMap={aoMap}
+              // displacementMap={displacementMapGramps}
+              // aoMap={aoMapGramps}
               map={colorMapGramps}
               normalMap={normalMapGramps}
               roughnessMap={roughnessMapGramps}
@@ -784,8 +784,8 @@ export default function Scene({
           </mesh>
           <mesh castShadow>
             <GrampsLeg3
-              // displacementMap={displacementMap}
-              // aoMap={aoMap}
+              // displacementMap={displacementMapGramps}
+              // aoMap={aoMapGramps}
               map={colorMapGramps}
               normalMap={normalMapGramps}
               roughnessMap={roughnessMapGramps}
@@ -796,8 +796,8 @@ export default function Scene({
           </mesh>
           <mesh castShadow>
             <GrampsLeg4
-              // displacementMap={displacementMap}
-              // aoMap={aoMap}
+              // displacementMap={displacementMapGramps}
+              // aoMap={aoMapGramps}
               map={colorMapGramps}
               normalMap={normalMapGramps}
               roughnessMap={roughnessMapGramps}
@@ -808,8 +808,8 @@ export default function Scene({
           </mesh>
           <mesh castShadow>
             <GrampsTop
-              // displacementMap={displacementMap}
-              // aoMap={aoMap}
+              // displacementMap={displacementMapGramps}
+              // aoMap={aoMapGramps}
               map={colorMapGramps}
               normalMap={normalMapGramps}
               roughnessMap={roughnessMapGramps}
@@ -832,8 +832,8 @@ export default function Scene({
         >
           <mesh castShadow>
             <BlockSide1
-              // displacementMap={displacementMap}
-              // aoMap={aoMap}
+              // displacementMap={displacementMapBlock}
+              // aoMap={aoMapBlock}
               map={colorMapBlock}
               normalMap={normalMapBlock}
               roughnessMap={roughnessMapBlock}
@@ -844,8 +844,8 @@ export default function Scene({
           </mesh>
           <mesh castShadow>
             <BlockShelves
-              // displacementMap={displacementMap}
-              // aoMap={aoMap}
+              // displacementMap={displacementMapBlock}
+              // aoMap={aoMapBlock}
               map={colorMapBlock}
               normalMap={normalMapBlock}
               roughnessMap={roughnessMapBlock}
@@ -856,8 +856,8 @@ export default function Scene({
           </mesh>
           <mesh castShadow>
             <BlockSide2
-              // displacementMap={displacementMap}
-              // aoMap={aoMap}
+              // displacementMap={displacementMapBlock}
+              // aoMap={aoMapBlock}
               map={colorMapBlock}
               normalMap={normalMapBlock}
               roughnessMap={roughnessMapBlock}
@@ -879,8 +879,8 @@ export default function Scene({
         >
           <mesh castShadow>
             <HorseBarInner
-              // displacementMap={displacementMap}
-              // aoMap={aoMap}
+              // displacementMap={displacementMapHorse}
+              // aoMap={aoMapHorse}
               map={colorMapHorse}
               normalMap={normalMapHorse}
               roughnessMap={roughnessMapHorse}
@@ -891,8 +891,8 @@ export default function Scene({
           </mesh>
           <mesh castShadow>
             <HorseBarTop
-              // displacementMap={displacementMap}
-              // aoMap={aoMap}
+              // displacementMap={displacementMapHorse}
+              // aoMap={aoMapHorse}
               map={colorMapHorse}
               normalMap={normalMapHorse}
               roughnessMap={roughnessMapHorse}
@@ -903,8 +903,8 @@ export default function Scene({
           </mesh>
           <mesh castShadow>
             <HorseLeg1
-              // displacementMap={displacementMap}
-              // aoMap={aoMap}
+              // displacementMap={displacementMapHorse}
+              // aoMap={aoMapHorse}
               map={colorMapHorse}
               normalMap={normalMapHorse}
               roughnessMap={roughnessMapHorse}
@@ -915,8 +915,8 @@ export default function Scene({
           </mesh>
           <mesh castShadow>
             <HorseLeg2
-              // displacementMap={displacementMap}
-              // aoMap={aoMap}
+              // displacementMap={displacementMapHorse}
+              // aoMap={aoMapHorse}
               map={colorMapHorse}
               normalMap={normalMapHorse}
               roughnessMap={roughnessMapHorse}
@@ -927,8 +927,8 @@ export default function Scene({
           </mesh>
           <mesh castShadow>
             <HorseLeg3
-              // displacementMap={displacementMap}
-              // aoMap={aoMap}
+              // displacementMap={displacementMapHorse}
+              // aoMap={aoMapHorse}
               map={colorMapHorse}
               normalMap={normalMapHorse}
               roughnessMap={roughnessMapHorse}
@@ -939,8 +939,8 @@ export default function Scene({
           </mesh>
           <mesh castShadow>
             <HorseLeg4
-              // displacementMap={displacementMap}
-              // aoMap={aoMap}
+              // displacementMap={displacementMapHorse}
+              // aoMap={aoMapHorse}
               map={colorMapHorse}
               normalMap={normalMapHorse}
               roughnessMap={roughnessMapHorse}
@@ -967,8 +967,8 @@ export default function Scene({
         >
           <mesh castShadow>
             <SquatterCenterPanel
-              // displacementMap={displacementMap}
-              // aoMap={aoMap}
+              // displacementMap={displacementMapSquatter}
+              // aoMap={aoMapSquatter}
               map={colorMapSquatter}
               normalMap={normalMapSquatter}
               roughnessMap={roughnessMapSquatter}
@@ -979,8 +979,8 @@ export default function Scene({
           </mesh>
           <mesh castShadow>
             <SquatterSide1
-              // displacementMap={displacementMap}
-              // aoMap={aoMap}
+              // displacementMap={displacementMapSquatter}
+              // aoMap={aoMapSquatter}
               map={colorMapSquatter}
               normalMap={normalMapSquatter}
               roughnessMap={roughnessMapSquatter}
@@ -991,8 +991,8 @@ export default function Scene({
           </mesh>
           <mesh castShadow>
             <SquatterSide2
-              // displacementMap={displacementMap}
-              // aoMap={aoMap}
+              // displacementMap={displacementMapSquatter}
+              // aoMap={aoMapSquatter}
               map={colorMapSquatter}
               normalMap={normalMapSquatter}
               roughnessMap={roughnessMapSquatter}
@@ -1003,8 +1003,8 @@ export default function Scene({
           </mesh>
           <mesh castShadow>
             <SquatterTop
-              // displacementMap={displacementMap}
-              // aoMap={aoMap}
+              // displacementMap={displacementMapSquatter}
+              // aoMap={aoMapSquatter}
               map={colorMapSquatter}
               normalMap={normalMapSquatter}
               roughnessMap={roughnessMapSquatter}
@@ -1030,8 +1030,8 @@ export default function Scene({
         >
           <mesh castShadow>
             <ShelfAShortCleat
-              // displacementMap={displacementMap}
-              // aoMap={aoMap}
+              // displacementMap={displacementMapShelfA}
+              // aoMap={aoMapShelfA}
               map={colorMapShelfA}
               normalMap={normalMapShelfA}
               roughnessMap={roughnessMapShelfA}
@@ -1042,8 +1042,8 @@ export default function Scene({
           </mesh>
           <mesh castShadow>
             <ShelfAShortShelf
-              // displacementMap={displacementMap}
-              // aoMap={aoMap}
+              // displacementMap={displacementMapShelfA}
+              // aoMap={aoMapShelfA}
               map={colorMapShelfA}
               normalMap={normalMapShelfA}
               roughnessMap={roughnessMapShelfA}
@@ -1069,8 +1069,8 @@ export default function Scene({
         >
           <mesh castShadow>
             <ShelfALongCleat
-              // displacementMap={displacementMap}
-              // aoMap={aoMap}
+              // displacementMap={displacementMapShelfA}
+              // aoMap={aoMapShelfA}
               map={colorMapShelfA}
               normalMap={normalMapShelfA}
               roughnessMap={roughnessMapShelfA}
@@ -1081,8 +1081,8 @@ export default function Scene({
           </mesh>
           <mesh castShadow>
             <ShelfALongShelf
-              // displacementMap={displacementMap}
-              // aoMap={aoMap}
+              // displacementMap={displacementMapShelfA}
+              // aoMap={aoMapShelfA}
               map={colorMapShelfA}
               normalMap={normalMapShelfA}
               roughnessMap={roughnessMapShelfA}
@@ -1108,8 +1108,8 @@ export default function Scene({
         >
           <mesh castShadow>
             <ShelfBShortCleat
-              // displacementMap={displacementMap}
-              // aoMap={aoMap}
+              // displacementMap={displacementMapShelfB}
+              // aoMap={aoMapShelfB}
               map={colorMapShelfB}
               normalMap={normalMapShelfB}
               roughnessMap={roughnessMapShelfB}
@@ -1120,8 +1120,8 @@ export default function Scene({
           </mesh>
           <mesh castShadow>
             <ShelfBShortShelf
-              // displacementMap={displacementMap}
-              // aoMap={aoMap}
+              // displacementMap={displacementMapShelfB}
+              // aoMap={aoMapShelfB}
               map={colorMapShelfB}
               normalMap={normalMapShelfB}
               roughnessMap={roughnessMapShelfB}
@@ -1147,8 +1147,8 @@ export default function Scene({
         >
           <mesh castShadow>
             <ShelfBLongCleat
-              // displacementMap={displacementMap}
-              // aoMap={aoMap}
+              // displacementMap={displacementMapShelfB}
+              // aoMap={aoMapShelfB}
               map={colorMapShelfB}
               normalMap={normalMapShelfB}
               roughnessMap={roughnessMapShelfB}
@@ -1159,8 +1159,8 @@ export default function Scene({
           </mesh>
           <mesh castShadow>
             <ShelfBLongShelf
-              // displacementMap={displacementMap}
-              // aoMap={aoMap}
+              // displacementMap={displacementMapShelfB}
+              // aoMap={aoMapShelfB}
               map={colorMapShelfB}
               normalMap={normalMapShelfB}
               roughnessMap={roughnessMapShelfB}
@@ -1179,21 +1179,21 @@ export default function Scene({
             normalMap={normalMapFloor}
             roughnessMap={roughnessMapFloor}
             metalnessMap={metalnessMapFloor}
-            currentColor={currentColorFloor}
-            currentTexture={currentTextureFloor}
+            currentColor={textures.whiteStain}
+            // currentTexture={currentTextureFloor}
           />
         </mesh>
         {/* wallsAndMoulding */}
         <mesh receiveShadow visible={showBackground}>
           <Walls
-            // displacementMap={displacementMap}
-            // aoMap={aoMap}
-            map={colorMapWalls}
-            normalMap={normalMapWalls}
-            roughnessMap={roughnessMapWalls}
-            metalnessMap={metalnessMapWalls}
-            currentColor={currentColorWalls}
-            currentTexture={currentTextureWalls}
+            // displacementMap={displacementMapPainted}
+            // aoMap={aoMapPainted}
+            map={colorMapPainted}
+            normalMap={normalMapPainted}
+            roughnessMap={roughnessMapPainted}
+            metalnessMap={metalnessMapPainted}
+            currentColor={textures.whiteStain}
+            // currentTexture={currentTextureWalls}
           />
         </mesh>
         {/* shelfPositions */}
