@@ -65,6 +65,8 @@ import { Walls } from "./room/Walls.jsx";
 
 import controls from "../helpers/debugControls";
 import { textures } from "../data/textures.jsx";
+import { objects } from "../data/objects.jsx";
+import { shopItems } from "../data/objects.jsx";
 
 export default function Scene({
   open,
@@ -73,21 +75,21 @@ export default function Scene({
   setToggled,
   animActive,
   setAnimActive,
-  shopItems,
+  // shopItems,
   currentItemSelected,
   setCurrentItemSelected,
   previousItemSelected,
   setPreviousItemSelected,
-  previousItemSizeSelectIndex,
-  setPreviousItemSizeSelectIndex,
-  currentItemSizeSelectIndex,
-  setCurrentItemSizeSelectIndex,
+  // previousItemSizeSelectIndex,
+  // setPreviousItemSizeSelectIndex,
+  // currentItemSizeSelectIndex,
+  // setCurrentItemSizeSelectIndex,
   // currentTexture,
   // currentColor,
-  currentTextureFloor,
-  currentColorFloor,
-  currentTextureWalls,
-  currentColorWalls,
+  // currentTextureFloor,
+  // currentColorFloor,
+  // currentTextureWalls,
+  // currentColorWalls,
   currentTextureGramps,
   currentColorGramps,
   currentTextureSquatter,
@@ -100,8 +102,9 @@ export default function Scene({
   currentColorShelfA,
   currentTextureShelfB,
   currentColorShelfB,
-  sizeChangeToggle,
+  // sizeChangeToggle,
 }) {
+  const [targetVec, setTargetVec] = useState(new THREE.Vector3());
   // const [
   //   colorMap,
   //   // displacementMap,
@@ -233,7 +236,7 @@ export default function Scene({
   const shelfBShortRef = useRef();
   const shelfBLongRef = useRef();
 
-  const [gramps, squatter, block, horse, shelfA, shelfB] = shopItems;
+  // const [gramps, squatter, block, horse, shelfA, shelfB] = shopItems;
 
   // useHelper(dirLightA, DirectionalLightHelper, 1, "red");
   // useHelper(dirLightB, DirectionalLightHelper, 1, "blue");
@@ -318,12 +321,9 @@ export default function Scene({
     // console.log(eventObject.position);
     let tempObjectPosition = eventObject.position;
     let positionMatch = (element) =>
-      (element.positionA.x === tempObjectPosition.x &&
-        element.positionA.y === tempObjectPosition.y &&
-        element.positionA.z === tempObjectPosition.z) ||
-      (element.positionB.x === tempObjectPosition.x &&
-        element.positionB.y === tempObjectPosition.y &&
-        element.positionB.z === tempObjectPosition.z);
+      element.position.x === tempObjectPosition.x &&
+      element.position.y === tempObjectPosition.y &&
+      element.position.z === tempObjectPosition.z;
 
     if (positionMatch) {
       // console.log(
@@ -331,30 +331,55 @@ export default function Scene({
       //   shopItems.find(positionMatch),
       // );
       let matchedItem = shopItems.find(positionMatch);
-      // console.log("matchedItem.positionA: ", matchedItem.positionA);
-      if (
-        matchedItem.positionA.x === tempObjectPosition.x &&
-        matchedItem.positionA.y === tempObjectPosition.y &&
-        matchedItem.positionA.z === tempObjectPosition.z
-      ) {
-        setPreviousItemSizeSelectIndex(currentItemSizeSelectIndex);
-        setCurrentItemSizeSelectIndex(0);
-        // console.log("matched positionA");
-        setPreviousItemSelected(currentItemSelected);
-        setCurrentItemSelected(matchedItem);
-      } else if (
-        matchedItem.positionB.x === tempObjectPosition.x &&
-        matchedItem.positionB.y === tempObjectPosition.y &&
-        matchedItem.positionB.z === tempObjectPosition.z
-      ) {
-        setPreviousItemSizeSelectIndex(currentItemSizeSelectIndex);
-        setCurrentItemSizeSelectIndex(1);
-        // console.log("matched positionB");
-        setPreviousItemSelected(currentItemSelected);
-        setCurrentItemSelected(matchedItem);
-      }
+      setPreviousItemSelected(currentItemSelected);
+      setCurrentItemSelected(matchedItem);
     }
   };
+
+  // const handleClick = (e) => {
+  //   // setOpen(true);
+  //   e.stopPropagation();
+  //   const { eventObject } = e;
+  //   // console.log(eventObject.position);
+  //   let tempObjectPosition = eventObject.position;
+  //   let positionMatch = (element) =>
+  //     (element.positionA.x === tempObjectPosition.x &&
+  //       element.positionA.y === tempObjectPosition.y &&
+  //       element.positionA.z === tempObjectPosition.z) ||
+  //     (element.positionB.x === tempObjectPosition.x &&
+  //       element.positionB.y === tempObjectPosition.y &&
+  //       element.positionB.z === tempObjectPosition.z);
+
+  //   if (positionMatch) {
+  //     // console.log(
+  //     //   "shopItems.find(positionMatch): ",
+  //     //   shopItems.find(positionMatch),
+  //     // );
+  //     let matchedItem = shopItems.find(positionMatch);
+  //     // console.log("matchedItem.positionA: ", matchedItem.positionA);
+  //     if (
+  //       matchedItem.positionA.x === tempObjectPosition.x &&
+  //       matchedItem.positionA.y === tempObjectPosition.y &&
+  //       matchedItem.positionA.z === tempObjectPosition.z
+  //     ) {
+  //       setPreviousItemSizeSelectIndex(currentItemSizeSelectIndex);
+  //       setCurrentItemSizeSelectIndex(0);
+  //       // console.log("matched positionA");
+  //       setPreviousItemSelected(currentItemSelected);
+  //       setCurrentItemSelected(matchedItem);
+  //     } else if (
+  //       matchedItem.positionB.x === tempObjectPosition.x &&
+  //       matchedItem.positionB.y === tempObjectPosition.y &&
+  //       matchedItem.positionB.z === tempObjectPosition.z
+  //     ) {
+  //       setPreviousItemSizeSelectIndex(currentItemSizeSelectIndex);
+  //       setCurrentItemSizeSelectIndex(1);
+  //       // console.log("matched positionB");
+  //       setPreviousItemSelected(currentItemSelected);
+  //       setCurrentItemSelected(matchedItem);
+  //     }
+  //   }
+  // };
 
   const handleDoubleClick = (e) => {
     e.stopPropagation();
@@ -362,24 +387,24 @@ export default function Scene({
     setOpen(true);
     setShowBackground(!showBackground);
 
-    const { eventObject } = e;
-    let tempObjectPosition = eventObject.position;
-    let positionMatch = (element) =>
-      (element.positionA.x === tempObjectPosition.x &&
-        element.positionA.y === tempObjectPosition.y &&
-        element.positionA.z === tempObjectPosition.z) ||
-      (element.positionB.x === tempObjectPosition.x &&
-        element.positionB.y === tempObjectPosition.y &&
-        element.positionB.z === tempObjectPosition.z);
-    if (positionMatch) {
-      // console.log(
-      //   "shopItems.find(positionMatch): ",
-      //   shopItems.find(positionMatch),
-      // );
-      let matchedItem = shopItems.find(positionMatch);
-      // setPreviousItemSelected(currentItemSelected);
-      // setCurrentItemSelected(matchedItem);
-    }
+    // const { eventObject } = e;
+    // let tempObjectPosition = eventObject.position;
+    // let positionMatch = (element) =>
+    //   (element.positionA.x === tempObjectPosition.x &&
+    //     element.positionA.y === tempObjectPosition.y &&
+    //     element.positionA.z === tempObjectPosition.z) ||
+    //   (element.positionB.x === tempObjectPosition.x &&
+    //     element.positionB.y === tempObjectPosition.y &&
+    //     element.positionB.z === tempObjectPosition.z);
+    // if (positionMatch) {
+    //   // console.log(
+    //   //   "shopItems.find(positionMatch): ",
+    //   //   shopItems.find(positionMatch),
+    //   // );
+    //   let matchedItem = shopItems.find(positionMatch);
+    //   // setPreviousItemSelected(currentItemSelected);
+    //   // setCurrentItemSelected(matchedItem);
+    // }
   };
 
   const handleOffClick = (e) => {
@@ -422,7 +447,7 @@ export default function Scene({
     // setInitialLoad(true);
     if (orbitRef.current) {
       // console.log(orbitRef.current.object);
-      setTargetVec(currentItemSelected.positionA);
+      setTargetVec(currentItemSelected.position);
 
       orbitRef.current.addEventListener(
         "start",
@@ -475,81 +500,116 @@ export default function Scene({
   }, []);
 
   const controlsTargetVec = new THREE.Vector3();
-  const [targetVec, setTargetVec] = useState(new THREE.Vector3());
+  // const controlsPositionVec = new THREE.Vector3();
 
   useGSAP(() => {
-    if (previousItemSizeSelectIndex === 0) {
-      controlsTargetVec.set(
-        previousItemSelected.positionA.x,
-        previousItemSelected.positionA.y,
-        previousItemSelected.positionA.z,
-      );
-    } else if (previousItemSizeSelectIndex === 1) {
-      controlsTargetVec.set(
-        previousItemSelected.positionB.x,
-        previousItemSelected.positionB.y,
-        previousItemSelected.positionB.z,
-      );
-    }
+    controlsTargetVec.set(
+      previousItemSelected.position.x,
+      previousItemSelected.position.y,
+      previousItemSelected.position.z,
+    );
+
     if (currentItemSelected.name !== "noSelect") {
-      if (currentItemSizeSelectIndex === 0) {
-        let tl = gsap.timeline();
-        tl.to(controlsTargetVec, {
-          duration: 1,
-          // x: 10,
-          x: currentItemSelected.positionA.x,
-          y: currentItemSelected.positionA.y,
-          z: currentItemSelected.positionA.z,
-          ease: "easeIn",
-          // onStart: () => {
-          //   console.log("targetVec: ", targetVec);
-          // },
-          onUpdate: () => {
-            // console.log("updating controlsTargetVec: ", controlsTargetVec);
-            orbitRef.current.object.updateProjectionMatrix();
-            orbitRef.current.update();
-            setTargetVec(controlsTargetVec);
-            orbitRef.current.target.set(
-              controlsTargetVec.x,
-              controlsTargetVec.y,
-              controlsTargetVec.z,
-            );
-            orbitRef.current.object.updateProjectionMatrix();
-            orbitRef.current.update();
-          },
-        });
-      } else if (
-        currentItemSizeSelectIndex === 1 &&
-        currentItemSelected.sizes.length > 1
-      ) {
-        let tl = gsap.timeline();
-        tl.to(controlsTargetVec, {
-          duration: 1,
-          // x: 10,
-          x: currentItemSelected.positionB.x,
-          y: currentItemSelected.positionB.y,
-          z: currentItemSelected.positionB.z,
-          ease: "easeIn",
-          // onStart: () => {
-          //   console.log("targetVec: ", targetVec);
-          // },
-          onUpdate: () => {
-            // console.log("updating controlsTargetVec: ", controlsTargetVec);
-            orbitRef.current.object.updateProjectionMatrix();
-            orbitRef.current.update();
-            setTargetVec(controlsTargetVec);
-            orbitRef.current.target.set(
-              controlsTargetVec.x,
-              controlsTargetVec.y,
-              controlsTargetVec.z,
-            );
-            orbitRef.current.object.updateProjectionMatrix();
-            orbitRef.current.update();
-          },
-        });
-      }
+      let tl = gsap.timeline();
+      tl.to(controlsTargetVec, {
+        delay: 0.05,
+        duration: 1,
+        // x: 10,
+        x: currentItemSelected.position.x,
+        y: currentItemSelected.position.y,
+        z: currentItemSelected.position.z,
+        ease: "easeIn",
+        // onStart: () => {
+        //   console.log("targetVec: ", targetVec);
+        // },
+        onUpdate: () => {
+          // console.log("updating controlsTargetVec: ", controlsTargetVec);
+          setTargetVec(controlsTargetVec);
+          orbitRef.current.target.set(
+            controlsTargetVec.x,
+            controlsTargetVec.y,
+            controlsTargetVec.z,
+          );
+          orbitRef.current.object.updateProjectionMatrix();
+          orbitRef.current.update();
+        },
+      });
     }
-  }, [currentItemSelected, sizeChangeToggle]);
+  }, [currentItemSelected]);
+
+  // useGSAP(() => {
+  //   if (previousItemSizeSelectIndex === 0) {
+  //     controlsTargetVec.set(
+  //       previousItemSelected.positionA.x,
+  //       previousItemSelected.positionA.y,
+  //       previousItemSelected.positionA.z,
+  //     );
+  //   } else if (previousItemSizeSelectIndex === 1) {
+  //     controlsTargetVec.set(
+  //       previousItemSelected.positionB.x,
+  //       previousItemSelected.positionB.y,
+  //       previousItemSelected.positionB.z,
+  //     );
+  //   }
+  //   if (currentItemSelected.name !== "noSelect") {
+  //     if (currentItemSizeSelectIndex === 0) {
+  //       let tl = gsap.timeline();
+  //       tl.to(controlsTargetVec, {
+  //         duration: 1,
+  //         // x: 10,
+  //         x: currentItemSelected.positionA.x,
+  //         y: currentItemSelected.positionA.y,
+  //         z: currentItemSelected.positionA.z,
+  //         ease: "easeIn",
+  //         // onStart: () => {
+  //         //   console.log("targetVec: ", targetVec);
+  //         // },
+  //         onUpdate: () => {
+  //           // console.log("updating controlsTargetVec: ", controlsTargetVec);
+  //           orbitRef.current.object.updateProjectionMatrix();
+  //           orbitRef.current.update();
+  //           setTargetVec(controlsTargetVec);
+  //           orbitRef.current.target.set(
+  //             controlsTargetVec.x,
+  //             controlsTargetVec.y,
+  //             controlsTargetVec.z,
+  //           );
+  //           orbitRef.current.object.updateProjectionMatrix();
+  //           orbitRef.current.update();
+  //         },
+  //       });
+  //     } else if (
+  //       currentItemSizeSelectIndex === 1 &&
+  //       currentItemSelected.sizes.length > 1
+  //     ) {
+  //       let tl = gsap.timeline();
+  //       tl.to(controlsTargetVec, {
+  //         duration: 1,
+  //         // x: 10,
+  //         x: currentItemSelected.positionB.x,
+  //         y: currentItemSelected.positionB.y,
+  //         z: currentItemSelected.positionB.z,
+  //         ease: "easeIn",
+  //         // onStart: () => {
+  //         //   console.log("targetVec: ", targetVec);
+  //         // },
+  //         onUpdate: () => {
+  //           // console.log("updating controlsTargetVec: ", controlsTargetVec);
+  //           orbitRef.current.object.updateProjectionMatrix();
+  //           orbitRef.current.update();
+  //           setTargetVec(controlsTargetVec);
+  //           orbitRef.current.target.set(
+  //             controlsTargetVec.x,
+  //             controlsTargetVec.y,
+  //             controlsTargetVec.z,
+  //           );
+  //           orbitRef.current.object.updateProjectionMatrix();
+  //           orbitRef.current.update();
+  //         },
+  //       });
+  //     }
+  //   }
+  // }, [currentItemSelected, sizeChangeToggle]);
 
   // useEffect(() => {
   //   if (orbitRef.current) {
@@ -566,53 +626,51 @@ export default function Scene({
   //   }
   // }, [currentItemSelected]);
 
-  const controlsPositionVec = new THREE.Vector3();
+  // useFrame(() => {
+  //   if (
+  //     !controlsDragging &&
+  //     orbitRef.current &&
+  //     currentItemSelected.itemName !== "noSelect" &&
+  //     !showBackground
+  //   ) {
+  //     // if (cameraPosition == null) {
+  //     // orbitRef.current.object.position.lerp(
+  //     //   controlsPositionVec.set(0, 45, 0),
+  //     //   0.01,
+  //     // );
+  //     if (currentItemSizeSelectIndex === 0) {
+  //       orbitRef.current.object.position.lerp(
+  //         controlsPositionVec.set(
+  //           currentItemSelected.positionA.x * 4, // * 6
+  //           currentItemSelected.positionA.y + 7 * 4, // * 6
+  //           currentItemSelected.positionA.z * 4, // * 6
+  //         ),
+  //         0.03,
+  //       );
+  //     } else if (currentItemSizeSelectIndex === 1) {
+  //       orbitRef.current.object.position.lerp(
+  //         controlsPositionVec.set(
+  //           currentItemSelected.positionB.x * 4, // * 6
+  //           currentItemSelected.positionB.y + 7 * 4, // * 6
+  //           currentItemSelected.positionB.z * 4, // * 6
+  //         ),
+  //         0.03,
+  //       );
+  //     }
 
-  useFrame(() => {
-    if (
-      !controlsDragging &&
-      orbitRef.current &&
-      currentItemSelected.itemName !== "noSelect" &&
-      !showBackground
-    ) {
-      // if (cameraPosition == null) {
-      // orbitRef.current.object.position.lerp(
-      //   controlsPositionVec.set(0, 45, 0),
-      //   0.01,
-      // );
-      if (currentItemSizeSelectIndex === 0) {
-        orbitRef.current.object.position.lerp(
-          controlsPositionVec.set(
-            currentItemSelected.positionA.x * 4, // * 6
-            currentItemSelected.positionA.y + 7 * 4, // * 6
-            currentItemSelected.positionA.z * 4, // * 6
-          ),
-          0.03,
-        );
-      } else if (currentItemSizeSelectIndex === 1) {
-        orbitRef.current.object.position.lerp(
-          controlsPositionVec.set(
-            currentItemSelected.positionB.x * 4, // * 6
-            currentItemSelected.positionB.y + 7 * 4, // * 6
-            currentItemSelected.positionB.z * 4, // * 6
-          ),
-          0.03,
-        );
-      }
-
-      orbitRef.current.object.updateProjectionMatrix();
-      orbitRef.current.update();
-    }
-    // else if (!showBackground) {
-    //   orbitRef.current.object.position.lerp(
-    //     currentItemSelected.position.x * 4, // * 6
-    //     currentItemSelected.position.y + 7 * 4, // * 6
-    //     currentItemSelected.position.z * 4, // * 6
-    //     0.01,
-    //   );
-    // }
-    // return null;
-  });
+  //     orbitRef.current.object.updateProjectionMatrix();
+  //     orbitRef.current.update();
+  //   }
+  // else if (!showBackground) {
+  //   orbitRef.current.object.position.lerp(
+  //     currentItemSelected.position.x * 4, // * 6
+  //     currentItemSelected.position.y + 7 * 4, // * 6
+  //     currentItemSelected.position.z * 4, // * 6
+  //     0.01,
+  //   );
+  // }
+  // return null;
+  // });
 
   const stagePositionY = 0;
 
@@ -630,17 +688,6 @@ export default function Scene({
         minDistance={20}
         maxPolarAngle={Math.PI / 2 - Math.PI / 16}
         enableDamping={true}
-        // target={[
-        //   currentItemSizeSelectIndex === 0
-        //     ? currentItemSelected.positionA.x
-        //     : currentItemSelected.positionB.x,
-        //   currentItemSizeSelectIndex === 0
-        //     ? currentItemSelected.positionA.y
-        //     : currentItemSelected.positionB.y,
-        //   currentItemSizeSelectIndex === 0
-        //     ? currentItemSelected.positionA.z
-        //     : currentItemSelected.positionB.z,
-        // ]}
       />
       <Sky distance={4000000} sunPosition={[1.5, 2, -10]} />
       <group position={[0, stagePositionY, 0]}>
@@ -727,9 +774,9 @@ export default function Scene({
         <group
           ref={grampsRef}
           position={[
-            gramps.positionA.x,
-            gramps.positionA.y,
-            gramps.positionA.z,
+            objects.gramps.position.x,
+            objects.gramps.position.y,
+            objects.gramps.position.z,
           ]}
           onPointerOver={() => hover(true)}
           onPointerOut={() => hover(false)}
@@ -825,7 +872,11 @@ export default function Scene({
         {/* block */}
         <group
           ref={blockRef}
-          position={[block.positionA.x, block.positionA.y, block.positionA.z]}
+          position={[
+            objects.block.position.x,
+            objects.block.position.y,
+            objects.block.position.z,
+          ]}
           rotation={[0, Math.PI / 4, 0]}
           onPointerOver={() => hover(true)}
           onPointerOut={() => hover(false)}
@@ -873,7 +924,11 @@ export default function Scene({
         {/* horse */}
         <group
           ref={horseRef}
-          position={[horse.positionA.x, horse.positionA.y, horse.positionA.z]}
+          position={[
+            objects.horse.position.x,
+            objects.horse.position.y,
+            objects.horse.position.z,
+          ]}
           onPointerOver={() => hover(true)}
           onPointerOut={() => hover(false)}
           onClick={handleClick}
@@ -957,9 +1012,9 @@ export default function Scene({
         <group
           ref={squatterRef}
           position={[
-            squatter.positionA.x,
-            squatter.positionA.y,
-            squatter.positionA.z,
+            objects.squatter.position.x,
+            objects.squatter.position.y,
+            objects.squatter.position.z,
           ]}
           rotation={[0, Math.PI / 4, 0]}
           onPointerOver={() => hover(true)}
@@ -1021,9 +1076,9 @@ export default function Scene({
         <group
           ref={shelfAShortRef}
           position={[
-            shelfA.positionA.x,
-            shelfA.positionA.y,
-            shelfA.positionA.z,
+            objects.shelfA16.position.x,
+            objects.shelfA16.position.y,
+            objects.shelfA16.position.z,
           ]}
           onPointerOver={() => hover(true)}
           onPointerOut={() => hover(false)}
@@ -1060,9 +1115,9 @@ export default function Scene({
         <group
           ref={shelfALongRef}
           position={[
-            shelfA.positionB.x,
-            shelfA.positionB.y,
-            shelfA.positionB.z,
+            objects.shelfA32.position.x,
+            objects.shelfA32.position.y,
+            objects.shelfA32.position.z,
           ]}
           onPointerOver={() => hover(true)}
           onPointerOut={() => hover(false)}
@@ -1099,9 +1154,9 @@ export default function Scene({
         <group
           ref={shelfBShortRef}
           position={[
-            shelfB.positionA.x,
-            shelfB.positionA.y,
-            shelfB.positionA.z,
+            objects.shelfB16.position.x,
+            objects.shelfB16.position.y,
+            objects.shelfB16.position.z,
           ]}
           onPointerOver={() => hover(true)}
           onPointerOut={() => hover(false)}
@@ -1138,9 +1193,9 @@ export default function Scene({
         <group
           ref={shelfBLongRef}
           position={[
-            shelfB.positionB.x,
-            shelfB.positionB.y,
-            shelfB.positionB.z,
+            objects.shelfB32.position.x,
+            objects.shelfB32.position.y,
+            objects.shelfB32.position.z,
           ]}
           onPointerOver={() => hover(true)}
           onPointerOut={() => hover(false)}

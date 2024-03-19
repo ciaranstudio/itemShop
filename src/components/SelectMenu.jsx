@@ -30,6 +30,8 @@ import CarpenterIcon from "@mui/icons-material/Carpenter";
 import useWindowDimensions from "../helpers/useWindowDimensions";
 import { useSnipcart } from "use-snipcart";
 import BuyButton from "./BuyButton";
+import { options } from "../data/options.jsx";
+import { shopItems } from "../data/objects.jsx";
 
 export default function SelectMenu({
   open,
@@ -39,8 +41,8 @@ export default function SelectMenu({
   animActive,
   handleStainChange,
   handlePaintChange,
-  handleSizeChange,
-  shopItems,
+  // handleSizeChange,
+  // shopItems,
   currentItemSelected,
   setCurrentItemSelected,
   // previousItemSelected,
@@ -48,23 +50,23 @@ export default function SelectMenu({
   currentItemOptionSelect,
   currentItemOptionType,
   currentItemDescription,
-  currentItemSizeSelect,
-  currentItemSizeSelectIndex,
+  // currentItemSizeSelect,
+  // currentItemSizeSelectIndex,
   // setCurrentItemSizeSelectIndex,
-  setPreviousItemSizeSelectIndex,
-  setCurrentItemSizeSelectIndex,
+  // setPreviousItemSizeSelectIndex,
+  // setCurrentItemSizeSelectIndex,
   // currentTexture,
   // currentColor,
-  stainsList,
-  paintsList,
+  // stainsList,
+  // paintsList,
 }) {
   const drawerBleeding = 60;
   // const settings = ["Profile", "Account", "Dashboard", "Logout"
   const pages = ["Shop", "Custom", "Portfolio", "Contact"];
 
-  const stains = stainsList;
-  const paints1 = paintsList.slice(0, 3); // ["alabaster", "pink", "basil"];
-  const paints2 = paintsList.slice(3, 6); // ["yellow", "blue", "gray"];
+  const stains = options.stains;
+  const paints1 = options.paints.slice(0, 3); // ["alabaster", "pink", "basil"];
+  const paints2 = options.paints.slice(3, 6); // ["yellow", "blue", "gray"];
 
   const { height, width } = useWindowDimensions();
   // const [cartCount, setCartCount] = useState(0);
@@ -150,17 +152,17 @@ export default function SelectMenu({
     if (itemMatch) {
       let itemMatchIndex = shopItems.findIndex(itemMatch);
       // previousItemSizeSelectIndex = { previousItemSizeSelectIndex };
-      console.log(
-        "setPreviousItemSizeSelectIndex(",
-        currentItemSizeSelectIndex,
-        ")",
-      );
-      setPreviousItemSizeSelectIndex(currentItemSizeSelectIndex);
-      if (shopItems[itemMatchIndex].sizes.length === 1) {
-        setCurrentItemSizeSelectIndex(0);
-      } else if (currentItemSelected.sizes.length === 2) {
-        setCurrentItemSizeSelectIndex(currentItemSizeSelectIndex);
-      }
+      // console.log(
+      //   "setPreviousItemSizeSelectIndex(",
+      //   currentItemSizeSelectIndex,
+      //   ")",
+      // );
+      // setPreviousItemSizeSelectIndex(currentItemSizeSelectIndex);
+      // if (shopItems[itemMatchIndex].sizes.length === 1) {
+      //   setCurrentItemSizeSelectIndex(0);
+      // } else if (currentItemSelected.sizes.length === 2) {
+      //   setCurrentItemSizeSelectIndex(currentItemSizeSelectIndex);
+      // }
       setPreviousItemSelected(currentItemSelected);
       setCurrentItemSelected(shopItems[itemMatchIndex]);
     }
@@ -176,14 +178,13 @@ export default function SelectMenu({
     let calcualatedPrice = 0;
     if (currentItemOptionType === "stain") {
       calcualatedPrice =
-        parseInt(currentItemSelected.itemBasePrice) +
-        currentItemSelected.itemStainCost +
-        currentItemSelected.sizeCost * currentItemSizeSelectIndex;
+        currentItemSelected.itemBasePrice + currentItemSelected.itemStainCost;
+      // +
+      // currentItemSelected.sizeCost * currentItemSizeSelectIndex;
     } else if (currentItemOptionType === "paint") {
-      calcualatedPrice =
-        currentItemSelected.itemBasePrice +
-        currentItemSelected.itemPaintCost +
-        currentItemSelected.sizeCost * currentItemSizeSelectIndex;
+      calcualatedPrice = currentItemSelected.itemBasePrice;
+      // +
+      // currentItemSelected.sizeCost * currentItemSizeSelectIndex;
     }
     return calcualatedPrice;
   }
@@ -710,7 +711,7 @@ export default function SelectMenu({
                         pb: 1.5,
                       }}
                     >
-                      {currentItemSelected.sizes.map((size, index) => (
+                      {/* {currentItemSelected.sizes.map((size, index) => (
                         <Button
                           key={index}
                           onClick={(e) => handleSizeChange(e, size, index)}
@@ -723,7 +724,13 @@ export default function SelectMenu({
                         >
                           {size}
                         </Button>
-                      ))}
+                      ))} */}
+                      <Button
+                        variant={"outlined"}
+                        sx={{ py: 0, px: 0.75, mx: 0.25 }}
+                      >
+                        {currentItemSelected.size}
+                      </Button>
                     </Box>
                     {/* <Box sx={{ pt: 1.5, pb: 1.5 }}>
                         <Typography variant="h5" color="primary.main">
@@ -896,8 +903,8 @@ export default function SelectMenu({
                               priceTotal={totalPrice()}
                               handleAddToCart={handleAddToCart}
                               currentItemOptionSelect={currentItemOptionSelect}
-                              currentItemOptionType={currentItemOptionType}
-                              currentItemSizeSelect={currentItemSizeSelect}
+                              // currentItemOptionType={currentItemOptionType}
+                              // currentItemSizeSelect={currentItemSizeSelect}
                             >
                               {item.itemTitle}
                             </BuyButton>

@@ -1,337 +1,462 @@
-// import * as THREE from "three";
+import Item from "./Item.jsx";
+import Part from "./Part.jsx";
 
 export const objects = {
-  block: {
-    itemName: "block",
-    parts: [
-      {
-        partName: "shelves",
-        animation: "none",
-        model: "./models/blockModels/blockShelves.gltf",
-      },
-      {
-        partName: "side 1",
-        animation: "vertical",
-        model: "./models/blockModels/blockSide1.gltf",
-      },
-      {
-        partName: "side 2",
-        animation: "vertical",
-        model: "./models/blockModels/blockSide2.gltf",
-      },
+  gramps: new Item(
+    0,
+    "gramps",
+    "GRAMPS",
+    "Handmade stool",
+    750, // painted single color
+    150, // stained single color
+    50,
+    150,
+    "16 x 16 x 18", // L x D x H
+    { x: 0, y: 0, z: 70 },
+    [
+      new Part("top", "horizontal", "./models/grampsModels/grampsTop.gltf"),
+      new Part(
+        "bar bottom",
+        "none",
+        "./models/grampsModels/grampsBarBottom.gltf",
+      ),
+      new Part(
+        "bar top",
+        "horizontal",
+        "./models/grampsModels/grampsBarTop.gltf",
+      ),
+      new Part("leg 1", "vertical", "./models/grampsModels/grampsLeg1.gltf"),
+      new Part("leg 2", "vertical", "./models/grampsModels/grampsLeg2.gltf"),
+      new Part("leg 3", "vertical", "./models/grampsModels/grampsLeg3.gltf"),
+      new Part("leg 4", "vertical", "./models/grampsModels/grampsLeg4.gltf"),
     ],
-  },
-  gramps: {
-    itemName: "gramps",
-    parts: [
-      {
-        partName: "top",
-        animation: "horizontal",
-        model: "./models/grampsModels/grampsTop.gltf",
-      },
-      {
-        partName: "bar bottom",
-        animation: "none",
-        model: "./models/grampsModels/grampsBarBottom.gltf",
-      },
-      {
-        partName: "bar top",
-        animation: "horizontal",
-        model: "./models/grampsModels/grampsBarTop.gltf",
-      },
-      {
-        partName: "leg 1",
-        animation: "vertical",
-        model: "./models/grampsModels/grampsLeg1.gltf",
-      },
-      {
-        partName: "leg 2",
-        animation: "vertical",
-        model: "./models/grampsModels/grampsLeg2.gltf",
-      },
-      {
-        partName: "leg 3",
-        animation: "vertical",
-        model: "./models/grampsModels/grampsLeg3.gltf",
-      },
-      {
-        partName: "leg 4",
-        animation: "vertical",
-        model: "./models/grampsModels/grampsLeg4.gltf",
-      },
+  ),
+  squatter: new Item(
+    1,
+    "squatter",
+    "SQUATTER",
+    "Handmade end table",
+    600, // painted single color
+    100, // stained single color
+    50,
+    100,
+    "16 x 12 x 18", // L x D x H
+    { x: -70, y: 0, z: 0 },
+    [
+      new Part("top", "horizontal", "./models/squatterModels/squatterTop.gltf"),
+      new Part(
+        "center panel",
+        "none",
+        "./models/squatterModels/squatterCenterPanel.gltf",
+      ),
+      new Part(
+        "side 1",
+        "vertical",
+        "./models/squatterModels/squatterSide1.gltf",
+      ),
+      new Part(
+        "side 2",
+        "vertical",
+        "./models/squatterModels/squatterSide2.gltf",
+      ),
     ],
-  },
-  horse: {
-    itemName: "horse",
-    parts: [
-      {
-        partName: "top",
-        animation: "horizontal",
-        model: "./models/horseModels/horseBarTop.gltf",
-      },
-      {
-        partName: "bar inner",
-        animation: "none",
-        model: "./models/horseModels/horseBarInner.gltf",
-      },
-      {
-        partName: "leg 1",
-        animation: "vertical",
-        model: "./models/horseModels/horseLeg1.gltf",
-      },
-      {
-        partName: "leg 2",
-        animation: "vertical",
-        model: "./models/horseModels/horseLeg2.gltf",
-      },
-      {
-        partName: "leg 3",
-        animation: "vertical",
-        model: "./models/horseModels/horseLeg3.gltf",
-      },
-      {
-        partName: "leg 4",
-        animation: "vertical",
-        model: "./models/horseModels/horseLeg4.gltf",
-      },
+  ),
+  block: new Item(
+    2,
+    "block",
+    "BLOCK",
+    "Handmade room block",
+    250, // painted single color
+    150, // stained single color
+    50,
+    150,
+    "8 x 8 x 16", // L x D x H
+    { x: 0, y: 0, z: -70 },
+    [
+      new Part("shelves", "none", "./models/blockModels/blockShelves.gltf"),
+      new Part("side 1", "vertical", "./models/blockModels/blockSide1.gltf"),
+      new Part("side 2", "vertical", "./models/blockModels/blockSide2.gltf"),
     ],
-  },
-  squatter: {
-    itemName: "squatter",
-    parts: [
-      {
-        partName: "top",
-        animation: "horizontal",
-        model: "./models/squatterModels/squatterTop.gltf",
-      },
-      {
-        partName: "center panel",
-        animation: "none",
-        model: "./models/squatterModels/squatterCenterPanel.gltf",
-      },
-      {
-        partName: "side 1",
-        animation: "vertical",
-        model: "./models/squatterModels/squatterSide1.gltf",
-      },
-      {
-        partName: "side 2",
-        animation: "vertical",
-        model: "./models/squatterModels/squatterSide2.gltf",
-      },
+  ),
+  horse: new Item(
+    3,
+    "horse",
+    "HORSE",
+    "Handmade saw horse",
+    400, // painted single color
+    100, // stained single color
+    50,
+    100,
+    "32 x 20 x 32", // L x D x H
+    { x: 70, y: 0, z: 0 },
+    [
+      new Part("top", "horizontal", "./models/horseModels/horseBarTop.gltf"),
+      new Part("bar inner", "none", "./models/horseModels/horseBarInner.gltf"),
+      new Part("leg 1", "vertical", "./models/horseModels/horseLeg1.gltf"),
+      new Part("leg 2", "vertical", "./models/horseModels/horseLeg2.gltf"),
+      new Part("leg 3", "vertical", "./models/horseModels/horseLeg3.gltf"),
+      new Part("leg 4", "vertical", "./models/horseModels/horseLeg4.gltf"),
     ],
-  },
-  shelfAShort: {
-    itemName: "shelfA",
-    parts: [
-      {
-        partName: "shelf",
-        animation: "vertical",
-        model: "./models/shelfAShortModels/shelfAShortShelf.gltf",
-      },
-      {
-        partName: "cleat",
-        animation: "none",
-        model: "./models/shelfAShortModels/shelfAShortCleat.gltf",
-      },
+  ),
+  shelfA16: new Item(
+    4,
+    "shelfA16",
+    "\\SHELF/ 16",
+    "Handmade angle shelf",
+    350, // painted single color
+    50, // stained single color
+    50,
+    50,
+    "16 x 4 x 4", // L x D x H
+    { x: -118.3125, y: 0, z: -81.125 },
+    [
+      new Part(
+        "shelf",
+        "vertical",
+        "./models/shelfA16Models/shelfA16Shelf.gltf",
+      ),
+      new Part("cleat", "none", "./models/shelfA16Models/shelfA16Cleat.gltf"),
     ],
-  },
-  shelfALong: {
-    itemName: "shelfA",
-    parts: [
-      {
-        partName: "shelf",
-        animation: "vertical",
-        model: "./models/shelfALongModels/shelfALongShelf.gltf",
-      },
-      {
-        partName: "cleat",
-        animation: "none",
-        model: "./models/shelfALongModels/shelfALongCleat.gltf",
-      },
+  ),
+  shelfA32: new Item(
+    5,
+    "shelfA32",
+    "\\SHELF/ 32",
+    "Handmade angle shelf",
+    550, // painted single color
+    50, // stained single color
+    50,
+    50,
+    "32 x 4 x 4", // L x D x H
+    { x: -118.3125, y: 0, z: -40.6 },
+    [
+      new Part(
+        "shelf",
+        "vertical",
+        "./models/shelfA32Models/shelfA32Shelf.gltf",
+      ),
+      new Part("cleat", "none", "./models/shelfA32Models/shelfA32Cleat.gltf"),
     ],
-  },
-  shelfBShort: {
-    itemName: "shelfB",
-    parts: [
-      {
-        partName: "shelf",
-        animation: "vertical",
-        model: "./models/shelfBShortModels/shelfBShortShelf.gltf",
-      },
-      {
-        partName: "cleat",
-        animation: "none",
-        model: "./models/shelfBShortModels/shelfBShortCleat.gltf",
-      },
+  ),
+  shelfB16: new Item(
+    6,
+    "shelfB16",
+    "(SHELF) 16",
+    "Handmade block shelf",
+    350, // painted single color
+    50, // stained single color
+    50,
+    50,
+    "16 x 4 x 4", // L x D x H
+    { x: 33.685, y: 0, z: 118.25 },
+    [
+      new Part(
+        "shelf",
+        "vertical",
+        "./models/shelfB16Models/shelfB16Shelf.gltf",
+      ),
+      new Part("cleat", "none", "./models/shelfB16Models/shelfB16Cleat.gltf"),
     ],
-  },
-  shelfBLong: {
-    itemName: "shelfB",
-    parts: [
-      {
-        partName: "shelf",
-        animation: "vertical",
-        model: "./models/shelfBLongModels/shelfBLongShelf.gltf",
-      },
-      {
-        partName: "cleat",
-        animation: "none",
-        model: "./models/shelfBLongModels/shelfBLongCleat.gltf",
-      },
+  ),
+  shelfB32: new Item(
+    7,
+    "shelfB32",
+    "(SHELF) 32",
+    "Handmade block shelf",
+    550, // painted single color
+    50, // stained single color
+    50,
+    50,
+    "32 x 4 x 4", // L x D x H
+    { x: 73.685, y: 0, z: 118.25 },
+    [
+      new Part(
+        "shelf",
+        "vertical",
+        "./models/shelfB32Models/shelfB32Shelf.gltf",
+      ),
+      new Part("cleat", "none", "./models/shelfB32Models/shelfB32Cleat.gltf"),
     ],
-  },
+  ),
 };
 
-// create shopItems array of Item class instances in this file and replace in App / Scene / SelectMenu
-// export const shopItems = [
-//   objects.block,
-//   objects.gramps,
-//   objects.horse,
-//   objects.squatter,
-//   objects.block,
-//   objects.block,
-// ];
+export const unselectedItem = new Item(
+  "", // itemNo
+  "noSelect", // itemName
+  "noSelectTitle", // itemTitle
+  "Select item", // itemDescription
+  0, // itemBasePrice
+  0, // itemStainCost
+  0, // itemMixedPaintCost
+  0, // itemMixedStainCost
+  [], // size
+  { x: 0, y: 1, z: 0 }, // position
+  [new Part("", "", "")], // parts
+);
 
-// discuss with Eli about issue with shelf short and long being bundled / advantages and disadvantages
+export const shopItems = [
+  objects.gramps,
+  objects.squatter,
+  objects.block,
+  objects.horse,
+  objects.shelfA16,
+  objects.shelfA32,
+  objects.shelfB16,
+  objects.shelfB32,
+];
 
-// const grampSizes = ["16 x 16 x 18"]; //LDH
-// const squatterSizes = ["16 x 12 x 18"]; //LDH
-// const blockSizes = ["8 x 8 x 16"]; //LDH
-// const horseSizes = ["32 x 20 x 32"]; //LDH
-// const shelfASizes = ["16 x 4 x 4", "32 x 4 x 4"]; //LDH
-// const shelfBSizes = ["16 x 6 x 4", "32 x 6 x 4"]; //LDH
-
-// const grampsPosition = [
-//   { x: 0, y: 0, z: 70 },
-//   { x: 0, y: 0, z: 0 },
-// ];
-// const squatterPosition = [
-//   { x: -70, y: 0, z: 0 },
-//   { x: 1, y: 1, z: 1 },
-// ];
-// const blockPosition = [
-//   { x: 0, y: 0, z: -70 },
-//   { x: 2, y: 2, z: 2 },
-// ];
-// const horsePosition = [
-//   { x: 70, y: 0, z: 0 },
-//   { x: 3, y: 3, z: 3 },
-// ];
-// const shelfAPosition = [
-//   { x: -118.3125, y: 0, z: -81.125 },
-//   { x: -118.3125, y: 0, z: -40.6 },
-// ];
-// const shelfBPosition = [
-//   { x: 33.685, y: 0, z: 118.25 },
-//   { x: 73.685, y: 0, z: 118.25 },
-// ];
-
-// const unselectedItem = new Item(
-//   "noSelect", // itemName
-//   "", // itemNo
-//   "noSelectTitle", // itemTitle
-//   "Select item", // itemDescription
-//   0, // itemBasePrice
-//   0, // itemStainCost
-//   0, // itemPaintCost
-//   0, // sizeCost
-//   [], // sizes
-//   { x: 0, y: 1, z: 0 }, // positionA
-//   { x: 0, y: 2, z: 0 }, // positionB
-//   [0],
-// );
-
-// const gramps = new Item(
-//   "gramps", // itemName
-//   0, // itemNo
-//   "GRAMPS", // itemTitle
-//   "Handmade stool", // itemDescription
-//   750, // itemBasePrice
-//   150, // itemStainCost
-//   0, // itemPaintCost
-//   0, // sizeCost
-//   grampSizes, // sizes
-//   grampsPosition[0], // positionA
-//   grampsPosition[1], // positionB
-//   [0, 1, 2, 3, 4, 5, 6],
-// );
-
-// const squatter = new Item(
-//   "squatter", // itemName
-//   1, // itemNo
-//   "SQUATTER", // itemTitle
-//   "Handmade end table", // itemDescription
-//   600, // itemBasePrice
-//   100, // itemStainCost
-//   0, // itemPaintCost
-//   0, // sizeCost
-//   squatterSizes, // sizes
-//   squatterPosition[0], // positionA
-//   squatterPosition[1], // positionB
-//   [0, 1, 2, 3],
-// );
-
-// const block = new Item(
-//   "block", // itemName
-//   2, // itemNo
-//   "BLOCK", // itemTitle
-//   "Handmade room block", // itemDescription
-//   250, // itemBasePrice
-//   150, // itemStainCost
-//   0, // itemPaintCost
-//   0, // sizeCost
-//   blockSizes, // sizes
-//   blockPosition[0], // positionA
-//   blockPosition[1], // positionB
-//   [0, 1, 2, 3, 4],
-// );
-
-// const horse = new Item(
-//   "horse", // itemName
-//   3, // itemNo
-//   "HORSE", // itemTitle
-//   "Handmade saw horse", // itemDescription
-//   400, // itemBasePrice
-//   100, // itemStainCost
-//   0, // itemPaintCost
-//   0, // sizeCost
-//   horseSizes, // sizes
-//   horsePosition[0], // positionA
-//   horsePosition[1], // positionB
-//   [0, 1, 2, 3, 4, 5],
-// );
-
-// const shelfA = new Item(
-//   "shelfA", // itemName
-//   4, // itemNo
-//   `\\SHELF/`, // itemTitle
-//   "Handmade angle shelf", // itemDescription
-//   350, // itemBasePrice
-//   50, // itemStainCost
-//   0, // itemPaintCost
-//   200, // sizeCost
-//   shelfASizes, // sizes
-//   shelfAPosition[0], // positionA
-//   shelfAPosition[1],
-//   [0, 1],
-// );
-
-// const shelfB = new Item(
-//   "shelfB", // itemName
-//   5, // itemNo
-//   "(SHELF)", // itemTitle
-//   "Handmade block shelf", // itemDescription
-//   350, // itemBasePrice
-//   50, // itemStainCost
-//   0, // itemPaintCost
-//   200, // sizeCost
-//   shelfBSizes, // sizes
-//   shelfBPosition[0], // positionA
-//   shelfBPosition[1], // positionB
-//   [0, 1],
-// );
-
-// const shopItems = [gramps, squatter, block, horse, shelfA, shelfB];
-// const stainsList = ["white", "natural", "black", "allBlack"];
-// const paintsList = ["alabaster", "pink", "basil", "yellow", "blue", "gray"];
+// previous objects data (before Item and Part integration)
+// export const objects = {
+//   gramps: {
+//     itemNo: 0,
+//     itemName: "gramps",
+//     itemTitle: "GRAMPS",
+//     itemDescription: "Handmade stool",
+//     itemBasePrice: 750, // painted single color
+//     itemStainCost: 150, // stained single color
+//     itemMixedPaintCost: 50,
+//     itemMixedStainCost: 150,
+//     size: "16 x 16 x 18", // L x D x H
+//     position: { x: 0, y: 0, z: 70 },
+//     parts: [
+//       {
+//         partName: "top",
+//         animation: "horizontal",
+//         model: "./models/grampsModels/grampsTop.gltf",
+//       },
+//       {
+//         partName: "bar bottom",
+//         animation: "none",
+//         model: "./models/grampsModels/grampsBarBottom.gltf",
+//       },
+//       {
+//         partName: "bar top",
+//         animation: "horizontal",
+//         model: "./models/grampsModels/grampsBarTop.gltf",
+//       },
+//       {
+//         partName: "leg 1",
+//         animation: "vertical",
+//         model: "./models/grampsModels/grampsLeg1.gltf",
+//       },
+//       {
+//         partName: "leg 2",
+//         animation: "vertical",
+//         model: "./models/grampsModels/grampsLeg2.gltf",
+//       },
+//       {
+//         partName: "leg 3",
+//         animation: "vertical",
+//         model: "./models/grampsModels/grampsLeg3.gltf",
+//       },
+//       {
+//         partName: "leg 4",
+//         animation: "vertical",
+//         model: "./models/grampsModels/grampsLeg4.gltf",
+//       },
+//     ],
+//   },
+//   squatter: {
+//     itemNo: 1,
+//     itemName: "squatter",
+//     itemTitle: "SQUATTER",
+//     itemDescription: "Handmade end table",
+//     itemBasePrice: 600, // painted single color
+//     itemStainCost: 100, // stained single color
+//     itemMixedPaintCost: 50,
+//     itemMixedStainCost: 100,
+//     size: "16 x 12 x 18", // L x D x H
+//     position: { x: -70, y: 0, z: 0 },
+//     parts: [
+//       {
+//         partName: "top",
+//         animation: "horizontal",
+//         model: "./models/squatterModels/squatterTop.gltf",
+//       },
+//       {
+//         partName: "center panel",
+//         animation: "none",
+//         model: "./models/squatterModels/squatterCenterPanel.gltf",
+//       },
+//       {
+//         partName: "side 1",
+//         animation: "vertical",
+//         model: "./models/squatterModels/squatterSide1.gltf",
+//       },
+//       {
+//         partName: "side 2",
+//         animation: "vertical",
+//         model: "./models/squatterModels/squatterSide2.gltf",
+//       },
+//     ],
+//   },
+//   block: {
+//     itemNo: 2,
+//     itemName: "block",
+//     itemTitle: "BLOCK",
+//     itemDescription: "Handmade room block",
+//     itemBasePrice: 250, // painted single color
+//     itemStainCost: 150, // stained single color
+//     itemMixedPaintCost: 50,
+//     itemMixedStainCost: 150,
+//     size: "8 x 8 x 16", // L x D x H
+//     position: { x: 0, y: 0, z: -70 },
+//     parts: [
+//       {
+//         partName: "shelves",
+//         animation: "none",
+//         model: "./models/blockModels/blockShelves.gltf",
+//       },
+//       {
+//         partName: "side 1",
+//         animation: "vertical",
+//         model: "./models/blockModels/blockSide1.gltf",
+//       },
+//       {
+//         partName: "side 2",
+//         animation: "vertical",
+//         model: "./models/blockModels/blockSide2.gltf",
+//       },
+//     ],
+//   },
+//   horse: {
+//     itemNo: 3,
+//     itemName: "horse",
+//     itemTitle: "HORSE",
+//     itemDescription: "Handmade saw horse",
+//     itemBasePrice: 400, // painted single color
+//     itemStainCost: 100, // stained single color
+//     itemMixedPaintCost: 50,
+//     itemMixedStainCost: 100,
+//     size: "32 x 20 x 32", // L x D x H
+//     position: { x: 70, y: 0, z: 0 },
+//     parts: [
+//       {
+//         partName: "top",
+//         animation: "horizontal",
+//         model: "./models/horseModels/horseBarTop.gltf",
+//       },
+//       {
+//         partName: "bar inner",
+//         animation: "none",
+//         model: "./models/horseModels/horseBarInner.gltf",
+//       },
+//       {
+//         partName: "leg 1",
+//         animation: "vertical",
+//         model: "./models/horseModels/horseLeg1.gltf",
+//       },
+//       {
+//         partName: "leg 2",
+//         animation: "vertical",
+//         model: "./models/horseModels/horseLeg2.gltf",
+//       },
+//       {
+//         partName: "leg 3",
+//         animation: "vertical",
+//         model: "./models/horseModels/horseLeg3.gltf",
+//       },
+//       {
+//         partName: "leg 4",
+//         animation: "vertical",
+//         model: "./models/horseModels/horseLeg4.gltf",
+//       },
+//     ],
+//   },
+//   shelfA16: {
+//     itemNo: 4,
+//     itemName: "shelfA",
+//     itemTitle: "\\SHELF/ 16",
+//     itemDescription: "Handmade angle shelf",
+//     itemBasePrice: 350, // painted single color
+//     itemStainCost: 50, // stained single color
+//     itemMixedPaintCost: 50,
+//     itemMixedStainCost: 50,
+//     size: "16 x 4 x 4", // L x D x H
+//     position: { x: -118.3125, y: 0, z: -81.125 },
+//     parts: [
+//       {
+//         partName: "shelf",
+//         animation: "vertical",
+//         model: "./models/shelfA16Models/shelfA16Shelf.gltf",
+//       },
+//       {
+//         partName: "cleat",
+//         animation: "none",
+//         model: "./models/shelfA16Models/shelfA16Cleat.gltf",
+//       },
+//     ],
+//   },
+//   shelfA32: {
+//     itemNo: 5,
+//     itemName: "shelfA",
+//     itemTitle: "\\SHELF/ 32",
+//     itemDescription: "Handmade angle shelf",
+//     itemBasePrice: 550, // painted single color
+//     itemStainCost: 50, // stained single color
+//     itemMixedPaintCost: 50,
+//     itemMixedStainCost: 50,
+//     size: "32 x 4 x 4", // L x D x H
+//     position: { x: -118.3125, y: 0, z: -40.6 },
+//     parts: [
+//       {
+//         partName: "shelf",
+//         animation: "vertical",
+//         model: "./models/shelfA32Models/shelfA32Shelf.gltf",
+//       },
+//       {
+//         partName: "cleat",
+//         animation: "none",
+//         model: "./models/shelfA32Models/shelfA32Cleat.gltf",
+//       },
+//     ],
+//   },
+//   shelfB16: {
+//     itemNo: 6,
+//     itemName: "shelfB",
+//     itemTitle: "(SHELF) 16",
+//     itemDescription: "Handmade block shelf",
+//     itemBasePrice: 350, // painted single color
+//     itemStainCost: 50, // stained single color
+//     itemMixedPaintCost: 50,
+//     itemMixedStainCost: 50,
+//     size: "16 x 4 x 4", // L x D x H
+//     position: { x: 33.685, y: 0, z: 118.25 },
+//     parts: [
+//       {
+//         partName: "shelf",
+//         animation: "vertical",
+//         model: "./models/shelfB16Models/shelfB16Shelf.gltf",
+//       },
+//       {
+//         partName: "cleat",
+//         animation: "none",
+//         model: "./models/shelfB16Models/shelfB16Cleat.gltf",
+//       },
+//     ],
+//   },
+//   shelfB32: {
+//     itemNo: 7,
+//     itemName: "shelfB",
+//     itemTitle: "(SHELF) 32",
+//     itemDescription: "Handmade block shelf",
+//     itemBasePrice: 550, // painted single color
+//     itemStainCost: 50, // stained single color
+//     itemMixedPaintCost: 50,
+//     itemMixedStainCost: 50,
+//     size: "32 x 4 x 4", // L x D x H
+//     position: { x: 73.685, y: 0, z: 118.25 },
+//     parts: [
+//       {
+//         partName: "shelf",
+//         animation: "vertical",
+//         model: "./models/shelfB32Models/shelfB32Shelf.gltf",
+//       },
+//       {
+//         partName: "cleat",
+//         animation: "none",
+//         model: "./models/shelfB32Models/shelfB32Cleat.gltf",
+//       },
+//     ],
+//   },
+// };

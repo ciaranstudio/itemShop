@@ -8,7 +8,8 @@ export default function BuyButton({
   priceTotal,
   handleAddToCart,
   currentItemOptionSelect,
-  currentItemSizeSelect,
+  // currentItemOptionType,
+  // currentItemSizeSelect,
 }) {
   return (
     <Box
@@ -31,13 +32,13 @@ export default function BuyButton({
         data-item-custom1-name="Finish"
         data-item-custom1-options={`white[+${item.itemStainCost}]|natural[+${item.itemStainCost}]|black[+${item.itemStainCost}]|allBlack[+${item.itemStainCost}]|alabaster|pink|basil|yellow|blue|gray`}
         data-item-custom1-value={currentItemOptionSelect}
-        data-item-custom2-name="Size"
-        data-item-custom2-options={
-          item.sizes.length > 1
-            ? `${item.sizes[0]}|${item.sizes[1]}[+${item.sizeCost}]`
-            : `${item.sizes[0]}`
-        }
-        data-item-custom2-value={currentItemSizeSelect}
+        // data-item-custom2-name="Size"
+        // data-item-custom2-options={
+        //   item.sizes.length > 1
+        //     ? `${item.sizes[0]}|${item.sizes[1]}[+${item.sizeCost}]`
+        //     : `${item.sizes[0]}`
+        // }
+        // data-item-custom2-value={currentItemSizeSelect}
         sx={{
           display: itemNo === item.itemNo ? "block" : "none",
         }}

@@ -5,8 +5,12 @@ import * as THREE from "three";
 import Scene from "./components/Scene.jsx";
 import SelectMenu from "./components/SelectMenu.jsx";
 import Placeholder from "./components/Placeholder.jsx";
-import Item from "./data/Item.jsx";
+// import Item from "./data/Item.jsx";
 import { textures } from "./data/textures.jsx";
+import { options } from "./data/options.jsx";
+// import { objects } from "./data/objects.jsx";
+// import { shopItems } from "./data/objects.jsx";
+import { unselectedItem } from "./data/objects.jsx";
 import "./style.css";
 import { SnipcartProvider } from "use-snipcart";
 
@@ -14,145 +18,6 @@ function App() {
   const [open, setOpen] = useState(false);
   const [toggled, setToggled] = useState(false);
   const [animActive, setAnimActive] = useState(false);
-
-  const grampSizes = ["16 x 16 x 18"]; //LDH
-  const squatterSizes = ["16 x 12 x 18"]; //LDH
-  const blockSizes = ["8 x 8 x 16"]; //LDH
-  const horseSizes = ["32 x 20 x 32"]; //LDH
-  const shelfASizes = ["16 x 4 x 4", "32 x 4 x 4"]; //LDH
-  const shelfBSizes = ["16 x 6 x 4", "32 x 6 x 4"]; //LDH
-
-  const grampsPosition = [
-    { x: 0, y: 0, z: 70 },
-    { x: 0, y: 0, z: 0 },
-  ];
-  const squatterPosition = [
-    { x: -70, y: 0, z: 0 },
-    { x: 1, y: 1, z: 1 },
-  ];
-  const blockPosition = [
-    { x: 0, y: 0, z: -70 },
-    { x: 2, y: 2, z: 2 },
-  ];
-  const horsePosition = [
-    { x: 70, y: 0, z: 0 },
-    { x: 3, y: 3, z: 3 },
-  ];
-  const shelfAPosition = [
-    { x: -118.3125, y: 0, z: -81.125 },
-    { x: -118.3125, y: 0, z: -40.6 },
-  ];
-  const shelfBPosition = [
-    { x: 33.685, y: 0, z: 118.25 },
-    { x: 73.685, y: 0, z: 118.25 },
-  ];
-
-  const unselectedItem = new Item(
-    "noSelect", // itemName
-    "", // itemNo
-    "noSelectTitle", // itemTitle
-    "Select item", // itemDescription
-    0, // itemBasePrice
-    0, // itemStainCost
-    0, // itemPaintCost
-    0, // sizeCost
-    [], // sizes
-    { x: 0, y: 1, z: 0 }, // positionA
-    { x: 0, y: 2, z: 0 }, // positionB
-    [0],
-  );
-
-  const gramps = new Item(
-    "gramps", // itemName
-    0, // itemNo
-    "GRAMPS", // itemTitle
-    "Handmade stool", // itemDescription
-    750, // itemBasePrice
-    150, // itemStainCost
-    0, // itemPaintCost
-    0, // sizeCost
-    grampSizes, // sizes
-    grampsPosition[0], // positionA
-    grampsPosition[1], // positionB
-    [0, 1, 2, 3, 4, 5, 6],
-  );
-
-  const squatter = new Item(
-    "squatter", // itemName
-    1, // itemNo
-    "SQUATTER", // itemTitle
-    "Handmade end table", // itemDescription
-    600, // itemBasePrice
-    100, // itemStainCost
-    0, // itemPaintCost
-    0, // sizeCost
-    squatterSizes, // sizes
-    squatterPosition[0], // positionA
-    squatterPosition[1], // positionB
-    [0, 1, 2, 3],
-  );
-
-  const block = new Item(
-    "block", // itemName
-    2, // itemNo
-    "BLOCK", // itemTitle
-    "Handmade room block", // itemDescription
-    250, // itemBasePrice
-    150, // itemStainCost
-    0, // itemPaintCost
-    0, // sizeCost
-    blockSizes, // sizes
-    blockPosition[0], // positionA
-    blockPosition[1], // positionB
-    [0, 1, 2, 3, 4],
-  );
-
-  const horse = new Item(
-    "horse", // itemName
-    3, // itemNo
-    "HORSE", // itemTitle
-    "Handmade saw horse", // itemDescription
-    400, // itemBasePrice
-    100, // itemStainCost
-    0, // itemPaintCost
-    0, // sizeCost
-    horseSizes, // sizes
-    horsePosition[0], // positionA
-    horsePosition[1], // positionB
-    [0, 1, 2, 3, 4, 5],
-  );
-
-  const shelfA = new Item(
-    "shelfA", // itemName
-    4, // itemNo
-    `\\SHELF/`, // itemTitle
-    "Handmade angle shelf", // itemDescription
-    350, // itemBasePrice
-    50, // itemStainCost
-    0, // itemPaintCost
-    200, // sizeCost
-    shelfASizes, // sizes
-    shelfAPosition[0], // positionA
-    shelfAPosition[1],
-    [0, 1],
-  );
-
-  const shelfB = new Item(
-    "shelfB", // itemName
-    5, // itemNo
-    "(SHELF)", // itemTitle
-    "Handmade block shelf", // itemDescription
-    350, // itemBasePrice
-    50, // itemStainCost
-    0, // itemPaintCost
-    200, // sizeCost
-    shelfBSizes, // sizes
-    shelfBPosition[0], // positionA
-    shelfBPosition[1], // positionB
-    [0, 1],
-  );
-
-  const shopItems = [gramps, squatter, block, horse, shelfA, shelfB];
 
   const [currentItemSelected, setCurrentItemSelected] =
     useState(unselectedItem);
@@ -162,15 +27,15 @@ function App() {
   const [currentItemOptionType, setCurrentItemOptionType] =
     useState("stain or paint");
   const [currentItemDescription, setCurrentItemDescription] = useState(
-    gramps.itemDescription,
+    unselectedItem.itemDescription,
   );
-  const [currentItemSizeSelectIndex, setCurrentItemSizeSelectIndex] =
-    useState(0);
-  const [previousItemSizeSelectIndex, setPreviousItemSizeSelectIndex] =
-    useState(0);
-  const [currentItemSizeSelect, setCurrentItemSizeSelect] = useState(
-    0, // currentItemSelected.sizes[currentItemSizeSelectIndex]
-  );
+  // const [currentItemSizeSelectIndex, setCurrentItemSizeSelectIndex] =
+  //   useState(0);
+  // const [previousItemSizeSelectIndex, setPreviousItemSizeSelectIndex] =
+  //   useState(0);
+  // const [currentItemSizeSelect, setCurrentItemSizeSelect] = useState(
+  //   0, // currentItemSelected.sizes[currentItemSizeSelectIndex]
+  // );
 
   // const [currentTexture, setCurrentTexture] = useState(textures.whiteTexture);
   // const [currentColor, setCurrentColor] = useState(textures.noSelectWhite);
@@ -205,20 +70,6 @@ function App() {
     useState("");
   // const [currentItemOptionTypeShelfB, setCurrentItemOptionTypeShelfB] =
   //   useState("stain or paint");
-
-  // const [currentTextureFloor, setCurrentTextureFloor] = useState(
-  //   textures.woodFloorWornPlanksTexture,
-  // );
-  // const [currentColorFloor, setCurrentColorFloor] = useState(
-  //   textures.concreteFloor,
-  // );
-
-  // const [currentTextureWalls, setCurrentTextureWalls] = useState(
-  //   textures.paintedTexture,
-  // );
-  // const [currentColorWalls, setCurrentColorWalls] = useState(
-  //   textures.whiteStain,
-  // );
 
   const [currentTextureGramps, setCurrentTextureGramps] = useState(
     textures.paintedTexture,
@@ -262,63 +113,74 @@ function App() {
     textures.whiteStain,
   );
 
-  const [sizeChangeToggle, setSizeChangeToggle] = useState(false);
-
-  const stainsList = ["white", "natural", "black", "allBlack"];
-  const paintsList = ["alabaster", "pink", "basil", "yellow", "blue", "gray"];
+  // const [sizeChangeToggle, setSizeChangeToggle] = useState(false);
 
   useEffect(() => {
     setCurrentItemDescription(currentItemSelected.itemDescription);
-    if (currentItemSelected.itemNo === 0) {
+    if (currentItemSelected.itemName === "gramps") {
       setCurrentItemOptionSelect(currentItemOptionSelectGramps);
-      if (stainsList.includes(currentItemOptionSelectGramps)) {
+      if (options.stains.includes(currentItemOptionSelectGramps)) {
         setCurrentItemOptionType("stain");
-      } else if (paintsList.includes(currentItemOptionSelectGramps)) {
+      } else if (options.paints.includes(currentItemOptionSelectGramps)) {
         setCurrentItemOptionType("paint");
       }
-    } else if (currentItemSelected.itemNo === 1) {
+    } else if (currentItemSelected.itemName === "squatter") {
       setCurrentItemOptionSelect(currentItemOptionSelectSquatter);
-      if (stainsList.includes(currentItemOptionSelectSquatter)) {
+      if (options.stains.includes(currentItemOptionSelectSquatter)) {
         setCurrentItemOptionType("stain");
-      } else if (paintsList.includes(currentItemOptionSelectSquatter)) {
+      } else if (options.paints.includes(currentItemOptionSelectSquatter)) {
         setCurrentItemOptionType("paint");
       }
-    } else if (currentItemSelected.itemNo === 2) {
+    } else if (currentItemSelected.itemName === "block") {
       setCurrentItemOptionSelect(currentItemOptionSelectBlock);
-      if (stainsList.includes(currentItemOptionSelectBlock)) {
+      if (options.stains.includes(currentItemOptionSelectBlock)) {
         setCurrentItemOptionType("stain");
-      } else if (paintsList.includes(currentItemOptionSelectBlock)) {
+      } else if (options.paints.includes(currentItemOptionSelectBlock)) {
         setCurrentItemOptionType("paint");
       }
-    } else if (currentItemSelected.itemNo === 3) {
+    } else if (currentItemSelected.itemName === "horse") {
       setCurrentItemOptionSelect(currentItemOptionSelectHorse);
-      if (stainsList.includes(currentItemOptionSelectHorse)) {
+      if (options.stains.includes(currentItemOptionSelectHorse)) {
         setCurrentItemOptionType("stain");
-      } else if (paintsList.includes(currentItemOptionSelectHorse)) {
+      } else if (options.paints.includes(currentItemOptionSelectHorse)) {
         setCurrentItemOptionType("paint");
       }
-    } else if (currentItemSelected.itemNo === 4) {
+    } else if (currentItemSelected.itemName === "shelfA16") {
       setCurrentItemOptionSelect(currentItemOptionSelectShelfA);
-      if (stainsList.includes(currentItemOptionSelectShelfA)) {
+      if (options.stains.includes(currentItemOptionSelectShelfA)) {
         setCurrentItemOptionType("stain");
-      } else if (paintsList.includes(currentItemOptionSelectShelfA)) {
+      } else if (options.paints.includes(currentItemOptionSelectShelfA)) {
         setCurrentItemOptionType("paint");
       }
-    } else if (currentItemSelected.itemNo === 5) {
+    } else if (currentItemSelected.itemName === "shelfA32") {
+      setCurrentItemOptionSelect(currentItemOptionSelectShelfA);
+      if (options.stains.includes(currentItemOptionSelectShelfA)) {
+        setCurrentItemOptionType("stain");
+      } else if (options.paints.includes(currentItemOptionSelectShelfA)) {
+        setCurrentItemOptionType("paint");
+      }
+    } else if (currentItemSelected.itemName === "shelfB16") {
       setCurrentItemOptionSelect(currentItemOptionSelectShelfB);
-      if (stainsList.includes(currentItemOptionSelectShelfB)) {
+      if (options.stains.includes(currentItemOptionSelectShelfB)) {
         setCurrentItemOptionType("stain");
-      } else if (paintsList.includes(currentItemOptionSelectShelfB)) {
+      } else if (options.paints.includes(currentItemOptionSelectShelfB)) {
+        setCurrentItemOptionType("paint");
+      }
+    } else if (currentItemSelected.itemName === "shelfB32") {
+      setCurrentItemOptionSelect(currentItemOptionSelectShelfB);
+      if (options.stains.includes(currentItemOptionSelectShelfB)) {
+        setCurrentItemOptionType("stain");
+      } else if (options.paints.includes(currentItemOptionSelectShelfB)) {
         setCurrentItemOptionType("paint");
       }
     }
-    if (currentItemSelected.sizes.length === 1) {
-      setCurrentItemSizeSelect(currentItemSelected.sizes[0]);
-    } else if (currentItemSelected.sizes.length === 2) {
-      setCurrentItemSizeSelect(
-        currentItemSelected.sizes[currentItemSizeSelectIndex],
-      );
-    }
+    // if (currentItemSelected.sizes.length === 1) {
+    //   setCurrentItemSizeSelect(currentItemSelected.sizes[0]);
+    // } else if (currentItemSelected.sizes.length === 2) {
+    //   setCurrentItemSizeSelect(
+    //     currentItemSelected.sizes[currentItemSizeSelectIndex],
+    //   );
+    // }
 
     console.log(
       "previous item selected in useEffect[currentItemSelected]: ",
@@ -330,15 +192,15 @@ function App() {
     );
   }, [currentItemSelected]);
 
-  useEffect(() => {
-    console.log(
-      "currentItemSizeSelectIndex in useEffect[currentItemSizeSelectIndex]",
-      currentItemSizeSelectIndex,
-    );
-    setCurrentItemSizeSelect(
-      currentItemSelected.sizes[currentItemSizeSelectIndex],
-    );
-  }, [currentItemSizeSelectIndex]);
+  // useEffect(() => {
+  //   console.log(
+  //     "currentItemSizeSelectIndex in useEffect[currentItemSizeSelectIndex]",
+  //     currentItemSizeSelectIndex,
+  //   );
+  //   setCurrentItemSizeSelect(
+  //     currentItemSelected.sizes[currentItemSizeSelectIndex],
+  //   );
+  // }, [currentItemSizeSelectIndex]);
 
   const handleStainChange = (event, color) => {
     event.preventDefault();
@@ -358,7 +220,7 @@ function App() {
     //   setCurrentColor(textures.allBlackStain);
     // }
 
-    if (currentItemSelected.itemNo === 0) {
+    if (currentItemSelected.itemName === "gramps") {
       setCurrentItemOptionSelectGramps(color);
       // setCurrentItemOptionTypeGramps("stain");
       if (color === "white") {
@@ -374,7 +236,7 @@ function App() {
         setCurrentTextureGramps(textures.allBlackTexture);
         setCurrentColorGramps(textures.allBlackStain);
       }
-    } else if (currentItemSelected.itemNo === 1) {
+    } else if (currentItemSelected.itemName === "squatter") {
       setCurrentItemOptionSelectSquatter(color);
       // setCurrentItemOptionTypeSquatter("stain");
       if (color === "white") {
@@ -390,7 +252,7 @@ function App() {
         setCurrentTextureSquatter(textures.allBlackTexture);
         setCurrentColorSquatter(textures.allBlackStain);
       }
-    } else if (currentItemSelected.itemNo === 2) {
+    } else if (currentItemSelected.itemName === "block") {
       setCurrentItemOptionSelectBlock(color);
       // setCurrentItemOptionTypeBlock("stain");
       if (color === "white") {
@@ -406,7 +268,7 @@ function App() {
         setCurrentTextureBlock(textures.allBlackTexture);
         setCurrentColorBlock(textures.allBlackStain);
       }
-    } else if (currentItemSelected.itemNo === 3) {
+    } else if (currentItemSelected.itemName === "horse") {
       setCurrentItemOptionSelectHorse(color);
       // setCurrentItemOptionTypeHorse("stain");
       if (color === "white") {
@@ -422,7 +284,7 @@ function App() {
         setCurrentTextureHorse(textures.allBlackTexture);
         setCurrentColorHorse(textures.allBlackStain);
       }
-    } else if (currentItemSelected.itemNo === 4) {
+    } else if (currentItemSelected.itemName === "shelfA16") {
       setCurrentItemOptionSelectShelfA(color);
       // setCurrentItemOptionTypeShelfA("stain");
       if (color === "white") {
@@ -438,7 +300,39 @@ function App() {
         setCurrentTextureShelfA(textures.allBlackTexture);
         setCurrentColorShelfA(textures.allBlackStain);
       }
-    } else if (currentItemSelected.itemNo === 5) {
+    } else if (currentItemSelected.itemName === "shelfA32") {
+      setCurrentItemOptionSelectShelfA(color);
+      // setCurrentItemOptionTypeShelfB("stain");
+      if (color === "white") {
+        setCurrentTextureShelfA(textures.whiteTexture);
+        setCurrentColorShelfA(textures.whiteStain);
+      } else if (color === "natural") {
+        setCurrentTextureShelfA(textures.naturalTexture);
+        setCurrentColorShelfA(textures.naturalStain);
+      } else if (color === "black") {
+        setCurrentTextureShelfA(textures.blackTexture);
+        setCurrentColorShelfA(textures.blackStain);
+      } else if (color === "allBlack") {
+        setCurrentTextureShelfA(textures.allBlackTexture);
+        setCurrentColorShelfA(textures.allBlackStain);
+      }
+    } else if (currentItemSelected.itemName === "shelfB16") {
+      setCurrentItemOptionSelectShelfB(color);
+      // setCurrentItemOptionTypeShelfB("stain");
+      if (color === "white") {
+        setCurrentTextureShelfB(textures.whiteTexture);
+        setCurrentColorShelfB(textures.whiteStain);
+      } else if (color === "natural") {
+        setCurrentTextureShelfB(textures.naturalTexture);
+        setCurrentColorShelfB(textures.naturalStain);
+      } else if (color === "black") {
+        setCurrentTextureShelfB(textures.blackTexture);
+        setCurrentColorShelfB(textures.blackStain);
+      } else if (color === "allBlack") {
+        setCurrentTextureShelfB(textures.allBlackTexture);
+        setCurrentColorShelfB(textures.allBlackStain);
+      }
+    } else if (currentItemSelected.itemName === "shelfB32") {
       setCurrentItemOptionSelectShelfB(color);
       // setCurrentItemOptionTypeShelfB("stain");
       if (color === "white") {
@@ -482,7 +376,7 @@ function App() {
     //   setCurrentColor(textures.grayPaint);
     // }
 
-    if (currentItemSelected.itemNo === 0) {
+    if (currentItemSelected.itemName === "gramps") {
       setCurrentItemOptionSelectGramps(color);
       // setCurrentItemOptionTypeGramps("paint");
       if (color === "alabaster") {
@@ -504,7 +398,7 @@ function App() {
         setCurrentTextureGramps(textures.paintedTexture);
         setCurrentColorGramps(textures.grayPaint);
       }
-    } else if (currentItemSelected.itemNo === 1) {
+    } else if (currentItemSelected.itemName === "squatter") {
       setCurrentItemOptionSelectSquatter(color);
       // setCurrentItemOptionTypeSquatter("paint");
       if (color === "alabaster") {
@@ -527,7 +421,7 @@ function App() {
         setCurrentTextureSquatter(textures.paintedTexture);
         setCurrentColorSquatter(textures.grayPaint);
       }
-    } else if (currentItemSelected.itemNo === 2) {
+    } else if (currentItemSelected.itemName === "block") {
       setCurrentItemOptionSelectBlock(color);
       // setCurrentItemOptionTypeBlock("paint");
       if (color === "alabaster") {
@@ -549,7 +443,7 @@ function App() {
         setCurrentTextureBlock(textures.paintedTexture);
         setCurrentColorBlock(textures.grayPaint);
       }
-    } else if (currentItemSelected.itemNo === 3) {
+    } else if (currentItemSelected.itemName === "horse") {
       setCurrentItemOptionSelectHorse(color);
       // setCurrentItemOptionTypeHorse("paint");
       if (color === "alabaster") {
@@ -571,7 +465,7 @@ function App() {
         setCurrentTextureHorse(textures.paintedTexture);
         setCurrentColorHorse(textures.grayPaint);
       }
-    } else if (currentItemSelected.itemNo === 4) {
+    } else if (currentItemSelected.itemName === "shelfA16") {
       setCurrentItemOptionSelectShelfA(color);
       // setCurrentItemOptionTypeShelfA("paint");
       if (color === "alabaster") {
@@ -593,7 +487,51 @@ function App() {
         setCurrentTextureShelfA(textures.paintedTexture);
         setCurrentColorShelfA(textures.grayPaint);
       }
-    } else if (currentItemSelected.itemNo === 5) {
+    } else if (currentItemSelected.itemName === "shelfA32") {
+      setCurrentItemOptionSelectShelfA(color);
+      // setCurrentItemOptionTypeShelfA("paint");
+      if (color === "alabaster") {
+        setCurrentTextureShelfA(textures.paintedTexture);
+        setCurrentColorShelfA(textures.alabasterPaint);
+      } else if (color === "pink") {
+        setCurrentTextureShelfA(textures.paintedTexture);
+        setCurrentColorShelfA(textures.pinkPaint);
+      } else if (color === "basil") {
+        setCurrentTextureShelfA(textures.paintedTexture);
+        setCurrentColorShelfA(textures.basilPaint);
+      } else if (color === "yellow") {
+        setCurrentTextureShelfA(textures.paintedTexture);
+        setCurrentColorShelfA(textures.yellowPaint);
+      } else if (color === "blue") {
+        setCurrentTextureShelfA(textures.paintedTexture);
+        setCurrentColorShelfA(textures.bluePaint);
+      } else if (color === "gray") {
+        setCurrentTextureShelfA(textures.paintedTexture);
+        setCurrentColorShelfA(textures.grayPaint);
+      }
+    } else if (currentItemSelected.itemName === "shelfB16") {
+      setCurrentItemOptionSelectShelfB(color);
+      // setCurrentItemOptionTypeShelfB("paint");
+      if (color === "alabaster") {
+        setCurrentTextureShelfB(textures.paintedTexture);
+        setCurrentColorShelfB(textures.alabasterPaint);
+      } else if (color === "pink") {
+        setCurrentTextureShelfB(textures.paintedTexture);
+        setCurrentColorShelfB(textures.pinkPaint);
+      } else if (color === "basil") {
+        setCurrentTextureShelfB(textures.paintedTexture);
+        setCurrentColorShelfB(textures.basilPaint);
+      } else if (color === "yellow") {
+        setCurrentTextureShelfB(textures.paintedTexture);
+        setCurrentColorShelfB(textures.yellowPaint);
+      } else if (color === "blue") {
+        setCurrentTextureShelfB(textures.paintedTexture);
+        setCurrentColorShelfB(textures.bluePaint);
+      } else if (color === "gray") {
+        setCurrentTextureShelfB(textures.paintedTexture);
+        setCurrentColorShelfB(textures.grayPaint);
+      }
+    } else if (currentItemSelected.itemName === "shelfB32") {
       setCurrentItemOptionSelectShelfB(color);
       // setCurrentItemOptionTypeShelfB("paint");
       if (color === "alabaster") {
@@ -618,13 +556,13 @@ function App() {
     }
   };
 
-  const handleSizeChange = (event, size, index) => {
-    event.preventDefault();
-    setPreviousItemSizeSelectIndex(currentItemSizeSelectIndex);
-    setCurrentItemSizeSelectIndex(index);
-    setPreviousItemSelected(currentItemSelected);
-    setSizeChangeToggle(!sizeChangeToggle);
-  };
+  // const handleSizeChange = (event, size, index) => {
+  //   event.preventDefault();
+  //   setPreviousItemSizeSelectIndex(currentItemSizeSelectIndex);
+  //   setCurrentItemSizeSelectIndex(index);
+  //   setPreviousItemSelected(currentItemSelected);
+  //   setSizeChangeToggle(!sizeChangeToggle);
+  // };
 
   return (
     <>
@@ -659,15 +597,15 @@ function App() {
             setToggled={setToggled}
             animActive={animActive}
             setAnimActive={setAnimActive}
-            shopItems={shopItems}
+            // shopItems={shopItems}
             currentItemSelected={currentItemSelected}
             setCurrentItemSelected={setCurrentItemSelected}
             previousItemSelected={previousItemSelected}
             setPreviousItemSelected={setPreviousItemSelected}
-            previousItemSizeSelectIndex={previousItemSizeSelectIndex}
-            setPreviousItemSizeSelectIndex={setPreviousItemSizeSelectIndex}
-            currentItemSizeSelectIndex={currentItemSizeSelectIndex}
-            setCurrentItemSizeSelectIndex={setCurrentItemSizeSelectIndex}
+            // previousItemSizeSelectIndex={previousItemSizeSelectIndex}
+            // setPreviousItemSizeSelectIndex={setPreviousItemSizeSelectIndex}
+            // currentItemSizeSelectIndex={currentItemSizeSelectIndex}
+            // setCurrentItemSizeSelectIndex={setCurrentItemSizeSelectIndex}
             // currentTexture={currentTexture}
             // currentColor={currentColor}
             // currentTextureFloor={currentTextureFloor}
@@ -698,7 +636,7 @@ function App() {
             // currentItemOptionTypeShelfA={currentItemOptionTypeShelfA}
             // currentItemOptionSelectShelfB={currentItemOptionSelectShelfB}
             // currentItemOptionTypeShelfB={currentItemOptionTypeShelfB}
-            sizeChangeToggle={sizeChangeToggle}
+            // sizeChangeToggle={sizeChangeToggle}
           />
         </Suspense>
       </Canvas>
@@ -711,16 +649,14 @@ function App() {
           setOpen={setOpen}
           handleStainChange={handleStainChange}
           handlePaintChange={handlePaintChange}
-          handleSizeChange={handleSizeChange}
-          shopItems={shopItems}
+          // handleSizeChange={handleSizeChange}
+          // shopItems={shopItems}
           currentItemSelected={currentItemSelected}
           setCurrentItemSelected={setCurrentItemSelected}
           setPreviousItemSelected={setPreviousItemSelected}
           currentItemOptionSelect={currentItemOptionSelect}
           currentItemOptionType={currentItemOptionType}
           currentItemDescription={currentItemDescription}
-          currentItemSizeSelect={currentItemSizeSelect}
-          currentItemSizeSelectIndex={currentItemSizeSelectIndex}
           // currentTextureGramps={currentTextureGramps}
           // currentColorGramps={currentColorGramps}
           // currentTextureSquatter={currentTextureSquatter}
@@ -745,10 +681,12 @@ function App() {
           // currentItemOptionTypeShelfA={currentItemOptionTypeShelfA}
           // currentItemOptionSelectShelfB={currentItemOptionSelectShelfB}
           // currentItemOptionTypeShelfB={currentItemOptionTypeShelfB}
-          setPreviousItemSizeSelectIndex={setPreviousItemSizeSelectIndex}
-          setCurrentItemSizeSelectIndex={setCurrentItemSizeSelectIndex}
-          stainsList={stainsList}
-          paintsList={paintsList}
+          // currentItemSizeSelect={currentItemSizeSelect}
+          // currentItemSizeSelectIndex={currentItemSizeSelectIndex}
+          // setPreviousItemSizeSelectIndex={setPreviousItemSizeSelectIndex}
+          // setCurrentItemSizeSelectIndex={setCurrentItemSizeSelectIndex}
+          // options.stains={options.stains}
+          // options.paints={options.paints}
         />
       </SnipcartProvider>
     </>
