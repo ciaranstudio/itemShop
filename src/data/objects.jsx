@@ -14,21 +14,17 @@ export const objects = {
     "16 x 16 x 18", // L x D x H
     { x: 0, y: 0, z: 70 },
     [
-      new Part("top", "horizontal", "./models/grampsModels/grampsTop.gltf"),
+      new Part("top", "posY2", "./models/grampsModels/grampsTop.gltf"),
       new Part(
         "bar bottom",
         "none",
         "./models/grampsModels/grampsBarBottom.gltf",
       ),
-      new Part(
-        "bar top",
-        "horizontal",
-        "./models/grampsModels/grampsBarTop.gltf",
-      ),
-      new Part("leg 1", "vertical", "./models/grampsModels/grampsLeg1.gltf"),
-      new Part("leg 2", "vertical", "./models/grampsModels/grampsLeg2.gltf"),
-      new Part("leg 3", "vertical", "./models/grampsModels/grampsLeg3.gltf"),
-      new Part("leg 4", "vertical", "./models/grampsModels/grampsLeg4.gltf"),
+      new Part("bar top", "posY1", "./models/grampsModels/grampsBarTop.gltf"),
+      new Part("leg 1", "posZ", "./models/grampsModels/grampsLeg1.gltf"),
+      new Part("leg 2", "negX", "./models/grampsModels/grampsLeg2.gltf"),
+      new Part("leg 3", "negZ", "./models/grampsModels/grampsLeg3.gltf"),
+      new Part("leg 4", "posX", "./models/grampsModels/grampsLeg4.gltf"),
     ],
   ),
   squatter: new Item(
@@ -43,22 +39,14 @@ export const objects = {
     "16 x 12 x 18", // L x D x H
     { x: -70, y: 0, z: 0 },
     [
-      new Part("top", "horizontal", "./models/squatterModels/squatterTop.gltf"),
+      new Part("top", "posY1", "./models/squatterModels/squatterTop.gltf"),
       new Part(
         "center panel",
         "none",
         "./models/squatterModels/squatterCenterPanel.gltf",
       ),
-      new Part(
-        "side 1",
-        "vertical",
-        "./models/squatterModels/squatterSide1.gltf",
-      ),
-      new Part(
-        "side 2",
-        "vertical",
-        "./models/squatterModels/squatterSide2.gltf",
-      ),
+      new Part("side 1", "posZ", "./models/squatterModels/squatterSide1.gltf"),
+      new Part("side 2", "negZ", "./models/squatterModels/squatterSide2.gltf"),
     ],
   ),
   block: new Item(
@@ -74,8 +62,8 @@ export const objects = {
     { x: 0, y: 0, z: -70 },
     [
       new Part("shelves", "none", "./models/blockModels/blockShelves.gltf"),
-      new Part("side 1", "vertical", "./models/blockModels/blockSide1.gltf"),
-      new Part("side 2", "vertical", "./models/blockModels/blockSide2.gltf"),
+      new Part("side 1", "posX", "./models/blockModels/blockSide1.gltf"),
+      new Part("side 2", "negX", "./models/blockModels/blockSide2.gltf"),
     ],
   ),
   horse: new Item(
@@ -90,12 +78,12 @@ export const objects = {
     "32 x 20 x 32", // L x D x H
     { x: 70, y: 0, z: 0 },
     [
-      new Part("top", "horizontal", "./models/horseModels/horseBarTop.gltf"),
+      new Part("top", "posY1", "./models/horseModels/horseBarTop.gltf"),
       new Part("bar inner", "none", "./models/horseModels/horseBarInner.gltf"),
-      new Part("leg 1", "vertical", "./models/horseModels/horseLeg1.gltf"),
-      new Part("leg 2", "vertical", "./models/horseModels/horseLeg2.gltf"),
-      new Part("leg 3", "vertical", "./models/horseModels/horseLeg3.gltf"),
-      new Part("leg 4", "vertical", "./models/horseModels/horseLeg4.gltf"),
+      new Part("leg 1", "posZ", "./models/horseModels/horseLeg1.gltf"),
+      new Part("leg 2", "negX", "./models/horseModels/horseLeg2.gltf"),
+      new Part("leg 3", "negZ", "./models/horseModels/horseLeg3.gltf"),
+      new Part("leg 4", "posX", "./models/horseModels/horseLeg4.gltf"),
     ],
   ),
   shelfA16: new Item(
@@ -110,11 +98,7 @@ export const objects = {
     "16 x 4 x 4", // L x D x H
     { x: -118.3125, y: 0, z: -81.125 },
     [
-      new Part(
-        "shelf",
-        "vertical",
-        "./models/shelfA16Models/shelfA16Shelf.gltf",
-      ),
+      new Part("shelf", "posX", "./models/shelfA16Models/shelfA16Shelf.gltf"),
       new Part("cleat", "none", "./models/shelfA16Models/shelfA16Cleat.gltf"),
     ],
   ),
@@ -130,11 +114,7 @@ export const objects = {
     "32 x 4 x 4", // L x D x H
     { x: -118.3125, y: 0, z: -40.6 },
     [
-      new Part(
-        "shelf",
-        "vertical",
-        "./models/shelfA32Models/shelfA32Shelf.gltf",
-      ),
+      new Part("shelf", "posX", "./models/shelfA32Models/shelfA32Shelf.gltf"),
       new Part("cleat", "none", "./models/shelfA32Models/shelfA32Cleat.gltf"),
     ],
   ),
@@ -150,11 +130,7 @@ export const objects = {
     "16 x 4 x 4", // L x D x H
     { x: 33.685, y: 0, z: 118.25 },
     [
-      new Part(
-        "shelf",
-        "vertical",
-        "./models/shelfB16Models/shelfB16Shelf.gltf",
-      ),
+      new Part("shelf", "negZ", "./models/shelfB16Models/shelfB16Shelf.gltf"),
       new Part("cleat", "none", "./models/shelfB16Models/shelfB16Cleat.gltf"),
     ],
   ),
@@ -170,11 +146,7 @@ export const objects = {
     "32 x 4 x 4", // L x D x H
     { x: 73.685, y: 0, z: 118.25 },
     [
-      new Part(
-        "shelf",
-        "vertical",
-        "./models/shelfB32Models/shelfB32Shelf.gltf",
-      ),
+      new Part("shelf", "negZ", "./models/shelfB32Models/shelfB32Shelf.gltf"),
       new Part("cleat", "none", "./models/shelfB32Models/shelfB32Cleat.gltf"),
     ],
   ),

@@ -50,10 +50,14 @@ export default function Scene({
   currentColorBlock,
   currentTextureHorse,
   currentColorHorse,
-  currentTextureShelfA,
-  currentColorShelfA,
-  currentTextureShelfB,
-  currentColorShelfB,
+  currentTextureShelfA16,
+  currentColorShelfA16,
+  currentTextureShelfA32,
+  currentColorShelfA32,
+  currentTextureShelfB16,
+  currentColorShelfB16,
+  currentTextureShelfB32,
+  currentColorShelfB32,
 }) {
   const [targetVec, setTargetVec] = useState(new THREE.Vector3());
 
@@ -148,22 +152,40 @@ export default function Scene({
   ] = useTexture(currentTextureHorse);
 
   const [
-    colorMapShelfA,
-    // displacementMapShelfA,
-    normalMapShelfA,
-    roughnessMapShelfA,
-    metalnessMapShelfA,
-    // aoMapShelfA,
-  ] = useTexture(currentTextureShelfA);
+    colorMapShelfA16,
+    // displacementMapShelfA16,
+    normalMapShelfA16,
+    roughnessMapShelfA16,
+    metalnessMapShelfA16,
+    // aoMapShelfA16,
+  ] = useTexture(currentTextureShelfA16);
 
   const [
-    colorMapShelfB,
-    // displacementMapShelfB,
-    normalMapShelfB,
-    roughnessMapShelfB,
-    metalnessMapShelfB,
-    // aoMapShelfB,
-  ] = useTexture(currentTextureShelfB);
+    colorMapShelfA32,
+    // displacementMapShelfA32,
+    normalMapShelfA32,
+    roughnessMapShelfA32,
+    metalnessMapShelfA32,
+    // aoMapShelfA32,
+  ] = useTexture(currentTextureShelfA32);
+
+  const [
+    colorMapShelfB16,
+    // displacementMapShelfB16,
+    normalMapShelfB16,
+    roughnessMapShelfB16,
+    metalnessMapShelfB16,
+    // aoMapShelfB16,
+  ] = useTexture(currentTextureShelfB16);
+
+  const [
+    colorMapShelfB32,
+    // displacementMapShelfB32,
+    normalMapShelfB32,
+    roughnessMapShelfB32,
+    metalnessMapShelfB32,
+    // aoMapShelfB32,
+  ] = useTexture(currentTextureShelfB32);
 
   const dirLightA = useRef();
   const dirLightB = useRef();
@@ -174,10 +196,10 @@ export default function Scene({
   const squatterRef = useRef();
   const horseRef = useRef();
   const blockRef = useRef();
-  const shelfAShortRef = useRef();
-  const shelfALongRef = useRef();
-  const shelfBShortRef = useRef();
-  const shelfBLongRef = useRef();
+  const shelfA16Ref = useRef();
+  const shelfA32Ref = useRef();
+  const shelfB16Ref = useRef();
+  const shelfB32Ref = useRef();
 
   // useHelper(dirLightA, DirectionalLightHelper, 1, "red");
   // useHelper(dirLightB, DirectionalLightHelper, 1, "blue");
@@ -422,6 +444,8 @@ export default function Scene({
   // });
 
   const stagePositionY = 0;
+  const animDist = 5;
+  const jumpDist = 0;
 
   return (
     <>
@@ -450,12 +474,12 @@ export default function Scene({
           shadow-normalBias={0.1}
           shadow-mapSize-width={2048} // 5120
           shadow-mapSize-height={2048}
-          shadow-camera-near={50}
-          shadow-camera-far={115}
-          shadow-camera-left={-10}
-          shadow-camera-bottom={-10}
-          shadow-camera-right={10}
-          shadow-camera-top={150}
+          shadow-camera-near={50} // 50
+          shadow-camera-far={130} // 115
+          shadow-camera-left={-15} // -10
+          shadow-camera-bottom={-10} // -10
+          shadow-camera-right={15} // 10
+          shadow-camera-top={150} // 150
           target={grampsRef.current}
         />
         {/* <pointLight position={[0, 6, 70]} intensity={10} /> */}
@@ -468,12 +492,12 @@ export default function Scene({
           shadow-normalBias={0.1}
           shadow-mapSize-width={2048}
           shadow-mapSize-height={2048}
-          shadow-camera-near={50}
-          shadow-camera-far={115}
-          shadow-camera-left={-10}
-          shadow-camera-bottom={-10}
-          shadow-camera-right={10}
-          shadow-camera-top={150}
+          shadow-camera-near={50} // 50
+          shadow-camera-far={130} // 115
+          shadow-camera-left={-15} // -10
+          shadow-camera-bottom={-10} // -10
+          shadow-camera-right={15} // 10
+          shadow-camera-top={150} // 150
           target={blockRef.current}
         />
         {/* horseLight */}
@@ -485,12 +509,12 @@ export default function Scene({
           shadow-normalBias={0.1}
           shadow-mapSize-width={2048}
           shadow-mapSize-height={2048}
-          shadow-camera-near={50}
-          shadow-camera-far={130}
-          shadow-camera-left={-20}
-          shadow-camera-bottom={-20}
-          shadow-camera-right={20}
-          shadow-camera-top={150}
+          shadow-camera-near={50} // 50
+          shadow-camera-far={135} // 115
+          shadow-camera-left={-25} // -10
+          shadow-camera-bottom={-10} // -10
+          shadow-camera-right={25} // 10
+          shadow-camera-top={150} // 150
           target={horseRef.current}
         />
         {/* squatterLight */}
@@ -502,12 +526,12 @@ export default function Scene({
           shadow-normalBias={0.1}
           shadow-mapSize-width={2048}
           shadow-mapSize-height={2048}
-          shadow-camera-near={50}
-          shadow-camera-far={115}
-          shadow-camera-left={-10}
-          shadow-camera-bottom={-10}
-          shadow-camera-right={10}
-          shadow-camera-top={150}
+          shadow-camera-near={50} // 50
+          shadow-camera-far={130} // 115
+          shadow-camera-left={-15} // -10
+          shadow-camera-bottom={-10} // -10
+          shadow-camera-right={15} // 10
+          shadow-camera-top={150} // 150
           target={squatterRef.current}
         />
 
@@ -516,7 +540,7 @@ export default function Scene({
           ref={grampsRef}
           position={[
             objects.gramps.position.x,
-            objects.gramps.position.y,
+            objects.gramps.position.y + jumpDist,
             objects.gramps.position.z,
           ]}
           onPointerOver={() => hover(true)}
@@ -527,7 +551,24 @@ export default function Scene({
         >
           {objects.gramps.parts.map((part) => {
             return (
-              <mesh key={part.partName}>
+              <mesh
+                key={part.partName}
+                position={
+                  part.animation === "negX"
+                    ? [-animDist, 0, 0]
+                    : part.animation === "posX"
+                      ? [animDist, 0, 0]
+                      : part.animation === "negZ"
+                        ? [0, 0, -animDist]
+                        : part.animation === "posZ"
+                          ? [0, 0, animDist]
+                          : part.animation === "posY1"
+                            ? [0, animDist, 0]
+                            : part.animation === "posY2"
+                              ? [0, animDist + animDist / 2, 0]
+                              : [0, 0, 0]
+                }
+              >
                 <ItemPart
                   // displacementMap={displacementMap}
                   // aoMap={aoMap}
@@ -550,7 +591,7 @@ export default function Scene({
           ref={blockRef}
           position={[
             objects.block.position.x,
-            objects.block.position.y,
+            objects.block.position.y + jumpDist,
             objects.block.position.z,
           ]}
           rotation={[0, Math.PI / 4, 0]}
@@ -562,7 +603,24 @@ export default function Scene({
         >
           {objects.block.parts.map((part) => {
             return (
-              <mesh key={part.partName}>
+              <mesh
+                key={part.partName}
+                position={
+                  part.animation === "negX"
+                    ? [-animDist, 0, 0]
+                    : part.animation === "posX"
+                      ? [animDist, 0, 0]
+                      : part.animation === "negZ"
+                        ? [0, 0, -animDist]
+                        : part.animation === "posZ"
+                          ? [0, 0, animDist]
+                          : part.animation === "posY1"
+                            ? [0, animDist, 0]
+                            : part.animation === "posY2"
+                              ? [0, animDist + animDist / 2, 0]
+                              : [0, 0, 0]
+                }
+              >
                 <ItemPart
                   map={colorMapBlock}
                   normalMap={normalMapBlock}
@@ -583,9 +641,10 @@ export default function Scene({
           ref={horseRef}
           position={[
             objects.horse.position.x,
-            objects.horse.position.y,
+            objects.horse.position.y + jumpDist,
             objects.horse.position.z,
           ]}
+          // rotation={[0, Math.PI / 4, 0]}
           onPointerOver={() => hover(true)}
           onPointerOut={() => hover(false)}
           onClick={handleClick}
@@ -594,7 +653,24 @@ export default function Scene({
         >
           {objects.horse.parts.map((part) => {
             return (
-              <mesh key={part.partName}>
+              <mesh
+                key={part.partName}
+                position={
+                  part.animation === "negX"
+                    ? [-animDist, 0, 0]
+                    : part.animation === "posX"
+                      ? [animDist, 0, 0]
+                      : part.animation === "negZ"
+                        ? [0, 0, -animDist]
+                        : part.animation === "posZ"
+                          ? [0, 0, animDist]
+                          : part.animation === "posY1"
+                            ? [0, animDist, 0]
+                            : part.animation === "posY2"
+                              ? [0, animDist + animDist / 2, 0]
+                              : [0, 0, 0]
+                }
+              >
                 <ItemPart
                   // displacementMap={displacementMapHorse}
                   // aoMap={aoMapHorse}
@@ -617,7 +693,7 @@ export default function Scene({
           ref={squatterRef}
           position={[
             objects.squatter.position.x,
-            objects.squatter.position.y,
+            objects.squatter.position.y + jumpDist,
             objects.squatter.position.z,
           ]}
           rotation={[0, Math.PI / 4, 0]}
@@ -629,7 +705,24 @@ export default function Scene({
         >
           {objects.squatter.parts.map((part) => {
             return (
-              <mesh key={part.partName}>
+              <mesh
+                key={part.partName}
+                position={
+                  part.animation === "negX"
+                    ? [-animDist, 0, 0]
+                    : part.animation === "posX"
+                      ? [animDist, 0, 0]
+                      : part.animation === "negZ"
+                        ? [0, 0, -animDist]
+                        : part.animation === "posZ"
+                          ? [0, 0, animDist]
+                          : part.animation === "posY1"
+                            ? [0, animDist, 0]
+                            : part.animation === "posY2"
+                              ? [0, animDist + animDist / 2, 0]
+                              : [0, 0, 0]
+                }
+              >
                 <ItemPart
                   // displacementMap={displacementMapSquatter}
                   // aoMap={aoMapSquatter}
@@ -649,10 +742,10 @@ export default function Scene({
 
         {/* shelfA16 */}
         <group
-          ref={shelfAShortRef}
+          ref={shelfA16Ref}
           position={[
             objects.shelfA16.position.x,
-            objects.shelfA16.position.y,
+            objects.shelfA16.position.y + jumpDist,
             objects.shelfA16.position.z,
           ]}
           onPointerOver={() => hover(true)}
@@ -663,16 +756,33 @@ export default function Scene({
         >
           {objects.shelfA16.parts.map((part) => {
             return (
-              <mesh key={part.partName}>
+              <mesh
+                key={part.partName}
+                position={
+                  part.animation === "negX"
+                    ? [-animDist, 0, 0]
+                    : part.animation === "posX"
+                      ? [animDist, 0, 0]
+                      : part.animation === "negZ"
+                        ? [0, 0, -animDist]
+                        : part.animation === "posZ"
+                          ? [0, 0, animDist]
+                          : part.animation === "posY1"
+                            ? [0, animDist, 0]
+                            : part.animation === "posY2"
+                              ? [0, animDist + animDist / 2, 0]
+                              : [0, 0, 0]
+                }
+              >
                 <ItemPart
-                  // displacementMap={displacementMapShelfA}
-                  // aoMap={aoMapShelfA}
-                  map={colorMapShelfA}
-                  normalMap={normalMapShelfA}
-                  roughnessMap={roughnessMapShelfA}
-                  metalnessMap={metalnessMapShelfA}
-                  currentColor={currentColorShelfA}
-                  currentTexture={currentTextureShelfA}
+                  // displacementMap={displacementMapShelfA16}
+                  // aoMap={aoMapShelfA16}
+                  map={colorMapShelfA16}
+                  normalMap={normalMapShelfA16}
+                  roughnessMap={roughnessMapShelfA16}
+                  metalnessMap={metalnessMapShelfA16}
+                  currentColor={currentColorShelfA16}
+                  currentTexture={currentTextureShelfA16}
                   model={part.model}
                   animationType={part.animation}
                 />
@@ -683,10 +793,10 @@ export default function Scene({
 
         {/* shelfA32 */}
         <group
-          ref={shelfALongRef}
+          ref={shelfA32Ref}
           position={[
             objects.shelfA32.position.x,
-            objects.shelfA32.position.y,
+            objects.shelfA32.position.y + jumpDist,
             objects.shelfA32.position.z,
           ]}
           onPointerOver={() => hover(true)}
@@ -697,16 +807,33 @@ export default function Scene({
         >
           {objects.shelfA32.parts.map((part) => {
             return (
-              <mesh key={part.partName}>
+              <mesh
+                key={part.partName}
+                position={
+                  part.animation === "negX"
+                    ? [-animDist, 0, 0]
+                    : part.animation === "posX"
+                      ? [animDist, 0, 0]
+                      : part.animation === "negZ"
+                        ? [0, 0, -animDist]
+                        : part.animation === "posZ"
+                          ? [0, 0, animDist]
+                          : part.animation === "posY1"
+                            ? [0, animDist, 0]
+                            : part.animation === "posY2"
+                              ? [0, animDist + animDist / 2, 0]
+                              : [0, 0, 0]
+                }
+              >
                 <ItemPart
-                  // displacementMap={displacementMapShelfA}
-                  // aoMap={aoMapShelfA}
-                  map={colorMapShelfA}
-                  normalMap={normalMapShelfA}
-                  roughnessMap={roughnessMapShelfA}
-                  metalnessMap={metalnessMapShelfA}
-                  currentColor={currentColorShelfA}
-                  currentTexture={currentTextureShelfA}
+                  // displacementMap={displacementMapShelfA32}
+                  // aoMap={aoMapShelfA32}
+                  map={colorMapShelfA32}
+                  normalMap={normalMapShelfA32}
+                  roughnessMap={roughnessMapShelfA32}
+                  metalnessMap={metalnessMapShelfA32}
+                  currentColor={currentColorShelfA32}
+                  currentTexture={currentTextureShelfA32}
                   model={part.model}
                   animationType={part.animation}
                 />
@@ -717,10 +844,10 @@ export default function Scene({
 
         {/* shelfB16 */}
         <group
-          ref={shelfBShortRef}
+          ref={shelfB16Ref}
           position={[
             objects.shelfB16.position.x,
-            objects.shelfB16.position.y,
+            objects.shelfB16.position.y + jumpDist,
             objects.shelfB16.position.z,
           ]}
           onPointerOver={() => hover(true)}
@@ -731,16 +858,33 @@ export default function Scene({
         >
           {objects.shelfB16.parts.map((part) => {
             return (
-              <mesh key={part.partName}>
+              <mesh
+                key={part.partName}
+                position={
+                  part.animation === "negX"
+                    ? [-animDist, 0, 0]
+                    : part.animation === "posX"
+                      ? [animDist, 0, 0]
+                      : part.animation === "negZ"
+                        ? [0, 0, -animDist]
+                        : part.animation === "posZ"
+                          ? [0, 0, animDist]
+                          : part.animation === "posY1"
+                            ? [0, animDist, 0]
+                            : part.animation === "posY2"
+                              ? [0, animDist + animDist / 2, 0]
+                              : [0, 0, 0]
+                }
+              >
                 <ItemPart
-                  // displacementMap={displacementMapShelfB}
-                  // aoMap={aoMapShelfB}
-                  map={colorMapShelfB}
-                  normalMap={normalMapShelfB}
-                  roughnessMap={roughnessMapShelfB}
-                  metalnessMap={metalnessMapShelfB}
-                  currentColor={currentColorShelfB}
-                  currentTexture={currentTextureShelfB}
+                  // displacementMap={displacementMapShelfB16}
+                  // aoMap={aoMapShelfB16}
+                  map={colorMapShelfB16}
+                  normalMap={normalMapShelfB16}
+                  roughnessMap={roughnessMapShelfB16}
+                  metalnessMap={metalnessMapShelfB16}
+                  currentColor={currentColorShelfB16}
+                  currentTexture={currentTextureShelfB16}
                   model={part.model}
                   animationType={part.animation}
                 />
@@ -751,10 +895,10 @@ export default function Scene({
 
         {/* shelfB32 */}
         <group
-          ref={shelfBLongRef}
+          ref={shelfB32Ref}
           position={[
             objects.shelfB32.position.x,
-            objects.shelfB32.position.y,
+            objects.shelfB32.position.y + jumpDist,
             objects.shelfB32.position.z,
           ]}
           onPointerOver={() => hover(true)}
@@ -765,16 +909,33 @@ export default function Scene({
         >
           {objects.shelfB32.parts.map((part) => {
             return (
-              <mesh key={part.partName}>
+              <mesh
+                key={part.partName}
+                position={
+                  part.animation === "negX"
+                    ? [-animDist, 0, 0]
+                    : part.animation === "posX"
+                      ? [animDist, 0, 0]
+                      : part.animation === "negZ"
+                        ? [0, 0, -animDist]
+                        : part.animation === "posZ"
+                          ? [0, 0, animDist]
+                          : part.animation === "posY1"
+                            ? [0, animDist, 0]
+                            : part.animation === "posY2"
+                              ? [0, animDist + animDist / 2, 0]
+                              : [0, 0, 0]
+                }
+              >
                 <ItemPart
-                  // displacementMap={displacementMapShelfB}
-                  // aoMap={aoMapShelfB}
-                  map={colorMapShelfB}
-                  normalMap={normalMapShelfB}
-                  roughnessMap={roughnessMapShelfB}
-                  metalnessMap={metalnessMapShelfB}
-                  currentColor={currentColorShelfB}
-                  currentTexture={currentTextureShelfB}
+                  // displacementMap={displacementMapShelfB32}
+                  // aoMap={aoMapShelfB32}
+                  map={colorMapShelfB32}
+                  normalMap={normalMapShelfB32}
+                  roughnessMap={roughnessMapShelfB32}
+                  metalnessMap={metalnessMapShelfB32}
+                  currentColor={currentColorShelfB32}
+                  currentTexture={currentTextureShelfB32}
                   model={part.model}
                   animationType={part.animation}
                 />

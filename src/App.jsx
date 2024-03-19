@@ -37,9 +37,13 @@ function App() {
     useState("");
   const [currentItemOptionSelectHorse, setCurrentItemOptionSelectHorse] =
     useState("");
-  const [currentItemOptionSelectShelfA, setCurrentItemOptionSelectShelfA] =
+  const [currentItemOptionSelectShelfA16, setCurrentItemOptionSelectShelfA16] =
     useState("");
-  const [currentItemOptionSelectShelfB, setCurrentItemOptionSelectShelfB] =
+  const [currentItemOptionSelectShelfA32, setCurrentItemOptionSelectShelfA32] =
+    useState("");
+  const [currentItemOptionSelectShelfB16, setCurrentItemOptionSelectShelfB16] =
+    useState("");
+  const [currentItemOptionSelectShelfB32, setCurrentItemOptionSelectShelfB32] =
     useState("");
 
   const [currentTextureGramps, setCurrentTextureGramps] = useState(
@@ -70,17 +74,31 @@ function App() {
     textures.whiteStain,
   );
 
-  const [currentTextureShelfA, setCurrentTextureShelfA] = useState(
+  const [currentTextureShelfA16, setCurrentTextureShelfA16] = useState(
     textures.paintedTexture,
   );
-  const [currentColorShelfA, setCurrentColorShelfA] = useState(
+  const [currentColorShelfA16, setCurrentColorShelfA16] = useState(
     textures.whiteStain,
   );
 
-  const [currentTextureShelfB, setCurrentTextureShelfB] = useState(
+  const [currentTextureShelfA32, setCurrentTextureShelfA32] = useState(
     textures.paintedTexture,
   );
-  const [currentColorShelfB, setCurrentColorShelfB] = useState(
+  const [currentColorShelfA32, setCurrentColorShelfA32] = useState(
+    textures.whiteStain,
+  );
+
+  const [currentTextureShelfB16, setCurrentTextureShelfB16] = useState(
+    textures.paintedTexture,
+  );
+  const [currentColorShelfB16, setCurrentColorShelfB16] = useState(
+    textures.whiteStain,
+  );
+
+  const [currentTextureShelfB32, setCurrentTextureShelfB32] = useState(
+    textures.paintedTexture,
+  );
+  const [currentColorShelfB32, setCurrentColorShelfB32] = useState(
     textures.whiteStain,
   );
 
@@ -115,31 +133,31 @@ function App() {
         setCurrentItemOptionType("paint");
       }
     } else if (currentItemSelected.itemName === "shelfA16") {
-      setCurrentItemOptionSelect(currentItemOptionSelectShelfA);
-      if (options.stains.includes(currentItemOptionSelectShelfA)) {
+      setCurrentItemOptionSelect(currentItemOptionSelectShelfA16);
+      if (options.stains.includes(currentItemOptionSelectShelfA16)) {
         setCurrentItemOptionType("stain");
-      } else if (options.paints.includes(currentItemOptionSelectShelfA)) {
+      } else if (options.paints.includes(currentItemOptionSelectShelfA16)) {
         setCurrentItemOptionType("paint");
       }
     } else if (currentItemSelected.itemName === "shelfA32") {
-      setCurrentItemOptionSelect(currentItemOptionSelectShelfA);
-      if (options.stains.includes(currentItemOptionSelectShelfA)) {
+      setCurrentItemOptionSelect(currentItemOptionSelectShelfA32);
+      if (options.stains.includes(currentItemOptionSelectShelfA32)) {
         setCurrentItemOptionType("stain");
-      } else if (options.paints.includes(currentItemOptionSelectShelfA)) {
+      } else if (options.paints.includes(currentItemOptionSelectShelfA32)) {
         setCurrentItemOptionType("paint");
       }
     } else if (currentItemSelected.itemName === "shelfB16") {
-      setCurrentItemOptionSelect(currentItemOptionSelectShelfB);
-      if (options.stains.includes(currentItemOptionSelectShelfB)) {
+      setCurrentItemOptionSelect(currentItemOptionSelectShelfB16);
+      if (options.stains.includes(currentItemOptionSelectShelfB16)) {
         setCurrentItemOptionType("stain");
-      } else if (options.paints.includes(currentItemOptionSelectShelfB)) {
+      } else if (options.paints.includes(currentItemOptionSelectShelfB16)) {
         setCurrentItemOptionType("paint");
       }
     } else if (currentItemSelected.itemName === "shelfB32") {
-      setCurrentItemOptionSelect(currentItemOptionSelectShelfB);
-      if (options.stains.includes(currentItemOptionSelectShelfB)) {
+      setCurrentItemOptionSelect(currentItemOptionSelectShelfB32);
+      if (options.stains.includes(currentItemOptionSelectShelfB32)) {
         setCurrentItemOptionType("stain");
-      } else if (options.paints.includes(currentItemOptionSelectShelfB)) {
+      } else if (options.paints.includes(currentItemOptionSelectShelfB32)) {
         setCurrentItemOptionType("paint");
       }
     }
@@ -219,64 +237,64 @@ function App() {
         setCurrentColorHorse(textures.allBlackStain);
       }
     } else if (currentItemSelected.itemName === "shelfA16") {
-      setCurrentItemOptionSelectShelfA(color);
+      setCurrentItemOptionSelectShelfA16(color);
       if (color === "white") {
-        setCurrentTextureShelfA(textures.whiteTexture);
-        setCurrentColorShelfA(textures.whiteStain);
+        setCurrentTextureShelfA16(textures.whiteTexture);
+        setCurrentColorShelfA16(textures.whiteStain);
       } else if (color === "natural") {
-        setCurrentTextureShelfA(textures.naturalTexture);
-        setCurrentColorShelfA(textures.naturalStain);
+        setCurrentTextureShelfA16(textures.naturalTexture);
+        setCurrentColorShelfA16(textures.naturalStain);
       } else if (color === "black") {
-        setCurrentTextureShelfA(textures.blackTexture);
-        setCurrentColorShelfA(textures.blackStain);
+        setCurrentTextureShelfA16(textures.blackTexture);
+        setCurrentColorShelfA16(textures.blackStain);
       } else if (color === "allBlack") {
-        setCurrentTextureShelfA(textures.allBlackTexture);
-        setCurrentColorShelfA(textures.allBlackStain);
+        setCurrentTextureShelfA16(textures.allBlackTexture);
+        setCurrentColorShelfA16(textures.allBlackStain);
       }
     } else if (currentItemSelected.itemName === "shelfA32") {
-      setCurrentItemOptionSelectShelfA(color);
+      setCurrentItemOptionSelectShelfA32(color);
       if (color === "white") {
-        setCurrentTextureShelfA(textures.whiteTexture);
-        setCurrentColorShelfA(textures.whiteStain);
+        setCurrentTextureShelfA32(textures.whiteTexture);
+        setCurrentColorShelfA32(textures.whiteStain);
       } else if (color === "natural") {
-        setCurrentTextureShelfA(textures.naturalTexture);
-        setCurrentColorShelfA(textures.naturalStain);
+        setCurrentTextureShelfA32(textures.naturalTexture);
+        setCurrentColorShelfA32(textures.naturalStain);
       } else if (color === "black") {
-        setCurrentTextureShelfA(textures.blackTexture);
-        setCurrentColorShelfA(textures.blackStain);
+        setCurrentTextureShelfA32(textures.blackTexture);
+        setCurrentColorShelfA32(textures.blackStain);
       } else if (color === "allBlack") {
-        setCurrentTextureShelfA(textures.allBlackTexture);
-        setCurrentColorShelfA(textures.allBlackStain);
+        setCurrentTextureShelfA32(textures.allBlackTexture);
+        setCurrentColorShelfA32(textures.allBlackStain);
       }
     } else if (currentItemSelected.itemName === "shelfB16") {
-      setCurrentItemOptionSelectShelfB(color);
+      setCurrentItemOptionSelectShelfB16(color);
       if (color === "white") {
-        setCurrentTextureShelfB(textures.whiteTexture);
-        setCurrentColorShelfB(textures.whiteStain);
+        setCurrentTextureShelfB16(textures.whiteTexture);
+        setCurrentColorShelfB16(textures.whiteStain);
       } else if (color === "natural") {
-        setCurrentTextureShelfB(textures.naturalTexture);
-        setCurrentColorShelfB(textures.naturalStain);
+        setCurrentTextureShelfB16(textures.naturalTexture);
+        setCurrentColorShelfB16(textures.naturalStain);
       } else if (color === "black") {
-        setCurrentTextureShelfB(textures.blackTexture);
-        setCurrentColorShelfB(textures.blackStain);
+        setCurrentTextureShelfB16(textures.blackTexture);
+        setCurrentColorShelfB16(textures.blackStain);
       } else if (color === "allBlack") {
-        setCurrentTextureShelfB(textures.allBlackTexture);
-        setCurrentColorShelfB(textures.allBlackStain);
+        setCurrentTextureShelfB16(textures.allBlackTexture);
+        setCurrentColorShelfB16(textures.allBlackStain);
       }
     } else if (currentItemSelected.itemName === "shelfB32") {
-      setCurrentItemOptionSelectShelfB(color);
+      setCurrentItemOptionSelectShelfB32(color);
       if (color === "white") {
-        setCurrentTextureShelfB(textures.whiteTexture);
-        setCurrentColorShelfB(textures.whiteStain);
+        setCurrentTextureShelfB32(textures.whiteTexture);
+        setCurrentColorShelfB32(textures.whiteStain);
       } else if (color === "natural") {
-        setCurrentTextureShelfB(textures.naturalTexture);
-        setCurrentColorShelfB(textures.naturalStain);
+        setCurrentTextureShelfB32(textures.naturalTexture);
+        setCurrentColorShelfB32(textures.naturalStain);
       } else if (color === "black") {
-        setCurrentTextureShelfB(textures.blackTexture);
-        setCurrentColorShelfB(textures.blackStain);
+        setCurrentTextureShelfB32(textures.blackTexture);
+        setCurrentColorShelfB32(textures.blackStain);
       } else if (color === "allBlack") {
-        setCurrentTextureShelfB(textures.allBlackTexture);
-        setCurrentColorShelfB(textures.allBlackStain);
+        setCurrentTextureShelfB32(textures.allBlackTexture);
+        setCurrentColorShelfB32(textures.allBlackStain);
       }
     }
   };
@@ -371,88 +389,88 @@ function App() {
         setCurrentColorHorse(textures.grayPaint);
       }
     } else if (currentItemSelected.itemName === "shelfA16") {
-      setCurrentItemOptionSelectShelfA(color);
+      setCurrentItemOptionSelectShelfA16(color);
       if (color === "alabaster") {
-        setCurrentTextureShelfA(textures.paintedTexture);
-        setCurrentColorShelfA(textures.alabasterPaint);
+        setCurrentTextureShelfA16(textures.paintedTexture);
+        setCurrentColorShelfA16(textures.alabasterPaint);
       } else if (color === "pink") {
-        setCurrentTextureShelfA(textures.paintedTexture);
-        setCurrentColorShelfA(textures.pinkPaint);
+        setCurrentTextureShelfA16(textures.paintedTexture);
+        setCurrentColorShelfA16(textures.pinkPaint);
       } else if (color === "basil") {
-        setCurrentTextureShelfA(textures.paintedTexture);
-        setCurrentColorShelfA(textures.basilPaint);
+        setCurrentTextureShelfA16(textures.paintedTexture);
+        setCurrentColorShelfA16(textures.basilPaint);
       } else if (color === "yellow") {
-        setCurrentTextureShelfA(textures.paintedTexture);
-        setCurrentColorShelfA(textures.yellowPaint);
+        setCurrentTextureShelfA16(textures.paintedTexture);
+        setCurrentColorShelfA16(textures.yellowPaint);
       } else if (color === "blue") {
-        setCurrentTextureShelfA(textures.paintedTexture);
-        setCurrentColorShelfA(textures.bluePaint);
+        setCurrentTextureShelfA16(textures.paintedTexture);
+        setCurrentColorShelfA16(textures.bluePaint);
       } else if (color === "gray") {
-        setCurrentTextureShelfA(textures.paintedTexture);
-        setCurrentColorShelfA(textures.grayPaint);
+        setCurrentTextureShelfA16(textures.paintedTexture);
+        setCurrentColorShelfA16(textures.grayPaint);
       }
     } else if (currentItemSelected.itemName === "shelfA32") {
-      setCurrentItemOptionSelectShelfA(color);
+      setCurrentItemOptionSelectShelfA32(color);
       if (color === "alabaster") {
-        setCurrentTextureShelfA(textures.paintedTexture);
-        setCurrentColorShelfA(textures.alabasterPaint);
+        setCurrentTextureShelfA32(textures.paintedTexture);
+        setCurrentColorShelfA32(textures.alabasterPaint);
       } else if (color === "pink") {
-        setCurrentTextureShelfA(textures.paintedTexture);
-        setCurrentColorShelfA(textures.pinkPaint);
+        setCurrentTextureShelfA32(textures.paintedTexture);
+        setCurrentColorShelfA32(textures.pinkPaint);
       } else if (color === "basil") {
-        setCurrentTextureShelfA(textures.paintedTexture);
-        setCurrentColorShelfA(textures.basilPaint);
+        setCurrentTextureShelfA32(textures.paintedTexture);
+        setCurrentColorShelfA32(textures.basilPaint);
       } else if (color === "yellow") {
-        setCurrentTextureShelfA(textures.paintedTexture);
-        setCurrentColorShelfA(textures.yellowPaint);
+        setCurrentTextureShelfA32(textures.paintedTexture);
+        setCurrentColorShelfA32(textures.yellowPaint);
       } else if (color === "blue") {
-        setCurrentTextureShelfA(textures.paintedTexture);
-        setCurrentColorShelfA(textures.bluePaint);
+        setCurrentTextureShelfA32(textures.paintedTexture);
+        setCurrentColorShelfA32(textures.bluePaint);
       } else if (color === "gray") {
-        setCurrentTextureShelfA(textures.paintedTexture);
-        setCurrentColorShelfA(textures.grayPaint);
+        setCurrentTextureShelfA32(textures.paintedTexture);
+        setCurrentColorShelfA32(textures.grayPaint);
       }
     } else if (currentItemSelected.itemName === "shelfB16") {
-      setCurrentItemOptionSelectShelfB(color);
+      setCurrentItemOptionSelectShelfB16(color);
       if (color === "alabaster") {
-        setCurrentTextureShelfB(textures.paintedTexture);
-        setCurrentColorShelfB(textures.alabasterPaint);
+        setCurrentTextureShelfB16(textures.paintedTexture);
+        setCurrentColorShelfB16(textures.alabasterPaint);
       } else if (color === "pink") {
-        setCurrentTextureShelfB(textures.paintedTexture);
-        setCurrentColorShelfB(textures.pinkPaint);
+        setCurrentTextureShelfB16(textures.paintedTexture);
+        setCurrentColorShelfB16(textures.pinkPaint);
       } else if (color === "basil") {
-        setCurrentTextureShelfB(textures.paintedTexture);
-        setCurrentColorShelfB(textures.basilPaint);
+        setCurrentTextureShelfB16(textures.paintedTexture);
+        setCurrentColorShelfB16(textures.basilPaint);
       } else if (color === "yellow") {
-        setCurrentTextureShelfB(textures.paintedTexture);
-        setCurrentColorShelfB(textures.yellowPaint);
+        setCurrentTextureShelfB16(textures.paintedTexture);
+        setCurrentColorShelfB16(textures.yellowPaint);
       } else if (color === "blue") {
-        setCurrentTextureShelfB(textures.paintedTexture);
-        setCurrentColorShelfB(textures.bluePaint);
+        setCurrentTextureShelfB16(textures.paintedTexture);
+        setCurrentColorShelfB16(textures.bluePaint);
       } else if (color === "gray") {
-        setCurrentTextureShelfB(textures.paintedTexture);
-        setCurrentColorShelfB(textures.grayPaint);
+        setCurrentTextureShelfB16(textures.paintedTexture);
+        setCurrentColorShelfB16(textures.grayPaint);
       }
     } else if (currentItemSelected.itemName === "shelfB32") {
-      setCurrentItemOptionSelectShelfB(color);
+      setCurrentItemOptionSelectShelfB32(color);
       if (color === "alabaster") {
-        setCurrentTextureShelfB(textures.paintedTexture);
-        setCurrentColorShelfB(textures.alabasterPaint);
+        setCurrentTextureShelfB32(textures.paintedTexture);
+        setCurrentColorShelfB32(textures.alabasterPaint);
       } else if (color === "pink") {
-        setCurrentTextureShelfB(textures.paintedTexture);
-        setCurrentColorShelfB(textures.pinkPaint);
+        setCurrentTextureShelfB32(textures.paintedTexture);
+        setCurrentColorShelfB32(textures.pinkPaint);
       } else if (color === "basil") {
-        setCurrentTextureShelfB(textures.paintedTexture);
-        setCurrentColorShelfB(textures.basilPaint);
+        setCurrentTextureShelfB32(textures.paintedTexture);
+        setCurrentColorShelfB32(textures.basilPaint);
       } else if (color === "yellow") {
-        setCurrentTextureShelfB(textures.paintedTexture);
-        setCurrentColorShelfB(textures.yellowPaint);
+        setCurrentTextureShelfB32(textures.paintedTexture);
+        setCurrentColorShelfB32(textures.yellowPaint);
       } else if (color === "blue") {
-        setCurrentTextureShelfB(textures.paintedTexture);
-        setCurrentColorShelfB(textures.bluePaint);
+        setCurrentTextureShelfB32(textures.paintedTexture);
+        setCurrentColorShelfB32(textures.bluePaint);
       } else if (color === "gray") {
-        setCurrentTextureShelfB(textures.paintedTexture);
-        setCurrentColorShelfB(textures.grayPaint);
+        setCurrentTextureShelfB32(textures.paintedTexture);
+        setCurrentColorShelfB32(textures.grayPaint);
       }
     }
   };
@@ -490,10 +508,14 @@ function App() {
             currentColorBlock={currentColorBlock}
             currentTextureHorse={currentTextureHorse}
             currentColorHorse={currentColorHorse}
-            currentTextureShelfA={currentTextureShelfA}
-            currentColorShelfA={currentColorShelfA}
-            currentTextureShelfB={currentTextureShelfB}
-            currentColorShelfB={currentColorShelfB}
+            currentTextureShelfA16={currentTextureShelfA16}
+            currentColorShelfA16={currentColorShelfA16}
+            currentTextureShelfA32={currentTextureShelfA32}
+            currentColorShelfA32={currentColorShelfA32}
+            currentTextureShelfB16={currentTextureShelfB16}
+            currentColorShelfB16={currentColorShelfB16}
+            currentTextureShelfB32={currentTextureShelfB32}
+            currentColorShelfB32={currentColorShelfB32}
           />
         </Suspense>
       </Canvas>
