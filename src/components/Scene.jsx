@@ -10,53 +10,13 @@ import {
   useTexture,
   useProgress,
   Sky,
-  // Stage,
 } from "@react-three/drei";
 
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
 import { useCursor } from "@react-three/drei";
-import {
-  Perf,
-  // setCustomData
-} from "r3f-perf";
-
-import { BlockShelves } from "./block/BlockShelves.jsx";
-import { BlockSide1 } from "./block/BlockSide1.jsx";
-import { BlockSide2 } from "./block/BlockSide2.jsx";
-
-import { GrampsBarBottom } from "./gramps/GrampsBarBottom.jsx";
-import { GrampsBarTop } from "./gramps/GrampsBarTop.jsx";
-import { GrampsLeg1 } from "./gramps/GrampsLeg1.jsx";
-import { GrampsLeg2 } from "./gramps/GrampsLeg2.jsx";
-import { GrampsLeg3 } from "./gramps/GrampsLeg3.jsx";
-import { GrampsLeg4 } from "./gramps/GrampsLeg4.jsx";
-import { GrampsTop } from "./gramps/GrampsTop.jsx";
-
-import { HorseBarInner } from "./horse/HorseBarInner.jsx";
-import { HorseBarTop } from "./horse/HorseBarTop.jsx";
-import { HorseLeg1 } from "./horse/HorseLeg1.jsx";
-import { HorseLeg2 } from "./horse/HorseLeg2.jsx";
-import { HorseLeg3 } from "./horse/HorseLeg3.jsx";
-import { HorseLeg4 } from "./horse/HorseLeg4.jsx";
-
-import { SquatterCenterPanel } from "./squatter/SquatterCenterPanel.jsx";
-import { SquatterSide1 } from "./squatter/SquatterSide1.jsx";
-import { SquatterSide2 } from "./squatter/SquatterSide2.jsx";
-import { SquatterTop } from "./squatter/SquatterTop.jsx";
-
-import { ShelfAShortCleat } from "./shelfAShort/ShelfAShortCleat.jsx";
-import { ShelfAShortShelf } from "./shelfAShort/ShelfAShortShelf.jsx";
-
-import { ShelfALongCleat } from "./shelfALong/ShelfALongCleat.jsx";
-import { ShelfALongShelf } from "./shelfALong/ShelfALongShelf.jsx";
-
-import { ShelfBShortCleat } from "./shelfBShort/ShelfBShortCleat.jsx";
-import { ShelfBShortShelf } from "./shelfBShort/ShelfBShortShelf.jsx";
-
-import { ShelfBLongCleat } from "./shelfBLong/ShelfBLongCleat.jsx";
-import { ShelfBLongShelf } from "./shelfBLong/ShelfBLongShelf.jsx";
+import { Perf } from "r3f-perf";
 
 import { Floor } from "./room/Floor.jsx";
 import { Walls } from "./room/Walls.jsx";
@@ -68,6 +28,9 @@ import { textures } from "../data/textures.jsx";
 import { objects } from "../data/objects.jsx";
 import { shopItems } from "../data/objects.jsx";
 
+// import Block from "./Block.jsx";
+import { ItemPart } from "./ItemPart.jsx";
+
 export default function Scene({
   open,
   setOpen,
@@ -75,21 +38,10 @@ export default function Scene({
   setToggled,
   animActive,
   setAnimActive,
-  // shopItems,
   currentItemSelected,
   setCurrentItemSelected,
   previousItemSelected,
   setPreviousItemSelected,
-  // previousItemSizeSelectIndex,
-  // setPreviousItemSizeSelectIndex,
-  // currentItemSizeSelectIndex,
-  // setCurrentItemSizeSelectIndex,
-  // currentTexture,
-  // currentColor,
-  // currentTextureFloor,
-  // currentColorFloor,
-  // currentTextureWalls,
-  // currentColorWalls,
   currentTextureGramps,
   currentColorGramps,
   currentTextureSquatter,
@@ -102,17 +54,8 @@ export default function Scene({
   currentColorShelfA,
   currentTextureShelfB,
   currentColorShelfB,
-  // sizeChangeToggle,
 }) {
   const [targetVec, setTargetVec] = useState(new THREE.Vector3());
-  // const [
-  //   colorMap,
-  //   // displacementMap,
-  //   normalMap,
-  //   roughnessMap,
-  //   metalnessMap,
-  //   // aoMap,
-  // ] = useTexture(currentTexture);
 
   const [
     colorMapWhiteStain,
@@ -236,8 +179,6 @@ export default function Scene({
   const shelfBShortRef = useRef();
   const shelfBLongRef = useRef();
 
-  // const [gramps, squatter, block, horse, shelfA, shelfB] = shopItems;
-
   // useHelper(dirLightA, DirectionalLightHelper, 1, "red");
   // useHelper(dirLightB, DirectionalLightHelper, 1, "blue");
   // useHelper(dirLightC, DirectionalLightHelper, 1, "green");
@@ -302,18 +243,6 @@ export default function Scene({
   const [hovered, hover] = useState(false);
   useCursor(hovered);
 
-  // const handleItemChange = (event) => {
-  //   console.log("selected value: ", event.target.value);
-  //   let tempNo = event.target.value;
-  //   setItemNo(tempNo);
-  //   let itemMatch = (element) => element.itemNo === tempNo;
-  //   if (itemMatch) {
-  //     let itemMatchIndex = shopItems.findIndex(itemMatch);
-  //     setPreviousItemSelected(currentItemSelected);
-  //     setCurrentItemSelected(shopItems[itemMatchIndex]);
-  //   }
-  // };
-
   const handleClick = (e) => {
     // setOpen(true);
     e.stopPropagation();
@@ -336,80 +265,14 @@ export default function Scene({
     }
   };
 
-  // const handleClick = (e) => {
-  //   // setOpen(true);
-  //   e.stopPropagation();
-  //   const { eventObject } = e;
-  //   // console.log(eventObject.position);
-  //   let tempObjectPosition = eventObject.position;
-  //   let positionMatch = (element) =>
-  //     (element.positionA.x === tempObjectPosition.x &&
-  //       element.positionA.y === tempObjectPosition.y &&
-  //       element.positionA.z === tempObjectPosition.z) ||
-  //     (element.positionB.x === tempObjectPosition.x &&
-  //       element.positionB.y === tempObjectPosition.y &&
-  //       element.positionB.z === tempObjectPosition.z);
-
-  //   if (positionMatch) {
-  //     // console.log(
-  //     //   "shopItems.find(positionMatch): ",
-  //     //   shopItems.find(positionMatch),
-  //     // );
-  //     let matchedItem = shopItems.find(positionMatch);
-  //     // console.log("matchedItem.positionA: ", matchedItem.positionA);
-  //     if (
-  //       matchedItem.positionA.x === tempObjectPosition.x &&
-  //       matchedItem.positionA.y === tempObjectPosition.y &&
-  //       matchedItem.positionA.z === tempObjectPosition.z
-  //     ) {
-  //       setPreviousItemSizeSelectIndex(currentItemSizeSelectIndex);
-  //       setCurrentItemSizeSelectIndex(0);
-  //       // console.log("matched positionA");
-  //       setPreviousItemSelected(currentItemSelected);
-  //       setCurrentItemSelected(matchedItem);
-  //     } else if (
-  //       matchedItem.positionB.x === tempObjectPosition.x &&
-  //       matchedItem.positionB.y === tempObjectPosition.y &&
-  //       matchedItem.positionB.z === tempObjectPosition.z
-  //     ) {
-  //       setPreviousItemSizeSelectIndex(currentItemSizeSelectIndex);
-  //       setCurrentItemSizeSelectIndex(1);
-  //       // console.log("matched positionB");
-  //       setPreviousItemSelected(currentItemSelected);
-  //       setCurrentItemSelected(matchedItem);
-  //     }
-  //   }
-  // };
-
   const handleDoubleClick = (e) => {
     e.stopPropagation();
-
     setOpen(true);
     setShowBackground(!showBackground);
-
-    // const { eventObject } = e;
-    // let tempObjectPosition = eventObject.position;
-    // let positionMatch = (element) =>
-    //   (element.positionA.x === tempObjectPosition.x &&
-    //     element.positionA.y === tempObjectPosition.y &&
-    //     element.positionA.z === tempObjectPosition.z) ||
-    //   (element.positionB.x === tempObjectPosition.x &&
-    //     element.positionB.y === tempObjectPosition.y &&
-    //     element.positionB.z === tempObjectPosition.z);
-    // if (positionMatch) {
-    //   // console.log(
-    //   //   "shopItems.find(positionMatch): ",
-    //   //   shopItems.find(positionMatch),
-    //   // );
-    //   let matchedItem = shopItems.find(positionMatch);
-    //   // setPreviousItemSelected(currentItemSelected);
-    //   // setCurrentItemSelected(matchedItem);
-    // }
   };
 
   const handleOffClick = (e) => {
     e.stopPropagation();
-
     // console.log("onPointerMissed click");
     setShowBackground(true);
   };
@@ -417,31 +280,6 @@ export default function Scene({
   const orbitRef = useRef();
   // const shadowCameraRef = useRef();
   // useHelper(shadowCameraRef, CameraHelper, 1, "lightBlue");
-
-  // useEffect(() => {
-  //   if (open) {
-  //     // setCameraPosition(orbitRef.current.object.position);
-  //     // console.log("open value from Experience useEffect: ", open);
-  //     if (orbitRef.current) {
-  //       // orbitRef.current.autoRotateSpeed = 0.95;
-  //       // orbitRef.current.autoRotate = true;
-  //       // console.log(
-  //       //   "orbitRef.current.autoRotate: ",
-  //       //   orbitRef.current.autoRotate,
-  //       // );
-  //     }
-  //   } else if (!open) {
-  //     // console.log("open value from Experience useEffect: ", open);
-  //     if (orbitRef.current) {
-  //       // orbitRef.current.autoRotateSpeed = 1.5;
-  //       // orbitRef.current.autoRotate = true;
-  //       // console.log(
-  //       //   "orbitRef.current.autoRotate: ",
-  //       //   orbitRef.current.autoRotate,
-  //       // );
-  //     }
-  //   }
-  // }, [open]);
 
   useEffect(() => {
     // setInitialLoad(true);
@@ -537,95 +375,6 @@ export default function Scene({
     }
   }, [currentItemSelected]);
 
-  // useGSAP(() => {
-  //   if (previousItemSizeSelectIndex === 0) {
-  //     controlsTargetVec.set(
-  //       previousItemSelected.positionA.x,
-  //       previousItemSelected.positionA.y,
-  //       previousItemSelected.positionA.z,
-  //     );
-  //   } else if (previousItemSizeSelectIndex === 1) {
-  //     controlsTargetVec.set(
-  //       previousItemSelected.positionB.x,
-  //       previousItemSelected.positionB.y,
-  //       previousItemSelected.positionB.z,
-  //     );
-  //   }
-  //   if (currentItemSelected.name !== "noSelect") {
-  //     if (currentItemSizeSelectIndex === 0) {
-  //       let tl = gsap.timeline();
-  //       tl.to(controlsTargetVec, {
-  //         duration: 1,
-  //         // x: 10,
-  //         x: currentItemSelected.positionA.x,
-  //         y: currentItemSelected.positionA.y,
-  //         z: currentItemSelected.positionA.z,
-  //         ease: "easeIn",
-  //         // onStart: () => {
-  //         //   console.log("targetVec: ", targetVec);
-  //         // },
-  //         onUpdate: () => {
-  //           // console.log("updating controlsTargetVec: ", controlsTargetVec);
-  //           orbitRef.current.object.updateProjectionMatrix();
-  //           orbitRef.current.update();
-  //           setTargetVec(controlsTargetVec);
-  //           orbitRef.current.target.set(
-  //             controlsTargetVec.x,
-  //             controlsTargetVec.y,
-  //             controlsTargetVec.z,
-  //           );
-  //           orbitRef.current.object.updateProjectionMatrix();
-  //           orbitRef.current.update();
-  //         },
-  //       });
-  //     } else if (
-  //       currentItemSizeSelectIndex === 1 &&
-  //       currentItemSelected.sizes.length > 1
-  //     ) {
-  //       let tl = gsap.timeline();
-  //       tl.to(controlsTargetVec, {
-  //         duration: 1,
-  //         // x: 10,
-  //         x: currentItemSelected.positionB.x,
-  //         y: currentItemSelected.positionB.y,
-  //         z: currentItemSelected.positionB.z,
-  //         ease: "easeIn",
-  //         // onStart: () => {
-  //         //   console.log("targetVec: ", targetVec);
-  //         // },
-  //         onUpdate: () => {
-  //           // console.log("updating controlsTargetVec: ", controlsTargetVec);
-  //           orbitRef.current.object.updateProjectionMatrix();
-  //           orbitRef.current.update();
-  //           setTargetVec(controlsTargetVec);
-  //           orbitRef.current.target.set(
-  //             controlsTargetVec.x,
-  //             controlsTargetVec.y,
-  //             controlsTargetVec.z,
-  //           );
-  //           orbitRef.current.object.updateProjectionMatrix();
-  //           orbitRef.current.update();
-  //         },
-  //       });
-  //     }
-  //   }
-  // }, [currentItemSelected, sizeChangeToggle]);
-
-  // useEffect(() => {
-  //   if (orbitRef.current) {
-  //     vec.set(
-  //       currentItemSelected.positionA.x,
-  //       currentItemSelected.positionA.y,
-  //       currentItemSelected.positionA.z,
-  //     );
-  //     console.log("vec: ", vec);
-  //     orbitRef.current.target.copy(vec);
-  //     console.log(orbitRef.current.target);
-  //     // orbitRef.current.object.updateProjectionMatrix();
-  //     // orbitRef.current.update();
-  //   }
-  // }, [currentItemSelected]);
-
   // useFrame(() => {
   //   if (
   //     !controlsDragging &&
@@ -691,15 +440,6 @@ export default function Scene({
       />
       <Sky distance={4000000} sunPosition={[1.5, 2, -10]} />
       <group position={[0, stagePositionY, 0]}>
-        {/* <Stage
-          shadows={{ type: "contact", opacity: 0.25, blur: 0.5 }}
-          environment="night"
-          preset="soft"
-          adjustCamera={false}
-          intensity={1}
-          controls={orbitRef}
-          center={true}
-        > */}
         <ambientLight intensity={0.75} />
         {/* grampsLight */}
         <directionalLight
@@ -770,6 +510,7 @@ export default function Scene({
           shadow-camera-top={150}
           target={squatterRef.current}
         />
+
         {/* gramps */}
         <group
           ref={grampsRef}
@@ -784,91 +525,26 @@ export default function Scene({
           onDoubleClick={handleDoubleClick}
           onPointerMissed={handleOffClick}
         >
-          <mesh>
-            <GrampsBarBottom
-              // displacementMap={displacementMap}
-              // aoMap={aoMap}
-              map={colorMapGramps}
-              normalMap={normalMapGramps}
-              roughnessMap={roughnessMapGramps}
-              metalnessMap={metalnessMapGramps}
-              currentColor={currentColorGramps}
-              currentTexture={currentTextureGramps}
-            />
-          </mesh>
-          <mesh>
-            <GrampsBarTop
-              // displacementMap={displacementMap}
-              // aoMap={aoMap}
-              map={colorMapGramps}
-              normalMap={normalMapGramps}
-              roughnessMap={roughnessMapGramps}
-              metalnessMap={metalnessMapGramps}
-              currentColor={currentColorGramps}
-              currentTexture={currentTextureGramps}
-            />
-          </mesh>
-          <mesh>
-            <GrampsLeg1
-              // displacementMap={displacementMap}
-              // aoMap={aoMap}
-              map={colorMapGramps}
-              normalMap={normalMapGramps}
-              roughnessMap={roughnessMapGramps}
-              metalnessMap={metalnessMapGramps}
-              currentColor={currentColorGramps}
-              currentTexture={currentTextureGramps}
-            />
-          </mesh>
-          <mesh>
-            <GrampsLeg2
-              // displacementMap={displacementMapGramps}
-              // aoMap={aoMapGramps}
-              map={colorMapGramps}
-              normalMap={normalMapGramps}
-              roughnessMap={roughnessMapGramps}
-              metalnessMap={metalnessMapGramps}
-              currentColor={currentColorGramps}
-              currentTexture={currentTextureGramps}
-            />
-          </mesh>
-          <mesh>
-            <GrampsLeg3
-              // displacementMap={displacementMapGramps}
-              // aoMap={aoMapGramps}
-              map={colorMapGramps}
-              normalMap={normalMapGramps}
-              roughnessMap={roughnessMapGramps}
-              metalnessMap={metalnessMapGramps}
-              currentColor={currentColorGramps}
-              currentTexture={currentTextureGramps}
-            />
-          </mesh>
-          <mesh>
-            <GrampsLeg4
-              // displacementMap={displacementMapGramps}
-              // aoMap={aoMapGramps}
-              map={colorMapGramps}
-              normalMap={normalMapGramps}
-              roughnessMap={roughnessMapGramps}
-              metalnessMap={metalnessMapGramps}
-              currentColor={currentColorGramps}
-              currentTexture={currentTextureGramps}
-            />
-          </mesh>
-          <mesh>
-            <GrampsTop
-              // displacementMap={displacementMapGramps}
-              // aoMap={aoMapGramps}
-              map={colorMapGramps}
-              normalMap={normalMapGramps}
-              roughnessMap={roughnessMapGramps}
-              metalnessMap={metalnessMapGramps}
-              currentColor={currentColorGramps}
-              currentTexture={currentTextureGramps}
-            />
-          </mesh>
+          {objects.gramps.parts.map((part) => {
+            return (
+              <mesh key={part.partName}>
+                <ItemPart
+                  // displacementMap={displacementMap}
+                  // aoMap={aoMap}
+                  map={colorMapGramps}
+                  normalMap={normalMapGramps}
+                  roughnessMap={roughnessMapGramps}
+                  metalnessMap={metalnessMapGramps}
+                  currentColor={currentColorGramps}
+                  currentTexture={currentTextureGramps}
+                  model={part.model}
+                  animationType={part.animation}
+                />
+              </mesh>
+            );
+          })}
         </group>
+
         {/* block */}
         <group
           ref={blockRef}
@@ -884,43 +560,24 @@ export default function Scene({
           onDoubleClick={handleDoubleClick}
           onPointerMissed={handleOffClick}
         >
-          <mesh>
-            <BlockSide1
-              // displacementMap={displacementMapBlock}
-              // aoMap={aoMapBlock}
-              map={colorMapBlock}
-              normalMap={normalMapBlock}
-              roughnessMap={roughnessMapBlock}
-              metalnessMap={metalnessMapBlock}
-              currentColor={currentColorBlock}
-              currentTexture={currentTextureBlock}
-            />
-          </mesh>
-          <mesh>
-            <BlockShelves
-              // displacementMap={displacementMapBlock}
-              // aoMap={aoMapBlock}
-              map={colorMapBlock}
-              normalMap={normalMapBlock}
-              roughnessMap={roughnessMapBlock}
-              metalnessMap={metalnessMapBlock}
-              currentColor={currentColorBlock}
-              currentTexture={currentTextureBlock}
-            />
-          </mesh>
-          <mesh>
-            <BlockSide2
-              // displacementMap={displacementMapBlock}
-              // aoMap={aoMapBlock}
-              map={colorMapBlock}
-              normalMap={normalMapBlock}
-              roughnessMap={roughnessMapBlock}
-              metalnessMap={metalnessMapBlock}
-              currentColor={currentColorBlock}
-              currentTexture={currentTextureBlock}
-            />
-          </mesh>
+          {objects.block.parts.map((part) => {
+            return (
+              <mesh key={part.partName}>
+                <ItemPart
+                  map={colorMapBlock}
+                  normalMap={normalMapBlock}
+                  roughnessMap={roughnessMapBlock}
+                  metalnessMap={metalnessMapBlock}
+                  currentColor={currentColorBlock}
+                  currentTexture={currentTextureBlock}
+                  model={part.model}
+                  animationType={part.animation}
+                />
+              </mesh>
+            );
+          })}
         </group>
+
         {/* horse */}
         <group
           ref={horseRef}
@@ -935,79 +592,26 @@ export default function Scene({
           onDoubleClick={handleDoubleClick}
           onPointerMissed={handleOffClick}
         >
-          <mesh>
-            <HorseBarInner
-              // displacementMap={displacementMapHorse}
-              // aoMap={aoMapHorse}
-              map={colorMapHorse}
-              normalMap={normalMapHorse}
-              roughnessMap={roughnessMapHorse}
-              metalnessMap={metalnessMapHorse}
-              currentColor={currentColorHorse}
-              currentTexture={currentTextureHorse}
-            />
-          </mesh>
-          <mesh>
-            <HorseBarTop
-              // displacementMap={displacementMapHorse}
-              // aoMap={aoMapHorse}
-              map={colorMapHorse}
-              normalMap={normalMapHorse}
-              roughnessMap={roughnessMapHorse}
-              metalnessMap={metalnessMapHorse}
-              currentColor={currentColorHorse}
-              currentTexture={currentTextureHorse}
-            />
-          </mesh>
-          <mesh>
-            <HorseLeg1
-              // displacementMap={displacementMapHorse}
-              // aoMap={aoMapHorse}
-              map={colorMapHorse}
-              normalMap={normalMapHorse}
-              roughnessMap={roughnessMapHorse}
-              metalnessMap={metalnessMapHorse}
-              currentColor={currentColorHorse}
-              currentTexture={currentTextureHorse}
-            />
-          </mesh>
-          <mesh>
-            <HorseLeg2
-              // displacementMap={displacementMapHorse}
-              // aoMap={aoMapHorse}
-              map={colorMapHorse}
-              normalMap={normalMapHorse}
-              roughnessMap={roughnessMapHorse}
-              metalnessMap={metalnessMapHorse}
-              currentColor={currentColorHorse}
-              currentTexture={currentTextureHorse}
-            />
-          </mesh>
-          <mesh>
-            <HorseLeg3
-              // displacementMap={displacementMapHorse}
-              // aoMap={aoMapHorse}
-              map={colorMapHorse}
-              normalMap={normalMapHorse}
-              roughnessMap={roughnessMapHorse}
-              metalnessMap={metalnessMapHorse}
-              currentColor={currentColorHorse}
-              currentTexture={currentTextureHorse}
-            />
-          </mesh>
-          <mesh>
-            <HorseLeg4
-              // displacementMap={displacementMapHorse}
-              // aoMap={aoMapHorse}
-              map={colorMapHorse}
-              normalMap={normalMapHorse}
-              roughnessMap={roughnessMapHorse}
-              metalnessMap={metalnessMapHorse}
-              currentColor={currentColorHorse}
-              currentTexture={currentTextureHorse}
-            />
-          </mesh>
+          {objects.horse.parts.map((part) => {
+            return (
+              <mesh key={part.partName}>
+                <ItemPart
+                  // displacementMap={displacementMapHorse}
+                  // aoMap={aoMapHorse}
+                  map={colorMapHorse}
+                  normalMap={normalMapHorse}
+                  roughnessMap={roughnessMapHorse}
+                  metalnessMap={metalnessMapHorse}
+                  currentColor={currentColorHorse}
+                  currentTexture={currentTextureHorse}
+                  model={part.model}
+                  animationType={part.animation}
+                />
+              </mesh>
+            );
+          })}
         </group>
+
         {/* squatter */}
         <group
           ref={squatterRef}
@@ -1023,56 +627,27 @@ export default function Scene({
           onDoubleClick={handleDoubleClick}
           onPointerMissed={handleOffClick}
         >
-          <mesh>
-            <SquatterCenterPanel
-              // displacementMap={displacementMapSquatter}
-              // aoMap={aoMapSquatter}
-              map={colorMapSquatter}
-              normalMap={normalMapSquatter}
-              roughnessMap={roughnessMapSquatter}
-              metalnessMap={metalnessMapSquatter}
-              currentColor={currentColorSquatter}
-              currentTexture={currentTextureSquatter}
-            />
-          </mesh>
-          <mesh>
-            <SquatterSide1
-              // displacementMap={displacementMapSquatter}
-              // aoMap={aoMapSquatter}
-              map={colorMapSquatter}
-              normalMap={normalMapSquatter}
-              roughnessMap={roughnessMapSquatter}
-              metalnessMap={metalnessMapSquatter}
-              currentColor={currentColorSquatter}
-              currentTexture={currentTextureSquatter}
-            />
-          </mesh>
-          <mesh>
-            <SquatterSide2
-              // displacementMap={displacementMapSquatter}
-              // aoMap={aoMapSquatter}
-              map={colorMapSquatter}
-              normalMap={normalMapSquatter}
-              roughnessMap={roughnessMapSquatter}
-              metalnessMap={metalnessMapSquatter}
-              currentColor={currentColorSquatter}
-              currentTexture={currentTextureSquatter}
-            />
-          </mesh>
-          <mesh>
-            <SquatterTop
-              // displacementMap={displacementMapSquatter}
-              // aoMap={aoMapSquatter}
-              map={colorMapSquatter}
-              normalMap={normalMapSquatter}
-              roughnessMap={roughnessMapSquatter}
-              metalnessMap={metalnessMapSquatter}
-              currentColor={currentColorSquatter}
-              currentTexture={currentTextureSquatter}
-            />
-          </mesh>
+          {objects.squatter.parts.map((part) => {
+            return (
+              <mesh key={part.partName}>
+                <ItemPart
+                  // displacementMap={displacementMapSquatter}
+                  // aoMap={aoMapSquatter}
+                  map={colorMapSquatter}
+                  normalMap={normalMapSquatter}
+                  roughnessMap={roughnessMapSquatter}
+                  metalnessMap={metalnessMapSquatter}
+                  currentColor={currentColorSquatter}
+                  currentTexture={currentTextureSquatter}
+                  model={part.model}
+                  animationType={part.animation}
+                />
+              </mesh>
+            );
+          })}
         </group>
-        {/* shelfAShort */}
+
+        {/* shelfA16 */}
         <group
           ref={shelfAShortRef}
           position={[
@@ -1086,32 +661,27 @@ export default function Scene({
           onDoubleClick={handleDoubleClick}
           onPointerMissed={handleOffClick}
         >
-          <mesh>
-            <ShelfAShortCleat
-              // displacementMap={displacementMapShelfA}
-              // aoMap={aoMapShelfA}
-              map={colorMapShelfA}
-              normalMap={normalMapShelfA}
-              roughnessMap={roughnessMapShelfA}
-              metalnessMap={metalnessMapShelfA}
-              currentColor={currentColorShelfA}
-              currentTexture={currentTextureShelfA}
-            />
-          </mesh>
-          <mesh>
-            <ShelfAShortShelf
-              // displacementMap={displacementMapShelfA}
-              // aoMap={aoMapShelfA}
-              map={colorMapShelfA}
-              normalMap={normalMapShelfA}
-              roughnessMap={roughnessMapShelfA}
-              metalnessMap={metalnessMapShelfA}
-              currentColor={currentColorShelfA}
-              currentTexture={currentTextureShelfA}
-            />
-          </mesh>
+          {objects.shelfA16.parts.map((part) => {
+            return (
+              <mesh key={part.partName}>
+                <ItemPart
+                  // displacementMap={displacementMapShelfA}
+                  // aoMap={aoMapShelfA}
+                  map={colorMapShelfA}
+                  normalMap={normalMapShelfA}
+                  roughnessMap={roughnessMapShelfA}
+                  metalnessMap={metalnessMapShelfA}
+                  currentColor={currentColorShelfA}
+                  currentTexture={currentTextureShelfA}
+                  model={part.model}
+                  animationType={part.animation}
+                />
+              </mesh>
+            );
+          })}
         </group>
-        {/* shelfALong */}
+
+        {/* shelfA32 */}
         <group
           ref={shelfALongRef}
           position={[
@@ -1125,32 +695,27 @@ export default function Scene({
           onDoubleClick={handleDoubleClick}
           onPointerMissed={handleOffClick}
         >
-          <mesh>
-            <ShelfALongCleat
-              // displacementMap={displacementMapShelfA}
-              // aoMap={aoMapShelfA}
-              map={colorMapShelfA}
-              normalMap={normalMapShelfA}
-              roughnessMap={roughnessMapShelfA}
-              metalnessMap={metalnessMapShelfA}
-              currentColor={currentColorShelfA}
-              currentTexture={currentTextureShelfA}
-            />
-          </mesh>
-          <mesh>
-            <ShelfALongShelf
-              // displacementMap={displacementMapShelfA}
-              // aoMap={aoMapShelfA}
-              map={colorMapShelfA}
-              normalMap={normalMapShelfA}
-              roughnessMap={roughnessMapShelfA}
-              metalnessMap={metalnessMapShelfA}
-              currentColor={currentColorShelfA}
-              currentTexture={currentTextureShelfA}
-            />
-          </mesh>
+          {objects.shelfA32.parts.map((part) => {
+            return (
+              <mesh key={part.partName}>
+                <ItemPart
+                  // displacementMap={displacementMapShelfA}
+                  // aoMap={aoMapShelfA}
+                  map={colorMapShelfA}
+                  normalMap={normalMapShelfA}
+                  roughnessMap={roughnessMapShelfA}
+                  metalnessMap={metalnessMapShelfA}
+                  currentColor={currentColorShelfA}
+                  currentTexture={currentTextureShelfA}
+                  model={part.model}
+                  animationType={part.animation}
+                />
+              </mesh>
+            );
+          })}
         </group>
-        {/* shelfBShort */}
+
+        {/* shelfB16 */}
         <group
           ref={shelfBShortRef}
           position={[
@@ -1164,32 +729,27 @@ export default function Scene({
           onDoubleClick={handleDoubleClick}
           onPointerMissed={handleOffClick}
         >
-          <mesh>
-            <ShelfBShortCleat
-              // displacementMap={displacementMapShelfB}
-              // aoMap={aoMapShelfB}
-              map={colorMapShelfB}
-              normalMap={normalMapShelfB}
-              roughnessMap={roughnessMapShelfB}
-              metalnessMap={metalnessMapShelfB}
-              currentColor={currentColorShelfB}
-              currentTexture={currentTextureShelfB}
-            />
-          </mesh>
-          <mesh>
-            <ShelfBShortShelf
-              // displacementMap={displacementMapShelfB}
-              // aoMap={aoMapShelfB}
-              map={colorMapShelfB}
-              normalMap={normalMapShelfB}
-              roughnessMap={roughnessMapShelfB}
-              metalnessMap={metalnessMapShelfB}
-              currentColor={currentColorShelfB}
-              currentTexture={currentTextureShelfB}
-            />
-          </mesh>
+          {objects.shelfB16.parts.map((part) => {
+            return (
+              <mesh key={part.partName}>
+                <ItemPart
+                  // displacementMap={displacementMapShelfB}
+                  // aoMap={aoMapShelfB}
+                  map={colorMapShelfB}
+                  normalMap={normalMapShelfB}
+                  roughnessMap={roughnessMapShelfB}
+                  metalnessMap={metalnessMapShelfB}
+                  currentColor={currentColorShelfB}
+                  currentTexture={currentTextureShelfB}
+                  model={part.model}
+                  animationType={part.animation}
+                />
+              </mesh>
+            );
+          })}
         </group>
-        {/* shelfBLong */}
+
+        {/* shelfB32 */}
         <group
           ref={shelfBLongRef}
           position={[
@@ -1203,31 +763,26 @@ export default function Scene({
           onDoubleClick={handleDoubleClick}
           onPointerMissed={handleOffClick}
         >
-          <mesh>
-            <ShelfBLongCleat
-              // displacementMap={displacementMapShelfB}
-              // aoMap={aoMapShelfB}
-              map={colorMapShelfB}
-              normalMap={normalMapShelfB}
-              roughnessMap={roughnessMapShelfB}
-              metalnessMap={metalnessMapShelfB}
-              currentColor={currentColorShelfB}
-              currentTexture={currentTextureShelfB}
-            />
-          </mesh>
-          <mesh>
-            <ShelfBLongShelf
-              // displacementMap={displacementMapShelfB}
-              // aoMap={aoMapShelfB}
-              map={colorMapShelfB}
-              normalMap={normalMapShelfB}
-              roughnessMap={roughnessMapShelfB}
-              metalnessMap={metalnessMapShelfB}
-              currentColor={currentColorShelfB}
-              currentTexture={currentTextureShelfB}
-            />
-          </mesh>
+          {objects.shelfB32.parts.map((part) => {
+            return (
+              <mesh key={part.partName}>
+                <ItemPart
+                  // displacementMap={displacementMapShelfB}
+                  // aoMap={aoMapShelfB}
+                  map={colorMapShelfB}
+                  normalMap={normalMapShelfB}
+                  roughnessMap={roughnessMapShelfB}
+                  metalnessMap={metalnessMapShelfB}
+                  currentColor={currentColorShelfB}
+                  currentTexture={currentTextureShelfB}
+                  model={part.model}
+                  animationType={part.animation}
+                />
+              </mesh>
+            );
+          })}
         </group>
+
         {/* floor */}
         <mesh visible={showBackground}>
           <Floor
@@ -1241,6 +796,7 @@ export default function Scene({
             // currentTexture={currentTextureFloor}
           />
         </mesh>
+
         {/* wallsAndMoulding */}
         <mesh visible={showBackground}>
           <Walls
@@ -1254,11 +810,11 @@ export default function Scene({
             // currentTexture={currentTextureWalls}
           />
         </mesh>
+
         {/* shelfPositions */}
         {/* <mesh >
             <ShelfPositions />
           </mesh> */}
-        {/* </Stage> */}
       </group>
     </>
   );

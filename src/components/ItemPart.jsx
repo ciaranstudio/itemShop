@@ -12,14 +12,8 @@ export const ItemPart = ({
   currentTexture,
   model,
   animationType,
-  animationToggle,
-  itemName,
-  currentItemSelected,
 }) => {
   const { scene, nodes, materials } = useGLTF(model);
-
-  // animation function that receives animationType prop (animation direction: horizontal, vertical, or none)
-  // only animate if current item selected === itemName
 
   useLayoutEffect(() => {
     Object.assign(materials.Material, {

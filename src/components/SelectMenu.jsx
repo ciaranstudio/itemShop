@@ -41,24 +41,12 @@ export default function SelectMenu({
   animActive,
   handleStainChange,
   handlePaintChange,
-  // handleSizeChange,
-  // shopItems,
   currentItemSelected,
   setCurrentItemSelected,
-  // previousItemSelected,
   setPreviousItemSelected,
   currentItemOptionSelect,
   currentItemOptionType,
   currentItemDescription,
-  // currentItemSizeSelect,
-  // currentItemSizeSelectIndex,
-  // setCurrentItemSizeSelectIndex,
-  // setPreviousItemSizeSelectIndex,
-  // setCurrentItemSizeSelectIndex,
-  // currentTexture,
-  // currentColor,
-  // stainsList,
-  // paintsList,
 }) {
   const drawerBleeding = 60;
   // const settings = ["Profile", "Account", "Dashboard", "Logout"
@@ -69,7 +57,6 @@ export default function SelectMenu({
   const paints2 = options.paints.slice(3, 6); // ["yellow", "blue", "gray"];
 
   const { height, width } = useWindowDimensions();
-  // const [cartCount, setCartCount] = useState(0);
   const [itemNo, setItemNo] = useState(currentItemSelected.itemNo);
   const [mobileView, setMobileView] = useState(false);
 
@@ -94,7 +81,7 @@ export default function SelectMenu({
   };
 
   useEffect(() => {
-    // console.log("window.innerHeight: ", height);
+    console.log("window.innerHeight: ", height);
   }, [height]);
 
   useEffect(() => {
@@ -137,10 +124,8 @@ export default function SelectMenu({
   }`;
 
   function handleAddToCart() {
-    // setCartCount(cartCount + 1);
     setOpen(false);
     // setShowSwipeableDrawer(false);
-    // console.log("cartCount: ", cartCount);
   }
 
   const handleItemChange = (e) => {
@@ -151,18 +136,6 @@ export default function SelectMenu({
     let itemMatch = (element) => element.itemNo === tempNo;
     if (itemMatch) {
       let itemMatchIndex = shopItems.findIndex(itemMatch);
-      // previousItemSizeSelectIndex = { previousItemSizeSelectIndex };
-      // console.log(
-      //   "setPreviousItemSizeSelectIndex(",
-      //   currentItemSizeSelectIndex,
-      //   ")",
-      // );
-      // setPreviousItemSizeSelectIndex(currentItemSizeSelectIndex);
-      // if (shopItems[itemMatchIndex].sizes.length === 1) {
-      //   setCurrentItemSizeSelectIndex(0);
-      // } else if (currentItemSelected.sizes.length === 2) {
-      //   setCurrentItemSizeSelectIndex(currentItemSizeSelectIndex);
-      // }
       setPreviousItemSelected(currentItemSelected);
       setCurrentItemSelected(shopItems[itemMatchIndex]);
     }
@@ -179,12 +152,8 @@ export default function SelectMenu({
     if (currentItemOptionType === "stain") {
       calcualatedPrice =
         currentItemSelected.itemBasePrice + currentItemSelected.itemStainCost;
-      // +
-      // currentItemSelected.sizeCost * currentItemSizeSelectIndex;
     } else if (currentItemOptionType === "paint") {
       calcualatedPrice = currentItemSelected.itemBasePrice;
-      // +
-      // currentItemSelected.sizeCost * currentItemSizeSelectIndex;
     }
     return calcualatedPrice;
   }
@@ -864,37 +833,6 @@ export default function SelectMenu({
                         ""
                       ) : (
                         <React.Fragment>
-                          {/* <Button
-                            variant="contained"
-                            color="primary"
-                            onClick={handleAddToCart}
-                            className="snipcart-add-item"
-                            data-item-id={currentItemSelected.itemNo}
-                            // data-item-image={imageUrl}
-                            data-item-name={currentItemSelected.itemTitle}
-                            // data-item-url="/"
-                            data-item-description={
-                              currentItemSelected.itemDescription
-                            }
-                            data-item-price={currentItemSelected.itemBasePrice}
-                            data-item-custom1-name="Finish option"
-                            data-item-custom1-options={`white[+${currentItemSelected.itemStainCost}]|natural[+${currentItemSelected.itemStainCost}]|black[+${currentItemSelected.itemStainCost}]|allBlack[+${currentItemSelected.itemStainCost}]|alabaster|pink|basil|yellow|blue|gray`}
-                            data-item-custom1-value={currentItemOptionSelect}
-                            data-item-custom2-name="Size option"
-                            data-item-custom2-options={
-                              currentItemSelected.sizes.length > 1
-                                ? `${currentItemSelected.sizes[0]}|${currentItemSelected.sizes[1]}[+${currentItemSelected.sizeCost}]`
-                                : `${currentItemSelected.sizes[0]}`
-                            }
-                            // data-item-custom2-value={
-                            //   currentItemSelected.sizes.length === 1
-                            //     ? currentItemSelected.sizes[0]
-                            //     : currentItemSizeSelect
-                            // }
-                            data-item-custom2-value={currentItemSizeSelect}
-                          >
-                            ${totalPrice()}
-                          </Button> */}
                           {shopItems.map((item, index) => (
                             <BuyButton
                               key={index}
@@ -904,7 +842,6 @@ export default function SelectMenu({
                               handleAddToCart={handleAddToCart}
                               currentItemOptionSelect={currentItemOptionSelect}
                               // currentItemOptionType={currentItemOptionType}
-                              // currentItemSizeSelect={currentItemSizeSelect}
                             >
                               {item.itemTitle}
                             </BuyButton>

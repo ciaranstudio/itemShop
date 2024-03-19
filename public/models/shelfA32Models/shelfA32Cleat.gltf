@@ -15,17 +15,17 @@
 	"nodes":[
 		{
 			"mesh":0,
-			"name":"shelfBShort",
+			"name":"shelfALongCleat",
 			"rotation":[
 				0,
-				-0.7071067094802856,
+				1,
 				0,
-				0.7071068286895752
+				7.549790126404332e-08
 			],
 			"translation":[
-				0.0021124640479683876,
-				46.003013610839844,
-				-3.249999761581421
+				0.37500762939453125,
+				46.04299545288086,
+				-1.1268844604492188
 			]
 		}
 	],
@@ -47,7 +47,7 @@
 	],
 	"meshes":[
 		{
-			"name":"ID241",
+			"name":"ID577",
 			"primitives":[
 				{
 					"attributes":{
@@ -65,68 +65,68 @@
 		{
 			"bufferView":0,
 			"componentType":5126,
-			"count":198,
+			"count":24,
 			"max":[
-				3.2497689723968506,
-				1.99698805809021,
-				7.999999523162842
+				0.375,
+				0.9375,
+				12
 			],
 			"min":[
-				-2.7502310276031494,
-				-2.00301194190979,
-				-8
+				-0.375,
+				-0.5625,
+				-12
 			],
 			"type":"VEC3"
 		},
 		{
 			"bufferView":1,
 			"componentType":5126,
-			"count":198,
+			"count":24,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":2,
 			"componentType":5126,
-			"count":198,
+			"count":24,
 			"type":"VEC2"
 		},
 		{
 			"bufferView":3,
 			"componentType":5123,
-			"count":420,
+			"count":36,
 			"type":"SCALAR"
 		}
 	],
 	"bufferViews":[
 		{
 			"buffer":0,
-			"byteLength":2376,
+			"byteLength":288,
 			"byteOffset":0,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":2376,
-			"byteOffset":2376,
+			"byteLength":288,
+			"byteOffset":288,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":1584,
-			"byteOffset":4752,
+			"byteLength":192,
+			"byteOffset":576,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":840,
-			"byteOffset":6336,
+			"byteLength":72,
+			"byteOffset":768,
 			"target":34963
 		}
 	],
 	"buffers":[
 		{
-			"byteLength":7176,
-			"uri":"shelfBTest.bin"
+			"byteLength":840,
+			"uri":"shelfA32Cleat.bin"
 		}
 	]
 }
