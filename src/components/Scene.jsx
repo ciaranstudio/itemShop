@@ -444,7 +444,7 @@ export default function Scene({
   // });
 
   const stagePositionY = 0;
-  const animDist = 5;
+  const animDist = 3;
   const jumpDist = 0;
 
   return (
@@ -457,8 +457,8 @@ export default function Scene({
         ref={orbitRef}
         enableZoom={true}
         enablePan={true}
-        maxDistance={900}
-        minDistance={20}
+        maxDistance={600}
+        minDistance={60}
         maxPolarAngle={Math.PI / 2 - Math.PI / 16}
         enableDamping={true}
       />
