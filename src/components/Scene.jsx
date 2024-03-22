@@ -475,8 +475,8 @@ export default function Scene({
         ref={orbitRef}
         enableZoom={true}
         enablePan={true}
-        maxDistance={600}
-        minDistance={0} // 60
+        maxDistance={15}
+        minDistance={0.2} // 60
         // maxPolarAngle={Math.PI / 2 - Math.PI / 16}
         enableDamping={true}
       />
