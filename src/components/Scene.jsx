@@ -373,8 +373,8 @@ export default function Scene({
     if (currentItemSelected.name !== "noSelect") {
       let tl = gsap.timeline();
       tl.to(controlsTargetVec, {
-        delay: 0.05,
-        duration: 1,
+        delay: 0.15,
+        duration: 1.5,
         // x: 10,
         x: currentItemSelected.position.x,
         y: currentItemSelected.position.y,
@@ -446,7 +446,7 @@ export default function Scene({
 
   const stagePositionY = 0;
 
-  const animDist = 0; // 0.1
+  const animDist = 0.05; // 0.1
   const jumpDist = 0;
 
   const dirLightXPosition = 2.5;
@@ -463,7 +463,7 @@ export default function Scene({
   const dirLightCamBottom = -5;
   const dirLightCamTop = 5;
 
-  const ambLightIntensity = 1.25;
+  const ambLightIntensity = 1.5;
 
   return (
     <>
