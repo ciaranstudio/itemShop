@@ -22,7 +22,7 @@ import { Perf } from "r3f-perf";
 import { Floor } from "./room/Floor.jsx";
 import { Walls } from "./room/Walls.jsx";
 
-import { ShelfPositions } from "./room/ShelfPositions.jsx";
+// import { ShelfPositions } from "./room/ShelfPositions.jsx";
 
 import controls from "../helpers/debugControls";
 import { textures } from "../data/textures.jsx";
@@ -446,7 +446,7 @@ export default function Scene({
 
   const stagePositionY = 0;
 
-  const animDist = 0.1; // 0.1
+  const animDist = 0; // 0.1
   const jumpDist = 0;
 
   const dirLightXPosition = 2.5;
@@ -993,9 +993,9 @@ export default function Scene({
         </mesh>
 
         {/* shelfPositions */}
-        <mesh>
+        {/* <mesh>
           <ShelfPositions />
-        </mesh>
+        </mesh> */}
       </group>
       {/* <SoftShadows size={20} samples={5} focus={0} /> */}
     </>

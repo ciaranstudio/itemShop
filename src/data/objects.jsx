@@ -106,7 +106,7 @@ export const objects = {
     50,
     50,
     "16 x 4 x 4", // L x D x H
-    { x: -1.183125, y: 0, z: -0.81125 }, // { x: -118.3125, y: 0, z: -81.125 },
+    { x: -3, y: 0, z: -2.08 }, // { x: -118.3125, y: 0, z: -81.125 },
     [
       new Part("shelf top", "posX", "./models/shelfA16Models/shelfA16Top.gltf"),
       new Part(
@@ -127,7 +127,7 @@ export const objects = {
     50,
     50,
     "32 x 4 x 4", // L x D x H
-    { x: -1.183125, y: 0, z: -0.406 }, //  { x: -118.3125, y: 0, z: -40.6 },
+    { x: -3, y: 0, z: -1.0625 }, //  { x: -118.3125, y: 0, z: -40.6 },
     [
       new Part("shelf top", "posX", "./models/shelfA32Models/shelfA32Top.gltf"),
       new Part(
@@ -148,7 +148,7 @@ export const objects = {
     50,
     50,
     "16 x 4 x 4", // L x D x H
-    { x: 0.33685, y: 0, z: 1.1825 }, //  { x: 33.685, y: 0, z: 118.25 },
+    { x: 0.86, y: 0, z: 3 }, //  { x: 33.685, y: 0, z: 118.25 },
     [
       new Part("shelf top", "negZ", "./models/shelfB16Models/shelfB16Top.gltf"),
       new Part(
@@ -174,7 +174,7 @@ export const objects = {
     50,
     50,
     "32 x 4 x 4", // L x D x H
-    { x: 0.73685, y: 0, z: 1.1825 }, // { x: 73.685, y: 0, z: 118.25 },
+    { x: 1.8775, y: 0, z: 3 }, // { x: 73.685, y: 0, z: 118.25 },
     [
       new Part("shelf top", "negZ", "./models/shelfB32Models/shelfB32Top.gltf"),
       new Part(
