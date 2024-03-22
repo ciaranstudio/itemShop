@@ -17,6 +17,7 @@ export const Floor = ({
   // map.minFilter = THREE.LinearFilter;
   // map.magFilter = THREE.NearestFilter;
   // map.colorSpace = THREE.SRGBColorSpace;
+
   map.wrapS = THREE.RepeatWrapping;
   map.wrapT = THREE.RepeatWrapping;
   map.repeat.set(6, 6);
@@ -31,12 +32,14 @@ export const Floor = ({
 
   // normalMap.minFilter = THREE.LinearFilter;
   // normalMap.magFilter = THREE.NearestFilter;
+
   normalMap.wrapS = THREE.RepeatWrapping;
   normalMap.wrapT = THREE.RepeatWrapping;
   normalMap.repeat.set(6, 6);
 
   // roughnessMap.minFilter = THREE.LinearFilter;
   // roughnessMap.magFilter = THREE.NearestFilter;
+
   roughnessMap.wrapS = THREE.RepeatWrapping;
   roughnessMap.wrapT = THREE.RepeatWrapping;
   roughnessMap.repeat.set(6, 6);

@@ -15,17 +15,22 @@
 	"nodes":[
 		{
 			"mesh":0,
-			"name":"grampsLegA",
+			"name":"grampsLeg1",
 			"rotation":[
 				0,
-				1,
+				0.7071066498756409,
 				0,
-				7.549790126404332e-08
+				0.70710688829422
+			],
+			"scale":[
+				0.025400014594197273,
+				0.025400014594197273,
+				0.025400014594197273
 			],
 			"translation":[
-				0.011363447643816471,
-				10.106405258178711,
-				6.532162189483643
+				-0.11430087685585022,
+				0,
+				0.01904994621872902
 			]
 		}
 	],
@@ -47,7 +52,7 @@
 	],
 	"meshes":[
 		{
-			"name":"ID5",
+			"name":"ID5.001",
 			"primitives":[
 				{
 					"attributes":{
@@ -65,29 +70,29 @@
 		{
 			"bufferView":0,
 			"componentType":5126,
-			"count":230,
+			"count":228,
 			"max":[
-				0.7616150379180908,
-				7.143594741821289,
-				2.031965732574463
+				1.5,
+				17.25,
+				4.9737988115075224e-14
 			],
 			"min":[
-				-0.7383849620819092,
-				-10.106405258178711,
-				-1.9366123676300049
+				0,
+				-3.138936051187702e-13,
+				-3.9685781002044678
 			],
 			"type":"VEC3"
 		},
 		{
 			"bufferView":1,
 			"componentType":5126,
-			"count":230,
+			"count":228,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":2,
 			"componentType":5126,
-			"count":230,
+			"count":228,
 			"type":"VEC2"
 		},
 		{
@@ -100,32 +105,32 @@
 	"bufferViews":[
 		{
 			"buffer":0,
-			"byteLength":2760,
+			"byteLength":2736,
 			"byteOffset":0,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":2760,
-			"byteOffset":2760,
+			"byteLength":2736,
+			"byteOffset":2736,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":1840,
-			"byteOffset":5520,
+			"byteLength":1824,
+			"byteOffset":5472,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":828,
-			"byteOffset":7360,
+			"byteOffset":7296,
 			"target":34963
 		}
 	],
 	"buffers":[
 		{
-			"byteLength":8188,
+			"byteLength":8124,
 			"uri":"grampsLeg1.bin"
 		}
 	]

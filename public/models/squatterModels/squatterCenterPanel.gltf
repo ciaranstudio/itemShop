@@ -16,10 +16,15 @@
 		{
 			"mesh":0,
 			"name":"squatterCenterPanel",
+			"scale":[
+				0.02539999969303608,
+				0.02539999969303608,
+				0.02539999969303608
+			],
 			"translation":[
-				0.0002161264419555664,
-				12.47618293762207,
-				0.0055024996399879456
+				-0.010669312439858913,
+				0.2668441832065582,
+				0.19497671723365784
 			]
 		}
 	],
@@ -41,7 +46,7 @@
 	],
 	"meshes":[
 		{
-			"name":"ID145",
+			"name":"ID145.002",
 			"primitives":[
 				{
 					"attributes":{
@@ -59,29 +64,29 @@
 		{
 			"bufferView":0,
 			"componentType":5126,
-			"count":182,
+			"count":178,
 			"max":[
-				0.7499998211860657,
-				2,
-				7.25
+				1.5,
+				4,
+				0
 			],
 			"min":[
-				-0.7500001788139343,
-				-2,
-				-7.25
+				0,
+				0,
+				-14.5
 			],
 			"type":"VEC3"
 		},
 		{
 			"bufferView":1,
 			"componentType":5126,
-			"count":182,
+			"count":178,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":2,
 			"componentType":5126,
-			"count":182,
+			"count":178,
 			"type":"VEC2"
 		},
 		{
@@ -94,32 +99,32 @@
 	"bufferViews":[
 		{
 			"buffer":0,
-			"byteLength":2184,
+			"byteLength":2136,
 			"byteOffset":0,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":2184,
-			"byteOffset":2184,
+			"byteLength":2136,
+			"byteOffset":2136,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":1456,
-			"byteOffset":4368,
+			"byteLength":1424,
+			"byteOffset":4272,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":840,
-			"byteOffset":5824,
+			"byteOffset":5696,
 			"target":34963
 		}
 	],
 	"buffers":[
 		{
-			"byteLength":6664,
+			"byteLength":6536,
 			"uri":"squatterCenterPanel.bin"
 		}
 	]

@@ -1,15 +1,16 @@
 import { useRef, useState, useEffect } from "react";
 import * as THREE from "three";
 // import { CameraHelper } from "three";
-// import { DirectionalLightHelper } from "three";
+import { DirectionalLightHelper } from "three";
 import { useFrame } from "@react-three/fiber";
 
 import {
   OrbitControls,
-  // useHelper,
+  useHelper,
   useTexture,
   useProgress,
   Sky,
+  // SoftShadows,
 } from "@react-three/drei";
 
 import gsap from "gsap";
@@ -21,7 +22,7 @@ import { Perf } from "r3f-perf";
 import { Floor } from "./room/Floor.jsx";
 import { Walls } from "./room/Walls.jsx";
 
-// import { ShelfPositions } from "./room/ShelfPositions.jsx";
+import { ShelfPositions } from "./room/ShelfPositions.jsx";
 
 import controls from "../helpers/debugControls";
 import { textures } from "../data/textures.jsx";
@@ -201,10 +202,10 @@ export default function Scene({
   const shelfB16Ref = useRef();
   const shelfB32Ref = useRef();
 
-  // useHelper(dirLightA, DirectionalLightHelper, 1, "red");
-  // useHelper(dirLightB, DirectionalLightHelper, 1, "blue");
-  // useHelper(dirLightC, DirectionalLightHelper, 1, "green");
-  // useHelper(dirLightD, DirectionalLightHelper, 1, "purple");
+  useHelper(dirLightA, DirectionalLightHelper, 1, "red");
+  useHelper(dirLightB, DirectionalLightHelper, 1, "blue");
+  useHelper(dirLightC, DirectionalLightHelper, 1, "green");
+  useHelper(dirLightD, DirectionalLightHelper, 1, "purple");
 
   const loadingBarElement = document.querySelector(".loading-bar");
   const { active, progress, errors, item, loaded, total } = useProgress();
@@ -444,8 +445,25 @@ export default function Scene({
   // });
 
   const stagePositionY = 0;
-  const animDist = 3;
+
+  const animDist = 0.1; // 0.1
   const jumpDist = 0;
+
+  const dirLightXPosition = 2.5;
+  const dirLightYPosition = 3.6;
+  const dirLightZPosition = -3;
+
+  const dirLightIntensity = 1.5;
+  const dirLightNormBias = 0.04;
+  const dirLightMapSize = 512;
+  const dirLightCamNear = -5;
+  const dirLightCamFar = 8;
+  const dirLightCamLeft = -5;
+  const dirLightCamRight = 5;
+  const dirLightCamBottom = -5;
+  const dirLightCamTop = 5;
+
+  const ambLightIntensity = 1.25;
 
   return (
     <>
@@ -458,82 +476,84 @@ export default function Scene({
         enableZoom={true}
         enablePan={true}
         maxDistance={600}
-        minDistance={60}
-        maxPolarAngle={Math.PI / 2 - Math.PI / 16}
+        minDistance={0} // 60
+        // maxPolarAngle={Math.PI / 2 - Math.PI / 16}
         enableDamping={true}
       />
       <Sky distance={4000000} sunPosition={[1.5, 2, -10]} />
+
+      {/* grampsLight */}
+      <directionalLight
+        castShadow
+        ref={dirLightA}
+        position={[dirLightXPosition, dirLightYPosition, dirLightZPosition]} // {[0, 60, 0]}
+        intensity={dirLightIntensity}
+        shadow-normalBias={dirLightNormBias}
+        shadow-mapSize-width={dirLightMapSize} // 5120
+        shadow-mapSize-height={dirLightMapSize}
+        shadow-camera-near={dirLightCamNear} // 50
+        shadow-camera-far={dirLightCamFar} // 115
+        shadow-camera-left={dirLightCamLeft} // -10
+        shadow-camera-bottom={dirLightCamBottom} // -10
+        shadow-camera-right={dirLightCamRight} // 10
+        shadow-camera-top={dirLightCamTop} // 150
+        target={grampsRef.current}
+      />
+      {/* <pointLight position={[0, 6, 70]} intensity={10} /> */}
+      {/* blockLight */}
+      {/* <directionalLight
+        castShadow
+        ref={dirLightB}
+        position={[0, dirLightYPosition, 0]} // {[0, 60, 0]}
+        intensity={dirLightIntensity}
+        shadow-normalBias={dirLightNormBias}
+        shadow-mapSize-width={dirLightMapSize}
+        shadow-mapSize-height={dirLightMapSize}
+        shadow-camera-near={dirLightCamNear} // 50
+        shadow-camera-far={dirLightCamFar} // 115
+        shadow-camera-left={dirLightCamLeft} // -10
+        shadow-camera-bottom={dirLightCamBottom} // -10
+        shadow-camera-right={dirLightCamRight} // 10
+        shadow-camera-top={dirLightCamTop} // 150
+        target={blockRef.current}
+      /> */}
+      {/* horseLight */}
+      {/* <directionalLight
+        castShadow
+        ref={dirLightC}
+        position={[0, dirLightYPosition, 0]} // {[0, 60, 0]}
+        intensity={dirLightIntensity}
+        shadow-normalBias={dirLightNormBias}
+        shadow-mapSize-width={dirLightMapSize}
+        shadow-mapSize-height={dirLightMapSize}
+        shadow-camera-near={dirLightCamNear} // 50
+        shadow-camera-far={dirLightCamFar} // 115
+        shadow-camera-left={dirLightCamLeft} // -10
+        shadow-camera-bottom={dirLightCamBottom} // -10
+        shadow-camera-right={dirLightCamRight} // 10
+        shadow-camera-top={dirLightCamTop} // 150
+        target={horseRef.current}
+      /> */}
+      {/* squatterLight */}
+      {/* <directionalLight
+        castShadow
+        ref={dirLightD}
+        position={[0, dirLightYPosition, 0]} // {[0, 60, 0]}
+        intensity={dirLightIntensity}
+        shadow-normalBias={dirLightNormBias}
+        shadow-mapSize-width={dirLightMapSize}
+        shadow-mapSize-height={dirLightMapSize}
+        shadow-camera-near={dirLightCamNear} // 50
+        shadow-camera-far={dirLightCamFar} // 115
+        shadow-camera-left={dirLightCamLeft} // -10
+        shadow-camera-bottom={dirLightCamBottom} // -10
+        shadow-camera-right={dirLightCamRight} // 10
+        shadow-camera-top={dirLightCamTop} // 150
+        target={squatterRef.current}
+      /> */}
+
       <group position={[0, stagePositionY, 0]}>
-        <ambientLight intensity={0.75} />
-        {/* grampsLight */}
-        <directionalLight
-          castShadow
-          ref={dirLightA}
-          position={[0, 60, 0]}
-          intensity={2}
-          shadow-normalBias={0.1}
-          shadow-mapSize-width={2048} // 5120
-          shadow-mapSize-height={2048}
-          shadow-camera-near={50} // 50
-          shadow-camera-far={130} // 115
-          shadow-camera-left={-15} // -10
-          shadow-camera-bottom={-10} // -10
-          shadow-camera-right={15} // 10
-          shadow-camera-top={150} // 150
-          target={grampsRef.current}
-        />
-        {/* <pointLight position={[0, 6, 70]} intensity={10} /> */}
-        {/* blockLight */}
-        <directionalLight
-          castShadow
-          ref={dirLightB}
-          position={[0, 60, 0]}
-          intensity={2}
-          shadow-normalBias={0.1}
-          shadow-mapSize-width={2048}
-          shadow-mapSize-height={2048}
-          shadow-camera-near={50} // 50
-          shadow-camera-far={130} // 115
-          shadow-camera-left={-15} // -10
-          shadow-camera-bottom={-10} // -10
-          shadow-camera-right={15} // 10
-          shadow-camera-top={150} // 150
-          target={blockRef.current}
-        />
-        {/* horseLight */}
-        <directionalLight
-          castShadow
-          ref={dirLightC}
-          position={[0, 60, 0]}
-          intensity={2}
-          shadow-normalBias={0.1}
-          shadow-mapSize-width={2048}
-          shadow-mapSize-height={2048}
-          shadow-camera-near={50} // 50
-          shadow-camera-far={135} // 115
-          shadow-camera-left={-25} // -10
-          shadow-camera-bottom={-10} // -10
-          shadow-camera-right={25} // 10
-          shadow-camera-top={150} // 150
-          target={horseRef.current}
-        />
-        {/* squatterLight */}
-        <directionalLight
-          castShadow
-          ref={dirLightD}
-          position={[0, 60, 0]}
-          intensity={2}
-          shadow-normalBias={0.1}
-          shadow-mapSize-width={2048}
-          shadow-mapSize-height={2048}
-          shadow-camera-near={50} // 50
-          shadow-camera-far={130} // 115
-          shadow-camera-left={-15} // -10
-          shadow-camera-bottom={-10} // -10
-          shadow-camera-right={15} // 10
-          shadow-camera-top={150} // 150
-          target={squatterRef.current}
-        />
+        <ambientLight intensity={ambLightIntensity} />
 
         {/* gramps */}
         <group
@@ -945,7 +965,7 @@ export default function Scene({
         </group>
 
         {/* floor */}
-        <mesh visible={showBackground}>
+        <mesh visible={showBackground} position={[0, -0.498, 0]}>
           <Floor
             displacementMap={displacementMapFloor}
             aoMap={aoMapFloor}
@@ -973,10 +993,11 @@ export default function Scene({
         </mesh>
 
         {/* shelfPositions */}
-        {/* <mesh >
-            <ShelfPositions />
-          </mesh> */}
+        <mesh>
+          <ShelfPositions />
+        </mesh>
       </group>
+      {/* <SoftShadows size={20} samples={5} focus={0} /> */}
     </>
   );
 }
