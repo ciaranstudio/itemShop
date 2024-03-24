@@ -1,19 +1,28 @@
 import React, { useLayoutEffect } from "react";
-import { useGLTF } from "@react-three/drei";
+import { useGLTF, useTexture } from "@react-three/drei";
 
 export const ItemPart = ({
-  map,
-  // displacementMap,
-  normalMap,
-  roughnessMap,
-  metalnessMap,
-  // aoMap,
+  // map,
+  // // displacementMap,
+  // normalMap,
+  // roughnessMap,
+  // metalnessMap,
+  // // aoMap,
   currentColor,
   currentTexture,
   model,
   animationType,
 }) => {
   const { scene, nodes, materials } = useGLTF(model);
+
+  const [
+    map,
+    // displacementMap,
+    normalMap,
+    roughnessMap,
+    metalnessMap,
+    // aoMap,
+  ] = useTexture(currentTexture);
 
   useLayoutEffect(() => {
     Object.assign(materials.Material, {

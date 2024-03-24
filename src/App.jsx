@@ -13,6 +13,8 @@ import { unselectedItem } from "./data/objects.jsx";
 import "./style.css";
 import { SnipcartProvider } from "use-snipcart";
 
+import { useOptionStore } from "./store/useOptionStore.tsx";
+
 function App() {
   const [open, setOpen] = useState(false);
   const [toggled, setToggled] = useState(false);
@@ -45,6 +47,13 @@ function App() {
     useState("");
   const [currentItemOptionSelectShelfB32, setCurrentItemOptionSelectShelfB32] =
     useState("");
+
+  const grampsTopColor = useOptionStore(
+    (state) => state.items.gramps.parts.top.color,
+  );
+  const grampsTopTexture = useOptionStore(
+    (state) => state.items.gramps.parts.top.texture,
+  );
 
   const [currentTextureGramps, setCurrentTextureGramps] = useState(
     textures.paintedTexture,
@@ -103,6 +112,8 @@ function App() {
   );
 
   useEffect(() => {
+    console.log("grampsTopColor: ", grampsTopColor);
+    console.log("grampsTopTexture: ", grampsTopTexture);
     setCurrentItemDescription(currentItemSelected.itemDescription);
     if (currentItemSelected.itemName === "gramps") {
       setCurrentItemOptionSelect(currentItemOptionSelectGramps);

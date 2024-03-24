@@ -1,20 +1,23 @@
 import React, { useLayoutEffect } from "react";
-import { useGLTF } from "@react-three/drei";
+import { useGLTF, useTexture } from "@react-three/drei";
 import * as THREE from "three";
 
 export const Floor = ({
-  map,
-  displacementMap,
-  normalMap,
-  roughnessMap,
-  metalnessMap,
-  aoMap,
+  // map,
+  // displacementMap,
+  // normalMap,
+  // roughnessMap,
+  // metalnessMap,
+  // aoMap,
   currentColor,
-  // currentTexture,
+  currentTexture,
 }) => {
   const { scene, nodes, materials } = useGLTF("./models/floor.gltf");
-  const repeatVal = 3;
 
+  const [map, displacementMap, normalMap, roughnessMap, metalnessMap, aoMap] =
+    useTexture(currentTexture);
+
+  const repeatVal = 3;
   // map.minFilter = THREE.LinearFilter;
   // map.magFilter = THREE.NearestFilter;
   // map.colorSpace = THREE.SRGBColorSpace;

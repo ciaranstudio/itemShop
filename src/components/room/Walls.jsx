@@ -1,25 +1,35 @@
 import React, { useLayoutEffect } from "react";
-import { useGLTF } from "@react-three/drei";
+import { useGLTF, useTexture } from "@react-three/drei";
 import * as THREE from "three";
 
 export const Walls = ({
-  map,
-  // displacementMap,
-  normalMap,
-  roughnessMap,
-  metalnessMap,
-  // aoMap,
+  // map,
+  // // displacementMap,
+  // normalMap,
+  // roughnessMap,
+  // metalnessMap,
+  // // aoMap,
   currentColor,
-  // currentTexture,
+  currentTexture,
 }) => {
   const { scene, nodes, materials } = useGLTF("./models/walls.gltf");
 
+  const [
+    map,
+    // displacementMap,
+    normalMap,
+    roughnessMap,
+    metalnessMap,
+    // aoMap,
+  ] = useTexture(currentTexture);
+
+  const repeatVal = 8;
   // map.minFilter = THREE.LinearFilter;
   // map.magFilter = THREE.NearestFilter;
   // map.colorSpace = THREE.SRGBColorSpace;
   map.wrapS = THREE.RepeatWrapping;
   map.wrapT = THREE.RepeatWrapping;
-  map.repeat.set(8, 8);
+  map.repeat.set(repeatVal, repeatVal);
 
   // displacementMap.wrapS = THREE.RepeatWrapping;
   // displacementMap.wrapT = THREE.RepeatWrapping;
@@ -33,13 +43,13 @@ export const Walls = ({
   // normalMap.magFilter = THREE.NearestFilter;
   normalMap.wrapS = THREE.RepeatWrapping;
   normalMap.wrapT = THREE.RepeatWrapping;
-  normalMap.repeat.set(8, 8);
+  normalMap.repeat.set(repeatVal, repeatVal);
 
   // roughnessMap.minFilter = THREE.LinearFilter;
   // roughnessMap.magFilter = THREE.NearestFilter;
   roughnessMap.wrapS = THREE.RepeatWrapping;
   roughnessMap.wrapT = THREE.RepeatWrapping;
-  roughnessMap.repeat.set(8, 8);
+  roughnessMap.repeat.set(repeatVal, repeatVal);
 
   useLayoutEffect(() => {
     Object.assign(materials.Material, {

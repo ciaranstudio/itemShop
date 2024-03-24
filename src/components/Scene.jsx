@@ -16,7 +16,7 @@ import {
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
-import { useCursor } from "@react-three/drei";
+import { useCursor, Html } from "@react-three/drei";
 import { Perf } from "r3f-perf";
 
 import { Floor } from "./room/Floor.jsx";
@@ -26,11 +26,14 @@ import { Walls } from "./room/Walls.jsx";
 
 import controls from "../helpers/debugControls";
 import { textures } from "../data/textures.jsx";
+import { options } from "../data/options.jsx";
 import { objects } from "../data/objects.jsx";
 import { shopItems } from "../data/objects.jsx";
 
 // import Block from "./Block.jsx";
 import { ItemPart } from "./ItemPart.jsx";
+
+import { useOptionStore } from "../store/useOptionStore.tsx";
 
 export default function Scene({
   open,
@@ -107,91 +110,91 @@ export default function Scene({
     // aoMapPainted,
   ] = useTexture(textures.paintedTexture);
 
-  const [
-    colorMapFloor,
-    displacementMapFloor,
-    normalMapFloor,
-    roughnessMapFloor,
-    metalnessMapFloor,
-    aoMapFloor,
-  ] = useTexture(textures.woodFloorWornPlanksTexture);
+  // const [
+  //   colorMapFloor,
+  //   displacementMapFloor,
+  //   normalMapFloor,
+  //   roughnessMapFloor,
+  //   metalnessMapFloor,
+  //   aoMapFloor,
+  // ] = useTexture(textures.woodFloorWornPlanksTexture);
 
-  const [
-    colorMapGramps,
-    // displacementMapGramps,
-    normalMapGramps,
-    roughnessMapGramps,
-    metalnessMapGramps,
-    // aoMapGramps,
-  ] = useTexture(currentTextureGramps);
+  // const [
+  //   colorMapGramps,
+  //   // displacementMapGramps,
+  //   normalMapGramps,
+  //   roughnessMapGramps,
+  //   metalnessMapGramps,
+  //   // aoMapGramps,
+  // ] = useTexture(currentTextureGramps);
 
-  const [
-    colorMapSquatter,
-    // displacementMapSquatter,
-    normalMapSquatter,
-    roughnessMapSquatter,
-    metalnessMapSquatter,
-    // aoMapSquatter,
-  ] = useTexture(currentTextureSquatter);
+  // const [
+  //   colorMapSquatter,
+  //   // displacementMapSquatter,
+  //   normalMapSquatter,
+  //   roughnessMapSquatter,
+  //   metalnessMapSquatter,
+  //   // aoMapSquatter,
+  // ] = useTexture(currentTextureSquatter);
 
-  const [
-    colorMapBlock,
-    // displacementMapBlock,
-    normalMapBlock,
-    roughnessMapBlock,
-    metalnessMapBlock,
-    // aoMapBlock,
-  ] = useTexture(currentTextureBlock);
+  // const [
+  //   colorMapBlock,
+  //   // displacementMapBlock,
+  //   normalMapBlock,
+  //   roughnessMapBlock,
+  //   metalnessMapBlock,
+  //   // aoMapBlock,
+  // ] = useTexture(currentTextureBlock);
 
-  const [
-    colorMapHorse,
-    // displacementMapHorse,
-    normalMapHorse,
-    roughnessMapHorse,
-    metalnessMapHorse,
-    // aoMapHorse,
-  ] = useTexture(currentTextureHorse);
+  // const [
+  //   colorMapHorse,
+  //   // displacementMapHorse,
+  //   normalMapHorse,
+  //   roughnessMapHorse,
+  //   metalnessMapHorse,
+  //   // aoMapHorse,
+  // ] = useTexture(currentTextureHorse);
 
-  const [
-    colorMapShelfA16,
-    // displacementMapShelfA16,
-    normalMapShelfA16,
-    roughnessMapShelfA16,
-    metalnessMapShelfA16,
-    // aoMapShelfA16,
-  ] = useTexture(currentTextureShelfA16);
+  // const [
+  //   colorMapShelfA16,
+  //   // displacementMapShelfA16,
+  //   normalMapShelfA16,
+  //   roughnessMapShelfA16,
+  //   metalnessMapShelfA16,
+  //   // aoMapShelfA16,
+  // ] = useTexture(currentTextureShelfA16);
 
-  const [
-    colorMapShelfA32,
-    // displacementMapShelfA32,
-    normalMapShelfA32,
-    roughnessMapShelfA32,
-    metalnessMapShelfA32,
-    // aoMapShelfA32,
-  ] = useTexture(currentTextureShelfA32);
+  // const [
+  //   colorMapShelfA32,
+  //   // displacementMapShelfA32,
+  //   normalMapShelfA32,
+  //   roughnessMapShelfA32,
+  //   metalnessMapShelfA32,
+  //   // aoMapShelfA32,
+  // ] = useTexture(currentTextureShelfA32);
 
-  const [
-    colorMapShelfB16,
-    // displacementMapShelfB16,
-    normalMapShelfB16,
-    roughnessMapShelfB16,
-    metalnessMapShelfB16,
-    // aoMapShelfB16,
-  ] = useTexture(currentTextureShelfB16);
+  // const [
+  //   colorMapShelfB16,
+  //   // displacementMapShelfB16,
+  //   normalMapShelfB16,
+  //   roughnessMapShelfB16,
+  //   metalnessMapShelfB16,
+  //   // aoMapShelfB16,
+  // ] = useTexture(currentTextureShelfB16);
 
-  const [
-    colorMapShelfB32,
-    // displacementMapShelfB32,
-    normalMapShelfB32,
-    roughnessMapShelfB32,
-    metalnessMapShelfB32,
-    // aoMapShelfB32,
-  ] = useTexture(currentTextureShelfB32);
+  // const [
+  //   colorMapShelfB32,
+  //   // displacementMapShelfB32,
+  //   normalMapShelfB32,
+  //   roughnessMapShelfB32,
+  //   metalnessMapShelfB32,
+  //   // aoMapShelfB32,
+  // ] = useTexture(currentTextureShelfB32);
 
   const dirLightA = useRef();
-  const dirLightB = useRef();
-  const dirLightC = useRef();
-  const dirLightD = useRef();
+  // const dirLightB = useRef();
+  // const dirLightC = useRef();
+  // const dirLightD = useRef();
 
   const grampsRef = useRef();
   const squatterRef = useRef();
@@ -203,9 +206,9 @@ export default function Scene({
   const shelfB32Ref = useRef();
 
   useHelper(dirLightA, DirectionalLightHelper, 1, "red");
-  useHelper(dirLightB, DirectionalLightHelper, 1, "blue");
-  useHelper(dirLightC, DirectionalLightHelper, 1, "green");
-  useHelper(dirLightD, DirectionalLightHelper, 1, "purple");
+  // useHelper(dirLightB, DirectionalLightHelper, 1, "blue");
+  // useHelper(dirLightC, DirectionalLightHelper, 1, "green");
+  // useHelper(dirLightD, DirectionalLightHelper, 1, "purple");
 
   const loadingBarElement = document.querySelector(".loading-bar");
   const { active, progress, errors, item, loaded, total } = useProgress();
@@ -288,16 +291,21 @@ export default function Scene({
     }
   };
 
+  const updatePartColor = useOptionStore((state) => state.updatePartColor);
+  const updatePartTexture = useOptionStore((state) => state.updatePartTexture);
+
   const handleDoubleClick = (e) => {
     e.stopPropagation();
     setOpen(true);
     setShowBackground(!showBackground);
+    updatePartColor("gramps", "top", textures.blackStain);
+    updatePartTexture("gramps", "top", textures.blackTexture);
   };
 
   const handleOffClick = (e) => {
     e.stopPropagation();
     // console.log("onPointerMissed click");
-    setShowBackground(true);
+    // setShowBackground(true);
   };
 
   const orbitRef = useRef();
@@ -465,6 +473,9 @@ export default function Scene({
 
   const ambLightIntensity = 1.5;
 
+  const [currentPartName, setCurrentPartName] = useState("");
+  const [currentItemName, setCurrentItemName] = useState("");
+
   return (
     <>
       {debugControls.perfVisible && <Perf position="top-left" />}
@@ -569,39 +580,64 @@ export default function Scene({
           onDoubleClick={handleDoubleClick}
           onPointerMissed={handleOffClick}
         >
-          {objects.gramps.parts.map((part) => {
+          {objects.gramps.parts.map((part, index) => {
             return (
-              <mesh
-                key={part.partName}
-                position={
-                  part.animation === "negX"
-                    ? [-animDist, 0, 0]
-                    : part.animation === "posX"
-                      ? [animDist, 0, 0]
-                      : part.animation === "negZ"
-                        ? [0, 0, -animDist]
-                        : part.animation === "posZ"
-                          ? [0, 0, animDist]
-                          : part.animation === "posY1"
-                            ? [0, animDist, 0]
-                            : part.animation === "posY2"
-                              ? [0, animDist + animDist / 2, 0]
-                              : [0, 0, 0]
-                }
-              >
-                <ItemPart
-                  // displacementMap={displacementMap}
-                  // aoMap={aoMap}
-                  map={colorMapGramps}
-                  normalMap={normalMapGramps}
-                  roughnessMap={roughnessMapGramps}
-                  metalnessMap={metalnessMapGramps}
-                  currentColor={currentColorGramps}
-                  currentTexture={currentTextureGramps}
-                  model={part.model}
-                  animationType={part.animation}
-                />
-              </mesh>
+              <group key={part.partName}>
+                <mesh
+                  // key={part.partName}
+                  position={
+                    part.animation === "negX"
+                      ? [-animDist, 0, 0]
+                      : part.animation === "posX"
+                        ? [animDist, 0, 0]
+                        : part.animation === "negZ"
+                          ? [0, 0, -animDist]
+                          : part.animation === "posZ"
+                            ? [0, 0, animDist]
+                            : part.animation === "posY1"
+                              ? [0, animDist, 0]
+                              : part.animation === "posY2"
+                                ? [0, animDist + animDist / 2, 0]
+                                : [0, 0, 0]
+                  }
+                  onClick={() => {
+                    console.log(part.itemName, part.partName, " clicked");
+                    setCurrentItemName(part.itemName);
+                    setCurrentPartName(part.partName);
+                  }}
+                >
+                  <ItemPart
+                    // displacementMap={displacementMap}
+                    // aoMap={aoMap}
+                    // map={colorMapGramps}
+                    // normalMap={normalMapGramps}
+                    // roughnessMap={roughnessMapGramps}
+                    // metalnessMap={metalnessMapGramps}
+                    currentColor={currentColorGramps}
+                    currentTexture={currentTextureGramps}
+                    model={part.model}
+                    animationType={part.animation}
+                  />
+                </mesh>
+                <Html
+                  style={{
+                    transition: "all 0.5s",
+                    opacity:
+                      currentItemName === part.itemName &&
+                      currentPartName === part.partName
+                        ? 1
+                        : 0,
+                    transform: `scale(${currentPartName === part.partName ? 1 : 0.5})`,
+                  }}
+                >
+                  {options.stains.map((stain) => {
+                    return <button>{stain}</button>;
+                  })}
+                  {options.paints.map((paint) => {
+                    return <button>{paint}</button>;
+                  })}
+                </Html>
+              </group>
             );
           })}
         </group>
@@ -642,10 +678,10 @@ export default function Scene({
                 }
               >
                 <ItemPart
-                  map={colorMapBlock}
-                  normalMap={normalMapBlock}
-                  roughnessMap={roughnessMapBlock}
-                  metalnessMap={metalnessMapBlock}
+                  // map={colorMapBlock}
+                  // normalMap={normalMapBlock}
+                  // roughnessMap={roughnessMapBlock}
+                  // metalnessMap={metalnessMapBlock}
                   currentColor={currentColorBlock}
                   currentTexture={currentTextureBlock}
                   model={part.model}
@@ -694,10 +730,10 @@ export default function Scene({
                 <ItemPart
                   // displacementMap={displacementMapHorse}
                   // aoMap={aoMapHorse}
-                  map={colorMapHorse}
-                  normalMap={normalMapHorse}
-                  roughnessMap={roughnessMapHorse}
-                  metalnessMap={metalnessMapHorse}
+                  // map={colorMapHorse}
+                  // normalMap={normalMapHorse}
+                  // roughnessMap={roughnessMapHorse}
+                  // metalnessMap={metalnessMapHorse}
                   currentColor={currentColorHorse}
                   currentTexture={currentTextureHorse}
                   model={part.model}
@@ -746,10 +782,10 @@ export default function Scene({
                 <ItemPart
                   // displacementMap={displacementMapSquatter}
                   // aoMap={aoMapSquatter}
-                  map={colorMapSquatter}
-                  normalMap={normalMapSquatter}
-                  roughnessMap={roughnessMapSquatter}
-                  metalnessMap={metalnessMapSquatter}
+                  // map={colorMapSquatter}
+                  // normalMap={normalMapSquatter}
+                  // roughnessMap={roughnessMapSquatter}
+                  // metalnessMap={metalnessMapSquatter}
                   currentColor={currentColorSquatter}
                   currentTexture={currentTextureSquatter}
                   model={part.model}
@@ -797,10 +833,10 @@ export default function Scene({
                 <ItemPart
                   // displacementMap={displacementMapShelfA16}
                   // aoMap={aoMapShelfA16}
-                  map={colorMapShelfA16}
-                  normalMap={normalMapShelfA16}
-                  roughnessMap={roughnessMapShelfA16}
-                  metalnessMap={metalnessMapShelfA16}
+                  // map={colorMapShelfA16}
+                  // normalMap={normalMapShelfA16}
+                  // roughnessMap={roughnessMapShelfA16}
+                  // metalnessMap={metalnessMapShelfA16}
                   currentColor={currentColorShelfA16}
                   currentTexture={currentTextureShelfA16}
                   model={part.model}
@@ -848,10 +884,10 @@ export default function Scene({
                 <ItemPart
                   // displacementMap={displacementMapShelfA32}
                   // aoMap={aoMapShelfA32}
-                  map={colorMapShelfA32}
-                  normalMap={normalMapShelfA32}
-                  roughnessMap={roughnessMapShelfA32}
-                  metalnessMap={metalnessMapShelfA32}
+                  // map={colorMapShelfA32}
+                  // normalMap={normalMapShelfA32}
+                  // roughnessMap={roughnessMapShelfA32}
+                  // metalnessMap={metalnessMapShelfA32}
                   currentColor={currentColorShelfA32}
                   currentTexture={currentTextureShelfA32}
                   model={part.model}
@@ -899,10 +935,10 @@ export default function Scene({
                 <ItemPart
                   // displacementMap={displacementMapShelfB16}
                   // aoMap={aoMapShelfB16}
-                  map={colorMapShelfB16}
-                  normalMap={normalMapShelfB16}
-                  roughnessMap={roughnessMapShelfB16}
-                  metalnessMap={metalnessMapShelfB16}
+                  // map={colorMapShelfB16}
+                  // normalMap={normalMapShelfB16}
+                  // roughnessMap={roughnessMapShelfB16}
+                  // metalnessMap={metalnessMapShelfB16}
                   currentColor={currentColorShelfB16}
                   currentTexture={currentTextureShelfB16}
                   model={part.model}
@@ -950,10 +986,10 @@ export default function Scene({
                 <ItemPart
                   // displacementMap={displacementMapShelfB32}
                   // aoMap={aoMapShelfB32}
-                  map={colorMapShelfB32}
-                  normalMap={normalMapShelfB32}
-                  roughnessMap={roughnessMapShelfB32}
-                  metalnessMap={metalnessMapShelfB32}
+                  // map={colorMapShelfB32}
+                  // normalMap={normalMapShelfB32}
+                  // roughnessMap={roughnessMapShelfB32}
+                  // metalnessMap={metalnessMapShelfB32}
                   currentColor={currentColorShelfB32}
                   currentTexture={currentTextureShelfB32}
                   model={part.model}
@@ -967,14 +1003,14 @@ export default function Scene({
         {/* floor */}
         <mesh visible={showBackground} position={[0, -0.498, 0]}>
           <Floor
-            displacementMap={displacementMapFloor}
-            aoMap={aoMapFloor}
-            map={colorMapFloor}
-            normalMap={normalMapFloor}
-            roughnessMap={roughnessMapFloor}
-            metalnessMap={metalnessMapFloor}
+            // displacementMap={displacementMapFloor}
+            // aoMap={aoMapFloor}
+            // map={colorMapFloor}
+            // normalMap={normalMapFloor}
+            // roughnessMap={roughnessMapFloor}
+            // metalnessMap={metalnessMapFloor}
             currentColor={textures.whiteStain}
-            // currentTexture={currentTextureFloor}
+            currentTexture={textures.woodFloorWornPlanksTexture}
           />
         </mesh>
 
@@ -983,12 +1019,12 @@ export default function Scene({
           <Walls
             // displacementMap={displacementMapPainted}
             // aoMap={aoMapPainted}
-            map={colorMapPainted}
-            normalMap={normalMapPainted}
-            roughnessMap={roughnessMapPainted}
-            metalnessMap={metalnessMapPainted}
+            // map={colorMapPainted}
+            // normalMap={normalMapPainted}
+            // roughnessMap={roughnessMapPainted}
+            // metalnessMap={metalnessMapPainted}
             currentColor={textures.whiteStain}
-            // currentTexture={currentTextureWalls}
+            currentTexture={textures.paintedTexture}
           />
         </mesh>
 
