@@ -530,7 +530,7 @@ function App() {
           />
         </Suspense>
       </Canvas>
-      <SnipcartProvider>
+      {/* <SnipcartProvider>
         <SelectMenu
           toggled={toggled}
           setToggled={setToggled}
@@ -546,7 +546,7 @@ function App() {
           currentItemOptionType={currentItemOptionType}
           currentItemDescription={currentItemDescription}
         />
-      </SnipcartProvider>
+      </SnipcartProvider> */}
     </>
   );
 }

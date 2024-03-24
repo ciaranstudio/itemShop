@@ -205,7 +205,7 @@ export default function Scene({
   const shelfB16Ref = useRef();
   const shelfB32Ref = useRef();
 
-  useHelper(dirLightA, DirectionalLightHelper, 1, "red");
+  // useHelper(dirLightA, DirectionalLightHelper, 1, "red");
   // useHelper(dirLightB, DirectionalLightHelper, 1, "blue");
   // useHelper(dirLightC, DirectionalLightHelper, 1, "green");
   // useHelper(dirLightD, DirectionalLightHelper, 1, "purple");
@@ -263,6 +263,7 @@ export default function Scene({
   const debugControls = controls();
   const [initialLoad, setInitialLoad] = useState(false);
   const [showBackground, setShowBackground] = useState(true);
+  const [showPartOptions, setShowPartOptions] = useState(false);
   const [controlsDragging, setControlsDragging] = useState(false);
   // const [cameraPosition, setCameraPosition] = useState(null);
 
@@ -291,19 +292,15 @@ export default function Scene({
     }
   };
 
-  const updatePartColor = useOptionStore((state) => state.updatePartColor);
-  const updatePartTexture = useOptionStore((state) => state.updatePartTexture);
-
   const handleDoubleClick = (e) => {
     e.stopPropagation();
     setOpen(true);
     setShowBackground(!showBackground);
-    updatePartColor("gramps", "top", textures.blackStain);
-    updatePartTexture("gramps", "top", textures.blackTexture);
   };
 
   const handleOffClick = (e) => {
     e.stopPropagation();
+    setShowPartOptions(false);
     // console.log("onPointerMissed click");
     // setShowBackground(true);
   };
@@ -454,7 +451,7 @@ export default function Scene({
 
   const stagePositionY = 0;
 
-  const animDist = 0.05; // 0.1
+  const animDist = 0; // 0.1
   const jumpDist = 0;
 
   const dirLightXPosition = 2.5;
@@ -473,8 +470,73 @@ export default function Scene({
 
   const ambLightIntensity = 1.5;
 
-  const [currentPartName, setCurrentPartName] = useState("");
-  const [currentItemName, setCurrentItemName] = useState("");
+  const [currentPartName, setCurrentPartName] = useState("top");
+  const [currentItemName, setCurrentItemName] = useState("gramps");
+
+  const currentPartColorName = useOptionStore(
+    (state) => state.items[currentItemName].parts[currentPartName].colorName,
+  );
+  const updatePartColor = useOptionStore((state) => state.updatePartColor);
+  const updatePartColorName = useOptionStore(
+    (state) => state.updatePartColorName,
+  );
+  const updatePartTexture = useOptionStore((state) => state.updatePartTexture);
+  // const grampsTopColor = useOptionStore(
+  //   (state) => state.items.gramps.parts.top.color,
+  // );
+  // const grampsTopTexture = useOptionStore(
+  //   (state) => state.items.gramps.parts.top.texture,
+  // );
+
+  const handlePartOption = (itemName, partName, color) => {
+    // console.log("handlePartOption event: ", e);
+
+    console.log("itemName: ", itemName);
+    console.log("partName: ", partName);
+    console.log("color clicked: ", color);
+    console.log("currentPartColorName: ", currentPartColorName);
+    if (color === "white") {
+      updatePartTexture(itemName, partName, textures.whiteTexture);
+      updatePartColor(itemName, partName, textures.whiteStain);
+      updatePartColorName(itemName, partName, "white");
+    } else if (color === "natural") {
+      updatePartTexture(itemName, partName, textures.naturalTexture);
+      updatePartColor(itemName, partName, textures.naturalStain);
+      updatePartColorName(itemName, partName, "natural");
+    } else if (color === "black") {
+      updatePartTexture(itemName, partName, textures.blackTexture);
+      updatePartColor(itemName, partName, textures.blackStain);
+      updatePartColorName(itemName, partName, "black");
+    } else if (color === "allBlack") {
+      updatePartTexture(itemName, partName, textures.allBlackTexture);
+      updatePartColor(itemName, partName, textures.allBlackStain);
+      updatePartColorName(itemName, partName, "allBlack");
+    } else if (color === "alabaster") {
+      updatePartTexture(itemName, partName, textures.paintedTexture);
+      updatePartColor(itemName, partName, textures.alabasterPaint);
+      updatePartColorName(itemName, partName, "alabaster");
+    } else if (color === "pink") {
+      updatePartTexture(itemName, partName, textures.paintedTexture);
+      updatePartColor(itemName, partName, textures.pinkPaint);
+      updatePartColorName(itemName, partName, "pink");
+    } else if (color === "basil") {
+      updatePartTexture(itemName, partName, textures.paintedTexture);
+      updatePartColor(itemName, partName, textures.basilPaint);
+      updatePartColorName(itemName, partName, "basil");
+    } else if (color === "yellow") {
+      updatePartTexture(itemName, partName, textures.paintedTexture);
+      updatePartColor(itemName, partName, textures.yellowPaint);
+      updatePartColorName(itemName, partName, "yellow");
+    } else if (color === "blue") {
+      updatePartTexture(itemName, partName, textures.paintedTexture);
+      updatePartColor(itemName, partName, textures.bluePaint);
+      updatePartColorName(itemName, partName, "blue");
+    } else if (color === "gray") {
+      updatePartTexture(itemName, partName, textures.paintedTexture);
+      updatePartColor(itemName, partName, textures.grayPaint);
+      updatePartColorName(itemName, partName, "gray");
+    }
+  };
 
   return (
     <>
@@ -563,7 +625,7 @@ export default function Scene({
         target={squatterRef.current}
       /> */}
 
-      <group position={[0, stagePositionY, 0]}>
+      <group position={[0, stagePositionY, 0]} onPointerMissed={handleOffClick}>
         <ambientLight intensity={ambLightIntensity} />
 
         {/* gramps */}
@@ -578,7 +640,7 @@ export default function Scene({
           onPointerOut={() => hover(false)}
           onClick={handleClick}
           onDoubleClick={handleDoubleClick}
-          onPointerMissed={handleOffClick}
+          // onPointerMissed={handleOffClick}
         >
           {objects.gramps.parts.map((part, index) => {
             return (
@@ -604,6 +666,7 @@ export default function Scene({
                     console.log(part.itemName, part.partName, " clicked");
                     setCurrentItemName(part.itemName);
                     setCurrentPartName(part.partName);
+                    setShowPartOptions(true);
                   }}
                 >
                   <ItemPart
@@ -616,7 +679,9 @@ export default function Scene({
                     currentColor={currentColorGramps}
                     currentTexture={currentTextureGramps}
                     model={part.model}
-                    animationType={part.animation}
+                    // animationType={part.animation}
+                    itemName={part.itemName}
+                    partName={part.partName}
                   />
                 </mesh>
                 <Html
@@ -627,14 +692,54 @@ export default function Scene({
                       currentPartName === part.partName
                         ? 1
                         : 0,
+                    display:
+                      currentItemName === part.itemName &&
+                      currentPartName === part.partName &&
+                      showPartOptions
+                        ? "block"
+                        : "none",
                     transform: `scale(${currentPartName === part.partName ? 1 : 0.5})`,
                   }}
                 >
                   {options.stains.map((stain) => {
-                    return <button>{stain}</button>;
+                    return (
+                      <button
+                        key={stain}
+                        onClick={(e) =>
+                          handlePartOption(part.itemName, part.partName, stain)
+                        }
+                        style={{
+                          transition: "all 0.5s",
+                          transform: `scale(${currentPartColorName === stain ? 1 : 0.85})`,
+                          backgroundColor:
+                            currentPartColorName === stain ? "black" : "white",
+                          color:
+                            currentPartColorName === stain ? "white" : "black",
+                        }}
+                      >
+                        {stain}
+                      </button>
+                    );
                   })}
                   {options.paints.map((paint) => {
-                    return <button>{paint}</button>;
+                    return (
+                      <button
+                        key={paint}
+                        onClick={(e) =>
+                          handlePartOption(part.itemName, part.partName, paint)
+                        }
+                        style={{
+                          transition: "all 0.5s",
+                          transform: `scale(${currentPartColorName === paint ? 1 : 0.85})`,
+                          backgroundColor:
+                            currentPartColorName === paint ? "black" : "white",
+                          color:
+                            currentPartColorName === paint ? "white" : "black",
+                        }}
+                      >
+                        {paint}
+                      </button>
+                    );
                   })}
                 </Html>
               </group>
@@ -655,39 +760,106 @@ export default function Scene({
           onPointerOut={() => hover(false)}
           onClick={handleClick}
           onDoubleClick={handleDoubleClick}
-          onPointerMissed={handleOffClick}
+          // onPointerMissed={handleOffClick}
         >
           {objects.block.parts.map((part) => {
             return (
-              <mesh
-                key={part.partName}
-                position={
-                  part.animation === "negX"
-                    ? [-animDist, 0, 0]
-                    : part.animation === "posX"
-                      ? [animDist, 0, 0]
-                      : part.animation === "negZ"
-                        ? [0, 0, -animDist]
-                        : part.animation === "posZ"
-                          ? [0, 0, animDist]
-                          : part.animation === "posY1"
-                            ? [0, animDist, 0]
-                            : part.animation === "posY2"
-                              ? [0, animDist + animDist / 2, 0]
-                              : [0, 0, 0]
-                }
-              >
-                <ItemPart
-                  // map={colorMapBlock}
-                  // normalMap={normalMapBlock}
-                  // roughnessMap={roughnessMapBlock}
-                  // metalnessMap={metalnessMapBlock}
-                  currentColor={currentColorBlock}
-                  currentTexture={currentTextureBlock}
-                  model={part.model}
-                  animationType={part.animation}
-                />
-              </mesh>
+              <group key={part.partName}>
+                <mesh
+                  position={
+                    part.animation === "negX"
+                      ? [-animDist, 0, 0]
+                      : part.animation === "posX"
+                        ? [animDist, 0, 0]
+                        : part.animation === "negZ"
+                          ? [0, 0, -animDist]
+                          : part.animation === "posZ"
+                            ? [0, 0, animDist]
+                            : part.animation === "posY1"
+                              ? [0, animDist, 0]
+                              : part.animation === "posY2"
+                                ? [0, animDist + animDist / 2, 0]
+                                : [0, 0, 0]
+                  }
+                  onClick={() => {
+                    console.log(part.itemName, part.partName, " clicked");
+                    setCurrentItemName(part.itemName);
+                    setCurrentPartName(part.partName);
+                    setShowPartOptions(true);
+                  }}
+                >
+                  <ItemPart
+                    // map={colorMapBlock}
+                    // normalMap={normalMapBlock}
+                    // roughnessMap={roughnessMapBlock}
+                    // metalnessMap={metalnessMapBlock}
+                    currentColor={currentColorBlock}
+                    currentTexture={currentTextureBlock}
+                    model={part.model}
+                    // animationType={part.animation}
+                    itemName={part.itemName}
+                    partName={part.partName}
+                  />
+                </mesh>
+                <Html
+                  style={{
+                    transition: "all 0.5s",
+                    opacity:
+                      currentItemName === part.itemName &&
+                      currentPartName === part.partName
+                        ? 1
+                        : 0,
+                    display:
+                      currentItemName === part.itemName &&
+                      currentPartName === part.partName &&
+                      showPartOptions
+                        ? "block"
+                        : "none",
+                    transform: `scale(${currentPartName === part.partName ? 1 : 0.5})`,
+                  }}
+                >
+                  {options.stains.map((stain) => {
+                    return (
+                      <button
+                        key={stain}
+                        onClick={(e) =>
+                          handlePartOption(part.itemName, part.partName, stain)
+                        }
+                        style={{
+                          transition: "all 0.5s",
+                          transform: `scale(${currentPartColorName === stain ? 1 : 0.85})`,
+                          backgroundColor:
+                            currentPartColorName === stain ? "black" : "white",
+                          color:
+                            currentPartColorName === stain ? "white" : "black",
+                        }}
+                      >
+                        {stain}
+                      </button>
+                    );
+                  })}
+                  {options.paints.map((paint) => {
+                    return (
+                      <button
+                        key={paint}
+                        onClick={(e) =>
+                          handlePartOption(part.itemName, part.partName, paint)
+                        }
+                        style={{
+                          transition: "all 0.5s",
+                          transform: `scale(${currentPartColorName === paint ? 1 : 0.85})`,
+                          backgroundColor:
+                            currentPartColorName === paint ? "black" : "white",
+                          color:
+                            currentPartColorName === paint ? "white" : "black",
+                        }}
+                      >
+                        {paint}
+                      </button>
+                    );
+                  })}
+                </Html>
+              </group>
             );
           })}
         </group>
@@ -705,41 +877,108 @@ export default function Scene({
           onPointerOut={() => hover(false)}
           onClick={handleClick}
           onDoubleClick={handleDoubleClick}
-          onPointerMissed={handleOffClick}
+          // onPointerMissed={handleOffClick}
         >
           {objects.horse.parts.map((part) => {
             return (
-              <mesh
-                key={part.partName}
-                position={
-                  part.animation === "negX"
-                    ? [-animDist, 0, 0]
-                    : part.animation === "posX"
-                      ? [animDist, 0, 0]
-                      : part.animation === "negZ"
-                        ? [0, 0, -animDist]
-                        : part.animation === "posZ"
-                          ? [0, 0, animDist]
-                          : part.animation === "posY1"
-                            ? [0, animDist, 0]
-                            : part.animation === "posY2"
-                              ? [0, animDist + animDist / 2, 0]
-                              : [0, 0, 0]
-                }
-              >
-                <ItemPart
-                  // displacementMap={displacementMapHorse}
-                  // aoMap={aoMapHorse}
-                  // map={colorMapHorse}
-                  // normalMap={normalMapHorse}
-                  // roughnessMap={roughnessMapHorse}
-                  // metalnessMap={metalnessMapHorse}
-                  currentColor={currentColorHorse}
-                  currentTexture={currentTextureHorse}
-                  model={part.model}
-                  animationType={part.animation}
-                />
-              </mesh>
+              <group key={part.partName}>
+                <mesh
+                  position={
+                    part.animation === "negX"
+                      ? [-animDist, 0, 0]
+                      : part.animation === "posX"
+                        ? [animDist, 0, 0]
+                        : part.animation === "negZ"
+                          ? [0, 0, -animDist]
+                          : part.animation === "posZ"
+                            ? [0, 0, animDist]
+                            : part.animation === "posY1"
+                              ? [0, animDist, 0]
+                              : part.animation === "posY2"
+                                ? [0, animDist + animDist / 2, 0]
+                                : [0, 0, 0]
+                  }
+                  onClick={() => {
+                    console.log(part.itemName, part.partName, " clicked");
+                    setCurrentItemName(part.itemName);
+                    setCurrentPartName(part.partName);
+                    setShowPartOptions(true);
+                  }}
+                >
+                  <ItemPart
+                    // displacementMap={displacementMapHorse}
+                    // aoMap={aoMapHorse}
+                    // map={colorMapHorse}
+                    // normalMap={normalMapHorse}
+                    // roughnessMap={roughnessMapHorse}
+                    // metalnessMap={metalnessMapHorse}
+                    currentColor={currentColorHorse}
+                    currentTexture={currentTextureHorse}
+                    model={part.model}
+                    // animationType={part.animation}
+                    itemName={part.itemName}
+                    partName={part.partName}
+                  />
+                </mesh>
+                <Html
+                  style={{
+                    transition: "all 0.5s",
+                    opacity:
+                      currentItemName === part.itemName &&
+                      currentPartName === part.partName
+                        ? 1
+                        : 0,
+                    display:
+                      currentItemName === part.itemName &&
+                      currentPartName === part.partName &&
+                      showPartOptions
+                        ? "block"
+                        : "none",
+                    transform: `scale(${currentPartName === part.partName ? 1 : 0.5})`,
+                  }}
+                >
+                  {options.stains.map((stain) => {
+                    return (
+                      <button
+                        key={stain}
+                        onClick={(e) =>
+                          handlePartOption(part.itemName, part.partName, stain)
+                        }
+                        style={{
+                          transition: "all 0.5s",
+                          transform: `scale(${currentPartColorName === stain ? 1 : 0.85})`,
+                          backgroundColor:
+                            currentPartColorName === stain ? "black" : "white",
+                          color:
+                            currentPartColorName === stain ? "white" : "black",
+                        }}
+                      >
+                        {stain}
+                      </button>
+                    );
+                  })}
+                  {options.paints.map((paint) => {
+                    return (
+                      <button
+                        key={paint}
+                        onClick={(e) =>
+                          handlePartOption(part.itemName, part.partName, paint)
+                        }
+                        style={{
+                          transition: "all 0.5s",
+                          transform: `scale(${currentPartColorName === paint ? 1 : 0.85})`,
+                          backgroundColor:
+                            currentPartColorName === paint ? "black" : "white",
+                          color:
+                            currentPartColorName === paint ? "white" : "black",
+                        }}
+                      >
+                        {paint}
+                      </button>
+                    );
+                  })}
+                </Html>
+              </group>
             );
           })}
         </group>
@@ -757,41 +996,108 @@ export default function Scene({
           onPointerOut={() => hover(false)}
           onClick={handleClick}
           onDoubleClick={handleDoubleClick}
-          onPointerMissed={handleOffClick}
+          // onPointerMissed={handleOffClick}
         >
           {objects.squatter.parts.map((part) => {
             return (
-              <mesh
-                key={part.partName}
-                position={
-                  part.animation === "negX"
-                    ? [-animDist, 0, 0]
-                    : part.animation === "posX"
-                      ? [animDist, 0, 0]
-                      : part.animation === "negZ"
-                        ? [0, 0, -animDist]
-                        : part.animation === "posZ"
-                          ? [0, 0, animDist]
-                          : part.animation === "posY1"
-                            ? [0, animDist, 0]
-                            : part.animation === "posY2"
-                              ? [0, animDist + animDist / 2, 0]
-                              : [0, 0, 0]
-                }
-              >
-                <ItemPart
-                  // displacementMap={displacementMapSquatter}
-                  // aoMap={aoMapSquatter}
-                  // map={colorMapSquatter}
-                  // normalMap={normalMapSquatter}
-                  // roughnessMap={roughnessMapSquatter}
-                  // metalnessMap={metalnessMapSquatter}
-                  currentColor={currentColorSquatter}
-                  currentTexture={currentTextureSquatter}
-                  model={part.model}
-                  animationType={part.animation}
-                />
-              </mesh>
+              <group key={part.partName}>
+                <mesh
+                  position={
+                    part.animation === "negX"
+                      ? [-animDist, 0, 0]
+                      : part.animation === "posX"
+                        ? [animDist, 0, 0]
+                        : part.animation === "negZ"
+                          ? [0, 0, -animDist]
+                          : part.animation === "posZ"
+                            ? [0, 0, animDist]
+                            : part.animation === "posY1"
+                              ? [0, animDist, 0]
+                              : part.animation === "posY2"
+                                ? [0, animDist + animDist / 2, 0]
+                                : [0, 0, 0]
+                  }
+                  onClick={() => {
+                    console.log(part.itemName, part.partName, " clicked");
+                    setCurrentItemName(part.itemName);
+                    setCurrentPartName(part.partName);
+                    setShowPartOptions(true);
+                  }}
+                >
+                  <ItemPart
+                    // displacementMap={displacementMapSquatter}
+                    // aoMap={aoMapSquatter}
+                    // map={colorMapSquatter}
+                    // normalMap={normalMapSquatter}
+                    // roughnessMap={roughnessMapSquatter}
+                    // metalnessMap={metalnessMapSquatter}
+                    currentColor={currentColorSquatter}
+                    currentTexture={currentTextureSquatter}
+                    model={part.model}
+                    // animationType={part.animation}
+                    itemName={part.itemName}
+                    partName={part.partName}
+                  />
+                </mesh>
+                <Html
+                  style={{
+                    transition: "all 0.5s",
+                    opacity:
+                      currentItemName === part.itemName &&
+                      currentPartName === part.partName
+                        ? 1
+                        : 0,
+                    display:
+                      currentItemName === part.itemName &&
+                      currentPartName === part.partName &&
+                      showPartOptions
+                        ? "block"
+                        : "none",
+                    transform: `scale(${currentPartName === part.partName ? 1 : 0.5})`,
+                  }}
+                >
+                  {options.stains.map((stain) => {
+                    return (
+                      <button
+                        key={stain}
+                        onClick={(e) =>
+                          handlePartOption(part.itemName, part.partName, stain)
+                        }
+                        style={{
+                          transition: "all 0.5s",
+                          transform: `scale(${currentPartColorName === stain ? 1 : 0.85})`,
+                          backgroundColor:
+                            currentPartColorName === stain ? "black" : "white",
+                          color:
+                            currentPartColorName === stain ? "white" : "black",
+                        }}
+                      >
+                        {stain}
+                      </button>
+                    );
+                  })}
+                  {options.paints.map((paint) => {
+                    return (
+                      <button
+                        key={paint}
+                        onClick={(e) =>
+                          handlePartOption(part.itemName, part.partName, paint)
+                        }
+                        style={{
+                          transition: "all 0.5s",
+                          transform: `scale(${currentPartColorName === paint ? 1 : 0.85})`,
+                          backgroundColor:
+                            currentPartColorName === paint ? "black" : "white",
+                          color:
+                            currentPartColorName === paint ? "white" : "black",
+                        }}
+                      >
+                        {paint}
+                      </button>
+                    );
+                  })}
+                </Html>
+              </group>
             );
           })}
         </group>
@@ -808,41 +1114,108 @@ export default function Scene({
           onPointerOut={() => hover(false)}
           onClick={handleClick}
           onDoubleClick={handleDoubleClick}
-          onPointerMissed={handleOffClick}
+          // onPointerMissed={handleOffClick}
         >
           {objects.shelfA16.parts.map((part) => {
             return (
-              <mesh
-                key={part.partName}
-                position={
-                  part.animation === "negX"
-                    ? [-animDist, 0, 0]
-                    : part.animation === "posX"
-                      ? [animDist, 0, 0]
-                      : part.animation === "negZ"
-                        ? [0, 0, -animDist]
-                        : part.animation === "posZ"
-                          ? [0, 0, animDist]
-                          : part.animation === "posY1"
-                            ? [0, animDist, 0]
-                            : part.animation === "posY2"
-                              ? [0, animDist + animDist / 2, 0]
-                              : [0, 0, 0]
-                }
-              >
-                <ItemPart
-                  // displacementMap={displacementMapShelfA16}
-                  // aoMap={aoMapShelfA16}
-                  // map={colorMapShelfA16}
-                  // normalMap={normalMapShelfA16}
-                  // roughnessMap={roughnessMapShelfA16}
-                  // metalnessMap={metalnessMapShelfA16}
-                  currentColor={currentColorShelfA16}
-                  currentTexture={currentTextureShelfA16}
-                  model={part.model}
-                  animationType={part.animation}
-                />
-              </mesh>
+              <group key={part.partName}>
+                <mesh
+                  position={
+                    part.animation === "negX"
+                      ? [-animDist, 0, 0]
+                      : part.animation === "posX"
+                        ? [animDist, 0, 0]
+                        : part.animation === "negZ"
+                          ? [0, 0, -animDist]
+                          : part.animation === "posZ"
+                            ? [0, 0, animDist]
+                            : part.animation === "posY1"
+                              ? [0, animDist, 0]
+                              : part.animation === "posY2"
+                                ? [0, animDist + animDist / 2, 0]
+                                : [0, 0, 0]
+                  }
+                  onClick={() => {
+                    console.log(part.itemName, part.partName, " clicked");
+                    setCurrentItemName(part.itemName);
+                    setCurrentPartName(part.partName);
+                    setShowPartOptions(true);
+                  }}
+                >
+                  <ItemPart
+                    // displacementMap={displacementMapShelfA16}
+                    // aoMap={aoMapShelfA16}
+                    // map={colorMapShelfA16}
+                    // normalMap={normalMapShelfA16}
+                    // roughnessMap={roughnessMapShelfA16}
+                    // metalnessMap={metalnessMapShelfA16}
+                    currentColor={currentColorShelfA16}
+                    currentTexture={currentTextureShelfA16}
+                    model={part.model}
+                    // animationType={part.animation}
+                    itemName={part.itemName}
+                    partName={part.partName}
+                  />
+                </mesh>
+                <Html
+                  style={{
+                    transition: "all 0.5s",
+                    opacity:
+                      currentItemName === part.itemName &&
+                      currentPartName === part.partName
+                        ? 1
+                        : 0,
+                    display:
+                      currentItemName === part.itemName &&
+                      currentPartName === part.partName &&
+                      showPartOptions
+                        ? "block"
+                        : "none",
+                    transform: `scale(${currentPartName === part.partName ? 1 : 0.5})`,
+                  }}
+                >
+                  {options.stains.map((stain) => {
+                    return (
+                      <button
+                        key={stain}
+                        onClick={(e) =>
+                          handlePartOption(part.itemName, part.partName, stain)
+                        }
+                        style={{
+                          transition: "all 0.5s",
+                          transform: `scale(${currentPartColorName === stain ? 1 : 0.85})`,
+                          backgroundColor:
+                            currentPartColorName === stain ? "black" : "white",
+                          color:
+                            currentPartColorName === stain ? "white" : "black",
+                        }}
+                      >
+                        {stain}
+                      </button>
+                    );
+                  })}
+                  {options.paints.map((paint) => {
+                    return (
+                      <button
+                        key={paint}
+                        onClick={(e) =>
+                          handlePartOption(part.itemName, part.partName, paint)
+                        }
+                        style={{
+                          transition: "all 0.5s",
+                          transform: `scale(${currentPartColorName === paint ? 1 : 0.85})`,
+                          backgroundColor:
+                            currentPartColorName === paint ? "black" : "white",
+                          color:
+                            currentPartColorName === paint ? "white" : "black",
+                        }}
+                      >
+                        {paint}
+                      </button>
+                    );
+                  })}
+                </Html>
+              </group>
             );
           })}
         </group>
@@ -859,41 +1232,108 @@ export default function Scene({
           onPointerOut={() => hover(false)}
           onClick={handleClick}
           onDoubleClick={handleDoubleClick}
-          onPointerMissed={handleOffClick}
+          // onPointerMissed={handleOffClick}
         >
           {objects.shelfA32.parts.map((part) => {
             return (
-              <mesh
-                key={part.partName}
-                position={
-                  part.animation === "negX"
-                    ? [-animDist, 0, 0]
-                    : part.animation === "posX"
-                      ? [animDist, 0, 0]
-                      : part.animation === "negZ"
-                        ? [0, 0, -animDist]
-                        : part.animation === "posZ"
-                          ? [0, 0, animDist]
-                          : part.animation === "posY1"
-                            ? [0, animDist, 0]
-                            : part.animation === "posY2"
-                              ? [0, animDist + animDist / 2, 0]
-                              : [0, 0, 0]
-                }
-              >
-                <ItemPart
-                  // displacementMap={displacementMapShelfA32}
-                  // aoMap={aoMapShelfA32}
-                  // map={colorMapShelfA32}
-                  // normalMap={normalMapShelfA32}
-                  // roughnessMap={roughnessMapShelfA32}
-                  // metalnessMap={metalnessMapShelfA32}
-                  currentColor={currentColorShelfA32}
-                  currentTexture={currentTextureShelfA32}
-                  model={part.model}
-                  animationType={part.animation}
-                />
-              </mesh>
+              <group key={part.partName}>
+                <mesh
+                  position={
+                    part.animation === "negX"
+                      ? [-animDist, 0, 0]
+                      : part.animation === "posX"
+                        ? [animDist, 0, 0]
+                        : part.animation === "negZ"
+                          ? [0, 0, -animDist]
+                          : part.animation === "posZ"
+                            ? [0, 0, animDist]
+                            : part.animation === "posY1"
+                              ? [0, animDist, 0]
+                              : part.animation === "posY2"
+                                ? [0, animDist + animDist / 2, 0]
+                                : [0, 0, 0]
+                  }
+                  onClick={() => {
+                    console.log(part.itemName, part.partName, " clicked");
+                    setCurrentItemName(part.itemName);
+                    setCurrentPartName(part.partName);
+                    setShowPartOptions(true);
+                  }}
+                >
+                  <ItemPart
+                    // displacementMap={displacementMapShelfA32}
+                    // aoMap={aoMapShelfA32}
+                    // map={colorMapShelfA32}
+                    // normalMap={normalMapShelfA32}
+                    // roughnessMap={roughnessMapShelfA32}
+                    // metalnessMap={metalnessMapShelfA32}
+                    currentColor={currentColorShelfA32}
+                    currentTexture={currentTextureShelfA32}
+                    model={part.model}
+                    // animationType={part.animation}
+                    itemName={part.itemName}
+                    partName={part.partName}
+                  />
+                </mesh>
+                <Html
+                  style={{
+                    transition: "all 0.5s",
+                    opacity:
+                      currentItemName === part.itemName &&
+                      currentPartName === part.partName
+                        ? 1
+                        : 0,
+                    display:
+                      currentItemName === part.itemName &&
+                      currentPartName === part.partName &&
+                      showPartOptions
+                        ? "block"
+                        : "none",
+                    transform: `scale(${currentPartName === part.partName ? 1 : 0.5})`,
+                  }}
+                >
+                  {options.stains.map((stain) => {
+                    return (
+                      <button
+                        key={stain}
+                        onClick={(e) =>
+                          handlePartOption(part.itemName, part.partName, stain)
+                        }
+                        style={{
+                          transition: "all 0.5s",
+                          transform: `scale(${currentPartColorName === stain ? 1 : 0.85})`,
+                          backgroundColor:
+                            currentPartColorName === stain ? "black" : "white",
+                          color:
+                            currentPartColorName === stain ? "white" : "black",
+                        }}
+                      >
+                        {stain}
+                      </button>
+                    );
+                  })}
+                  {options.paints.map((paint) => {
+                    return (
+                      <button
+                        key={paint}
+                        onClick={(e) =>
+                          handlePartOption(part.itemName, part.partName, paint)
+                        }
+                        style={{
+                          transition: "all 0.5s",
+                          transform: `scale(${currentPartColorName === paint ? 1 : 0.85})`,
+                          backgroundColor:
+                            currentPartColorName === paint ? "black" : "white",
+                          color:
+                            currentPartColorName === paint ? "white" : "black",
+                        }}
+                      >
+                        {paint}
+                      </button>
+                    );
+                  })}
+                </Html>
+              </group>
             );
           })}
         </group>
@@ -910,41 +1350,108 @@ export default function Scene({
           onPointerOut={() => hover(false)}
           onClick={handleClick}
           onDoubleClick={handleDoubleClick}
-          onPointerMissed={handleOffClick}
+          // onPointerMissed={handleOffClick}
         >
           {objects.shelfB16.parts.map((part) => {
             return (
-              <mesh
-                key={part.partName}
-                position={
-                  part.animation === "negX"
-                    ? [-animDist, 0, 0]
-                    : part.animation === "posX"
-                      ? [animDist, 0, 0]
-                      : part.animation === "negZ"
-                        ? [0, 0, -animDist]
-                        : part.animation === "posZ"
-                          ? [0, 0, animDist]
-                          : part.animation === "posY1"
-                            ? [0, animDist, 0]
-                            : part.animation === "posY2"
-                              ? [0, animDist + animDist / 2, 0]
-                              : [0, 0, 0]
-                }
-              >
-                <ItemPart
-                  // displacementMap={displacementMapShelfB16}
-                  // aoMap={aoMapShelfB16}
-                  // map={colorMapShelfB16}
-                  // normalMap={normalMapShelfB16}
-                  // roughnessMap={roughnessMapShelfB16}
-                  // metalnessMap={metalnessMapShelfB16}
-                  currentColor={currentColorShelfB16}
-                  currentTexture={currentTextureShelfB16}
-                  model={part.model}
-                  animationType={part.animation}
-                />
-              </mesh>
+              <group key={part.partName}>
+                <mesh
+                  position={
+                    part.animation === "negX"
+                      ? [-animDist, 0, 0]
+                      : part.animation === "posX"
+                        ? [animDist, 0, 0]
+                        : part.animation === "negZ"
+                          ? [0, 0, -animDist]
+                          : part.animation === "posZ"
+                            ? [0, 0, animDist]
+                            : part.animation === "posY1"
+                              ? [0, animDist, 0]
+                              : part.animation === "posY2"
+                                ? [0, animDist + animDist / 2, 0]
+                                : [0, 0, 0]
+                  }
+                  onClick={() => {
+                    console.log(part.itemName, part.partName, " clicked");
+                    setCurrentItemName(part.itemName);
+                    setCurrentPartName(part.partName);
+                    setShowPartOptions(true);
+                  }}
+                >
+                  <ItemPart
+                    // displacementMap={displacementMapShelfB16}
+                    // aoMap={aoMapShelfB16}
+                    // map={colorMapShelfB16}
+                    // normalMap={normalMapShelfB16}
+                    // roughnessMap={roughnessMapShelfB16}
+                    // metalnessMap={metalnessMapShelfB16}
+                    currentColor={currentColorShelfB16}
+                    currentTexture={currentTextureShelfB16}
+                    model={part.model}
+                    // animationType={part.animation}
+                    itemName={part.itemName}
+                    partName={part.partName}
+                  />
+                </mesh>
+                <Html
+                  style={{
+                    transition: "all 0.5s",
+                    opacity:
+                      currentItemName === part.itemName &&
+                      currentPartName === part.partName
+                        ? 1
+                        : 0,
+                    display:
+                      currentItemName === part.itemName &&
+                      currentPartName === part.partName &&
+                      showPartOptions
+                        ? "block"
+                        : "none",
+                    transform: `scale(${currentPartName === part.partName ? 1 : 0.5})`,
+                  }}
+                >
+                  {options.stains.map((stain) => {
+                    return (
+                      <button
+                        key={stain}
+                        onClick={(e) =>
+                          handlePartOption(part.itemName, part.partName, stain)
+                        }
+                        style={{
+                          transition: "all 0.5s",
+                          transform: `scale(${currentPartColorName === stain ? 1 : 0.85})`,
+                          backgroundColor:
+                            currentPartColorName === stain ? "black" : "white",
+                          color:
+                            currentPartColorName === stain ? "white" : "black",
+                        }}
+                      >
+                        {stain}
+                      </button>
+                    );
+                  })}
+                  {options.paints.map((paint) => {
+                    return (
+                      <button
+                        key={paint}
+                        onClick={(e) =>
+                          handlePartOption(part.itemName, part.partName, paint)
+                        }
+                        style={{
+                          transition: "all 0.5s",
+                          transform: `scale(${currentPartColorName === paint ? 1 : 0.85})`,
+                          backgroundColor:
+                            currentPartColorName === paint ? "black" : "white",
+                          color:
+                            currentPartColorName === paint ? "white" : "black",
+                        }}
+                      >
+                        {paint}
+                      </button>
+                    );
+                  })}
+                </Html>
+              </group>
             );
           })}
         </group>
@@ -961,47 +1468,118 @@ export default function Scene({
           onPointerOut={() => hover(false)}
           onClick={handleClick}
           onDoubleClick={handleDoubleClick}
-          onPointerMissed={handleOffClick}
+          // onPointerMissed={handleOffClick}
         >
           {objects.shelfB32.parts.map((part) => {
             return (
-              <mesh
-                key={part.partName}
-                position={
-                  part.animation === "negX"
-                    ? [-animDist, 0, 0]
-                    : part.animation === "posX"
-                      ? [animDist, 0, 0]
-                      : part.animation === "negZ"
-                        ? [0, 0, -animDist]
-                        : part.animation === "posZ"
-                          ? [0, 0, animDist]
-                          : part.animation === "posY1"
-                            ? [0, animDist, 0]
-                            : part.animation === "posY2"
-                              ? [0, animDist + animDist / 2, 0]
-                              : [0, 0, 0]
-                }
-              >
-                <ItemPart
-                  // displacementMap={displacementMapShelfB32}
-                  // aoMap={aoMapShelfB32}
-                  // map={colorMapShelfB32}
-                  // normalMap={normalMapShelfB32}
-                  // roughnessMap={roughnessMapShelfB32}
-                  // metalnessMap={metalnessMapShelfB32}
-                  currentColor={currentColorShelfB32}
-                  currentTexture={currentTextureShelfB32}
-                  model={part.model}
-                  animationType={part.animation}
-                />
-              </mesh>
+              <group key={part.partName}>
+                <mesh
+                  position={
+                    part.animation === "negX"
+                      ? [-animDist, 0, 0]
+                      : part.animation === "posX"
+                        ? [animDist, 0, 0]
+                        : part.animation === "negZ"
+                          ? [0, 0, -animDist]
+                          : part.animation === "posZ"
+                            ? [0, 0, animDist]
+                            : part.animation === "posY1"
+                              ? [0, animDist, 0]
+                              : part.animation === "posY2"
+                                ? [0, animDist + animDist / 2, 0]
+                                : [0, 0, 0]
+                  }
+                  onClick={() => {
+                    console.log(part.itemName, part.partName, " clicked");
+                    setCurrentItemName(part.itemName);
+                    setCurrentPartName(part.partName);
+                    setShowPartOptions(true);
+                  }}
+                >
+                  <ItemPart
+                    // displacementMap={displacementMapShelfB32}
+                    // aoMap={aoMapShelfB32}
+                    // map={colorMapShelfB32}
+                    // normalMap={normalMapShelfB32}
+                    // roughnessMap={roughnessMapShelfB32}
+                    // metalnessMap={metalnessMapShelfB32}
+                    currentColor={currentColorShelfB32}
+                    currentTexture={currentTextureShelfB32}
+                    model={part.model}
+                    // animationType={part.animation}
+                    itemName={part.itemName}
+                    partName={part.partName}
+                  />
+                </mesh>
+                <Html
+                  style={{
+                    transition: "all 0.5s",
+                    opacity:
+                      currentItemName === part.itemName &&
+                      currentPartName === part.partName
+                        ? 1
+                        : 0,
+                    display:
+                      currentItemName === part.itemName &&
+                      currentPartName === part.partName &&
+                      showPartOptions
+                        ? "block"
+                        : "none",
+                    transform: `scale(${currentPartName === part.partName ? 1 : 0.5})`,
+                  }}
+                >
+                  {options.stains.map((stain) => {
+                    return (
+                      <button
+                        key={stain}
+                        onClick={(e) =>
+                          handlePartOption(part.itemName, part.partName, stain)
+                        }
+                        style={{
+                          transition: "all 0.5s",
+                          transform: `scale(${currentPartColorName === stain ? 1 : 0.85})`,
+                          backgroundColor:
+                            currentPartColorName === stain ? "black" : "white",
+                          color:
+                            currentPartColorName === stain ? "white" : "black",
+                        }}
+                      >
+                        {stain}
+                      </button>
+                    );
+                  })}
+                  {options.paints.map((paint) => {
+                    return (
+                      <button
+                        key={paint}
+                        onClick={(e) =>
+                          handlePartOption(part.itemName, part.partName, paint)
+                        }
+                        style={{
+                          transition: "all 0.5s",
+                          transform: `scale(${currentPartColorName === paint ? 1 : 0.85})`,
+                          backgroundColor:
+                            currentPartColorName === paint ? "black" : "white",
+                          color:
+                            currentPartColorName === paint ? "white" : "black",
+                        }}
+                      >
+                        {paint}
+                      </button>
+                    );
+                  })}
+                </Html>
+              </group>
             );
           })}
         </group>
 
         {/* floor */}
-        <mesh visible={showBackground} position={[0, -0.498, 0]}>
+        <mesh
+          visible={showBackground}
+          position={[0, -0.498, 0]}
+          onClick={handleOffClick}
+        >
           <Floor
             // displacementMap={displacementMapFloor}
             // aoMap={aoMapFloor}
@@ -1015,7 +1593,7 @@ export default function Scene({
         </mesh>
 
         {/* wallsAndMoulding */}
-        <mesh visible={showBackground}>
+        <mesh visible={showBackground} onClick={handleOffClick}>
           <Walls
             // displacementMap={displacementMapPainted}
             // aoMap={aoMapPainted}

@@ -7,71 +7,87 @@ type State = {
   items: {
     gramps: {
       parts: {
-        top: { color: THREE.Color; texture: string[] };
-        barBottom: { color: THREE.Color; texture: string[] };
-        barTop: { color: THREE.Color; texture: string[] };
-        leg1: { color: THREE.Color; texture: string[] };
-        leg2: { color: THREE.Color; texture: string[] };
-        leg3: { color: THREE.Color; texture: string[] };
-        leg4: { color: THREE.Color; texture: string[] };
+        top: { colorName: string; color: THREE.Color; texture: string[] };
+        barBottom: { colorName: string; color: THREE.Color; texture: string[] };
+        barTop: { colorName: string; color: THREE.Color; texture: string[] };
+        leg1: { colorName: string; color: THREE.Color; texture: string[] };
+        leg2: { colorName: string; color: THREE.Color; texture: string[] };
+        leg3: { colorName: string; color: THREE.Color; texture: string[] };
+        leg4: { colorName: string; color: THREE.Color; texture: string[] };
       };
     };
     squatter: {
       parts: {
-        top: { color: THREE.Color; texture: string[] };
-        centerPanel: { color: THREE.Color; texture: string[] };
-        side1: { color: THREE.Color; texture: string[] };
-        side2: { color: THREE.Color; texture: string[] };
+        top: { colorName: string; color: THREE.Color; texture: string[] };
+        centerPanel: {
+          colorName: string;
+          color: THREE.Color;
+          texture: string[];
+        };
+        side1: { colorName: string; color: THREE.Color; texture: string[] };
+        side2: { colorName: string; color: THREE.Color; texture: string[] };
       };
     };
     block: {
       parts: {
-        shelfTop: { color: THREE.Color; texture: string[] };
-        shelfMiddle: { color: THREE.Color; texture: string[] };
-        shelfBottom: { color: THREE.Color; texture: string[] };
-        side1: { color: THREE.Color; texture: string[] };
-        side2: { color: THREE.Color; texture: string[] };
+        shelfTop: { colorName: string; color: THREE.Color; texture: string[] };
+        shelfMiddle: {
+          colorName: string;
+          color: THREE.Color;
+          texture: string[];
+        };
+        shelfBottom: {
+          colorName: string;
+          color: THREE.Color;
+          texture: string[];
+        };
+        side1: { colorName: string; color: THREE.Color; texture: string[] };
+        side2: { colorName: string; color: THREE.Color; texture: string[] };
       };
     };
     horse: {
       parts: {
-        top: { color: THREE.Color; texture: string[] };
-        barInner: { color: THREE.Color; texture: string[] };
-        shelfBottom: { color: THREE.Color; texture: string[] };
-        leg1: { color: THREE.Color; texture: string[] };
-        leg2: { color: THREE.Color; texture: string[] };
-        leg3: { color: THREE.Color; texture: string[] };
-        leg4: { color: THREE.Color; texture: string[] };
+        top: { colorName: string; color: THREE.Color; texture: string[] };
+        barInner: { colorName: string; color: THREE.Color; texture: string[] };
+        shelfBottom: {
+          colorName: string;
+          color: THREE.Color;
+          texture: string[];
+        };
+        leg1: { colorName: string; color: THREE.Color; texture: string[] };
+        leg2: { colorName: string; color: THREE.Color; texture: string[] };
+        leg3: { colorName: string; color: THREE.Color; texture: string[] };
+        leg4: { colorName: string; color: THREE.Color; texture: string[] };
       };
     };
     shelfA16: {
       parts: {
-        top: { color: THREE.Color; texture: string[] };
-        bottom: { color: THREE.Color; texture: string[] };
-        cleat: { color: THREE.Color; texture: string[] };
+        top: { colorName: string; color: THREE.Color; texture: string[] };
+        bottom: { colorName: string; color: THREE.Color; texture: string[] };
+        cleat: { colorName: string; color: THREE.Color; texture: string[] };
       };
     };
     shelfA32: {
       parts: {
-        top: { color: THREE.Color; texture: string[] };
-        bottom: { color: THREE.Color; texture: string[] };
-        cleat: { color: THREE.Color; texture: string[] };
+        top: { colorName: string; color: THREE.Color; texture: string[] };
+        bottom: { colorName: string; color: THREE.Color; texture: string[] };
+        cleat: { colorName: string; color: THREE.Color; texture: string[] };
       };
     };
     shelfB16: {
       parts: {
-        top: { color: THREE.Color; texture: string[] };
-        middle: { color: THREE.Color; texture: string[] };
-        bottom: { color: THREE.Color; texture: string[] };
-        cleat: { color: THREE.Color; texture: string[] };
+        top: { colorName: string; color: THREE.Color; texture: string[] };
+        middle: { colorName: string; color: THREE.Color; texture: string[] };
+        bottom: { colorName: string; color: THREE.Color; texture: string[] };
+        cleat: { colorName: string; color: THREE.Color; texture: string[] };
       };
     };
     shelfB32: {
       parts: {
-        top: { color: THREE.Color; texture: string[] };
-        middle: { color: THREE.Color; texture: string[] };
-        bottom: { color: THREE.Color; texture: string[] };
-        cleat: { color: THREE.Color; texture: string[] };
+        top: { colorName: string; color: THREE.Color; texture: string[] };
+        middle: { colorName: string; color: THREE.Color; texture: string[] };
+        bottom: { colorName: string; color: THREE.Color; texture: string[] };
+        cleat: { colorName: string; color: THREE.Color; texture: string[] };
       };
     };
   };
@@ -82,6 +98,11 @@ type Action = {
     itemName: string,
     partName: string,
     color: THREE.Color,
+  ) => void;
+  updatePartColorName: (
+    itemName: string,
+    partName: string,
+    colorName: string[],
   ) => void;
   updatePartTexture: (
     itemName: string,
@@ -172,125 +193,219 @@ export const useOptionStore = create<State & Action>((set) => ({
   items: {
     gramps: {
       parts: {
-        top: { color: textures.whiteStain, texture: textures.paintedTexture },
+        top: {
+          colorName: "default",
+          color: textures.whiteStain,
+          texture: textures.paintedTexture,
+        },
         barBottom: {
+          colorName: "default",
           color: textures.whiteStain,
           texture: textures.paintedTexture,
         },
         barTop: {
+          colorName: "default",
           color: textures.whiteStain,
           texture: textures.paintedTexture,
         },
-        leg1: { color: textures.whiteStain, texture: textures.paintedTexture },
-        leg2: { color: textures.whiteStain, texture: textures.paintedTexture },
-        leg3: { color: textures.whiteStain, texture: textures.paintedTexture },
-        leg4: { color: textures.whiteStain, texture: textures.paintedTexture },
+        leg1: {
+          colorName: "default",
+          color: textures.whiteStain,
+          texture: textures.paintedTexture,
+        },
+        leg2: {
+          colorName: "default",
+          color: textures.whiteStain,
+          texture: textures.paintedTexture,
+        },
+        leg3: {
+          colorName: "default",
+          color: textures.whiteStain,
+          texture: textures.paintedTexture,
+        },
+        leg4: {
+          colorName: "default",
+          color: textures.whiteStain,
+          texture: textures.paintedTexture,
+        },
       },
     },
     squatter: {
       parts: {
-        top: { color: textures.whiteStain, texture: textures.paintedTexture },
-        centerPanel: {
+        top: {
+          colorName: "default",
           color: textures.whiteStain,
           texture: textures.paintedTexture,
         },
-        side1: { color: textures.whiteStain, texture: textures.paintedTexture },
-        side2: { color: textures.whiteStain, texture: textures.paintedTexture },
+        centerPanel: {
+          colorName: "default",
+          color: textures.whiteStain,
+          texture: textures.paintedTexture,
+        },
+        side1: {
+          colorName: "default",
+          color: textures.whiteStain,
+          texture: textures.paintedTexture,
+        },
+        side2: {
+          colorName: "default",
+          color: textures.whiteStain,
+          texture: textures.paintedTexture,
+        },
       },
     },
     block: {
       parts: {
         shelfTop: {
+          colorName: "default",
           color: textures.whiteStain,
           texture: textures.paintedTexture,
         },
         shelfMiddle: {
+          colorName: "default",
           color: textures.whiteStain,
           texture: textures.paintedTexture,
         },
         shelfBottom: {
+          colorName: "default",
           color: textures.whiteStain,
           texture: textures.paintedTexture,
         },
-        side1: { color: textures.whiteStain, texture: textures.paintedTexture },
-        side2: { color: textures.whiteStain, texture: textures.paintedTexture },
+        side1: {
+          colorName: "default",
+          color: textures.whiteStain,
+          texture: textures.paintedTexture,
+        },
+        side2: {
+          colorName: "default",
+          color: textures.whiteStain,
+          texture: textures.paintedTexture,
+        },
       },
     },
     horse: {
       parts: {
-        top: { color: textures.whiteStain, texture: textures.paintedTexture },
+        top: {
+          colorName: "default",
+          color: textures.whiteStain,
+          texture: textures.paintedTexture,
+        },
         barInner: {
+          colorName: "default",
           color: textures.whiteStain,
           texture: textures.paintedTexture,
         },
         shelfBottom: {
+          colorName: "default",
           color: textures.whiteStain,
           texture: textures.paintedTexture,
         },
-        leg1: { color: textures.whiteStain, texture: textures.paintedTexture },
-        leg2: { color: textures.whiteStain, texture: textures.paintedTexture },
-        leg3: { color: textures.whiteStain, texture: textures.paintedTexture },
-        leg4: { color: textures.whiteStain, texture: textures.paintedTexture },
+        leg1: {
+          colorName: "default",
+          color: textures.whiteStain,
+          texture: textures.paintedTexture,
+        },
+        leg2: {
+          colorName: "default",
+          color: textures.whiteStain,
+          texture: textures.paintedTexture,
+        },
+        leg3: {
+          colorName: "default",
+          color: textures.whiteStain,
+          texture: textures.paintedTexture,
+        },
+        leg4: {
+          colorName: "default",
+          color: textures.whiteStain,
+          texture: textures.paintedTexture,
+        },
       },
     },
     shelfA16: {
       parts: {
         top: {
+          colorName: "default",
           color: textures.whiteStain,
           texture: textures.paintedTexture,
         },
         bottom: {
+          colorName: "default",
           color: textures.whiteStain,
           texture: textures.paintedTexture,
         },
-        cleat: { color: textures.whiteStain, texture: textures.paintedTexture },
+        cleat: {
+          colorName: "default",
+          color: textures.whiteStain,
+          texture: textures.paintedTexture,
+        },
       },
     },
     shelfA32: {
       parts: {
         top: {
+          colorName: "default",
           color: textures.whiteStain,
           texture: textures.paintedTexture,
         },
         bottom: {
+          colorName: "default",
           color: textures.whiteStain,
           texture: textures.paintedTexture,
         },
-        cleat: { color: textures.whiteStain, texture: textures.paintedTexture },
+        cleat: {
+          colorName: "default",
+          color: textures.whiteStain,
+          texture: textures.paintedTexture,
+        },
       },
     },
     shelfB16: {
       parts: {
         top: {
+          colorName: "default",
           color: textures.whiteStain,
           texture: textures.paintedTexture,
         },
         middle: {
+          colorName: "default",
           color: textures.whiteStain,
           texture: textures.paintedTexture,
         },
         bottom: {
+          colorName: "default",
           color: textures.whiteStain,
           texture: textures.paintedTexture,
         },
-        cleat: { color: textures.whiteStain, texture: textures.paintedTexture },
+        cleat: {
+          colorName: "default",
+          color: textures.whiteStain,
+          texture: textures.paintedTexture,
+        },
       },
     },
     shelfB32: {
       parts: {
         top: {
+          colorName: "default",
           color: textures.whiteStain,
           texture: textures.paintedTexture,
         },
         middle: {
+          colorName: "default",
           color: textures.whiteStain,
           texture: textures.paintedTexture,
         },
         bottom: {
+          colorName: "default",
           color: textures.whiteStain,
           texture: textures.paintedTexture,
         },
-        cleat: { color: textures.whiteStain, texture: textures.paintedTexture },
+        cleat: {
+          colorName: "default",
+          color: textures.whiteStain,
+          texture: textures.paintedTexture,
+        },
       },
     },
   },
@@ -299,6 +414,12 @@ export const useOptionStore = create<State & Action>((set) => ({
     set(
       produce((state: State) => {
         state.items[itemName].parts[partName].color = color;
+      }),
+    ),
+  updatePartColorName: (itemName, partName, colorName) =>
+    set(
+      produce((state: State) => {
+        state.items[itemName].parts[partName].colorName = colorName;
       }),
     ),
   updatePartTexture: (itemName, partName, texture) =>

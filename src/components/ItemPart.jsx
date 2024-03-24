@@ -1,5 +1,6 @@
 import React, { useLayoutEffect } from "react";
 import { useGLTF, useTexture } from "@react-three/drei";
+import { useOptionStore } from "../store/useOptionStore.tsx";
 
 export const ItemPart = ({
   // map,
@@ -11,9 +12,18 @@ export const ItemPart = ({
   currentColor,
   currentTexture,
   model,
-  animationType,
+  // animationType,
+  itemName,
+  partName,
 }) => {
   const { scene, nodes, materials } = useGLTF(model);
+
+  const currentPartColor = useOptionStore(
+    (state) => state.items[itemName].parts[partName].color,
+  );
+  const currentPartTexture = useOptionStore(
+    (state) => state.items[itemName].parts[partName].texture,
+  );
 
   const [
     map,
@@ -22,7 +32,7 @@ export const ItemPart = ({
     roughnessMap,
     metalnessMap,
     // aoMap,
-  ] = useTexture(currentTexture);
+  ] = useTexture(currentPartTexture);
 
   useLayoutEffect(() => {
     Object.assign(materials.Material, {
@@ -32,14 +42,14 @@ export const ItemPart = ({
       roughnessMap: roughnessMap,
       metalnessMap: metalnessMap,
       // aoMap: aoMap,
-      color: currentColor,
+      color: currentPartColor,
     });
   }, [
     scene,
     nodes,
     materials,
-    currentColor,
-    currentTexture,
+    currentPartColor,
+    currentPartTexture,
     map,
     normalMap,
     roughnessMap,
