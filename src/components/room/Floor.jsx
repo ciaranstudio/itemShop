@@ -13,6 +13,7 @@ export const Floor = ({
   // currentTexture,
 }) => {
   const { scene, nodes, materials } = useGLTF("./models/floor.gltf");
+  const repeatVal = 3;
 
   // map.minFilter = THREE.LinearFilter;
   // map.magFilter = THREE.NearestFilter;
@@ -20,29 +21,29 @@ export const Floor = ({
 
   map.wrapS = THREE.RepeatWrapping;
   map.wrapT = THREE.RepeatWrapping;
-  map.repeat.set(6, 6);
+  map.repeat.set(repeatVal, repeatVal);
 
   displacementMap.wrapS = THREE.RepeatWrapping;
   displacementMap.wrapT = THREE.RepeatWrapping;
-  displacementMap.repeat.set(6, 6);
+  displacementMap.repeat.set(repeatVal, repeatVal);
 
   aoMap.wrapS = THREE.RepeatWrapping;
   aoMap.wrapT = THREE.RepeatWrapping;
-  aoMap.repeat.set(6, 6);
+  aoMap.repeat.set(repeatVal, repeatVal);
 
   // normalMap.minFilter = THREE.LinearFilter;
   // normalMap.magFilter = THREE.NearestFilter;
 
   normalMap.wrapS = THREE.RepeatWrapping;
   normalMap.wrapT = THREE.RepeatWrapping;
-  normalMap.repeat.set(6, 6);
+  normalMap.repeat.set(repeatVal, repeatVal);
 
   // roughnessMap.minFilter = THREE.LinearFilter;
   // roughnessMap.magFilter = THREE.NearestFilter;
 
   roughnessMap.wrapS = THREE.RepeatWrapping;
   roughnessMap.wrapT = THREE.RepeatWrapping;
-  roughnessMap.repeat.set(6, 6);
+  roughnessMap.repeat.set(repeatVal, repeatVal);
 
   useLayoutEffect(() => {
     Object.assign(materials.Material, {
