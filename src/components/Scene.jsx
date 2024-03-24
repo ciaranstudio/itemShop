@@ -685,6 +685,8 @@ export default function Scene({
                   />
                 </mesh>
                 <Html
+                  centered
+                  position={[0.3, 0.48, 0]}
                   style={{
                     transition: "all 0.5s",
                     opacity:
@@ -715,6 +717,8 @@ export default function Scene({
                             currentPartColorName === stain ? "black" : "white",
                           color:
                             currentPartColorName === stain ? "white" : "black",
+                          padding: "0.5rem",
+                          margin: "0.25rem",
                         }}
                       >
                         {stain}
@@ -732,9 +736,11 @@ export default function Scene({
                           transition: "all 0.5s",
                           transform: `scale(${currentPartColorName === paint ? 1 : 0.85})`,
                           backgroundColor:
-                            currentPartColorName === paint ? "black" : "white",
+                            currentPartColorName === paint ? "grey" : "white",
                           color:
                             currentPartColorName === paint ? "white" : "black",
+                          padding: "0.5rem",
+                          margin: "0.25rem",
                         }}
                       >
                         {paint}
@@ -802,6 +808,8 @@ export default function Scene({
                   />
                 </mesh>
                 <Html
+                  centered
+                  position={[0.25, 0.42, 0]}
                   style={{
                     transition: "all 0.5s",
                     opacity:
@@ -832,6 +840,8 @@ export default function Scene({
                             currentPartColorName === stain ? "black" : "white",
                           color:
                             currentPartColorName === stain ? "white" : "black",
+                          padding: "0.5rem",
+                          margin: "0.25rem",
                         }}
                       >
                         {stain}
@@ -849,9 +859,11 @@ export default function Scene({
                           transition: "all 0.5s",
                           transform: `scale(${currentPartColorName === paint ? 1 : 0.85})`,
                           backgroundColor:
-                            currentPartColorName === paint ? "black" : "white",
+                            currentPartColorName === paint ? "grey" : "white",
                           color:
                             currentPartColorName === paint ? "white" : "black",
+                          padding: "0.5rem",
+                          margin: "0.25rem",
                         }}
                       >
                         {paint}
@@ -921,6 +933,8 @@ export default function Scene({
                   />
                 </mesh>
                 <Html
+                  centered
+                  position={[0.6, 0.72, 0]}
                   style={{
                     transition: "all 0.5s",
                     opacity:
@@ -951,6 +965,8 @@ export default function Scene({
                             currentPartColorName === stain ? "black" : "white",
                           color:
                             currentPartColorName === stain ? "white" : "black",
+                          padding: "0.5rem",
+                          margin: "0.25rem",
                         }}
                       >
                         {stain}
@@ -968,9 +984,11 @@ export default function Scene({
                           transition: "all 0.5s",
                           transform: `scale(${currentPartColorName === paint ? 1 : 0.85})`,
                           backgroundColor:
-                            currentPartColorName === paint ? "black" : "white",
+                            currentPartColorName === paint ? "grey" : "white",
                           color:
                             currentPartColorName === paint ? "white" : "black",
+                          padding: "0.5rem",
+                          margin: "0.25rem",
                         }}
                       >
                         {paint}
@@ -1040,6 +1058,8 @@ export default function Scene({
                   />
                 </mesh>
                 <Html
+                  centered
+                  position={[0, 0.45, -0.32]}
                   style={{
                     transition: "all 0.5s",
                     opacity:
@@ -1070,6 +1090,8 @@ export default function Scene({
                             currentPartColorName === stain ? "black" : "white",
                           color:
                             currentPartColorName === stain ? "white" : "black",
+                          padding: "0.5rem",
+                          margin: "0.25rem",
                         }}
                       >
                         {stain}
@@ -1087,9 +1109,11 @@ export default function Scene({
                           transition: "all 0.5s",
                           transform: `scale(${currentPartColorName === paint ? 1 : 0.85})`,
                           backgroundColor:
-                            currentPartColorName === paint ? "black" : "white",
+                            currentPartColorName === paint ? "grey" : "white",
                           color:
                             currentPartColorName === paint ? "white" : "black",
+                          padding: "0.5rem",
+                          margin: "0.25rem",
                         }}
                       >
                         {paint}
@@ -1158,6 +1182,8 @@ export default function Scene({
                   />
                 </mesh>
                 <Html
+                  centered
+                  position={[-0.32, 1.65, 0]}
                   style={{
                     transition: "all 0.5s",
                     opacity:
@@ -1188,6 +1214,8 @@ export default function Scene({
                             currentPartColorName === stain ? "black" : "white",
                           color:
                             currentPartColorName === stain ? "white" : "black",
+                          padding: "0.5rem",
+                          margin: "0.25rem",
                         }}
                       >
                         {stain}
@@ -1205,9 +1233,11 @@ export default function Scene({
                           transition: "all 0.5s",
                           transform: `scale(${currentPartColorName === paint ? 1 : 0.85})`,
                           backgroundColor:
-                            currentPartColorName === paint ? "black" : "white",
+                            currentPartColorName === paint ? "grey" : "white",
                           color:
                             currentPartColorName === paint ? "white" : "black",
+                          padding: "0.5rem",
+                          margin: "0.25rem",
                         }}
                       >
                         {paint}
@@ -1276,6 +1306,8 @@ export default function Scene({
                   />
                 </mesh>
                 <Html
+                  centered
+                  position={[0, 1.3, -0.5]}
                   style={{
                     transition: "all 0.5s",
                     opacity:
@@ -1306,6 +1338,8 @@ export default function Scene({
                             currentPartColorName === stain ? "black" : "white",
                           color:
                             currentPartColorName === stain ? "white" : "black",
+                          padding: "0.5rem",
+                          margin: "0.25rem",
                         }}
                       >
                         {stain}
@@ -1323,9 +1357,11 @@ export default function Scene({
                           transition: "all 0.5s",
                           transform: `scale(${currentPartColorName === paint ? 1 : 0.85})`,
                           backgroundColor:
-                            currentPartColorName === paint ? "black" : "white",
+                            currentPartColorName === paint ? "grey" : "white",
                           color:
                             currentPartColorName === paint ? "white" : "black",
+                          padding: "0.5rem",
+                          margin: "0.25rem",
                         }}
                       >
                         {paint}
@@ -1394,6 +1430,8 @@ export default function Scene({
                   />
                 </mesh>
                 <Html
+                  centered
+                  position={[-0.32, 1.3, 0]}
                   style={{
                     transition: "all 0.5s",
                     opacity:
@@ -1424,6 +1462,8 @@ export default function Scene({
                             currentPartColorName === stain ? "black" : "white",
                           color:
                             currentPartColorName === stain ? "white" : "black",
+                          padding: "0.5rem",
+                          margin: "0.25rem",
                         }}
                       >
                         {stain}
@@ -1441,9 +1481,11 @@ export default function Scene({
                           transition: "all 0.5s",
                           transform: `scale(${currentPartColorName === paint ? 1 : 0.85})`,
                           backgroundColor:
-                            currentPartColorName === paint ? "black" : "white",
+                            currentPartColorName === paint ? "grey" : "white",
                           color:
                             currentPartColorName === paint ? "white" : "black",
+                          padding: "0.5rem",
+                          margin: "0.25rem",
                         }}
                       >
                         {paint}
@@ -1512,6 +1554,8 @@ export default function Scene({
                   />
                 </mesh>
                 <Html
+                  centered
+                  position={[-0.5, 1.65, 0]}
                   style={{
                     transition: "all 0.5s",
                     opacity:
@@ -1542,6 +1586,8 @@ export default function Scene({
                             currentPartColorName === stain ? "black" : "white",
                           color:
                             currentPartColorName === stain ? "white" : "black",
+                          padding: "0.5rem",
+                          margin: "0.25rem",
                         }}
                       >
                         {stain}
@@ -1559,9 +1605,11 @@ export default function Scene({
                           transition: "all 0.5s",
                           transform: `scale(${currentPartColorName === paint ? 1 : 0.85})`,
                           backgroundColor:
-                            currentPartColorName === paint ? "black" : "white",
+                            currentPartColorName === paint ? "grey" : "white",
                           color:
                             currentPartColorName === paint ? "white" : "black",
+                          padding: "0.5rem",
+                          margin: "0.25rem",
                         }}
                       >
                         {paint}
