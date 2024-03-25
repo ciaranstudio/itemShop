@@ -1,5 +1,6 @@
 import React, { useLayoutEffect } from "react";
 import { useGLTF, useTexture, Html } from "@react-three/drei";
+import * as THREE from "three";
 // import { useOptionStore } from "../store/useOptionStore.tsx";
 
 export const Icon = ({
@@ -18,6 +19,36 @@ export const Icon = ({
 }) => {
   const { scene, nodes, materials } = useGLTF("./models/bag.gltf");
 
+  // const repeatVal = 3;
+  // // map.minFilter = THREE.LinearFilter;
+  // // map.magFilter = THREE.NearestFilter;
+  // // map.colorSpace = THREE.SRGBColorSpace;
+
+  // map.wrapS = THREE.RepeatWrapping;
+  // map.wrapT = THREE.RepeatWrapping;
+  // map.repeat.set(repeatVal, repeatVal);
+
+  // displacementMap.wrapS = THREE.RepeatWrapping;
+  // displacementMap.wrapT = THREE.RepeatWrapping;
+  // displacementMap.repeat.set(repeatVal, repeatVal);
+
+  // aoMap.wrapS = THREE.RepeatWrapping;
+  // aoMap.wrapT = THREE.RepeatWrapping;
+  // aoMap.repeat.set(repeatVal, repeatVal);
+
+  // // normalMap.minFilter = THREE.LinearFilter;
+  // // normalMap.magFilter = THREE.NearestFilter;
+
+  // normalMap.wrapS = THREE.RepeatWrapping;
+  // normalMap.wrapT = THREE.RepeatWrapping;
+  // normalMap.repeat.set(repeatVal, repeatVal);
+
+  // // roughnessMap.minFilter = THREE.LinearFilter;
+  // // roughnessMap.magFilter = THREE.NearestFilter;
+
+  // roughnessMap.wrapS = THREE.RepeatWrapping;
+  // roughnessMap.wrapT = THREE.RepeatWrapping;
+  // roughnessMap.repeat.set(repeatVal, repeatVal);
   // const currentPartColor = useOptionStore(
   //   (state) => state.items[itemName].parts[partName].color,
   // );
@@ -95,6 +126,8 @@ export const Icon = ({
         o.receiveShadow = true;
         o.material.roughness = 1;
         o.material.metalness = 0;
+        // o.material.map.colorSpace = THREE.SRGBColorSpace;
+        console.log(o.material);
       }
     });
   }, []);

@@ -489,6 +489,7 @@ function App() {
     <>
       <Leva hidden oneLineLabels />
       <Canvas
+        flat
         dpr={[1, 2]}
         shadows={{ type: THREE.PCFSoftShadowMap }}
         camera={{
