@@ -489,7 +489,7 @@ function App() {
     <>
       <Leva hidden oneLineLabels />
       <Canvas
-        flat
+        // flat // changes color rendering, see https://stackoverflow.com/questions/64899716/color-differences-between-threejs-vanilla-js-and-react-three-fiber-create-re
         dpr={[1, 2]}
         shadows={{ type: THREE.PCFSoftShadowMap }}
         camera={{
