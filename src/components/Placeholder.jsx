@@ -1,7 +1,10 @@
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
+// import { useGLTF } from "@react-three/drei";
 
 export default function Placeholder() {
+  // const { scene, nodes, materials } = useGLTF("./models/bag.gltf");
+
   const boxRef = useRef();
 
   // const loadingBarElement = document.querySelector(".loading-bar");
@@ -59,16 +62,15 @@ export default function Placeholder() {
     <>
       {/* <color args={["#000000"]} attach="background" /> */}
       {/* <mesh geometry={overlayGeometry} material={overlayMaterial}></mesh> */}
-
       {/* <mesh position={[0, 0, 0]} rotation-x={-Math.PI * 0.5}>
         <planeGeometry args={[130, 130, 16, 16]} />
         <meshBasicMaterial color="darkGreen" wireframe />
       </mesh> */}
-
       <mesh ref={boxRef} position={[0, 0.65, 0]}>
         {/* <boxGeometry args={[150, 90, 150, 8, 8, 8]} /> */}
         <boxGeometry args={[0.5, 0.5, 0.5, 3, 3, 3]} />
-        <meshBasicMaterial color="lightGrey" wireframe />
+        {/* <primitive object={scene} />; */}
+        <meshBasicMaterial wireframe />
       </mesh>
     </>
   );
