@@ -1,5 +1,5 @@
 import React, { useLayoutEffect } from "react";
-import { useGLTF, useTexture } from "@react-three/drei";
+import { useGLTF, useTexture, Html } from "@react-three/drei";
 import { useOptionStore } from "../store/useOptionStore.tsx";
 
 export const ItemPart = ({
@@ -9,8 +9,8 @@ export const ItemPart = ({
   // roughnessMap,
   // metalnessMap,
   // // aoMap,
-  currentColor,
-  currentTexture,
+  // currentColor,
+  // currentTexture,
   model,
   // animationType,
   itemName,
@@ -68,6 +68,25 @@ export const ItemPart = ({
   //   () => scene.traverse((o) => o.isMesh && (o.material.metalness = 0)),
   //   [],
   // );
+
+  const annotations = [];
+
+  useLayoutEffect(() => {
+    scene.traverse((o) => {
+      if (o.userData.prop) {
+        console.log("o.userData: ", o.userData);
+        annotations.push(
+          <Html
+            key={o.uuid}
+            position={[o.position.x, o.position.y, o.position.z]}
+            distanceFactor={0.5}
+          >
+            <div className="annotation">{o.userData.prop}</div>
+          </Html>,
+        );
+      }
+    });
+  }, []);
 
   useLayoutEffect(() => {
     scene.traverse((o) => {

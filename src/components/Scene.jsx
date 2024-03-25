@@ -34,6 +34,7 @@ import { shopItems } from "../data/objects.jsx";
 import { ItemPart } from "./ItemPart.jsx";
 
 import { useOptionStore } from "../store/useOptionStore.tsx";
+import { Icon } from "./icons/Icon.jsx";
 
 export default function Scene({
   open,
@@ -676,8 +677,8 @@ export default function Scene({
                     // normalMap={normalMapGramps}
                     // roughnessMap={roughnessMapGramps}
                     // metalnessMap={metalnessMapGramps}
-                    currentColor={currentColorGramps}
-                    currentTexture={currentTextureGramps}
+                    // currentColor={currentColorGramps}
+                    // currentTexture={currentTextureGramps}
                     model={part.model}
                     // animationType={part.animation}
                     itemName={part.itemName}
@@ -924,8 +925,8 @@ export default function Scene({
                     // normalMap={normalMapHorse}
                     // roughnessMap={roughnessMapHorse}
                     // metalnessMap={metalnessMapHorse}
-                    currentColor={currentColorHorse}
-                    currentTexture={currentTextureHorse}
+                    // currentColor={currentColorHorse}
+                    // currentTexture={currentTextureHorse}
                     model={part.model}
                     // animationType={part.animation}
                     itemName={part.itemName}
@@ -1049,8 +1050,8 @@ export default function Scene({
                     // normalMap={normalMapSquatter}
                     // roughnessMap={roughnessMapSquatter}
                     // metalnessMap={metalnessMapSquatter}
-                    currentColor={currentColorSquatter}
-                    currentTexture={currentTextureSquatter}
+                    // currentColor={currentColorSquatter}
+                    // currentTexture={currentTextureSquatter}
                     model={part.model}
                     // animationType={part.animation}
                     itemName={part.itemName}
@@ -1173,8 +1174,8 @@ export default function Scene({
                     // normalMap={normalMapShelfA16}
                     // roughnessMap={roughnessMapShelfA16}
                     // metalnessMap={metalnessMapShelfA16}
-                    currentColor={currentColorShelfA16}
-                    currentTexture={currentTextureShelfA16}
+                    // currentColor={currentColorShelfA16}
+                    // currentTexture={currentTextureShelfA16}
                     model={part.model}
                     // animationType={part.animation}
                     itemName={part.itemName}
@@ -1297,8 +1298,8 @@ export default function Scene({
                     // normalMap={normalMapShelfA32}
                     // roughnessMap={roughnessMapShelfA32}
                     // metalnessMap={metalnessMapShelfA32}
-                    currentColor={currentColorShelfA32}
-                    currentTexture={currentTextureShelfA32}
+                    // currentColor={currentColorShelfA32}
+                    // currentTexture={currentTextureShelfA32}
                     model={part.model}
                     // animationType={part.animation}
                     itemName={part.itemName}
@@ -1421,8 +1422,8 @@ export default function Scene({
                     // normalMap={normalMapShelfB16}
                     // roughnessMap={roughnessMapShelfB16}
                     // metalnessMap={metalnessMapShelfB16}
-                    currentColor={currentColorShelfB16}
-                    currentTexture={currentTextureShelfB16}
+                    // currentColor={currentColorShelfB16}
+                    // currentTexture={currentTextureShelfB16}
                     model={part.model}
                     // animationType={part.animation}
                     itemName={part.itemName}
@@ -1545,8 +1546,8 @@ export default function Scene({
                     // normalMap={normalMapShelfB32}
                     // roughnessMap={roughnessMapShelfB32}
                     // metalnessMap={metalnessMapShelfB32}
-                    currentColor={currentColorShelfB32}
-                    currentTexture={currentTextureShelfB32}
+                    // currentColor={currentColorShelfB32}
+                    // currentTexture={currentTextureShelfB32}
                     model={part.model}
                     // animationType={part.animation}
                     itemName={part.itemName}
@@ -1651,6 +1652,20 @@ export default function Scene({
             // metalnessMap={metalnessMapPainted}
             currentColor={textures.whiteStain}
             currentTexture={textures.paintedTexture}
+          />
+        </mesh>
+
+        {/* Icon (cart bag test) */}
+        <mesh visible={showBackground} onClick={handleOffClick}>
+          <Icon
+            // displacementMap={displacementMapPainted}
+            // aoMap={aoMapPainted}
+            // map={colorMapPainted}
+            // normalMap={normalMapPainted}
+            // roughnessMap={roughnessMapPainted}
+            // metalnessMap={metalnessMapPainted}
+            currentColor={textures.naturalStain}
+            currentTexture={textures.naturalTexture}
           />
         </mesh>
 
