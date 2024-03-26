@@ -56,38 +56,6 @@ export const ItemPart = ({
     metalnessMap,
   ]);
 
-  // useLayoutEffect(
-  //   () =>
-  //     scene.traverse(
-  //       (o) => o.isMesh && (o.castShadow = o.receiveShadow = true),
-  //     ),
-  //   [],
-  // );
-
-  // useLayoutEffect(
-  //   () => scene.traverse((o) => o.isMesh && (o.material.metalness = 0)),
-  //   [],
-  // );
-
-  const annotations = [];
-
-  useLayoutEffect(() => {
-    scene.traverse((o) => {
-      if (o.userData.prop) {
-        console.log("o.userData: ", o.userData);
-        annotations.push(
-          <Html
-            key={o.uuid}
-            position={[o.position.x, o.position.y, o.position.z]}
-            distanceFactor={0.5}
-          >
-            <div className="annotation">{o.userData.prop}</div>
-          </Html>,
-        );
-      }
-    });
-  }, []);
-
   useLayoutEffect(() => {
     scene.traverse((o) => {
       if (o.isMesh) {

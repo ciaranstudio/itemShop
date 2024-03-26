@@ -35,6 +35,7 @@ import { ItemPart } from "./ItemPart.jsx";
 
 import { useOptionStore } from "../store/useOptionStore.tsx";
 import { Icon } from "./icons/Icon.jsx";
+import { Annotation } from "./Annotation.jsx";
 
 export default function Scene({
   open,
@@ -336,7 +337,7 @@ export default function Scene({
       orbitRef.current.addEventListener(
         "end",
         () => {
-          console.log("end");
+          // console.log("end");
           // setCameraPosition(orbitRef.current.object.position);
           setControlsDragging(false);
           // setOpen(true);
@@ -452,7 +453,7 @@ export default function Scene({
 
   const stagePositionY = 0;
 
-  const animDist = 0; // 0.1
+  const animDist = 0.05; // 0.1
   const jumpDist = 0;
 
   const dirLightXPosition = 2.5;
@@ -495,7 +496,7 @@ export default function Scene({
     console.log("itemName: ", itemName);
     console.log("partName: ", partName);
     console.log("color clicked: ", color);
-    console.log("currentPartColorName: ", currentPartColorName);
+
     if (color === "white") {
       updatePartTexture(itemName, partName, textures.whiteTexture);
       updatePartColor(itemName, partName, textures.whiteStain);
@@ -539,6 +540,7 @@ export default function Scene({
     }
   };
 
+  const hammerModel = "./models/hammer.gltf";
   return (
     <>
       {debugControls.perfVisible && <Perf position="top-left" />}
@@ -683,6 +685,33 @@ export default function Scene({
                     // animationType={part.animation}
                     itemName={part.itemName}
                     partName={part.partName}
+                  />
+                </mesh>
+                <mesh
+                  visible={showBackground}
+                  position={
+                    part.animation === "negX"
+                      ? [-animDist, 0, 0]
+                      : part.animation === "posX"
+                        ? [animDist, 0, 0]
+                        : part.animation === "negZ"
+                          ? [0, 0, -animDist]
+                          : part.animation === "posZ"
+                            ? [0, 0, animDist]
+                            : part.animation === "posY1"
+                              ? [0, animDist, 0]
+                              : part.animation === "posY2"
+                                ? [0, animDist + animDist / 2, 0]
+                                : [0, 0, 0]
+                  }
+                >
+                  <Annotation
+                    model={part.model}
+                    itemName={part.itemName}
+                    partName={part.partName}
+                    descPartName={part.descPartName}
+                    currentItemName={currentItemName}
+                    currentPartName={currentPartName}
                   />
                 </mesh>
                 <Html
@@ -1656,7 +1685,7 @@ export default function Scene({
         </mesh>
 
         {/* Icon (cart bag test) */}
-        <mesh visible={showBackground} onClick={handleOffClick}>
+        <mesh visible={showBackground}>
           <Icon
             // displacementMap={displacementMapPainted}
             // aoMap={aoMapPainted}
@@ -1668,6 +1697,21 @@ export default function Scene({
             currentTexture={textures.naturalTexture}
           />
         </mesh>
+
+        {/* Hammer (annotation test) */}
+        {/* <mesh visible={showBackground} position={[0, 1, 0]}>
+          <Annotation
+            // displacementMap={displacementMapPainted}
+            // aoMap={aoMapPainted}
+            // map={colorMapPainted}
+            // normalMap={normalMapPainted}
+            // roughnessMap={roughnessMapPainted}
+            // metalnessMap={metalnessMapPainted}
+            // currentColor={textures.naturalStain}
+            // currentTexture={textures.naturalTexture}
+            model={hammerModel}
+          />
+        </mesh> */}
 
         {/* shelfPositions */}
         {/* <mesh>

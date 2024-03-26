@@ -83,14 +83,16 @@ body,
   border-radius: 5px;
   user-select: none;
   font-family: var(--leva-fonts-mono);
+  font-size: 54px;
 }
 
 .annotation::before {
   content: "";
   position: absolute;
   top: 20px;
-  left: -30px;
+  left: -240px;
   height: 2px;
-  width: 30px;
+  width: 240px;
+  /* width: 30px; */
   background: #181c20;
 }
