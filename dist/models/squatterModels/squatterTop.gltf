@@ -10,11 +10,20 @@
 			"nodes":[
 				0,
 				1,
-				2
+				2,
+				3
 			]
 		}
 	],
 	"nodes":[
+		{
+			"name":"AnchorPoint.019",
+			"translation":[
+				0,
+				0.39000096917152405,
+				-0.19237373769283295
+			]
+		},
 		{
 			"mesh":0,
 			"name":"squatterTop",

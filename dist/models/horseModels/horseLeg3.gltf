@@ -8,11 +8,20 @@
 		{
 			"name":"Scene",
 			"nodes":[
-				0
+				0,
+				1
 			]
 		}
 	],
 	"nodes":[
+		{
+			"name":"AnchorPoint.016",
+			"translation":[
+				-0.4063863754272461,
+				0.4000079333782196,
+				0.11914447695016861
+			]
+		},
 		{
 			"mesh":0,
 			"name":"horseLeg3",

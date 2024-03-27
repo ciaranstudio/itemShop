@@ -21,12 +21,11 @@ import { Perf } from "r3f-perf";
 
 import { Floor } from "./room/Floor.jsx";
 import { Walls } from "./room/Walls.jsx";
-
 // import { ShelfPositions } from "./room/ShelfPositions.jsx";
 
 import controls from "../helpers/debugControls";
 import { textures } from "../data/textures.jsx";
-import { options } from "../data/options.jsx";
+// import { options } from "../data/options.jsx";
 import { objects } from "../data/objects.jsx";
 import { shopItems } from "../data/objects.jsx";
 
@@ -34,7 +33,7 @@ import { ItemPart } from "./ItemPart.jsx";
 import { Icon } from "./icons/Icon.jsx";
 import { Annotation } from "./Annotation.jsx";
 
-import { useOptionStore } from "../store/useOptionStore.tsx";
+// import { useOptionStore } from "../store/useOptionStore.tsx";
 
 export default function Scene({
   currentItemSelected,
@@ -188,7 +187,7 @@ export default function Scene({
 
   const handleOffClick = (e) => {
     e.stopPropagation();
-    setShowPartOptions(false);
+    // setShowPartOptions(false);
     // console.log("onPointerMissed click");
     // setShowBackground(true);
   };
@@ -358,64 +357,6 @@ export default function Scene({
   const [currentPartName, setCurrentPartName] = useState("top");
   const [currentItemName, setCurrentItemName] = useState("gramps");
 
-  const currentPartColorName = useOptionStore(
-    (state) => state.items[currentItemName].parts[currentPartName].colorName,
-  );
-  const updatePartColor = useOptionStore((state) => state.updatePartColor);
-  const updatePartColorName = useOptionStore(
-    (state) => state.updatePartColorName,
-  );
-  const updatePartTexture = useOptionStore((state) => state.updatePartTexture);
-
-  const handlePartOption = (itemName, partName, color) => {
-    // console.log("handlePartOption event: ", e);
-    console.log("itemName: ", itemName);
-    console.log("partName: ", partName);
-    console.log("color clicked: ", color);
-
-    if (color === "white") {
-      updatePartTexture(itemName, partName, textures.whiteTexture);
-      updatePartColor(itemName, partName, textures.whiteStain);
-      updatePartColorName(itemName, partName, "white");
-    } else if (color === "natural") {
-      updatePartTexture(itemName, partName, textures.naturalTexture);
-      updatePartColor(itemName, partName, textures.naturalStain);
-      updatePartColorName(itemName, partName, "natural");
-    } else if (color === "black") {
-      updatePartTexture(itemName, partName, textures.blackTexture);
-      updatePartColor(itemName, partName, textures.blackStain);
-      updatePartColorName(itemName, partName, "black");
-    } else if (color === "allBlack") {
-      updatePartTexture(itemName, partName, textures.allBlackTexture);
-      updatePartColor(itemName, partName, textures.allBlackStain);
-      updatePartColorName(itemName, partName, "allBlack");
-    } else if (color === "alabaster") {
-      updatePartTexture(itemName, partName, textures.paintedTexture);
-      updatePartColor(itemName, partName, textures.alabasterPaint);
-      updatePartColorName(itemName, partName, "alabaster");
-    } else if (color === "pink") {
-      updatePartTexture(itemName, partName, textures.paintedTexture);
-      updatePartColor(itemName, partName, textures.pinkPaint);
-      updatePartColorName(itemName, partName, "pink");
-    } else if (color === "basil") {
-      updatePartTexture(itemName, partName, textures.paintedTexture);
-      updatePartColor(itemName, partName, textures.basilPaint);
-      updatePartColorName(itemName, partName, "basil");
-    } else if (color === "yellow") {
-      updatePartTexture(itemName, partName, textures.paintedTexture);
-      updatePartColor(itemName, partName, textures.yellowPaint);
-      updatePartColorName(itemName, partName, "yellow");
-    } else if (color === "blue") {
-      updatePartTexture(itemName, partName, textures.paintedTexture);
-      updatePartColor(itemName, partName, textures.bluePaint);
-      updatePartColorName(itemName, partName, "blue");
-    } else if (color === "gray") {
-      updatePartTexture(itemName, partName, textures.paintedTexture);
-      updatePartColor(itemName, partName, textures.grayPaint);
-      updatePartColorName(itemName, partName, "gray");
-    }
-  };
-
   const animatedPosition = (animation, animDist) => {
     let x = 0;
     let y = 0;
@@ -481,7 +422,7 @@ export default function Scene({
         target={grampsRef.current}
       />
 
-      <group position={[0, stagePositionY, 0]} onPointerMissed={handleOffClick}>
+      <group position={[0, stagePositionY, 0]}>
         <ambientLight intensity={ambLightIntensity} />
 
         {/* gramps */}
@@ -496,7 +437,6 @@ export default function Scene({
           onPointerOut={() => hover(false)}
           onClick={handleClick}
           onDoubleClick={handleDoubleClick}
-          // onPointerMissed={handleOffClick}
         >
           {objects.gramps.parts.map((part, index) => {
             return (
@@ -526,71 +466,8 @@ export default function Scene({
                   currentItemName={currentItemName}
                   currentPartName={currentPartName}
                   showBackground={showBackground}
+                  showPartOptions={showPartOptions}
                 />
-                <Html
-                  centered
-                  position={[0.3, 0.48, 0]}
-                  style={{
-                    transition: "all 0.5s",
-                    opacity:
-                      currentItemName === part.itemName &&
-                      currentPartName === part.partName
-                        ? 1
-                        : 0,
-                    display:
-                      currentItemName === part.itemName &&
-                      currentPartName === part.partName &&
-                      showPartOptions
-                        ? "block"
-                        : "none",
-                    transform: `scale(${currentPartName === part.partName ? 1 : 0.5})`,
-                  }}
-                >
-                  {options.stains.map((stain) => {
-                    return (
-                      <button
-                        key={stain}
-                        onClick={(e) =>
-                          handlePartOption(part.itemName, part.partName, stain)
-                        }
-                        style={{
-                          transition: "all 0.5s",
-                          transform: `scale(${currentPartColorName === stain ? 1 : 0.85})`,
-                          backgroundColor:
-                            currentPartColorName === stain ? "black" : "white",
-                          color:
-                            currentPartColorName === stain ? "white" : "black",
-                          padding: "0.5rem",
-                          margin: "0.25rem",
-                        }}
-                      >
-                        {stain}
-                      </button>
-                    );
-                  })}
-                  {options.paints.map((paint) => {
-                    return (
-                      <button
-                        key={paint}
-                        onClick={(e) =>
-                          handlePartOption(part.itemName, part.partName, paint)
-                        }
-                        style={{
-                          transition: "all 0.5s",
-                          transform: `scale(${currentPartColorName === paint ? 1 : 0.85})`,
-                          backgroundColor:
-                            currentPartColorName === paint ? "grey" : "white",
-                          color:
-                            currentPartColorName === paint ? "white" : "black",
-                          padding: "0.5rem",
-                          margin: "0.25rem",
-                        }}
-                      >
-                        {paint}
-                      </button>
-                    );
-                  })}
-                </Html>
               </group>
             );
           })}
@@ -609,7 +486,6 @@ export default function Scene({
           onPointerOut={() => hover(false)}
           onClick={handleClick}
           onDoubleClick={handleDoubleClick}
-          // onPointerMissed={handleOffClick}
         >
           {objects.block.parts.map((part) => {
             return (
@@ -639,71 +515,8 @@ export default function Scene({
                   currentItemName={currentItemName}
                   currentPartName={currentPartName}
                   showBackground={showBackground}
+                  showPartOptions={showPartOptions}
                 />
-                <Html
-                  centered
-                  position={[0.25, 0.42, 0]}
-                  style={{
-                    transition: "all 0.5s",
-                    opacity:
-                      currentItemName === part.itemName &&
-                      currentPartName === part.partName
-                        ? 1
-                        : 0,
-                    display:
-                      currentItemName === part.itemName &&
-                      currentPartName === part.partName &&
-                      showPartOptions
-                        ? "block"
-                        : "none",
-                    transform: `scale(${currentPartName === part.partName ? 1 : 0.5})`,
-                  }}
-                >
-                  {options.stains.map((stain) => {
-                    return (
-                      <button
-                        key={stain}
-                        onClick={(e) =>
-                          handlePartOption(part.itemName, part.partName, stain)
-                        }
-                        style={{
-                          transition: "all 0.5s",
-                          transform: `scale(${currentPartColorName === stain ? 1 : 0.85})`,
-                          backgroundColor:
-                            currentPartColorName === stain ? "black" : "white",
-                          color:
-                            currentPartColorName === stain ? "white" : "black",
-                          padding: "0.5rem",
-                          margin: "0.25rem",
-                        }}
-                      >
-                        {stain}
-                      </button>
-                    );
-                  })}
-                  {options.paints.map((paint) => {
-                    return (
-                      <button
-                        key={paint}
-                        onClick={(e) =>
-                          handlePartOption(part.itemName, part.partName, paint)
-                        }
-                        style={{
-                          transition: "all 0.5s",
-                          transform: `scale(${currentPartColorName === paint ? 1 : 0.85})`,
-                          backgroundColor:
-                            currentPartColorName === paint ? "grey" : "white",
-                          color:
-                            currentPartColorName === paint ? "white" : "black",
-                          padding: "0.5rem",
-                          margin: "0.25rem",
-                        }}
-                      >
-                        {paint}
-                      </button>
-                    );
-                  })}
-                </Html>
               </group>
             );
           })}
@@ -722,7 +535,6 @@ export default function Scene({
           onPointerOut={() => hover(false)}
           onClick={handleClick}
           onDoubleClick={handleDoubleClick}
-          // onPointerMissed={handleOffClick}
         >
           {objects.horse.parts.map((part) => {
             return (
@@ -742,70 +554,18 @@ export default function Scene({
                     partName={part.partName}
                   />
                 </mesh>
-                <Html
-                  centered
-                  position={[0.6, 0.72, 0]}
-                  style={{
-                    transition: "all 0.5s",
-                    opacity:
-                      currentItemName === part.itemName &&
-                      currentPartName === part.partName
-                        ? 1
-                        : 0,
-                    display:
-                      currentItemName === part.itemName &&
-                      currentPartName === part.partName &&
-                      showPartOptions
-                        ? "block"
-                        : "none",
-                    transform: `scale(${currentPartName === part.partName ? 1 : 0.5})`,
-                  }}
-                >
-                  {options.stains.map((stain) => {
-                    return (
-                      <button
-                        key={stain}
-                        onClick={(e) =>
-                          handlePartOption(part.itemName, part.partName, stain)
-                        }
-                        style={{
-                          transition: "all 0.5s",
-                          transform: `scale(${currentPartColorName === stain ? 1 : 0.85})`,
-                          backgroundColor:
-                            currentPartColorName === stain ? "black" : "white",
-                          color:
-                            currentPartColorName === stain ? "white" : "black",
-                          padding: "0.5rem",
-                          margin: "0.25rem",
-                        }}
-                      >
-                        {stain}
-                      </button>
-                    );
-                  })}
-                  {options.paints.map((paint) => {
-                    return (
-                      <button
-                        key={paint}
-                        onClick={(e) =>
-                          handlePartOption(part.itemName, part.partName, paint)
-                        }
-                        style={{
-                          transition: "all 0.5s",
-                          transform: `scale(${currentPartColorName === paint ? 1 : 0.85})`,
-                          backgroundColor:
-                            currentPartColorName === paint ? "grey" : "white",
-                          color:
-                            currentPartColorName === paint ? "white" : "black",
-                          padding: "0.5rem",
-                          margin: "0.25rem",
-                        }}
-                      >
-                        {paint}
-                      </button>
-                    );
-                  })}
-                </Html>
+                <Annotation
+                  model={part.model}
+                  itemName={part.itemName}
+                  partName={part.partName}
+                  descPartName={part.descPartName}
+                  animation={part.animation}
+                  animDist={animDist}
+                  currentItemName={currentItemName}
+                  currentPartName={currentPartName}
+                  showBackground={showBackground}
+                  showPartOptions={showPartOptions}
+                />
               </group>
             );
           })}
@@ -824,7 +584,6 @@ export default function Scene({
           onPointerOut={() => hover(false)}
           onClick={handleClick}
           onDoubleClick={handleDoubleClick}
-          // onPointerMissed={handleOffClick}
         >
           {objects.squatter.parts.map((part) => {
             return (
@@ -844,70 +603,18 @@ export default function Scene({
                     partName={part.partName}
                   />
                 </mesh>
-                <Html
-                  centered
-                  position={[0, 0.45, -0.32]}
-                  style={{
-                    transition: "all 0.5s",
-                    opacity:
-                      currentItemName === part.itemName &&
-                      currentPartName === part.partName
-                        ? 1
-                        : 0,
-                    display:
-                      currentItemName === part.itemName &&
-                      currentPartName === part.partName &&
-                      showPartOptions
-                        ? "block"
-                        : "none",
-                    transform: `scale(${currentPartName === part.partName ? 1 : 0.5})`,
-                  }}
-                >
-                  {options.stains.map((stain) => {
-                    return (
-                      <button
-                        key={stain}
-                        onClick={(e) =>
-                          handlePartOption(part.itemName, part.partName, stain)
-                        }
-                        style={{
-                          transition: "all 0.5s",
-                          transform: `scale(${currentPartColorName === stain ? 1 : 0.85})`,
-                          backgroundColor:
-                            currentPartColorName === stain ? "black" : "white",
-                          color:
-                            currentPartColorName === stain ? "white" : "black",
-                          padding: "0.5rem",
-                          margin: "0.25rem",
-                        }}
-                      >
-                        {stain}
-                      </button>
-                    );
-                  })}
-                  {options.paints.map((paint) => {
-                    return (
-                      <button
-                        key={paint}
-                        onClick={(e) =>
-                          handlePartOption(part.itemName, part.partName, paint)
-                        }
-                        style={{
-                          transition: "all 0.5s",
-                          transform: `scale(${currentPartColorName === paint ? 1 : 0.85})`,
-                          backgroundColor:
-                            currentPartColorName === paint ? "grey" : "white",
-                          color:
-                            currentPartColorName === paint ? "white" : "black",
-                          padding: "0.5rem",
-                          margin: "0.25rem",
-                        }}
-                      >
-                        {paint}
-                      </button>
-                    );
-                  })}
-                </Html>
+                <Annotation
+                  model={part.model}
+                  itemName={part.itemName}
+                  partName={part.partName}
+                  descPartName={part.descPartName}
+                  animation={part.animation}
+                  animDist={animDist}
+                  currentItemName={currentItemName}
+                  currentPartName={currentPartName}
+                  showBackground={showBackground}
+                  showPartOptions={showPartOptions}
+                />
               </group>
             );
           })}
@@ -925,7 +632,6 @@ export default function Scene({
           onPointerOut={() => hover(false)}
           onClick={handleClick}
           onDoubleClick={handleDoubleClick}
-          // onPointerMissed={handleOffClick}
         >
           {objects.shelfA16.parts.map((part) => {
             return (
@@ -945,70 +651,18 @@ export default function Scene({
                     partName={part.partName}
                   />
                 </mesh>
-                <Html
-                  centered
-                  position={[-0.32, 1.65, 0]}
-                  style={{
-                    transition: "all 0.5s",
-                    opacity:
-                      currentItemName === part.itemName &&
-                      currentPartName === part.partName
-                        ? 1
-                        : 0,
-                    display:
-                      currentItemName === part.itemName &&
-                      currentPartName === part.partName &&
-                      showPartOptions
-                        ? "block"
-                        : "none",
-                    transform: `scale(${currentPartName === part.partName ? 1 : 0.5})`,
-                  }}
-                >
-                  {options.stains.map((stain) => {
-                    return (
-                      <button
-                        key={stain}
-                        onClick={(e) =>
-                          handlePartOption(part.itemName, part.partName, stain)
-                        }
-                        style={{
-                          transition: "all 0.5s",
-                          transform: `scale(${currentPartColorName === stain ? 1 : 0.85})`,
-                          backgroundColor:
-                            currentPartColorName === stain ? "black" : "white",
-                          color:
-                            currentPartColorName === stain ? "white" : "black",
-                          padding: "0.5rem",
-                          margin: "0.25rem",
-                        }}
-                      >
-                        {stain}
-                      </button>
-                    );
-                  })}
-                  {options.paints.map((paint) => {
-                    return (
-                      <button
-                        key={paint}
-                        onClick={(e) =>
-                          handlePartOption(part.itemName, part.partName, paint)
-                        }
-                        style={{
-                          transition: "all 0.5s",
-                          transform: `scale(${currentPartColorName === paint ? 1 : 0.85})`,
-                          backgroundColor:
-                            currentPartColorName === paint ? "grey" : "white",
-                          color:
-                            currentPartColorName === paint ? "white" : "black",
-                          padding: "0.5rem",
-                          margin: "0.25rem",
-                        }}
-                      >
-                        {paint}
-                      </button>
-                    );
-                  })}
-                </Html>
+                <Annotation
+                  model={part.model}
+                  itemName={part.itemName}
+                  partName={part.partName}
+                  descPartName={part.descPartName}
+                  animation={part.animation}
+                  animDist={animDist}
+                  currentItemName={currentItemName}
+                  currentPartName={currentPartName}
+                  showBackground={showBackground}
+                  showPartOptions={showPartOptions}
+                />
               </group>
             );
           })}
@@ -1026,7 +680,6 @@ export default function Scene({
           onPointerOut={() => hover(false)}
           onClick={handleClick}
           onDoubleClick={handleDoubleClick}
-          // onPointerMissed={handleOffClick}
         >
           {objects.shelfA32.parts.map((part) => {
             return (
@@ -1046,70 +699,18 @@ export default function Scene({
                     partName={part.partName}
                   />
                 </mesh>
-                <Html
-                  centered
-                  position={[0, 1.3, -0.5]}
-                  style={{
-                    transition: "all 0.5s",
-                    opacity:
-                      currentItemName === part.itemName &&
-                      currentPartName === part.partName
-                        ? 1
-                        : 0,
-                    display:
-                      currentItemName === part.itemName &&
-                      currentPartName === part.partName &&
-                      showPartOptions
-                        ? "block"
-                        : "none",
-                    transform: `scale(${currentPartName === part.partName ? 1 : 0.5})`,
-                  }}
-                >
-                  {options.stains.map((stain) => {
-                    return (
-                      <button
-                        key={stain}
-                        onClick={(e) =>
-                          handlePartOption(part.itemName, part.partName, stain)
-                        }
-                        style={{
-                          transition: "all 0.5s",
-                          transform: `scale(${currentPartColorName === stain ? 1 : 0.85})`,
-                          backgroundColor:
-                            currentPartColorName === stain ? "black" : "white",
-                          color:
-                            currentPartColorName === stain ? "white" : "black",
-                          padding: "0.5rem",
-                          margin: "0.25rem",
-                        }}
-                      >
-                        {stain}
-                      </button>
-                    );
-                  })}
-                  {options.paints.map((paint) => {
-                    return (
-                      <button
-                        key={paint}
-                        onClick={(e) =>
-                          handlePartOption(part.itemName, part.partName, paint)
-                        }
-                        style={{
-                          transition: "all 0.5s",
-                          transform: `scale(${currentPartColorName === paint ? 1 : 0.85})`,
-                          backgroundColor:
-                            currentPartColorName === paint ? "grey" : "white",
-                          color:
-                            currentPartColorName === paint ? "white" : "black",
-                          padding: "0.5rem",
-                          margin: "0.25rem",
-                        }}
-                      >
-                        {paint}
-                      </button>
-                    );
-                  })}
-                </Html>
+                <Annotation
+                  model={part.model}
+                  itemName={part.itemName}
+                  partName={part.partName}
+                  descPartName={part.descPartName}
+                  animation={part.animation}
+                  animDist={animDist}
+                  currentItemName={currentItemName}
+                  currentPartName={currentPartName}
+                  showBackground={showBackground}
+                  showPartOptions={showPartOptions}
+                />
               </group>
             );
           })}
@@ -1127,7 +728,6 @@ export default function Scene({
           onPointerOut={() => hover(false)}
           onClick={handleClick}
           onDoubleClick={handleDoubleClick}
-          // onPointerMissed={handleOffClick}
         >
           {objects.shelfB16.parts.map((part) => {
             return (
@@ -1147,70 +747,18 @@ export default function Scene({
                     partName={part.partName}
                   />
                 </mesh>
-                <Html
-                  centered
-                  position={[-0.32, 1.3, 0]}
-                  style={{
-                    transition: "all 0.5s",
-                    opacity:
-                      currentItemName === part.itemName &&
-                      currentPartName === part.partName
-                        ? 1
-                        : 0,
-                    display:
-                      currentItemName === part.itemName &&
-                      currentPartName === part.partName &&
-                      showPartOptions
-                        ? "block"
-                        : "none",
-                    transform: `scale(${currentPartName === part.partName ? 1 : 0.5})`,
-                  }}
-                >
-                  {options.stains.map((stain) => {
-                    return (
-                      <button
-                        key={stain}
-                        onClick={(e) =>
-                          handlePartOption(part.itemName, part.partName, stain)
-                        }
-                        style={{
-                          transition: "all 0.5s",
-                          transform: `scale(${currentPartColorName === stain ? 1 : 0.85})`,
-                          backgroundColor:
-                            currentPartColorName === stain ? "black" : "white",
-                          color:
-                            currentPartColorName === stain ? "white" : "black",
-                          padding: "0.5rem",
-                          margin: "0.25rem",
-                        }}
-                      >
-                        {stain}
-                      </button>
-                    );
-                  })}
-                  {options.paints.map((paint) => {
-                    return (
-                      <button
-                        key={paint}
-                        onClick={(e) =>
-                          handlePartOption(part.itemName, part.partName, paint)
-                        }
-                        style={{
-                          transition: "all 0.5s",
-                          transform: `scale(${currentPartColorName === paint ? 1 : 0.85})`,
-                          backgroundColor:
-                            currentPartColorName === paint ? "grey" : "white",
-                          color:
-                            currentPartColorName === paint ? "white" : "black",
-                          padding: "0.5rem",
-                          margin: "0.25rem",
-                        }}
-                      >
-                        {paint}
-                      </button>
-                    );
-                  })}
-                </Html>
+                <Annotation
+                  model={part.model}
+                  itemName={part.itemName}
+                  partName={part.partName}
+                  descPartName={part.descPartName}
+                  animation={part.animation}
+                  animDist={animDist}
+                  currentItemName={currentItemName}
+                  currentPartName={currentPartName}
+                  showBackground={showBackground}
+                  showPartOptions={showPartOptions}
+                />
               </group>
             );
           })}
@@ -1228,7 +776,6 @@ export default function Scene({
           onPointerOut={() => hover(false)}
           onClick={handleClick}
           onDoubleClick={handleDoubleClick}
-          // onPointerMissed={handleOffClick}
         >
           {objects.shelfB32.parts.map((part) => {
             return (
@@ -1248,70 +795,18 @@ export default function Scene({
                     partName={part.partName}
                   />
                 </mesh>
-                <Html
-                  centered
-                  position={[-0.5, 1.65, 0]}
-                  style={{
-                    transition: "all 0.5s",
-                    opacity:
-                      currentItemName === part.itemName &&
-                      currentPartName === part.partName
-                        ? 1
-                        : 0,
-                    display:
-                      currentItemName === part.itemName &&
-                      currentPartName === part.partName &&
-                      showPartOptions
-                        ? "block"
-                        : "none",
-                    transform: `scale(${currentPartName === part.partName ? 1 : 0.5})`,
-                  }}
-                >
-                  {options.stains.map((stain) => {
-                    return (
-                      <button
-                        key={stain}
-                        onClick={(e) =>
-                          handlePartOption(part.itemName, part.partName, stain)
-                        }
-                        style={{
-                          transition: "all 0.5s",
-                          transform: `scale(${currentPartColorName === stain ? 1 : 0.85})`,
-                          backgroundColor:
-                            currentPartColorName === stain ? "black" : "white",
-                          color:
-                            currentPartColorName === stain ? "white" : "black",
-                          padding: "0.5rem",
-                          margin: "0.25rem",
-                        }}
-                      >
-                        {stain}
-                      </button>
-                    );
-                  })}
-                  {options.paints.map((paint) => {
-                    return (
-                      <button
-                        key={paint}
-                        onClick={(e) =>
-                          handlePartOption(part.itemName, part.partName, paint)
-                        }
-                        style={{
-                          transition: "all 0.5s",
-                          transform: `scale(${currentPartColorName === paint ? 1 : 0.85})`,
-                          backgroundColor:
-                            currentPartColorName === paint ? "grey" : "white",
-                          color:
-                            currentPartColorName === paint ? "white" : "black",
-                          padding: "0.5rem",
-                          margin: "0.25rem",
-                        }}
-                      >
-                        {paint}
-                      </button>
-                    );
-                  })}
-                </Html>
+                <Annotation
+                  model={part.model}
+                  itemName={part.itemName}
+                  partName={part.partName}
+                  descPartName={part.descPartName}
+                  animation={part.animation}
+                  animDist={animDist}
+                  currentItemName={currentItemName}
+                  currentPartName={currentPartName}
+                  showBackground={showBackground}
+                  showPartOptions={showPartOptions}
+                />
               </group>
             );
           })}
@@ -1321,7 +816,7 @@ export default function Scene({
         <mesh
           visible={showBackground}
           position={[0, -0.498, 0]}
-          onClick={handleOffClick}
+          // onClick={handleOffClick}
         >
           <Floor
             currentColor={textures.whiteStain}
@@ -1330,7 +825,10 @@ export default function Scene({
         </mesh>
 
         {/* wallsAndMoulding */}
-        <mesh visible={showBackground} onClick={handleOffClick}>
+        <mesh
+          visible={showBackground}
+          // onClick={handleOffClick}
+        >
           <Walls
             currentColor={textures.whiteStain}
             currentTexture={textures.paintedTexture}

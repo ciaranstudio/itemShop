@@ -8,11 +8,20 @@
 		{
 			"name":"Scene",
 			"nodes":[
-				0
+				0,
+				1
 			]
 		}
 	],
 	"nodes":[
+		{
+			"name":"AnchorPoint.020",
+			"translation":[
+				0.008336161263287067,
+				0.3199998438358307,
+				0.194976806640625
+			]
+		},
 		{
 			"mesh":0,
 			"name":"squatterCenterPanel",

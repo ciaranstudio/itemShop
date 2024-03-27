@@ -8,11 +8,20 @@
 		{
 			"name":"Scene",
 			"nodes":[
-				0
+				0,
+				1
 			]
 		}
 	],
 	"nodes":[
+		{
+			"name":"AnchorPoint.009",
+			"translation":[
+				-0.21510326862335205,
+				0.22273990511894226,
+				0
+			]
+		},
 		{
 			"mesh":0,
 			"name":"grampsLeg1",

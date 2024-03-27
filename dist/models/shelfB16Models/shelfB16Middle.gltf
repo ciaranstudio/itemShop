@@ -8,11 +8,20 @@
 		{
 			"name":"Scene",
 			"nodes":[
-				0
+				0,
+				1
 			]
 		}
 	],
 	"nodes":[
+		{
+			"name":"AnchorPoint.025",
+			"translation":[
+				-0.20319993793964386,
+				1.1700013875961304,
+				-0.07499932497739792
+			]
+		},
 		{
 			"mesh":0,
 			"name":"shelfBShortMiddle",
