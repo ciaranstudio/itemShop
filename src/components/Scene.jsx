@@ -393,8 +393,10 @@ export default function Scene({
       <ScreenSpace depth={1}>
         <pointLight position={[0.295, 0.2, 0.1]} intensity={0.15} />
         <mesh
-          position={[0.295, 0.345, 0]}
-          rotation={[Math.PI / 8, Math.PI / 4, Math.PI / 14]}
+          // position={[0.295, 0.345, 0]}
+          position={[0.155, 0.345, 0]}
+          // rotation={[Math.PI / 8, Math.PI / 4, Math.PI / 14]}
+          rotation={[Math.PI / 8, Math.PI / 4, Math.PI / 26]}
           scale={0.1}
         >
           {/* <boxGeometry args={[0.06, 0.06, 0.02]} />
@@ -404,7 +406,10 @@ export default function Scene({
             currentTexture={textures.naturalTexture}
           />
         </mesh>
-        <mesh visible={showBackground} position={[-0.28, 0.36, 0]}>
+        <mesh
+          // position={[-0.28, 0.36, 0]}
+          position={[-0.142, 0.36, 0]}
+        >
           <boxGeometry args={[0.06, 0.06, 0.02]} />
           <meshStandardMaterial />
         </mesh>

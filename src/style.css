@@ -62,30 +62,30 @@ body,
 
 .info {
   position: absolute;
-  top: 10px;
+  bottom: 1rem;
   /* right: 295px; */
   /* text-align: right; */
-  width: 300px;
-  right: calc(50% - 150px);
+  width: 18rem;
+  right: calc(50% - 9rem);
   text-align: center;
   /* background: #181c20; */
   background: #ffffff;
   opacity: 0.75;
   /* color: #8c92a4; */
   /* color: #000000; */
-  padding: 12px;
-  border-radius: 10px;
-  font-size: 19px;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  font-size: 1.25rem;
   pointer-events: none;
   font-family: var(--leva-fonts-mono);
 }
 
 #description {
-  font-size: 16px;
+  font-size: 0.95rem;
 }
 
 #size {
-  font-size: 15px;
+  font-size: 0.85rem;
 }
 
 .annotation {
@@ -95,13 +95,13 @@ body,
   background: transparent;
   /* color: #8c92a4; */
   color: #ffffff;
-  padding: 25px;
+  padding: 0;
   /* padding: 10px 15px; */
-  border-radius: 30px;
+  /* border-radius: 30px; */
   /* border-radius: 5px; */
   user-select: none;
   font-family: var(--leva-fonts-mono);
-  font-size: 54px;
+  font-size: 6rem;
 }
 
 .annotation::before {
@@ -110,7 +110,7 @@ body,
   top: 50%;
   /* left: -120px; */
   /* left: -600px; */
-  height: 5px;
+  /* height: 5px; */
   /* width: 120px; */
   /* width: 600px; */
   background: #181c20;
@@ -119,24 +119,24 @@ body,
 .grid-container-stain {
   display: grid;
   grid-template-columns: auto auto auto auto;
-  gap: 40px;
-  padding: 10px;
-  padding-top: 30px;
-  padding-bottom: 30px;
+  gap: 4rem;
+  padding: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1.5rem;
 }
 
 .grid-container-paint {
   display: grid;
   grid-template-columns: auto auto auto;
-  gap: 40px;
-  padding: 10px;
+  gap: 2.5rem;
+  padding: 1rem;
 }
 
 button {
   background-color: rgba(255, 255, 255, 0.8);
   text-align: center;
-  font-size: 30px;
-  border-radius: 30px;
+  font-size: 5rem;
+  border-radius: 2rem;
   border: none;
   cursor: pointer;
 }
@@ -153,9 +153,9 @@ button:active {
 }
 
 .grid-container-stain > button {
-  padding: 120px;
+  padding: 8rem;
 }
 
 .grid-container-paint > button {
-  padding: 80px;
+  padding: 6rem;
 }
