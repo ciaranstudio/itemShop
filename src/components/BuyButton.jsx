@@ -8,6 +8,7 @@ export default function BuyButton({
   priceTotal,
   handleAddToCart,
   currentItemOptionSelect,
+  theme,
   // currentItemOptionType,
   // currentItemSizeSelect,
 }) {
@@ -19,9 +20,8 @@ export default function BuyButton({
       }}
     >
       <Button
-        variant="contained"
-        color="primary"
-        onClick={handleAddToCart}
+        variant="outlined"
+        // onClick={handleAddToCart}
         className="snipcart-add-item"
         data-item-id={item.itemNo}
         // data-item-image={imageUrl}
@@ -40,7 +40,11 @@ export default function BuyButton({
         // }
         // data-item-custom2-value={currentItemSizeSelect}
         sx={{
-          display: itemNo === item.itemNo ? "block" : "none",
+          // display: itemNo === item.itemNo ? "block" : "none",
+          display: item.itemTitle === "noSelectTitle" ? "none" : "block",
+          pointerEvents: "auto",
+          mt: 1,
+          color: theme.palette.primary.light,
         }}
       >
         ${priceTotal}

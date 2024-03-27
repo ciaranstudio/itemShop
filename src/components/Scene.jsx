@@ -10,6 +10,7 @@ import {
   useTexture,
   useProgress,
   Sky,
+  ScreenSpace,
   // SoftShadows,
 } from "@react-three/drei";
 
@@ -389,6 +390,25 @@ export default function Scene({
 
   return (
     <>
+      <ScreenSpace depth={1}>
+        <pointLight position={[0.295, 0.2, 0.1]} intensity={0.15} />
+        <mesh
+          position={[0.295, 0.345, 0]}
+          rotation={[Math.PI / 8, Math.PI / 4, Math.PI / 14]}
+          scale={0.1}
+        >
+          {/* <boxGeometry args={[0.06, 0.06, 0.02]} />
+          <meshStandardMaterial /> */}
+          <Icon
+            currentColor={textures.naturalStain}
+            currentTexture={textures.naturalTexture}
+          />
+        </mesh>
+        <mesh visible={showBackground} position={[-0.28, 0.36, 0]}>
+          <boxGeometry args={[0.06, 0.06, 0.02]} />
+          <meshStandardMaterial />
+        </mesh>
+      </ScreenSpace>
       {debugControls.perfVisible && <Perf position="top-left" />}
       <color args={["#27271a"]} attach="background" />
       <mesh geometry={overlayGeometry} material={overlayMaterial}></mesh>
@@ -397,7 +417,7 @@ export default function Scene({
         ref={orbitRef}
         enableZoom={true}
         enablePan={true}
-        maxDistance={15}
+        // maxDistance={15}
         minDistance={0.2} // 60
         // maxPolarAngle={Math.PI / 2 - Math.PI / 16}
         enableDamping={true}
@@ -836,12 +856,12 @@ export default function Scene({
         </mesh>
 
         {/* Icon (cart bag test) */}
-        <mesh visible={showBackground}>
+        {/* <mesh visible={showBackground}>
           <Icon
             currentColor={textures.naturalStain}
             currentTexture={textures.naturalTexture}
           />
-        </mesh>
+        </mesh> */}
 
         {/* shelfPositions */}
         {/* <mesh>
