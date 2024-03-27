@@ -11,11 +11,20 @@
 				0,
 				1,
 				2,
-				3
+				3,
+				4
 			]
 		}
 	],
 	"nodes":[
+		{
+			"name":"AnchorPoint.005",
+			"translation":[
+				0.10157066583633423,
+				0.30000039935112,
+				0
+			]
+		},
 		{
 			"mesh":0,
 			"name":"blockShelfBlockSideBottom2",

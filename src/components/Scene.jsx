@@ -30,40 +30,17 @@ import { options } from "../data/options.jsx";
 import { objects } from "../data/objects.jsx";
 import { shopItems } from "../data/objects.jsx";
 
-// import Block from "./Block.jsx";
 import { ItemPart } from "./ItemPart.jsx";
-
-import { useOptionStore } from "../store/useOptionStore.tsx";
 import { Icon } from "./icons/Icon.jsx";
 import { Annotation } from "./Annotation.jsx";
 
+import { useOptionStore } from "../store/useOptionStore.tsx";
+
 export default function Scene({
-  open,
-  setOpen,
-  toggled,
-  setToggled,
-  animActive,
-  setAnimActive,
   currentItemSelected,
   setCurrentItemSelected,
   previousItemSelected,
   setPreviousItemSelected,
-  currentTextureGramps,
-  currentColorGramps,
-  currentTextureSquatter,
-  currentColorSquatter,
-  currentTextureBlock,
-  currentColorBlock,
-  currentTextureHorse,
-  currentColorHorse,
-  currentTextureShelfA16,
-  currentColorShelfA16,
-  currentTextureShelfA32,
-  currentColorShelfA32,
-  currentTextureShelfB16,
-  currentColorShelfB16,
-  currentTextureShelfB32,
-  currentColorShelfB32,
 }) {
   const [targetVec, setTargetVec] = useState(new THREE.Vector3());
 
@@ -112,91 +89,7 @@ export default function Scene({
     // aoMapPainted,
   ] = useTexture(textures.paintedTexture);
 
-  // const [
-  //   colorMapFloor,
-  //   displacementMapFloor,
-  //   normalMapFloor,
-  //   roughnessMapFloor,
-  //   metalnessMapFloor,
-  //   aoMapFloor,
-  // ] = useTexture(textures.woodFloorWornPlanksTexture);
-
-  // const [
-  //   colorMapGramps,
-  //   // displacementMapGramps,
-  //   normalMapGramps,
-  //   roughnessMapGramps,
-  //   metalnessMapGramps,
-  //   // aoMapGramps,
-  // ] = useTexture(currentTextureGramps);
-
-  // const [
-  //   colorMapSquatter,
-  //   // displacementMapSquatter,
-  //   normalMapSquatter,
-  //   roughnessMapSquatter,
-  //   metalnessMapSquatter,
-  //   // aoMapSquatter,
-  // ] = useTexture(currentTextureSquatter);
-
-  // const [
-  //   colorMapBlock,
-  //   // displacementMapBlock,
-  //   normalMapBlock,
-  //   roughnessMapBlock,
-  //   metalnessMapBlock,
-  //   // aoMapBlock,
-  // ] = useTexture(currentTextureBlock);
-
-  // const [
-  //   colorMapHorse,
-  //   // displacementMapHorse,
-  //   normalMapHorse,
-  //   roughnessMapHorse,
-  //   metalnessMapHorse,
-  //   // aoMapHorse,
-  // ] = useTexture(currentTextureHorse);
-
-  // const [
-  //   colorMapShelfA16,
-  //   // displacementMapShelfA16,
-  //   normalMapShelfA16,
-  //   roughnessMapShelfA16,
-  //   metalnessMapShelfA16,
-  //   // aoMapShelfA16,
-  // ] = useTexture(currentTextureShelfA16);
-
-  // const [
-  //   colorMapShelfA32,
-  //   // displacementMapShelfA32,
-  //   normalMapShelfA32,
-  //   roughnessMapShelfA32,
-  //   metalnessMapShelfA32,
-  //   // aoMapShelfA32,
-  // ] = useTexture(currentTextureShelfA32);
-
-  // const [
-  //   colorMapShelfB16,
-  //   // displacementMapShelfB16,
-  //   normalMapShelfB16,
-  //   roughnessMapShelfB16,
-  //   metalnessMapShelfB16,
-  //   // aoMapShelfB16,
-  // ] = useTexture(currentTextureShelfB16);
-
-  // const [
-  //   colorMapShelfB32,
-  //   // displacementMapShelfB32,
-  //   normalMapShelfB32,
-  //   roughnessMapShelfB32,
-  //   metalnessMapShelfB32,
-  //   // aoMapShelfB32,
-  // ] = useTexture(currentTextureShelfB32);
-
   const dirLightA = useRef();
-  // const dirLightB = useRef();
-  // const dirLightC = useRef();
-  // const dirLightD = useRef();
 
   const grampsRef = useRef();
   const squatterRef = useRef();
@@ -206,11 +99,6 @@ export default function Scene({
   const shelfA32Ref = useRef();
   const shelfB16Ref = useRef();
   const shelfB32Ref = useRef();
-
-  // useHelper(dirLightA, DirectionalLightHelper, 1, "red");
-  // useHelper(dirLightB, DirectionalLightHelper, 1, "blue");
-  // useHelper(dirLightC, DirectionalLightHelper, 1, "green");
-  // useHelper(dirLightD, DirectionalLightHelper, 1, "purple");
 
   const loadingBarElement = document.querySelector(".loading-bar");
   const { active, progress, errors, item, loaded, total } = useProgress();
@@ -273,7 +161,6 @@ export default function Scene({
   useCursor(hovered);
 
   const handleClick = (e) => {
-    // setOpen(true);
     e.stopPropagation();
     const { eventObject } = e;
     // console.log(eventObject.position);
@@ -296,7 +183,6 @@ export default function Scene({
 
   const handleDoubleClick = (e) => {
     e.stopPropagation();
-    setOpen(true);
     setShowBackground(!showBackground);
   };
 
@@ -322,7 +208,6 @@ export default function Scene({
         () => {
           // console.log("start");
           setControlsDragging(true);
-          // setOpen(false);
         },
         true,
       );
@@ -340,7 +225,6 @@ export default function Scene({
           // console.log("end");
           // setCameraPosition(orbitRef.current.object.position);
           setControlsDragging(false);
-          // setOpen(true);
         },
         true,
       );
@@ -453,8 +337,7 @@ export default function Scene({
 
   const stagePositionY = 0;
 
-  const animDist = 0.05; // 0.1
-  const jumpDist = 0;
+  const animDist = 0.095; // 0.1
 
   const dirLightXPosition = 2.5;
   const dirLightYPosition = 3.6;
@@ -483,16 +366,9 @@ export default function Scene({
     (state) => state.updatePartColorName,
   );
   const updatePartTexture = useOptionStore((state) => state.updatePartTexture);
-  // const grampsTopColor = useOptionStore(
-  //   (state) => state.items.gramps.parts.top.color,
-  // );
-  // const grampsTopTexture = useOptionStore(
-  //   (state) => state.items.gramps.parts.top.texture,
-  // );
 
   const handlePartOption = (itemName, partName, color) => {
     // console.log("handlePartOption event: ", e);
-
     console.log("itemName: ", itemName);
     console.log("partName: ", partName);
     console.log("color clicked: ", color);
@@ -540,7 +416,36 @@ export default function Scene({
     }
   };
 
-  const hammerModel = "./models/hammer.gltf";
+  const animatedPosition = (animation, animDist) => {
+    let x = 0;
+    let y = 0;
+    let z = 0;
+    switch (animation) {
+      case "negX":
+        x = -animDist;
+        break;
+      case "posX":
+        x = animDist;
+        break;
+      case "negZ":
+        z = -animDist;
+        break;
+      case "posZ":
+        z = animDist;
+        break;
+      case "posY1":
+        y = animDist;
+        break;
+      case "posY2":
+        y = animDist + animDist / 2;
+        break;
+      case "none":
+        break;
+    }
+    let position = [x, y, z];
+    return position;
+  };
+
   return (
     <>
       {debugControls.perfVisible && <Perf position="top-left" />}
@@ -575,58 +480,6 @@ export default function Scene({
         shadow-camera-top={dirLightCamTop} // 150
         target={grampsRef.current}
       />
-      {/* <pointLight position={[0, 6, 70]} intensity={10} /> */}
-      {/* blockLight */}
-      {/* <directionalLight
-        castShadow
-        ref={dirLightB}
-        position={[0, dirLightYPosition, 0]} // {[0, 60, 0]}
-        intensity={dirLightIntensity}
-        shadow-normalBias={dirLightNormBias}
-        shadow-mapSize-width={dirLightMapSize}
-        shadow-mapSize-height={dirLightMapSize}
-        shadow-camera-near={dirLightCamNear} // 50
-        shadow-camera-far={dirLightCamFar} // 115
-        shadow-camera-left={dirLightCamLeft} // -10
-        shadow-camera-bottom={dirLightCamBottom} // -10
-        shadow-camera-right={dirLightCamRight} // 10
-        shadow-camera-top={dirLightCamTop} // 150
-        target={blockRef.current}
-      /> */}
-      {/* horseLight */}
-      {/* <directionalLight
-        castShadow
-        ref={dirLightC}
-        position={[0, dirLightYPosition, 0]} // {[0, 60, 0]}
-        intensity={dirLightIntensity}
-        shadow-normalBias={dirLightNormBias}
-        shadow-mapSize-width={dirLightMapSize}
-        shadow-mapSize-height={dirLightMapSize}
-        shadow-camera-near={dirLightCamNear} // 50
-        shadow-camera-far={dirLightCamFar} // 115
-        shadow-camera-left={dirLightCamLeft} // -10
-        shadow-camera-bottom={dirLightCamBottom} // -10
-        shadow-camera-right={dirLightCamRight} // 10
-        shadow-camera-top={dirLightCamTop} // 150
-        target={horseRef.current}
-      /> */}
-      {/* squatterLight */}
-      {/* <directionalLight
-        castShadow
-        ref={dirLightD}
-        position={[0, dirLightYPosition, 0]} // {[0, 60, 0]}
-        intensity={dirLightIntensity}
-        shadow-normalBias={dirLightNormBias}
-        shadow-mapSize-width={dirLightMapSize}
-        shadow-mapSize-height={dirLightMapSize}
-        shadow-camera-near={dirLightCamNear} // 50
-        shadow-camera-far={dirLightCamFar} // 115
-        shadow-camera-left={dirLightCamLeft} // -10
-        shadow-camera-bottom={dirLightCamBottom} // -10
-        shadow-camera-right={dirLightCamRight} // 10
-        shadow-camera-top={dirLightCamTop} // 150
-        target={squatterRef.current}
-      /> */}
 
       <group position={[0, stagePositionY, 0]} onPointerMissed={handleOffClick}>
         <ambientLight intensity={ambLightIntensity} />
@@ -636,7 +489,7 @@ export default function Scene({
           ref={grampsRef}
           position={[
             objects.gramps.position.x,
-            objects.gramps.position.y + jumpDist,
+            objects.gramps.position.y,
             objects.gramps.position.z,
           ]}
           onPointerOver={() => hover(true)}
@@ -649,22 +502,7 @@ export default function Scene({
             return (
               <group key={part.partName}>
                 <mesh
-                  // key={part.partName}
-                  position={
-                    part.animation === "negX"
-                      ? [-animDist, 0, 0]
-                      : part.animation === "posX"
-                        ? [animDist, 0, 0]
-                        : part.animation === "negZ"
-                          ? [0, 0, -animDist]
-                          : part.animation === "posZ"
-                            ? [0, 0, animDist]
-                            : part.animation === "posY1"
-                              ? [0, animDist, 0]
-                              : part.animation === "posY2"
-                                ? [0, animDist + animDist / 2, 0]
-                                : [0, 0, 0]
-                  }
+                  position={animatedPosition(part.animation, animDist)}
                   onClick={() => {
                     console.log(part.itemName, part.partName, " clicked");
                     setCurrentItemName(part.itemName);
@@ -673,47 +511,22 @@ export default function Scene({
                   }}
                 >
                   <ItemPart
-                    // displacementMap={displacementMap}
-                    // aoMap={aoMap}
-                    // map={colorMapGramps}
-                    // normalMap={normalMapGramps}
-                    // roughnessMap={roughnessMapGramps}
-                    // metalnessMap={metalnessMapGramps}
-                    // currentColor={currentColorGramps}
-                    // currentTexture={currentTextureGramps}
                     model={part.model}
-                    // animationType={part.animation}
                     itemName={part.itemName}
                     partName={part.partName}
                   />
                 </mesh>
-                <mesh
-                  visible={showBackground}
-                  position={
-                    part.animation === "negX"
-                      ? [-animDist, 0, 0]
-                      : part.animation === "posX"
-                        ? [animDist, 0, 0]
-                        : part.animation === "negZ"
-                          ? [0, 0, -animDist]
-                          : part.animation === "posZ"
-                            ? [0, 0, animDist]
-                            : part.animation === "posY1"
-                              ? [0, animDist, 0]
-                              : part.animation === "posY2"
-                                ? [0, animDist + animDist / 2, 0]
-                                : [0, 0, 0]
-                  }
-                >
-                  <Annotation
-                    model={part.model}
-                    itemName={part.itemName}
-                    partName={part.partName}
-                    descPartName={part.descPartName}
-                    currentItemName={currentItemName}
-                    currentPartName={currentPartName}
-                  />
-                </mesh>
+                <Annotation
+                  model={part.model}
+                  itemName={part.itemName}
+                  partName={part.partName}
+                  descPartName={part.descPartName}
+                  animation={part.animation}
+                  animDist={animDist}
+                  currentItemName={currentItemName}
+                  currentPartName={currentPartName}
+                  showBackground={showBackground}
+                />
                 <Html
                   centered
                   position={[0.3, 0.48, 0]}
@@ -788,7 +601,7 @@ export default function Scene({
           ref={blockRef}
           position={[
             objects.block.position.x,
-            objects.block.position.y + jumpDist,
+            objects.block.position.y,
             objects.block.position.z,
           ]}
           rotation={[0, Math.PI / 4, 0]}
@@ -802,21 +615,7 @@ export default function Scene({
             return (
               <group key={part.partName}>
                 <mesh
-                  position={
-                    part.animation === "negX"
-                      ? [-animDist, 0, 0]
-                      : part.animation === "posX"
-                        ? [animDist, 0, 0]
-                        : part.animation === "negZ"
-                          ? [0, 0, -animDist]
-                          : part.animation === "posZ"
-                            ? [0, 0, animDist]
-                            : part.animation === "posY1"
-                              ? [0, animDist, 0]
-                              : part.animation === "posY2"
-                                ? [0, animDist + animDist / 2, 0]
-                                : [0, 0, 0]
-                  }
+                  position={animatedPosition(part.animation, animDist)}
                   onClick={() => {
                     console.log(part.itemName, part.partName, " clicked");
                     setCurrentItemName(part.itemName);
@@ -825,18 +624,22 @@ export default function Scene({
                   }}
                 >
                   <ItemPart
-                    // map={colorMapBlock}
-                    // normalMap={normalMapBlock}
-                    // roughnessMap={roughnessMapBlock}
-                    // metalnessMap={metalnessMapBlock}
-                    currentColor={currentColorBlock}
-                    currentTexture={currentTextureBlock}
                     model={part.model}
-                    // animationType={part.animation}
                     itemName={part.itemName}
                     partName={part.partName}
                   />
                 </mesh>
+                <Annotation
+                  model={part.model}
+                  itemName={part.itemName}
+                  partName={part.partName}
+                  descPartName={part.descPartName}
+                  animation={part.animation}
+                  animDist={animDist}
+                  currentItemName={currentItemName}
+                  currentPartName={currentPartName}
+                  showBackground={showBackground}
+                />
                 <Html
                   centered
                   position={[0.25, 0.42, 0]}
@@ -911,7 +714,7 @@ export default function Scene({
           ref={horseRef}
           position={[
             objects.horse.position.x,
-            objects.horse.position.y + jumpDist,
+            objects.horse.position.y,
             objects.horse.position.z,
           ]}
           // rotation={[0, Math.PI / 4, 0]}
@@ -925,21 +728,7 @@ export default function Scene({
             return (
               <group key={part.partName}>
                 <mesh
-                  position={
-                    part.animation === "negX"
-                      ? [-animDist, 0, 0]
-                      : part.animation === "posX"
-                        ? [animDist, 0, 0]
-                        : part.animation === "negZ"
-                          ? [0, 0, -animDist]
-                          : part.animation === "posZ"
-                            ? [0, 0, animDist]
-                            : part.animation === "posY1"
-                              ? [0, animDist, 0]
-                              : part.animation === "posY2"
-                                ? [0, animDist + animDist / 2, 0]
-                                : [0, 0, 0]
-                  }
+                  position={animatedPosition(part.animation, animDist)}
                   onClick={() => {
                     console.log(part.itemName, part.partName, " clicked");
                     setCurrentItemName(part.itemName);
@@ -948,16 +737,7 @@ export default function Scene({
                   }}
                 >
                   <ItemPart
-                    // displacementMap={displacementMapHorse}
-                    // aoMap={aoMapHorse}
-                    // map={colorMapHorse}
-                    // normalMap={normalMapHorse}
-                    // roughnessMap={roughnessMapHorse}
-                    // metalnessMap={metalnessMapHorse}
-                    // currentColor={currentColorHorse}
-                    // currentTexture={currentTextureHorse}
                     model={part.model}
-                    // animationType={part.animation}
                     itemName={part.itemName}
                     partName={part.partName}
                   />
@@ -1036,7 +816,7 @@ export default function Scene({
           ref={squatterRef}
           position={[
             objects.squatter.position.x,
-            objects.squatter.position.y + jumpDist,
+            objects.squatter.position.y,
             objects.squatter.position.z,
           ]}
           rotation={[0, Math.PI / 4, 0]}
@@ -1050,21 +830,7 @@ export default function Scene({
             return (
               <group key={part.partName}>
                 <mesh
-                  position={
-                    part.animation === "negX"
-                      ? [-animDist, 0, 0]
-                      : part.animation === "posX"
-                        ? [animDist, 0, 0]
-                        : part.animation === "negZ"
-                          ? [0, 0, -animDist]
-                          : part.animation === "posZ"
-                            ? [0, 0, animDist]
-                            : part.animation === "posY1"
-                              ? [0, animDist, 0]
-                              : part.animation === "posY2"
-                                ? [0, animDist + animDist / 2, 0]
-                                : [0, 0, 0]
-                  }
+                  position={animatedPosition(part.animation, animDist)}
                   onClick={() => {
                     console.log(part.itemName, part.partName, " clicked");
                     setCurrentItemName(part.itemName);
@@ -1073,16 +839,7 @@ export default function Scene({
                   }}
                 >
                   <ItemPart
-                    // displacementMap={displacementMapSquatter}
-                    // aoMap={aoMapSquatter}
-                    // map={colorMapSquatter}
-                    // normalMap={normalMapSquatter}
-                    // roughnessMap={roughnessMapSquatter}
-                    // metalnessMap={metalnessMapSquatter}
-                    // currentColor={currentColorSquatter}
-                    // currentTexture={currentTextureSquatter}
                     model={part.model}
-                    // animationType={part.animation}
                     itemName={part.itemName}
                     partName={part.partName}
                   />
@@ -1161,7 +918,7 @@ export default function Scene({
           ref={shelfA16Ref}
           position={[
             objects.shelfA16.position.x,
-            objects.shelfA16.position.y + jumpDist,
+            objects.shelfA16.position.y,
             objects.shelfA16.position.z,
           ]}
           onPointerOver={() => hover(true)}
@@ -1174,21 +931,7 @@ export default function Scene({
             return (
               <group key={part.partName}>
                 <mesh
-                  position={
-                    part.animation === "negX"
-                      ? [-animDist, 0, 0]
-                      : part.animation === "posX"
-                        ? [animDist, 0, 0]
-                        : part.animation === "negZ"
-                          ? [0, 0, -animDist]
-                          : part.animation === "posZ"
-                            ? [0, 0, animDist]
-                            : part.animation === "posY1"
-                              ? [0, animDist, 0]
-                              : part.animation === "posY2"
-                                ? [0, animDist + animDist / 2, 0]
-                                : [0, 0, 0]
-                  }
+                  position={animatedPosition(part.animation, animDist)}
                   onClick={() => {
                     console.log(part.itemName, part.partName, " clicked");
                     setCurrentItemName(part.itemName);
@@ -1197,16 +940,7 @@ export default function Scene({
                   }}
                 >
                   <ItemPart
-                    // displacementMap={displacementMapShelfA16}
-                    // aoMap={aoMapShelfA16}
-                    // map={colorMapShelfA16}
-                    // normalMap={normalMapShelfA16}
-                    // roughnessMap={roughnessMapShelfA16}
-                    // metalnessMap={metalnessMapShelfA16}
-                    // currentColor={currentColorShelfA16}
-                    // currentTexture={currentTextureShelfA16}
                     model={part.model}
-                    // animationType={part.animation}
                     itemName={part.itemName}
                     partName={part.partName}
                   />
@@ -1285,7 +1019,7 @@ export default function Scene({
           ref={shelfA32Ref}
           position={[
             objects.shelfA32.position.x,
-            objects.shelfA32.position.y + jumpDist,
+            objects.shelfA32.position.y,
             objects.shelfA32.position.z,
           ]}
           onPointerOver={() => hover(true)}
@@ -1298,21 +1032,7 @@ export default function Scene({
             return (
               <group key={part.partName}>
                 <mesh
-                  position={
-                    part.animation === "negX"
-                      ? [-animDist, 0, 0]
-                      : part.animation === "posX"
-                        ? [animDist, 0, 0]
-                        : part.animation === "negZ"
-                          ? [0, 0, -animDist]
-                          : part.animation === "posZ"
-                            ? [0, 0, animDist]
-                            : part.animation === "posY1"
-                              ? [0, animDist, 0]
-                              : part.animation === "posY2"
-                                ? [0, animDist + animDist / 2, 0]
-                                : [0, 0, 0]
-                  }
+                  position={animatedPosition(part.animation, animDist)}
                   onClick={() => {
                     console.log(part.itemName, part.partName, " clicked");
                     setCurrentItemName(part.itemName);
@@ -1321,16 +1041,7 @@ export default function Scene({
                   }}
                 >
                   <ItemPart
-                    // displacementMap={displacementMapShelfA32}
-                    // aoMap={aoMapShelfA32}
-                    // map={colorMapShelfA32}
-                    // normalMap={normalMapShelfA32}
-                    // roughnessMap={roughnessMapShelfA32}
-                    // metalnessMap={metalnessMapShelfA32}
-                    // currentColor={currentColorShelfA32}
-                    // currentTexture={currentTextureShelfA32}
                     model={part.model}
-                    // animationType={part.animation}
                     itemName={part.itemName}
                     partName={part.partName}
                   />
@@ -1409,7 +1120,7 @@ export default function Scene({
           ref={shelfB16Ref}
           position={[
             objects.shelfB16.position.x,
-            objects.shelfB16.position.y + jumpDist,
+            objects.shelfB16.position.y,
             objects.shelfB16.position.z,
           ]}
           onPointerOver={() => hover(true)}
@@ -1422,21 +1133,7 @@ export default function Scene({
             return (
               <group key={part.partName}>
                 <mesh
-                  position={
-                    part.animation === "negX"
-                      ? [-animDist, 0, 0]
-                      : part.animation === "posX"
-                        ? [animDist, 0, 0]
-                        : part.animation === "negZ"
-                          ? [0, 0, -animDist]
-                          : part.animation === "posZ"
-                            ? [0, 0, animDist]
-                            : part.animation === "posY1"
-                              ? [0, animDist, 0]
-                              : part.animation === "posY2"
-                                ? [0, animDist + animDist / 2, 0]
-                                : [0, 0, 0]
-                  }
+                  position={animatedPosition(part.animation, animDist)}
                   onClick={() => {
                     console.log(part.itemName, part.partName, " clicked");
                     setCurrentItemName(part.itemName);
@@ -1445,16 +1142,7 @@ export default function Scene({
                   }}
                 >
                   <ItemPart
-                    // displacementMap={displacementMapShelfB16}
-                    // aoMap={aoMapShelfB16}
-                    // map={colorMapShelfB16}
-                    // normalMap={normalMapShelfB16}
-                    // roughnessMap={roughnessMapShelfB16}
-                    // metalnessMap={metalnessMapShelfB16}
-                    // currentColor={currentColorShelfB16}
-                    // currentTexture={currentTextureShelfB16}
                     model={part.model}
-                    // animationType={part.animation}
                     itemName={part.itemName}
                     partName={part.partName}
                   />
@@ -1533,7 +1221,7 @@ export default function Scene({
           ref={shelfB32Ref}
           position={[
             objects.shelfB32.position.x,
-            objects.shelfB32.position.y + jumpDist,
+            objects.shelfB32.position.y,
             objects.shelfB32.position.z,
           ]}
           onPointerOver={() => hover(true)}
@@ -1546,21 +1234,7 @@ export default function Scene({
             return (
               <group key={part.partName}>
                 <mesh
-                  position={
-                    part.animation === "negX"
-                      ? [-animDist, 0, 0]
-                      : part.animation === "posX"
-                        ? [animDist, 0, 0]
-                        : part.animation === "negZ"
-                          ? [0, 0, -animDist]
-                          : part.animation === "posZ"
-                            ? [0, 0, animDist]
-                            : part.animation === "posY1"
-                              ? [0, animDist, 0]
-                              : part.animation === "posY2"
-                                ? [0, animDist + animDist / 2, 0]
-                                : [0, 0, 0]
-                  }
+                  position={animatedPosition(part.animation, animDist)}
                   onClick={() => {
                     console.log(part.itemName, part.partName, " clicked");
                     setCurrentItemName(part.itemName);
@@ -1569,16 +1243,7 @@ export default function Scene({
                   }}
                 >
                   <ItemPart
-                    // displacementMap={displacementMapShelfB32}
-                    // aoMap={aoMapShelfB32}
-                    // map={colorMapShelfB32}
-                    // normalMap={normalMapShelfB32}
-                    // roughnessMap={roughnessMapShelfB32}
-                    // metalnessMap={metalnessMapShelfB32}
-                    // currentColor={currentColorShelfB32}
-                    // currentTexture={currentTextureShelfB32}
                     model={part.model}
-                    // animationType={part.animation}
                     itemName={part.itemName}
                     partName={part.partName}
                   />
@@ -1659,12 +1324,6 @@ export default function Scene({
           onClick={handleOffClick}
         >
           <Floor
-            // displacementMap={displacementMapFloor}
-            // aoMap={aoMapFloor}
-            // map={colorMapFloor}
-            // normalMap={normalMapFloor}
-            // roughnessMap={roughnessMapFloor}
-            // metalnessMap={metalnessMapFloor}
             currentColor={textures.whiteStain}
             currentTexture={textures.woodFloorWornPlanksTexture}
           />
@@ -1673,12 +1332,6 @@ export default function Scene({
         {/* wallsAndMoulding */}
         <mesh visible={showBackground} onClick={handleOffClick}>
           <Walls
-            // displacementMap={displacementMapPainted}
-            // aoMap={aoMapPainted}
-            // map={colorMapPainted}
-            // normalMap={normalMapPainted}
-            // roughnessMap={roughnessMapPainted}
-            // metalnessMap={metalnessMapPainted}
             currentColor={textures.whiteStain}
             currentTexture={textures.paintedTexture}
           />
@@ -1687,31 +1340,10 @@ export default function Scene({
         {/* Icon (cart bag test) */}
         <mesh visible={showBackground}>
           <Icon
-            // displacementMap={displacementMapPainted}
-            // aoMap={aoMapPainted}
-            // map={colorMapPainted}
-            // normalMap={normalMapPainted}
-            // roughnessMap={roughnessMapPainted}
-            // metalnessMap={metalnessMapPainted}
             currentColor={textures.naturalStain}
             currentTexture={textures.naturalTexture}
           />
         </mesh>
-
-        {/* Hammer (annotation test) */}
-        {/* <mesh visible={showBackground} position={[0, 1, 0]}>
-          <Annotation
-            // displacementMap={displacementMapPainted}
-            // aoMap={aoMapPainted}
-            // map={colorMapPainted}
-            // normalMap={normalMapPainted}
-            // roughnessMap={roughnessMapPainted}
-            // metalnessMap={metalnessMapPainted}
-            // currentColor={textures.naturalStain}
-            // currentTexture={textures.naturalTexture}
-            model={hammerModel}
-          />
-        </mesh> */}
 
         {/* shelfPositions */}
         {/* <mesh>

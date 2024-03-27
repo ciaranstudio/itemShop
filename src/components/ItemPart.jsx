@@ -2,20 +2,7 @@ import React, { useLayoutEffect } from "react";
 import { useGLTF, useTexture, Html } from "@react-three/drei";
 import { useOptionStore } from "../store/useOptionStore.tsx";
 
-export const ItemPart = ({
-  // map,
-  // // displacementMap,
-  // normalMap,
-  // roughnessMap,
-  // metalnessMap,
-  // // aoMap,
-  // currentColor,
-  // currentTexture,
-  model,
-  // animationType,
-  itemName,
-  partName,
-}) => {
+export const ItemPart = ({ model, itemName, partName }) => {
   const { scene, nodes, materials } = useGLTF(model);
 
   const currentPartColor = useOptionStore(

@@ -89,10 +89,10 @@ body,
 .annotation::before {
   content: "";
   position: absolute;
-  top: 20px;
-  left: -240px;
+  top: 50%;
+  left: -120px;
   height: 2px;
-  width: 240px;
+  width: 120px;
   /* width: 30px; */
   background: #181c20;
 }

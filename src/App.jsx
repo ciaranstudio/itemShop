@@ -47,72 +47,7 @@ function App() {
   const [currentItemOptionSelectShelfB32, setCurrentItemOptionSelectShelfB32] =
     useState("");
 
-  const grampsTopColor = useOptionStore(
-    (state) => state.items.gramps.parts.top.color,
-  );
-  const grampsTopTexture = useOptionStore(
-    (state) => state.items.gramps.parts.top.texture,
-  );
-
-  const [currentTextureGramps, setCurrentTextureGramps] = useState(
-    textures.paintedTexture,
-  );
-  const [currentColorGramps, setCurrentColorGramps] = useState(
-    textures.whiteStain,
-  );
-
-  const [currentTextureSquatter, setCurrentTextureSquatter] = useState(
-    textures.paintedTexture,
-  );
-  const [currentColorSquatter, setCurrentColorSquatter] = useState(
-    textures.whiteStain,
-  );
-
-  const [currentTextureBlock, setCurrentTextureBlock] = useState(
-    textures.paintedTexture,
-  );
-  const [currentColorBlock, setCurrentColorBlock] = useState(
-    textures.whiteStain,
-  );
-
-  const [currentTextureHorse, setCurrentTextureHorse] = useState(
-    textures.paintedTexture,
-  );
-  const [currentColorHorse, setCurrentColorHorse] = useState(
-    textures.whiteStain,
-  );
-
-  const [currentTextureShelfA16, setCurrentTextureShelfA16] = useState(
-    textures.paintedTexture,
-  );
-  const [currentColorShelfA16, setCurrentColorShelfA16] = useState(
-    textures.whiteStain,
-  );
-
-  const [currentTextureShelfA32, setCurrentTextureShelfA32] = useState(
-    textures.paintedTexture,
-  );
-  const [currentColorShelfA32, setCurrentColorShelfA32] = useState(
-    textures.whiteStain,
-  );
-
-  const [currentTextureShelfB16, setCurrentTextureShelfB16] = useState(
-    textures.paintedTexture,
-  );
-  const [currentColorShelfB16, setCurrentColorShelfB16] = useState(
-    textures.whiteStain,
-  );
-
-  const [currentTextureShelfB32, setCurrentTextureShelfB32] = useState(
-    textures.paintedTexture,
-  );
-  const [currentColorShelfB32, setCurrentColorShelfB32] = useState(
-    textures.whiteStain,
-  );
-
   useEffect(() => {
-    console.log("grampsTopColor: ", grampsTopColor);
-    console.log("grampsTopTexture: ", grampsTopTexture);
     setCurrentItemDescription(currentItemSelected.itemDescription);
     if (currentItemSelected.itemName === "gramps") {
       setCurrentItemOptionSelect(currentItemOptionSelectGramps);
@@ -501,32 +436,10 @@ function App() {
       >
         <Suspense fallback={<Placeholder />}>
           <Scene
-            open={open}
-            setOpen={setOpen}
-            toggled={toggled}
-            setToggled={setToggled}
-            animActive={animActive}
-            setAnimActive={setAnimActive}
             currentItemSelected={currentItemSelected}
             setCurrentItemSelected={setCurrentItemSelected}
             previousItemSelected={previousItemSelected}
             setPreviousItemSelected={setPreviousItemSelected}
-            currentTextureGramps={currentTextureGramps}
-            currentColorGramps={currentColorGramps}
-            currentTextureSquatter={currentTextureSquatter}
-            currentColorSquatter={currentColorSquatter}
-            currentTextureBlock={currentTextureBlock}
-            currentColorBlock={currentColorBlock}
-            currentTextureHorse={currentTextureHorse}
-            currentColorHorse={currentColorHorse}
-            currentTextureShelfA16={currentTextureShelfA16}
-            currentColorShelfA16={currentColorShelfA16}
-            currentTextureShelfA32={currentTextureShelfA32}
-            currentColorShelfA32={currentColorShelfA32}
-            currentTextureShelfB16={currentTextureShelfB16}
-            currentColorShelfB16={currentColorShelfB16}
-            currentTextureShelfB32={currentTextureShelfB32}
-            currentColorShelfB32={currentColorShelfB32}
           />
         </Suspense>
       </Canvas>
