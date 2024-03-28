@@ -90,6 +90,24 @@ body,
   font-size: 0.85rem;
 }
 
+.cart {
+  /* transform: translate3d(calc(50%), calc(-50%), 0); */
+  text-align: center;
+  /* background: #181c20; */
+  background: lightGrey;
+  /* color: #8c92a4; */
+  color: #181c20;
+  padding: 0.25rem 1.25rem 0.25rem 1.25rem;
+  /* padding: 10px 15px; */
+  /* border-radius: 30px; */
+  border-radius: 50%;
+  user-select: none;
+  font-family: var(--leva-fonts-mono);
+  font-size: 3rem;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
 .annotation {
   /* transform: translate3d(calc(50%), calc(-50%), 0); */
   text-align: center;

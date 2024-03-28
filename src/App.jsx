@@ -490,12 +490,14 @@ function App() {
         }}
       >
         <Suspense fallback={<Placeholder />}>
-          <Scene
-            currentItemSelected={currentItemSelected}
-            setCurrentItemSelected={setCurrentItemSelected}
-            previousItemSelected={previousItemSelected}
-            setPreviousItemSelected={setPreviousItemSelected}
-          />
+          <SnipcartProvider>
+            <Scene
+              currentItemSelected={currentItemSelected}
+              setCurrentItemSelected={setCurrentItemSelected}
+              previousItemSelected={previousItemSelected}
+              setPreviousItemSelected={setPreviousItemSelected}
+            />
+          </SnipcartProvider>
         </Suspense>
       </Canvas>
       <ThemeProvider theme={theme}>
