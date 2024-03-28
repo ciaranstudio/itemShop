@@ -34,12 +34,19 @@ import { ItemPart } from "./ItemPart.jsx";
 import { Icon } from "./icons/Icon.jsx";
 import { Annotation } from "./Annotation.jsx";
 
+import useWindowDimensions from "../helpers/useWindowDimensions";
+
 export default function Scene({
   currentItemSelected,
   setCurrentItemSelected,
   previousItemSelected,
   setPreviousItemSelected,
 }) {
+  const { height, width } = useWindowDimensions();
+  useEffect(() => {
+    console.log("height: ", height);
+    console.log("width: ", width);
+  }, [height, width]);
   const [targetVec, setTargetVec] = useState(new THREE.Vector3());
 
   const [
@@ -380,9 +387,16 @@ export default function Scene({
   return (
     <>
       <ScreenSpace depth={1}>
-        <pointLight position={[0.175, 0.2, 0.1]} intensity={0.15} />
+        <pointLight position={[width / 2800, 0.2, 0.1]} intensity={0.15} />
         <mesh
-          position={[0.19, 0.3285, 0]}
+          // position={[0.19, 0.3285, 0]}
+          position={
+            width > 414
+              ? [width / 2600, 0.3285, 0]
+              : width <= 932 && width > 414
+                ? [0.5, 0.3285, 0] // this value needs to be refined, hasn't been tested yet
+                : [0.19, 0.3285, 0]
+          }
           // rotation={[Math.PI / 8, Math.PI / 4, Math.PI / 14]}
           rotation={[Math.PI / 6, Math.PI / 4, Math.PI / 20]}
           scale={0.125}
@@ -394,7 +408,15 @@ export default function Scene({
             currentTexture={textures.naturalTexture}
           />
         </mesh>
-        <mesh position={[-0.18, 0.355, 0]}>
+        <mesh
+          position={
+            width > 414
+              ? [-width / 2600, 0.35, 0]
+              : width <= 932 && width > 414
+                ? [-0.5, 0.35, 0] // this value needs to be refined, hasn't been tested yet
+                : [-0.19, 0.35, 0]
+          }
+        >
           <boxGeometry args={[0.06, 0.06, 0.02]} />
           <meshStandardMaterial />
         </mesh>
