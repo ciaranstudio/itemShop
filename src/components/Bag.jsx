@@ -57,8 +57,12 @@ export const Bag = ({
                 position={[o.position.x, o.position.y, o.position.z]}
                 distanceFactor={0.25}
               >
-                <div className="cart" onClick={handleCartClick}>
-                  {cartCount}
+                <div
+                  className="cart"
+                  onClick={handleCartClick}
+                  style={{ display: cartCount > 0 ? "block" : "none" }}
+                >
+                  {cartCount > 0 ? cartCount : ""}
                 </div>
               </Html>,
             );

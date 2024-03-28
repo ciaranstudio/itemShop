@@ -4,10 +4,10 @@ export default class Item {
     itemName,
     itemTitle,
     itemDescription,
-    itemBasePrice, // painted single color
-    itemStainCost, // stained single color
-    itemMixedPaintCost,
-    itemMixedStainCost,
+    itemBasePrice, // painted single color price (base)
+    itemStainCost, // stained single color additional cost
+    itemMixedPaintCost, // mixed paint color additional cost
+    itemMixedStainCost, // mixed stain color additional cost
     size,
     position,
     parts,

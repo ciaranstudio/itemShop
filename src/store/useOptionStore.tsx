@@ -2,10 +2,19 @@ import { create } from "zustand";
 import { produce } from "immer";
 import * as THREE from "three";
 import { textures } from "../data/textures.jsx";
+// import { options } from "../data/options.jsx";
+import { objects } from "../data/objects.jsx";
 
 type State = {
+  currentItemSelected: {};
+  previousItemSelected: {};
   items: {
     gramps: {
+      data: {};
+      animActive: boolean;
+      optionSelectedType: string;
+      optionSelectedPrice: number;
+      optionSelectedList: string[];
       parts: {
         top: { colorName: string; color: THREE.Color; texture: string[] };
         barBottom: { colorName: string; color: THREE.Color; texture: string[] };
@@ -17,6 +26,11 @@ type State = {
       };
     };
     squatter: {
+      data: {};
+      animActive: boolean;
+      optionSelectedType: string;
+      optionSelectedPrice: number;
+      optionSelectedList: string[];
       parts: {
         top: { colorName: string; color: THREE.Color; texture: string[] };
         centerPanel: {
@@ -29,6 +43,11 @@ type State = {
       };
     };
     block: {
+      data: {};
+      animActive: boolean;
+      optionSelectedType: string;
+      optionSelectedPrice: number;
+      optionSelectedList: string[];
       parts: {
         shelfTop: { colorName: string; color: THREE.Color; texture: string[] };
         shelfMiddle: {
@@ -46,14 +65,14 @@ type State = {
       };
     };
     horse: {
+      data: {};
+      animActive: boolean;
+      optionSelectedType: string;
+      optionSelectedPrice: number;
+      optionSelectedList: string[];
       parts: {
         top: { colorName: string; color: THREE.Color; texture: string[] };
         barInner: { colorName: string; color: THREE.Color; texture: string[] };
-        shelfBottom: {
-          colorName: string;
-          color: THREE.Color;
-          texture: string[];
-        };
         leg1: { colorName: string; color: THREE.Color; texture: string[] };
         leg2: { colorName: string; color: THREE.Color; texture: string[] };
         leg3: { colorName: string; color: THREE.Color; texture: string[] };
@@ -61,6 +80,11 @@ type State = {
       };
     };
     shelfA16: {
+      data: {};
+      animActive: boolean;
+      optionSelectedType: string;
+      optionSelectedPrice: number;
+      optionSelectedList: string[];
       parts: {
         top: { colorName: string; color: THREE.Color; texture: string[] };
         bottom: { colorName: string; color: THREE.Color; texture: string[] };
@@ -68,6 +92,11 @@ type State = {
       };
     };
     shelfA32: {
+      data: {};
+      animActive: boolean;
+      optionSelectedType: string;
+      optionSelectedPrice: number;
+      optionSelectedList: string[];
       parts: {
         top: { colorName: string; color: THREE.Color; texture: string[] };
         bottom: { colorName: string; color: THREE.Color; texture: string[] };
@@ -75,6 +104,11 @@ type State = {
       };
     };
     shelfB16: {
+      data: {};
+      animActive: boolean;
+      optionSelectedType: string;
+      optionSelectedPrice: number;
+      optionSelectedList: string[];
       parts: {
         top: { colorName: string; color: THREE.Color; texture: string[] };
         middle: { colorName: string; color: THREE.Color; texture: string[] };
@@ -83,6 +117,11 @@ type State = {
       };
     };
     shelfB32: {
+      data: {};
+      animActive: boolean;
+      optionSelectedType: string;
+      optionSelectedPrice: number;
+      optionSelectedList: string[];
       parts: {
         top: { colorName: string; color: THREE.Color; texture: string[] };
         middle: { colorName: string; color: THREE.Color; texture: string[] };
@@ -109,89 +148,26 @@ type Action = {
     partName: string,
     texture: string[],
   ) => void;
-
-  updateGrampsTopColor: (color: THREE.Color) => void;
-  updateGrampsTopTexture: (texture: string[]) => void;
-  updateGrampsBarBottomColor: (color: THREE.Color) => void;
-  updateGrampsBarBottomTexture: (texture: string[]) => void;
-  updateGrampsBarTopColor: (color: THREE.Color) => void;
-  updateGrampsBarTopTexture: (texture: string[]) => void;
-  updateGrampsLeg1Color: (color: THREE.Color) => void;
-  updateGrampsLeg1Texture: (texture: string[]) => void;
-  updateGrampsLeg2Color: (color: THREE.Color) => void;
-  updateGrampsLeg2Texture: (texture: string[]) => void;
-  updateGrampsLeg3Color: (color: THREE.Color) => void;
-  updateGrampsLeg3Texture: (texture: string[]) => void;
-  updateGrampsLeg4Color: (color: THREE.Color) => void;
-  updateGrampsLeg4Texture: (texture: string[]) => void;
-
-  updateSquatterTopColor: (color: THREE.Color) => void;
-  updateSquatterTopTexture: (texture: string[]) => void;
-  updateSquatterCenterPanelColor: (color: THREE.Color) => void;
-  updateSquatterCenterPanelTexture: (texture: string[]) => void;
-  updateSquatterSide1Color: (color: THREE.Color) => void;
-  updateSquatterSide1Texture: (texture: string[]) => void;
-  updateSquatterSide2Color: (color: THREE.Color) => void;
-  updateSquatterSide2Texture: (texture: string[]) => void;
-
-  updateBlockShelfTopColor: (color: THREE.Color) => void;
-  updateBlockShelfTopTexture: (texture: string[]) => void;
-  updateBlockShelfMiddleColor: (color: THREE.Color) => void;
-  updateBlockShelfMiddleTexture: (texture: string[]) => void;
-  updateBlockSide1Color: (color: THREE.Color) => void;
-  updateBlockSide1Texture: (texture: string[]) => void;
-  updateBlockSide2Color: (color: THREE.Color) => void;
-  updateBlockSide2Texture: (texture: string[]) => void;
-
-  updateHorseTopColor: (color: THREE.Color) => void;
-  updateHorseTopTexture: (texture: string[]) => void;
-  updateHorseBarInnerColor: (color: THREE.Color) => void;
-  updateHorseBarInnerTexture: (texture: string[]) => void;
-  updateHorseLeg1Color: (color: THREE.Color) => void;
-  updateHorseLeg1Texture: (texture: string[]) => void;
-  updateHorseLeg2Color: (color: THREE.Color) => void;
-  updateHorseLeg2Texture: (texture: string[]) => void;
-  updateHorseLeg3Color: (color: THREE.Color) => void;
-  updateHorseLeg3Texture: (texture: string[]) => void;
-  updateHorseLeg4Color: (color: THREE.Color) => void;
-  updateHorseLeg4Texture: (texture: string[]) => void;
-
-  updateShelfA16TopColor: (color: THREE.Color) => void;
-  updateShelfA16TopTexture: (texture: string[]) => void;
-  updateShelfA16BottomColor: (color: THREE.Color) => void;
-  updateShelfA16BottomTexture: (texture: string[]) => void;
-  updateShelfA16CleatColor: (color: THREE.Color) => void;
-  updateShelfA16CleatTexture: (texture: string[]) => void;
-
-  updateShelfA32TopColor: (color: THREE.Color) => void;
-  updateShelfA32TopTexture: (texture: string[]) => void;
-  updateShelfA32BottomColor: (color: THREE.Color) => void;
-  updateShelfA32BottomTexture: (texture: string[]) => void;
-  updateShelfA32CleatColor: (color: THREE.Color) => void;
-  updateShelfA32CleatTexture: (texture: string[]) => void;
-
-  updateShelfB16TopColor: (color: THREE.Color) => void;
-  updateShelfB16TopTexture: (texture: string[]) => void;
-  updateShelfB16MiddleColor: (color: THREE.Color) => void;
-  updateShelfB16MiddleTexture: (texture: string[]) => void;
-  updateShelfB16BottomColor: (color: THREE.Color) => void;
-  updateShelfB16BottomTexture: (texture: string[]) => void;
-  updateShelfB16CleatColor: (color: THREE.Color) => void;
-  updateShelfB16CleatTexture: (texture: string[]) => void;
-
-  updateShelfB32TopColor: (color: THREE.Color) => void;
-  updateShelfB32TopTexture: (texture: string[]) => void;
-  updateShelfB32MiddleColor: (color: THREE.Color) => void;
-  updateShelfB32MiddleTexture: (texture: string[]) => void;
-  updateShelfB32BottomColor: (color: THREE.Color) => void;
-  updateShelfB32BottomTexture: (texture: string[]) => void;
-  updateShelfB32CleatColor: (color: THREE.Color) => void;
-  updateShelfB32CleatTexture: (texture: string[]) => void;
 };
 
 export const useOptionStore = create<State & Action>((set) => ({
+  currentItemSelected: {},
+  previousItemSelected: {},
   items: {
     gramps: {
+      data: objects.gramps,
+      animActive: false,
+      optionSelectedType: "default",
+      optionSelectedPrice: 0,
+      optionSelectedList: [
+        "default",
+        "default",
+        "default",
+        "default",
+        "default",
+        "default",
+        "default",
+      ],
       parts: {
         top: {
           colorName: "default",
@@ -231,6 +207,11 @@ export const useOptionStore = create<State & Action>((set) => ({
       },
     },
     squatter: {
+      data: objects.squatter,
+      animActive: false,
+      optionSelectedType: "default",
+      optionSelectedPrice: 0,
+      optionSelectedList: ["default", "default", "default", "default"],
       parts: {
         top: {
           colorName: "default",
@@ -255,6 +236,17 @@ export const useOptionStore = create<State & Action>((set) => ({
       },
     },
     block: {
+      data: objects.block,
+      animActive: false,
+      optionSelectedType: "default",
+      optionSelectedPrice: 0,
+      optionSelectedList: [
+        "default",
+        "default",
+        "default",
+        "default",
+        "default",
+      ],
       parts: {
         shelfTop: {
           colorName: "default",
@@ -284,6 +276,18 @@ export const useOptionStore = create<State & Action>((set) => ({
       },
     },
     horse: {
+      data: objects.horse,
+      animActive: false,
+      optionSelectedType: "default",
+      optionSelectedPrice: 0,
+      optionSelectedList: [
+        "default",
+        "default",
+        "default",
+        "default",
+        "default",
+        "default",
+      ],
       parts: {
         top: {
           colorName: "default",
@@ -291,11 +295,6 @@ export const useOptionStore = create<State & Action>((set) => ({
           texture: textures.paintedTexture,
         },
         barInner: {
-          colorName: "default",
-          color: textures.whiteStain,
-          texture: textures.paintedTexture,
-        },
-        shelfBottom: {
           colorName: "default",
           color: textures.whiteStain,
           texture: textures.paintedTexture,
@@ -323,6 +322,11 @@ export const useOptionStore = create<State & Action>((set) => ({
       },
     },
     shelfA16: {
+      data: objects.shelfA16,
+      animActive: false,
+      optionSelectedType: "default",
+      optionSelectedPrice: 0,
+      optionSelectedList: ["default", "default", "default"],
       parts: {
         top: {
           colorName: "default",
@@ -342,6 +346,11 @@ export const useOptionStore = create<State & Action>((set) => ({
       },
     },
     shelfA32: {
+      data: objects.shelfA32,
+      animActive: false,
+      optionSelectedType: "default",
+      optionSelectedPrice: 0,
+      optionSelectedList: ["default", "default", "default"],
       parts: {
         top: {
           colorName: "default",
@@ -361,6 +370,11 @@ export const useOptionStore = create<State & Action>((set) => ({
       },
     },
     shelfB16: {
+      data: objects.shelfB16,
+      animActive: false,
+      optionSelectedType: "default",
+      optionSelectedPrice: 0,
+      optionSelectedList: ["default", "default", "default", "default"],
       parts: {
         top: {
           colorName: "default",
@@ -385,6 +399,11 @@ export const useOptionStore = create<State & Action>((set) => ({
       },
     },
     shelfB32: {
+      data: objects.shelfB32,
+      animActive: false,
+      optionSelectedType: "default",
+      optionSelectedPrice: 0,
+      optionSelectedList: ["default", "default", "default", "default"],
       parts: {
         top: {
           colorName: "default",
@@ -426,446 +445,6 @@ export const useOptionStore = create<State & Action>((set) => ({
     set(
       produce((state: State) => {
         state.items[itemName].parts[partName].texture = texture;
-      }),
-    ),
-
-  updateGrampsTopColor: (color) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.color = color;
-      }),
-    ),
-  updateGrampsTopTexture: (texture) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.texture = texture;
-      }),
-    ),
-  updateGrampsBarBottomColor: (color) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.color = color;
-      }),
-    ),
-  updateGrampsBarBottomTexture: (texture) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.texture = texture;
-      }),
-    ),
-  updateGrampsBarTopColor: (color) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.color = color;
-      }),
-    ),
-  updateGrampsBarTopTexture: (texture) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.texture = texture;
-      }),
-    ),
-  updateGrampsLeg1Color: (color) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.color = color;
-      }),
-    ),
-  updateGrampsLeg1Texture: (texture) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.texture = texture;
-      }),
-    ),
-  updateGrampsLeg2Color: (color) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.color = color;
-      }),
-    ),
-  updateGrampsLeg2Texture: (texture) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.texture = texture;
-      }),
-    ),
-  updateGrampsLeg3Color: (color) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.color = color;
-      }),
-    ),
-  updateGrampsLeg3Texture: (texture) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.texture = texture;
-      }),
-    ),
-  updateGrampsLeg4Color: (color) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.color = color;
-      }),
-    ),
-  updateGrampsLeg4Texture: (texture) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.texture = texture;
-      }),
-    ),
-
-  updateSquatterTopColor: (color) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.color = color;
-      }),
-    ),
-  updateSquatterTopTexture: (texture) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.texture = texture;
-      }),
-    ),
-  updateSquatterCenterPanelColor: (color) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.color = color;
-      }),
-    ),
-  updateSquatterCenterPanelTexture: (texture) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.texture = texture;
-      }),
-    ),
-  updateSquatterSide1Color: (color) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.color = color;
-      }),
-    ),
-  updateSquatterSide1Texture: (texture) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.texture = texture;
-      }),
-    ),
-  updateSquatterSide2Color: (color) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.color = color;
-      }),
-    ),
-  updateSquatterSide2Texture: (texture) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.texture = texture;
-      }),
-    ),
-
-  updateBlockShelfTopColor: (color) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.color = color;
-      }),
-    ),
-  updateBlockShelfTopTexture: (texture) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.texture = texture;
-      }),
-    ),
-  updateBlockShelfMiddleColor: (color) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.color = color;
-      }),
-    ),
-  updateBlockShelfMiddleTexture: (texture) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.texture = texture;
-      }),
-    ),
-  updateBlockShelfBottomColor: (color) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.color = color;
-      }),
-    ),
-  updateBlockShelfBottomTexture: (texture) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.texture = texture;
-      }),
-    ),
-  updateBlockSide1Color: (color) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.color = color;
-      }),
-    ),
-  updateBlockSide1Texture: (texture) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.texture = texture;
-      }),
-    ),
-  updateBlockSide2Color: (color) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.color = color;
-      }),
-    ),
-  updateBlockSide2Texture: (texture) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.texture = texture;
-      }),
-    ),
-
-  updateHorseTopColor: (color) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.color = color;
-      }),
-    ),
-  updateHorseTopTexture: (texture) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.texture = texture;
-      }),
-    ),
-  updateHorseBarInnerColor: (color) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.color = color;
-      }),
-    ),
-  updateHorseBarInnerTexture: (texture) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.texture = texture;
-      }),
-    ),
-  updateHorseLeg1Color: (color) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.color = color;
-      }),
-    ),
-  updateHorseLeg1Texture: (texture) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.texture = texture;
-      }),
-    ),
-  updateHorseLeg2Color: (color) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.color = color;
-      }),
-    ),
-  updateHorseLeg2Texture: (texture) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.texture = texture;
-      }),
-    ),
-  updateHorseLeg3Color: (color) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.color = color;
-      }),
-    ),
-  updateHorseLeg3Texture: (texture) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.texture = texture;
-      }),
-    ),
-  updateHorseLeg4Color: (color) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.color = color;
-      }),
-    ),
-  updateHorseLeg4Texture: (texture) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.texture = texture;
-      }),
-    ),
-
-  updateShelfA16TopColor: (color) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.color = color;
-      }),
-    ),
-  updateShelfA16TopTexture: (texture) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.texture = texture;
-      }),
-    ),
-  updateShelfA16BottomColor: (color) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.color = color;
-      }),
-    ),
-  updateShelfA16BottomTexture: (texture) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.texture = texture;
-      }),
-    ),
-  updateShelfA16CleatColor: (color) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.color = color;
-      }),
-    ),
-  updateShelfA16CleatTexture: (texture) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.texture = texture;
-      }),
-    ),
-
-  updateShelfA32TopColor: (color) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.color = color;
-      }),
-    ),
-  updateShelfA32TopTexture: (texture) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.texture = texture;
-      }),
-    ),
-  updateShelfA32BottomColor: (color) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.color = color;
-      }),
-    ),
-  updateShelfA32BottomTexture: (texture) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.texture = texture;
-      }),
-    ),
-  updateShelfA32CleatColor: (color) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.color = color;
-      }),
-    ),
-  updateShelfA32CleatTexture: (texture) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.texture = texture;
-      }),
-    ),
-
-  updateShelfB16TopColor: (color) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.color = color;
-      }),
-    ),
-  updateShelfB16TopTexture: (texture) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.texture = texture;
-      }),
-    ),
-  updateShelfB16MiddleColor: (color) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.color = color;
-      }),
-    ),
-  updateShelfB16MiddleTexture: (texture) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.texture = texture;
-      }),
-    ),
-  updateShelfB16BottomColor: (color) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.color = color;
-      }),
-    ),
-  updateShelfB16BottomTexture: (texture) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.texture = texture;
-      }),
-    ),
-  updateShelfB16CleatColor: (color) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.color = color;
-      }),
-    ),
-  updateShelfB16CleatTexture: (texture) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.texture = texture;
-      }),
-    ),
-
-  updateShelfB32TopColor: (color) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.color = color;
-      }),
-    ),
-  updateShelfB32TopTexture: (texture) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.texture = texture;
-      }),
-    ),
-  updateShelfB32MiddleColor: (color) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.color = color;
-      }),
-    ),
-  updateShelfB32MiddleTexture: (texture) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.texture = texture;
-      }),
-    ),
-  updateShelfB32BottomColor: (color) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.color = color;
-      }),
-    ),
-  updateShelfB32BottomTexture: (texture) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.texture = texture;
-      }),
-    ),
-  updateShelfB32CleatColor: (color) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.color = color;
-      }),
-    ),
-  updateShelfB32CleatTexture: (texture) =>
-    set(
-      produce((state: State) => {
-        state.items.gramps.parts.top.texture = texture;
       }),
     ),
 }));
