@@ -9,7 +9,9 @@ body,
   height: 100%;
   background: #27271a;
   margin: 0;
-  /* background: transparent; */
+  /* Using these safe-area-inset-* constants as the padding of a site, overlap of the notch can be prevented. */
+  /* padding: env(safe-area-inset-top, 20px) env(safe-area-inset-right, 20px)
+    env(safe-area-inset-bottom, 20px) env(safe-area-inset-left, 20px); */
 }
 
 /* .loader {
@@ -62,7 +64,7 @@ body,
 
 .info {
   position: absolute;
-  bottom: 1rem;
+  bottom: 3rem;
   /* right: 295px; */
   /* text-align: right; */
   width: 18rem;
@@ -90,15 +92,15 @@ body,
 
 .annotation {
   /* transform: translate3d(calc(50%), calc(-50%), 0); */
-  text-align: left;
+  text-align: center;
   /* background: #181c20; */
-  background: transparent;
+  background: lightGrey;
   /* color: #8c92a4; */
-  color: #ffffff;
-  padding: 0;
+  color: #181c20;
+  padding: 1rem;
   /* padding: 10px 15px; */
   /* border-radius: 30px; */
-  /* border-radius: 5px; */
+  border-radius: 2rem;
   user-select: none;
   font-family: var(--leva-fonts-mono);
   font-size: 6rem;
@@ -107,19 +109,22 @@ body,
 .annotation::before {
   content: "";
   position: absolute;
-  top: 50%;
+  top: 5rem;
+  left: -6rem;
+  width: 6rem;
+  height: 0.5rem;
   /* left: -120px; */
   /* left: -600px; */
   /* height: 5px; */
   /* width: 120px; */
   /* width: 600px; */
-  background: #181c20;
+  background: lightGrey;
 }
 
 .grid-container-stain {
   display: grid;
-  grid-template-columns: auto auto auto auto;
-  gap: 4rem;
+  grid-template-columns: auto auto;
+  gap: 2.5rem;
   padding: 1rem;
   padding-top: 1rem;
   padding-bottom: 1.5rem;
@@ -127,7 +132,7 @@ body,
 
 .grid-container-paint {
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: auto auto;
   gap: 2.5rem;
   padding: 1rem;
 }
@@ -139,6 +144,7 @@ button {
   border-radius: 2rem;
   border: none;
   cursor: pointer;
+  padding: 4rem;
 }
 
 /* button:hover {
@@ -152,10 +158,10 @@ button:active {
   /* transition: transform 0.25s ease-in-out 0.5s; */
 }
 
-.grid-container-stain > button {
-  padding: 8rem;
+/* .grid-container-stain > button {
+  padding: 4rem;
 }
 
 .grid-container-paint > button {
-  padding: 6rem;
-}
+  padding: 4rem;
+} */

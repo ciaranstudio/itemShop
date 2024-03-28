@@ -500,7 +500,16 @@ function App() {
       </Canvas>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <div className="info" style={{ color: theme.palette.primary.light }}>
+        <div
+          className="info"
+          style={{
+            color: theme.palette.primary.light,
+            display:
+              currentItemSelected.itemTitle === "noSelectTitle"
+                ? "none"
+                : "block",
+          }}
+        >
           <div>
             {/* The {model.replace(/([A-Z])/g, " $1").toLowerCase()} is selected. */}
             {currentItemSelected.itemTitle === "noSelectTitle"

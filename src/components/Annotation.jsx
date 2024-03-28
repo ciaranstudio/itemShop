@@ -135,7 +135,7 @@ export const Annotation = ({
                 // }}
               >
                 <div className="annotation">
-                  {itemName} {descPartName} {thisPartColorName}
+                  {descPartName}
                   {/* {o.userData.name} */}
                   <div className="grid-container-stain">
                     {options.stains.map((stain) => {
@@ -147,15 +147,13 @@ export const Annotation = ({
                           }
                           style={{
                             backgroundColor:
-                              thisPartColorName === stain
-                                ? "lightGrey"
-                                : "white",
-                            border:
-                              thisPartColorName === stain
-                                ? "2px solid #000000"
-                                : "none",
+                              thisPartColorName === stain ? "grey" : "white",
+                            // border:
+                            //   thisPartColorName === stain
+                            //     ? "2px solid #000000"
+                            //     : "none",
                             color:
-                              thisPartColorName === stain ? "black" : "black",
+                              thisPartColorName === stain ? "white" : "black",
                           }}
                         >
                           {stain}
@@ -173,15 +171,13 @@ export const Annotation = ({
                           }
                           style={{
                             backgroundColor:
-                              thisPartColorName === paint
-                                ? "lightGrey"
-                                : "white",
-                            border:
-                              thisPartColorName === paint
-                                ? "2px solid #000000"
-                                : "none",
+                              thisPartColorName === paint ? "grey" : "white",
+                            // border:
+                            //   thisPartColorName === paint
+                            //     ? "2px solid #000000"
+                            //     : "none",
                             color:
-                              thisPartColorName === paint ? "black" : "black",
+                              thisPartColorName === paint ? "white" : "black",
                           }}
                         >
                           {paint}

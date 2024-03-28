@@ -1,23 +1,22 @@
 import { useRef, useState, useEffect } from "react";
 import * as THREE from "three";
 // import { CameraHelper } from "three";
-import { DirectionalLightHelper } from "three";
+// import { DirectionalLightHelper } from "three";
 import { useFrame } from "@react-three/fiber";
 
 import {
   OrbitControls,
-  useHelper,
+  // useHelper,
   useTexture,
   useProgress,
   Sky,
   ScreenSpace,
-  // SoftShadows,
 } from "@react-three/drei";
 
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
-import { useCursor, Html } from "@react-three/drei";
+import { useCursor } from "@react-three/drei";
 import { Perf } from "r3f-perf";
 
 import { Floor } from "./room/Floor.jsx";
@@ -27,14 +26,13 @@ import { Walls } from "./room/Walls.jsx";
 import controls from "../helpers/debugControls";
 import { textures } from "../data/textures.jsx";
 // import { options } from "../data/options.jsx";
-import { objects } from "../data/objects.jsx";
+// import { objects } from "../data/objects.jsx";
+// import { useOptionStore } from "../store/useOptionStore.tsx";
 import { shopItems } from "../data/objects.jsx";
 
 import { ItemPart } from "./ItemPart.jsx";
 import { Icon } from "./icons/Icon.jsx";
 import { Annotation } from "./Annotation.jsx";
-
-// import { useOptionStore } from "../store/useOptionStore.tsx";
 
 export default function Scene({
   currentItemSelected,
@@ -90,15 +88,6 @@ export default function Scene({
   ] = useTexture(textures.paintedTexture);
 
   const dirLightA = useRef();
-
-  const grampsRef = useRef();
-  const squatterRef = useRef();
-  const horseRef = useRef();
-  const blockRef = useRef();
-  const shelfA16Ref = useRef();
-  const shelfA32Ref = useRef();
-  const shelfB16Ref = useRef();
-  const shelfB32Ref = useRef();
 
   const loadingBarElement = document.querySelector(".loading-bar");
   const { active, progress, errors, item, loaded, total } = useProgress();
@@ -391,13 +380,12 @@ export default function Scene({
   return (
     <>
       <ScreenSpace depth={1}>
-        <pointLight position={[0.295, 0.2, 0.1]} intensity={0.15} />
+        <pointLight position={[0.175, 0.2, 0.1]} intensity={0.15} />
         <mesh
-          // position={[0.295, 0.345, 0]}
-          position={[0.155, 0.345, 0]}
+          position={[0.19, 0.3285, 0]}
           // rotation={[Math.PI / 8, Math.PI / 4, Math.PI / 14]}
-          rotation={[Math.PI / 8, Math.PI / 4, Math.PI / 26]}
-          scale={0.1}
+          rotation={[Math.PI / 6, Math.PI / 4, Math.PI / 20]}
+          scale={0.125}
         >
           {/* <boxGeometry args={[0.06, 0.06, 0.02]} />
           <meshStandardMaterial /> */}
@@ -406,10 +394,7 @@ export default function Scene({
             currentTexture={textures.naturalTexture}
           />
         </mesh>
-        <mesh
-          // position={[-0.28, 0.36, 0]}
-          position={[-0.142, 0.36, 0]}
-        >
+        <mesh position={[-0.18, 0.355, 0]}>
           <boxGeometry args={[0.06, 0.06, 0.02]} />
           <meshStandardMaterial />
         </mesh>
@@ -444,399 +429,58 @@ export default function Scene({
         shadow-camera-bottom={dirLightCamBottom} // -10
         shadow-camera-right={dirLightCamRight} // 10
         shadow-camera-top={dirLightCamTop} // 150
-        target={grampsRef.current}
+        // target={grampsRef.current}
       />
 
       <group position={[0, stagePositionY, 0]}>
         <ambientLight intensity={ambLightIntensity} />
-
-        {/* gramps */}
-        <group
-          ref={grampsRef}
-          position={[
-            objects.gramps.position.x,
-            objects.gramps.position.y,
-            objects.gramps.position.z,
-          ]}
-          onPointerOver={() => hover(true)}
-          onPointerOut={() => hover(false)}
-          onClick={handleClick}
-          onDoubleClick={handleDoubleClick}
-        >
-          {objects.gramps.parts.map((part, index) => {
-            return (
-              <group key={part.partName}>
-                <mesh
-                  position={animatedPosition(part.animation, animDist)}
-                  onClick={() => {
-                    console.log(part.itemName, part.partName, " clicked");
-                    setCurrentItemName(part.itemName);
-                    setCurrentPartName(part.partName);
-                    setShowPartOptions(true);
-                  }}
-                >
-                  <ItemPart
-                    model={part.model}
-                    itemName={part.itemName}
-                    partName={part.partName}
-                  />
-                </mesh>
-                <Annotation
-                  model={part.model}
-                  itemName={part.itemName}
-                  partName={part.partName}
-                  descPartName={part.descPartName}
-                  animation={part.animation}
-                  animDist={animDist}
-                  currentItemName={currentItemName}
-                  currentPartName={currentPartName}
-                  showBackground={showBackground}
-                  showPartOptions={showPartOptions}
-                />
-              </group>
-            );
-          })}
-        </group>
-
-        {/* block */}
-        <group
-          ref={blockRef}
-          position={[
-            objects.block.position.x,
-            objects.block.position.y,
-            objects.block.position.z,
-          ]}
-          rotation={[0, Math.PI / 4, 0]}
-          onPointerOver={() => hover(true)}
-          onPointerOut={() => hover(false)}
-          onClick={handleClick}
-          onDoubleClick={handleDoubleClick}
-        >
-          {objects.block.parts.map((part) => {
-            return (
-              <group key={part.partName}>
-                <mesh
-                  position={animatedPosition(part.animation, animDist)}
-                  onClick={() => {
-                    console.log(part.itemName, part.partName, " clicked");
-                    setCurrentItemName(part.itemName);
-                    setCurrentPartName(part.partName);
-                    setShowPartOptions(true);
-                  }}
-                >
-                  <ItemPart
-                    model={part.model}
-                    itemName={part.itemName}
-                    partName={part.partName}
-                  />
-                </mesh>
-                <Annotation
-                  model={part.model}
-                  itemName={part.itemName}
-                  partName={part.partName}
-                  descPartName={part.descPartName}
-                  animation={part.animation}
-                  animDist={animDist}
-                  currentItemName={currentItemName}
-                  currentPartName={currentPartName}
-                  showBackground={showBackground}
-                  showPartOptions={showPartOptions}
-                />
-              </group>
-            );
-          })}
-        </group>
-
-        {/* horse */}
-        <group
-          ref={horseRef}
-          position={[
-            objects.horse.position.x,
-            objects.horse.position.y,
-            objects.horse.position.z,
-          ]}
-          // rotation={[0, Math.PI / 4, 0]}
-          onPointerOver={() => hover(true)}
-          onPointerOut={() => hover(false)}
-          onClick={handleClick}
-          onDoubleClick={handleDoubleClick}
-        >
-          {objects.horse.parts.map((part) => {
-            return (
-              <group key={part.partName}>
-                <mesh
-                  position={animatedPosition(part.animation, animDist)}
-                  onClick={() => {
-                    console.log(part.itemName, part.partName, " clicked");
-                    setCurrentItemName(part.itemName);
-                    setCurrentPartName(part.partName);
-                    setShowPartOptions(true);
-                  }}
-                >
-                  <ItemPart
-                    model={part.model}
-                    itemName={part.itemName}
-                    partName={part.partName}
-                  />
-                </mesh>
-                <Annotation
-                  model={part.model}
-                  itemName={part.itemName}
-                  partName={part.partName}
-                  descPartName={part.descPartName}
-                  animation={part.animation}
-                  animDist={animDist}
-                  currentItemName={currentItemName}
-                  currentPartName={currentPartName}
-                  showBackground={showBackground}
-                  showPartOptions={showPartOptions}
-                />
-              </group>
-            );
-          })}
-        </group>
-
-        {/* squatter */}
-        <group
-          ref={squatterRef}
-          position={[
-            objects.squatter.position.x,
-            objects.squatter.position.y,
-            objects.squatter.position.z,
-          ]}
-          rotation={[0, Math.PI / 4, 0]}
-          onPointerOver={() => hover(true)}
-          onPointerOut={() => hover(false)}
-          onClick={handleClick}
-          onDoubleClick={handleDoubleClick}
-        >
-          {objects.squatter.parts.map((part) => {
-            return (
-              <group key={part.partName}>
-                <mesh
-                  position={animatedPosition(part.animation, animDist)}
-                  onClick={() => {
-                    console.log(part.itemName, part.partName, " clicked");
-                    setCurrentItemName(part.itemName);
-                    setCurrentPartName(part.partName);
-                    setShowPartOptions(true);
-                  }}
-                >
-                  <ItemPart
-                    model={part.model}
-                    itemName={part.itemName}
-                    partName={part.partName}
-                  />
-                </mesh>
-                <Annotation
-                  model={part.model}
-                  itemName={part.itemName}
-                  partName={part.partName}
-                  descPartName={part.descPartName}
-                  animation={part.animation}
-                  animDist={animDist}
-                  currentItemName={currentItemName}
-                  currentPartName={currentPartName}
-                  showBackground={showBackground}
-                  showPartOptions={showPartOptions}
-                />
-              </group>
-            );
-          })}
-        </group>
-
-        {/* shelfA16 */}
-        <group
-          ref={shelfA16Ref}
-          position={[
-            objects.shelfA16.position.x,
-            objects.shelfA16.position.y,
-            objects.shelfA16.position.z,
-          ]}
-          onPointerOver={() => hover(true)}
-          onPointerOut={() => hover(false)}
-          onClick={handleClick}
-          onDoubleClick={handleDoubleClick}
-        >
-          {objects.shelfA16.parts.map((part) => {
-            return (
-              <group key={part.partName}>
-                <mesh
-                  position={animatedPosition(part.animation, animDist)}
-                  onClick={() => {
-                    console.log(part.itemName, part.partName, " clicked");
-                    setCurrentItemName(part.itemName);
-                    setCurrentPartName(part.partName);
-                    setShowPartOptions(true);
-                  }}
-                >
-                  <ItemPart
-                    model={part.model}
-                    itemName={part.itemName}
-                    partName={part.partName}
-                  />
-                </mesh>
-                <Annotation
-                  model={part.model}
-                  itemName={part.itemName}
-                  partName={part.partName}
-                  descPartName={part.descPartName}
-                  animation={part.animation}
-                  animDist={animDist}
-                  currentItemName={currentItemName}
-                  currentPartName={currentPartName}
-                  showBackground={showBackground}
-                  showPartOptions={showPartOptions}
-                />
-              </group>
-            );
-          })}
-        </group>
-
-        {/* shelfA32 */}
-        <group
-          ref={shelfA32Ref}
-          position={[
-            objects.shelfA32.position.x,
-            objects.shelfA32.position.y,
-            objects.shelfA32.position.z,
-          ]}
-          onPointerOver={() => hover(true)}
-          onPointerOut={() => hover(false)}
-          onClick={handleClick}
-          onDoubleClick={handleDoubleClick}
-        >
-          {objects.shelfA32.parts.map((part) => {
-            return (
-              <group key={part.partName}>
-                <mesh
-                  position={animatedPosition(part.animation, animDist)}
-                  onClick={() => {
-                    console.log(part.itemName, part.partName, " clicked");
-                    setCurrentItemName(part.itemName);
-                    setCurrentPartName(part.partName);
-                    setShowPartOptions(true);
-                  }}
-                >
-                  <ItemPart
-                    model={part.model}
-                    itemName={part.itemName}
-                    partName={part.partName}
-                  />
-                </mesh>
-                <Annotation
-                  model={part.model}
-                  itemName={part.itemName}
-                  partName={part.partName}
-                  descPartName={part.descPartName}
-                  animation={part.animation}
-                  animDist={animDist}
-                  currentItemName={currentItemName}
-                  currentPartName={currentPartName}
-                  showBackground={showBackground}
-                  showPartOptions={showPartOptions}
-                />
-              </group>
-            );
-          })}
-        </group>
-
-        {/* shelfB16 */}
-        <group
-          ref={shelfB16Ref}
-          position={[
-            objects.shelfB16.position.x,
-            objects.shelfB16.position.y,
-            objects.shelfB16.position.z,
-          ]}
-          onPointerOver={() => hover(true)}
-          onPointerOut={() => hover(false)}
-          onClick={handleClick}
-          onDoubleClick={handleDoubleClick}
-        >
-          {objects.shelfB16.parts.map((part) => {
-            return (
-              <group key={part.partName}>
-                <mesh
-                  position={animatedPosition(part.animation, animDist)}
-                  onClick={() => {
-                    console.log(part.itemName, part.partName, " clicked");
-                    setCurrentItemName(part.itemName);
-                    setCurrentPartName(part.partName);
-                    setShowPartOptions(true);
-                  }}
-                >
-                  <ItemPart
-                    model={part.model}
-                    itemName={part.itemName}
-                    partName={part.partName}
-                  />
-                </mesh>
-                <Annotation
-                  model={part.model}
-                  itemName={part.itemName}
-                  partName={part.partName}
-                  descPartName={part.descPartName}
-                  animation={part.animation}
-                  animDist={animDist}
-                  currentItemName={currentItemName}
-                  currentPartName={currentPartName}
-                  showBackground={showBackground}
-                  showPartOptions={showPartOptions}
-                />
-              </group>
-            );
-          })}
-        </group>
-
-        {/* shelfB32 */}
-        <group
-          ref={shelfB32Ref}
-          position={[
-            objects.shelfB32.position.x,
-            objects.shelfB32.position.y,
-            objects.shelfB32.position.z,
-          ]}
-          onPointerOver={() => hover(true)}
-          onPointerOut={() => hover(false)}
-          onClick={handleClick}
-          onDoubleClick={handleDoubleClick}
-        >
-          {objects.shelfB32.parts.map((part) => {
-            return (
-              <group key={part.partName}>
-                <mesh
-                  position={animatedPosition(part.animation, animDist)}
-                  onClick={() => {
-                    console.log(part.itemName, part.partName, " clicked");
-                    setCurrentItemName(part.itemName);
-                    setCurrentPartName(part.partName);
-                    setShowPartOptions(true);
-                  }}
-                >
-                  <ItemPart
-                    model={part.model}
-                    itemName={part.itemName}
-                    partName={part.partName}
-                  />
-                </mesh>
-                <Annotation
-                  model={part.model}
-                  itemName={part.itemName}
-                  partName={part.partName}
-                  descPartName={part.descPartName}
-                  animation={part.animation}
-                  animDist={animDist}
-                  currentItemName={currentItemName}
-                  currentPartName={currentPartName}
-                  showBackground={showBackground}
-                  showPartOptions={showPartOptions}
-                />
-              </group>
-            );
-          })}
-        </group>
-
+        {/* furniture items */}
+        {shopItems.map((item, index) => {
+          return (
+            <group
+              key={index}
+              position={[item.position.x, item.position.y, item.position.z]}
+              onPointerOver={() => hover(true)}
+              onPointerOut={() => hover(false)}
+              onClick={handleClick}
+              onDoubleClick={handleDoubleClick}
+            >
+              {item.parts.map((part, index) => {
+                return (
+                  <group key={part.partName}>
+                    <mesh
+                      position={animatedPosition(part.animation, animDist)}
+                      onClick={() => {
+                        console.log(part.itemName, part.partName, " clicked");
+                        setCurrentItemName(part.itemName);
+                        setCurrentPartName(part.partName);
+                        setShowPartOptions(true);
+                      }}
+                    >
+                      <ItemPart
+                        model={part.model}
+                        itemName={part.itemName}
+                        partName={part.partName}
+                      />
+                    </mesh>
+                    <Annotation
+                      model={part.model}
+                      itemName={part.itemName}
+                      partName={part.partName}
+                      descPartName={part.descPartName}
+                      animation={part.animation}
+                      animDist={animDist}
+                      currentItemName={currentItemName}
+                      currentPartName={currentPartName}
+                      showBackground={showBackground}
+                      showPartOptions={showPartOptions}
+                    />
+                  </group>
+                );
+              })}
+            </group>
+          );
+        })}
         {/* floor */}
         <mesh
           visible={showBackground}
@@ -859,21 +503,11 @@ export default function Scene({
             currentTexture={textures.paintedTexture}
           />
         </mesh>
-
-        {/* Icon (cart bag test) */}
-        {/* <mesh visible={showBackground}>
-          <Icon
-            currentColor={textures.naturalStain}
-            currentTexture={textures.naturalTexture}
-          />
-        </mesh> */}
-
         {/* shelfPositions */}
         {/* <mesh>
           <ShelfPositions />
         </mesh> */}
       </group>
-      {/* <SoftShadows size={20} samples={5} focus={0} /> */}
     </>
   );
 }
