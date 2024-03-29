@@ -12,8 +12,12 @@ type State = {
     gramps: {
       data: {};
       animActive: boolean;
-      optionMixed: boolean;
-      optionSelectedList: string[];
+      stainSingle: boolean;
+      stainMixed: boolean;
+      paintSingle: boolean;
+      paintMixed: boolean;
+      optionColorNameList: string[];
+      optionEntryList: string[];
       optionCartList: string[];
       optionSelectedPrice: number;
       parts: {
@@ -71,8 +75,12 @@ type State = {
     squatter: {
       data: {};
       animActive: boolean;
-      optionMixed: boolean;
-      optionSelectedList: string[];
+      stainSingle: boolean;
+      stainMixed: boolean;
+      paintSingle: boolean;
+      paintMixed: boolean;
+      optionColorNameList: string[];
+      optionEntryList: string[];
       optionCartList: string[];
       optionSelectedPrice: number;
       parts: {
@@ -109,8 +117,12 @@ type State = {
     block: {
       data: {};
       animActive: boolean;
-      optionMixed: boolean;
-      optionSelectedList: string[];
+      stainSingle: boolean;
+      stainMixed: boolean;
+      paintSingle: boolean;
+      paintMixed: boolean;
+      optionColorNameList: string[];
+      optionEntryList: string[];
       optionCartList: string[];
       optionSelectedPrice: number;
       parts: {
@@ -154,8 +166,12 @@ type State = {
     horse: {
       data: {};
       animActive: boolean;
-      optionMixed: boolean;
-      optionSelectedList: string[];
+      stainSingle: boolean;
+      stainMixed: boolean;
+      paintSingle: boolean;
+      paintMixed: boolean;
+      optionColorNameList: string[];
+      optionEntryList: string[];
       optionCartList: string[];
       optionSelectedPrice: number;
       parts: {
@@ -206,8 +222,12 @@ type State = {
     shelfA16: {
       data: {};
       animActive: boolean;
-      optionMixed: boolean;
-      optionSelectedList: string[];
+      stainSingle: boolean;
+      stainMixed: boolean;
+      paintSingle: boolean;
+      paintMixed: boolean;
+      optionColorNameList: string[];
+      optionEntryList: string[];
       optionCartList: string[];
       optionSelectedPrice: number;
       parts: {
@@ -237,8 +257,12 @@ type State = {
     shelfA32: {
       data: {};
       animActive: boolean;
-      optionMixed: boolean;
-      optionSelectedList: string[];
+      stainSingle: boolean;
+      stainMixed: boolean;
+      paintSingle: boolean;
+      paintMixed: boolean;
+      optionColorNameList: string[];
+      optionEntryList: string[];
       optionCartList: string[];
       optionSelectedPrice: number;
       parts: {
@@ -268,8 +292,12 @@ type State = {
     shelfB16: {
       data: {};
       animActive: boolean;
-      optionMixed: boolean;
-      optionSelectedList: string[];
+      stainSingle: boolean;
+      stainMixed: boolean;
+      paintSingle: boolean;
+      paintMixed: boolean;
+      optionColorNameList: string[];
+      optionEntryList: string[];
       optionCartList: string[];
       optionSelectedPrice: number;
       parts: {
@@ -306,8 +334,12 @@ type State = {
     shelfB32: {
       data: {};
       animActive: boolean;
-      optionMixed: boolean;
-      optionSelectedList: string[];
+      stainSingle: boolean;
+      stainMixed: boolean;
+      paintSingle: boolean;
+      paintMixed: boolean;
+      optionColorNameList: string[];
+      optionEntryList: string[];
       optionCartList: string[];
       optionSelectedPrice: number;
       parts: {
@@ -370,8 +402,20 @@ export const useOptionStore = create<State & Action>((set) => ({
     gramps: {
       data: objects.gramps,
       animActive: false,
-      optionMixed: false,
-      optionSelectedList: [
+      stainSingle: false,
+      stainMixed: false,
+      paintSingle: false,
+      paintMixed: false,
+      optionColorNameList: [
+        "default",
+        "default",
+        "default",
+        "default",
+        "default",
+        "default",
+        "default",
+      ],
+      optionEntryList: [
         "default",
         "default",
         "default",
@@ -445,8 +489,12 @@ export const useOptionStore = create<State & Action>((set) => ({
     squatter: {
       data: objects.squatter,
       animActive: false,
-      optionMixed: false,
-      optionSelectedList: ["default", "default", "default", "default"],
+      stainSingle: false,
+      stainMixed: false,
+      paintSingle: false,
+      paintMixed: false,
+      optionColorNameList: ["default", "default", "default", "default"],
+      optionEntryList: ["default", "default", "default", "default"],
       optionCartList: ["default", "default", "default", "default"],
       optionSelectedPrice: 0,
       parts: {
@@ -483,14 +531,18 @@ export const useOptionStore = create<State & Action>((set) => ({
     block: {
       data: objects.block,
       animActive: false,
-      optionMixed: false,
-      optionSelectedList: [
+      stainSingle: false,
+      stainMixed: false,
+      paintSingle: false,
+      paintMixed: false,
+      optionColorNameList: [
         "default",
         "default",
         "default",
         "default",
         "default",
       ],
+      optionEntryList: ["default", "default", "default", "default", "default"],
       optionCartList: ["default", "default", "default", "default", "default"],
       optionSelectedPrice: 0,
       parts: {
@@ -534,8 +586,19 @@ export const useOptionStore = create<State & Action>((set) => ({
     horse: {
       data: objects.horse,
       animActive: false,
-      optionMixed: false,
-      optionSelectedList: [
+      stainSingle: false,
+      stainMixed: false,
+      paintSingle: false,
+      paintMixed: false,
+      optionColorNameList: [
+        "default",
+        "default",
+        "default",
+        "default",
+        "default",
+        "default",
+      ],
+      optionEntryList: [
         "default",
         "default",
         "default",
@@ -600,8 +663,12 @@ export const useOptionStore = create<State & Action>((set) => ({
     shelfA16: {
       data: objects.shelfA16,
       animActive: false,
-      optionMixed: false,
-      optionSelectedList: ["default", "default"],
+      stainSingle: false,
+      stainMixed: false,
+      paintSingle: false,
+      paintMixed: false,
+      optionColorNameList: ["default", "default"],
+      optionEntryList: ["default", "default"],
       optionCartList: ["default", "default"],
       optionSelectedPrice: 0,
       parts: {
@@ -631,8 +698,12 @@ export const useOptionStore = create<State & Action>((set) => ({
     shelfA32: {
       data: objects.shelfA32,
       animActive: false,
-      optionMixed: false,
-      optionSelectedList: ["default", "default"],
+      stainSingle: false,
+      stainMixed: false,
+      paintSingle: false,
+      paintMixed: false,
+      optionColorNameList: ["default", "default"],
+      optionEntryList: ["default", "default"],
       optionCartList: ["default", "default"],
       optionSelectedPrice: 0,
       parts: {
@@ -662,8 +733,12 @@ export const useOptionStore = create<State & Action>((set) => ({
     shelfB16: {
       data: objects.shelfB16,
       animActive: false,
-      optionMixed: false,
-      optionSelectedList: ["default", "default", "default"],
+      stainSingle: false,
+      stainMixed: false,
+      paintSingle: false,
+      paintMixed: false,
+      optionColorNameList: ["default", "default", "default"],
+      optionEntryList: ["default", "default", "default"],
       optionCartList: ["default", "default", "default"],
       optionSelectedPrice: 0,
       parts: {
@@ -700,8 +775,12 @@ export const useOptionStore = create<State & Action>((set) => ({
     shelfB32: {
       data: objects.shelfB32,
       animActive: false,
-      optionMixed: false,
-      optionSelectedList: ["default", "default", "default"],
+      stainSingle: false,
+      stainMixed: false,
+      paintSingle: false,
+      paintMixed: false,
+      optionColorNameList: ["default", "default", "default"],
+      optionEntryList: ["default", "default", "default"],
       optionCartList: ["default", "default", "default"],
       optionSelectedPrice: 0,
       parts: {
@@ -739,15 +818,9 @@ export const useOptionStore = create<State & Action>((set) => ({
   calculateItemPrice: (itemName) =>
     set(
       produce((state: State) => {
-        const allEqual = (arr: any[]) => arr.every((v: any) => v === arr[0]);
         let price: number = state.items[itemName].optionSelectedPrice;
-        // Object.entries(state.items[itemName].parts);
+        const allEqual = (arr: any[]) => arr.every((v: any) => v === arr[0]);
         let arrayItemParts: any[] = Object.values(state.items[itemName].parts);
-        console.log("arrayOptionTypes: ", arrayItemParts);
-        console.log(
-          "arrayOptionTypes[0].colorName: ",
-          arrayItemParts[0].colorName,
-        );
         let optionTypes: string[] = arrayItemParts
           .filter((part: { partName: string }) => part.partName !== "cleat")
           .map((part: { colorType: string }) => {
@@ -756,43 +829,61 @@ export const useOptionStore = create<State & Action>((set) => ({
         let optionCartList: string[] = arrayItemParts
           .filter((part: { partName: string }) => part.partName !== "cleat")
           .map((part: { partName: any; colorName: any }) => {
-            return `${part.partName}: ${part.colorName}`;
+            let type = "";
+            if (options.stains.includes(part.colorName)) {
+              type = "stain";
+            } else if (options.paints.includes(part.colorName)) {
+              type = "paint";
+            }
+            return `${part.partName}: ${part.colorName} ${type}`;
           });
         let optionSelectedList: string[] = arrayItemParts
           .filter((part: { partName: string }) => part.partName !== "cleat")
           .map((part: { partName: any; colorName: any }) => {
             return part.colorName;
           });
-        state.items[itemName].optionSelectedList = optionSelectedList;
+
+        state.items[itemName].optionColorNameList = optionSelectedList;
+        state.items[itemName].optionEntryList = arrayItemParts;
         state.items[itemName].optionCartList = optionCartList;
-        // check if all parts (except cleats, so check the filtered arrays) have color options selected before calculating price
+
         if (
           !optionTypes.includes("default") ||
           !optionSelectedList.includes("default")
         ) {
-          // console.log(
-          //   "price from state.items[itemName].optionSelectedPrice: ",
-          //   state.items[itemName].optionSelectedPrice,
-          // );
           if (optionTypes.includes("stain") && allEqual(optionTypes)) {
-            state.items[itemName].optionMixed = false;
+            state.items[itemName].stainSingle = true;
+            state.items[itemName].stainMixed = false;
+            state.items[itemName].paintSingle = false;
+            state.items[itemName].paintMixed = false;
             price =
               state.items[itemName].data.itemBasePrice +
               state.items[itemName].data.itemStainCost;
           } else if (optionTypes.includes("stain") && !allEqual(optionTypes)) {
-            state.items[itemName].optionMixed = true;
+            state.items[itemName].stainSingle = false;
+            state.items[itemName].stainMixed = true;
+            state.items[itemName].paintSingle = false;
+            state.items[itemName].paintMixed = false;
             price =
               state.items[itemName].data.itemBasePrice +
               state.items[itemName].data.itemMixedStainCost;
           } else if (optionTypes.includes("paint") && allEqual(optionTypes)) {
             if (allEqual(optionSelectedList)) {
-              state.items[itemName].optionMixed = false;
+              state.items[itemName].stainSingle = false;
+              state.items[itemName].stainMixed = false;
+              state.items[itemName].paintSingle = true;
+              state.items[itemName].paintMixed = false;
               price = state.items[itemName].data.itemBasePrice;
-            } else {
-              state.items[itemName].optionMixed = true;
-              price =
-                state.items[itemName].data.itemBasePrice +
-                state.items[itemName].data.itemMixedPaintCost;
+            } else if (optionTypes.includes("paint") && allEqual(optionTypes)) {
+              if (!allEqual(optionSelectedList)) {
+                state.items[itemName].stainSingle = false;
+                state.items[itemName].stainMixed = false;
+                state.items[itemName].paintSingle = false;
+                state.items[itemName].paintMixed = true;
+                price =
+                  state.items[itemName].data.itemBasePrice +
+                  state.items[itemName].data.itemMixedPaintCost;
+              }
             }
           }
         }
@@ -816,10 +907,8 @@ export const useOptionStore = create<State & Action>((set) => ({
         state.items[itemName].parts[partName].colorName = colorName;
         if (options.stains.includes(colorName)) {
           state.items[itemName].parts[partName].colorType = "stain";
-          // state.calculateItemPrice(itemName);
         } else if (options.paints.includes(colorName)) {
           state.items[itemName].parts[partName].colorType = "paint";
-          // state.calculateItemPrice(itemName);
         }
       }),
     ),
