@@ -21,6 +21,9 @@ export const Annotation = ({
   // const [cache, setCache] = useState({});
   const [annotations, setAnnotations] = useState([]);
 
+  // const updatePartColorType = useOptionStore(
+  //   (state) => state.updatePartColorType,
+  // );
   const updatePartColor = useOptionStore((state) => state.updatePartColor);
   const updatePartColorName = useOptionStore(
     (state) => state.updatePartColorName,
@@ -43,42 +46,52 @@ export const Annotation = ({
       updatePartTexture(itemName, partName, textures.whiteTexture);
       updatePartColor(itemName, partName, textures.whiteStain);
       updatePartColorName(itemName, partName, "white");
+      // updatePartColorType(itemName, partName, "stain");
     } else if (color === "natural") {
       updatePartTexture(itemName, partName, textures.naturalTexture);
       updatePartColor(itemName, partName, textures.naturalStain);
       updatePartColorName(itemName, partName, "natural");
+      // updatePartColorType(itemName, partName, "stain");
     } else if (color === "black") {
       updatePartTexture(itemName, partName, textures.blackTexture);
       updatePartColor(itemName, partName, textures.blackStain);
       updatePartColorName(itemName, partName, "black");
+      // updatePartColorType(itemName, partName, "stain");
     } else if (color === "allBlack") {
       updatePartTexture(itemName, partName, textures.allBlackTexture);
       updatePartColor(itemName, partName, textures.allBlackStain);
       updatePartColorName(itemName, partName, "allBlack");
+      // updatePartColorType(itemName, partName, "stain");
     } else if (color === "alabaster") {
       updatePartTexture(itemName, partName, textures.paintedTexture);
       updatePartColor(itemName, partName, textures.alabasterPaint);
       updatePartColorName(itemName, partName, "alabaster");
+      // updatePartColorType(itemName, partName, "paint");
     } else if (color === "pink") {
       updatePartTexture(itemName, partName, textures.paintedTexture);
       updatePartColor(itemName, partName, textures.pinkPaint);
       updatePartColorName(itemName, partName, "pink");
+      // updatePartColorType(itemName, partName, "paint");
     } else if (color === "basil") {
       updatePartTexture(itemName, partName, textures.paintedTexture);
       updatePartColor(itemName, partName, textures.basilPaint);
       updatePartColorName(itemName, partName, "basil");
+      // updatePartColorType(itemName, partName, "paint");
     } else if (color === "yellow") {
       updatePartTexture(itemName, partName, textures.paintedTexture);
       updatePartColor(itemName, partName, textures.yellowPaint);
       updatePartColorName(itemName, partName, "yellow");
+      // updatePartColorType(itemName, partName, "paint");
     } else if (color === "blue") {
       updatePartTexture(itemName, partName, textures.paintedTexture);
       updatePartColor(itemName, partName, textures.bluePaint);
       updatePartColorName(itemName, partName, "blue");
+      // updatePartColorType(itemName, partName, "paint");
     } else if (color === "gray") {
       updatePartTexture(itemName, partName, textures.paintedTexture);
       updatePartColor(itemName, partName, textures.grayPaint);
       updatePartColorName(itemName, partName, "gray");
+      // updatePartColorType(itemName, partName, "paint");
     }
   };
   // useEffect(() => {

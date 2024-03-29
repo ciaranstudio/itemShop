@@ -87,14 +87,15 @@ body,
 }
 
 #size {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
 }
 
 .cart {
   /* transform: translate3d(calc(50%), calc(-50%), 0); */
   text-align: center;
   /* background: #181c20; */
-  background: lightGrey;
+  background: white;
+  opacity: 0.75;
   /* color: #8c92a4; */
   color: #181c20;
   padding: 0.25rem 1.25rem 0.25rem 1.25rem;

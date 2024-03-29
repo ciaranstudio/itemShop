@@ -11,7 +11,7 @@ export const objects = {
     150, // stained single color additional cost
     50, // mixed paint color additional cost
     150, // mixed stain color additional cost
-    "16 x 16 x 18", // L x D x H
+    "16 x 16 x 18 in.", // L x D x H
     { x: 0, y: 0, z: 1.75 }, // { x: 0, y: 0, z: 70 },
     [
       new Part(
@@ -74,7 +74,7 @@ export const objects = {
     100, // stained single color
     50,
     100,
-    "16 x 12 x 18", // L x D x H
+    "16 x 12 x 18 in.", // L x D x H
     { x: -1.75, y: 0, z: 0 },
     [
       new Part(
@@ -116,7 +116,7 @@ export const objects = {
     150, // stained single color
     50,
     150,
-    "8 x 8 x 16", // L x D x H
+    "8 x 8 x 16 in.", // L x D x H
     { x: 0, y: 0, z: -1.75 }, // { x: 0, y: 0, z: -70 },
     [
       new Part(
@@ -165,7 +165,7 @@ export const objects = {
     100,
     50,
     100,
-    "32 x 20 x 32", // L x D x H
+    "32 x 20 x 32 in.", // L x D x H
     { x: 1.75, y: 0, z: 0 }, // { x: 70, y: 0, z: 0 },
     [
       new Part(
@@ -221,7 +221,7 @@ export const objects = {
     50,
     50,
     50,
-    "16 x 4 x 4", // L x D x H
+    "16 x 4 x 4 in.", // L x D x H
     { x: -3, y: 0, z: -2.08 }, // { x: -118.3125, y: 0, z: -81.125 },
     [
       new Part(
@@ -256,7 +256,7 @@ export const objects = {
     50, // stained single color
     50,
     50,
-    "32 x 4 x 4", // L x D x H
+    "32 x 4 x 4 in.", // L x D x H
     { x: -3, y: 0, z: -1.0625 }, //  { x: -118.3125, y: 0, z: -40.6 },
     [
       new Part(
@@ -291,7 +291,7 @@ export const objects = {
     50,
     50,
     50,
-    "16 x 4 x 4", // L x D x H
+    "16 x 4 x 4 in.", // L x D x H
     { x: 0.86, y: 0, z: 3 }, //  { x: 33.685, y: 0, z: 118.25 },
     [
       new Part(
@@ -333,7 +333,7 @@ export const objects = {
     50,
     50,
     50,
-    "32 x 4 x 4", // L x D x H
+    "32 x 4 x 4 in.", // L x D x H
     { x: 1.8775, y: 0, z: 3 }, // { x: 73.685, y: 0, z: 118.25 },
     [
       new Part(
