@@ -736,46 +736,29 @@ export const useOptionStore = create<State & Action>((set) => ({
       },
     },
   },
-
-  updatePartColor: (itemName, partName, color) =>
-    set(
-      produce((state: State) => {
-        state.items[itemName].parts[partName].color = color;
-      }),
-    ),
-  updatePartColorName: (itemName, partName, colorName) =>
-    set(
-      produce((state: State) => {
-        state.items[itemName].parts[partName].colorName = colorName;
-        if (options.stains.includes(colorName)) {
-          state.items[itemName].parts[partName].colorType = "stain";
-        } else if (options.paints.includes(colorName)) {
-          state.items[itemName].parts[partName].colorType = "paint";
-        }
-      }),
-    ),
-  updatePartTexture: (itemName, partName, texture) =>
-    set(
-      produce((state: State) => {
-        state.items[itemName].parts[partName].texture = texture;
-      }),
-    ),
   calculateItemPrice: (itemName) =>
     set(
       produce((state: State) => {
         const allEqual = (arr: any[]) => arr.every((v: any) => v === arr[0]);
-        let price: number = 0;
-        let optionTypes: string[] = state.items[itemName].parts
+        let price: number = state.items[itemName].optionSelectedPrice;
+        // Object.entries(state.items[itemName].parts);
+        let arrayItemParts: any[] = Object.values(state.items[itemName].parts);
+        console.log("arrayOptionTypes: ", arrayItemParts);
+        console.log(
+          "arrayOptionTypes[0].colorName: ",
+          arrayItemParts[0].colorName,
+        );
+        let optionTypes: string[] = arrayItemParts
           .filter((part: { partName: string }) => part.partName !== "cleat")
           .map((part: { colorType: string }) => {
             return part.colorType;
           });
-        let optionCartList: string[] = state.items[itemName].parts
+        let optionCartList: string[] = arrayItemParts
           .filter((part: { partName: string }) => part.partName !== "cleat")
           .map((part: { partName: any; colorName: any }) => {
             return `${part.partName}: ${part.colorName}`;
           });
-        let optionSelectedList: string[] = state.items[itemName].parts
+        let optionSelectedList: string[] = arrayItemParts
           .filter((part: { partName: string }) => part.partName !== "cleat")
           .map((part: { partName: any; colorName: any }) => {
             return part.colorName;
@@ -787,6 +770,10 @@ export const useOptionStore = create<State & Action>((set) => ({
           !optionTypes.includes("default") ||
           !optionSelectedList.includes("default")
         ) {
+          // console.log(
+          //   "price from state.items[itemName].optionSelectedPrice: ",
+          //   state.items[itemName].optionSelectedPrice,
+          // );
           if (optionTypes.includes("stain") && allEqual(optionTypes)) {
             state.items[itemName].optionMixed = false;
             price =
@@ -810,6 +797,36 @@ export const useOptionStore = create<State & Action>((set) => ({
           }
         }
         state.items[itemName].optionSelectedPrice = price;
+        console.log("price: ", price);
+      }),
+    ),
+  updatePartColor: (itemName, partName, color) =>
+    set(
+      produce((state: State) => {
+        state.items[itemName].parts[partName].color = color;
+      }),
+    ),
+  updatePartColorName: (itemName, partName, colorName) =>
+    set(
+      produce((state: State & Action) => {
+        console.log(
+          "state.items[itemName].optionSelectedPrice: ",
+          state.items[itemName].optionSelectedPrice,
+        );
+        state.items[itemName].parts[partName].colorName = colorName;
+        if (options.stains.includes(colorName)) {
+          state.items[itemName].parts[partName].colorType = "stain";
+          // state.calculateItemPrice(itemName);
+        } else if (options.paints.includes(colorName)) {
+          state.items[itemName].parts[partName].colorType = "paint";
+          // state.calculateItemPrice(itemName);
+        }
+      }),
+    ),
+  updatePartTexture: (itemName, partName, texture) =>
+    set(
+      produce((state: State) => {
+        state.items[itemName].parts[partName].texture = texture;
       }),
     ),
 }));

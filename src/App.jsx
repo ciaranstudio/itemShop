@@ -7,7 +7,7 @@ import SelectMenu from "./components/SelectMenu.jsx";
 import Placeholder from "./components/Placeholder.jsx";
 import { textures } from "./data/textures.jsx";
 import { options } from "./data/options.jsx";
-// import { objects } from "./data/objects.jsx";
+import { objects } from "./data/objects.jsx";
 // import { shopItems } from "./data/objects.jsx";
 import { unselectedItem } from "./data/objects.jsx";
 import "./style.css";
@@ -29,8 +29,9 @@ function App() {
   const [toggled, setToggled] = useState(false);
   const [animActive, setAnimActive] = useState(false);
 
-  const [currentItemSelected, setCurrentItemSelected] =
-    useState(unselectedItem);
+  const [currentItemSelected, setCurrentItemSelected] = useState(
+    objects.gramps,
+  );
   const [previousItemSelected, setPreviousItemSelected] =
     useState(unselectedItem);
   const [currentItemOptionSelect, setCurrentItemOptionSelect] = useState("");
@@ -586,8 +587,8 @@ function App() {
             theme={theme}
             item={currentItemSelected}
             itemNo={currentItemSelected.itemNo}
-            priceTotal={totalPrice()}
-            currentItemOptionSelect={currentItemOptionSelect}
+            // priceTotal={totalPrice()}
+            // currentItemOptionSelect={currentItemOptionSelect}
             // currentItemOptionType={currentItemOptionType}
           >
             {currentItemSelected.itemTitle}

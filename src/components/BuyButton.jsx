@@ -1,17 +1,27 @@
-import * as React from "react";
+import { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import { useOptionStore } from "../store/useOptionStore.tsx";
 
 export default function BuyButton({
   item,
   itemNo,
-  priceTotal,
+  // priceTotal,
   handleAddToCart,
-  currentItemOptionSelect,
+  // currentItemOptionSelect,
   theme,
   // currentItemOptionType,
   // currentItemSizeSelect,
 }) {
+  const optionSelectedPrice = useOptionStore(
+    (state) => state.items[item.itemName].optionSelectedPrice,
+  );
+  // const [price, setPrice] = useState(optionSelectedPrice);
+  // useEffect(() => {
+  //   setPrice(optionSelectedPrice);
+  //   console.log(item.itemName);
+  //   console.log(optionSelectedPrice);
+  // }, [optionSelectedPrice, item]);
   return (
     <Box
       sx={{
@@ -28,10 +38,10 @@ export default function BuyButton({
         data-item-name={item.itemTitle}
         data-item-url={`https://elibuilds-998b8-default-rtdb.firebaseio.com/${item.itemNo}.json`}
         data-item-description={item.itemDescription}
-        data-item-price={item.itemBasePrice}
-        data-item-custom1-name="Finish"
-        data-item-custom1-options={`white[+${item.itemStainCost}]|natural[+${item.itemStainCost}]|black[+${item.itemStainCost}]|allBlack[+${item.itemStainCost}]|alabaster|pink|basil|yellow|blue|gray`}
-        data-item-custom1-value={currentItemOptionSelect}
+        data-item-price={optionSelectedPrice} // this isnt working when you have one selection set and then change it and add that to cart on top, need to put base price here and add options to make distinct?
+        // data-item-custom1-name="Finish"
+        // data-item-custom1-options={`white[+${item.itemStainCost}]|natural[+${item.itemStainCost}]|black[+${item.itemStainCost}]|allBlack[+${item.itemStainCost}]|alabaster|pink|basil|yellow|blue|gray`}
+        // data-item-custom1-value={currentItemOptionSelect}
         // data-item-custom2-name="Size"
         // data-item-custom2-options={
         //   item.sizes.length > 1
@@ -47,7 +57,7 @@ export default function BuyButton({
           color: theme.palette.primary.light,
         }}
       >
-        ${priceTotal}
+        ${optionSelectedPrice}
       </Button>
     </Box>
   );

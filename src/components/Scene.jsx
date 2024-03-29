@@ -71,18 +71,18 @@ export default function Scene({
   const [snipcartLoaded, setSnipcartLoaded] = useState(false);
 
   useEffect(() => {
-    console.log("snipcartLoaded: ", snipcartLoaded);
+    // console.log("snipcartLoaded: ", snipcartLoaded);
     // console.log("useSnipcart: ", snipcart);
     // let state = snipcart.getState();
     // console.log("snipCart state: ", state);
     // console.log("cart:", cart);
     if (cart.items) {
-      console.log("cart.items.count:", cart.items.count);
+      // console.log("cart.items.count:", cart.items.count);
     }
 
-    console.log("subtotal:", subtotal);
+    // console.log("subtotal:", subtotal);
     if (window.Snipcart) {
-      setSnipcartLoaded(true);
+      if (!snipcartLoaded) setSnipcartLoaded(true);
       // console.log("window.Snipcart.api: ", window.Snipcart);
       // window.Snipcart.api.theme.cart.open();
     }

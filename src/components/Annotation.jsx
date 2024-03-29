@@ -29,6 +29,9 @@ export const Annotation = ({
     (state) => state.updatePartColorName,
   );
   const updatePartTexture = useOptionStore((state) => state.updatePartTexture);
+  const calculateItemPrice = useOptionStore(
+    (state) => state.calculateItemPrice,
+  );
 
   const thisPartColorName = useOptionStore(
     (state) => state.items[itemName].parts[partName].colorName,
@@ -38,9 +41,9 @@ export const Annotation = ({
     // console.log("handlePartOption event: ", e);
     e.preventDefault();
     e.stopPropagation();
-    console.log("itemName: ", itemName);
-    console.log("partName: ", partName);
-    console.log("color clicked: ", color);
+    // console.log("itemName: ", itemName);
+    // console.log("partName: ", partName);
+    // console.log("color clicked: ", color);
 
     if (color === "white") {
       updatePartTexture(itemName, partName, textures.whiteTexture);
@@ -93,6 +96,7 @@ export const Annotation = ({
       updatePartColorName(itemName, partName, "gray");
       // updatePartColorType(itemName, partName, "paint");
     }
+    calculateItemPrice(itemName);
   };
   // useEffect(() => {
   //   console.log(
@@ -106,11 +110,11 @@ export const Annotation = ({
   useLayoutEffect(() => {
     const currentAnnotations = [];
     scene.traverse((o) => {
-      console.log("o from scene.traverse in Annotations: ", o);
+      // console.log("o from scene.traverse in Annotations: ", o);
       if (o.isObject3D) {
         if (o.userData.name) {
           if (o.userData.name.startsWith("AnchorPoint")) {
-            console.log(o.userData.name);
+            // console.log(o.userData.name);
             currentAnnotations.push(
               <Html
                 // transform
@@ -206,7 +210,7 @@ export const Annotation = ({
       }
     });
     setAnnotations(currentAnnotations);
-    console.log("Caching JSX for url " + url);
+    // console.log("Caching JSX for url " + url);
   }, [
     scene,
     thisPartColorName,
