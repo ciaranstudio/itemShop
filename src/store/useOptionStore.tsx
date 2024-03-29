@@ -12,9 +12,10 @@ type State = {
     gramps: {
       data: {};
       animActive: boolean;
-      optionSelectedType: string;
-      optionSelectedPrice: number;
+      optionMixed: boolean;
       optionSelectedList: string[];
+      optionCartList: string[];
+      optionSelectedPrice: number;
       parts: {
         top: {
           partName: string;
@@ -70,9 +71,10 @@ type State = {
     squatter: {
       data: {};
       animActive: boolean;
-      optionSelectedType: string;
-      optionSelectedPrice: number;
+      optionMixed: boolean;
       optionSelectedList: string[];
+      optionCartList: string[];
+      optionSelectedPrice: number;
       parts: {
         top: {
           partName: string;
@@ -107,9 +109,10 @@ type State = {
     block: {
       data: {};
       animActive: boolean;
-      optionSelectedType: string;
-      optionSelectedPrice: number;
+      optionMixed: boolean;
       optionSelectedList: string[];
+      optionCartList: string[];
+      optionSelectedPrice: number;
       parts: {
         shelfTop: {
           partName: string;
@@ -151,9 +154,10 @@ type State = {
     horse: {
       data: {};
       animActive: boolean;
-      optionSelectedType: string;
-      optionSelectedPrice: number;
+      optionMixed: boolean;
       optionSelectedList: string[];
+      optionCartList: string[];
+      optionSelectedPrice: number;
       parts: {
         top: {
           partName: string;
@@ -202,9 +206,10 @@ type State = {
     shelfA16: {
       data: {};
       animActive: boolean;
-      optionSelectedType: string;
-      optionSelectedPrice: number;
+      optionMixed: boolean;
       optionSelectedList: string[];
+      optionCartList: string[];
+      optionSelectedPrice: number;
       parts: {
         top: {
           partName: string;
@@ -232,9 +237,10 @@ type State = {
     shelfA32: {
       data: {};
       animActive: boolean;
-      optionSelectedType: string;
-      optionSelectedPrice: number;
+      optionMixed: boolean;
       optionSelectedList: string[];
+      optionCartList: string[];
+      optionSelectedPrice: number;
       parts: {
         top: {
           partName: string;
@@ -262,9 +268,10 @@ type State = {
     shelfB16: {
       data: {};
       animActive: boolean;
-      optionSelectedType: string;
-      optionSelectedPrice: number;
+      optionMixed: boolean;
       optionSelectedList: string[];
+      optionCartList: string[];
+      optionSelectedPrice: number;
       parts: {
         top: {
           partName: string;
@@ -299,9 +306,10 @@ type State = {
     shelfB32: {
       data: {};
       animActive: boolean;
-      optionSelectedType: string;
-      optionSelectedPrice: number;
+      optionMixed: boolean;
       optionSelectedList: string[];
+      optionCartList: string[];
+      optionSelectedPrice: number;
       parts: {
         top: {
           partName: string;
@@ -362,8 +370,7 @@ export const useOptionStore = create<State & Action>((set) => ({
     gramps: {
       data: objects.gramps,
       animActive: false,
-      optionSelectedType: "default",
-      optionSelectedPrice: 0,
+      optionMixed: false,
       optionSelectedList: [
         "default",
         "default",
@@ -373,6 +380,16 @@ export const useOptionStore = create<State & Action>((set) => ({
         "default",
         "default",
       ],
+      optionCartList: [
+        "default",
+        "default",
+        "default",
+        "default",
+        "default",
+        "default",
+        "default",
+      ],
+      optionSelectedPrice: 0,
       parts: {
         top: {
           partName: "top",
@@ -428,9 +445,10 @@ export const useOptionStore = create<State & Action>((set) => ({
     squatter: {
       data: objects.squatter,
       animActive: false,
-      optionSelectedType: "default",
-      optionSelectedPrice: 0,
+      optionMixed: false,
       optionSelectedList: ["default", "default", "default", "default"],
+      optionCartList: ["default", "default", "default", "default"],
+      optionSelectedPrice: 0,
       parts: {
         top: {
           partName: "top",
@@ -465,8 +483,7 @@ export const useOptionStore = create<State & Action>((set) => ({
     block: {
       data: objects.block,
       animActive: false,
-      optionSelectedType: "default",
-      optionSelectedPrice: 0,
+      optionMixed: false,
       optionSelectedList: [
         "default",
         "default",
@@ -474,6 +491,8 @@ export const useOptionStore = create<State & Action>((set) => ({
         "default",
         "default",
       ],
+      optionCartList: ["default", "default", "default", "default", "default"],
+      optionSelectedPrice: 0,
       parts: {
         shelfTop: {
           partName: "top shelf",
@@ -515,8 +534,7 @@ export const useOptionStore = create<State & Action>((set) => ({
     horse: {
       data: objects.horse,
       animActive: false,
-      optionSelectedType: "default",
-      optionSelectedPrice: 0,
+      optionMixed: false,
       optionSelectedList: [
         "default",
         "default",
@@ -525,6 +543,15 @@ export const useOptionStore = create<State & Action>((set) => ({
         "default",
         "default",
       ],
+      optionCartList: [
+        "default",
+        "default",
+        "default",
+        "default",
+        "default",
+        "default",
+      ],
+      optionSelectedPrice: 0,
       parts: {
         top: {
           partName: "top",
@@ -573,9 +600,10 @@ export const useOptionStore = create<State & Action>((set) => ({
     shelfA16: {
       data: objects.shelfA16,
       animActive: false,
-      optionSelectedType: "default",
+      optionMixed: false,
+      optionSelectedList: ["default", "default"],
+      optionCartList: ["default", "default"],
       optionSelectedPrice: 0,
-      optionSelectedList: ["default", "default", "default"],
       parts: {
         top: {
           partName: "top",
@@ -603,9 +631,10 @@ export const useOptionStore = create<State & Action>((set) => ({
     shelfA32: {
       data: objects.shelfA32,
       animActive: false,
-      optionSelectedType: "default",
+      optionMixed: false,
+      optionSelectedList: ["default", "default"],
+      optionCartList: ["default", "default"],
       optionSelectedPrice: 0,
-      optionSelectedList: ["default", "default", "default"],
       parts: {
         top: {
           partName: "top",
@@ -633,9 +662,10 @@ export const useOptionStore = create<State & Action>((set) => ({
     shelfB16: {
       data: objects.shelfB16,
       animActive: false,
-      optionSelectedType: "default",
+      optionMixed: false,
+      optionSelectedList: ["default", "default", "default"],
+      optionCartList: ["default", "default", "default"],
       optionSelectedPrice: 0,
-      optionSelectedList: ["default", "default", "default", "default"],
       parts: {
         top: {
           partName: "top",
@@ -670,9 +700,10 @@ export const useOptionStore = create<State & Action>((set) => ({
     shelfB32: {
       data: objects.shelfB32,
       animActive: false,
-      optionSelectedType: "default",
+      optionMixed: false,
+      optionSelectedList: ["default", "default", "default"],
+      optionCartList: ["default", "default", "default"],
       optionSelectedPrice: 0,
-      optionSelectedList: ["default", "default", "default", "default"],
       parts: {
         top: {
           partName: "top",
@@ -732,22 +763,52 @@ export const useOptionStore = create<State & Action>((set) => ({
   calculateItemPrice: (itemName) =>
     set(
       produce((state: State) => {
-        // let optionTypes: string[] = [];
+        const allEqual = (arr: any[]) => arr.every((v: any) => v === arr[0]);
         let price: number = 0;
-        let optionTypes: string[] = state.items[itemName].parts.map(
-          (part: { colorType: string }) => {
+        let optionTypes: string[] = state.items[itemName].parts
+          .filter((part: { partName: string }) => part.partName !== "cleat")
+          .map((part: { colorType: string }) => {
             return part.colorType;
-          },
-        );
-        let optionSelectedList: string[] = state.items[itemName].parts.map(
-          (part: { partName: any; colorName: any }) => {
+          });
+        let optionCartList: string[] = state.items[itemName].parts
+          .filter((part: { partName: string }) => part.partName !== "cleat")
+          .map((part: { partName: any; colorName: any }) => {
             return `${part.partName}: ${part.colorName}`;
-          },
-        );
+          });
+        let optionSelectedList: string[] = state.items[itemName].parts
+          .filter((part: { partName: string }) => part.partName !== "cleat")
+          .map((part: { partName: any; colorName: any }) => {
+            return part.colorName;
+          });
         state.items[itemName].optionSelectedList = optionSelectedList;
-        // if optionTypes array includes stain = stain price
-        // if optionTypes array does not include stain = paint price
-        // sub if optionTypes array includes different paints = paint price plus mixed paint price additional cost
+        state.items[itemName].optionCartList = optionCartList;
+        // check if all parts (except cleats, so check the filtered arrays) have color options selected before calculating price
+        if (
+          !optionTypes.includes("default") ||
+          !optionSelectedList.includes("default")
+        ) {
+          if (optionTypes.includes("stain") && allEqual(optionTypes)) {
+            state.items[itemName].optionMixed = false;
+            price =
+              state.items[itemName].data.itemBasePrice +
+              state.items[itemName].data.itemStainCost;
+          } else if (optionTypes.includes("stain") && !allEqual(optionTypes)) {
+            state.items[itemName].optionMixed = true;
+            price =
+              state.items[itemName].data.itemBasePrice +
+              state.items[itemName].data.itemMixedStainCost;
+          } else if (optionTypes.includes("paint") && allEqual(optionTypes)) {
+            if (allEqual(optionSelectedList)) {
+              state.items[itemName].optionMixed = false;
+              price = state.items[itemName].data.itemBasePrice;
+            } else {
+              state.items[itemName].optionMixed = true;
+              price =
+                state.items[itemName].data.itemBasePrice +
+                state.items[itemName].data.itemMixedPaintCost;
+            }
+          }
+        }
         state.items[itemName].optionSelectedPrice = price;
       }),
     ),
