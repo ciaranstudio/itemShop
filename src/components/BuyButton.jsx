@@ -118,9 +118,13 @@ export default function BuyButton({ item, theme }) {
         data-item-url={`https://elibuilds-998b8-default-rtdb.firebaseio.com/${item.itemNo}.json`}
         data-item-description={item.itemDescription}
         data-item-price={item.itemBasePrice}
-        data-item-custom1-name="Color option"
+        data-item-custom1-name="Type"
+        data-item-custom1-type="readonly"
         data-item-custom1-options={`singleStain[+${item.itemStainCost}]|mixedStain[+${item.itemMixedStainCost}]|mixedStainPaint[+${item.itemMixedStainCost}]|mixedPaint[+${item.itemMixedPaintCost}]|singlePaint`}
         data-item-custom1-value={snipCartOption}
+        data-item-custom2-name="Parts"
+        data-item-custom2-type="readonly"
+        data-item-custom2-value={optionCartList}
         sx={{
           display: item === unselectedItem ? "none" : "block",
           pointerEvents: "auto",

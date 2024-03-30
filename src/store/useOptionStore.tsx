@@ -889,7 +889,7 @@ export const useOptionStore = create<State & Action>((set) => ({
             } else if (options.paints.includes(part.colorName)) {
               type = "paint";
             }
-            return `${part.partName}: ${part.colorName} ${type}`;
+            return ` ${part.partName}: ${part.colorName} ${type} `;
           });
         let optionSelectedList: string[] = arrayItemParts
           .filter((part: { partName: string }) => part.partName !== "cleat")

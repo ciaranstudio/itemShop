@@ -9,7 +9,7 @@
     "url": "https://elibuilds-998b8-default-rtdb.firebaseio.com/0.json",
     "customFields": [
       {
-        "name": "Color option",
+        "name": "Type",
         "options": "singleStain[+150]|mixedStain[+150]|mixedStainPaint[+150]|mixedPaint[+50]|singlePaint",
         "type": "dropdown"
       }
@@ -25,7 +25,7 @@
     "url": "https://elibuilds-998b8-default-rtdb.firebaseio.com/1.json",
     "customFields": [
       {
-        "name": "Color option",
+        "name": "Type",
         "options": "singleStain[+100]|mixedStain[+100]|mixedStainPaint[+100]|mixedPaint[+50]|singlePaint",
         "type": "dropdown"
       }
@@ -41,7 +41,7 @@
     "url": "https://elibuilds-998b8-default-rtdb.firebaseio.com/2.json",
     "customFields": [
       {
-        "name": "Color option",
+        "name": "Type",
         "options": "singleStain[+150]|mixedStain[+150]|mixedStainPaint[+150]|mixedPaint[+50]|singlePaint",
         "type": "dropdown"
       }
@@ -57,7 +57,7 @@
     "url": "https://elibuilds-998b8-default-rtdb.firebaseio.com/3.json",
     "customFields": [
       {
-        "name": "Color option",
+        "name": "Type",
         "options": "singleStain[+100]|mixedStain[+100]|mixedStainPaint[+100]|mixedPaint[+50]|singlePaint",
         "type": "dropdown"
       }
@@ -73,7 +73,7 @@
     "url": "https://elibuilds-998b8-default-rtdb.firebaseio.com/4.json",
     "customFields": [
       {
-        "name": "Color option",
+        "name": "Type",
         "options": "singleStain[+50]|mixedStain[+50]|mixedStainPaint[+50]|mixedPaint[+50]|singlePaint",
         "type": "dropdown"
       }
@@ -89,7 +89,7 @@
     "url": "https://elibuilds-998b8-default-rtdb.firebaseio.com/4.json",
     "customFields": [
       {
-        "name": "Color option",
+        "name": "Type",
         "options": "singleStain[+50]|mixedStain[+50]|mixedStainPaint[+50]|mixedPaint[+50]|singlePaint",
         "type": "dropdown"
       }
@@ -105,7 +105,7 @@
     "url": "https://elibuilds-998b8-default-rtdb.firebaseio.com/5.json",
     "customFields": [
       {
-        "name": "Color option",
+        "name": "Type",
         "options": "singleStain[+50]|mixedStain[+50]|mixedStainPaint[+50]|mixedPaint[+50]|singlePaint",
         "type": "dropdown"
       }
@@ -121,7 +121,7 @@
     "url": "https://elibuilds-998b8-default-rtdb.firebaseio.com/5.json",
     "customFields": [
       {
-        "name": "Color option",
+        "name": "Type",
         "options": "singleStain[+50]|mixedStain[+50]|mixedStainPaint[+50]|mixedPaint[+50]|singlePaint",
         "type": "dropdown"
       }
