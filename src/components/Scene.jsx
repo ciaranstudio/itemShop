@@ -302,6 +302,7 @@ export default function Scene({
         () => {
           // console.log("start");
           setControlsDragging(true);
+          orbitRef.current.autoRotate = false;
         },
         true,
       );
@@ -560,6 +561,8 @@ export default function Scene({
         minDistance={0.2} // 60
         maxPolarAngle={Math.PI / 2 + Math.PI / 16} // {Math.PI / 2 - Math.PI / 16}
         enableDamping={true}
+        autoRotate
+        autoRotateSpeed={0.8}
       />
       <Sky distance={4000000} sunPosition={[1.5, 2, -10]} />
       {/* grampsLight */}
