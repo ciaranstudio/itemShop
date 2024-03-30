@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { useOptionStore } from "../store/useOptionStore.tsx";
 import { unselectedItem } from "../data/objects.jsx";
 import { objects } from "../data/objects.jsx";
+import { shopItems } from "../data/objects.jsx";
 
 export default function BuyButton({ item, theme }) {
   const optionSelectedPrice = useOptionStore(
@@ -62,19 +63,42 @@ export default function BuyButton({ item, theme }) {
       ].optionColorNameList,
   );
 
-  const optionEntryList = useOptionStore(
+  const optionCompleteList = useOptionStore(
     (state) =>
       state.items[
         item === unselectedItem ? objects.gramps.itemName : item.itemName
-      ].optionEntryList,
+      ].optionCompleteList,
+  );
+
+  const snipCartOptionDesc = useOptionStore(
+    (state) =>
+      state.items[
+        item === unselectedItem ? objects.gramps.itemName : item.itemName
+      ].snipCartOptionDesc,
+  );
+
+  const snipCartOption = useOptionStore(
+    (state) =>
+      state.items[
+        item === unselectedItem ? objects.gramps.itemName : item.itemName
+      ].snipCartOption,
   );
 
   useEffect(() => {
-    // console.log("optionSelectedList: ", optionSelectedList);
+    console.log("BuyButton item.itemName: ", item.itemName);
     console.log("optionColorNameList: ", optionColorNameList);
-    console.log("optionEntryList: ", optionEntryList);
+    console.log("optionEntryList: ", optionCompleteList);
     console.log("optionCartList: ", optionCartList);
-  }, [optionColorNameList, optionEntryList, optionCartList]);
+    console.log("snipCartOptionDesc: ", snipCartOptionDesc);
+    console.log("snipCartOption: ", snipCartOption);
+  }, [
+    item,
+    optionColorNameList,
+    optionCompleteList,
+    optionCartList,
+    snipCartOption,
+    snipCartOptionDesc,
+  ]);
 
   return (
     <Box
@@ -93,10 +117,10 @@ export default function BuyButton({ item, theme }) {
         data-item-name={item.itemTitle}
         data-item-url={`https://elibuilds-998b8-default-rtdb.firebaseio.com/${item.itemNo}.json`}
         data-item-description={item.itemDescription}
-        data-item-price={optionSelectedPrice} // this isnt working when you have one selection set and then change it and add that to cart on top, need to put base price here and add options to make distinct?
-        // data-item-custom1-name="Color option"
-        // data-item-custom1-options={`white[+${item.itemStainCost}]|natural[+${item.itemStainCost}]|black[+${item.itemStainCost}]|allBlack[+${item.itemStainCost}]|alabaster|pink|basil|yellow|blue|gray`}
-        // data-item-custom1-value={currentItemOptionSelect}
+        data-item-price={item.itemBasePrice}
+        data-item-custom1-name="Color option"
+        data-item-custom1-options={`singleStain[+${item.itemStainCost}]|mixedStain[+${item.itemStainCost}]|mixedStainPaint[+${item.itemStainCost}]|mixedPaint[+${item.itemMixedPaintCost}]|singlePaint`}
+        data-item-custom1-value={snipCartOption}
         sx={{
           display: item === unselectedItem ? "none" : "block",
           pointerEvents: "auto",
@@ -109,3 +133,9 @@ export default function BuyButton({ item, theme }) {
     </Box>
   );
 }
+
+// singleStain;
+// mixedStain;
+// mixedStainPaint;
+// singlePaint;
+// mixedPaint;

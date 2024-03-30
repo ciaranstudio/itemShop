@@ -14,10 +14,13 @@ type State = {
       animActive: boolean;
       stainSingle: boolean;
       stainMixed: boolean;
+      stainPaintMixed: boolean;
       paintSingle: boolean;
       paintMixed: boolean;
+      snipCartOption: string;
+      snipCartOptionDesc: string;
       optionColorNameList: string[];
-      optionEntryList: string[];
+      optionCompleteList: string[];
       optionCartList: string[];
       optionSelectedPrice: number;
       parts: {
@@ -77,10 +80,13 @@ type State = {
       animActive: boolean;
       stainSingle: boolean;
       stainMixed: boolean;
+      stainPaintMixed: boolean;
       paintSingle: boolean;
       paintMixed: boolean;
+      snipCartOption: string;
+      snipCartOptionDesc: string;
       optionColorNameList: string[];
-      optionEntryList: string[];
+      optionCompleteList: string[];
       optionCartList: string[];
       optionSelectedPrice: number;
       parts: {
@@ -119,10 +125,13 @@ type State = {
       animActive: boolean;
       stainSingle: boolean;
       stainMixed: boolean;
+      stainPaintMixed: boolean;
       paintSingle: boolean;
       paintMixed: boolean;
+      snipCartOption: string;
+      snipCartOptionDesc: string;
       optionColorNameList: string[];
-      optionEntryList: string[];
+      optionCompleteList: string[];
       optionCartList: string[];
       optionSelectedPrice: number;
       parts: {
@@ -168,10 +177,13 @@ type State = {
       animActive: boolean;
       stainSingle: boolean;
       stainMixed: boolean;
+      stainPaintMixed: boolean;
       paintSingle: boolean;
       paintMixed: boolean;
+      snipCartOption: string;
+      snipCartOptionDesc: string;
       optionColorNameList: string[];
-      optionEntryList: string[];
+      optionCompleteList: string[];
       optionCartList: string[];
       optionSelectedPrice: number;
       parts: {
@@ -224,10 +236,13 @@ type State = {
       animActive: boolean;
       stainSingle: boolean;
       stainMixed: boolean;
+      stainPaintMixed: boolean;
       paintSingle: boolean;
       paintMixed: boolean;
+      snipCartOption: string;
+      snipCartOptionDesc: string;
       optionColorNameList: string[];
-      optionEntryList: string[];
+      optionCompleteList: string[];
       optionCartList: string[];
       optionSelectedPrice: number;
       parts: {
@@ -259,10 +274,13 @@ type State = {
       animActive: boolean;
       stainSingle: boolean;
       stainMixed: boolean;
+      stainPaintMixed: boolean;
       paintSingle: boolean;
       paintMixed: boolean;
+      snipCartOption: string;
+      snipCartOptionDesc: string;
       optionColorNameList: string[];
-      optionEntryList: string[];
+      optionCompleteList: string[];
       optionCartList: string[];
       optionSelectedPrice: number;
       parts: {
@@ -294,10 +312,13 @@ type State = {
       animActive: boolean;
       stainSingle: boolean;
       stainMixed: boolean;
+      stainPaintMixed: boolean;
       paintSingle: boolean;
       paintMixed: boolean;
+      snipCartOption: string;
+      snipCartOptionDesc: string;
       optionColorNameList: string[];
-      optionEntryList: string[];
+      optionCompleteList: string[];
       optionCartList: string[];
       optionSelectedPrice: number;
       parts: {
@@ -336,10 +357,13 @@ type State = {
       animActive: boolean;
       stainSingle: boolean;
       stainMixed: boolean;
+      stainPaintMixed: boolean;
       paintSingle: boolean;
       paintMixed: boolean;
+      snipCartOption: string;
+      snipCartOptionDesc: string;
       optionColorNameList: string[];
-      optionEntryList: string[];
+      optionCompleteList: string[];
       optionCartList: string[];
       optionSelectedPrice: number;
       parts: {
@@ -404,8 +428,11 @@ export const useOptionStore = create<State & Action>((set) => ({
       animActive: false,
       stainSingle: false,
       stainMixed: false,
+      stainPaintMixed: false,
       paintSingle: false,
       paintMixed: false,
+      snipCartOption: "default",
+      snipCartOptionDesc: "default",
       optionColorNameList: [
         "default",
         "default",
@@ -415,7 +442,7 @@ export const useOptionStore = create<State & Action>((set) => ({
         "default",
         "default",
       ],
-      optionEntryList: [
+      optionCompleteList: [
         "default",
         "default",
         "default",
@@ -491,10 +518,13 @@ export const useOptionStore = create<State & Action>((set) => ({
       animActive: false,
       stainSingle: false,
       stainMixed: false,
+      stainPaintMixed: false,
       paintSingle: false,
       paintMixed: false,
+      snipCartOption: "default",
+      snipCartOptionDesc: "default",
       optionColorNameList: ["default", "default", "default", "default"],
-      optionEntryList: ["default", "default", "default", "default"],
+      optionCompleteList: ["default", "default", "default", "default"],
       optionCartList: ["default", "default", "default", "default"],
       optionSelectedPrice: 0,
       parts: {
@@ -533,8 +563,11 @@ export const useOptionStore = create<State & Action>((set) => ({
       animActive: false,
       stainSingle: false,
       stainMixed: false,
+      stainPaintMixed: false,
       paintSingle: false,
       paintMixed: false,
+      snipCartOption: "default",
+      snipCartOptionDesc: "default",
       optionColorNameList: [
         "default",
         "default",
@@ -542,7 +575,13 @@ export const useOptionStore = create<State & Action>((set) => ({
         "default",
         "default",
       ],
-      optionEntryList: ["default", "default", "default", "default", "default"],
+      optionCompleteList: [
+        "default",
+        "default",
+        "default",
+        "default",
+        "default",
+      ],
       optionCartList: ["default", "default", "default", "default", "default"],
       optionSelectedPrice: 0,
       parts: {
@@ -588,8 +627,11 @@ export const useOptionStore = create<State & Action>((set) => ({
       animActive: false,
       stainSingle: false,
       stainMixed: false,
+      stainPaintMixed: false,
       paintSingle: false,
       paintMixed: false,
+      snipCartOption: "default",
+      snipCartOptionDesc: "default",
       optionColorNameList: [
         "default",
         "default",
@@ -598,7 +640,7 @@ export const useOptionStore = create<State & Action>((set) => ({
         "default",
         "default",
       ],
-      optionEntryList: [
+      optionCompleteList: [
         "default",
         "default",
         "default",
@@ -665,10 +707,13 @@ export const useOptionStore = create<State & Action>((set) => ({
       animActive: false,
       stainSingle: false,
       stainMixed: false,
+      stainPaintMixed: false,
       paintSingle: false,
       paintMixed: false,
+      snipCartOption: "default",
+      snipCartOptionDesc: "default",
       optionColorNameList: ["default", "default"],
-      optionEntryList: ["default", "default"],
+      optionCompleteList: ["default", "default"],
       optionCartList: ["default", "default"],
       optionSelectedPrice: 0,
       parts: {
@@ -700,10 +745,13 @@ export const useOptionStore = create<State & Action>((set) => ({
       animActive: false,
       stainSingle: false,
       stainMixed: false,
+      stainPaintMixed: false,
       paintSingle: false,
       paintMixed: false,
+      snipCartOption: "default",
+      snipCartOptionDesc: "default",
       optionColorNameList: ["default", "default"],
-      optionEntryList: ["default", "default"],
+      optionCompleteList: ["default", "default"],
       optionCartList: ["default", "default"],
       optionSelectedPrice: 0,
       parts: {
@@ -735,10 +783,13 @@ export const useOptionStore = create<State & Action>((set) => ({
       animActive: false,
       stainSingle: false,
       stainMixed: false,
+      stainPaintMixed: false,
       paintSingle: false,
       paintMixed: false,
+      snipCartOption: "default",
+      snipCartOptionDesc: "default",
       optionColorNameList: ["default", "default", "default"],
-      optionEntryList: ["default", "default", "default"],
+      optionCompleteList: ["default", "default", "default"],
       optionCartList: ["default", "default", "default"],
       optionSelectedPrice: 0,
       parts: {
@@ -777,10 +828,13 @@ export const useOptionStore = create<State & Action>((set) => ({
       animActive: false,
       stainSingle: false,
       stainMixed: false,
+      stainPaintMixed: false,
       paintSingle: false,
       paintMixed: false,
+      snipCartOption: "default",
+      snipCartOptionDesc: "default",
       optionColorNameList: ["default", "default", "default"],
-      optionEntryList: ["default", "default", "default"],
+      optionCompleteList: ["default", "default", "default"],
       optionCartList: ["default", "default", "default"],
       optionSelectedPrice: 0,
       parts: {
@@ -844,7 +898,7 @@ export const useOptionStore = create<State & Action>((set) => ({
           });
 
         state.items[itemName].optionColorNameList = optionSelectedList;
-        state.items[itemName].optionEntryList = arrayItemParts;
+        state.items[itemName].optionCompleteList = arrayItemParts;
         state.items[itemName].optionCartList = optionCartList;
 
         if (
@@ -852,18 +906,37 @@ export const useOptionStore = create<State & Action>((set) => ({
           !optionSelectedList.includes("default")
         ) {
           if (optionTypes.includes("stain") && allEqual(optionTypes)) {
-            state.items[itemName].stainSingle = true;
-            state.items[itemName].stainMixed = false;
-            state.items[itemName].paintSingle = false;
-            state.items[itemName].paintMixed = false;
-            price =
-              state.items[itemName].data.itemBasePrice +
-              state.items[itemName].data.itemStainCost;
+            if (allEqual(optionSelectedList)) {
+              state.items[itemName].stainSingle = true;
+              state.items[itemName].stainMixed = false;
+              state.items[itemName].stainPaintMixed = false;
+              state.items[itemName].paintSingle = false;
+              state.items[itemName].paintMixed = false;
+              state.items[itemName].snipCartOptionDesc = "Single stain";
+              state.items[itemName].snipCartOption = "singleStain";
+              price =
+                state.items[itemName].data.itemBasePrice +
+                state.items[itemName].data.itemStainCost;
+            } else if (!allEqual(optionSelectedList)) {
+              state.items[itemName].stainSingle = false;
+              state.items[itemName].stainMixed = true;
+              state.items[itemName].stainPaintMixed = false;
+              state.items[itemName].paintSingle = false;
+              state.items[itemName].paintMixed = false;
+              state.items[itemName].snipCartOptionDesc = "Mixed stain";
+              state.items[itemName].snipCartOption = "mixedStain";
+              price =
+                state.items[itemName].data.itemBasePrice +
+                state.items[itemName].data.itemStainCost;
+            }
           } else if (optionTypes.includes("stain") && !allEqual(optionTypes)) {
             state.items[itemName].stainSingle = false;
-            state.items[itemName].stainMixed = true;
+            state.items[itemName].stainMixed = false;
+            state.items[itemName].stainPaintMixed = true;
             state.items[itemName].paintSingle = false;
             state.items[itemName].paintMixed = false;
+            state.items[itemName].snipCartOptionDesc = "Mixed stain and paint";
+            state.items[itemName].snipCartOption = "mixedStainPaint";
             price =
               state.items[itemName].data.itemBasePrice +
               state.items[itemName].data.itemMixedStainCost;
@@ -871,24 +944,27 @@ export const useOptionStore = create<State & Action>((set) => ({
             if (allEqual(optionSelectedList)) {
               state.items[itemName].stainSingle = false;
               state.items[itemName].stainMixed = false;
+              state.items[itemName].stainPaintMixed = false;
               state.items[itemName].paintSingle = true;
               state.items[itemName].paintMixed = false;
+              state.items[itemName].snipCartOptionDesc = "Single paint";
+              state.items[itemName].snipCartOption = "singlePaint";
               price = state.items[itemName].data.itemBasePrice;
-            } else if (optionTypes.includes("paint") && allEqual(optionTypes)) {
-              if (!allEqual(optionSelectedList)) {
-                state.items[itemName].stainSingle = false;
-                state.items[itemName].stainMixed = false;
-                state.items[itemName].paintSingle = false;
-                state.items[itemName].paintMixed = true;
-                price =
-                  state.items[itemName].data.itemBasePrice +
-                  state.items[itemName].data.itemMixedPaintCost;
-              }
+            } else if (!allEqual(optionSelectedList)) {
+              state.items[itemName].stainSingle = false;
+              state.items[itemName].stainMixed = false;
+              state.items[itemName].stainPaintMixed = false;
+              state.items[itemName].paintSingle = false;
+              state.items[itemName].paintMixed = true;
+              state.items[itemName].snipCartOptionDesc = "Mixed paint";
+              state.items[itemName].snipCartOption = "mixedPaint";
+              price =
+                state.items[itemName].data.itemBasePrice +
+                state.items[itemName].data.itemMixedPaintCost;
             }
           }
         }
         state.items[itemName].optionSelectedPrice = price;
-        console.log("price: ", price);
       }),
     ),
   updatePartColor: (itemName, partName, color) =>
