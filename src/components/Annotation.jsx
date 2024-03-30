@@ -164,7 +164,17 @@ export const Annotation = ({
                           }
                           style={{
                             backgroundColor:
-                              thisPartColorName === stain ? "grey" : "white",
+                              stain === "white"
+                                ? "#a89d93"
+                                : stain === "natural"
+                                  ? "#908073"
+                                  : stain === "black"
+                                    ? "#635245"
+                                    : stain === "allBlack"
+                                      ? "#0b0502"
+                                      : "#ffffff",
+                            // backgroundColor:
+                            //   thisPartColorName === stain ? "grey" : "white",
                             // border:
                             //   thisPartColorName === stain
                             //     ? "2px solid #000000"
@@ -172,9 +182,7 @@ export const Annotation = ({
                             color:
                               thisPartColorName === stain ? "white" : "black",
                           }}
-                        >
-                          {stain}
-                        </button>
+                        ></button>
                       );
                     })}
                   </div>
@@ -188,7 +196,21 @@ export const Annotation = ({
                           }
                           style={{
                             backgroundColor:
-                              thisPartColorName === paint ? "grey" : "white",
+                              paint === "alabaster"
+                                ? "#fffdf0"
+                                : paint === "pink"
+                                  ? "#f2d1c6"
+                                  : paint === "basil"
+                                    ? "#929d84"
+                                    : paint === "yellow"
+                                      ? "#f2d684"
+                                      : paint === "blue"
+                                        ? "#96b0aa"
+                                        : paint === "gray"
+                                          ? "#8c8b81"
+                                          : "#ffffff",
+                            // backgroundColor:
+                            //   thisPartColorName === paint ? "grey" : "white",
                             // border:
                             //   thisPartColorName === paint
                             //     ? "2px solid #000000"
@@ -196,9 +218,7 @@ export const Annotation = ({
                             color:
                               thisPartColorName === paint ? "white" : "black",
                           }}
-                        >
-                          {paint}
-                        </button>
+                        ></button>
                       );
                     })}
                   </div>
