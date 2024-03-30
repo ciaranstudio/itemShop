@@ -22,6 +22,9 @@ import RadioButtonCheckedOutlinedIcon from "@mui/icons-material/RadioButtonCheck
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
@@ -226,7 +229,11 @@ function App() {
               right: "0.25rem",
             }}
           >
-            <ArrowBackIcon sx={{ color: "secondary.main" }} />
+            {showBackground ? (
+              <VisibilityIcon sx={{ color: "secondary.main" }} />
+            ) : (
+              <VisibilityOffIcon sx={{ color: "secondary.main" }} />
+            )}
           </IconButton>
 
           <div>
