@@ -14,7 +14,9 @@ export const Annotation = ({
   currentItemName,
   currentPartName,
   showBackground,
+  setShowBackground,
   showPartOptions,
+  setShowPartOptions,
 }) => {
   const url = model;
   const { scene } = useGLTF(url);
@@ -98,6 +100,19 @@ export const Annotation = ({
     }
     calculateItemPrice(itemName);
   };
+
+  const closePartOptions = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setShowPartOptions(false);
+  };
+
+  const partShowBackground = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setShowPartOptions(false);
+    setShowBackground(true);
+  };
   // useEffect(() => {
   //   console.log(
   //     "thisPartColorName in Annotation component: ",
@@ -151,13 +166,23 @@ export const Annotation = ({
                 //   transform: `scale(${currentPartName === partName ? 1 : 0.5})`,
                 // }}
               >
+                <button
+                  className="colorExitBtn"
+                  onClick={(e) => closePartOptions(e)}
+                ></button>
+                <button
+                  className="colorBgrdBtn"
+                  onClick={(e) => partShowBackground(e)}
+                ></button>
                 <div className="annotation">
                   {descPartName}
+
                   {/* {o.userData.name} */}
                   <div className="grid-container-stain">
                     {options.stains.map((stain) => {
                       return (
                         <button
+                          className="colorBtn"
                           key={stain}
                           onClick={(e) =>
                             handlePartOption(e, itemName, partName, stain)
@@ -194,6 +219,7 @@ export const Annotation = ({
                           onClick={(e) =>
                             handlePartOption(e, itemName, partName, paint)
                           }
+                          className="colorBtn"
                           style={{
                             backgroundColor:
                               paint === "alabaster"

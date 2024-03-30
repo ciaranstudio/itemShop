@@ -12,7 +12,7 @@ import {
   Sky,
   ScreenSpace,
   useCursor,
-  Ring,
+  // Ring
 } from "@react-three/drei";
 
 import gsap from "gsap";
@@ -587,7 +587,9 @@ export default function Scene({
                       currentItemName={currentItemName}
                       currentPartName={currentPartName}
                       showBackground={showBackground}
+                      setShowBackground={setShowBackground}
                       showPartOptions={showPartOptions}
+                      setShowPartOptions={setShowPartOptions}
                     />
                     <RingCircle
                       selected={currentItemSelected === item ? true : false}
