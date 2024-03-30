@@ -20,6 +20,8 @@ import OpenWithIcon from "@mui/icons-material/OpenWith";
 import RadioButtonCheckedOutlinedIcon from "@mui/icons-material/RadioButtonCheckedOutlined";
 // import RadioButtonUncheckedOutlinedIcon from "@mui/icons-material/RadioButtonUncheckedOutlined";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
@@ -28,6 +30,9 @@ function App() {
   const [infoBoxIcon, setInfoBoxIcon] = useState(true);
   const [toggled, setToggled] = useState(false);
   const [animActive, setAnimActive] = useState(false);
+
+  const [showBackground, setShowBackground] = useState(true);
+  const [showPartOptions, setShowPartOptions] = useState(false);
 
   const [currentItemSelected, setCurrentItemSelected] =
     useState(unselectedItem);
@@ -74,6 +79,14 @@ function App() {
     // setShowBackground(true);
     setOpen(!open);
     setInfoBoxIcon(!infoBoxIcon);
+  };
+  const toggleBackground = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    // setShowPartOptions(false);
+    setShowBackground(!showBackground);
+    // setOpen(!open);
+    // setInfoBoxIcon(!infoBoxIcon);
   };
   const container = useRef();
   const animDist = 0; // 0.095
@@ -128,6 +141,10 @@ function App() {
               previousItemSelected={previousItemSelected}
               setPreviousItemSelected={setPreviousItemSelected}
               animDist={animDist}
+              showBackground={showBackground}
+              setShowBackground={setShowBackground}
+              showPartOptions={showPartOptions}
+              setShowPartOptions={setShowPartOptions}
             />
           </SnipcartProvider>
         </Suspense>
@@ -194,6 +211,22 @@ function App() {
             }}
           >
             <CloseOutlinedIcon sx={{ color: "secondary.main" }} />
+          </IconButton>
+
+          <IconButton
+            onClick={(e) => toggleBackground(e)}
+            color="inherit"
+            // disabled={
+            //   currentItemSelected.itemTitle === "noSelectTitle" ? true : false
+            // }
+            sx={{
+              position: "absolute",
+              pointerEvents: "auto",
+              top: "0.25rem",
+              right: "0.25rem",
+            }}
+          >
+            <ArrowBackIcon sx={{ color: "secondary.main" }} />
           </IconButton>
 
           <div>

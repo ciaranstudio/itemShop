@@ -42,6 +42,10 @@ export default function Scene({
   previousItemSelected,
   setPreviousItemSelected,
   animDist,
+  showBackground,
+  setShowBackground,
+  showPartOptions,
+  setShowPartOptions,
 }) {
   const { height, width } = useWindowDimensions();
   useEffect(() => {
@@ -211,8 +215,8 @@ export default function Scene({
 
   const debugControls = controls();
   const [initialLoad, setInitialLoad] = useState(false);
-  const [showBackground, setShowBackground] = useState(true);
-  const [showPartOptions, setShowPartOptions] = useState(false);
+  // const [showBackground, setShowBackground] = useState(true);
+  // const [showPartOptions, setShowPartOptions] = useState(false);
   const [controlsDragging, setControlsDragging] = useState(false);
   // const [cameraPosition, setCameraPosition] = useState(null);
 
