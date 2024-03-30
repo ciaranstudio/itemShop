@@ -119,7 +119,7 @@ export default function BuyButton({ item, theme }) {
         data-item-description={item.itemDescription}
         data-item-price={item.itemBasePrice}
         data-item-custom1-name="Color option"
-        data-item-custom1-options={`singleStain[+${item.itemStainCost}]|mixedStain[+${item.itemStainCost}]|mixedStainPaint[+${item.itemStainCost}]|mixedPaint[+${item.itemMixedPaintCost}]|singlePaint`}
+        data-item-custom1-options={`singleStain[+${item.itemStainCost}]|mixedStain[+${item.itemMixedStainCost}]|mixedStainPaint[+${item.itemMixedStainCost}]|mixedPaint[+${item.itemMixedPaintCost}]|singlePaint`}
         data-item-custom1-value={snipCartOption}
         sx={{
           display: item === unselectedItem ? "none" : "block",

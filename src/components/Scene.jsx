@@ -449,11 +449,11 @@ export default function Scene({
   return (
     <>
       <ScreenSpace depth={1}>
-        <pointLight position={[width / 2800, 0.2, 0.1]} intensity={0.15} />
+        <pointLight position={[width / 2850, 0.2, 0.1]} intensity={0.15} />
         <mesh
           position={
             width > 414
-              ? [width / 2600, 0.345, 0]
+              ? [width / 2850, 0.345, 0]
               : width <= 932 && width > 414
                 ? [0.5, 0.345, 0] // this value needs to be refined, hasn't been tested yet
                 : [0.19, 0.345, 0]
@@ -473,7 +473,7 @@ export default function Scene({
         <mesh
           position={
             width > 414
-              ? [-width / 2600, 0.35, 0]
+              ? [-width / 2800, 0.35, 0]
               : width <= 932 && width > 414
                 ? [-0.5, 0.35, 0] // this value needs to be refined, hasn't been tested yet
                 : [-0.19, 0.35, 0]

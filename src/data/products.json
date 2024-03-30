@@ -9,13 +9,8 @@
     "url": "https://elibuilds-998b8-default-rtdb.firebaseio.com/0.json",
     "customFields": [
       {
-        "name": "Finish",
-        "options": "white[+150]|natural[+150]|black[+150]|allBlack[+150]|alabaster|pink|basil|yellow|blue|gray",
-        "type": "dropdown"
-      },
-      {
-        "name": "Size",
-        "options": "16 x 16 x 18",
+        "name": "Color option",
+        "options": "singleStain[+150]|mixedStain[+150]|mixedStainPaint[+150]|mixedPaint[+50]|singlePaint",
         "type": "dropdown"
       }
     ]
@@ -30,13 +25,8 @@
     "url": "https://elibuilds-998b8-default-rtdb.firebaseio.com/1.json",
     "customFields": [
       {
-        "name": "Finish",
-        "options": "white[+100]|natural[+100]|black[+100]|allBlack[+100]|alabaster|pink|basil|yellow|blue|gray",
-        "type": "dropdown"
-      },
-      {
-        "name": "Size",
-        "options": "16 x 12 x 18",
+        "name": "Color option",
+        "options": "singleStain[+100]|mixedStain[+100]|mixedStainPaint[+100]|mixedPaint[+50]|singlePaint",
         "type": "dropdown"
       }
     ]
@@ -51,13 +41,8 @@
     "url": "https://elibuilds-998b8-default-rtdb.firebaseio.com/2.json",
     "customFields": [
       {
-        "name": "Finish",
-        "options": "white[+150]|natural[+150]|black[+150]|allBlack[+150]|alabaster|pink|basil|yellow|blue|gray",
-        "type": "dropdown"
-      },
-      {
-        "name": "Size",
-        "options": "8 x 8 x 16",
+        "name": "Color option",
+        "options": "singleStain[+150]|mixedStain[+150]|mixedStainPaint[+150]|mixedPaint[+50]|singlePaint",
         "type": "dropdown"
       }
     ]
@@ -72,13 +57,8 @@
     "url": "https://elibuilds-998b8-default-rtdb.firebaseio.com/3.json",
     "customFields": [
       {
-        "name": "Finish",
-        "options": "white[+100]|natural[+100]|black[+100]|allBlack[+100]|alabaster|pink|basil|yellow|blue|gray",
-        "type": "dropdown"
-      },
-      {
-        "name": "Size",
-        "options": "32 x 20 x 32",
+        "name": "Color option",
+        "options": "singleStain[+100]|mixedStain[+100]|mixedStainPaint[+100]|mixedPaint[+50]|singlePaint",
         "type": "dropdown"
       }
     ]
@@ -88,18 +68,29 @@
     "description": "Handmade angle shelf",
     "id": "4",
     "image": "image-url/product4.jpg",
-    "name": "\\SHELF/",
+    "name": "\\SHELF/ 16",
     "price": 350,
     "url": "https://elibuilds-998b8-default-rtdb.firebaseio.com/4.json",
     "customFields": [
       {
-        "name": "Finish",
-        "options": "white[+50]|natural[+50]|black[+50]|allBlack[+50]|alabaster|pink|basil|yellow|blue|gray",
+        "name": "Color option",
+        "options": "singleStain[+50]|mixedStain[+50]|mixedStainPaint[+50]|mixedPaint[+50]|singlePaint",
         "type": "dropdown"
-      },
+      }
+    ]
+  },
+  {
+    "category": "Furniture",
+    "description": "Handmade angle shelf",
+    "id": "5",
+    "image": "image-url/product4.jpg",
+    "name": "\\SHELF/ 32",
+    "price": 550,
+    "url": "https://elibuilds-998b8-default-rtdb.firebaseio.com/4.json",
+    "customFields": [
       {
-        "name": "Size",
-        "options": "16 x 4 x 4|32 x 4 x 4[+200]",
+        "name": "Color option",
+        "options": "singleStain[+50]|mixedStain[+50]|mixedStainPaint[+50]|mixedPaint[+50]|singlePaint",
         "type": "dropdown"
       }
     ]
@@ -107,20 +98,31 @@
   {
     "category": "Furniture",
     "description": "Handmade block shelf",
-    "id": "5",
+    "id": "6",
     "image": "image-url/product4.jpg",
-    "name": "(SHELF)",
+    "name": "(SHELF) 16",
     "price": 350,
     "url": "https://elibuilds-998b8-default-rtdb.firebaseio.com/5.json",
     "customFields": [
       {
-        "name": "Finish",
-        "options": "white[+50]|natural[+50]|black[+50]|allBlack[+50]|alabaster|pink|basil|yellow|blue|gray",
+        "name": "Color option",
+        "options": "singleStain[+50]|mixedStain[+50]|mixedStainPaint[+50]|mixedPaint[+50]|singlePaint",
         "type": "dropdown"
-      },
+      }
+    ]
+  },
+  {
+    "category": "Furniture",
+    "description": "Handmade block shelf",
+    "id": "7",
+    "image": "image-url/product4.jpg",
+    "name": "(SHELF) 32",
+    "price": 550,
+    "url": "https://elibuilds-998b8-default-rtdb.firebaseio.com/5.json",
+    "customFields": [
       {
-        "name": "Size",
-        "options": "16 x 6 x 4|32 x 6 x 4[+200]",
+        "name": "Color option",
+        "options": "singleStain[+50]|mixedStain[+50]|mixedStainPaint[+50]|mixedPaint[+50]|singlePaint",
         "type": "dropdown"
       }
     ]
