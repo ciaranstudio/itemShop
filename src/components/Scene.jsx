@@ -1,9 +1,9 @@
 import { useRef, useState, useEffect } from "react";
+
 import * as THREE from "three";
 // import { CameraHelper } from "three";
 // import { DirectionalLightHelper } from "three";
 import { useFrame } from "@react-three/fiber";
-
 import {
   OrbitControls,
   // useHelper,
@@ -11,28 +11,26 @@ import {
   useProgress,
   Sky,
   ScreenSpace,
+  useCursor,
+  Ring,
 } from "@react-three/drei";
 
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
-import { useCursor } from "@react-three/drei";
 import { Perf } from "r3f-perf";
 
+import { ItemPart } from "./ItemPart.jsx";
+import { Bag } from "./Bag.jsx";
+import { Annotation } from "./Annotation.jsx";
+import RingCircle from "./RingCircle.jsx";
 import { Floor } from "./room/Floor.jsx";
 import { Walls } from "./room/Walls.jsx";
 // import { ShelfPositions } from "./room/ShelfPositions.jsx";
 
 import controls from "../helpers/debugControls";
 import { textures } from "../data/textures.jsx";
-// import { options } from "../data/options.jsx";
-// import { objects } from "../data/objects.jsx";
-// import { useOptionStore } from "../store/useOptionStore.tsx";
 import { shopItems } from "../data/objects.jsx";
-
-import { ItemPart } from "./ItemPart.jsx";
-import { Bag } from "./Bag.jsx";
-import { Annotation } from "./Annotation.jsx";
 
 import useWindowDimensions from "../helpers/useWindowDimensions";
 import { useSnipcart } from "use-snipcart";
@@ -313,18 +311,28 @@ export default function Scene({
   // const controlsPositionVec = new THREE.Vector3();
 
   useGSAP(() => {
-    controlsTargetVec.set(
-      previousItemSelected.position.x,
-      previousItemSelected.position.y,
-      previousItemSelected.position.z,
-    );
+    if (previousItemSelected.itemName.includes("shelf")) {
+      controlsTargetVec.set(
+        previousItemSelected.position.x,
+        previousItemSelected.position.y + 1,
+        previousItemSelected.position.z,
+      );
+    } else {
+      controlsTargetVec.set(
+        previousItemSelected.position.x,
+        previousItemSelected.position.y,
+        previousItemSelected.position.z,
+      );
+    }
 
-    if (currentItemSelected.name !== "noSelect") {
+    if (
+      currentItemSelected.itemName !== "noSelect" &&
+      !currentItemSelected.itemName.includes("shelf")
+    ) {
       let tl = gsap.timeline();
       tl.to(controlsTargetVec, {
         delay: 0.15,
-        duration: 1.5,
-        // x: 10,
+        duration: 0.75,
         x: currentItemSelected.position.x,
         y: currentItemSelected.position.y,
         z: currentItemSelected.position.z,
@@ -333,7 +341,29 @@ export default function Scene({
         //   console.log("targetVec: ", targetVec);
         // },
         onUpdate: () => {
-          // console.log("updating controlsTargetVec: ", controlsTargetVec);
+          setTargetVec(controlsTargetVec);
+          orbitRef.current.target.set(
+            controlsTargetVec.x,
+            controlsTargetVec.y,
+            controlsTargetVec.z,
+          );
+          orbitRef.current.object.updateProjectionMatrix();
+          orbitRef.current.update();
+        },
+      });
+    } else if (currentItemSelected.itemName.includes("shelf")) {
+      let tl = gsap.timeline();
+      tl.to(controlsTargetVec, {
+        delay: 0.15,
+        duration: 0.75,
+        x: currentItemSelected.position.x,
+        y: currentItemSelected.position.y + 1,
+        z: currentItemSelected.position.z,
+        ease: "easeIn",
+        // onStart: () => {
+        //   console.log("targetVec: ", targetVec);
+        // },
+        onUpdate: () => {
           setTargetVec(controlsTargetVec);
           orbitRef.current.target.set(
             controlsTargetVec.x,
@@ -395,7 +425,7 @@ export default function Scene({
 
   const stagePositionY = 0;
 
-  const animDist = 0.095; // 0.1
+  const animDist = 0; // 0.095
 
   const dirLightXPosition = 2.5;
   const dirLightYPosition = 3.6;
@@ -490,10 +520,10 @@ export default function Scene({
         makeDefault
         ref={orbitRef}
         enableZoom={true}
-        enablePan={true}
-        // maxDistance={15}
+        enablePan={false}
+        maxDistance={15}
         minDistance={0.2} // 60
-        // maxPolarAngle={Math.PI / 2 - Math.PI / 16}
+        maxPolarAngle={Math.PI / 2 - Math.PI / 16}
         enableDamping={true}
       />
       <Sky distance={4000000} sunPosition={[1.5, 2, -10]} />
@@ -558,6 +588,10 @@ export default function Scene({
                       currentPartName={currentPartName}
                       showBackground={showBackground}
                       showPartOptions={showPartOptions}
+                    />
+                    <RingCircle
+                      selected={currentItemSelected === item ? true : false}
+                      showBackground={showBackground}
                     />
                   </group>
                 );

@@ -378,7 +378,7 @@ export const unselectedItem = new Item(
   0, // itemMixedPaintCost
   0, // itemMixedStainCost
   [], // size
-  { x: 0, y: 1, z: 0 }, // position
+  { x: 0, y: 0, z: 0 }, // position
   [new Part("", "", "", "", "")], // parts
 );
 
