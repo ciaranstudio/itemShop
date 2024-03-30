@@ -11,7 +11,7 @@
       {
         "name": "Type",
         "options": "singleStain[+150]|mixedStain[+150]|mixedStainPaint[+150]|mixedPaint[+50]|singlePaint",
-        "type": "dropdown"
+        "type": "readonly"
       }
     ]
   },
@@ -27,7 +27,7 @@
       {
         "name": "Type",
         "options": "singleStain[+100]|mixedStain[+100]|mixedStainPaint[+100]|mixedPaint[+50]|singlePaint",
-        "type": "dropdown"
+        "type": "readonly"
       }
     ]
   },
@@ -43,7 +43,7 @@
       {
         "name": "Type",
         "options": "singleStain[+150]|mixedStain[+150]|mixedStainPaint[+150]|mixedPaint[+50]|singlePaint",
-        "type": "dropdown"
+        "type": "readonly"
       }
     ]
   },
@@ -59,7 +59,7 @@
       {
         "name": "Type",
         "options": "singleStain[+100]|mixedStain[+100]|mixedStainPaint[+100]|mixedPaint[+50]|singlePaint",
-        "type": "dropdown"
+        "type": "readonly"
       }
     ]
   },
@@ -75,7 +75,7 @@
       {
         "name": "Type",
         "options": "singleStain[+50]|mixedStain[+50]|mixedStainPaint[+50]|mixedPaint[+50]|singlePaint",
-        "type": "dropdown"
+        "type": "readonly"
       }
     ]
   },
@@ -91,7 +91,7 @@
       {
         "name": "Type",
         "options": "singleStain[+50]|mixedStain[+50]|mixedStainPaint[+50]|mixedPaint[+50]|singlePaint",
-        "type": "dropdown"
+        "type": "readonly"
       }
     ]
   },
@@ -107,7 +107,7 @@
       {
         "name": "Type",
         "options": "singleStain[+50]|mixedStain[+50]|mixedStainPaint[+50]|mixedPaint[+50]|singlePaint",
-        "type": "dropdown"
+        "type": "readonly"
       }
     ]
   },
@@ -123,7 +123,7 @@
       {
         "name": "Type",
         "options": "singleStain[+50]|mixedStain[+50]|mixedStainPaint[+50]|mixedPaint[+50]|singlePaint",
-        "type": "dropdown"
+        "type": "readonly"
       }
     ]
   }
