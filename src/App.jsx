@@ -133,7 +133,7 @@ function App() {
           fov: 45,
           near: 0.1, // 15
           far: 21, // 900
-          position: [9, 5, -9],
+          position: [7.5, 15, 7.5], // position: [9, 5, -9],
         }}
       >
         <Suspense fallback={<Placeholder />}>
