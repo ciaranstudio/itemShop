@@ -40,6 +40,7 @@ export default function Scene({
   setCurrentItemSelected,
   previousItemSelected,
   setPreviousItemSelected,
+  animDist,
 }) {
   const { height, width } = useWindowDimensions();
   useEffect(() => {
@@ -79,8 +80,10 @@ export default function Scene({
     // }
     // console.log("subtotal:", subtotal);
     if (window.Snipcart) {
-      if (!snipcartLoaded) setSnipcartLoaded(true);
-      console.log("window.Snipcart.api: ", window.Snipcart);
+      if (!snipcartLoaded) {
+        setSnipcartLoaded(true);
+        console.log("window.Snipcart.api: ", window.Snipcart);
+      }
       // window.Snipcart.api.theme.cart.open();
     }
   }, [cart]);
@@ -424,7 +427,7 @@ export default function Scene({
 
   const stagePositionY = -0.18;
 
-  const animDist = 0; // 0.095
+  // const animDist = 0; // 0.095
 
   const dirLightXPosition = 2.5;
   const dirLightYPosition = 3.6;
@@ -528,7 +531,6 @@ export default function Scene({
         enableDamping={true}
       />
       <Sky distance={4000000} sunPosition={[1.5, 2, -10]} />
-
       {/* grampsLight */}
       <directionalLight
         castShadow
@@ -546,7 +548,7 @@ export default function Scene({
         shadow-camera-top={dirLightCamTop} // 150
         // target={grampsRef.current}
       />
-
+      {/* all objects (except logo and cart/bag) */}
       <group position={[0, stagePositionY, 0]}>
         <ambientLight intensity={ambLightIntensity} />
         {/* furniture items */}

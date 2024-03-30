@@ -1,4 +1,4 @@
-import { useState, Suspense } from "react";
+import { useRef, useState, Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Leva } from "leva";
 import * as THREE from "three";
@@ -20,6 +20,8 @@ import OpenWithIcon from "@mui/icons-material/OpenWith";
 import RadioButtonCheckedOutlinedIcon from "@mui/icons-material/RadioButtonCheckedOutlined";
 // import RadioButtonUncheckedOutlinedIcon from "@mui/icons-material/RadioButtonUncheckedOutlined";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 
 function App() {
   const [open, setOpen] = useState(false);
@@ -73,11 +75,41 @@ function App() {
     setOpen(!open);
     setInfoBoxIcon(!infoBoxIcon);
   };
+  const container = useRef();
+  const animDist = 0; // 0.095
+  const { contextSafe } = useGSAP({ scope: container }); // we can pass in a config object as the 1st parameter to make scoping simple
+  // ✅ wrapped in contextSafe() - animation will be cleaned up correctly
+  // selector text is scoped properly to the container.
+  const onClickGood = contextSafe(() => {
+    gsap.to(".good", { rotation: 180 });
+    // tl.to(controlsTargetVec, {
+    //   delay: 0.15,
+    //   duration: 0.75,
+    //   x: currentItemSelected.position.x,
+    //   y: currentItemSelected.position.y,
+    //   z: currentItemSelected.position.z,
+    //   ease: "easeIn",
+    //   // onStart: () => {
+    //   //   console.log("targetVec: ", targetVec);
+    //   // },
+    //   onUpdate: () => {
+    //     setTargetVec(controlsTargetVec);
+    //     orbitRef.current.target.set(
+    //       controlsTargetVec.x,
+    //       controlsTargetVec.y,
+    //       controlsTargetVec.z,
+    //     );
+    //     orbitRef.current.object.updateProjectionMatrix();
+    //     orbitRef.current.update();
+    //   },
+    // });
+  });
 
   return (
     <>
       <Leva hidden oneLineLabels />
       <Canvas
+        ref={container} // will this work, if not use forwardRef and pass into Scene for use in objects group?
         // flat // changes color rendering, see https://stackoverflow.com/questions/64899716/color-differences-between-threejs-vanilla-js-and-react-three-fiber-create-re
         dpr={[1, 2]}
         shadows={{ type: THREE.PCFSoftShadowMap }}
@@ -95,6 +127,7 @@ function App() {
               setCurrentItemSelected={setCurrentItemSelected}
               previousItemSelected={previousItemSelected}
               setPreviousItemSelected={setPreviousItemSelected}
+              animDist={animDist}
             />
           </SnipcartProvider>
         </Suspense>
@@ -224,10 +257,11 @@ function App() {
               // open={open}
             > */}
             <IconButton
-              onClick={() => {
-                setToggled(!toggled);
-                console.log("clicked animate");
-              }}
+              onClick={onClickGood}
+              // onClick={() => {
+              //   setToggled(!toggled);
+              //   console.log("clicked animate");
+              // }}
               // disabled={animActive ? true : false}
             >
               <OpenWithIcon
