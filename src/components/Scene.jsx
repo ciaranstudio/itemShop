@@ -422,7 +422,7 @@ export default function Scene({
   // return null;
   // });
 
-  const stagePositionY = -0.25;
+  const stagePositionY = -0.18;
 
   const animDist = 0; // 0.095
 
@@ -524,7 +524,7 @@ export default function Scene({
         enablePan={false}
         maxDistance={15}
         minDistance={0.2} // 60
-        maxPolarAngle={Math.PI / 2 - Math.PI / 16}
+        maxPolarAngle={Math.PI / 2 + Math.PI / 16} // {Math.PI / 2 - Math.PI / 16}
         enableDamping={true}
       />
       <Sky distance={4000000} sunPosition={[1.5, 2, -10]} />
