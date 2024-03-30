@@ -29,6 +29,7 @@ import { Walls } from "./room/Walls.jsx";
 // import { ShelfPositions } from "./room/ShelfPositions.jsx";
 
 import controls from "../helpers/debugControls";
+import { objects } from "../data/objects.jsx";
 import { textures } from "../data/textures.jsx";
 import { shopItems } from "../data/objects.jsx";
 
@@ -82,7 +83,7 @@ export default function Scene({
     if (window.Snipcart) {
       if (!snipcartLoaded) {
         setSnipcartLoaded(true);
-        console.log("window.Snipcart.api: ", window.Snipcart);
+        // console.log("window.Snipcart.api: ", window.Snipcart);
       }
       // window.Snipcart.api.theme.cart.open();
     }
@@ -218,6 +219,25 @@ export default function Scene({
   const [hovered, hover] = useState(false);
   useCursor(hovered);
 
+  const [currentPartName, setCurrentPartName] = useState("top");
+  const [currentItemName, setCurrentItemName] = useState("gramps");
+
+  useEffect(() => {
+    if (!showBackground && !showPartOptions) {
+      console.log(
+        "showBackground false and showPartOptions false so fetching objects[thisItemName].parts[0].itemName: ",
+        objects[currentItemSelected.itemName].parts[0].itemName,
+      );
+      setCurrentItemName(
+        objects[currentItemSelected.itemName].parts[0].itemName,
+      );
+      setCurrentPartName(
+        objects[currentItemSelected.itemName].parts[0].partName,
+      );
+      setShowPartOptions(true);
+    }
+  }, [showBackground]);
+
   const handleClick = (e) => {
     e.stopPropagation();
     const { eventObject } = e;
@@ -234,8 +254,22 @@ export default function Scene({
       //   shopItems.find(positionMatch),
       // );
       let matchedItem = shopItems.find(positionMatch);
+      // console.log("matchedItem from handleClick function: ", matchedItem);
       setPreviousItemSelected(currentItemSelected);
       setCurrentItemSelected(matchedItem);
+      // if (!showBackground) {
+      //   setShowPartOptions(true);
+      // }
+    }
+  };
+
+  const handleItemPartClick = (e, part) => {
+    // e.stopPropagation();
+    // console.log(part.itemName, part.partName, " clicked");
+    setCurrentItemName(part.itemName);
+    setCurrentPartName(part.partName);
+    if (!showBackground) {
+      setShowPartOptions(true);
     }
   };
 
@@ -244,12 +278,10 @@ export default function Scene({
     setShowBackground(!showBackground);
   };
 
-  const handleOffClick = (e) => {
-    e.stopPropagation();
-    // setShowPartOptions(false);
-    // console.log("onPointerMissed click");
-    // setShowBackground(true);
-  };
+  // const handleOffClick = (e) => {
+  //   e.stopPropagation();
+  //   // console.log("onPointerMissed click");
+  // };
 
   const orbitRef = useRef();
   // const shadowCameraRef = useRef();
@@ -427,8 +459,6 @@ export default function Scene({
 
   const stagePositionY = -0.18;
 
-  // const animDist = 0; // 0.095
-
   const dirLightXPosition = 2.5;
   const dirLightYPosition = 3.6;
   const dirLightZPosition = -3;
@@ -444,9 +474,6 @@ export default function Scene({
   const dirLightCamTop = 5;
 
   const ambLightIntensity = 1.5;
-
-  const [currentPartName, setCurrentPartName] = useState("top");
-  const [currentItemName, setCurrentItemName] = useState("gramps");
 
   const animatedPosition = (animation, animDist) => {
     let x = 0;
@@ -564,16 +591,11 @@ export default function Scene({
             >
               {item.parts.map((part, index) => {
                 return (
-                  <group key={part.partName}>
-                    <mesh
-                      position={animatedPosition(part.animation, animDist)}
-                      onClick={() => {
-                        console.log(part.itemName, part.partName, " clicked");
-                        setCurrentItemName(part.itemName);
-                        setCurrentPartName(part.partName);
-                        setShowPartOptions(true);
-                      }}
-                    >
+                  <group
+                    key={part.partName}
+                    onClick={(e) => handleItemPartClick(e, part)}
+                  >
+                    <mesh position={animatedPosition(part.animation, animDist)}>
                       <ItemPart
                         model={part.model}
                         itemName={part.itemName}

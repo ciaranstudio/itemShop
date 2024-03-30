@@ -76,21 +76,21 @@ export default function BuyButton({ item, theme }) {
       ].snipCartOption,
   );
 
-  useEffect(() => {
-    console.log("BuyButton item.itemName: ", item.itemName);
-    console.log("optionColorNameList: ", optionColorNameList);
-    console.log("optionEntryList: ", optionCompleteList);
-    console.log("optionCartList: ", optionCartList);
-    console.log("snipCartOptionDesc: ", snipCartOptionDesc);
-    console.log("snipCartOption: ", snipCartOption);
-  }, [
-    item,
-    optionColorNameList,
-    optionCompleteList,
-    optionCartList,
-    snipCartOption,
-    snipCartOptionDesc,
-  ]);
+  // useEffect(() => {
+  //   console.log("BuyButton item.itemName: ", item.itemName);
+  //   console.log("optionColorNameList: ", optionColorNameList);
+  //   console.log("optionEntryList: ", optionCompleteList);
+  //   console.log("optionCartList: ", optionCartList);
+  //   console.log("snipCartOptionDesc: ", snipCartOptionDesc);
+  //   console.log("snipCartOption: ", snipCartOption);
+  // }, [
+  //   item,
+  //   optionColorNameList,
+  //   optionCompleteList,
+  //   optionCartList,
+  //   snipCartOption,
+  //   snipCartOptionDesc,
+  // ]);
 
   return (
     <Box
