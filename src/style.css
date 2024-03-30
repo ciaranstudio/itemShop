@@ -172,11 +172,11 @@ body,
   transition: transform 0.25s ease-in-out 0.5s;
 } */
 
-.colorBtn:active {
+/* .colorBtn:active {
   transform: scale(0.97);
-  /* border: 2px solid #000000; */
-  /* transition: transform 0.25s ease-in-out 0.5s; */
-}
+  border: 2px solid #000000;
+  transition: transform 0.25s ease-in-out 0.5s;
+} */
 
 .colorExitBtn {
   position: absolute;
@@ -204,4 +204,14 @@ body,
   cursor: pointer;
   padding: 2rem;
   margin: 1rem;
+}
+
+.colorExitBtn:active {
+  transform: scale(1.2);
+  /* transition: transform 0.1s ease-in-out 0.1s; */
+}
+
+.colorBgrdBtn:active {
+  transform: scale(1.2);
+  /* transition: transform 0.1s ease-in-out 0.1s; */
 }

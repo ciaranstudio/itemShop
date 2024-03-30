@@ -74,14 +74,13 @@ export default function Scene({
     // let state = snipcart.getState();
     // console.log("snipCart state: ", state);
     // console.log("cart:", cart);
-    if (cart.items) {
-      // console.log("cart.items.count:", cart.items.count);
-    }
-
+    // if (cart.items) {
+    // console.log("cart.items.count:", cart.items.count);
+    // }
     // console.log("subtotal:", subtotal);
     if (window.Snipcart) {
       if (!snipcartLoaded) setSnipcartLoaded(true);
-      // console.log("window.Snipcart.api: ", window.Snipcart);
+      console.log("window.Snipcart.api: ", window.Snipcart);
       // window.Snipcart.api.theme.cart.open();
     }
   }, [cart]);

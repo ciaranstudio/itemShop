@@ -76,7 +76,7 @@ export const Bag = ({
   useLayoutEffect(() => {
     scene.traverse((o) => {
       if (o.isMesh) {
-        o.castShadow = true;
+        o.castShadow = false;
         o.receiveShadow = true;
         o.material.roughness = 1;
         o.material.metalness = 0;

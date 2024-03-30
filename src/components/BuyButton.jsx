@@ -4,7 +4,6 @@ import Button from "@mui/material/Button";
 import { useOptionStore } from "../store/useOptionStore.tsx";
 import { unselectedItem } from "../data/objects.jsx";
 import { objects } from "../data/objects.jsx";
-import { shopItems } from "../data/objects.jsx";
 
 export default function BuyButton({ item, theme }) {
   const optionSelectedPrice = useOptionStore(
@@ -41,13 +40,6 @@ export default function BuyButton({ item, theme }) {
         item === unselectedItem ? objects.gramps.itemName : item.itemName
       ].paintMixed,
   );
-
-  // const optionSelectedList = useOptionStore(
-  //   (state) =>
-  //     state.items[
-  //       item === unselectedItem ? objects.gramps.itemName : item.itemName
-  //     ].optionSelectedList,
-  // );
 
   const optionCartList = useOptionStore(
     (state) =>
@@ -137,9 +129,3 @@ export default function BuyButton({ item, theme }) {
     </Box>
   );
 }
-
-// singleStain;
-// mixedStain;
-// mixedStainPaint;
-// singlePaint;
-// mixedPaint;
