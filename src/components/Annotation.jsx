@@ -126,8 +126,11 @@ export const Annotation = ({
                   onClick={(e) => partShowBackground(e)}
                 ></button>
                 <div className="annotation">
-                  {descPartName}
-
+                  <div
+                  // style={{ pointerEvents: "none", userSelect: "none" }}
+                  >
+                    {descPartName}
+                  </div>
                   {/* {o.userData.name} */}
                   <div className="grid-container-stain">
                     {options.stains.map((stain) => {

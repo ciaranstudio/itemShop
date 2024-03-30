@@ -9,9 +9,20 @@ body,
   height: 100%;
   background: #27271a;
   margin: 0;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  /* cursor: grab; // have to disable this as it conflicts with Drei useCursor pointer on dom body */
   /* Using these safe-area-inset-* constants as the padding of a site, overlap of the notch can be prevented. */
   /* padding: env(safe-area-inset-top, 20px) env(safe-area-inset-right, 20px)
     env(safe-area-inset-bottom, 20px) env(safe-area-inset-left, 20px); */
+}
+
+#root:active {
+  cursor: grabbing;
 }
 
 /* .loader {
@@ -117,13 +128,20 @@ body,
   /* color: #8c92a4; */
   color: #181c20;
   padding: 1rem;
-  padding-top: 4.5rem;
+  padding-top: 5.75rem;
   /* padding: 10px 15px; */
   /* border-radius: 30px; */
   border-radius: 2rem;
   user-select: none;
   font-family: var(--leva-fonts-mono);
   font-size: 5rem;
+  /* pointer-events: none; */
+  /* user-select: none; */
+  cursor: grab;
+}
+
+.annotation:active {
+  cursor: grabbing;
 }
 
 .annotation::before {

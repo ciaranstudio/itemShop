@@ -422,7 +422,7 @@ export default function Scene({
   // return null;
   // });
 
-  const stagePositionY = 0;
+  const stagePositionY = -0.25;
 
   const animDist = 0; // 0.095
 
@@ -431,7 +431,7 @@ export default function Scene({
   const dirLightZPosition = -3;
 
   const dirLightIntensity = 1.5;
-  const dirLightNormBias = 0.04;
+  const dirLightNormBias = 0.1; // 0.04 previously, adjusted to reduce shadow acne on Block inner shelf cavities
   const dirLightMapSize = 512;
   const dirLightCamNear = -5;
   const dirLightCamFar = 8;
@@ -507,6 +507,8 @@ export default function Scene({
                 ? [-0.5, 0.35, 0] // this value needs to be refined, hasn't been tested yet
                 : [-0.19, 0.35, 0]
           }
+          onPointerOver={() => hover(true)}
+          onPointerOut={() => hover(false)}
         >
           <boxGeometry args={[0.06, 0.06, 0.02]} />
           <meshStandardMaterial />
