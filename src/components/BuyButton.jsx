@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { useOptionStore } from "../store/useOptionStore.tsx";
@@ -13,33 +13,33 @@ export default function BuyButton({ item, theme }) {
       ].optionSelectedPrice,
   );
 
-  const stainSingle = useOptionStore(
-    (state) =>
-      state.items[
-        item === unselectedItem ? objects.gramps.itemName : item.itemName
-      ].stainSingle,
-  );
+  // const stainSingle = useOptionStore(
+  //   (state) =>
+  //     state.items[
+  //       item === unselectedItem ? objects.gramps.itemName : item.itemName
+  //     ].stainSingle,
+  // );
 
-  const stainMixed = useOptionStore(
-    (state) =>
-      state.items[
-        item === unselectedItem ? objects.gramps.itemName : item.itemName
-      ].stainMixed,
-  );
+  // const stainMixed = useOptionStore(
+  //   (state) =>
+  //     state.items[
+  //       item === unselectedItem ? objects.gramps.itemName : item.itemName
+  //     ].stainMixed,
+  // );
 
-  const paintSingle = useOptionStore(
-    (state) =>
-      state.items[
-        item === unselectedItem ? objects.gramps.itemName : item.itemName
-      ].paintSingle,
-  );
+  // const paintSingle = useOptionStore(
+  //   (state) =>
+  //     state.items[
+  //       item === unselectedItem ? objects.gramps.itemName : item.itemName
+  //     ].paintSingle,
+  // );
 
-  const paintMixed = useOptionStore(
-    (state) =>
-      state.items[
-        item === unselectedItem ? objects.gramps.itemName : item.itemName
-      ].paintMixed,
-  );
+  // const paintMixed = useOptionStore(
+  //   (state) =>
+  //     state.items[
+  //       item === unselectedItem ? objects.gramps.itemName : item.itemName
+  //     ].paintMixed,
+  // );
 
   const optionCartList = useOptionStore(
     (state) =>
@@ -48,26 +48,26 @@ export default function BuyButton({ item, theme }) {
       ].optionCartList,
   );
 
-  const optionColorNameList = useOptionStore(
-    (state) =>
-      state.items[
-        item === unselectedItem ? objects.gramps.itemName : item.itemName
-      ].optionColorNameList,
-  );
+  // const optionColorNameList = useOptionStore(
+  //   (state) =>
+  //     state.items[
+  //       item === unselectedItem ? objects.gramps.itemName : item.itemName
+  //     ].optionColorNameList,
+  // );
 
-  const optionCompleteList = useOptionStore(
-    (state) =>
-      state.items[
-        item === unselectedItem ? objects.gramps.itemName : item.itemName
-      ].optionCompleteList,
-  );
+  // const optionCompleteList = useOptionStore(
+  //   (state) =>
+  //     state.items[
+  //       item === unselectedItem ? objects.gramps.itemName : item.itemName
+  //     ].optionCompleteList,
+  // );
 
-  const snipCartOptionDesc = useOptionStore(
-    (state) =>
-      state.items[
-        item === unselectedItem ? objects.gramps.itemName : item.itemName
-      ].snipCartOptionDesc,
-  );
+  // const snipCartOptionDesc = useOptionStore(
+  //   (state) =>
+  //     state.items[
+  //       item === unselectedItem ? objects.gramps.itemName : item.itemName
+  //     ].snipCartOptionDesc,
+  // );
 
   const snipCartOption = useOptionStore(
     (state) =>

@@ -3,7 +3,7 @@ import { useRef, useState, useEffect } from "react";
 import * as THREE from "three";
 // import { CameraHelper } from "three";
 // import { DirectionalLightHelper } from "three";
-import { useFrame } from "@react-three/fiber";
+// import { useFrame } from "@react-three/fiber";
 import {
   OrbitControls,
   // useHelper,
@@ -54,7 +54,7 @@ export default function Scene({
     console.log("height: ", height);
     console.log("width: ", width);
   }, [height, width]);
-  const [targetVec, setTargetVec] = useState(new THREE.Vector3());
+
   const [mobileView, setMobileView] = useState(false);
   const iOS =
     typeof navigator !== "undefined" &&
@@ -216,11 +216,8 @@ export default function Scene({
   }, [progress]);
 
   const debugControls = controls();
-  const [initialLoad, setInitialLoad] = useState(false);
-  // const [showBackground, setShowBackground] = useState(true);
-  // const [showPartOptions, setShowPartOptions] = useState(false);
+  // const [initialLoad, setInitialLoad] = useState(false);
   const [controlsDragging, setControlsDragging] = useState(false);
-  // const [cameraPosition, setCameraPosition] = useState(null);
 
   const [hovered, hover] = useState(false);
   useCursor(hovered);
@@ -298,8 +295,6 @@ export default function Scene({
     // setInitialLoad(true);
     if (orbitRef.current) {
       // console.log(orbitRef.current.object);
-      setTargetVec(currentItemSelected.position);
-
       orbitRef.current.addEventListener(
         "start",
         () => {
@@ -321,7 +316,6 @@ export default function Scene({
         "end",
         () => {
           // console.log("end");
-          // setCameraPosition(orbitRef.current.object.position);
           setControlsDragging(false);
         },
         true,
@@ -350,8 +344,6 @@ export default function Scene({
   }, []);
 
   const controlsTargetVec = new THREE.Vector3();
-  // const controlsPositionVec = new THREE.Vector3();
-
   useGSAP(() => {
     if (previousItemSelected.itemName.includes("shelf")) {
       controlsTargetVec.set(
@@ -366,7 +358,6 @@ export default function Scene({
         previousItemSelected.position.z,
       );
     }
-
     if (
       currentItemSelected.itemName !== "noSelect" &&
       !currentItemSelected.itemName.includes("shelf")
@@ -379,11 +370,7 @@ export default function Scene({
         y: currentItemSelected.position.y,
         z: currentItemSelected.position.z,
         ease: "easeIn",
-        // onStart: () => {
-        //   console.log("targetVec: ", targetVec);
-        // },
         onUpdate: () => {
-          setTargetVec(controlsTargetVec);
           orbitRef.current.target.set(
             controlsTargetVec.x,
             controlsTargetVec.y,
@@ -402,11 +389,7 @@ export default function Scene({
         y: currentItemSelected.position.y + 1,
         z: currentItemSelected.position.z,
         ease: "easeIn",
-        // onStart: () => {
-        //   console.log("targetVec: ", targetVec);
-        // },
         onUpdate: () => {
-          setTargetVec(controlsTargetVec);
           orbitRef.current.target.set(
             controlsTargetVec.x,
             controlsTargetVec.y,
@@ -418,6 +401,48 @@ export default function Scene({
       });
     }
   }, [currentItemSelected]);
+
+  const controlsPositionVec = new THREE.Vector3();
+  const [targetVec, setTargetVec] = useState(new THREE.Vector3());
+  useGSAP(() => {
+    if (!showBackground) {
+      if (orbitRef.current) {
+        if (orbitRef.current.object.position !== targetVec) {
+          console.log(
+            "checking controls current position: ",
+            orbitRef.current.object.position,
+          );
+          controlsPositionVec.set(
+            orbitRef.current.object.position.x,
+            orbitRef.current.object.position.y,
+            orbitRef.current.object.position.z,
+          );
+          let tl = gsap.timeline();
+          tl.to(controlsPositionVec, {
+            delay: 0.1,
+            duration: 1.25,
+            x: currentItemSelected.position.x - 1.5,
+            y: currentItemSelected.position.y + 0.75,
+            z: currentItemSelected.position.z - 1.5,
+            ease: "easeIn",
+            onUpdate: () => {
+              setTargetVec(controlsPositionVec);
+              orbitRef.current.object.position.set(
+                controlsPositionVec.x,
+                controlsPositionVec.y,
+                controlsPositionVec.z,
+              );
+              orbitRef.current.object.updateProjectionMatrix();
+              orbitRef.current.update();
+            },
+            onComplete: () => {
+              setTargetVec(controlsPositionVec);
+            },
+          });
+        }
+      }
+    }
+  }, [showBackground]);
 
   // useFrame(() => {
   //   if (
@@ -549,13 +574,10 @@ export default function Scene({
                   //   ? [-0.17, 0.36, 0]
                   [-0.17, 0.36, 0]
           }
-          // rotation={[0, Math.PI / 24, Math.PI]}
           onPointerOver={() => hover(true)}
           onPointerOut={() => hover(false)}
           scale={0.005}
         >
-          {/* <boxGeometry args={[0.06, 0.06, 0.02]} />
-          <meshStandardMaterial /> */}
           <Logo
             currentColor={textures.blueTape}
             currentTexture={textures.paintedTexture}
