@@ -105,53 +105,55 @@ function App() {
   const { contextSafe } = useGSAP({ scope: container });
 
   const animateParts = contextSafe(() => {
-    setAnimToggled(!animToggled);
-    if (!animToggled) {
-      let tl = gsap.timeline();
-      tl.to(animDistRun, {
-        delay: 0.15,
-        duration: 1,
-        value: animDistRunTarget,
-        ease: "easeIn",
-        onStart: () => {
-          console.log("starting animDistRun animation: ", animDistRun.value);
-          setAnimActive(true);
-        },
-        onUpdate: () => {
-          console.log("updating animDistRun animation: ", animDistRun.value);
-          setAnimDist(animDistRun.value);
-        },
-        onComplete: () => {
-          console.log("animDistRun.value: ", animDistRun.value);
-          setAnimActive(false);
-        },
-      });
-    } else {
-      let tl = gsap.timeline();
-      tl.to(animDistReturn, {
-        delay: 0.15,
-        duration: 1,
-        value: animDistReturnTarget,
-        ease: "easeOut",
-        onStart: () => {
-          console.log(
-            "starting animDistReturn animation: ",
-            animDistReturn.value,
-          );
-          setAnimActive(true);
-        },
-        onUpdate: () => {
-          console.log(
-            "updating anianimDistReturnmDist animation: ",
-            animDistReturn.value,
-          );
-          setAnimDist(animDistReturn.value);
-        },
-        onComplete: () => {
-          console.log("animDistReturn.value: ", animDistReturn.value);
-          setAnimActive(false);
-        },
-      });
+    if (!animActive) {
+      setAnimToggled(!animToggled);
+      if (!animToggled) {
+        let tl = gsap.timeline();
+        tl.to(animDistRun, {
+          delay: 0.15,
+          duration: 1,
+          value: animDistRunTarget,
+          ease: "easeIn",
+          onStart: () => {
+            console.log("starting animDistRun animation: ", animDistRun.value);
+            setAnimActive(true);
+          },
+          onUpdate: () => {
+            console.log("updating animDistRun animation: ", animDistRun.value);
+            setAnimDist(animDistRun.value);
+          },
+          onComplete: () => {
+            console.log("animDistRun.value: ", animDistRun.value);
+            setAnimActive(false);
+          },
+        });
+      } else {
+        let tl = gsap.timeline();
+        tl.to(animDistReturn, {
+          delay: 0.15,
+          duration: 1,
+          value: animDistReturnTarget,
+          ease: "easeOut",
+          onStart: () => {
+            console.log(
+              "starting animDistReturn animation: ",
+              animDistReturn.value,
+            );
+            setAnimActive(true);
+          },
+          onUpdate: () => {
+            console.log(
+              "updating anianimDistReturnmDist animation: ",
+              animDistReturn.value,
+            );
+            setAnimDist(animDistReturn.value);
+          },
+          onComplete: () => {
+            console.log("animDistReturn.value: ", animDistReturn.value);
+            setAnimActive(false);
+          },
+        });
+      }
     }
   });
 
@@ -340,12 +342,12 @@ function App() {
               //   setToggled(!toggled);
               //   console.log("clicked animate");
               // }}
-              disabled={animActive ? true : false}
+              // disabled={animActive ? true : false}
               sx={{ padding: "1rem" }}
             >
               <OpenWithIcon
                 sx={{
-                  color: "secondary.main",
+                  color: animActive ? "secondary.light" : "secondary.main",
                   // border: "0.75px solid #757575",
                   // borderRadius: Math.PI,
                   fontSize: "inherit",
