@@ -46,6 +46,7 @@ export default function Scene({
   setShowBackground,
   showPartOptions,
   setShowPartOptions,
+  animateParts,
 }) {
   const { height, width } = useWindowDimensions();
   useEffect(() => {
@@ -280,6 +281,7 @@ export default function Scene({
   const handleDoubleClick = (e) => {
     e.stopPropagation();
     setShowBackground(!showBackground);
+    animateParts();
   };
 
   // const handleOffClick = (e) => {

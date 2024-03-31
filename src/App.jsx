@@ -13,26 +13,21 @@ import IconButton from "@mui/material/IconButton";
 // import Tooltip from "@mui/material/Tooltip";
 import { createTheme } from "@mui/material";
 import { ThemeProvider } from "@mui/material";
-
 import InfoIcon from "@mui/icons-material/Info";
 import PhotoLibraryIcon from "@mui/icons-material/PhotoLibrary";
 import OpenWithIcon from "@mui/icons-material/OpenWith";
 import RadioButtonCheckedOutlinedIcon from "@mui/icons-material/RadioButtonCheckedOutlined";
 // import RadioButtonUncheckedOutlinedIcon from "@mui/icons-material/RadioButtonUncheckedOutlined";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-
+// import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
 function App() {
   const [open, setOpen] = useState(false);
   const [infoBoxIcon, setInfoBoxIcon] = useState(true);
-  const [toggled, setToggled] = useState(false);
-  const [animActive, setAnimActive] = useState(false);
 
   const [showBackground, setShowBackground] = useState(true);
   const [showPartOptions, setShowPartOptions] = useState(false);
@@ -91,34 +86,73 @@ function App() {
     // setOpen(!open);
     // setInfoBoxIcon(!infoBoxIcon);
   };
+
   const container = useRef();
-  const animDist = 0; // 0.095
-  const { contextSafe } = useGSAP({ scope: container }); // we can pass in a config object as the 1st parameter to make scoping simple
-  // ✅ wrapped in contextSafe() - animation will be cleaned up correctly
-  // selector text is scoped properly to the container.
-  const onClickGood = contextSafe(() => {
-    gsap.to(".good", { rotation: 180 });
-    // tl.to(controlsTargetVec, {
-    //   delay: 0.15,
-    //   duration: 0.75,
-    //   x: currentItemSelected.position.x,
-    //   y: currentItemSelected.position.y,
-    //   z: currentItemSelected.position.z,
-    //   ease: "easeIn",
-    //   // onStart: () => {
-    //   //   console.log("targetVec: ", targetVec);
-    //   // },
-    //   onUpdate: () => {
-    //     setTargetVec(controlsTargetVec);
-    //     orbitRef.current.target.set(
-    //       controlsTargetVec.x,
-    //       controlsTargetVec.y,
-    //       controlsTargetVec.z,
-    //     );
-    //     orbitRef.current.object.updateProjectionMatrix();
-    //     orbitRef.current.update();
-    //   },
-    // });
+
+  const [animDist, setAnimDist] = useState(0);
+  const animDistRun = {
+    value: 0,
+  };
+  const animDistReturn = {
+    value: 0.15,
+  };
+  const animDistRunTarget = 0.15;
+  const animDistReturnTarget = 0;
+
+  const [animToggled, setAnimToggled] = useState(false);
+  const [animActive, setAnimActive] = useState(false);
+
+  const { contextSafe } = useGSAP({ scope: container });
+
+  const animateParts = contextSafe(() => {
+    setAnimToggled(!animToggled);
+    if (!animToggled) {
+      let tl = gsap.timeline();
+      tl.to(animDistRun, {
+        delay: 0.15,
+        duration: 1,
+        value: animDistRunTarget,
+        ease: "easeIn",
+        onStart: () => {
+          console.log("starting animDistRun animation: ", animDistRun.value);
+          setAnimActive(true);
+        },
+        onUpdate: () => {
+          console.log("updating animDistRun animation: ", animDistRun.value);
+          setAnimDist(animDistRun.value);
+        },
+        onComplete: () => {
+          console.log("animDistRun.value: ", animDistRun.value);
+          setAnimActive(false);
+        },
+      });
+    } else {
+      let tl = gsap.timeline();
+      tl.to(animDistReturn, {
+        delay: 0.15,
+        duration: 1,
+        value: animDistReturnTarget,
+        ease: "easeIn",
+        onStart: () => {
+          console.log(
+            "starting animDistReturn animation: ",
+            animDistReturn.value,
+          );
+          setAnimActive(true);
+        },
+        onUpdate: () => {
+          console.log(
+            "updating anianimDistReturnmDist animation: ",
+            animDistReturn.value,
+          );
+          setAnimDist(animDistReturn.value);
+        },
+        onComplete: () => {
+          console.log("animDistReturn.value: ", animDistReturn.value);
+          setAnimActive(false);
+        },
+      });
+    }
   });
 
   return (
@@ -148,6 +182,7 @@ function App() {
               setShowBackground={setShowBackground}
               showPartOptions={showPartOptions}
               setShowPartOptions={setShowPartOptions}
+              animateParts={animateParts}
             />
           </SnipcartProvider>
         </Suspense>
@@ -297,12 +332,12 @@ function App() {
               // open={open}
             > */}
             <IconButton
-              onClick={onClickGood}
+              onClick={animateParts}
               // onClick={() => {
               //   setToggled(!toggled);
               //   console.log("clicked animate");
               // }}
-              // disabled={animActive ? true : false}
+              disabled={animActive ? true : false}
             >
               <OpenWithIcon
                 sx={{
