@@ -210,6 +210,7 @@ function App() {
             left: "50%",
             transform: "translate(-50%, -50%)",
             display: !infoBoxIcon ? "none" : "block",
+            padding: "1.5rem",
           }}
         >
           <RadioButtonCheckedOutlinedIcon
@@ -246,6 +247,7 @@ function App() {
               pointerEvents: "auto",
               top: "0.25rem",
               left: "0.25rem",
+              padding: "0.5rem",
             }}
           >
             <CloseOutlinedIcon sx={{ color: "secondary.main" }} />
@@ -262,6 +264,7 @@ function App() {
               pointerEvents: "auto",
               top: "0.25rem",
               right: "0.25rem",
+              padding: "0.5rem",
             }}
           >
             {showBackground ? (
@@ -291,7 +294,7 @@ function App() {
               leaveDelay={0}
               // open={open}
             > */}
-            <IconButton>
+            <IconButton sx={{ padding: "1rem" }}>
               <PhotoLibraryIcon
                 sx={{
                   color: "secondary.light",
@@ -311,7 +314,7 @@ function App() {
               leaveDelay={0}
               // open={open}
             > */}
-            <IconButton sx={{ mx: 2 }}>
+            <IconButton sx={{ mx: 2, padding: "1rem" }}>
               <InfoIcon
                 sx={{
                   color: "secondary.light",
@@ -338,6 +341,7 @@ function App() {
               //   console.log("clicked animate");
               // }}
               disabled={animActive ? true : false}
+              sx={{ padding: "1rem" }}
             >
               <OpenWithIcon
                 sx={{
