@@ -132,7 +132,7 @@ function App() {
         delay: 0.15,
         duration: 1,
         value: animDistReturnTarget,
-        ease: "easeIn",
+        ease: "easeOut",
         onStart: () => {
           console.log(
             "starting animDistReturn animation: ",
@@ -206,7 +206,7 @@ function App() {
           }
           sx={{
             position: "absolute",
-            bottom: "3rem",
+            bottom: "1.5rem",
             left: "50%",
             transform: "translate(-50%, -50%)",
             display: !infoBoxIcon ? "none" : "block",
