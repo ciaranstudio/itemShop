@@ -540,10 +540,10 @@ export default function Scene({
         <mesh
           position={
             width > 414
-              ? [-width / 2950, 0.355, 0]
+              ? [-width / 3075, 0.36, 0]
               : width <= 932 && width > 414
-                ? [-0.5, 0.355, 0] // this value needs to be refined, hasn't been tested yet
-                : [-0.19, 0.355, 0]
+                ? [-0.5, 0.36, 0] // this value needs to be refined, hasn't been tested yet
+                : [-0.19, 0.36, 0]
           }
           // rotation={[0, Math.PI / 24, Math.PI]}
           onPointerOver={() => hover(true)}
