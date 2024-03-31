@@ -35,6 +35,7 @@ import { shopItems } from "../data/objects.jsx";
 
 import useWindowDimensions from "../helpers/useWindowDimensions";
 import { useSnipcart } from "use-snipcart";
+import { Logo } from "./Logo.jsx";
 
 export default function Scene({
   currentItemSelected,
@@ -530,8 +531,8 @@ export default function Scene({
           onPointerOut={() => hover(false)}
         >
           <Bag
-            currentColor={textures.naturalStain}
-            currentTexture={textures.naturalTexture}
+            currentColor={textures.brownBag}
+            currentTexture={textures.paintedTexture}
             cartCount={cart.items ? cart.items.count : 0}
             handleCartClick={handleCartClick}
           />
@@ -539,16 +540,22 @@ export default function Scene({
         <mesh
           position={
             width > 414
-              ? [-width / 2800, 0.35, 0]
+              ? [-width / 2800, 0.355, 0]
               : width <= 932 && width > 414
-                ? [-0.5, 0.35, 0] // this value needs to be refined, hasn't been tested yet
-                : [-0.19, 0.35, 0]
+                ? [-0.5, 0.355, 0] // this value needs to be refined, hasn't been tested yet
+                : [-0.19, 0.355, 0]
           }
+          // rotation={[0, Math.PI / 24, Math.PI]}
           onPointerOver={() => hover(true)}
           onPointerOut={() => hover(false)}
+          scale={0.005}
         >
-          <boxGeometry args={[0.06, 0.06, 0.02]} />
-          <meshStandardMaterial />
+          {/* <boxGeometry args={[0.06, 0.06, 0.02]} />
+          <meshStandardMaterial /> */}
+          <Logo
+            currentColor={textures.blueTape}
+            currentTexture={textures.paintedTexture}
+          />
         </mesh>
       </ScreenSpace>
       {debugControls.perfVisible && <Perf position="top-left" />}
@@ -560,13 +567,13 @@ export default function Scene({
         enableZoom={true}
         enablePan={false}
         maxDistance={15}
-        minDistance={0.2} // 60
+        minDistance={1.375} // 60
         maxPolarAngle={Math.PI / 2 + Math.PI / 16} // {Math.PI / 2 - Math.PI / 16}
         enableDamping={true}
         autoRotate
         autoRotateSpeed={0.8}
       />
-      <Sky distance={4000000} sunPosition={[1.5, 2, -10]} />
+      <Sky distance={55} sunPosition={[40, 8.5, -50]} />
       {/* grampsLight */}
       <directionalLight
         castShadow
@@ -653,7 +660,7 @@ export default function Scene({
           // onClick={handleOffClick}
         >
           <Walls
-            currentColor={textures.whiteStain}
+            currentColor={textures.grayPaint} // whiteStain
             currentTexture={textures.paintedTexture}
           />
         </mesh>

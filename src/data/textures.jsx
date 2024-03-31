@@ -3,6 +3,8 @@ import * as THREE from "three";
 export const textures = {
   noSelectWhite: new THREE.Color(0xffffff),
   concreteFloor: new THREE.Color(0x909090),
+  blueTape: new THREE.Color(0x5580b0), // 0x006ed2 blue tape color grab from photo
+  brownBag: new THREE.Color(0x957c5f), // 0xd7a87b brown uline paper bag color grab from photo
 
   whiteStain: new THREE.Color(0xa9a9a9),
   naturalStain: new THREE.Color(0x989898),
