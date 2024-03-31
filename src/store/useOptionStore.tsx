@@ -976,10 +976,10 @@ export const useOptionStore = create<State & Action>((set) => ({
   updatePartColorName: (itemName, partName, colorName) =>
     set(
       produce((state: State & Action) => {
-        console.log(
-          "state.items[itemName].optionSelectedPrice: ",
-          state.items[itemName].optionSelectedPrice,
-        );
+        // console.log(
+        //   "state.items[itemName].optionSelectedPrice: ",
+        //   state.items[itemName].optionSelectedPrice,
+        // );
         state.items[itemName].parts[partName].colorName = colorName;
         if (options.stains.includes(colorName)) {
           state.items[itemName].parts[partName].colorType = "stain";

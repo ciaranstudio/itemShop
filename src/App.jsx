@@ -1,6 +1,6 @@
 import { useRef, useState, Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
-import { Leva } from "leva";
+import { Leva } from "leva"; // only here for the font as a placeholder, no longer using debugControls, find font replacement
 import * as THREE from "three";
 import Scene from "./components/Scene.jsx";
 import Placeholder from "./components/Placeholder.jsx";
@@ -115,15 +115,15 @@ function App() {
           value: animDistRunTarget,
           ease: "easeIn",
           onStart: () => {
-            console.log("starting animDistRun animation: ", animDistRun.value);
+            // console.log("starting animDistRun animation: ", animDistRun.value);
             setAnimActive(true);
           },
           onUpdate: () => {
-            console.log("updating animDistRun animation: ", animDistRun.value);
+            // console.log("updating animDistRun animation: ", animDistRun.value);
             setAnimDist(animDistRun.value);
           },
           onComplete: () => {
-            console.log("animDistRun.value: ", animDistRun.value);
+            // console.log("animDistRun.value: ", animDistRun.value);
             setAnimActive(false);
           },
         });
@@ -135,21 +135,21 @@ function App() {
           value: animDistReturnTarget,
           ease: "easeOut",
           onStart: () => {
-            console.log(
-              "starting animDistReturn animation: ",
-              animDistReturn.value,
-            );
+            // console.log(
+            //   "starting animDistReturn animation: ",
+            //   animDistReturn.value,
+            // );
             setAnimActive(true);
           },
           onUpdate: () => {
-            console.log(
-              "updating anianimDistReturnmDist animation: ",
-              animDistReturn.value,
-            );
+            // console.log(
+            //   "updating anianimDistReturnmDist animation: ",
+            //   animDistReturn.value,
+            // );
             setAnimDist(animDistReturn.value);
           },
           onComplete: () => {
-            console.log("animDistReturn.value: ", animDistReturn.value);
+            // console.log("animDistReturn.value: ", animDistReturn.value);
             setAnimActive(false);
           },
         });
@@ -159,7 +159,6 @@ function App() {
 
   return (
     <>
-      <Leva hidden oneLineLabels />
       <Canvas
         ref={container} // will this work, if not use forwardRef and pass into Scene for use in objects group?
         // flat // changes color rendering, see https://stackoverflow.com/questions/64899716/color-differences-between-threejs-vanilla-js-and-react-three-fiber-create-re

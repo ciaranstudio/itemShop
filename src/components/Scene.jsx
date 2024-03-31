@@ -28,7 +28,6 @@ import { Floor } from "./room/Floor.jsx";
 import { Walls } from "./room/Walls.jsx";
 // import { ShelfPositions } from "./room/ShelfPositions.jsx";
 
-import controls from "../helpers/debugControls";
 import { objects } from "../data/objects.jsx";
 import { textures } from "../data/textures.jsx";
 import { shopItems } from "../data/objects.jsx";
@@ -51,8 +50,8 @@ export default function Scene({
 }) {
   const { height, width } = useWindowDimensions();
   useEffect(() => {
-    console.log("height: ", height);
-    console.log("width: ", width);
+    // console.log("height: ", height);
+    // console.log("width: ", width);
   }, [height, width]);
 
   const [mobileView, setMobileView] = useState(false);
@@ -63,10 +62,10 @@ export default function Scene({
   useEffect(() => {
     // Check if using a touch control device
     if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
-      console.log("mobile view");
+      // console.log("mobile view");
       setMobileView(true);
     } else {
-      console.log("not mobile view");
+      // console.log("not mobile view");
       setMobileView(false);
     }
   }, []);
@@ -106,7 +105,7 @@ export default function Scene({
       if (window.Snipcart.events) {
         // console.log("events loaded");
         window.Snipcart.events.on("item.removed", (cartItem) => {
-          console.log("item removed: ", cartItem);
+          // console.log("item removed: ", cartItem);
         });
       }
     }
@@ -215,7 +214,6 @@ export default function Scene({
     // console.log(overlayGeometry);
   }, [progress]);
 
-  const debugControls = controls();
   // const [initialLoad, setInitialLoad] = useState(false);
   const [controlsDragging, setControlsDragging] = useState(false);
 
@@ -227,10 +225,10 @@ export default function Scene({
 
   useEffect(() => {
     if (!showBackground && !showPartOptions) {
-      console.log(
-        "showBackground false and showPartOptions false so fetching objects[thisItemName].parts[0].itemName: ",
-        objects[currentItemSelected.itemName].parts[0].itemName,
-      );
+      // console.log(
+      //   "showBackground false and showPartOptions false so fetching objects[thisItemName].parts[0].itemName: ",
+      //   objects[currentItemSelected.itemName].parts[0].itemName,
+      // );
       setCurrentItemName(
         objects[currentItemSelected.itemName].parts[0].itemName,
       );
@@ -408,10 +406,10 @@ export default function Scene({
     if (!showBackground) {
       if (orbitRef.current) {
         if (orbitRef.current.object.position !== targetVec) {
-          console.log(
-            "checking controls current position: ",
-            orbitRef.current.object.position,
-          );
+          // console.log(
+          //   "checking controls current position: ",
+          //   orbitRef.current.object.position,
+          // );
           controlsPositionVec.set(
             orbitRef.current.object.position.x,
             orbitRef.current.object.position.y,
@@ -540,6 +538,7 @@ export default function Scene({
 
   return (
     <>
+      {/* <Perf position="bottom-left" /> */}
       <ScreenSpace depth={1}>
         <pointLight position={[width / 2850, 0.2, 0.1]} intensity={0.15} />
         <mesh
@@ -584,7 +583,6 @@ export default function Scene({
           />
         </mesh>
       </ScreenSpace>
-      {debugControls.perfVisible && <Perf position="top-left" />}
       <color args={["#27271a"]} attach="background" />
       <mesh geometry={overlayGeometry} material={overlayMaterial}></mesh>
       <OrbitControls
