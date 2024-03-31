@@ -465,7 +465,7 @@ export default function Scene({
   // return null;
   // });
 
-  const stagePositionY = -0.18;
+  const stagePositionY = -0.14;
 
   const dirLightXPosition = 2.5;
   const dirLightYPosition = 3.6;
@@ -540,7 +540,7 @@ export default function Scene({
         <mesh
           position={
             width > 414
-              ? [-width / 2800, 0.355, 0]
+              ? [-width / 2950, 0.355, 0]
               : width <= 932 && width > 414
                 ? [-0.5, 0.355, 0] // this value needs to be refined, hasn't been tested yet
                 : [-0.19, 0.355, 0]
