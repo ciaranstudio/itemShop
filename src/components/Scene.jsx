@@ -520,10 +520,12 @@ export default function Scene({
         <mesh
           position={
             width > 414
-              ? [width / 2850, 0.345, 0]
-              : width <= 932 && width > 414
-                ? [0.5, 0.345, 0] // this value needs to be refined, hasn't been tested yet
-                : [0.19, 0.345, 0]
+              ? [width / 2600, 0.345, 0]
+              : width < 376
+                ? [0.155, 0.345, 0]
+                : // : width < 330
+                  //   ? [0.19, 0.345, 0]
+                  [0.19, 0.345, 0]
           }
           scale={0.125}
           onClick={handleCartClick}
@@ -540,10 +542,12 @@ export default function Scene({
         <mesh
           position={
             width > 414
-              ? [-width / 3075, 0.36, 0]
-              : width <= 932 && width > 414
-                ? [-0.5, 0.36, 0] // this value needs to be refined, hasn't been tested yet
-                : [-0.19, 0.36, 0]
+              ? [-width / 2800, 0.36, 0]
+              : width < 376
+                ? [-0.14, 0.36, 0]
+                : // : width < 330
+                  //   ? [-0.17, 0.36, 0]
+                  [-0.17, 0.36, 0]
           }
           // rotation={[0, Math.PI / 24, Math.PI]}
           onPointerOver={() => hover(true)}
