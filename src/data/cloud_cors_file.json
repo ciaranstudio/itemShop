@@ -3,6 +3,6 @@
     "origin": ["https://elibuilds-998b8.web.app"],
     "method": ["GET"],
     "responseHeader": ["Content-Type"],
-    "maxAgeSeconds": 3600
+    "maxAgeSeconds": 60
   }
 ]
