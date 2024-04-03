@@ -15,8 +15,8 @@ body,
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  /* disables the snipcart swipe to open cart feature */
-  touch-action: manipulation;
+  /* disables the snipcart swipe to open cart feature at first, but once cart is opened in any way, the issue of swipe to open returns */
+  /* touch-action: manipulation; */
   /* cursor: grab; // have to disable this as it conflicts with Drei useCursor pointer on dom body */
   /* Using these safe-area-inset-* constants as the padding of a site, overlap of the notch can be prevented. */
   /* padding: env(safe-area-inset-top, 20px) env(safe-area-inset-right, 20px)
