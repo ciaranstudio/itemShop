@@ -88,28 +88,29 @@ export default function Scene({
     if (window.Snipcart) {
       if (!snipcartLoaded) {
         setSnipcartLoaded(true);
-        // console.log("window.Snipcart.api: ", window.Snipcart);
+        console.log("setting snipcartLoaded state = true");
+        console.log("window.Snipcart.api: ", window.Snipcart);
       }
       // window.Snipcart.api.theme.cart.open();
     }
-  }, [cart]);
+  }, []);
 
   // const unsubscribe = window.Snipcart.events.on("item.removed", (cartItem) => {
   //   console.log("item removed: ", cartItem);
   // });
 
-  useEffect(() => {
-    if (snipcartLoaded) {
-      // console.log("snipcartLoaded: ", snipcartLoaded);
-      // console.log(window.Snipcart);
-      if (window.Snipcart.events) {
-        // console.log("events loaded");
-        window.Snipcart.events.on("item.removed", (cartItem) => {
-          // console.log("item removed: ", cartItem);
-        });
-      }
-    }
-  }, [snipcartLoaded]);
+  // useEffect(() => {
+  //   if (snipcartLoaded) {
+  //     // console.log("snipcartLoaded: ", snipcartLoaded);
+  //     // console.log(window.Snipcart);
+  //     if (window.Snipcart.events) {
+  //       // console.log("events loaded");
+  //       window.Snipcart.events.on("item.removed", (cartItem) => {
+  //         console.log("item removed: ", cartItem);
+  //       });
+  //     }
+  //   }
+  // }, [snipcartLoaded]);
 
   function handleCartClick() {
     if (snipcartLoaded) {

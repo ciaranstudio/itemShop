@@ -14,8 +14,8 @@
     />
     <meta name="theme-color" content="#ADBABA" />
     <title>eliBuildsApp</title>
-    <script type="module" crossorigin src="./assets/index-cc9f0e32.js"></script>
-    <link rel="stylesheet" href="./assets/index-e64199bf.css">
+    <script type="module" crossorigin src="./assets/index-e6e125dc.js"></script>
+    <link rel="stylesheet" href="./assets/index-717292eb.css">
   </head>
   <body>
     <div id="root"></div>
@@ -25,8 +25,13 @@
       window.SnipcartSettings = {
         publicApiKey:
           "YTI2OTVkOTAtOTQxNy00NjJjLTgxMWUtMTY0ODBjNWZmN2NkNjM4NDU1MTY2NTExMjM1Mzk2",
-        loadStrategy: "on-user-interaction",
-        // modalStyle: "side",
+        templatesUrl:
+          "https://storage.googleapis.com/snipcartoverride/snipcart-templates.html",
+        loadStrategy: "manual", // Setting the loadStrategy option to "manual" will allow you to load Snipcart when you want using JavaScript. A LoadSnipcart method will be added to the window object, which can then be called elsewhere in your code. I run this method in useEffect no dependency App component
+        // loadStrategy: "on-user-interaction", // By default, when the loadStrategy property is omitted, Snipcart will load immediately.
+        modalStyle: "full",
+        version: "3.7.1",
+        // loadCSS: false,
       };
 
       (function () {

@@ -1,4 +1,4 @@
-import { useRef, useState, Suspense } from "react";
+import { useRef, useState, useEffect, Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Leva } from "leva"; // only here for the font as a placeholder, no longer using debugControls, find font replacement
 import * as THREE from "three";
@@ -36,6 +36,10 @@ function App() {
     useState(unselectedItem);
   const [previousItemSelected, setPreviousItemSelected] =
     useState(unselectedItem);
+
+  useEffect(() => {
+    window.LoadSnipcart();
+  }, []);
 
   const theme = createTheme({
     palette: {
