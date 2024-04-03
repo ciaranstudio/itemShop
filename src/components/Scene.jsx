@@ -350,6 +350,7 @@ export default function Scene({
     };
   }, []);
 
+  // animation camera target on item click
   const controlsTargetVec = new THREE.Vector3();
   useGSAP(() => {
     if (previousItemSelected.itemName.includes("shelf")) {
@@ -409,6 +410,7 @@ export default function Scene({
     }
   }, [currentItemSelected]);
 
+  // animate camera position on item double click / showBackground turning false
   const controlsPositionVec = new THREE.Vector3();
   const [targetVec, setTargetVec] = useState(new THREE.Vector3());
   useGSAP(() => {
@@ -419,6 +421,44 @@ export default function Scene({
           //   "checking controls current position: ",
           //   orbitRef.current.object.position,
           // );
+          let xPlus = -1.5;
+          let yPlus = 0.75;
+          let zPlus = -1.5;
+
+          if (currentItemSelected.itemName === "gramps") {
+            xPlus = -1.75;
+            yPlus = 0.5;
+            zPlus = -0.75;
+          } else if (currentItemSelected.itemName === "block") {
+            xPlus = 0.5;
+            yPlus = 0.5;
+            zPlus = 1.5;
+          } else if (currentItemSelected.itemName === "horse") {
+            xPlus = -2;
+            yPlus = 1.25;
+            zPlus = -2;
+          } else if (currentItemSelected.itemName === "squatter") {
+            xPlus = 1.75;
+            yPlus = 0.5;
+            zPlus = 1;
+          } else if (currentItemSelected.itemName === "shelfA16") {
+            xPlus = 1.5;
+            yPlus = 1.25;
+            zPlus = 1.5;
+          } else if (currentItemSelected.itemName === "shelfA32") {
+            xPlus = 1.5;
+            yPlus = 1;
+            zPlus = 1.5;
+          } else if (currentItemSelected.itemName === "shelfB16") {
+            xPlus = -1.5;
+            yPlus = 1;
+            zPlus = -1.5;
+          } else if (currentItemSelected.itemName === "shelfB32") {
+            xPlus = -1.5;
+            yPlus = 1.25;
+            zPlus = -1.5;
+          }
+
           controlsPositionVec.set(
             orbitRef.current.object.position.x,
             orbitRef.current.object.position.y,
@@ -428,9 +468,9 @@ export default function Scene({
           tl.to(controlsPositionVec, {
             delay: 0.1,
             duration: 1.25,
-            x: currentItemSelected.position.x - 1.5,
-            y: currentItemSelected.position.y + 0.75,
-            z: currentItemSelected.position.z - 1.5,
+            x: currentItemSelected.position.x + xPlus,
+            y: currentItemSelected.position.y + yPlus,
+            z: currentItemSelected.position.z + zPlus,
             ease: "easeIn",
             onUpdate: () => {
               setTargetVec(controlsPositionVec);
