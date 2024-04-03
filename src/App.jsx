@@ -6,6 +6,8 @@ import Scene from "./components/Scene.jsx";
 import Placeholder from "./components/Placeholder.jsx";
 import { unselectedItem } from "./data/objects.jsx";
 import "./style.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import { SnipcartProvider } from "use-snipcart";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -108,7 +110,7 @@ function App() {
         camera={{
           fov: 45,
           near: 0.1, // 15
-          far: 21, // 900
+          far: 22, // 900
           position: [0, 16, 0], // position: [9, 5, -9], // position: [7.5, 15, 7.5],
         }}
       >

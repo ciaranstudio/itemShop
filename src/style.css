@@ -1,7 +1,7 @@
 html,
 body,
 #root {
-  font-family: "monospace";
+  font-family: var(--leva-fonts-mono);
   position: fixed;
   top: 0;
   left: 0;
@@ -9,6 +9,7 @@ body,
   height: 100%;
   background: #27271a;
   margin: 0;
+  /* overflow: hidden; */
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -75,6 +76,26 @@ body,
   max-width: 100% !important;
 } */
 
+.header {
+  position: absolute;
+  top: 0.25rem;
+  /* right: 295px; */
+  /* text-align: right; */
+  width: 20rem;
+  right: calc(50% - 10rem);
+  text-align: center;
+  /* background: #181c20; */
+  background: #5580b0;
+  opacity: 0.25;
+  /* color: #8c92a4; */
+  color: #ffffff;
+  padding: 0.25rem;
+  border-radius: 0.75rem;
+  font-size: 1.75rem;
+  pointer-events: none;
+  /* font-family: var(--leva-fonts-mono); */
+}
+
 .info {
   position: absolute;
   bottom: 3rem;
@@ -85,24 +106,24 @@ body,
   text-align: center;
   /* background: #181c20; */
   background: #ffffff;
-  opacity: 0.75;
+  opacity: 0.85;
   /* color: #8c92a4; */
   /* color: #000000; */
   padding: 1rem;
   border-radius: 0.75rem;
   font-size: 1.25rem;
   pointer-events: none;
-  font-family: var(--leva-fonts-mono);
+  /* font-family: var(--leva-fonts-mono); */
 }
 
 #description {
-  font-size: 0.95rem;
+  font-size: 0.875rem;
 }
 
 #size {
   margin-top: 0.75rem;
   margin-bottom: 0.25rem;
-  font-size: 0.8rem;
+  font-size: 0.875rem;
 }
 
 .cart {
@@ -118,7 +139,7 @@ body,
   /* border-radius: 30px; */
   border-radius: 50%;
   user-select: none;
-  font-family: var(--leva-fonts-mono);
+  /* font-family: var(--leva-fonts-mono); */
   font-size: 3rem;
   pointer-events: auto;
   cursor: pointer;
@@ -137,7 +158,7 @@ body,
   /* border-radius: 30px; */
   border-radius: 2rem;
   user-select: none;
-  font-family: var(--leva-fonts-mono);
+  /* font-family: var(--leva-fonts-mono); */
   font-size: 5rem;
   /* pointer-events: none; */
   /* user-select: none; */

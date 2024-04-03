@@ -1,4 +1,4 @@
-// import { useRef, useState, useEffect, Suspense } from "react";
+import { useRef, useState, useEffect, Suspense } from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 import BuyButton from "./BuyButton.jsx";
 import IconButton from "@mui/material/IconButton";
@@ -15,17 +15,23 @@ import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
+// replace this with Splide vertical, allows more customization of height, unless this slick slider can with CSS prop, test TBD
+import SimpleSlider from "./SimpleSlider.jsx";
+
 // import * as React from "react";
-// import { useTheme } from "@mui/material/styles";
-// import Box from "@mui/material/Box";
-// import MobileStepper from "@mui/material/MobileStepper";
-// import Paper from "@mui/material/Paper";
-// import Typography from "@mui/material/Typography";
-// import Button from "@mui/material/Button";
-// import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
-// import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
-// // import SwipeableViews from "react-swipeable-views";
-// // import { autoPlay } from "react-swipeable-views-utils";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import FormControl from "@mui/material/FormControl";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
+import Switch from "@mui/material/Switch";
 
 export default function OrderBox({
   open,
@@ -40,6 +46,18 @@ export default function OrderBox({
   animActive,
   currentItemSelected,
 }) {
+  const [openDialog, setOpenDialog] = useState(false);
+  const [fullWidth, setFullWidth] = useState(true);
+  const [maxWidth, setMaxWidth] = useState("sm");
+
+  const handleClickOpen = () => {
+    setOpenDialog(true);
+  };
+
+  const handleClose = () => {
+    setOpenDialog(false);
+  };
+
   const theme = createTheme({
     palette: {
       primary: {
@@ -60,13 +78,6 @@ export default function OrderBox({
             ".MuiModal-backdrop": {
               background: "none",
             },
-          },
-        },
-      },
-      MuiBadge: {
-        styleOverrides: {
-          colorSecondary: {
-            color: "#212121",
           },
         },
       },
@@ -100,29 +111,6 @@ export default function OrderBox({
     // setOpen(!open);
     // setInfoBoxIcon(!infoBoxIcon);
   };
-
-  const images = [
-    {
-      label: "San Francisco – Oakland Bay Bridge, United States",
-      imgPath:
-        "https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60",
-    },
-    {
-      label: "Bird",
-      imgPath:
-        "https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60",
-    },
-    {
-      label: "Bali, Indonesia",
-      imgPath:
-        "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&h=250",
-    },
-    {
-      label: "Goč, Serbia",
-      imgPath:
-        "https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60",
-    },
-  ];
 
   return (
     <>
@@ -163,6 +151,7 @@ export default function OrderBox({
         </IconButton>
         {/* </Tooltip> */}
 
+        <div className="header">Eli Gfell Studio</div>
         <div
           className="info"
           style={{
@@ -232,7 +221,7 @@ export default function OrderBox({
               leaveDelay={0}
               // open={open}
             > */}
-            <IconButton sx={{ padding: "1rem" }}>
+            <IconButton sx={{ padding: "1rem" }} onClick={handleClickOpen}>
               <PhotoLibraryIcon
                 sx={{
                   color: "secondary.main",
@@ -306,6 +295,37 @@ export default function OrderBox({
             {currentItemSelected.itemTitle}
           </BuyButton>
         </div>
+        <Dialog
+          fullScreen
+          open={openDialog}
+          onClose={handleClose}
+          PaperProps={{
+            sx: {
+              maxWidth: "80vw",
+              maxHeight: "85vh",
+              opacity: 0.85,
+              borderRadius: "1rem",
+              color: "secondary.main",
+            },
+          }}
+        >
+          <DialogTitle
+            sx={{
+              textAlign: "center",
+              fontFamily: "var(--leva-fonts-mono)",
+            }}
+          >
+            {currentItemSelected.itemTitle}
+          </DialogTitle>
+          <DialogContent sx={{ overflowX: "hidden !important" }}>
+            <SimpleSlider />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose} sx={{ color: "secondary.main" }}>
+              Close
+            </Button>
+          </DialogActions>
+        </Dialog>
       </ThemeProvider>
     </>
   );

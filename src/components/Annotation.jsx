@@ -240,7 +240,11 @@ export const Annotation = ({
                   ? [0, animDist, 0]
                   : animation === "posY2"
                     ? [0, animDist + animDist / 2, 0]
-                    : [0, 0, 0]
+                    : animation === "negZposY1"
+                      ? [0, animDist, -animDist]
+                      : animation === "posXposY1"
+                        ? [animDist, animDist, 0]
+                        : [0, 0, 0]
       }
     >
       {annotations}

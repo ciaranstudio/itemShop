@@ -12,6 +12,9 @@ import {
   Sky,
   ScreenSpace,
   useCursor,
+  // Center,
+  // Text3D,
+  // Text,
   // Ring
 } from "@react-three/drei";
 
@@ -78,6 +81,7 @@ export default function Scene({
   const { cart = {} } = useSnipcart();
   const { subtotal = "0.00" } = cart;
   const [snipcartLoaded, setSnipcartLoaded] = useState(false);
+  const [cartCount, setCartCount] = useState(0);
 
   useEffect(() => {
     // console.log("snipcartLoaded: ", snipcartLoaded);
@@ -115,6 +119,10 @@ export default function Scene({
   //     }
   //   }
   // }, [snipcartLoaded]);
+
+  useEffect(() => {
+    if (cart.items) setCartCount(cart.items.count);
+  }, [snipcartLoaded, cart]);
 
   function handleCartClick() {
     if (snipcartLoaded) {
@@ -430,13 +438,13 @@ export default function Scene({
             yPlus = 0.5;
             zPlus = -0.75;
           } else if (currentItemSelected.itemName === "block") {
-            xPlus = 0.5;
+            xPlus = -0.5;
             yPlus = 0.5;
-            zPlus = 1.5;
+            zPlus = -1.5;
           } else if (currentItemSelected.itemName === "horse") {
-            xPlus = -2;
-            yPlus = 1.25;
-            zPlus = -2;
+            xPlus = -1.75;
+            yPlus = 1;
+            zPlus = -1.75;
           } else if (currentItemSelected.itemName === "squatter") {
             xPlus = 1.75;
             yPlus = 0.5;
@@ -557,7 +565,7 @@ export default function Scene({
   const dirLightCamBottom = -5;
   const dirLightCamTop = 5;
 
-  const ambLightIntensity = 1.5;
+  const ambLightIntensity = 1;
 
   const animatedPosition = (animation, animDist) => {
     let x = 0;
@@ -581,6 +589,14 @@ export default function Scene({
         break;
       case "posY2":
         y = animDist + animDist / 2;
+        break;
+      case "negZposY1":
+        z = -animDist;
+        y = animDist;
+        break;
+      case "posXposY1":
+        x = animDist;
+        y = animDist;
         break;
       case "none":
         break;
@@ -612,10 +628,11 @@ export default function Scene({
           <Bag
             currentColor={textures.brownBag}
             currentTexture={textures.paintedTexture}
-            cartCount={cart.items ? cart.items.count : 0}
+            cartCount={cartCount}
             handleCartClick={handleCartClick}
           />
         </mesh>
+
         <mesh
           position={
             width > 414
@@ -636,6 +653,7 @@ export default function Scene({
           />
         </mesh>
       </ScreenSpace>
+
       <color args={["#27271a"]} attach="background" />
       <mesh geometry={overlayGeometry} material={overlayMaterial}></mesh>
       <OrbitControls
@@ -668,6 +686,21 @@ export default function Scene({
         shadow-camera-top={dirLightCamTop} // 150
         // target={grampsRef.current}
       />
+      {/* <Text
+          position={[0, 1.75, 0]}
+          font="./noto-sans-v35-latin-regular.woff"
+          fontSize={0.75}
+          color="#000000"
+          // maxWidth={10.3}
+          textAlign="center"
+          visible={true}
+          characters="abcdefghijklmnopqrstuvwxyz0123456789!"
+        >
+          Eli Gfell Studio
+        </Text> */}
+      {/* <Center top left>
+        <Text3D>hello</Text3D>
+      </Center> */}
       {/* all objects (except logo and cart/bag) */}
       <group position={[0, stagePositionY, 0]}>
         <ambientLight intensity={ambLightIntensity} />
