@@ -4,6 +4,7 @@ export default class Item {
     itemName,
     itemTitle,
     itemDescription,
+    itemLongDescription,
     itemBasePrice, // painted single color price (base)
     itemStainCost, // stained single color additional cost
     itemMixedPaintCost, // mixed paint color additional cost
@@ -16,6 +17,7 @@ export default class Item {
     this.itemName = itemName;
     this.itemTitle = itemTitle;
     this.itemDescription = itemDescription;
+    this.itemLongDescription = itemLongDescription;
     this.itemBasePrice = itemBasePrice;
     this.itemStainCost = itemStainCost;
     this.itemMixedPaintCost = itemMixedPaintCost;

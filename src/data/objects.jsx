@@ -7,6 +7,7 @@ export const objects = {
     "gramps",
     "GRAMPS",
     "Shop stool",
+    "A sturdy shop stool that I designed as a tribute to my late grandfather. I made the first edition of these using inherited lumber that Gramps had milled from trees on family properties. A nice place to sit and think, suitable for working and remembering.",
     750, // painted single color
     150, // stained single color additional cost
     50, // mixed paint color additional cost
@@ -70,6 +71,7 @@ export const objects = {
     "squatter",
     "SQUATTER",
     "Low stool/end table",
+    "This was one of my first furniture designs, meant to embody function, beauty and simplicity. It can be used as a low stool or end table, and has a compact footprint for easy storage. A solid spot to lace up your boots.",
     600, // painted single color
     100, // stained single color
     50,
@@ -112,6 +114,7 @@ export const objects = {
     "block",
     "BLOCK",
     "Wooden “cinderblock”",
+    "I made my first “cinderblocks” for my exhibition “/X”. Based on the dimensions of a standard CMU (concrete masonry unit) these wooden blocks can be stacked horizontally and/or vertically.",
     250, // painted single color
     150, // stained single color
     50,
@@ -161,6 +164,7 @@ export const objects = {
     "horse",
     "HORSE",
     "Furniture-grade sawhorse (flat pack)",
+    "Originally featured in my exhibition “/X”, the sawhorse form is a universal symbol of functionality. This furniture grade version comes flat packed and is assembled with allen head screws.",
     400,
     100,
     50,
@@ -217,6 +221,7 @@ export const objects = {
     "shelfA16",
     "\\SHELF/ 16",
     "Floating shelf with crown profile",
+    "I designed these floating shelves to display artwork, pictures and nick-nacks. The two simple profile options are intended to complement both traditional and contemporary millwork. Available in two stock sizes and profiles (custom dimensions available by request). Includes hanging cleat.",
     350,
     50,
     50,
@@ -252,6 +257,7 @@ export const objects = {
     "shelfA32",
     "\\SHELF/ 32",
     "Floating shelf with crown profile",
+    "I designed these floating shelves to display artwork, pictures and nick-nacks. The two simple profile options are intended to complement both traditional and contemporary millwork. Available in two stock sizes and profiles (custom dimensions available by request). Includes hanging cleat.",
     550, // painted single color
     50, // stained single color
     50,
@@ -287,6 +293,7 @@ export const objects = {
     "shelfB16",
     "(SHELF) 16",
     "Floating shelf with rounded profile",
+    "I designed these floating shelves to display artwork, pictures and nick-nacks. The two simple profile options are intended to complement both traditional and contemporary millwork. Available in two stock sizes and profiles (custom dimensions available by request). Includes hanging cleat.",
     350,
     50,
     50,
@@ -329,6 +336,7 @@ export const objects = {
     "shelfB32",
     "(SHELF) 32",
     "Floating shelf with rounded profile",
+    "I designed these floating shelves to display artwork, pictures and nick-nacks. The two simple profile options are intended to complement both traditional and contemporary millwork. Available in two stock sizes and profiles (custom dimensions available by request). Includes hanging cleat.",
     550,
     50,
     50,
@@ -373,6 +381,7 @@ export const unselectedItem = new Item(
   "noSelect", // itemName
   "noSelectTitle", // itemTitle
   "Select item", // itemDescription
+  "Select item",
   0, // itemBasePrice
   0, // itemStainCost
   0, // itemMixedPaintCost

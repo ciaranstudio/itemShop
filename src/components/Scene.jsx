@@ -472,6 +472,10 @@ export default function Scene({
             y: currentItemSelected.position.y + yPlus,
             z: currentItemSelected.position.z + zPlus,
             ease: "easeIn",
+            onStart: () => {
+              setOpen(!open);
+              setInfoBoxIcon(!infoBoxIcon);
+            },
             onUpdate: () => {
               setTargetVec(controlsPositionVec);
               orbitRef.current.object.position.set(
