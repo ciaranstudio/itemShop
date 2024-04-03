@@ -489,14 +489,14 @@ export default function Scene({
   // return null;
   // });
 
-  const stagePositionY = -0.14;
+  const stagePositionY = -0.25;
 
   const dirLightXPosition = 2.5;
   const dirLightYPosition = 3.6;
   const dirLightZPosition = -3;
 
   const dirLightIntensity = 1.5;
-  const dirLightNormBias = 0.1; // 0.04 previously, adjusted to reduce shadow acne on Block inner shelf cavities
+  const dirLightNormBias = 0.04; // 0.04 previously, adjusted to reduce shadow acne on Block inner shelf cavities
   const dirLightMapSize = 512;
   const dirLightCamNear = -5;
   const dirLightCamFar = 8;
