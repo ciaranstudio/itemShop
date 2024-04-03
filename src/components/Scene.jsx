@@ -263,7 +263,7 @@ export default function Scene({
       // console.log("matchedItem from handleClick function: ", matchedItem);
       setPreviousItemSelected(currentItemSelected);
       setCurrentItemSelected(matchedItem);
-      if (!open && infoBoxIcon) {
+      if (!open && infoBoxIcon && showBackground) {
         setInfoBoxIcon(!infoBoxIcon);
         setOpen(!open);
       }
