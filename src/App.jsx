@@ -183,6 +183,10 @@ function App() {
               previousItemSelected={previousItemSelected}
               setPreviousItemSelected={setPreviousItemSelected}
               animDist={animDist}
+              open={open}
+              setOpen={setOpen}
+              infoBoxIcon={infoBoxIcon}
+              setInfoBoxIcon={setInfoBoxIcon}
               showBackground={showBackground}
               setShowBackground={setShowBackground}
               showPartOptions={showPartOptions}

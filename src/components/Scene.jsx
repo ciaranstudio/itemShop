@@ -42,6 +42,10 @@ export default function Scene({
   previousItemSelected,
   setPreviousItemSelected,
   animDist,
+  open,
+  setOpen,
+  infoBoxIcon,
+  setInfoBoxIcon,
   showBackground,
   setShowBackground,
   showPartOptions,
@@ -259,6 +263,10 @@ export default function Scene({
       // console.log("matchedItem from handleClick function: ", matchedItem);
       setPreviousItemSelected(currentItemSelected);
       setCurrentItemSelected(matchedItem);
+      if (!open && infoBoxIcon) {
+        setInfoBoxIcon(!infoBoxIcon);
+        setOpen(!open);
+      }
       // if (!showBackground) {
       //   setShowPartOptions(true);
       // }
