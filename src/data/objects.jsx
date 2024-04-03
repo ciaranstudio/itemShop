@@ -6,7 +6,7 @@ export const objects = {
     0,
     "gramps",
     "GRAMPS",
-    "Handmade stool",
+    "Shop stool",
     750, // painted single color
     150, // stained single color additional cost
     50, // mixed paint color additional cost
@@ -69,7 +69,7 @@ export const objects = {
     1,
     "squatter",
     "SQUATTER",
-    "Handmade end table",
+    "Low stool/end table",
     600, // painted single color
     100, // stained single color
     50,
@@ -111,7 +111,7 @@ export const objects = {
     2,
     "block",
     "BLOCK",
-    "Handmade room block",
+    "Wooden “cinderblock”",
     250, // painted single color
     150, // stained single color
     50,
@@ -160,7 +160,7 @@ export const objects = {
     3,
     "horse",
     "HORSE",
-    "Handmade saw horse",
+    "Furniture-grade sawhorse (flat pack)",
     400,
     100,
     50,
@@ -216,7 +216,7 @@ export const objects = {
     4,
     "shelfA16",
     "\\SHELF/ 16",
-    "Handmade angle shelf",
+    "Floating shelf with crown profile",
     350,
     50,
     50,
@@ -251,7 +251,7 @@ export const objects = {
     5,
     "shelfA32",
     "\\SHELF/ 32",
-    "Handmade angle shelf",
+    "Floating shelf with crown profile",
     550, // painted single color
     50, // stained single color
     50,
@@ -286,7 +286,7 @@ export const objects = {
     6,
     "shelfB16",
     "(SHELF) 16",
-    "Handmade block shelf",
+    "Floating shelf with rounded profile",
     350,
     50,
     50,
@@ -328,7 +328,7 @@ export const objects = {
     7,
     "shelfB32",
     "(SHELF) 32",
-    "Handmade block shelf",
+    "Floating shelf with rounded profile",
     550,
     50,
     50,
