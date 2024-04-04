@@ -54,6 +54,8 @@ export default function Scene({
   showPartOptions,
   setShowPartOptions,
   animateParts,
+  handlePartOption,
+  getRandomInt,
 }) {
   const { height, width } = useWindowDimensions();
   useEffect(() => {
@@ -745,6 +747,8 @@ export default function Scene({
                       setShowBackground={setShowBackground}
                       showPartOptions={showPartOptions}
                       setShowPartOptions={setShowPartOptions}
+                      handlePartOption={handlePartOption}
+                      getRandomInt={getRandomInt}
                       // animateParts={animateParts}
                     />
                     <RingCircle

@@ -6,6 +6,7 @@ import IconButton from "@mui/material/IconButton";
 import { createTheme } from "@mui/material";
 import { ThemeProvider } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import PhotoLibraryIcon from "@mui/icons-material/PhotoLibrary";
 import OpenWithIcon from "@mui/icons-material/OpenWith";
 import RadioButtonCheckedOutlinedIcon from "@mui/icons-material/RadioButtonCheckedOutlined";
@@ -14,6 +15,7 @@ import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 // import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import ShuffleIcon from "@mui/icons-material/Shuffle";
 
 // replace this with Splide vertical, allows more customization of height, unless this slick slider can with CSS prop, test TBD
 import SimpleSlider from "./SimpleSlider.jsx";
@@ -45,6 +47,7 @@ export default function OrderBox({
   animateParts,
   animActive,
   currentItemSelected,
+  randomAllItemsParts,
 }) {
   const [openDialog, setOpenDialog] = useState(false);
   const [fullWidth, setFullWidth] = useState(true);
@@ -142,6 +145,7 @@ export default function OrderBox({
             display: !infoBoxIcon ? "none" : "block",
             padding: "1.5rem",
           }}
+          aria-label="open order box for item details and options"
         >
           <RadioButtonCheckedOutlinedIcon
             sx={{
@@ -175,15 +179,19 @@ export default function OrderBox({
             sx={{
               position: "absolute",
               pointerEvents: "auto",
-              top: "0.25rem",
-              left: "0.25rem",
+              top: "0.15rem",
+              left: "0.15rem",
               padding: "0.5rem",
             }}
+            aria-label="close order box"
           >
-            <CloseOutlinedIcon sx={{ color: "primary.main" }} />
+            <CloseOutlinedIcon
+              fontSize="small"
+              sx={{ color: "primary.light" }}
+            />
           </IconButton>
 
-          <IconButton
+          {/* <IconButton
             onClick={(e) => toggleBackground(e)}
             color="inherit"
             // disabled={
@@ -202,7 +210,24 @@ export default function OrderBox({
             ) : (
               <VisibilityIcon sx={{ color: "secondary.light" }} />
             )}
-          </IconButton>
+          </IconButton> */}
+
+          {/* <IconButton
+            onClick={(e) => randomAllItemsParts(e)}
+            color="inherit"
+            // disabled={
+            //   currentItemSelected.itemTitle === "noSelectTitle" ? true : false
+            // }
+            sx={{
+              position: "absolute",
+              pointerEvents: "auto",
+              top: "2.25rem",
+              right: "0.25rem",
+              padding: "0.5rem",
+            }}
+          >
+            <ShuffleIcon sx={{ color: "primary.light" }} />
+          </IconButton> */}
 
           <div id="title">
             {currentItemSelected.itemTitle === "noSelectTitle"
@@ -224,10 +249,14 @@ export default function OrderBox({
               leaveDelay={0}
               // open={open}
             > */}
-            <IconButton sx={{ padding: "1rem" }} onClick={handleClickOpen}>
+            <IconButton
+              sx={{ padding: "0.75rem" }}
+              onClick={handleClickOpen}
+              aria-label="open photos box to view item images"
+            >
               <PhotoLibraryIcon
                 sx={{
-                  color: "secondary.light",
+                  color: "primary.light",
                   // border: "0.75px solid #757575",
                   // borderRadius: Math.PI,
                   fontSize: "inherit",
@@ -237,6 +266,24 @@ export default function OrderBox({
             </IconButton>
             {/* </Tooltip> */}
 
+            <IconButton
+              onClick={(e) => randomAllItemsParts(e)}
+              color="inherit"
+              // disabled={
+              //   currentItemSelected.itemTitle === "noSelectTitle" ? true : false
+              // }
+              sx={{
+                // position: "absolute",
+                pointerEvents: "auto",
+                // top: "2.25rem",
+                // right: "0.25rem",
+                padding: "0.75rem",
+              }}
+              aria-label="shuffle item part colors / finish options"
+            >
+              <ShuffleIcon sx={{ color: "primary.main" }} />
+            </IconButton>
+
             {/* <Tooltip
               title="View details"
               disableFocusListener
@@ -245,18 +292,34 @@ export default function OrderBox({
               // open={open}
             > */}
             <IconButton
-              sx={{ mx: 2, padding: "1rem" }}
+              sx={{
+                // mx: 2,
+                padding: "0.75rem",
+              }}
               onClick={(e) => toggleLongDesc(e)}
+              aria-label="show item short or long description"
             >
-              <InfoIcon
-                sx={{
-                  color: showLongDesc ? "secondary.light" : "primary.light",
-                  // border: "0.75px solid #757575",
-                  // borderRadius: Math.PI,
-                  fontSize: "inherit",
-                  pointerEvents: "auto",
-                }}
-              />
+              {showLongDesc ? (
+                <InfoIcon
+                  sx={{
+                    color: "secondary.light",
+                    // border: "0.75px solid #757575",
+                    // borderRadius: Math.PI,
+                    fontSize: "inherit",
+                    pointerEvents: "auto",
+                  }}
+                />
+              ) : (
+                <InfoOutlinedIcon
+                  sx={{
+                    // color: showLongDesc ? "secondary.light" : "primary.light",
+                    // border: "0.75px solid #757575",
+                    // borderRadius: Math.PI,
+                    fontSize: "inherit",
+                    pointerEvents: "auto",
+                  }}
+                />
+              )}
             </IconButton>
             {/* </Tooltip> */}
 
@@ -274,7 +337,8 @@ export default function OrderBox({
               //   console.log("clicked animate");
               // }}
               // disabled={animActive ? true : false}
-              sx={{ padding: "1rem" }}
+              sx={{ padding: "0.75rem" }}
+              aria-label="animate items parts / toggle exploding view"
             >
               <OpenWithIcon
                 sx={{
@@ -287,6 +351,27 @@ export default function OrderBox({
               />
             </IconButton>
             {/* </Tooltip> */}
+            <IconButton
+              onClick={(e) => toggleBackground(e)}
+              color="inherit"
+              // disabled={
+              //   currentItemSelected.itemTitle === "noSelectTitle" ? true : false
+              // }
+              sx={{
+                // position: "absolute",
+                pointerEvents: "auto",
+                // top: "0.25rem",
+                // right: "0.25rem",
+                padding: "0.75rem",
+              }}
+              aria-label="hide background to show selected item part options or show background and hide item part options"
+            >
+              {showBackground ? (
+                <VisibilityIcon sx={{ color: "primary.light" }} />
+              ) : (
+                <VisibilityOffIcon sx={{ color: "secondary.light" }} />
+              )}
+            </IconButton>
           </span>
           <div id="description">
             {showLongDesc
@@ -294,7 +379,11 @@ export default function OrderBox({
               : currentItemSelected.itemDescription}
           </div>
           <div id="size">{currentItemSelected.size}</div>
-          <BuyButton theme={theme} item={currentItemSelected}>
+          <BuyButton
+            theme={theme}
+            item={currentItemSelected}
+            aria-label="add to shopping cart"
+          >
             {currentItemSelected.itemTitle}
           </BuyButton>
         </div>
@@ -331,6 +420,7 @@ export default function OrderBox({
               variant="outlined"
               color="primary"
               sx={{ color: "primary.light" }}
+              aria-label="close photos box"
             >
               Close
             </Button>

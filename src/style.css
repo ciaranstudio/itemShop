@@ -116,6 +116,7 @@ body,
 
 #title {
   color: #212121;
+  margin-bottom: 0.25rem;
 }
 
 #description {
@@ -124,6 +125,7 @@ body,
   color: #212121;
   padding: 0.85rem;
   border-radius: 2rem;
+  margin-top: 0.25rem;
 }
 
 #size {

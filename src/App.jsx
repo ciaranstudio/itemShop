@@ -12,6 +12,11 @@ import { SnipcartProvider } from "use-snipcart";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import OrderBox from "./components/OrderBox.jsx";
+import { textures } from "./data/textures.jsx";
+import { shopItems } from "./data/objects.jsx";
+import { objects } from "./data/objects.jsx";
+import { options, allOptions } from "./data/options.jsx";
+import { useOptionStore } from "./store/useOptionStore.tsx";
 
 function App() {
   const [open, setOpen] = useState(false);
@@ -100,6 +105,81 @@ function App() {
     }
   });
 
+  function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
+
+  const updatePartColor = useOptionStore((state) => state.updatePartColor);
+  const updatePartColorName = useOptionStore(
+    (state) => state.updatePartColorName,
+  );
+  const updatePartTexture = useOptionStore((state) => state.updatePartTexture);
+  const calculateItemPrice = useOptionStore(
+    (state) => state.calculateItemPrice,
+  );
+
+  const handlePartOption = (e, itemName, partName, color, stopPropogation) => {
+    e.preventDefault();
+    if (stopPropogation) {
+      e.stopPropagation();
+    }
+    if (color === "white") {
+      updatePartTexture(itemName, partName, textures.whiteTexture);
+      updatePartColor(itemName, partName, textures.whiteStain);
+      updatePartColorName(itemName, partName, "white");
+    } else if (color === "natural") {
+      updatePartTexture(itemName, partName, textures.naturalTexture);
+      updatePartColor(itemName, partName, textures.naturalStain);
+      updatePartColorName(itemName, partName, "natural");
+    } else if (color === "black") {
+      updatePartTexture(itemName, partName, textures.blackTexture);
+      updatePartColor(itemName, partName, textures.blackStain);
+      updatePartColorName(itemName, partName, "black");
+    } else if (color === "allBlack") {
+      updatePartTexture(itemName, partName, textures.allBlackTexture);
+      updatePartColor(itemName, partName, textures.allBlackStain);
+      updatePartColorName(itemName, partName, "allBlack");
+    } else if (color === "alabaster") {
+      updatePartTexture(itemName, partName, textures.paintedTexture);
+      updatePartColor(itemName, partName, textures.alabasterPaint);
+      updatePartColorName(itemName, partName, "alabaster");
+    } else if (color === "pink") {
+      updatePartTexture(itemName, partName, textures.paintedTexture);
+      updatePartColor(itemName, partName, textures.pinkPaint);
+      updatePartColorName(itemName, partName, "pink");
+    } else if (color === "basil") {
+      updatePartTexture(itemName, partName, textures.paintedTexture);
+      updatePartColor(itemName, partName, textures.basilPaint);
+      updatePartColorName(itemName, partName, "basil");
+    } else if (color === "yellow") {
+      updatePartTexture(itemName, partName, textures.paintedTexture);
+      updatePartColor(itemName, partName, textures.yellowPaint);
+      updatePartColorName(itemName, partName, "yellow");
+    } else if (color === "blue") {
+      updatePartTexture(itemName, partName, textures.paintedTexture);
+      updatePartColor(itemName, partName, textures.bluePaint);
+      updatePartColorName(itemName, partName, "blue");
+    } else if (color === "gray") {
+      updatePartTexture(itemName, partName, textures.paintedTexture);
+      updatePartColor(itemName, partName, textures.grayPaint);
+      updatePartColorName(itemName, partName, "gray");
+    }
+    calculateItemPrice(itemName);
+  };
+
+  const randomAllItemsParts = (e) => {
+    e.preventDefault(); //  is this necessary if it is also being called in handlePartOption function ? Remove from one of them or make conditional in handlePartOption like e.stopPropogation ?
+    let randomAllItemsColors = shopItems.map((item) => {
+      let itemColors = item.parts.map((part) => {
+        let color = allOptions[getRandomInt(allOptions.length)];
+        handlePartOption(e, item.itemName, part.partName, color, false);
+        return color;
+      });
+      return itemColors;
+    });
+    console.log("random colors generated list: ", randomAllItemsColors);
+  };
+
   return (
     <>
       <Canvas
@@ -131,6 +211,8 @@ function App() {
               showPartOptions={showPartOptions}
               setShowPartOptions={setShowPartOptions}
               animateParts={animateParts}
+              handlePartOption={handlePartOption}
+              getRandomInt={getRandomInt}
             />
           </SnipcartProvider>
         </Suspense>
@@ -147,6 +229,7 @@ function App() {
         animateParts={animateParts}
         animActive={animActive}
         currentItemSelected={currentItemSelected}
+        randomAllItemsParts={randomAllItemsParts}
       />
     </>
   );
