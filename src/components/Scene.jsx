@@ -317,6 +317,8 @@ export default function Scene({
     const element = document.querySelector("canvas");
 
     element.addEventListener("touchstart", (e) => {
+      // is not near edge of view, exit
+      if (e.pageX > 20 && e.pageX < window.innerWidth - 20) return;
       // prevent swipe to navigate gesture
       e.preventDefault();
     });
