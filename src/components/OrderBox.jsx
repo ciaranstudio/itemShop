@@ -97,6 +97,10 @@ export default function OrderBox({
     e.preventDefault();
     e.stopPropagation();
     // setShowPartOptions(false);
+    // if (showBackground) {
+    //   setOpen(!open);
+    //   setInfoBoxIcon(!infoBoxIcon);
+    // }
     setShowBackground(!showBackground);
     // setOpen(!open);
     // setInfoBoxIcon(!infoBoxIcon);
@@ -177,7 +181,7 @@ export default function OrderBox({
               padding: "0.5rem",
             }}
           >
-            <CloseOutlinedIcon sx={{ color: "secondary.main" }} />
+            <CloseOutlinedIcon sx={{ color: "primary.main" }} />
           </IconButton>
 
           <IconButton
@@ -195,13 +199,13 @@ export default function OrderBox({
             }}
           >
             {showBackground ? (
-              <VisibilityIcon sx={{ color: "secondary.main" }} />
+              <VisibilityIcon sx={{ color: "secondary.light" }} />
             ) : (
-              <VisibilityOffIcon sx={{ color: "secondary.main" }} />
+              <VisibilityOffIcon sx={{ color: "primary.light" }} />
             )}
           </IconButton>
 
-          <div>
+          <div id="title">
             {currentItemSelected.itemTitle === "noSelectTitle"
               ? ""
               : `${currentItemSelected.itemTitle}`}
@@ -224,7 +228,7 @@ export default function OrderBox({
             <IconButton sx={{ padding: "1rem" }} onClick={handleClickOpen}>
               <PhotoLibraryIcon
                 sx={{
-                  color: "secondary.main",
+                  color: "secondary.light",
                   // border: "0.75px solid #757575",
                   // borderRadius: Math.PI,
                   fontSize: "inherit",
@@ -247,7 +251,7 @@ export default function OrderBox({
             >
               <InfoIcon
                 sx={{
-                  color: showLongDesc ? "secondary.light" : "secondary.main",
+                  color: showLongDesc ? "secondary.light" : "primary.light",
                   // border: "0.75px solid #757575",
                   // borderRadius: Math.PI,
                   fontSize: "inherit",
@@ -275,7 +279,7 @@ export default function OrderBox({
             >
               <OpenWithIcon
                 sx={{
-                  color: animActive ? "secondary.light" : "secondary.main",
+                  color: animActive ? "primary.light" : "primary.main",
                   // border: "0.75px solid #757575",
                   // borderRadius: Math.PI,
                   fontSize: "inherit",
@@ -303,9 +307,10 @@ export default function OrderBox({
             sx: {
               maxWidth: "80vw",
               maxHeight: "85vh",
-              opacity: 0.85,
+              opacity: 0.95,
               borderRadius: "1rem",
-              color: "secondary.main",
+              color: "primary.main",
+              background: "#b8c2c4",
             },
           }}
         >
@@ -321,7 +326,12 @@ export default function OrderBox({
             <SimpleSlider />
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleClose} sx={{ color: "secondary.main" }}>
+            <Button
+              onClick={handleClose}
+              variant="outlined"
+              color="primary"
+              sx={{ color: "primary.light" }}
+            >
               Close
             </Button>
           </DialogActions>

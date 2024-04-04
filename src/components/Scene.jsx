@@ -249,6 +249,9 @@ export default function Scene({
         objects[currentItemSelected.itemName].parts[0].partName,
       );
       setShowPartOptions(true);
+    } else if (!showBackground) {
+      setOpen(!open);
+      setInfoBoxIcon(!infoBoxIcon);
     }
   }, [showBackground]);
 
@@ -480,10 +483,10 @@ export default function Scene({
             y: currentItemSelected.position.y + yPlus,
             z: currentItemSelected.position.z + zPlus,
             ease: "easeIn",
-            onStart: () => {
-              setOpen(!open);
-              setInfoBoxIcon(!infoBoxIcon);
-            },
+            // onStart: () => {
+            //   setOpen(!open);
+            //   setInfoBoxIcon(!infoBoxIcon);
+            // },
             onUpdate: () => {
               setTargetVec(controlsPositionVec);
               orbitRef.current.object.position.set(

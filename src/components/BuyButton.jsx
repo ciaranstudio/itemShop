@@ -100,8 +100,8 @@ export default function BuyButton({ item, theme }) {
       }}
     >
       <Button
-        variant="outlined"
-        color="success"
+        variant="contained"
+        color="primary"
         disabled={optionSelectedPrice === 0}
         // onClick={handleAddToCart}
         className="snipcart-add-item"
@@ -121,7 +121,8 @@ export default function BuyButton({ item, theme }) {
         sx={{
           display: item === unselectedItem ? "none" : "block",
           pointerEvents: "auto",
-          mt: 1,
+          mt: 1.25,
+          color: "#ffffff",
           // color:
           //   item === unselectedItem ? theme.palette.primary.light : "#929d84",
         }}
