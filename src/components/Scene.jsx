@@ -313,6 +313,13 @@ export default function Scene({
   // useHelper(shadowCameraRef, CameraHelper, 1, "lightBlue");
 
   useEffect(() => {
+    // prevent swipe back navigation gesture on iOS mobile devices
+    const element = document.querySelector("canvas");
+
+    element.addEventListener("touchstart", (e) => {
+      // prevent swipe to navigate gesture
+      e.preventDefault();
+    });
     // setInitialLoad(true);
     if (orbitRef.current) {
       // console.log(orbitRef.current.object);
@@ -343,6 +350,11 @@ export default function Scene({
       );
     }
     return () => {
+      element.removeEventListener("touchstart", (e) => {
+        // prevent swipe to navigate gesture
+        console.log("removed event listener, 'touchstart'");
+      });
+
       if (orbitRef.current) {
         orbitRef.current.removeEventListener(
           "start",
