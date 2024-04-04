@@ -155,7 +155,6 @@ export default function OrderBox({
         </IconButton>
         {/* </Tooltip> */}
 
-        <div className="header">Eli Gfell Studio</div>
         <div
           className="info"
           style={{
@@ -199,9 +198,9 @@ export default function OrderBox({
             }}
           >
             {showBackground ? (
-              <VisibilityIcon sx={{ color: "secondary.light" }} />
-            ) : (
               <VisibilityOffIcon sx={{ color: "primary.light" }} />
+            ) : (
+              <VisibilityIcon sx={{ color: "secondary.light" }} />
             )}
           </IconButton>
 
@@ -299,6 +298,7 @@ export default function OrderBox({
             {currentItemSelected.itemTitle}
           </BuyButton>
         </div>
+        <div className="footer">Eli Gfell Studio</div>
         <Dialog
           fullScreen
           open={openDialog}

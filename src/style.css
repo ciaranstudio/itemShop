@@ -76,22 +76,22 @@ body,
   max-width: 100% !important;
 } */
 
-.header {
+.footer {
   position: absolute;
-  top: 0.25rem;
+  bottom: 0;
   /* right: 295px; */
   /* text-align: right; */
-  width: 20rem;
-  right: calc(50% - 10rem);
+  width: 100%;
+  /* right: calc(50% - 10rem); */
   text-align: center;
   /* background: #181c20; */
   background: #5580b0;
-  opacity: 0.25;
+  opacity: 0.2;
   /* color: #8c92a4; */
   color: #ffffff;
   padding: 0.25rem;
-  border-radius: 0.75rem;
-  font-size: 1.75rem;
+  /* border-radius: 0.75rem; */
+  font-size: 1rem;
   pointer-events: none;
   /* font-family: var(--leva-fonts-mono); */
 }
@@ -105,7 +105,7 @@ body,
   right: calc(50% - 9rem);
   text-align: center;
   background: #b8c2c4;
-  opacity: 0.98;
+  opacity: 0.9;
   padding: 1rem;
   border-radius: 0.75rem;
   border: 1.5px solid grey;
@@ -163,7 +163,7 @@ body,
   /* color: #8c92a4; */
   color: #181c20;
   padding: 1rem;
-  padding-top: 7rem;
+  padding-top: 9rem;
   /* padding: 10px 15px; */
   /* border-radius: 30px; */
   border-radius: 2rem;
@@ -201,6 +201,8 @@ body,
   padding: 1rem;
   padding-top: 1rem;
   padding-bottom: 1.5rem;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.85);
+  margin-bottom: 0.75rem;
 }
 
 .grid-container-paint {
@@ -235,13 +237,14 @@ body,
   position: absolute;
   top: 0.5rem;
   left: 0.5rem;
-  background-color: rgb(226, 226, 226);
-  /* text-align: center; */
-  /* font-size: 5rem; */
+  /* background-color: rgb(226, 226, 226); */
+  background: transparent;
+  font-size: 6rem;
+  color: #212121;
   border: none;
   border-radius: 50%;
   cursor: pointer;
-  padding: 3rem;
+  padding: 1rem;
   margin: 1rem;
 }
 
@@ -249,13 +252,14 @@ body,
   position: absolute;
   top: 0.5rem;
   right: 0.5rem;
-  background-color: rgb(178, 178, 178);
-  /* text-align: center; */
-  /* font-size: 5rem; */
+  /* background-color: rgb(178, 178, 178); */
+  background: transparent;
+  font-size: 6rem;
+  color: #ffffff;
   border: none;
   border-radius: 50%;
   cursor: pointer;
-  padding: 3rem;
+  padding: 1rem;
   margin: 1rem;
 }
 

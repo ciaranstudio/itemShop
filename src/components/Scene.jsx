@@ -249,9 +249,10 @@ export default function Scene({
         objects[currentItemSelected.itemName].parts[0].partName,
       );
       setShowPartOptions(true);
-    } else if (!showBackground) {
-      setOpen(!open);
-      setInfoBoxIcon(!infoBoxIcon);
+    }
+    if (!showBackground) {
+      setOpen(false);
+      setInfoBoxIcon(true);
     }
   }, [showBackground]);
 

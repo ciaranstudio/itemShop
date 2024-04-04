@@ -3,6 +3,8 @@ import { useGLTF, Html } from "@react-three/drei";
 import { useOptionStore } from "../store/useOptionStore.tsx";
 import { textures } from "../data/textures.jsx";
 import { options } from "../data/options.jsx";
+import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
+import VisibilityIcon from "@mui/icons-material/Visibility";
 
 export const Annotation = ({
   model,
@@ -120,11 +122,15 @@ export const Annotation = ({
                 <button
                   className="colorExitBtn"
                   onClick={(e) => closePartOptions(e)}
-                ></button>
+                >
+                  <CloseOutlinedIcon fontSize="inherit" />
+                </button>
                 <button
                   className="colorBgrdBtn"
                   onClick={(e) => partShowBackground(e)}
-                ></button>
+                >
+                  <VisibilityIcon fontSize="inherit" />
+                </button>
                 <div className="annotation">
                   <div
                   // style={{ pointerEvents: "none", userSelect: "none" }}
@@ -154,7 +160,7 @@ export const Annotation = ({
                                       : "#ffffff",
                             border:
                               thisPartColorName === stain
-                                ? "0.25rem solid #eeeeee"
+                                ? "0.5rem solid #eeeeee"
                                 : "none",
                             transform:
                               thisPartColorName === stain
@@ -168,6 +174,7 @@ export const Annotation = ({
                       );
                     })}
                   </div>
+
                   <div className="grid-container-paint">
                     {options.paints.map((paint) => {
                       return (
@@ -194,7 +201,7 @@ export const Annotation = ({
                                           : "#ffffff",
                             border:
                               thisPartColorName === paint
-                                ? "0.25rem solid #eeeeee"
+                                ? "0.5rem solid #eeeeee"
                                 : "none",
                             transform:
                               thisPartColorName === paint
