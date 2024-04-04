@@ -745,6 +745,7 @@ export default function Scene({
                       setShowBackground={setShowBackground}
                       showPartOptions={showPartOptions}
                       setShowPartOptions={setShowPartOptions}
+                      // animateParts={animateParts}
                     />
                     <RingCircle
                       selected={currentItemSelected === item ? true : false}

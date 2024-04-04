@@ -86,7 +86,7 @@ body,
   text-align: center;
   /* background: #181c20; */
   background: #5580b0;
-  opacity: 0.2;
+  opacity: 0.35;
   /* color: #8c92a4; */
   color: #ffffff;
   padding: 0.25rem;
@@ -164,6 +164,7 @@ body,
   color: #181c20;
   padding: 1rem;
   padding-top: 9rem;
+  padding-bottom: 10rem;
   /* padding: 10px 15px; */
   /* border-radius: 30px; */
   border-radius: 2rem;
@@ -263,12 +264,32 @@ body,
   margin: 1rem;
 }
 
+.colorAnimBtn {
+  position: absolute;
+  bottom: -0.75rem;
+  /* background-color: rgb(178, 178, 178); */
+  left: 10.5rem;
+  background: transparent;
+  font-size: 6rem;
+  color: #ffffff;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 1rem;
+  margin: 1rem;
+}
+
 .colorExitBtn:active {
   transform: scale(1.2);
   /* transition: transform 0.1s ease-in-out 0.1s; */
 }
 
 .colorBgrdBtn:active {
+  transform: scale(1.2);
+  /* transition: transform 0.1s ease-in-out 0.1s; */
+}
+
+.colorAnimBtn:active {
   transform: scale(1.2);
   /* transition: transform 0.1s ease-in-out 0.1s; */
 }

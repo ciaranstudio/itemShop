@@ -5,6 +5,7 @@ import { textures } from "../data/textures.jsx";
 import { options } from "../data/options.jsx";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+import ShuffleOnIcon from "@mui/icons-material/ShuffleOn";
 
 export const Annotation = ({
   model,
@@ -19,6 +20,7 @@ export const Annotation = ({
   setShowBackground,
   showPartOptions,
   setShowPartOptions,
+  // animateParts,
 }) => {
   const url = model;
   const { scene } = useGLTF(url);
@@ -97,6 +99,14 @@ export const Annotation = ({
     setShowPartOptions(false);
     setShowBackground(true);
   };
+
+  // const partAnimateClick = (e) => {
+  //   // e.preventDefault();
+  //   // e.stopPropagation();
+  //   // setShowPartOptions(false);
+  //   // setShowBackground(true);
+  //   animateParts();
+  // };
 
   useLayoutEffect(() => {
     const currentAnnotations = [];
@@ -216,6 +226,12 @@ export const Annotation = ({
                     })}
                   </div>
                 </div>
+                <button
+                  className="colorAnimBtn "
+                  // onClick={(e) => partAnimateClick(e)}
+                >
+                  <ShuffleOnIcon fontSize="inherit" />
+                </button>
               </Html>,
             );
           }
