@@ -100,6 +100,8 @@ export default function Scene({
         setSnipcartLoaded(true);
         console.log("setting snipcartLoaded state = true");
         console.log("window.Snipcart.api: ", window.Snipcart);
+      } else if (snipcartLoaded) {
+        if (cart.items) setCartCount(cart.items.count);
       }
       // window.Snipcart.api.theme.cart.open();
     }
@@ -318,7 +320,8 @@ export default function Scene({
 
     element.addEventListener("touchstart", (e) => {
       // is not near edge of view, exit
-      if (e.pageX > 20 && e.pageX < window.innerWidth - 20) return;
+      // if (e.pageX > 20 && e.pageX < window.innerWidth - 20) return; // this works pretty well, but can be broken with super rapid random gestures around edge on mobile iOS device
+      if (e.pageX > 40 && e.pageX < window.innerWidth - 40) return; // try out with wider area / 40 instead of 20, not sure if will make a difference in above breaking bug ^, but does make some improvement in ability to break with edge swipes
       // prevent swipe to navigate gesture
       e.preventDefault();
     });
