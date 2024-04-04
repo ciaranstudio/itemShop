@@ -442,9 +442,9 @@ export default function Scene({
             yPlus = 0.5;
             zPlus = -0.75;
           } else if (currentItemSelected.itemName === "block") {
-            xPlus = -0.5;
+            xPlus = 0;
             yPlus = 0.5;
-            zPlus = -1.5;
+            zPlus = 1.75;
           } else if (currentItemSelected.itemName === "horse") {
             xPlus = -1.75;
             yPlus = 1;
@@ -555,9 +555,9 @@ export default function Scene({
 
   const stagePositionY = -0.25;
 
-  const dirLightXPosition = 2.5;
-  const dirLightYPosition = 3.6;
-  const dirLightZPosition = -3;
+  const dirLightXPosition = 2.5; // 2.5
+  const dirLightYPosition = 3.6; // 3.6
+  const dirLightZPosition = -3; // -3
 
   const dirLightIntensity = 1.5;
   const dirLightNormBias = 0.04; // 0.04 previously, adjusted to reduce shadow acne on Block inner shelf cavities

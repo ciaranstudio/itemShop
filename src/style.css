@@ -164,7 +164,7 @@ body,
   color: #181c20;
   padding: 1rem;
   padding-top: 9rem;
-  padding-bottom: 10rem;
+  padding-bottom: 14rem;
   /* padding: 10px 15px; */
   /* border-radius: 30px; */
   border-radius: 2rem;
@@ -264,13 +264,13 @@ body,
   margin: 1rem;
 }
 
-.colorAnimBtn {
+.colorShuffleBtn {
   position: absolute;
   bottom: -0.75rem;
   /* background-color: rgb(178, 178, 178); */
-  left: 10.5rem;
+  left: 9rem;
   background: transparent;
-  font-size: 6rem;
+  font-size: 9rem;
   color: #ffffff;
   border: none;
   border-radius: 50%;
@@ -289,7 +289,7 @@ body,
   /* transition: transform 0.1s ease-in-out 0.1s; */
 }
 
-.colorAnimBtn:active {
+.colorShuffleBtn:active {
   transform: scale(1.2);
   /* transition: transform 0.1s ease-in-out 0.1s; */
 }

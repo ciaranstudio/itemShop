@@ -2,7 +2,8 @@ import React, { useState, useLayoutEffect } from "react";
 import { useGLTF, Html } from "@react-three/drei";
 import { useOptionStore } from "../store/useOptionStore.tsx";
 import { textures } from "../data/textures.jsx";
-import { options } from "../data/options.jsx";
+import { objects } from "../data/objects.jsx";
+import { options, allOptions } from "../data/options.jsx";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import ShuffleOnIcon from "@mui/icons-material/ShuffleOn";
@@ -26,6 +27,10 @@ export const Annotation = ({
   const { scene } = useGLTF(url);
   const [annotations, setAnnotations] = useState([]);
 
+  function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
+
   const updatePartColor = useOptionStore((state) => state.updatePartColor);
   const updatePartColorName = useOptionStore(
     (state) => state.updatePartColorName,
@@ -42,7 +47,6 @@ export const Annotation = ({
   const handlePartOption = (e, itemName, partName, color) => {
     e.preventDefault();
     e.stopPropagation();
-
     if (color === "white") {
       updatePartTexture(itemName, partName, textures.whiteTexture);
       updatePartColor(itemName, partName, textures.whiteStain);
@@ -85,6 +89,23 @@ export const Annotation = ({
       updatePartColorName(itemName, partName, "gray");
     }
     calculateItemPrice(itemName);
+  };
+
+  const randomPartsClick = (e, itemName) => {
+    console.log(
+      "randomPartsClick() - find item in objects data by part itemName: ",
+      objects[itemName],
+    );
+    console.log(
+      "then get the parts array for that found item: ",
+      objects[itemName].parts,
+    );
+    let randomColors = objects[itemName].parts.map((part) => {
+      let color = allOptions[getRandomInt(allOptions.length)];
+      handlePartOption(e, itemName, part.partName, color);
+      return color;
+    });
+    console.log("random colors generated list: ", randomColors);
   };
 
   const closePartOptions = (e) => {
@@ -227,8 +248,8 @@ export const Annotation = ({
                   </div>
                 </div>
                 <button
-                  className="colorAnimBtn "
-                  // onClick={(e) => partAnimateClick(e)}
+                  className="colorShuffleBtn "
+                  onClick={(e) => randomPartsClick(e, itemName)}
                 >
                   <ShuffleOnIcon fontSize="inherit" />
                 </button>
