@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect, Suspense } from "react";
+import { useState } from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 import BuyButton from "./BuyButton.jsx";
 import IconButton from "@mui/material/IconButton";
@@ -16,24 +16,7 @@ import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import ShuffleIcon from "@mui/icons-material/Shuffle";
-
-// replace this with Splide vertical, allows more customization of height, unless this slick slider can with CSS prop, test TBD
 import SimpleSlider from "./SimpleSlider.jsx";
-
-// import * as React from "react";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
-import FormControl from "@mui/material/FormControl";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import Select from "@mui/material/Select";
-import Switch from "@mui/material/Switch";
 
 export default function OrderBox({
   open,
@@ -42,6 +25,8 @@ export default function OrderBox({
   setInfoBoxIcon,
   showLongDesc,
   setShowLongDesc,
+  showPhotos,
+  setShowPhotos,
   showBackground,
   setShowBackground,
   animateParts,
@@ -49,18 +34,6 @@ export default function OrderBox({
   currentItemSelected,
   randomAllItemsParts,
 }) {
-  const [openDialog, setOpenDialog] = useState(false);
-  const [fullWidth, setFullWidth] = useState(true);
-  const [maxWidth, setMaxWidth] = useState("sm");
-
-  const handleClickOpen = () => {
-    setOpenDialog(true);
-  };
-
-  const handleClose = () => {
-    setOpenDialog(false);
-  };
-
   const theme = createTheme({
     palette: {
       primary: {
@@ -115,6 +88,16 @@ export default function OrderBox({
     setShowLongDesc(!showLongDesc);
     // setShowPartOptions(false);
     // setShowBackground(!showBackground);
+    // setOpen(!open);
+    // setInfoBoxIcon(!infoBoxIcon);
+  };
+
+  const togglePhotoBox = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setShowPhotos(!showPhotos);
+    // setShowPartOptions(false);
+    // setShowBackground(true);
     // setOpen(!open);
     // setInfoBoxIcon(!infoBoxIcon);
   };
@@ -251,7 +234,7 @@ export default function OrderBox({
             > */}
             <IconButton
               sx={{ padding: "0.75rem" }}
-              onClick={handleClickOpen}
+              onClick={(e) => togglePhotoBox(e)}
               aria-label="open photos box to view item images"
             >
               <PhotoLibraryIcon
@@ -388,44 +371,33 @@ export default function OrderBox({
           </BuyButton>
         </div>
         <div id="footer">Eli Gfell Studio</div>
-        <Dialog
-          fullScreen
-          open={openDialog}
-          onClose={handleClose}
-          PaperProps={{
-            sx: {
-              maxWidth: "80vw",
-              maxHeight: "85vh",
-              opacity: 0.95,
-              borderRadius: "1rem",
-              color: "primary.main",
-              background: "#b8c2c4",
-            },
-          }}
+        <div
+          className="photos"
+          style={{ display: showPhotos ? "block" : "none" }}
         >
-          <DialogTitle
+          <IconButton
+            onClick={(e) => togglePhotoBox(e)}
+            color="inherit"
+            // disabled={
+            //   currentItemSelected.itemTitle === "noSelectTitle" ? true : false
+            // }
             sx={{
-              textAlign: "center",
-              fontFamily: "var(--leva-fonts-mono)",
+              position: "absolute",
+              pointerEvents: "auto",
+              top: "0.15rem",
+              left: "0.15rem",
+              padding: "0.5rem",
             }}
+            aria-label="close order box"
           >
-            {currentItemSelected.itemTitle}
-          </DialogTitle>
-          <DialogContent sx={{ overflowX: "hidden !important" }}>
-            <SimpleSlider />
-          </DialogContent>
-          <DialogActions>
-            <Button
-              onClick={handleClose}
-              variant="outlined"
-              color="primary"
+            <CloseOutlinedIcon
+              fontSize="small"
               sx={{ color: "primary.light" }}
-              aria-label="close photos box"
-            >
-              Close
-            </Button>
-          </DialogActions>
-        </Dialog>
+            />
+          </IconButton>
+          <div id="title">{currentItemSelected.itemTitle}</div>
+          <SimpleSlider />
+        </div>
       </ThemeProvider>
     </>
   );

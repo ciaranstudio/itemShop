@@ -587,58 +587,58 @@ export default function Scene({
             if (firstAzAng === secondAzAng) {
               document.getElementById("footer").innerHTML =
                 " current stuck check = true ";
-            } else {
-              document.getElementById("footer").innerHTML =
-                " current stuck check = false ";
-            }
-          }
-          setTimeout(() => {
-            if (isTouching && !controlsDragging) {
-              thirdAzAng = orbitRef.current.getAzimuthalAngle();
-              document.getElementById("footer").innerHTML =
-                " running stuck check 2 ";
-              if (firstAzAng === secondAzAng && firstAzAng === thirdAzAng) {
-                document.getElementById("footer").innerHTML =
-                  " current stuck check = true ";
-              } else {
-                document.getElementById("footer").innerHTML =
-                  " current stuck check = false ";
-              }
-            }
-            setTimeout(() => {
-              if (isTouching && !controlsDragging) {
-                fourthAzAng = orbitRef.current.getAzimuthalAngle();
-                document.getElementById("footer").innerHTML =
-                  " running stuck check 3 ";
-                if (
-                  firstAzAng === secondAzAng &&
-                  firstAzAng === thirdAzAng &&
-                  firstAzAng === fourthAzAng
-                ) {
-                  document.getElementById("footer").innerHTML =
-                    " current stuck check = true ";
-                } else {
-                  document.getElementById("footer").innerHTML =
-                    " current stuck check = false ";
-                }
-              }
               setTimeout(() => {
                 if (isTouching && !controlsDragging) {
-                  fifthAzAng = orbitRef.current.getAzimuthalAngle();
+                  thirdAzAng = orbitRef.current.getAzimuthalAngle();
                   document.getElementById("footer").innerHTML =
-                    " running stuck check 4 ";
-                  if (allEqual(azArr)) {
+                    " running stuck check 2 ";
+                  if (firstAzAng === secondAzAng && firstAzAng === thirdAzAng) {
                     document.getElementById("footer").innerHTML =
-                      " controls aren't changing, force reload ";
-                    window.location.reload();
+                      " current stuck check = true ";
+                    setTimeout(() => {
+                      if (isTouching && !controlsDragging) {
+                        fourthAzAng = orbitRef.current.getAzimuthalAngle();
+                        document.getElementById("footer").innerHTML =
+                          " running stuck check 3 ";
+                        if (
+                          firstAzAng === secondAzAng &&
+                          firstAzAng === thirdAzAng &&
+                          firstAzAng === fourthAzAng
+                        ) {
+                          document.getElementById("footer").innerHTML =
+                            " current stuck check = true ";
+                          setTimeout(() => {
+                            if (isTouching && !controlsDragging) {
+                              fifthAzAng = orbitRef.current.getAzimuthalAngle();
+                              document.getElementById("footer").innerHTML =
+                                " running stuck check 4 ";
+                              if (allEqual(azArr)) {
+                                document.getElementById("footer").innerHTML =
+                                  " controls aren't changing, force reload ";
+                                window.location.reload();
+                              } else {
+                                document.getElementById("footer").innerHTML =
+                                  " current stuck check = false ";
+                              }
+                            }
+                          }, "600");
+                        } else {
+                          document.getElementById("footer").innerHTML =
+                            " current stuck check = false ";
+                        }
+                      }
+                    }, "300");
                   } else {
                     document.getElementById("footer").innerHTML =
                       " current stuck check = false ";
                   }
                 }
-              }, "600");
-            }, "450");
-          }, "300");
+              }, "450");
+            } else {
+              document.getElementById("footer").innerHTML =
+                " current stuck check = false ";
+            }
+          }
         }, "150");
       }
     }

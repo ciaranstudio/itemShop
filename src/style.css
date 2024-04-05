@@ -76,6 +76,10 @@ body,
   max-width: 100% !important;
 } */
 
+img {
+  border-radius: 1rem;
+}
+
 #footer {
   position: absolute;
   bottom: 0;
@@ -93,6 +97,23 @@ body,
   /* border-radius: 0.75rem; */
   font-size: 1rem;
   pointer-events: none;
+  /* font-family: var(--leva-fonts-mono); */
+}
+
+.photos {
+  position: absolute;
+  bottom: 4rem;
+  width: 32rem;
+  right: calc(50% - 16rem);
+  text-align: center;
+  background: #c6cfd1;
+  opacity: 0.98;
+  padding: 1rem;
+  padding-bottom: 2rem;
+  border-radius: 0.75rem;
+  border: 1.5px solid grey;
+  font-size: 1.25rem;
+  pointer-events: auto;
   /* font-family: var(--leva-fonts-mono); */
 }
 

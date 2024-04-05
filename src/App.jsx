@@ -22,6 +22,7 @@ function App() {
   const [open, setOpen] = useState(false);
   const [infoBoxIcon, setInfoBoxIcon] = useState(true);
   const [showLongDesc, setShowLongDesc] = useState(false);
+  const [showPhotos, setShowPhotos] = useState(false);
 
   const [showBackground, setShowBackground] = useState(true);
   const [showPartOptions, setShowPartOptions] = useState(false);
@@ -191,7 +192,7 @@ function App() {
           fov: 45,
           near: 0.1, // 15
           far: 22, // 900
-          position: [0, 16, 0], // position: [9, 5, -9], // position: [7.5, 15, 7.5],
+          position: [9, 5, -9], // [0, 16, 0], // position: [9, 5, -9], // position: [7.5, 15, 7.5],
         }}
       >
         <Suspense fallback={<Placeholder />}>
@@ -224,6 +225,8 @@ function App() {
         setInfoBoxIcon={setInfoBoxIcon}
         showLongDesc={showLongDesc}
         setShowLongDesc={setShowLongDesc}
+        showPhotos={showPhotos}
+        setShowPhotos={setShowPhotos}
         showBackground={showBackground}
         setShowBackground={setShowBackground}
         animateParts={animateParts}
