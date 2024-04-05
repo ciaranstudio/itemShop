@@ -33,6 +33,7 @@ export default function OrderBox({
   animActive,
   currentItemSelected,
   randomAllItemsParts,
+  mobileView,
 }) {
   const theme = createTheme({
     palette: {
@@ -373,7 +374,11 @@ export default function OrderBox({
         <div id="footer">Eli Gfell Studio</div>
         <div
           className="photos"
-          style={{ display: showPhotos ? "block" : "none" }}
+          style={{
+            display: showPhotos ? "block" : "none",
+            width: !mobileView ? "32rem" : "24rem",
+            right: !mobileView ? "calc(50% - 16rem)" : "calc(50% - 12rem)",
+          }}
         >
           <IconButton
             onClick={(e) => togglePhotoBox(e)}

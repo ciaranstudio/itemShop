@@ -58,26 +58,10 @@ export default function Scene({
   getRandomInt,
 }) {
   const { height, width } = useWindowDimensions();
-  useEffect(() => {
-    // console.log("height: ", height);
-    // console.log("width: ", width);
-  }, [height, width]);
-
-  const [mobileView, setMobileView] = useState(false);
-  const iOS =
-    typeof navigator !== "undefined" &&
-    /iPad|iPhone|iPod/.test(navigator.userAgent);
-
-  useEffect(() => {
-    // Check if using a touch control device
-    if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
-      // console.log("mobile view");
-      setMobileView(true);
-    } else {
-      // console.log("not mobile view");
-      setMobileView(false);
-    }
-  }, []);
+  // useEffect(() => {
+  //   // console.log("height: ", height);
+  //   // console.log("width: ", width);
+  // }, [height, width]);
 
   const snipcart = useSnipcart();
   const { cart = {} } = useSnipcart();

@@ -19,6 +19,22 @@ import { options, allOptions } from "./data/options.jsx";
 import { useOptionStore } from "./store/useOptionStore.tsx";
 
 function App() {
+  const [mobileView, setMobileView] = useState(false);
+  const iOS =
+    typeof navigator !== "undefined" &&
+    /iPad|iPhone|iPod/.test(navigator.userAgent);
+
+  useEffect(() => {
+    // Check if using a touch control device
+    if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
+      // console.log("mobile view");
+      setMobileView(true);
+    } else {
+      // console.log("not mobile view");
+      setMobileView(false);
+    }
+  }, []);
+
   const [open, setOpen] = useState(false);
   const [infoBoxIcon, setInfoBoxIcon] = useState(true);
   const [showLongDesc, setShowLongDesc] = useState(false);
@@ -233,6 +249,7 @@ function App() {
         animActive={animActive}
         currentItemSelected={currentItemSelected}
         randomAllItemsParts={randomAllItemsParts}
+        mobileView={mobileView}
       />
     </>
   );
