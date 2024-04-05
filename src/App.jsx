@@ -245,6 +245,8 @@ function App() {
         setShowPhotos={setShowPhotos}
         showBackground={showBackground}
         setShowBackground={setShowBackground}
+        showPartOptions={showPartOptions}
+        setShowPartOptions={setShowPartOptions}
         animateParts={animateParts}
         animActive={animActive}
         currentItemSelected={currentItemSelected}

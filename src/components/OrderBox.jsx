@@ -29,6 +29,8 @@ export default function OrderBox({
   setShowPhotos,
   showBackground,
   setShowBackground,
+  showPartOptions,
+  setShowPartOptions,
   animateParts,
   animActive,
   currentItemSelected,
@@ -86,6 +88,9 @@ export default function OrderBox({
   const toggleLongDesc = (e) => {
     e.preventDefault();
     e.stopPropagation();
+    if (showPartOptions) {
+      setShowPartOptions(!showPartOptions);
+    }
     setShowLongDesc(!showLongDesc);
     // setShowPartOptions(false);
     // setShowBackground(!showBackground);
@@ -96,6 +101,9 @@ export default function OrderBox({
   const togglePhotoBox = (e) => {
     e.preventDefault();
     e.stopPropagation();
+    if (showPartOptions) {
+      setShowPartOptions(!showPartOptions);
+    }
     setShowPhotos(!showPhotos);
     // setShowPartOptions(false);
     // setShowBackground(true);
