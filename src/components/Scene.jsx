@@ -105,6 +105,9 @@ export default function Scene({
       }
       // window.Snipcart.api.theme.cart.open();
     }
+    return () => {
+      setSnipcartLoaded(false);
+    };
   }, []);
 
   // const unsubscribe = window.Snipcart.events.on("item.removed", (cartItem) => {
@@ -123,10 +126,6 @@ export default function Scene({
   //     }
   //   }
   // }, [snipcartLoaded]);
-
-  useEffect(() => {
-    if (cart.items) setCartCount(cart.items.count);
-  }, [snipcartLoaded, cart]);
 
   function handleCartClick() {
     if (snipcartLoaded) {
@@ -326,6 +325,14 @@ export default function Scene({
   // const [azCheckAng, setAzCheckAng] = useState(0);
 
   useEffect(() => {
+    if (snipcartLoaded) {
+      if (cart) {
+        if (cart.items) setCartCount(cart.items.count);
+      }
+    }
+  }, [snipcartLoaded, cart, controlsDragging]);
+
+  useEffect(() => {
     // prevent swipe back navigation gesture on iOS mobile devices
     const element = document.querySelector("canvas");
     element.addEventListener("touchstart", (e) => {
@@ -367,6 +374,7 @@ export default function Scene({
           //   orbitRef.current.object.position,
           // );
           setControlsDragging(true);
+          setIsTouching(true);
           if (orbitRef.current.autoRotate) orbitRef.current.autoRotate = false;
           setStartAzimuthAng(orbitRef.current.getAzimuthalAngle());
         },
@@ -407,6 +415,7 @@ export default function Scene({
           //   "from `end` controls listener: orbitControls orbitRef.current.object.position: ",
           //   orbitRef.current.object.position,
           // );
+          setIsTouching(false);
           setControlsDragging(false);
           setEndAzimuthAng(orbitRef.current.getAzimuthalAngle());
         },
@@ -531,7 +540,7 @@ export default function Scene({
         document.getElementById("footer").innerHTML +=
           ` prevStart: ${prevStartAzString} prevEnd: ${prevEndAzString} `;
 
-        if (allEqual(azArr) && dragTime > 0.5 && brokenCount < 3) {
+        if (allEqual(azArr) && dragTime > 0.5 && brokenCount < 4) {
           document.getElementById("footer").innerHTML +=
             "might need to reset page, controls could be broken ";
           setBrokenCount(brokenCount + 1);
@@ -541,34 +550,63 @@ export default function Scene({
   }, [controlsDragging]);
 
   useEffect(() => {
-    if (brokenCount === 3) {
+    if (brokenCount === 4) {
       document.getElementById("footer").innerHTML +=
         "confirmed need to reset page, controls are broken ";
       window.location.reload();
     }
   }, [brokenCount]);
 
-  // replace this azimuth angle check to see if controls are broken with useFrame check above
+  // commented out for test on normal use but 04/05/2024
   useEffect(() => {
-    if (isTouching) {
+    if (isTouching && !controlsDragging) {
       document.getElementById("footer").innerHTML = " isTouching = true ";
       if (orbitRef.current) {
         let firstAzAng = orbitRef.current.getAzimuthalAngle();
-        if (firstAzAng === endAzimuthAng) {
-          document.getElementById("footer").innerHTML =
-            " controls aren't changing even though touches are registered ";
-          window.location.reload();
-        }
-        // setTimeout(() => {
-        //   if (isTouching) {
-        //     let secondAzAng = orbitRef.current.getAzimuthalAngle();
-        //     if (firstAzAng === secondAzAng) {
-        //       document.getElementById("footer").innerHTML =
-        //         " controls aren't changing even though touches are registered ";
-        //       window.location.reload();
-        //     }
-        //   }
-        // }, "250");
+        let secondAzAng = 0;
+        let thirdAzAng = 0;
+        let fourthAzAng = 0;
+        let fifthAzAng = 0;
+        setTimeout(() => {
+          if (isTouching && !controlsDragging) {
+            secondAzAng = orbitRef.current.getAzimuthalAngle();
+            document.getElementById("footer").innerHTML =
+              " running stuck check 1 ";
+          }
+          setTimeout(() => {
+            if (isTouching && !controlsDragging) {
+              thirdAzAng = orbitRef.current.getAzimuthalAngle();
+              document.getElementById("footer").innerHTML =
+                " running stuck check 2 ";
+            }
+            setTimeout(() => {
+              if (isTouching && !controlsDragging) {
+                fourthAzAng = orbitRef.current.getAzimuthalAngle();
+                document.getElementById("footer").innerHTML =
+                  " running stuck check 3 ";
+              }
+              setTimeout(() => {
+                if (isTouching && !controlsDragging) {
+                  fifthAzAng = orbitRef.current.getAzimuthalAngle();
+                  document.getElementById("footer").innerHTML =
+                    " running stuck check 4 ";
+                  let azArr = [
+                    firstAzAng,
+                    secondAzAng,
+                    thirdAzAng,
+                    fourthAzAng,
+                    fifthAzAng,
+                  ];
+                  if (allEqual(azArr)) {
+                    document.getElementById("footer").innerHTML =
+                      " controls aren't changing, force reload ";
+                    window.location.reload();
+                  }
+                }
+              }, "600");
+            }, "450");
+          }, "300");
+        }, "150");
       }
     }
   }, [isTouching]);
