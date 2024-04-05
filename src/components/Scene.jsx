@@ -96,19 +96,20 @@ export default function Scene({
     // }
     // console.log("subtotal:", subtotal);
     if (window.Snipcart) {
-      if (!snipcartLoaded) {
-        setSnipcartLoaded(true);
-        console.log("setting snipcartLoaded state = true");
-        console.log("window.Snipcart.api: ", window.Snipcart);
-      } else if (snipcartLoaded) {
-        if (cart.items) setCartCount(cart.items.count);
-      }
+      setSnipcartLoaded(true);
+
+      console.log("setting snipcartLoaded state = true");
+      console.log("window.Snipcart.api: ", window.Snipcart);
+      if (cart.items) setCartCount(cart.items.count);
       // window.Snipcart.api.theme.cart.open();
+    } else {
+      setSnipcartLoaded(false);
     }
+
     return () => {
       setSnipcartLoaded(false);
     };
-  }, []);
+  }, [window.Snipcart]);
 
   // const unsubscribe = window.Snipcart.events.on("item.removed", (cartItem) => {
   //   console.log("item removed: ", cartItem);
@@ -327,7 +328,11 @@ export default function Scene({
   useEffect(() => {
     if (snipcartLoaded) {
       if (cart) {
-        if (cart.items) setCartCount(cart.items.count);
+        if (cart.items) {
+          setCartCount(cart.items.count);
+          document.getElementById("footer").innerHTML =
+            `snipcartLoaded = ${snipcartLoaded}, cartCount = ${cart.items.count}, cart = ${cart}`;
+        }
       }
     }
   }, [snipcartLoaded, cart, controlsDragging]);
@@ -567,40 +572,68 @@ export default function Scene({
         let thirdAzAng = 0;
         let fourthAzAng = 0;
         let fifthAzAng = 0;
+        let azArr = [
+          firstAzAng,
+          secondAzAng,
+          thirdAzAng,
+          fourthAzAng,
+          fifthAzAng,
+        ];
         setTimeout(() => {
           if (isTouching && !controlsDragging) {
             secondAzAng = orbitRef.current.getAzimuthalAngle();
             document.getElementById("footer").innerHTML =
               " running stuck check 1 ";
+            if (firstAzAng === secondAzAng) {
+              document.getElementById("footer").innerHTML =
+                " current stuck check = true ";
+            } else {
+              document.getElementById("footer").innerHTML =
+                " current stuck check = false ";
+            }
           }
           setTimeout(() => {
             if (isTouching && !controlsDragging) {
               thirdAzAng = orbitRef.current.getAzimuthalAngle();
               document.getElementById("footer").innerHTML =
                 " running stuck check 2 ";
+              if (firstAzAng === secondAzAng && firstAzAng === thirdAzAng) {
+                document.getElementById("footer").innerHTML =
+                  " current stuck check = true ";
+              } else {
+                document.getElementById("footer").innerHTML =
+                  " current stuck check = false ";
+              }
             }
             setTimeout(() => {
               if (isTouching && !controlsDragging) {
                 fourthAzAng = orbitRef.current.getAzimuthalAngle();
                 document.getElementById("footer").innerHTML =
                   " running stuck check 3 ";
+                if (
+                  firstAzAng === secondAzAng &&
+                  firstAzAng === thirdAzAng &&
+                  firstAzAng === fourthAzAng
+                ) {
+                  document.getElementById("footer").innerHTML =
+                    " current stuck check = true ";
+                } else {
+                  document.getElementById("footer").innerHTML =
+                    " current stuck check = false ";
+                }
               }
               setTimeout(() => {
                 if (isTouching && !controlsDragging) {
                   fifthAzAng = orbitRef.current.getAzimuthalAngle();
                   document.getElementById("footer").innerHTML =
                     " running stuck check 4 ";
-                  let azArr = [
-                    firstAzAng,
-                    secondAzAng,
-                    thirdAzAng,
-                    fourthAzAng,
-                    fifthAzAng,
-                  ];
                   if (allEqual(azArr)) {
                     document.getElementById("footer").innerHTML =
                       " controls aren't changing, force reload ";
                     window.location.reload();
+                  } else {
+                    document.getElementById("footer").innerHTML =
+                      " current stuck check = false ";
                   }
                 }
               }, "600");
@@ -805,7 +838,7 @@ export default function Scene({
   // return null;
   // });
 
-  const stagePositionY = -0.25;
+  const stagePositionY = -0.2;
 
   const dirLightXPosition = 2.5; // 2.5
   const dirLightYPosition = 3.6; // 3.6
