@@ -3,7 +3,7 @@ import { useRef, useState, useEffect } from "react";
 import * as THREE from "three";
 // import { CameraHelper } from "three";
 // import { DirectionalLightHelper } from "three";
-// import { useFrame } from "@react-three/fiber";
+import { useFrame } from "@react-three/fiber";
 import {
   OrbitControls,
   // useHelper,
@@ -314,42 +314,101 @@ export default function Scene({
   // const shadowCameraRef = useRef();
   // useHelper(shadowCameraRef, CameraHelper, 1, "lightBlue");
 
+  // reload window if orbit controls are broken by unusual gestures / touch behavior on mobile devices (especially iOS)
+  const [prevStartAzimuthAng, setPrevStartAzimuthAng] = useState(0);
+  const [prevEndAzimuthAng, setPrevEndAzimuthAng] = useState(0);
+  const [startAzimuthAng, setStartAzimuthAng] = useState(0);
+  const [endAzimuthAng, setEndAzimuthAng] = useState(0);
+  const [isTouching, setIsTouching] = useState(false);
+  const [dragTime, setDragTime] = useState(0);
+  const [brokenCount, setBrokenCount] = useState(0);
+  // const [azCheckCount, setAzCheckCount] = useState(0);
+  // const [azCheckAng, setAzCheckAng] = useState(0);
+
   useEffect(() => {
     // prevent swipe back navigation gesture on iOS mobile devices
     const element = document.querySelector("canvas");
-
     element.addEventListener("touchstart", (e) => {
+      setIsTouching(true);
+      document.getElementById("footer").innerHTML +=
+        " touchstart registered (outside of controls) ";
       // is not near edge of view, exit
-      // if (e.pageX > 20 && e.pageX < window.innerWidth - 20) return; // this works pretty well, but can be broken with super rapid random gestures around edge on mobile iOS device
-      if (e.pageX > 40 && e.pageX < window.innerWidth - 40) return; // try out with wider area / 40 instead of 20, not sure if will make a difference in above breaking bug ^, but does make some improvement in ability to break with edge swipes
+      // if (e.pageX > 20 && e.pageX < window.innerWidth - 20) return; // suggested by reference showing this method of preventing edge swipes iOS
+      if (e.pageX > 30 && e.pageX < window.innerWidth - 30) return;
       // prevent swipe to navigate gesture
       e.preventDefault();
     });
+    element.addEventListener("touchmove", (e) => {
+      setIsTouching(true);
+      // document.getElementById("footer").innerHTML +=
+      //   "   touchmove registered (outside of controls)";
+    });
+    element.addEventListener("touchend", (e) => {
+      setIsTouching(false);
+      document.getElementById("footer").innerHTML +=
+        " touchend registered (outside of controls) ";
+    });
     // setInitialLoad(true);
     if (orbitRef.current) {
-      // console.log(orbitRef.current.object);
       orbitRef.current.addEventListener(
         "start",
         () => {
-          // console.log("start");
+          // let position = orbitRef.current.getAzimuthalAngle(); // orbitRef.current.object.position.x;
+          // if (position === null) {
+          //   position = "null";
+          // }
+          // document.getElementById("footer").innerHTML =
+          //   "start touch registered ";
+          // document.getElementById("footer").innerHTML += position;
+          console.log("start");
+          setDragTime(0);
+          // console.log(
+          //   "from `start` controls listener: orbitControls object.object.fov: ",
+          //   orbitRef.current.object.position,
+          // );
           setControlsDragging(true);
-          orbitRef.current.autoRotate = false;
+          if (orbitRef.current.autoRotate) orbitRef.current.autoRotate = false;
+          setStartAzimuthAng(orbitRef.current.getAzimuthalAngle());
         },
         true,
       );
-      // orbitRef.current.addEventListener(
-      //   "change",
-      //   () => {
-      //     console.log("change");
-      //     setControlsDragging(true);
-      //   },
-      //   true,
-      // );
+      orbitRef.current.addEventListener(
+        "change",
+        () => {
+          // let position = orbitRef.current.getAzimuthalAngle(); // orbitRef.current.object.position.x;
+          // if (position === null) {
+          //   position = "null";
+          // }
+          // document.getElementById("footer").innerHTML =
+          //   "change touch registered ";
+          // document.getElementById("footer").innerHTML += position;
+          // console.log("change");
+          // console.log(
+          //   "from `change` controls listener: orbitControls orbitRef.current.object.position: ",
+          //   orbitRef.current.object.position,
+          // );
+          // setPreviousAzimuthAng(orbitRef.current.getAzimuthalAngle());
+          // setCurrentAzimuthAng(orbitRef.current.getAzimuthalAngle());
+          // setControlsDragging(true);
+        },
+        true,
+      );
       orbitRef.current.addEventListener(
         "end",
         () => {
-          // console.log("end");
+          // let position = orbitRef.current.getAzimuthalAngle(); // orbitRef.current.object.position.x;
+          // if (position === null) {
+          //   position = "null";
+          // }
+          // document.getElementById("footer").innerHTML = "end touch registered ";
+          // document.getElementById("footer").innerHTML += position;
+          console.log("end");
+          // console.log(
+          //   "from `end` controls listener: orbitControls orbitRef.current.object.position: ",
+          //   orbitRef.current.object.position,
+          // );
           setControlsDragging(false);
+          setEndAzimuthAng(orbitRef.current.getAzimuthalAngle());
         },
         true,
       );
@@ -359,18 +418,23 @@ export default function Scene({
         // prevent swipe to navigate gesture
         console.log("removed event listener, 'touchstart'");
       });
-
+      element.removeEventListener("touchmove", (e) => {
+        console.log("removed event listener, 'touchmove'");
+      });
+      element.removeEventListener("touchend", (e) => {
+        console.log("removed event listener, 'touchend'");
+      });
       if (orbitRef.current) {
         orbitRef.current.removeEventListener(
           "start",
           () => console.log("removed event listener, 'start'"),
           true,
         );
-        // orbitRef.current.removeEventListener(
-        //   "change",
-        //   () => console.log("removed event listener, 'change'"),
-        //   true,
-        // );
+        orbitRef.current.removeEventListener(
+          "change",
+          () => console.log("removed event listener, 'change'"),
+          true,
+        );
         orbitRef.current.removeEventListener(
           "end",
           () => console.log("removed event listener, 'end'"),
@@ -380,6 +444,134 @@ export default function Scene({
       }
     };
   }, []);
+
+  // useEffect(() => {
+  //   if (isTouching && !controlsDragging) {
+  //     if (orbitRef.current) {
+  //       setAzCheckAng(orbitRef.current.getAzimuthalAngle());
+  //     }
+  //   }
+  // }, [isTouching]);
+
+  useFrame((state, delta) => {
+    if (controlsDragging) {
+      setDragTime(dragTime + delta);
+      console.log("controls dragging for ", dragTime);
+    }
+    // if (isTouching && !controlsDragging) {
+    //   document.getElementById("footer").innerHTML =
+    //     " isTouching = true & controlsDragging = false ";
+    //   if (orbitRef.current) {
+    //     let checkAzAng = orbitRef.current.getAzimuthalAngle();
+    //     if (checkAzAng === azCheckAng || checkAzAng === endAzimuthAng) {
+    //       // document.getElementById("footer").innerHTML =
+    //       //   " controls aren't changing even though touches are registered ";
+    //       document.getElementById("footer").innerHTML +=
+    //         " useFrame azCheck: matched azimuth angles ";
+    //       setAzCheckCount(azCheckCount + 1);
+    //       // window.location.reload();
+    //     }
+    //   }
+    // }
+  });
+
+  // useEffect(() => {
+  //   if (azCheckCount === 1) {
+  //     document.getElementById("footer").innerHTML =
+  //       " useFrame azCheck: controls stuck, reloading ";
+  //     window.location.reload();
+  //   }
+  // }, [azCheckCount]);
+
+  const allEqual = (arr) => arr.every((v) => v === arr[0]);
+  useEffect(() => {
+    if (controlsDragging) {
+      setPrevEndAzimuthAng(endAzimuthAng);
+      document.getElementById("footer").innerHTML =
+        " controls dragging = true ";
+      document.getElementById("footer").innerHTML +=
+        ` start: ${startAzimuthAng} end: ${endAzimuthAng} `;
+      document.getElementById("footer").innerHTML += ` dragTime: ${dragTime} `;
+
+      document.getElementById("footer").innerHTML +=
+        ` prevStart: ${prevStartAzimuthAng} prevEnd: ${prevEndAzimuthAng} `;
+    } else {
+      setPrevStartAzimuthAng(startAzimuthAng);
+      if (startAzimuthAng !== 0 && endAzimuthAng !== 0) {
+        let startAzString = String(startAzimuthAng);
+        let endAzString = String(endAzimuthAng);
+        let prevStartAzString = String(prevStartAzimuthAng);
+        let prevEndAzString = String(prevEndAzimuthAng);
+
+        startAzString = startAzString.substring(
+          0,
+          startAzString.indexOf(".") + 7,
+        );
+        endAzString = endAzString.substring(0, endAzString.indexOf(".") + 7);
+        prevStartAzString = prevStartAzString.substring(
+          0,
+          prevStartAzString.indexOf(".") + 7,
+        );
+        prevEndAzString = prevEndAzString.substring(
+          0,
+          prevEndAzString.indexOf(".") + 7,
+        );
+        let azArr = [
+          startAzString,
+          endAzString,
+          prevStartAzString,
+          prevEndAzString,
+        ];
+        document.getElementById("footer").innerHTML =
+          " controls dragging = false ";
+        document.getElementById("footer").innerHTML +=
+          ` start: ${startAzString} end: ${endAzString} `;
+        document.getElementById("footer").innerHTML +=
+          ` dragTime: ${dragTime} `;
+        document.getElementById("footer").innerHTML +=
+          ` prevStart: ${prevStartAzString} prevEnd: ${prevEndAzString} `;
+
+        if (allEqual(azArr) && dragTime > 0.5 && brokenCount < 3) {
+          document.getElementById("footer").innerHTML +=
+            "might need to reset page, controls could be broken ";
+          setBrokenCount(brokenCount + 1);
+        }
+      }
+    }
+  }, [controlsDragging]);
+
+  useEffect(() => {
+    if (brokenCount === 3) {
+      document.getElementById("footer").innerHTML +=
+        "confirmed need to reset page, controls are broken ";
+      window.location.reload();
+    }
+  }, [brokenCount]);
+
+  // replace this azimuth angle check to see if controls are broken with useFrame check above
+  useEffect(() => {
+    if (isTouching) {
+      document.getElementById("footer").innerHTML = " isTouching = true ";
+      if (orbitRef.current) {
+        let firstAzAng = orbitRef.current.getAzimuthalAngle();
+        if (firstAzAng === endAzimuthAng) {
+          document.getElementById("footer").innerHTML =
+            " controls aren't changing even though touches are registered ";
+          window.location.reload();
+        }
+        // setTimeout(() => {
+        //   if (isTouching) {
+        //     let secondAzAng = orbitRef.current.getAzimuthalAngle();
+        //     if (firstAzAng === secondAzAng) {
+        //       document.getElementById("footer").innerHTML =
+        //         " controls aren't changing even though touches are registered ";
+        //       window.location.reload();
+        //     }
+        //   }
+        // }, "250");
+      }
+    }
+  }, [isTouching]);
 
   // animation camera target on item click
   const controlsTargetVec = new THREE.Vector3();
@@ -503,10 +695,11 @@ export default function Scene({
             y: currentItemSelected.position.y + yPlus,
             z: currentItemSelected.position.z + zPlus,
             ease: "easeIn",
-            // onStart: () => {
-            //   setOpen(!open);
-            //   setInfoBoxIcon(!infoBoxIcon);
-            // },
+            onStart: () => {
+              // setOpen(!open);
+              // setInfoBoxIcon(!infoBoxIcon);
+              orbitRef.current.enabled = false;
+            },
             onUpdate: () => {
               setTargetVec(controlsPositionVec);
               orbitRef.current.object.position.set(
@@ -519,6 +712,7 @@ export default function Scene({
             },
             onComplete: () => {
               setTargetVec(controlsPositionVec);
+              orbitRef.current.enabled = true;
             },
           });
         }
@@ -526,6 +720,7 @@ export default function Scene({
     }
   }, [showBackground]);
 
+  // previous useFrame for lerping the camera position to zoom in on object, replaced with gsap camera position animation above ^
   // useFrame(() => {
   //   if (
   //     !controlsDragging &&

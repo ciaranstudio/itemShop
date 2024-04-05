@@ -387,7 +387,7 @@ export default function OrderBox({
             {currentItemSelected.itemTitle}
           </BuyButton>
         </div>
-        <div className="footer">Eli Gfell Studio</div>
+        <div id="footer">Eli Gfell Studio</div>
         <Dialog
           fullScreen
           open={openDialog}

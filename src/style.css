@@ -76,7 +76,7 @@ body,
   max-width: 100% !important;
 } */
 
-.footer {
+#footer {
   position: absolute;
   bottom: 0;
   /* right: 295px; */
