@@ -384,8 +384,6 @@ export default function OrderBox({
           className="photos"
           style={{
             display: showPhotos ? "block" : "none",
-            width: !mobileView ? "32rem" : "24rem",
-            right: !mobileView ? "calc(50% - 16rem)" : "calc(50% - 12rem)",
           }}
         >
           <IconButton
