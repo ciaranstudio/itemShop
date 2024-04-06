@@ -524,7 +524,7 @@ img {
   --bgColor-input-checked: var(--borderColor-input-hover);
   --bgColor-input-disabled: hsl(210, 10%, 14%);
   --bgColor-input-error: var(--bgColor-input);
-  --bgColor-input-autofill: hsl(210, 60%, 15%);
+  --bgColor-input-autofill: hsl(208, 35%, 61%);
   /* --bgColor-input-autofill: hsl(210, 60%, 15%); */
 
   --bgColor-buttonPrimary: hsl(220, 70%, 22%);
