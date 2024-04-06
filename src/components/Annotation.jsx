@@ -23,6 +23,7 @@ export const Annotation = ({
   setShowPartOptions,
   handlePartOption,
   getRandomInt,
+  positionBottom,
   // animateParts,
 }) => {
   const url = model;
@@ -167,8 +168,33 @@ export const Annotation = ({
             currentAnnotations.push(
               <Html
                 key={o.uuid}
-                position={[o.position.x, o.position.y, o.position.z]}
+                position={
+                  positionBottom
+                    ? [
+                        0,
+                        itemName.includes("shelf") &&
+                        itemName.includes("B") &&
+                        itemName.includes("16")
+                          ? 0.9
+                          : itemName.includes("shelf") &&
+                              itemName.includes("B") &&
+                              itemName.includes("32")
+                            ? 1.2
+                            : itemName.includes("shelf") &&
+                                itemName.includes("A") &&
+                                itemName.includes("32")
+                              ? 0.9
+                              : itemName.includes("shelf") &&
+                                  itemName.includes("A") &&
+                                  itemName.includes("16")
+                                ? 1.2
+                                : -0.25,
+                        0,
+                      ]
+                    : [o.position.x, o.position.y, o.position.z]
+                }
                 distanceFactor={0.21} // 0.1875 decent on xr and se // 0.18 good for iphone se //  0.2 looked good on same iphone xr too // 0.235 good for iphone xr portrait
+                center={positionBottom ? true : false}
                 style={{
                   display:
                     currentItemName === itemName &&

@@ -226,20 +226,15 @@ img {
   cursor: grabbing;
 }
 
-.annotation::before {
+/* .annotation::before {
   content: "";
   position: absolute;
   top: 5rem;
   left: -6rem;
   width: 6rem;
-  height: 0.5rem;
-  /* left: -120px; */
-  /* left: -600px; */
-  /* height: 5px; */
-  /* width: 120px; */
-  /* width: 600px; */
   background: lightGrey;
-}
+  height: 0.5rem;
+} */
 
 .annotation-options {
   display: grid;
