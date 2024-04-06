@@ -710,9 +710,9 @@ export default function Scene({
             yPlus = 0.5;
             zPlus = -0.75;
           } else if (currentItemSelected.itemName === "block") {
-            xPlus = 0;
-            yPlus = 0.5;
-            zPlus = 1.75;
+            xPlus = -0.75; // 0
+            yPlus = 0.5; // 0.5
+            zPlus = -1.25; // 1.75
           } else if (currentItemSelected.itemName === "horse") {
             xPlus = -1.75;
             yPlus = 1;

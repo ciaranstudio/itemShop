@@ -397,11 +397,15 @@ img {
   /* ----------------- 
         Colors
     ----------------- */
-  --color-default: hsl(0, 0%, 90%);
-  --color-alt: hsl(0, 0%, 50%);
-  --color-icon: hsl(200, 90%, 40%);
+  --color-default: hsl(0, 0%, 7%);
+  /* --color-default: hsl(0, 0%, 90%); */
+  --color-alt: hsl(0, 8%, 97%);
+  /* --color-alt: hsl(0, 0%, 50%); */
+  --color-icon: hsl(200, 91%, 13%);
+  /* --color-icon: hsl(200, 90%, 40%); */
   --color-success: hsl(144, 50%, 55%);
-  --color-error: hsl(6, 55%, 60%);
+  --color-error: hsl(6, 86%, 80%);
+  /* --color-error: hsl(6, 55%, 60%); */
 
   --color-link: hsl(220, 70%, 55%);
   --color-link-hover: hsl(220, 70%, 65%);
@@ -424,8 +428,10 @@ img {
   --color-inputIcon-error: var(--color-error);
   --color-inputPlaceholder: var(--color-alt);
 
-  --color-buttonPrimary: var(--color-default);
+  --color-buttonPrimary: hsl(0, 0%, 100%);
+  /* --color-buttonPrimary: var(--color-default); */
   --color-buttonPrimary-hover: hsl(0, 0%, 100%);
+  /* --color-buttonPrimary-hover: hsl(0, 0%, 100%); */
   --color-buttonPrimary-active: var(--color-buttonPrimary);
   --color-buttonPrimary-focus: var(--color-buttonPrimary);
   --color-buttonPrimary-disabled: var(--color-alt);
@@ -491,29 +497,38 @@ img {
   /* ----------------- 
         Background colors
     ----------------- */
-  --bgColor-default: hsl(210, 10%, 11%);
-  --bgColor-alt: hsl(210, 10%, 9%);
+  --bgColor-default: hsl(209, 65%, 83%);
+  /* --bgColor-default: hsl(210, 10%, 11%); */
+  --bgColor-alt: hsl(209, 65%, 83%);
+  /* --bgColor-alt: hsl(210, 10%, 9%); */
   --bgColor-success: hsl(144, 70%, 15%);
-  --bgColor-error: hsl(6, 50%, 15%);
-  --bgColor-info: hsl(210, 55%, 15%);
+  --bgColor-error: hsl(6, 30%, 49%);
+  /* --bgColor-error: hsl(6, 50%, 15%); */
+  --bgColor-info: hsl(210, 76%, 69%);
+  /* --bgColor-info: hsl(210, 55%, 15%); */
 
-  --bgColor-modal: hsl(210, 10%, 7%);
-  --bgColor-modalVeil: hsla(210, 10%, 7%, 0.75);
+  --bgColor-modal: hsl(208, 35%, 61%);
+  /* --bgColor-modal: hsl(210, 10%, 7%); */
+  --bgColor-modalVeil: hsl(208, 35%, 61%);
+  /* --bgColor-modalVeil: hsla(210, 10%, 7%, 0.75); */
 
   --bgColor-link: none;
   --bgColor-link-hover: none;
   --bgColor-link-active: none;
   --bgColor-link-focus: hsl(210, 55%, 10%);
 
-  --bgColor-input: hsl(210, 10%, 10%);
+  --bgColor-input: hsl(209, 65%, 83%);
+  /* --bgColor-input: hsl(210, 10%, 10%); */
   --bgColor-input-hover: var(--bgColor-input);
   --bgColor-input-focus: var(--bgColor-input);
   --bgColor-input-checked: var(--borderColor-input-hover);
   --bgColor-input-disabled: hsl(210, 10%, 14%);
   --bgColor-input-error: var(--bgColor-input);
   --bgColor-input-autofill: hsl(210, 60%, 15%);
+  /* --bgColor-input-autofill: hsl(210, 60%, 15%); */
 
   --bgColor-buttonPrimary: hsl(220, 70%, 22%);
+  /* --bgColor-buttonPrimary: hsl(220, 70%, 22%); */
   --bgColor-buttonPrimary-hover: hsl(220, 70%, 30%);
   --bgColor-buttonPrimary-active: var(--bgColor-buttonPrimary);
   --bgColor-buttonPrimary-focus: var(--bgColor-buttonPrimary);
@@ -537,8 +552,10 @@ img {
   --bgColor-buttonDanger-success: hsl(144, 66%, 30%);
   --bgColor-buttonDanger-error: hsl(6, 60%, 35%);
 
-  --bgColor-badge: hsl(210, 55%, 10%);
-  --bgColor-badge-active: hsl(210, 60%, 15%);
+  --bgColor-badge: hsl(210, 60%, 70%);
+  /* --bgColor-badge: hsl(210, 55%, 10%); */
+  --bgColor-badge-active: hsl(210, 100%, 77%);
+  /* --bgColor-badge-active: hsl(210, 60%, 15%); */
   --bgColor-badge-disabled: hsl(210, 10%, 11%);
 
   /* ----------------- 
