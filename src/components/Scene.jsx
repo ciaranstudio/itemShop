@@ -31,7 +31,7 @@ import { Floor } from "./room/Floor.jsx";
 import { Walls } from "./room/Walls.jsx";
 // import { ShelfPositions } from "./room/ShelfPositions.jsx";
 
-import { objects } from "../data/objects.jsx";
+import { objects, unselectedItem } from "../data/objects.jsx";
 import { textures } from "../data/textures.jsx";
 import { shopItems } from "../data/objects.jsx";
 
@@ -56,6 +56,7 @@ export default function Scene({
   animateParts,
   handlePartOption,
   getRandomInt,
+  randomAllItemsParts,
 }) {
   const { height, width } = useWindowDimensions();
   // useEffect(() => {
@@ -81,7 +82,6 @@ export default function Scene({
     // console.log("subtotal:", subtotal);
     if (window.Snipcart) {
       setSnipcartLoaded(true);
-
       console.log("setting snipcartLoaded state = true");
       console.log("window.Snipcart.api: ", window.Snipcart);
       if (cart.items) setCartCount(cart.items.count);
@@ -253,7 +253,6 @@ export default function Scene({
       element.position.x === tempObjectPosition.x &&
       element.position.y === tempObjectPosition.y &&
       element.position.z === tempObjectPosition.z;
-
     if (positionMatch) {
       // console.log(
       //   "shopItems.find(positionMatch): ",
@@ -261,6 +260,9 @@ export default function Scene({
       // );
       let matchedItem = shopItems.find(positionMatch);
       // console.log("matchedItem from handleClick function: ", matchedItem);
+      if (currentItemSelected === unselectedItem) {
+        randomAllItemsParts(false);
+      }
       setPreviousItemSelected(currentItemSelected);
       setCurrentItemSelected(matchedItem);
       if (!open && infoBoxIcon && showBackground) {

@@ -136,9 +136,11 @@ function App() {
   );
 
   const handlePartOption = (e, itemName, partName, color, stopPropogation) => {
-    e.preventDefault();
-    if (stopPropogation) {
-      e.stopPropagation();
+    if (e) {
+      e.preventDefault();
+      if (stopPropogation) {
+        e.stopPropagation();
+      }
     }
     if (color === "white") {
       updatePartTexture(itemName, partName, textures.whiteTexture);
@@ -185,7 +187,10 @@ function App() {
   };
 
   const randomAllItemsParts = (e) => {
-    e.preventDefault(); //  is this necessary if it is also being called in handlePartOption function ? Remove from one of them or make conditional in handlePartOption like e.stopPropogation ?
+    if (e) {
+      //  is this necessary if it is also being called in handlePartOption function ? Remove from one of them or make conditional in handlePartOption like e.stopPropogation ?
+      e.preventDefault();
+    }
     let randomAllItemsColors = shopItems.map((item) => {
       let itemColors = item.parts.map((part) => {
         let color = allOptions[getRandomInt(allOptions.length)];
@@ -230,6 +235,7 @@ function App() {
               animateParts={animateParts}
               handlePartOption={handlePartOption}
               getRandomInt={getRandomInt}
+              randomAllItemsParts={randomAllItemsParts}
             />
           </SnipcartProvider>
         </Suspense>
