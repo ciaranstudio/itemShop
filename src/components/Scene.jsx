@@ -21,7 +21,7 @@ import {
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
-import { Perf } from "r3f-perf";
+// import { Perf } from "r3f-perf";
 
 import { ItemPart } from "./ItemPart.jsx";
 import { Bag } from "./Bag.jsx";
@@ -711,37 +711,37 @@ export default function Scene({
           let zPlus = -1.5;
 
           if (currentItemSelected.itemName === "gramps") {
-            xPlus = -1.75;
-            yPlus = 0.5;
-            zPlus = -0.75;
-          } else if (currentItemSelected.itemName === "block") {
-            xPlus = -0.75; // 0
+            xPlus = -1.5; // -1.75
             yPlus = 0.5; // 0.5
-            zPlus = -1.25; // 1.75
+            zPlus = -0.5; // -0.75
+          } else if (currentItemSelected.itemName === "block") {
+            xPlus = -1; // 0 // -0.75
+            yPlus = 0.5; // 0.5 // 0.5
+            zPlus = -1.5; // 1.75 // -1.25
           } else if (currentItemSelected.itemName === "horse") {
-            xPlus = -1.75;
-            yPlus = 1;
-            zPlus = -1.75;
+            xPlus = -1.5; // -1.75
+            yPlus = 1; // 1
+            zPlus = -1.5; // -1.75
           } else if (currentItemSelected.itemName === "squatter") {
-            xPlus = 1.75;
-            yPlus = 0.5;
-            zPlus = 1;
+            xPlus = 1.75; // 1.75
+            yPlus = 0.5; // 0.5
+            zPlus = 1; // 1
           } else if (currentItemSelected.itemName === "shelfA16") {
-            xPlus = 1.5;
-            yPlus = 1.25;
-            zPlus = 1.5;
+            xPlus = 1.5; // 1.5
+            yPlus = 1.25; // 1.25
+            zPlus = 1.5; // 1.5
           } else if (currentItemSelected.itemName === "shelfA32") {
-            xPlus = 1.5;
-            yPlus = 1;
-            zPlus = 1.5;
+            xPlus = 1.5; // 1.5
+            yPlus = 1; // 1
+            zPlus = 1.5; // 1.5
           } else if (currentItemSelected.itemName === "shelfB16") {
-            xPlus = -1.5;
-            yPlus = 1;
-            zPlus = -1.5;
+            xPlus = -1.5; // -1.5
+            yPlus = 1; //  1
+            zPlus = -1.5; // -1.5
           } else if (currentItemSelected.itemName === "shelfB32") {
-            xPlus = -1.5;
-            yPlus = 1.25;
-            zPlus = -1.5;
+            xPlus = -1.5; // -1.5
+            yPlus = 1.25; // 1.25
+            zPlus = -1.5; // -1.5
           }
 
           controlsPositionVec.set(
@@ -829,7 +829,7 @@ export default function Scene({
   // return null;
   // });
 
-  const stagePositionY = -0.2;
+  const stagePositionY = -0.15;
 
   const dirLightXPosition = 2.5; // 2.5
   const dirLightYPosition = 3.6; // 3.6
@@ -888,17 +888,19 @@ export default function Scene({
   return (
     <>
       {/* <Perf position="bottom-left" /> */}
+
+      {/* Logo and Cart/Bag at top of screen */}
       <ScreenSpace depth={1}>
         <pointLight position={[width / 2850, 0.2, 0.1]} intensity={0.15} />
         <mesh
           position={
-            width > 414
-              ? [width / 2600, 0.345, 0]
+            width >= 376 && width < 600 // width >= 376 && width < 800
+              ? [width / 2800, 0.345, 0] // [width / 2600, 0.345, 0]
               : width < 376
-                ? [0.155, 0.345, 0]
-                : // : width < 330
-                  //   ? [0.19, 0.345, 0]
-                  [0.19, 0.345, 0]
+                ? [0.175, 0.345, 0] // [0.19, 0.345, 0]
+                : width >= 600 && width < 1100
+                  ? [0.23, 0.345, 0]
+                  : [width / 2800, 0.345, 0]
           }
           scale={0.125}
           onClick={handleCartClick}
@@ -915,13 +917,13 @@ export default function Scene({
 
         <mesh
           position={
-            width > 414
-              ? [-width / 2800, 0.36, 0]
+            width >= 376 && width < 600 //  width >= 376 && width < 800
+              ? [-width / 3100, 0.36, 0] // [-width / 2800, 0.36, 0]
               : width < 376
-                ? [-0.14, 0.36, 0]
-                : // : width < 330
-                  //   ? [-0.17, 0.36, 0]
-                  [-0.17, 0.36, 0]
+                ? [-0.165, 0.36, 0] // [-0.17, 0.36, 0]
+                : width >= 600 && width < 1100
+                  ? [-0.21, 0.36, 0]
+                  : [-width / 3100, 0.36, 0]
           }
           onPointerOver={() => hover(true)}
           onPointerOut={() => hover(false)}
@@ -931,6 +933,32 @@ export default function Scene({
             currentColor={textures.blueTape}
             currentTexture={textures.paintedTexture}
           />
+        </mesh>
+        {/* Arrow icon at bottom of screen */}
+        <mesh
+          position={
+            width >= 376 && width < 600
+              ? [0, -0.275, 0]
+              : width < 376
+                ? [0, -0.275, 0]
+                : width >= 600 && width < 1100
+                  ? [0, -0.275, 0]
+                  : [0, -0.275, 0]
+          }
+          scale={0.04}
+          rotation={[0, 0.75, 0]}
+          onClick={handleCartClick}
+          onPointerOver={() => hover(true)}
+          onPointerOut={() => hover(false)}
+        >
+          {/* <Bag
+            currentColor={textures.brownBag}
+            currentTexture={textures.paintedTexture}
+            cartCount={cartCount}
+            handleCartClick={handleCartClick}
+          /> */}
+          <boxGeometry />
+          <meshStandardMaterial color="red" />
         </mesh>
       </ScreenSpace>
 

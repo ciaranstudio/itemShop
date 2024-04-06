@@ -381,6 +381,18 @@ img {
     width: 20rem;
     right: calc(50% - 10rem);
   }
+  .colorBtn {
+    padding: 6rem;
+  }
+  .colorExitBtn {
+    font-size: 9rem;
+  }
+  .colorBgrdBtn {
+    font-size: 9rem;
+  }
+  .colorShuffleBtn {
+    font-size: 9rem;
+  }
 }
 @media only screen and (min-width: 381px) {
   .photos {
