@@ -897,7 +897,7 @@ export default function Scene({
             width >= 376 && width < 600 // width >= 376 && width < 800
               ? [0.175, 0.345, 0] // looks right on actual device [width / 2600, 0.345, 0] // looks right on chrome simulator
               : width < 376
-                ? [0.175, 0.345, 0] // [0.19, 0.345, 0]
+                ? [0.21, 0.345, 0] // looks right on chrome simulator [0.175, 0.345, 0]
                 : width >= 600 && width < 1100
                   ? [0.23, 0.345, 0]
                   : [width / 2600, 0.345, 0]
@@ -920,7 +920,7 @@ export default function Scene({
             width >= 376 && width < 600 //  width >= 376 && width < 800
               ? [-0.165, 0.36, 0] // looks right on actual device [-width / 2800, 0.36, 0] // looks right on chrome simulator [-width / 3100, 0.36, 0]
               : width < 376
-                ? [-0.165, 0.36, 0] // [-0.17, 0.36, 0]
+                ? [-0.19, 0.36, 0] // looks right on chrome simulator [-0.165, 0.36, 0]
                 : width >= 600 && width < 1100
                   ? [-0.21, 0.36, 0]
                   : [-width / 2800, 0.36, 0]
@@ -940,7 +940,7 @@ export default function Scene({
             width >= 376 && width < 600
               ? [0, -0.275, 0]
               : width < 376
-                ? [0, -0.275, 0]
+                ? [0, -0.275, 0] // looks right on chrome simulator [0, -0.275, 0]
                 : width >= 600 && width < 1100
                   ? [0, -0.275, 0]
                   : [0, -0.275, 0]
