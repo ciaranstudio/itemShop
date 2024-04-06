@@ -384,21 +384,29 @@ export const Annotation = ({
     <mesh
       position={
         animation === "negX"
-          ? [-animDist, 0, 0]
+          ? [positionBottom ? 0 : -animDist, 0, 0]
           : animation === "posX"
-            ? [animDist, 0, 0]
+            ? [positionBottom ? 0 : animDist, 0, 0]
             : animation === "negZ"
-              ? [0, 0, -animDist]
+              ? [0, 0, positionBottom ? 0 : -animDist]
               : animation === "posZ"
-                ? [0, 0, animDist]
+                ? [0, 0, positionBottom ? 0 : animDist]
                 : animation === "posY1"
-                  ? [0, animDist, 0]
+                  ? [0, positionBottom ? 0 : animDist, 0]
                   : animation === "posY2"
-                    ? [0, animDist + animDist / 2, 0]
+                    ? [0, positionBottom ? 0 : animDist + animDist / 2, 0]
                     : animation === "negZposY1"
-                      ? [0, animDist, -animDist]
+                      ? [
+                          0,
+                          positionBottom ? 0 : animDist,
+                          positionBottom ? 0 : -animDist,
+                        ]
                       : animation === "posXposY1"
-                        ? [animDist, animDist, 0]
+                        ? [
+                            positionBottom ? 0 : animDist,
+                            positionBottom ? 0 : animDist,
+                            0,
+                          ]
                         : [0, 0, 0]
       }
     >

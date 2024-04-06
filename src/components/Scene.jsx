@@ -894,7 +894,7 @@ export default function Scene({
         <pointLight position={[width / 2850, 0.2, 0.1]} intensity={0.15} />
         <mesh
           position={
-            width >= 376 && width < 600 // width >= 376 && width < 800
+            width >= 376 && width < 600
               ? [0.175, 0.345, 0] // looks right on actual device [width / 2600, 0.345, 0] // looks right on chrome simulator
               : width < 376
                 ? [0.21, 0.345, 0] // looks right on chrome simulator [0.175, 0.345, 0]
@@ -917,7 +917,7 @@ export default function Scene({
 
         <mesh
           position={
-            width >= 376 && width < 600 //  width >= 376 && width < 800
+            width >= 376 && width < 600
               ? [-0.165, 0.36, 0] // looks right on actual device [-width / 2800, 0.36, 0] // looks right on chrome simulator [-width / 3100, 0.36, 0]
               : width < 376
                 ? [-0.19, 0.36, 0] // looks right on chrome simulator [-0.165, 0.36, 0]
