@@ -11,6 +11,7 @@ import PhotoLibraryIcon from "@mui/icons-material/PhotoLibrary";
 import OpenWithIcon from "@mui/icons-material/OpenWith";
 import RadioButtonCheckedOutlinedIcon from "@mui/icons-material/RadioButtonCheckedOutlined";
 // import RadioButtonUncheckedOutlinedIcon from "@mui/icons-material/RadioButtonUncheckedOutlined";
+import ExpandCircleDownIcon from "@mui/icons-material/ExpandCircleDown";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 // import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import VisibilityIcon from "@mui/icons-material/Visibility";
@@ -70,6 +71,9 @@ export default function OrderBox({
     // setShowBackground(true);
     setOpen(!open);
     setInfoBoxIcon(!infoBoxIcon);
+    if (showPartOptions) {
+      setShowPartOptions(!showPartOptions);
+    }
   };
 
   const toggleBackground = (e) => {
@@ -139,13 +143,15 @@ export default function OrderBox({
           }}
           aria-label="open order box for item details and options"
         >
-          <RadioButtonCheckedOutlinedIcon
+          <ExpandCircleDownIcon
             sx={{
               color:
                 currentItemSelected.itemTitle === "noSelectTitle"
                   ? "secondary.main"
                   : "white",
-              fontSize: "inherit",
+              fontSize: "2rem",
+              // transition: "width 2s, height 2s, transform 2s",
+              transform: "rotate(-0.5turn)",
             }}
           />
         </IconButton>
@@ -178,7 +184,7 @@ export default function OrderBox({
             aria-label="close order box"
           >
             <CloseOutlinedIcon
-              fontSize="small"
+              fontSize="medium"
               sx={{ color: "primary.light" }}
             />
           </IconButton>

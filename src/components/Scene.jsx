@@ -265,7 +265,12 @@ export default function Scene({
       }
       setPreviousItemSelected(currentItemSelected);
       setCurrentItemSelected(matchedItem);
-      if (!open && infoBoxIcon && showBackground) {
+      if (
+        !open &&
+        infoBoxIcon &&
+        showBackground &&
+        currentItemSelected === unselectedItem
+      ) {
         setInfoBoxIcon(!infoBoxIcon);
         setOpen(!open);
       }
@@ -937,7 +942,7 @@ export default function Scene({
         enableZoom={true}
         enablePan={false}
         maxDistance={15}
-        minDistance={1.375} // 60
+        minDistance={1.375} // 1.75 good on iphone xr portrait // 1.375 // 60
         maxPolarAngle={Math.PI / 2 + Math.PI / 16} // {Math.PI / 2 - Math.PI / 16}
         enableDamping={true}
         autoRotate

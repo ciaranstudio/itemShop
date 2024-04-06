@@ -29,6 +29,9 @@ export const Annotation = ({
   const { scene } = useGLTF(url);
   const [annotations, setAnnotations] = useState([]);
 
+  const [stainSingle, setStainSingle] = useState("");
+  const [paintSingle, setPaintSingle] = useState("");
+
   // function getRandomInt(max) {
   //   return Math.floor(Math.random() * max);
   // }
@@ -95,7 +98,7 @@ export const Annotation = ({
   //   calculateItemPrice(itemName);
   // };
 
-  const randomCurrentItemParts = (e, itemName) => {
+  const randomCurrentItemParts = (e, itemName, type) => {
     e.preventDefault(); //  is this necessary if it is also being called in handlePartOption function ? Remove from one of them or make conditional in handlePartOption like e.stopPropogation ?
     console.log(
       "randomPartsClick() - find item in objects data by part itemName: ",
@@ -105,8 +108,29 @@ export const Annotation = ({
       "then get the parts array for that found item: ",
       objects[itemName].parts,
     );
+    let color = "";
+    let tempStainSingle = options.stains[getRandomInt(options.stains.length)];
+    let tempPaintSingle = options.paints[getRandomInt(options.paints.length)];
+    while (tempStainSingle === stainSingle) {
+      tempStainSingle = options.stains[getRandomInt(options.stains.length)];
+    }
+    setStainSingle(tempStainSingle);
+    while (tempPaintSingle === paintSingle) {
+      tempPaintSingle = options.paints[getRandomInt(options.paints.length)];
+    }
+    setPaintSingle(tempPaintSingle);
     let randomThisItemColors = objects[itemName].parts.map((part) => {
-      let color = allOptions[getRandomInt(allOptions.length)];
+      if (type === "stainMixed") {
+        color = options.stains[getRandomInt(options.stains.length)];
+      } else if (type === "stainSingle") {
+        color = tempStainSingle;
+      } else if (type === "allMixed") {
+        color = allOptions[getRandomInt(allOptions.length)];
+      } else if (type === "paintMixed") {
+        color = options.paints[getRandomInt(options.paints.length)];
+      } else if (type === "paintSingle") {
+        color = tempPaintSingle;
+      }
       handlePartOption(e, itemName, part.partName, color, false);
       return color;
     });
@@ -144,7 +168,7 @@ export const Annotation = ({
               <Html
                 key={o.uuid}
                 position={[o.position.x, o.position.y, o.position.z]}
-                distanceFactor={0.25}
+                distanceFactor={0.21} // 0.1875 decent on xr and se // 0.18 good for iphone se //  0.2 looked good on same iphone xr too // 0.235 good for iphone xr portrait
                 style={{
                   display:
                     currentItemName === itemName &&
@@ -167,97 +191,153 @@ export const Annotation = ({
                 >
                   <VisibilityIcon fontSize="inherit" />
                 </button>
-                <div className="annotation">
-                  <div
-                  // style={{ pointerEvents: "none", userSelect: "none" }}
-                  >
-                    {descPartName}
-                  </div>
-                  {/* {o.userData.name} */}
-                  <div className="grid-container-stain">
-                    {options.stains.map((stain) => {
-                      return (
-                        <button
-                          className="colorBtn"
-                          key={stain}
-                          onClick={(e) =>
-                            handlePartOption(e, itemName, partName, stain, true)
-                          }
-                          style={{
-                            backgroundColor:
-                              stain === "white"
-                                ? "#a89d93"
-                                : stain === "natural"
-                                  ? "#908073"
-                                  : stain === "black"
-                                    ? "#635245"
-                                    : stain === "allBlack"
-                                      ? "#0b0502"
-                                      : "#ffffff",
-                            border:
-                              thisPartColorName === stain
-                                ? "0.5rem solid #eeeeee"
-                                : "none",
-                            transform:
-                              thisPartColorName === stain
-                                ? "scale(1)"
-                                : "scale(0.90)",
-                            // transition: "transform 0.1s ease-in-out 0.1s",
-                            // color:
-                            //   thisPartColorName === stain ? "white" : "black",
-                          }}
-                        ></button>
-                      );
-                    })}
+                <div className="annotation-wrapper">
+                  <div className="color-menu-title"> {descPartName} </div>
+                  <div className="annotation">
+                    <div
+                      className="annotation-options"
+                      // style={{
+                      //   // pointerEvents: "none",
+                      //   // userSelect: "none",
+                      //   display: "grid",
+                      // }}
+                    >
+                      {/* {o.userData.name} */}
+                      <div className="grid-container-stain">
+                        {options.stains.map((stain) => {
+                          return (
+                            <button
+                              className="colorBtn"
+                              key={stain}
+                              onClick={(e) =>
+                                handlePartOption(
+                                  e,
+                                  itemName,
+                                  partName,
+                                  stain,
+                                  true,
+                                )
+                              }
+                              style={{
+                                backgroundColor:
+                                  stain === "white"
+                                    ? "#a89d93"
+                                    : stain === "natural"
+                                      ? "#908073"
+                                      : stain === "black"
+                                        ? "#635245"
+                                        : stain === "allBlack"
+                                          ? "#0b0502"
+                                          : "#ffffff",
+                                border:
+                                  thisPartColorName === stain
+                                    ? "0.5rem solid #8c8b81"
+                                    : "none",
+                                transform:
+                                  thisPartColorName === stain
+                                    ? "scale(0.975)"
+                                    : "scale(0.95)",
+                                // transition: "transform 0.1s ease-in-out 0.1s",
+                                // color:
+                                //   thisPartColorName === stain ? "white" : "black",
+                              }}
+                            ></button>
+                          );
+                        })}
+                      </div>
+
+                      <div className="grid-container-paint">
+                        {options.paints.map((paint) => {
+                          return (
+                            <button
+                              key={paint}
+                              onClick={(e) =>
+                                handlePartOption(
+                                  e,
+                                  itemName,
+                                  partName,
+                                  paint,
+                                  true,
+                                )
+                              }
+                              className="colorBtn"
+                              style={{
+                                backgroundColor:
+                                  paint === "alabaster"
+                                    ? "#fffdf0"
+                                    : paint === "pink"
+                                      ? "#f2d1c6"
+                                      : paint === "basil"
+                                        ? "#929d84"
+                                        : paint === "yellow"
+                                          ? "#f2d684"
+                                          : paint === "blue"
+                                            ? "#96b0aa"
+                                            : paint === "gray"
+                                              ? "#8c8b81"
+                                              : "#ffffff",
+                                border:
+                                  thisPartColorName === paint
+                                    ? "0.5rem solid #8c8b81"
+                                    : "none",
+                                transform:
+                                  thisPartColorName === paint
+                                    ? "scale(0.975)"
+                                    : "scale(0.95)",
+                                // transition: "transform 0.1s ease-in-out 0.1s",
+                                // color:
+                                //   thisPartColorName === paint ? "white" : "black",
+                              }}
+                            ></button>
+                          );
+                        })}
+                      </div>
+                    </div>
                   </div>
 
-                  <div className="grid-container-paint">
-                    {options.paints.map((paint) => {
-                      return (
-                        <button
-                          key={paint}
-                          onClick={(e) =>
-                            handlePartOption(e, itemName, partName, paint, true)
-                          }
-                          className="colorBtn"
-                          style={{
-                            backgroundColor:
-                              paint === "alabaster"
-                                ? "#fffdf0"
-                                : paint === "pink"
-                                  ? "#f2d1c6"
-                                  : paint === "basil"
-                                    ? "#929d84"
-                                    : paint === "yellow"
-                                      ? "#f2d684"
-                                      : paint === "blue"
-                                        ? "#96b0aa"
-                                        : paint === "gray"
-                                          ? "#8c8b81"
-                                          : "#ffffff",
-                            border:
-                              thisPartColorName === paint
-                                ? "0.5rem solid #eeeeee"
-                                : "none",
-                            transform:
-                              thisPartColorName === paint
-                                ? "scale(1)"
-                                : "scale(0.90)",
-                            // transition: "transform 0.1s ease-in-out 0.1s",
-                            // color:
-                            //   thisPartColorName === paint ? "white" : "black",
-                          }}
-                        ></button>
-                      );
-                    })}
+                  <div className="shuffle-color-block">
+                    <button
+                      className="colorShuffleBtn "
+                      onClick={(e) =>
+                        randomCurrentItemParts(e, itemName, "stainSingle")
+                      }
+                    >
+                      <ShuffleOnIcon fontSize="inherit" color="primary" />
+                    </button>
+                    <button
+                      className="colorShuffleBtn "
+                      onClick={(e) =>
+                        randomCurrentItemParts(e, itemName, "stainMixed")
+                      }
+                    >
+                      <ShuffleOnIcon fontSize="inherit" color="secondary" />
+                    </button>
+                    <button
+                      className="colorShuffleBtn "
+                      onClick={(e) =>
+                        randomCurrentItemParts(e, itemName, "allMixed")
+                      }
+                    >
+                      <ShuffleOnIcon fontSize="inherit" color="success" />
+                    </button>
+                    <button
+                      className="colorShuffleBtn "
+                      onClick={(e) =>
+                        randomCurrentItemParts(e, itemName, "paintMixed")
+                      }
+                    >
+                      <ShuffleOnIcon fontSize="inherit" color="warning" />
+                    </button>
+                    <button
+                      className="colorShuffleBtn "
+                      onClick={(e) =>
+                        randomCurrentItemParts(e, itemName, "paintSingle")
+                      }
+                    >
+                      <ShuffleOnIcon fontSize="inherit" color="error" />
+                    </button>
                   </div>
                 </div>
-                <button
-                  className="colorShuffleBtn "
-                  onClick={(e) => randomCurrentItemParts(e, itemName)}
-                >
-                  <ShuffleOnIcon fontSize="inherit" />
-                </button>
               </Html>,
             );
           }

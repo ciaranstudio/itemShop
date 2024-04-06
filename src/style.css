@@ -134,7 +134,7 @@ img {
   border-radius: 0.75rem;
   border: 1.5px solid grey;
   font-size: 1.25rem;
-  pointer-events: none;
+  /* pointer-events: none; */
   /* font-family: var(--leva-fonts-mono); */
 }
 
@@ -181,7 +181,27 @@ img {
   cursor: pointer;
 }
 
+.annotation-wrapper {
+  display: grid;
+  background: lightGrey;
+  border-radius: 3rem;
+  padding: 0.35rem;
+  padding-top: 3.5rem;
+  border: 0.35rem solid rgb(155, 155, 155);
+}
+
+.shuffle-color-block {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  background: lightGrey;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border-radius: 3rem;
+}
+
 .annotation {
+  display: grid;
+  grid-template-columns: auto auto auto;
   /* transform: translate3d(calc(50%), calc(-50%), 0); */
   text-align: center;
   /* background: #181c20; */
@@ -189,11 +209,11 @@ img {
   /* color: #8c92a4; */
   color: #181c20;
   padding: 1rem;
-  padding-top: 9rem;
-  padding-bottom: 14rem;
+  padding-top: 2rem;
+  padding-bottom: 1.75rem;
   /* padding: 10px 15px; */
   /* border-radius: 30px; */
-  border-radius: 2rem;
+  border-radius: 3rem;
   user-select: none;
   /* font-family: var(--leva-fonts-mono); */
   font-size: 5rem;
@@ -221,32 +241,67 @@ img {
   background: lightGrey;
 }
 
+.annotation-options {
+  display: grid;
+  grid-template-columns: auto auto;
+  /* gap: 3.5rem; */
+  width: 100%;
+  padding: 2.25rem;
+  padding-top: 2.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.color-menu-title {
+  /* position: absolute;
+  left: calc(20% - 1em);
+  top: 4.35rem; */
+  padding-top: 0.75rem;
+  text-align: center;
+  color: #181c20;
+  border-radius: 2rem;
+  user-select: none;
+  /* font-family: var(--leva-fonts-mono); */
+  font-size: 4.5rem;
+  /* pointer-events: none; */
+  /* user-select: none; */
+  cursor: grab;
+}
+
 .grid-container-stain {
   display: grid;
   grid-template-columns: auto auto;
   gap: 2.5rem;
-  padding: 1rem;
-  padding-top: 1rem;
+  padding: 2rem;
+  margin-right: 1rem;
+
   padding-bottom: 1.5rem;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.85);
+  border: 0.45rem solid rgb(170, 170, 170);
+  border-radius: 2rem;
   margin-bottom: 0.75rem;
+  background-color: rgb(233, 234, 233);
 }
 
 .grid-container-paint {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: auto auto auto;
   gap: 2.5rem;
-  padding: 1rem;
+  padding: 2rem;
+  margin-left: 1.5rem;
+  padding-bottom: 1.5rem;
+  border: 0.45rem solid rgb(170, 170, 170);
+  border-radius: 2rem;
+  margin-bottom: 0.75rem;
+  background-color: rgb(233, 234, 233);
 }
 
 .colorBtn {
   background-color: rgba(255, 255, 255, 0.8);
   /* text-align: center; */
   /* font-size: 5rem; */
-  border-radius: 2rem;
+  border-radius: 2.25rem;
   border: none;
   cursor: pointer;
-  padding: 6rem;
+  padding: 7rem;
 }
 
 /* button:hover {
@@ -263,11 +318,11 @@ img {
 .colorExitBtn {
   position: absolute;
   top: 0.5rem;
-  left: 0.5rem;
+  left: 0.65rem;
   /* background-color: rgb(226, 226, 226); */
   background: transparent;
-  font-size: 6rem;
-  color: #212121;
+  font-size: 9.5rem;
+  color: #8c8b81;
   border: none;
   border-radius: 50%;
   cursor: pointer;
@@ -277,11 +332,11 @@ img {
 
 .colorBgrdBtn {
   position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
+  top: 0.575rem;
+  right: 0.95rem;
   /* background-color: rgb(178, 178, 178); */
   background: transparent;
-  font-size: 6rem;
+  font-size: 10rem;
   color: #ffffff;
   border: none;
   border-radius: 50%;
@@ -291,17 +346,17 @@ img {
 }
 
 .colorShuffleBtn {
-  position: absolute;
-  bottom: -0.75rem;
+  /* position: absolute; */
+  /* bottom: -0.75rem; */
   /* background-color: rgb(178, 178, 178); */
-  left: 9rem;
+  left: calc(50% - 4.75rem);
   background: transparent;
-  font-size: 9rem;
+  font-size: 12rem;
   color: #ffffff;
   border: none;
   border-radius: 50%;
   cursor: pointer;
-  padding: 1rem;
+  padding: 0rem;
   margin: 1rem;
 }
 
