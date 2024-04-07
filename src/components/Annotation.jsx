@@ -25,7 +25,7 @@ export const Annotation = ({
   handlePartOption,
   getRandomInt,
   positionBottom,
-  // animateParts,
+  animateParts,
 }) => {
   const url = model;
   const { scene } = useGLTF(url);

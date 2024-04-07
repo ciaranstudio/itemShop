@@ -241,6 +241,9 @@ export default function Scene({
     if (!showBackground) {
       setOpen(false);
       setInfoBoxIcon(true);
+      animateParts();
+    } else if (showBackground && currentItemSelected !== unselectedItem) {
+      animateParts();
     }
   }, [showBackground]);
 
@@ -281,7 +284,8 @@ export default function Scene({
   };
 
   const handleItemPartClick = (e, part) => {
-    // e.stopPropagation();
+    // e.preventDefault; // not necessary
+    // e.stopPropagation(); // disables item part / item click connecting to entire item mesh/group
     // console.log(part.itemName, part.partName, " clicked");
     setCurrentItemName(part.itemName);
     setCurrentPartName(part.partName);
@@ -292,8 +296,11 @@ export default function Scene({
 
   const handleDoubleClick = (e) => {
     e.stopPropagation();
+    if (currentItemSelected === unselectedItem) {
+      setCurrentItemSelected(objects.gramps);
+    }
     setShowBackground(!showBackground);
-    animateParts();
+    // animateParts();
   };
 
   // const handleOffClick = (e) => {
@@ -946,7 +953,7 @@ export default function Scene({
           }
           scale={0.04}
           rotation={[0, 0.75, 0]}
-          onClick={animateParts}
+          onClick={handleDoubleClick}
           onPointerOver={() => hover(true)}
           onPointerOut={() => hover(false)}
         >
