@@ -713,19 +713,19 @@ export default function Scene({
           if (currentItemSelected.itemName === "gramps") {
             xPlus = -1.5; // -1.75
             yPlus = 0.5; // 0.5
-            zPlus = -0.5; // -0.75
+            zPlus = -1.5; // -0.75
           } else if (currentItemSelected.itemName === "block") {
-            xPlus = -1; // 0 // -0.75
+            xPlus = -1.5; // 0 // -0.75
             yPlus = 0.5; // 0.5 // 0.5
             zPlus = -1.5; // 1.75 // -1.25
           } else if (currentItemSelected.itemName === "horse") {
             xPlus = -1.5; // -1.75
-            yPlus = 1; // 1
+            yPlus = 1.25; // 1
             zPlus = -1.5; // -1.75
           } else if (currentItemSelected.itemName === "squatter") {
-            xPlus = 1.75; // 1.75
+            xPlus = 1.5; // 1.75
             yPlus = 0.5; // 0.5
-            zPlus = 1; // 1
+            zPlus = -1.5; // 1
           } else if (currentItemSelected.itemName === "shelfA16") {
             xPlus = 1.5; // 1.5
             yPlus = 1.25; // 1.25
@@ -829,7 +829,7 @@ export default function Scene({
   // return null;
   // });
 
-  const stagePositionY = -0.15;
+  const stagePositionY = -0.25;
 
   const dirLightXPosition = 2.5; // 2.5
   const dirLightYPosition = 3.6; // 3.6
@@ -846,7 +846,6 @@ export default function Scene({
   const dirLightCamTop = 5;
 
   const ambLightIntensity = 1;
-
   const animatedPosition = (animation, animDist) => {
     let x = 0;
     let y = 0;
@@ -947,7 +946,7 @@ export default function Scene({
           }
           scale={0.04}
           rotation={[0, 0.75, 0]}
-          onClick={handleCartClick}
+          onClick={animateParts}
           onPointerOver={() => hover(true)}
           onPointerOut={() => hover(false)}
         >
@@ -970,7 +969,7 @@ export default function Scene({
         enableZoom={true}
         enablePan={false}
         maxDistance={15}
-        minDistance={1.375} // 1.75 good on iphone xr portrait // 1.375 // 60
+        minDistance={1.75} // 1.75 good on iphone xr portrait // 1.375 // 60
         maxPolarAngle={Math.PI / 2 + Math.PI / 16} // {Math.PI / 2 - Math.PI / 16}
         enableDamping={true}
         autoRotate
@@ -1039,6 +1038,7 @@ export default function Scene({
                     <Annotation
                       model={part.model}
                       itemName={part.itemName}
+                      itemTitle={item.itemTitle}
                       partName={part.partName}
                       descPartName={part.descPartName}
                       animation={part.animation}

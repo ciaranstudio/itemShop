@@ -11,6 +11,7 @@ import ShuffleOnIcon from "@mui/icons-material/ShuffleOn";
 export const Annotation = ({
   model,
   itemName,
+  itemTitle,
   partName,
   descPartName,
   animation,
@@ -188,8 +189,10 @@ export const Annotation = ({
                                   itemName.includes("A") &&
                                   itemName.includes("16")
                                 ? 1.2
-                                : -0.25,
-                        0,
+                                : itemName.includes("horse")
+                                  ? 0
+                                  : -0.25,
+                        itemName.includes("horse") ? -0.3 : 0,
                       ]
                     : [o.position.x, o.position.y, o.position.z]
                 }
@@ -218,7 +221,8 @@ export const Annotation = ({
                   <VisibilityIcon fontSize="inherit" />
                 </button>
                 <div className="annotation-wrapper">
-                  <div className="color-menu-title"> {descPartName} </div>
+                  <div className="color-menu-item-title">{itemTitle}</div>
+                  <div className="color-menu-part-title">{descPartName}</div>
                   <div className="annotation">
                     <div
                       className="annotation-options"
@@ -257,12 +261,12 @@ export const Annotation = ({
                                           : "#ffffff",
                                 border:
                                   thisPartColorName === stain
-                                    ? "0.5rem solid #8c8b81"
-                                    : "none",
-                                transform:
-                                  thisPartColorName === stain
-                                    ? "scale(0.975)"
-                                    : "scale(0.95)",
+                                    ? "0.75rem solid #5580b0"
+                                    : "0.75rem solid #ffffff",
+                                // transform:
+                                //   thisPartColorName === stain
+                                //     ? "scale(0.975)"
+                                //     : "scale(0.95)",
                                 // transition: "transform 0.1s ease-in-out 0.1s",
                                 // color:
                                 //   thisPartColorName === stain ? "white" : "black",
@@ -304,12 +308,12 @@ export const Annotation = ({
                                               : "#ffffff",
                                 border:
                                   thisPartColorName === paint
-                                    ? "0.5rem solid #8c8b81"
-                                    : "none",
-                                transform:
-                                  thisPartColorName === paint
-                                    ? "scale(0.975)"
-                                    : "scale(0.95)",
+                                    ? "0.75rem solid #5580b0"
+                                    : "0.75rem solid #ffffff",
+                                // transform:
+                                //   thisPartColorName === paint
+                                //     ? "scale(0.975)"
+                                //     : "scale(0.95)",
                                 // transition: "transform 0.1s ease-in-out 0.1s",
                                 // color:
                                 //   thisPartColorName === paint ? "white" : "black",

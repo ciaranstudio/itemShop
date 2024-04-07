@@ -16,9 +16,8 @@ body,
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  /* disables the snipcart swipe to open cart feature at first, but once cart is opened in any way, the issue of swipe to open returns */
   /* touch-action: manipulation; */
-  /* cursor: grab; // have to disable this as it conflicts with Drei useCursor pointer on dom body */
+  /* cursor: grab; 
   /* Using these safe-area-inset-* constants as the padding of a site, overlap of the notch can be prevented. */
   /* padding: env(safe-area-inset-top, 20px) env(safe-area-inset-right, 20px)
     env(safe-area-inset-bottom, 20px) env(safe-area-inset-left, 20px); */
@@ -186,7 +185,7 @@ img {
   background: lightGrey;
   border-radius: 3rem;
   padding: 0.35rem;
-  padding-top: 3.5rem;
+  padding-top: 4rem;
   border: 0.35rem solid rgb(155, 155, 155);
 }
 
@@ -194,7 +193,7 @@ img {
   display: grid;
   grid-template-columns: auto auto auto auto auto;
   background: lightGrey;
-  padding-top: 1rem;
+  padding-top: 1.75rem;
   padding-bottom: 1rem;
   border-radius: 3rem;
 }
@@ -211,14 +210,11 @@ img {
   padding: 1rem;
   padding-top: 2rem;
   padding-bottom: 1.75rem;
-  /* padding: 10px 15px; */
-  /* border-radius: 30px; */
   border-radius: 3rem;
   user-select: none;
   /* font-family: var(--leva-fonts-mono); */
   font-size: 5rem;
   /* pointer-events: none; */
-  /* user-select: none; */
   cursor: grab;
 }
 
@@ -242,23 +238,27 @@ img {
   /* gap: 3.5rem; */
   width: 100%;
   padding: 2.25rem;
-  padding-top: 2.5rem;
+  padding-top: 1rem;
   padding-bottom: 0.5rem;
 }
 
-.color-menu-title {
-  /* position: absolute;
-  left: calc(20% - 1em);
-  top: 4.35rem; */
-  padding-top: 0.75rem;
+.color-menu-item-title {
+  padding-top: 1rem;
   text-align: center;
   color: #181c20;
   border-radius: 2rem;
   user-select: none;
-  /* font-family: var(--leva-fonts-mono); */
-  font-size: 4.5rem;
-  /* pointer-events: none; */
-  /* user-select: none; */
+  font-size: 8rem;
+  cursor: grab;
+}
+
+.color-menu-part-title {
+  padding-top: 0.25rem;
+  text-align: center;
+  color: #212121;
+  border-radius: 2rem;
+  user-select: none;
+  font-size: 8rem;
   cursor: grab;
 }
 
@@ -296,7 +296,7 @@ img {
   border-radius: 2.25rem;
   border: none;
   cursor: pointer;
-  padding: 7rem;
+  padding: 8rem;
 }
 
 /* button:hover {
@@ -312,11 +312,11 @@ img {
 
 .colorExitBtn {
   position: absolute;
-  top: 0.5rem;
-  left: 0.65rem;
+  top: 2.5rem;
+  left: 1.5rem;
   /* background-color: rgb(226, 226, 226); */
   background: transparent;
-  font-size: 9.5rem;
+  font-size: 10.5rem;
   color: #8c8b81;
   border: none;
   border-radius: 50%;
@@ -327,11 +327,11 @@ img {
 
 .colorBgrdBtn {
   position: absolute;
-  top: 0.575rem;
-  right: 0.95rem;
+  top: 3rem;
+  right: 2.05rem;
   /* background-color: rgb(178, 178, 178); */
   background: transparent;
-  font-size: 10rem;
+  font-size: 11rem;
   color: #ffffff;
   border: none;
   border-radius: 50%;
@@ -346,7 +346,7 @@ img {
   /* background-color: rgb(178, 178, 178); */
   left: calc(50% - 4.75rem);
   background: transparent;
-  font-size: 12rem;
+  font-size: 13rem;
   color: #ffffff;
   border: none;
   border-radius: 50%;
@@ -388,12 +388,21 @@ img {
   .colorShuffleBtn {
     font-size: 9rem;
   }
+  .color-menu-part-title {
+    font-size: 6rem;
+  }
 }
 @media only screen and (min-width: 381px) {
   .photos {
     bottom: 2rem;
     width: 23rem;
     right: calc(50% - 11.5rem);
+  }
+  .color-menu-part-title {
+    font-size: 6.75rem;
+  }
+  .color-menu-item-title {
+    font-size: 8.75rem;
   }
 }
 @media screen and (max-width: 900px) and (min-width: 600px) {
@@ -402,6 +411,24 @@ img {
     width: 32rem;
     right: calc(50% - 16rem);
   }
+  .colorBtn {
+    padding: 10rem;
+  }
+  .colorExitBtn {
+    font-size: 11.5rem;
+  }
+  .colorBgrdBtn {
+    font-size: 12rem;
+  }
+  .colorShuffleBtn {
+    font-size: 14rem;
+  }
+  .color-menu-part-title {
+    font-size: 8rem;
+  }
+  .color-menu-item-title {
+    font-size: 10rem;
+  }
 }
 @media screen and (max-width: 1040px) and (min-width: 901px) {
   .photos {
@@ -409,12 +436,48 @@ img {
     width: 30rem;
     right: calc(50% - 15rem);
   }
+  .colorBtn {
+    padding: 10rem;
+  }
+  .colorExitBtn {
+    font-size: 11.5rem;
+  }
+  .colorBgrdBtn {
+    font-size: 12rem;
+  }
+  .colorShuffleBtn {
+    font-size: 14rem;
+  }
+  .color-menu-part-title {
+    font-size: 7.5rem;
+  }
+  .color-menu-item-title {
+    font-size: 10rem;
+  }
 }
 @media screen and (max-width: 2000px) and (min-width: 1041px) {
   .photos {
     bottom: 2rem;
     width: 30rem;
     right: calc(50% - 15rem);
+  }
+  .colorBtn {
+    padding: 10rem;
+  }
+  .colorExitBtn {
+    font-size: 11.5rem;
+  }
+  .colorBgrdBtn {
+    font-size: 12rem;
+  }
+  .colorShuffleBtn {
+    font-size: 14rem;
+  }
+  .color-menu-part-title {
+    font-size: 7.5rem;
+  }
+  .color-menu-item-title {
+    font-size: 10rem;
   }
 }
 
