@@ -11,7 +11,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { SnipcartProvider } from "use-snipcart";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import OrderBox from "./components/OrderBox.jsx";
+// import OrderBox from "./components/OrderBox.jsx";
 import { textures } from "./data/textures.jsx";
 import { shopItems } from "./data/objects.jsx";
 import { objects } from "./data/objects.jsx";
@@ -37,7 +37,7 @@ function App() {
 
   const [open, setOpen] = useState(false);
   const [infoBoxIcon, setInfoBoxIcon] = useState(true);
-  const [showLongDesc, setShowLongDesc] = useState(false);
+  const [showLongDesc, setShowLongDesc] = useState(true);
   const [showPhotos, setShowPhotos] = useState(false);
 
   const [showBackground, setShowBackground] = useState(true);
@@ -224,10 +224,6 @@ function App() {
               previousItemSelected={previousItemSelected}
               setPreviousItemSelected={setPreviousItemSelected}
               animDist={animDist}
-              open={open}
-              setOpen={setOpen}
-              infoBoxIcon={infoBoxIcon}
-              setInfoBoxIcon={setInfoBoxIcon}
               showBackground={showBackground}
               setShowBackground={setShowBackground}
               showPartOptions={showPartOptions}
@@ -236,29 +232,19 @@ function App() {
               handlePartOption={handlePartOption}
               getRandomInt={getRandomInt}
               randomAllItemsParts={randomAllItemsParts}
+              open={open}
+              setOpen={setOpen}
+              infoBoxIcon={infoBoxIcon}
+              setInfoBoxIcon={setInfoBoxIcon}
+              showLongDesc={showLongDesc}
+              setShowLongDesc={setShowLongDesc}
+              showPhotos={showPhotos}
+              setShowPhotos={setShowPhotos}
             />
           </SnipcartProvider>
         </Suspense>
       </Canvas>
-      <OrderBox
-        open={open}
-        setOpen={setOpen}
-        infoBoxIcon={infoBoxIcon}
-        setInfoBoxIcon={setInfoBoxIcon}
-        showLongDesc={showLongDesc}
-        setShowLongDesc={setShowLongDesc}
-        showPhotos={showPhotos}
-        setShowPhotos={setShowPhotos}
-        showBackground={showBackground}
-        setShowBackground={setShowBackground}
-        showPartOptions={showPartOptions}
-        setShowPartOptions={setShowPartOptions}
-        animateParts={animateParts}
-        animActive={animActive}
-        currentItemSelected={currentItemSelected}
-        randomAllItemsParts={randomAllItemsParts}
-        mobileView={mobileView}
-      />
+      <div id="footer">Eli Gfell Studio</div>
     </>
   );
 }

@@ -28,7 +28,7 @@ export default function BuyButton({
       },
 
       secondary: {
-        main: "#bdbdbd",
+        main: "#929d84",
         light: "#E0E0E0",
       },
     },
@@ -136,7 +136,7 @@ export default function BuyButton({
       >
         <Button
           variant="contained"
-          color="primary"
+          color="secondary"
           disabled={optionSelectedPrice === 0}
           // onClick={handleAddToCart}
           className="snipcart-add-item"
@@ -158,7 +158,12 @@ export default function BuyButton({
             pointerEvents: "auto",
             mt: 1.25,
             color: "#ffffff",
-            // fontSize: "8rem",
+            fontSize: "8rem",
+            padding: "4rem",
+            paddingX: "8rem",
+            marginBottom: "6rem",
+            borderRadius: "2rem",
+            fontFamily: "var(--leva-fonts-mono)",
             // color:
             //   item === unselectedItem ? theme.palette.primary.light : "#929d84",
           }}

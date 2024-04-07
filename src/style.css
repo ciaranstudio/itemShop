@@ -198,6 +198,15 @@ img {
   border-radius: 3rem;
 }
 
+.buy-info-block {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  background: lightGrey;
+  padding-top: 1.75rem;
+  padding-bottom: 1rem;
+  border-radius: 3rem;
+}
+
 .annotation {
   display: grid;
   grid-template-columns: auto auto auto;

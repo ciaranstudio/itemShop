@@ -12,6 +12,7 @@ import {
   Sky,
   ScreenSpace,
   useCursor,
+  Html,
   // Center,
   // Text3D,
   // Text,
@@ -39,16 +40,17 @@ import useWindowDimensions from "../helpers/useWindowDimensions";
 import { useSnipcart } from "use-snipcart";
 import { Logo } from "./Logo.jsx";
 
+import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
+import IconButton from "@mui/material/IconButton";
+import BuyButton from "./BuyButton.jsx";
+import SimpleSlider from "./SimpleSlider.jsx";
+
 export default function Scene({
   currentItemSelected,
   setCurrentItemSelected,
   previousItemSelected,
   setPreviousItemSelected,
   animDist,
-  open,
-  setOpen,
-  infoBoxIcon,
-  setInfoBoxIcon,
   showBackground,
   setShowBackground,
   showPartOptions,
@@ -57,6 +59,14 @@ export default function Scene({
   handlePartOption,
   getRandomInt,
   randomAllItemsParts,
+  open,
+  setOpen,
+  infoBoxIcon,
+  setInfoBoxIcon,
+  showLongDesc,
+  setShowLongDesc,
+  showPhotos,
+  setShowPhotos,
 }) {
   const { height, width } = useWindowDimensions();
   // useEffect(() => {
@@ -295,15 +305,15 @@ export default function Scene({
       }
       setPreviousItemSelected(currentItemSelected);
       setCurrentItemSelected(matchedItem);
-      if (
-        !open &&
-        infoBoxIcon &&
-        showBackground &&
-        currentItemSelected === unselectedItem
-      ) {
-        setInfoBoxIcon(!infoBoxIcon);
-        setOpen(!open);
-      }
+      // if (
+      //   !open &&
+      //   infoBoxIcon &&
+      //   showBackground &&
+      //   currentItemSelected === unselectedItem
+      // ) {
+      //   setInfoBoxIcon(!infoBoxIcon);
+      //   setOpen(!open);
+      // }
       // if (!showBackground) {
       //   setShowPartOptions(true);
       // }
@@ -762,19 +772,19 @@ export default function Scene({
             zPlus = -1.5; // 1
           } else if (currentItemSelected.itemName === "shelfA16") {
             xPlus = 1.5; // 1.5
-            yPlus = 1.25; // 1.25
-            zPlus = 1.5; // 1.5
+            yPlus = 1.75; // 1.25
+            zPlus = -1.5; // 1.5
           } else if (currentItemSelected.itemName === "shelfA32") {
             xPlus = 1.5; // 1.5
             yPlus = 1; // 1
-            zPlus = 1.5; // 1.5
+            zPlus = -1.5; // 1.5
           } else if (currentItemSelected.itemName === "shelfB16") {
             xPlus = -1.5; // -1.5
             yPlus = 1; //  1
             zPlus = -1.5; // -1.5
           } else if (currentItemSelected.itemName === "shelfB32") {
             xPlus = -1.5; // -1.5
-            yPlus = 1.25; // 1.25
+            yPlus = 1.75; // 1.25
             zPlus = -1.5; // -1.5
           }
 
@@ -863,7 +873,7 @@ export default function Scene({
   // return null;
   // });
 
-  const stagePositionY = -0.25;
+  const stagePositionY = -0.15;
 
   const dirLightXPosition = 2.5; // 2.5
   const dirLightYPosition = 3.6; // 3.6
@@ -916,6 +926,44 @@ export default function Scene({
     }
     let position = [x, y, z];
     return position;
+  };
+
+  const toggleInfoBox = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    // setShowPartOptions(false);
+    // setShowBackground(true);
+    setOpen(!open);
+    // setInfoBoxIcon(!infoBoxIcon);
+    setShowPhotos(false);
+    if (showPartOptions) {
+      setShowPartOptions(!showPartOptions);
+    }
+  };
+  const toggleLongDesc = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (showPartOptions) {
+      setShowPartOptions(!showPartOptions);
+    }
+    setShowLongDesc(!showLongDesc);
+    // setShowPartOptions(false);
+    // setShowBackground(!showBackground);
+    // setOpen(!open);
+    // setInfoBoxIcon(!infoBoxIcon);
+  };
+  const togglePhotoBox = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (showPartOptions) {
+      setShowPartOptions(!showPartOptions);
+    }
+    setOpen(false);
+    setShowPhotos(!showPhotos);
+    // setShowPartOptions(false);
+    // setShowBackground(true);
+    // setOpen(!open);
+    // setInfoBoxIcon(!infoBoxIcon);
   };
 
   return (
@@ -993,6 +1041,16 @@ export default function Scene({
           <boxGeometry />
           <meshStandardMaterial color="red" />
         </mesh>
+        {/* <Html center>
+          <div className="info">
+            <div id="description">
+              {showLongDesc
+                ? currentItemSelected.itemLongDescription
+                : currentItemSelected.itemDescription}
+            </div>
+            <div id="size">{currentItemSelected.size}</div>
+          </div>
+        </Html> */}
       </ScreenSpace>
 
       <color args={["#27271a"]} attach="background" />
@@ -1003,7 +1061,7 @@ export default function Scene({
         enableZoom={true}
         enablePan={false}
         maxDistance={15}
-        minDistance={1.75} // 1.75 good on iphone xr portrait // 1.375 // 60
+        minDistance={1.85} // 1.75 good on iphone xr portrait // 1.375 // 60
         maxPolarAngle={Math.PI / 2 + Math.PI / 16} // {Math.PI / 2 - Math.PI / 16}
         enableDamping={true}
         autoRotate
@@ -1056,6 +1114,91 @@ export default function Scene({
               onClick={handleClick}
               onDoubleClick={handleDoubleClick}
             >
+              <Html
+                center
+                position={[0, item.itemName.includes("shelf") ? 0.65 : 0, 0]}
+              >
+                <div
+                  className="info"
+                  style={{
+                    display:
+                      open && currentItemSelected === item ? "block" : "none",
+                  }}
+                >
+                  <IconButton
+                    onClick={(e) => toggleInfoBox(e)}
+                    color="inherit"
+                    // disabled={
+                    //   currentItemSelected.itemTitle === "noSelectTitle" ? true : false
+                    // }
+                    sx={{
+                      position: "absolute",
+                      pointerEvents: "auto",
+                      top: "0.15rem",
+                      left: "0.15rem",
+                      padding: "0.5rem",
+                    }}
+                    aria-label="close order box"
+                  >
+                    <CloseOutlinedIcon
+                      fontSize="medium"
+                      sx={{ color: "primary.light" }}
+                    />
+                  </IconButton>
+                  <div id="title">
+                    {currentItemSelected.itemTitle === "noSelectTitle"
+                      ? ""
+                      : currentItemSelected.itemTitle}
+                  </div>
+                  <div id="description">
+                    {showLongDesc
+                      ? currentItemSelected.itemLongDescription
+                      : currentItemSelected.itemDescription}
+                  </div>
+                  <div id="size">{currentItemSelected.size}</div>
+                </div>
+              </Html>
+              <Html
+                center
+                position={[
+                  0,
+                  item.itemName.includes("shelf") ? 0.35 : -0.85,
+                  0,
+                ]}
+              >
+                <div
+                  className="photos"
+                  style={{
+                    display:
+                      showPhotos && currentItemSelected === item
+                        ? "block"
+                        : "none",
+                  }}
+                >
+                  <IconButton
+                    onClick={(e) => togglePhotoBox(e)}
+                    color="inherit"
+                    // disabled={
+                    //   currentItemSelected.itemTitle === "noSelectTitle" ? true : false
+                    // }
+                    sx={{
+                      position: "absolute",
+                      pointerEvents: "auto",
+                      top: "0.15rem",
+                      left: "0.15rem",
+                      padding: "0.5rem",
+                    }}
+                    aria-label="close order box"
+                  >
+                    <CloseOutlinedIcon
+                      fontSize="small"
+                      sx={{ color: "primary.light" }}
+                    />
+                  </IconButton>
+                  <div id="title">{currentItemSelected.itemTitle}</div>
+                  <SimpleSlider />
+                </div>
+              </Html>
               {item.parts.map((part, index) => {
                 return (
                   <group
@@ -1086,7 +1229,9 @@ export default function Scene({
                       handlePartOption={handlePartOption}
                       getRandomInt={getRandomInt}
                       positionBottom={true}
-                      // animateParts={animateParts}
+                      toggleInfoBox={toggleInfoBox}
+                      toggleLongDesc={toggleLongDesc}
+                      togglePhotoBox={togglePhotoBox}
                     />
                     <RingCircle
                       selected={currentItemSelected === item ? true : false}
@@ -1105,8 +1250,8 @@ export default function Scene({
           // onClick={handleOffClick}
         >
           <Floor
-            currentColor={textures.whiteStain}
-            currentTexture={textures.woodFloorWornPlanksTexture}
+            currentColor={textures.floorStain}
+            currentTexture={textures.woodFloorWornPlanksTexture} // woodFloorWornPlanksTexture
           />
         </mesh>
 
@@ -1116,7 +1261,7 @@ export default function Scene({
           // onClick={handleOffClick}
         >
           <Walls
-            currentColor={textures.grayPaint} // whiteStain
+            currentColor={textures.floorStain} // whiteStain
             currentTexture={textures.paintedTexture}
           />
         </mesh>

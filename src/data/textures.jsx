@@ -6,6 +6,7 @@ export const textures = {
   blueTape: new THREE.Color(0x5580b0), // 0x006ed2 blue tape color grab from photo
   brownBag: new THREE.Color(0x957c5f), // 0xd7a87b brown uline paper bag color grab from photo
 
+  floorStain: new THREE.Color(0xcccccc),
   whiteStain: new THREE.Color(0xa9a9a9),
   naturalStain: new THREE.Color(0x989898),
   blackStain: new THREE.Color(0x787878),

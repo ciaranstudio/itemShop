@@ -7,6 +7,9 @@ import { options, allOptions } from "../data/options.jsx";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import ShuffleOnIcon from "@mui/icons-material/ShuffleOn";
+import InfoIcon from "@mui/icons-material/Info";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import PhotoLibraryIcon from "@mui/icons-material/PhotoLibrary";
 import BuyButton from "./BuyButton.jsx";
 
 export const Annotation = ({
@@ -26,7 +29,9 @@ export const Annotation = ({
   handlePartOption,
   getRandomInt,
   positionBottom,
-  animateParts,
+  toggleInfoBox,
+  toggleLongDesc,
+  togglePhotoBox,
 }) => {
   const url = model;
   const { scene } = useGLTF(url);
@@ -177,22 +182,22 @@ export const Annotation = ({
                         itemName.includes("shelf") &&
                         itemName.includes("B") &&
                         itemName.includes("16")
-                          ? 0.9
+                          ? 0.75
                           : itemName.includes("shelf") &&
                               itemName.includes("B") &&
                               itemName.includes("32")
-                            ? 1.2
+                            ? 1.05
                             : itemName.includes("shelf") &&
                                 itemName.includes("A") &&
                                 itemName.includes("32")
-                              ? 0.9
+                              ? 0.75
                               : itemName.includes("shelf") &&
                                   itemName.includes("A") &&
                                   itemName.includes("16")
-                                ? 1.2
+                                ? 1.05
                                 : itemName.includes("horse")
                                   ? 0
-                                  : -0.25,
+                                  : -0.35,
                         itemName.includes("horse") ? -0.3 : 0,
                       ]
                     : [o.position.x, o.position.y, o.position.z]
@@ -333,7 +338,7 @@ export const Annotation = ({
                         randomCurrentItemParts(e, itemName, "stainSingle")
                       }
                     >
-                      <ShuffleOnIcon fontSize="inherit" color="primary" />
+                      <ShuffleOnIcon fontSize="inherit" color="white" />
                     </button>
                     <button
                       className="colorShuffleBtn "
@@ -368,11 +373,25 @@ export const Annotation = ({
                       <ShuffleOnIcon fontSize="inherit" color="error" />
                     </button>
                   </div>
-                  <BuyButton
-                    // theme={theme}
-                    item={objects[itemName]}
-                    aria-label="add to shopping cart"
-                  />
+                  <div className="buy-info-block">
+                    <button
+                      className="colorShuffleBtn "
+                      onClick={togglePhotoBox}
+                    >
+                      <PhotoLibraryIcon fontSize="inherit" color="primary" />
+                    </button>
+                    <BuyButton
+                      // theme={theme}
+                      item={objects[itemName]}
+                      aria-label="add to shopping cart"
+                    />
+                    <button
+                      className="colorShuffleBtn "
+                      onClick={toggleInfoBox}
+                    >
+                      <InfoIcon fontSize="inherit" color="info" />
+                    </button>
+                  </div>
                 </div>
               </Html>,
             );
