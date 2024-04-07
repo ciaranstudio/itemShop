@@ -7,6 +7,7 @@ import { options, allOptions } from "../data/options.jsx";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import ShuffleOnIcon from "@mui/icons-material/ShuffleOn";
+import BuyButton from "./BuyButton.jsx";
 
 export const Annotation = ({
   model,
@@ -367,6 +368,11 @@ export const Annotation = ({
                       <ShuffleOnIcon fontSize="inherit" color="error" />
                     </button>
                   </div>
+                  <BuyButton
+                    // theme={theme}
+                    item={objects[itemName]}
+                    aria-label="add to shopping cart"
+                  />
                 </div>
               </Html>,
             );

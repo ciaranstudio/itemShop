@@ -5,13 +5,46 @@ import { useOptionStore } from "../store/useOptionStore.tsx";
 import { unselectedItem } from "../data/objects.jsx";
 import { objects } from "../data/objects.jsx";
 
-export default function BuyButton({ item, theme }) {
+import CssBaseline from "@mui/material/CssBaseline";
+import { createTheme } from "@mui/material";
+import { ThemeProvider } from "@mui/material";
+
+export default function BuyButton({
+  item,
+  // theme
+}) {
   const optionSelectedPrice = useOptionStore(
     (state) =>
       state.items[
         item === unselectedItem ? objects.gramps.itemName : item.itemName
       ].optionSelectedPrice,
   );
+
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: "#212121",
+        light: "#757575",
+      },
+
+      secondary: {
+        main: "#bdbdbd",
+        light: "#E0E0E0",
+      },
+    },
+    shadows: Array(25).fill("none"),
+    // components: {
+    //   MuiDrawer: {
+    //     styleOverrides: {
+    //       modal: {
+    //         ".MuiModal-backdrop": {
+    //           background: "none",
+    //         },
+    //       },
+    //     },
+    //   },
+    // },
+  });
 
   // const stainSingle = useOptionStore(
   //   (state) =>
@@ -93,42 +126,46 @@ export default function BuyButton({ item, theme }) {
   // ]);
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-      }}
-    >
-      <Button
-        variant="contained"
-        color="primary"
-        disabled={optionSelectedPrice === 0}
-        // onClick={handleAddToCart}
-        className="snipcart-add-item"
-        data-item-id={item.itemNo}
-        // data-item-image={imageUrl}
-        data-item-name={item.itemTitle}
-        data-item-url={`https://elibuilds-998b8-default-rtdb.firebaseio.com/${item.itemNo}.json`}
-        data-item-description={item.itemDescription}
-        data-item-price={item.itemBasePrice}
-        data-item-custom1-name="Type"
-        data-item-custom1-type="readonly"
-        data-item-custom1-options={`singleStain[+${item.itemStainCost}]|mixedStain[+${item.itemMixedStainCost}]|mixedStainPaint[+${item.itemMixedStainCost}]|mixedPaint[+${item.itemMixedPaintCost}]|singlePaint`}
-        data-item-custom1-value={snipCartOption}
-        data-item-custom2-name="Parts"
-        data-item-custom2-type="readonly"
-        data-item-custom2-value={optionCartList}
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Box
         sx={{
-          display: item === unselectedItem ? "none" : "block",
-          pointerEvents: "auto",
-          mt: 1.25,
-          color: "#ffffff",
-          // color:
-          //   item === unselectedItem ? theme.palette.primary.light : "#929d84",
+          display: "flex",
+          justifyContent: "center",
         }}
       >
-        {optionSelectedPrice === 0 ? "..." : `$${optionSelectedPrice}`}
-      </Button>
-    </Box>
+        <Button
+          variant="contained"
+          color="primary"
+          disabled={optionSelectedPrice === 0}
+          // onClick={handleAddToCart}
+          className="snipcart-add-item"
+          data-item-id={item.itemNo}
+          // data-item-image={imageUrl}
+          data-item-name={item.itemTitle}
+          data-item-url={`https://elibuilds-998b8-default-rtdb.firebaseio.com/${item.itemNo}.json`}
+          data-item-description={item.itemDescription}
+          data-item-price={item.itemBasePrice}
+          data-item-custom1-name="Type"
+          data-item-custom1-type="readonly"
+          data-item-custom1-options={`singleStain[+${item.itemStainCost}]|mixedStain[+${item.itemMixedStainCost}]|mixedStainPaint[+${item.itemMixedStainCost}]|mixedPaint[+${item.itemMixedPaintCost}]|singlePaint`}
+          data-item-custom1-value={snipCartOption}
+          data-item-custom2-name="Parts"
+          data-item-custom2-type="readonly"
+          data-item-custom2-value={optionCartList}
+          sx={{
+            display: item === unselectedItem ? "none" : "block",
+            pointerEvents: "auto",
+            mt: 1.25,
+            color: "#ffffff",
+            // fontSize: "8rem",
+            // color:
+            //   item === unselectedItem ? theme.palette.primary.light : "#929d84",
+          }}
+        >
+          {optionSelectedPrice === 0 ? "..." : `$${optionSelectedPrice}`}
+        </Button>
+      </Box>
+    </ThemeProvider>
   );
 }

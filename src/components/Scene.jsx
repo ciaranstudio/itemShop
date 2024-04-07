@@ -225,6 +225,33 @@ export default function Scene({
   const [currentItemName, setCurrentItemName] = useState("gramps");
 
   useEffect(() => {
+    randomAllItemsParts(false);
+  }, []);
+
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (currentItemSelected === unselectedItem) {
+      randomAllItemsParts(false);
+    }
+    //Implementing the setInterval method
+    const interval = setInterval(() => {
+      setCount(count + 1);
+    }, 1000);
+    //Clearing the interval
+    return () => clearInterval(interval);
+  }, [count]);
+
+  // const [randomTime, setRandomTime] = useState(0);
+  // useFrame((state, delta) => {
+  //   setRandomTime(randomTime + delta);
+  //   console.log(randomTime);
+  //   if (Math.floor(randomTime) % 2 === 0) {
+  //     if (currentItemSelected === unselectedItem) randomAllItemsParts(false);
+  //   }
+  // });
+
+  useEffect(() => {
     if (!showBackground && !showPartOptions) {
       // console.log(
       //   "showBackground false and showPartOptions false so fetching objects[thisItemName].parts[0].itemName: ",
