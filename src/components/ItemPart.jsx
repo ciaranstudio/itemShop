@@ -1,5 +1,5 @@
 import React, { useLayoutEffect } from "react";
-import { useGLTF, useTexture, Html } from "@react-three/drei";
+import { useGLTF, useTexture } from "@react-three/drei";
 import { useOptionStore } from "../store/useOptionStore.tsx";
 
 export const ItemPart = ({ model, itemName, partName }) => {

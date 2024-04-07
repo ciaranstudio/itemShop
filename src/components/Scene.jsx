@@ -279,8 +279,14 @@ export default function Scene({
       setOpen(false);
       setInfoBoxIcon(true);
       animateParts();
+      if (orbitRef.current) {
+        orbitRef.current.enableZoom = false;
+      }
     } else if (showBackground && currentItemSelected !== unselectedItem) {
       animateParts();
+      if (orbitRef.current) {
+        orbitRef.current.enableZoom = true;
+      }
     }
   }, [showBackground]);
 
@@ -327,7 +333,7 @@ export default function Scene({
     setCurrentItemName(part.itemName);
     setCurrentPartName(part.partName);
     if (!showBackground) {
-      setShowPartOptions(true);
+      if (!showPhotos && !open) setShowPartOptions(true);
     }
   };
 
@@ -336,6 +342,8 @@ export default function Scene({
     if (currentItemSelected === unselectedItem) {
       setCurrentItemSelected(objects.gramps);
     }
+    setOpen(false);
+    setShowPhotos(false);
     setShowBackground(!showBackground);
     // animateParts();
   };
@@ -365,8 +373,8 @@ export default function Scene({
       if (cart) {
         if (cart.items) {
           setCartCount(cart.items.count);
-          document.getElementById("footer").innerHTML =
-            `snipcartLoaded = ${snipcartLoaded}, cartCount = ${cart.items.count}, cart = ${cart}`;
+          // document.getElementById("footer").innerHTML =
+          //   `snipcartLoaded = ${snipcartLoaded}, cartCount = ${cart.items.count}, cart = ${cart}`;
         }
       }
     }
@@ -377,8 +385,8 @@ export default function Scene({
     const element = document.querySelector("canvas");
     element.addEventListener("touchstart", (e) => {
       setIsTouching(true);
-      document.getElementById("footer").innerHTML +=
-        " touchstart registered (outside of controls) ";
+      // document.getElementById("footer").innerHTML +=
+      //   " touchstart registered (outside of controls) ";
       // is not near edge of view, exit
       // if (e.pageX > 20 && e.pageX < window.innerWidth - 20) return; // suggested by reference showing this method of preventing edge swipes iOS
       if (e.pageX > 30 && e.pageX < window.innerWidth - 30) return;
@@ -392,8 +400,8 @@ export default function Scene({
     });
     element.addEventListener("touchend", (e) => {
       setIsTouching(false);
-      document.getElementById("footer").innerHTML +=
-        " touchend registered (outside of controls) ";
+      // document.getElementById("footer").innerHTML +=
+      //   " touchend registered (outside of controls) ";
     });
     // setInitialLoad(true);
     if (orbitRef.current) {
@@ -506,6 +514,7 @@ export default function Scene({
     if (controlsDragging) {
       setDragTime(dragTime + delta);
       console.log("controls dragging for ", dragTime);
+    } else if (!controlsDragging && !showBackground && !activeZoomAnim) {
     }
     // if (isTouching && !controlsDragging) {
     //   document.getElementById("footer").innerHTML =
@@ -536,14 +545,13 @@ export default function Scene({
   useEffect(() => {
     if (controlsDragging) {
       setPrevEndAzimuthAng(endAzimuthAng);
-      document.getElementById("footer").innerHTML =
-        " controls dragging = true ";
-      document.getElementById("footer").innerHTML +=
-        ` start: ${startAzimuthAng} end: ${endAzimuthAng} `;
-      document.getElementById("footer").innerHTML += ` dragTime: ${dragTime} `;
-
-      document.getElementById("footer").innerHTML +=
-        ` prevStart: ${prevStartAzimuthAng} prevEnd: ${prevEndAzimuthAng} `;
+      // document.getElementById("footer").innerHTML =
+      //   " controls dragging = true ";
+      // document.getElementById("footer").innerHTML +=
+      //   ` start: ${startAzimuthAng} end: ${endAzimuthAng} `;
+      // document.getElementById("footer").innerHTML += ` dragTime: ${dragTime} `;
+      // document.getElementById("footer").innerHTML +=
+      //   ` prevStart: ${prevStartAzimuthAng} prevEnd: ${prevEndAzimuthAng} `;
     } else {
       setPrevStartAzimuthAng(startAzimuthAng);
       if (startAzimuthAng !== 0 && endAzimuthAng !== 0) {
@@ -571,18 +579,18 @@ export default function Scene({
           prevStartAzString,
           prevEndAzString,
         ];
-        document.getElementById("footer").innerHTML =
-          " controls dragging = false ";
-        document.getElementById("footer").innerHTML +=
-          ` start: ${startAzString} end: ${endAzString} `;
-        document.getElementById("footer").innerHTML +=
-          ` dragTime: ${dragTime} `;
-        document.getElementById("footer").innerHTML +=
-          ` prevStart: ${prevStartAzString} prevEnd: ${prevEndAzString} `;
+        // document.getElementById("footer").innerHTML =
+        //   " controls dragging = false ";
+        // document.getElementById("footer").innerHTML +=
+        //   ` start: ${startAzString} end: ${endAzString} `;
+        // document.getElementById("footer").innerHTML +=
+        //   ` dragTime: ${dragTime} `;
+        // document.getElementById("footer").innerHTML +=
+        //   ` prevStart: ${prevStartAzString} prevEnd: ${prevEndAzString} `;
 
         if (allEqual(azArr) && dragTime > 0.5 && brokenCount < 4) {
-          document.getElementById("footer").innerHTML +=
-            "might need to reset page, controls could be broken ";
+          // document.getElementById("footer").innerHTML +=
+          //   "might need to reset page, controls could be broken ";
           setBrokenCount(brokenCount + 1);
         }
       }
@@ -591,8 +599,8 @@ export default function Scene({
 
   useEffect(() => {
     if (brokenCount === 4) {
-      document.getElementById("footer").innerHTML +=
-        "confirmed need to reset page, controls are broken ";
+      // document.getElementById("footer").innerHTML +=
+      //   "confirmed need to reset page, controls are broken ";
       window.location.reload();
     }
   }, [brokenCount]);
@@ -600,7 +608,7 @@ export default function Scene({
   // commented out for test on normal use but 04/05/2024
   useEffect(() => {
     if (isTouching && !controlsDragging) {
-      document.getElementById("footer").innerHTML = " isTouching = true ";
+      // document.getElementById("footer").innerHTML = " isTouching = true ";
       if (orbitRef.current) {
         let firstAzAng = orbitRef.current.getAzimuthalAngle();
         let secondAzAng = 0;
@@ -617,61 +625,61 @@ export default function Scene({
         setTimeout(() => {
           if (isTouching && !controlsDragging) {
             secondAzAng = orbitRef.current.getAzimuthalAngle();
-            document.getElementById("footer").innerHTML =
-              " running stuck check 1 ";
+            // document.getElementById("footer").innerHTML =
+            //   " running stuck check 1 ";
             if (firstAzAng === secondAzAng) {
-              document.getElementById("footer").innerHTML =
-                " current stuck check = true ";
+              // document.getElementById("footer").innerHTML =
+              //   " current stuck check = true ";
               setTimeout(() => {
                 if (isTouching && !controlsDragging) {
                   thirdAzAng = orbitRef.current.getAzimuthalAngle();
-                  document.getElementById("footer").innerHTML =
-                    " running stuck check 2 ";
+                  // document.getElementById("footer").innerHTML =
+                  //   " running stuck check 2 ";
                   if (firstAzAng === secondAzAng && firstAzAng === thirdAzAng) {
-                    document.getElementById("footer").innerHTML =
-                      " current stuck check = true ";
+                    // document.getElementById("footer").innerHTML =
+                    //   " current stuck check = true ";
                     setTimeout(() => {
                       if (isTouching && !controlsDragging) {
                         fourthAzAng = orbitRef.current.getAzimuthalAngle();
-                        document.getElementById("footer").innerHTML =
-                          " running stuck check 3 ";
+                        // document.getElementById("footer").innerHTML =
+                        //   " running stuck check 3 ";
                         if (
                           firstAzAng === secondAzAng &&
                           firstAzAng === thirdAzAng &&
                           firstAzAng === fourthAzAng
                         ) {
-                          document.getElementById("footer").innerHTML =
-                            " current stuck check = true ";
+                          // document.getElementById("footer").innerHTML =
+                          //   " current stuck check = true ";
                           setTimeout(() => {
                             if (isTouching && !controlsDragging) {
                               fifthAzAng = orbitRef.current.getAzimuthalAngle();
-                              document.getElementById("footer").innerHTML =
-                                " running stuck check 4 ";
+                              // document.getElementById("footer").innerHTML =
+                              //   " running stuck check 4 ";
                               if (allEqual(azArr)) {
-                                document.getElementById("footer").innerHTML =
-                                  " controls aren't changing, force reload ";
+                                // document.getElementById("footer").innerHTML =
+                                //   " controls aren't changing, force reload ";
                                 window.location.reload();
                               } else {
-                                document.getElementById("footer").innerHTML =
-                                  " current stuck check = false ";
+                                // document.getElementById("footer").innerHTML =
+                                //   " current stuck check = false ";
                               }
                             }
                           }, "600");
                         } else {
-                          document.getElementById("footer").innerHTML =
-                            " current stuck check = false ";
+                          // document.getElementById("footer").innerHTML =
+                          //   " current stuck check = false ";
                         }
                       }
                     }, "300");
                   } else {
-                    document.getElementById("footer").innerHTML =
-                      " current stuck check = false ";
+                    // document.getElementById("footer").innerHTML =
+                    //   " current stuck check = false ";
                   }
                 }
               }, "450");
             } else {
-              document.getElementById("footer").innerHTML =
-                " current stuck check = false ";
+              // document.getElementById("footer").innerHTML =
+              //   " current stuck check = false ";
             }
           }
         }, "150");
@@ -742,6 +750,7 @@ export default function Scene({
   // animate camera position on item double click / showBackground turning false
   const controlsPositionVec = new THREE.Vector3();
   const [targetVec, setTargetVec] = useState(new THREE.Vector3());
+  const [activeZoomAnim, setActiveZoomAnim] = useState(false);
   useGSAP(() => {
     if (!showBackground) {
       if (orbitRef.current) {
@@ -804,6 +813,7 @@ export default function Scene({
             onStart: () => {
               // setOpen(!open);
               // setInfoBoxIcon(!infoBoxIcon);
+              setActiveZoomAnim(true);
               orbitRef.current.enabled = false;
             },
             onUpdate: () => {
@@ -819,59 +829,13 @@ export default function Scene({
             onComplete: () => {
               setTargetVec(controlsPositionVec);
               orbitRef.current.enabled = true;
+              setActiveZoomAnim(false);
             },
           });
         }
       }
     }
   }, [showBackground]);
-
-  // previous useFrame for lerping the camera position to zoom in on object, replaced with gsap camera position animation above ^
-  // useFrame(() => {
-  //   if (
-  //     !controlsDragging &&
-  //     orbitRef.current &&
-  //     currentItemSelected.itemName !== "noSelect" &&
-  //     !showBackground
-  //   ) {
-  //     // if (cameraPosition == null) {
-  //     // orbitRef.current.object.position.lerp(
-  //     //   controlsPositionVec.set(0, 45, 0),
-  //     //   0.01,
-  //     // );
-  //     if (currentItemSizeSelectIndex === 0) {
-  //       orbitRef.current.object.position.lerp(
-  //         controlsPositionVec.set(
-  //           currentItemSelected.positionA.x * 4, // * 6
-  //           currentItemSelected.positionA.y + 7 * 4, // * 6
-  //           currentItemSelected.positionA.z * 4, // * 6
-  //         ),
-  //         0.03,
-  //       );
-  //     } else if (currentItemSizeSelectIndex === 1) {
-  //       orbitRef.current.object.position.lerp(
-  //         controlsPositionVec.set(
-  //           currentItemSelected.positionB.x * 4, // * 6
-  //           currentItemSelected.positionB.y + 7 * 4, // * 6
-  //           currentItemSelected.positionB.z * 4, // * 6
-  //         ),
-  //         0.03,
-  //       );
-  //     }
-
-  //     orbitRef.current.object.updateProjectionMatrix();
-  //     orbitRef.current.update();
-  //   }
-  // else if (!showBackground) {
-  //   orbitRef.current.object.position.lerp(
-  //     currentItemSelected.position.x * 4, // * 6
-  //     currentItemSelected.position.y + 7 * 4, // * 6
-  //     currentItemSelected.position.z * 4, // * 6
-  //     0.01,
-  //   );
-  // }
-  // return null;
-  // });
 
   const stagePositionY = -0.15;
 
@@ -937,7 +901,9 @@ export default function Scene({
     // setInfoBoxIcon(!infoBoxIcon);
     setShowPhotos(false);
     if (showPartOptions) {
-      setShowPartOptions(!showPartOptions);
+      setShowPartOptions(false);
+    } else {
+      setShowPartOptions(true);
     }
   };
   const toggleLongDesc = (e) => {
@@ -956,7 +922,9 @@ export default function Scene({
     e.preventDefault();
     e.stopPropagation();
     if (showPartOptions) {
-      setShowPartOptions(!showPartOptions);
+      setShowPartOptions(false);
+    } else {
+      setShowPartOptions(true);
     }
     setOpen(false);
     setShowPhotos(!showPhotos);
@@ -1019,14 +987,14 @@ export default function Scene({
         <mesh
           position={
             width >= 376 && width < 600
-              ? [0, -0.275, 0]
+              ? [0, -0.25, 0]
               : width < 376
-                ? [0, -0.275, 0] // looks right on chrome simulator [0, -0.275, 0]
+                ? [0, -0.25, 0] // looks right on chrome simulator [0, -0.275, 0]
                 : width >= 600 && width < 1100
-                  ? [0, -0.275, 0]
-                  : [0, -0.275, 0]
+                  ? [0, -0.25, 0]
+                  : [0, -0.25, 0]
           }
-          scale={0.04}
+          scale={0.015}
           rotation={[0, 0.75, 0]}
           onClick={handleDoubleClick}
           onPointerOver={() => hover(true)}
@@ -1038,8 +1006,8 @@ export default function Scene({
             cartCount={cartCount}
             handleCartClick={handleCartClick}
           /> */}
-          <boxGeometry />
-          <meshStandardMaterial color="red" />
+          <torusKnotGeometry />
+          <meshStandardMaterial color="orange" />
         </mesh>
         {/* <Html center>
           <div className="info">
@@ -1061,8 +1029,12 @@ export default function Scene({
         enableZoom={true}
         enablePan={false}
         maxDistance={15}
-        minDistance={1.85} // 1.75 good on iphone xr portrait // 1.375 // 60
-        maxPolarAngle={Math.PI / 2 + Math.PI / 16} // {Math.PI / 2 - Math.PI / 16}
+        minDistance={1.45} // 1.75 good on iphone xr portrait // 1.375 // 60
+        maxPolarAngle={
+          currentItemSelected.itemName.includes("shelf")
+            ? Math.PI / 2 + Math.PI / 32
+            : Math.PI / 2 - Math.PI / 16
+        } // {Math.PI / 2 - Math.PI / 16}
         enableDamping={true}
         autoRotate
         autoRotateSpeed={0.8}
@@ -1116,7 +1088,29 @@ export default function Scene({
             >
               <Html
                 center
-                position={[0, item.itemName.includes("shelf") ? 0.65 : 0, 0]}
+                position={[
+                  0,
+                  item.itemName.includes("shelf") &&
+                  item.itemName.includes("B") &&
+                  item.itemName.includes("16")
+                    ? 0.4
+                    : item.itemName.includes("shelf") &&
+                        item.itemName.includes("B") &&
+                        item.itemName.includes("32")
+                      ? 0.18
+                      : item.itemName.includes("shelf") &&
+                          item.itemName.includes("A") &&
+                          item.itemName.includes("32")
+                        ? 0.4
+                        : item.itemName.includes("shelf") &&
+                            item.itemName.includes("A") &&
+                            item.itemName.includes("16")
+                          ? 0.18
+                          : item.itemName.includes("horse")
+                            ? -0.8
+                            : -0.6,
+                  0,
+                ]}
               >
                 <div
                   className="info"
@@ -1162,7 +1156,25 @@ export default function Scene({
                 center
                 position={[
                   0,
-                  item.itemName.includes("shelf") ? 0.35 : -0.85,
+                  item.itemName.includes("shelf") &&
+                  item.itemName.includes("B") &&
+                  item.itemName.includes("16")
+                    ? 0.35
+                    : item.itemName.includes("shelf") &&
+                        item.itemName.includes("B") &&
+                        item.itemName.includes("32")
+                      ? 0.15
+                      : item.itemName.includes("shelf") &&
+                          item.itemName.includes("A") &&
+                          item.itemName.includes("32")
+                        ? 0.35
+                        : item.itemName.includes("shelf") &&
+                            item.itemName.includes("A") &&
+                            item.itemName.includes("16")
+                          ? 0.15
+                          : item.itemName.includes("horse")
+                            ? -1
+                            : -0.65,
                   0,
                 ]}
               >

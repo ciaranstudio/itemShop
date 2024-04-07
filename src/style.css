@@ -115,7 +115,7 @@ img {
   border-radius: 0.75rem;
   border: 1.5px solid grey;
   font-size: 1.25rem;
-  pointer-events: auto;
+  pointer-events: manipulation;
   /* font-family: var(--leva-fonts-mono); */
 }
 
@@ -133,7 +133,7 @@ img {
   border-radius: 0.75rem;
   border: 1.5px solid grey;
   font-size: 1.25rem;
-  /* pointer-events: none; */
+  pointer-events: none;
   /* font-family: var(--leva-fonts-mono); */
 }
 
@@ -264,7 +264,7 @@ img {
 .color-menu-part-title {
   padding-top: 0.25rem;
   text-align: center;
-  color: #212121;
+  color: #424242;
   border-radius: 2rem;
   user-select: none;
   font-size: 8rem;
