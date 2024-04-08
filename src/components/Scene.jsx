@@ -1,8 +1,5 @@
 import { useRef, useState, useEffect } from "react";
-
 import * as THREE from "three";
-// import { CameraHelper } from "three";
-// import { DirectionalLightHelper } from "three";
 import { useFrame } from "@react-three/fiber";
 import {
   OrbitControls,
@@ -18,33 +15,33 @@ import {
   // Text,
   // Ring
 } from "@react-three/drei";
-
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-
-// import { Perf } from "r3f-perf";
-
 import { ItemPart } from "./ItemPart.jsx";
 import { Bag } from "./Bag.jsx";
 import { Annotation } from "./Annotation.jsx";
 import RingCircle from "./RingCircle.jsx";
 import { Floor } from "./room/Floor.jsx";
 import { Walls } from "./room/Walls.jsx";
-// import { ShelfPositions } from "./room/ShelfPositions.jsx";
-
 import { objects, unselectedItem } from "../data/objects.jsx";
 import { textures } from "../data/textures.jsx";
 import { shopItems } from "../data/objects.jsx";
-
 import useWindowDimensions from "../helpers/useWindowDimensions";
 import { useSnipcart } from "use-snipcart";
 import { Logo } from "./Logo.jsx";
-
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import IconButton from "@mui/material/IconButton";
-import BuyButton from "./BuyButton.jsx";
 import SimpleSlider from "./SimpleSlider.jsx";
 import { SelectIcon } from "./SelectIcon.jsx";
+// import { CameraHelper } from "three";
+// import { DirectionalLightHelper } from "three";
+// import { Perf } from "r3f-perf";
+// import { ShelfPositions } from "./room/ShelfPositions.jsx";
+import * as React from "react";
+import Button from "@mui/material/Button";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
 
 export default function Scene({
   currentItemSelected,
@@ -983,6 +980,39 @@ export default function Scene({
             currentColor={textures.blueTape}
             currentTexture={textures.paintedTexture}
           />
+          <Html center position={[0, -12, 0]}>
+            {/* <div className="w3-container">
+              <div className="w3-bar w3-light-grey">
+                <div className="w3-dropdown-click">
+                  <div className="w3-dropdown-content w3-bar-block w3-card">
+                    <a href="#" className="w3-bar-item w3-button">
+                      Link 1
+                    </a>
+                    <a href="#" className="w3-bar-item w3-button">
+                      Link 2
+                    </a>
+                    <a href="#" className="w3-bar-item w3-button">
+                      Link 3
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div> */}
+            <PopupState variant="popover" popupId="demo-popup-menu">
+              {(popupState) => (
+                <React.Fragment>
+                  <Button variant="contained" {...bindTrigger(popupState)}>
+                    Dashboard
+                  </Button>
+                  <Menu {...bindMenu(popupState)}>
+                    <MenuItem onClick={popupState.close}>Profile</MenuItem>
+                    <MenuItem onClick={popupState.close}>My account</MenuItem>
+                    <MenuItem onClick={popupState.close}>Logout</MenuItem>
+                  </Menu>
+                </React.Fragment>
+              )}
+            </PopupState>
+          </Html>
         </mesh>
         {/* Arrow icon at bottom of screen */}
         <mesh
@@ -1174,8 +1204,8 @@ export default function Scene({
                             item.itemName.includes("16")
                           ? 0.15
                           : item.itemName.includes("horse")
-                            ? -1
-                            : -0.65,
+                            ? -1.1
+                            : -0.85, // -0.65
                   0,
                 ]}
               >
