@@ -364,6 +364,13 @@ img {
   margin: 1rem;
 }
 
+.part-select-icon {
+  background: transparent;
+  font-size: 9rem;
+  color: #ffffff;
+  border: none;
+}
+
 .colorExitBtn:active {
   transform: scale(1.2);
   /* transition: transform 0.1s ease-in-out 0.1s; */

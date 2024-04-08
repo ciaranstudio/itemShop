@@ -44,6 +44,7 @@ import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import IconButton from "@mui/material/IconButton";
 import BuyButton from "./BuyButton.jsx";
 import SimpleSlider from "./SimpleSlider.jsx";
+import { SelectIcon } from "./SelectIcon.jsx";
 
 export default function Scene({
   currentItemSelected,
@@ -1244,6 +1245,17 @@ export default function Scene({
                       toggleInfoBox={toggleInfoBox}
                       toggleLongDesc={toggleLongDesc}
                       togglePhotoBox={togglePhotoBox}
+                    />
+                    <SelectIcon
+                      model={part.model}
+                      itemName={part.itemName}
+                      partName={part.partName}
+                      animation={part.animation}
+                      animDist={animDist}
+                      currentItemName={currentItemName}
+                      currentPartName={currentPartName}
+                      showBackground={showBackground}
+                      showPartOptions={showPartOptions}
                     />
                     <RingCircle
                       selected={currentItemSelected === item ? true : false}
