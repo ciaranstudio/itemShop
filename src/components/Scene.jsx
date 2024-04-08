@@ -338,11 +338,10 @@ export default function Scene({
         setCurrentItemName(part.itemName);
         setCurrentPartName(part.partName);
       }
+    } else {
+      setCurrentItemName(part.itemName);
+      setCurrentPartName(part.partName);
     }
-    // else {
-    //   setCurrentItemName(part.itemName);
-    //   setCurrentPartName(part.partName);
-    // }
     // setCurrentItemName(part.itemName);
     // setCurrentPartName(part.partName);
     // if (!showBackground) {
