@@ -294,35 +294,37 @@ export default function Scene({
     e.stopPropagation();
     const { eventObject } = e;
     // console.log(eventObject.position);
-    let tempObjectPosition = eventObject.position;
-    let positionMatch = (element) =>
-      element.position.x === tempObjectPosition.x &&
-      element.position.y === tempObjectPosition.y &&
-      element.position.z === tempObjectPosition.z;
-    if (positionMatch) {
-      // console.log(
-      //   "shopItems.find(positionMatch): ",
-      //   shopItems.find(positionMatch),
-      // );
-      let matchedItem = shopItems.find(positionMatch);
-      // console.log("matchedItem from handleClick function: ", matchedItem);
-      if (currentItemSelected === unselectedItem) {
-        randomAllItemsParts(false);
+    if (showBackground) {
+      let tempObjectPosition = eventObject.position;
+      let positionMatch = (element) =>
+        element.position.x === tempObjectPosition.x &&
+        element.position.y === tempObjectPosition.y &&
+        element.position.z === tempObjectPosition.z;
+      if (positionMatch) {
+        // console.log(
+        //   "shopItems.find(positionMatch): ",
+        //   shopItems.find(positionMatch),
+        // );
+        let matchedItem = shopItems.find(positionMatch);
+        // console.log("matchedItem from handleClick function: ", matchedItem);
+        if (currentItemSelected === unselectedItem) {
+          randomAllItemsParts(false);
+        }
+        setPreviousItemSelected(currentItemSelected);
+        setCurrentItemSelected(matchedItem);
+        // if (
+        //   !open &&
+        //   infoBoxIcon &&
+        //   showBackground &&
+        //   currentItemSelected === unselectedItem
+        // ) {
+        //   setInfoBoxIcon(!infoBoxIcon);
+        //   setOpen(!open);
+        // }
+        // if (!showBackground) {
+        //   setShowPartOptions(true);
+        // }
       }
-      setPreviousItemSelected(currentItemSelected);
-      setCurrentItemSelected(matchedItem);
-      // if (
-      //   !open &&
-      //   infoBoxIcon &&
-      //   showBackground &&
-      //   currentItemSelected === unselectedItem
-      // ) {
-      //   setInfoBoxIcon(!infoBoxIcon);
-      //   setOpen(!open);
-      // }
-      // if (!showBackground) {
-      //   setShowPartOptions(true);
-      // }
     }
   };
 
@@ -330,22 +332,35 @@ export default function Scene({
     // e.preventDefault; // not necessary
     // e.stopPropagation(); // disables item part / item click connecting to entire item mesh/group
     // console.log(part.itemName, part.partName, " clicked");
-    setCurrentItemName(part.itemName);
-    setCurrentPartName(part.partName);
     if (!showBackground) {
       if (!showPhotos && !open) setShowPartOptions(true);
+      if (part.itemName === currentItemSelected.itemName) {
+        setCurrentItemName(part.itemName);
+        setCurrentPartName(part.partName);
+      }
     }
+    // else {
+    //   setCurrentItemName(part.itemName);
+    //   setCurrentPartName(part.partName);
+    // }
+    // setCurrentItemName(part.itemName);
+    // setCurrentPartName(part.partName);
+    // if (!showBackground) {
+    //   if (!showPhotos && !open) setShowPartOptions(true);
+    // }
   };
 
   const handleDoubleClick = (e) => {
     e.stopPropagation();
-    if (currentItemSelected === unselectedItem) {
-      setCurrentItemSelected(objects.gramps);
+    // if (currentItemSelected === unselectedItem) {
+    //   setCurrentItemSelected(objects.gramps);
+    // }
+    if (showBackground) {
+      setOpen(false);
+      setShowPhotos(false);
+      setShowBackground(!showBackground);
+      // animateParts();
     }
-    setOpen(false);
-    setShowPhotos(false);
-    setShowBackground(!showBackground);
-    // animateParts();
   };
 
   const handleArrowIconClick = (e) => {
@@ -1124,7 +1139,13 @@ export default function Scene({
               onPointerOut={() => hover(false)}
               onClick={handleClick}
               onDoubleClick={handleDoubleClick}
-              // visible={false}
+              visible={
+                !showBackground && currentItemSelected === item
+                  ? true
+                  : showBackground
+                    ? true
+                    : false
+              }
             >
               <InfoBox
                 item={item}
