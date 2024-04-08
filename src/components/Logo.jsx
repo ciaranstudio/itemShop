@@ -1,5 +1,5 @@
-import React, { useLayoutEffect } from "react";
-import { useGLTF, useTexture } from "@react-three/drei";
+import React, { useState, useLayoutEffect } from "react";
+import { useGLTF, useTexture, Html } from "@react-three/drei";
 // import * as React from "react";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
@@ -7,7 +7,8 @@ import MenuItem from "@mui/material/MenuItem";
 import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
 
 export const Logo = ({ currentColor, currentTexture }) => {
-  const { scene, nodes, materials } = useGLTF("./models/eliLogo.gltf");
+  const { scene, nodes, materials } = useGLTF("./models/logoAnnotated.gltf");
+  const [annotations, setAnnotations] = useState([]);
 
   const [
     map,
@@ -41,6 +42,47 @@ export const Logo = ({ currentColor, currentTexture }) => {
   ]);
 
   useLayoutEffect(() => {
+    const currentAnnotations = [];
+    scene.traverse((o) => {
+      // console.log("o from scene.traverse in Annotations: ", o);
+      if (o.isObject3D) {
+        if (o.userData.name) {
+          if (o.userData.name.startsWith("AnchorPoint")) {
+            // console.log(o.userData.name);
+            currentAnnotations.push(
+              <Html
+                // transform
+                center
+                key={o.uuid}
+                position={[o.position.x, o.position.y, o.position.z]}
+                distanceFactor={0.25}
+              >
+                <PopupState variant="popover" popupId="demo-popup-menu">
+                  {(popupState) => (
+                    <React.Fragment>
+                      <Button variant="contained" {...bindTrigger(popupState)}>
+                        Dashboard
+                      </Button>
+                      <Menu {...bindMenu(popupState)}>
+                        <MenuItem onClick={popupState.close}>Profile</MenuItem>
+                        <MenuItem onClick={popupState.close}>
+                          My account
+                        </MenuItem>
+                        <MenuItem onClick={popupState.close}>Logout</MenuItem>
+                      </Menu>
+                    </React.Fragment>
+                  )}
+                </PopupState>
+              </Html>,
+            );
+          }
+        }
+      }
+    });
+    setAnnotations(currentAnnotations);
+  }, [scene]);
+
+  useLayoutEffect(() => {
     scene.traverse((o) => {
       if (o.isMesh) {
         o.castShadow = false;
@@ -53,7 +95,7 @@ export const Logo = ({ currentColor, currentTexture }) => {
     });
   }, []);
 
-  return <primitive object={scene} />;
+  return <primitive object={scene}>{annotations}</primitive>;
 };
 
 {

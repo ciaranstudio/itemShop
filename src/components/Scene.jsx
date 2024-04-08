@@ -962,14 +962,18 @@ export default function Scene({
           />
         </mesh>
 
+        <pointLight
+          position={[-width / 2800 + 0.2, 0.5, 0.1]}
+          intensity={0.75}
+        />
         <mesh
           position={
             width >= 376 && width < 600
-              ? [-0.165, 0.36, 0] // looks right on actual device [-width / 2800, 0.36, 0] // looks right on chrome simulator [-width / 3100, 0.36, 0]
+              ? [-0.165, 0.345, 0] // looks right on actual device [-width / 2800, 0.36, 0] // looks right on chrome simulator [-width / 3100, 0.36, 0]
               : width < 376
-                ? [-0.19, 0.36, 0] // looks right on chrome simulator [-0.165, 0.36, 0]
+                ? [-0.19, 0.345, 0] // looks right on chrome simulator [-0.165, 0.36, 0]
                 : width >= 600 && width < 1100
-                  ? [-0.21, 0.36, 0]
+                  ? [-0.21, 0.345, 0]
                   : [-width / 2800, 0.36, 0]
           }
           onPointerOver={() => hover(true)}
@@ -980,8 +984,8 @@ export default function Scene({
             currentColor={textures.blueTape}
             currentTexture={textures.paintedTexture}
           />
-          <Html center position={[0, -12, 0]}>
-            {/* <div className="w3-container">
+          {/* <Html center position={[0, -12, 0]}>
+             <div className="w3-container">
               <div className="w3-bar w3-light-grey">
                 <div className="w3-dropdown-click">
                   <div className="w3-dropdown-content w3-bar-block w3-card">
@@ -997,22 +1001,8 @@ export default function Scene({
                   </div>
                 </div>
               </div>
-            </div> */}
-            <PopupState variant="popover" popupId="demo-popup-menu">
-              {(popupState) => (
-                <React.Fragment>
-                  <Button variant="contained" {...bindTrigger(popupState)}>
-                    Dashboard
-                  </Button>
-                  <Menu {...bindMenu(popupState)}>
-                    <MenuItem onClick={popupState.close}>Profile</MenuItem>
-                    <MenuItem onClick={popupState.close}>My account</MenuItem>
-                    <MenuItem onClick={popupState.close}>Logout</MenuItem>
-                  </Menu>
-                </React.Fragment>
-              )}
-            </PopupState>
-          </Html>
+            </div>        
+          </Html> */}
         </mesh>
         {/* Arrow icon at bottom of screen */}
         <mesh
