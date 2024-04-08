@@ -142,6 +142,7 @@ export const Annotation = ({
                     !showBackground
                       ? "block"
                       : "none",
+                  // transition: "display 0s ease-out 0.25s",
                 }}
               >
                 <button

@@ -42,6 +42,8 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
+import InfoBox from "./InfoBox.jsx";
+import PhotoBox from "./PhotoBox.jsx";
 
 export default function Scene({
   currentItemSelected,
@@ -344,6 +346,22 @@ export default function Scene({
     setShowPhotos(false);
     setShowBackground(!showBackground);
     // animateParts();
+  };
+
+  const handleArrowIconClick = (e) => {
+    e.stopPropagation();
+    if (currentItemSelected === unselectedItem) {
+      setCurrentItemSelected(objects.gramps);
+      setTimeout(() => {
+        setOpen(false);
+        setShowPhotos(false);
+        setShowBackground(!showBackground);
+      }, "750");
+    } else {
+      setOpen(false);
+      setShowPhotos(false);
+      setShowBackground(!showBackground);
+    }
   };
 
   // const handleOffClick = (e) => {
@@ -1017,7 +1035,7 @@ export default function Scene({
           }
           scale={0.015}
           rotation={[0, 0.75, 0]}
-          onClick={handleDoubleClick}
+          onClick={handleArrowIconClick}
           onPointerOver={() => hover(true)}
           onPointerOut={() => hover(false)}
         >
@@ -1106,145 +1124,38 @@ export default function Scene({
               onPointerOut={() => hover(false)}
               onClick={handleClick}
               onDoubleClick={handleDoubleClick}
+              // visible={false}
             >
-              <Html
-                center
-                position={[
-                  0,
-                  item.itemName.includes("shelf") &&
-                  item.itemName.includes("B") &&
-                  item.itemName.includes("16")
-                    ? 0.4
-                    : item.itemName.includes("shelf") &&
-                        item.itemName.includes("B") &&
-                        item.itemName.includes("32")
-                      ? 0.18
-                      : item.itemName.includes("shelf") &&
-                          item.itemName.includes("A") &&
-                          item.itemName.includes("32")
-                        ? 0.4
-                        : item.itemName.includes("shelf") &&
-                            item.itemName.includes("A") &&
-                            item.itemName.includes("16")
-                          ? 0.18
-                          : item.itemName.includes("horse")
-                            ? -0.8
-                            : -0.6,
-                  0,
-                ]}
-              >
-                <div
-                  className="info"
-                  style={{
-                    display:
-                      open && currentItemSelected === item ? "block" : "none",
-                  }}
-                >
-                  <IconButton
-                    onClick={(e) => toggleInfoBox(e)}
-                    color="inherit"
-                    // disabled={
-                    //   currentItemSelected.itemTitle === "noSelectTitle" ? true : false
-                    // }
-                    sx={{
-                      position: "absolute",
-                      pointerEvents: "auto",
-                      top: "0.15rem",
-                      left: "0.15rem",
-                      padding: "0.5rem",
-                    }}
-                    aria-label="close order box"
-                  >
-                    <CloseOutlinedIcon
-                      fontSize="medium"
-                      sx={{ color: "primary.light" }}
-                    />
-                  </IconButton>
-                  <div id="title">
-                    {currentItemSelected.itemTitle === "noSelectTitle"
-                      ? ""
-                      : currentItemSelected.itemTitle}
-                  </div>
-                  <div id="description">
-                    {showLongDesc
-                      ? currentItemSelected.itemLongDescription
-                      : currentItemSelected.itemDescription}
-                  </div>
-                  <div id="size">{currentItemSelected.size}</div>
-                </div>
-              </Html>
-              <Html
-                center
-                position={[
-                  0,
-                  item.itemName.includes("shelf") &&
-                  item.itemName.includes("B") &&
-                  item.itemName.includes("16")
-                    ? 0.35
-                    : item.itemName.includes("shelf") &&
-                        item.itemName.includes("B") &&
-                        item.itemName.includes("32")
-                      ? 0.15
-                      : item.itemName.includes("shelf") &&
-                          item.itemName.includes("A") &&
-                          item.itemName.includes("32")
-                        ? 0.35
-                        : item.itemName.includes("shelf") &&
-                            item.itemName.includes("A") &&
-                            item.itemName.includes("16")
-                          ? 0.15
-                          : item.itemName.includes("horse")
-                            ? -1.1
-                            : -0.85, // -0.65
-                  0,
-                ]}
-              >
-                <div
-                  className="photos"
-                  style={{
-                    display:
-                      showPhotos && currentItemSelected === item
-                        ? "block"
-                        : "none",
-                  }}
-                >
-                  <IconButton
-                    onClick={(e) => togglePhotoBox(e)}
-                    color="inherit"
-                    // disabled={
-                    //   currentItemSelected.itemTitle === "noSelectTitle" ? true : false
-                    // }
-                    sx={{
-                      position: "absolute",
-                      pointerEvents: "auto",
-                      top: "0.15rem",
-                      left: "0.15rem",
-                      padding: "0.5rem",
-                    }}
-                    aria-label="close order box"
-                  >
-                    <CloseOutlinedIcon
-                      fontSize="small"
-                      sx={{ color: "primary.light" }}
-                    />
-                  </IconButton>
-                  <div id="title">{currentItemSelected.itemTitle}</div>
-                  <SimpleSlider />
-                </div>
-              </Html>
+              <InfoBox
+                item={item}
+                currentItemSelected={currentItemSelected}
+                toggleInfoBox={toggleInfoBox}
+                open={open}
+                showLongDesc={showLongDesc}
+              />
+              <PhotoBox
+                item={item}
+                currentItemSelected={currentItemSelected}
+                togglePhotoBox={togglePhotoBox}
+                showPhotos={showPhotos}
+              />
               {item.parts.map((part, index) => {
                 return (
                   <group
                     key={part.partName}
                     onClick={(e) => handleItemPartClick(e, part)}
                   >
-                    <mesh position={animatedPosition(part.animation, animDist)}>
+                    <mesh
+                      position={animatedPosition(part.animation, animDist)}
+                      // visible={false}
+                    >
                       <ItemPart
                         model={part.model}
                         itemName={part.itemName}
                         partName={part.partName}
                       />
                     </mesh>
+
                     <Annotation
                       model={part.model}
                       itemName={part.itemName}
@@ -1266,6 +1177,7 @@ export default function Scene({
                       toggleLongDesc={toggleLongDesc}
                       togglePhotoBox={togglePhotoBox}
                     />
+
                     <SelectIcon
                       model={part.model}
                       itemName={part.itemName}
