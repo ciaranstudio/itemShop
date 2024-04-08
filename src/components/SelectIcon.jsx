@@ -32,7 +32,10 @@ export const SelectIcon = ({
                     ? o.position.y - 0.04
                     : itemName.includes("shelfB") && partName.includes("bottom")
                       ? o.position.y - 0.06
-                      : o.position.y + 0.02,
+                      : itemName.includes("shelfB") &&
+                          partName.includes("middle")
+                        ? o.position.y
+                        : o.position.y + 0.02,
                   o.position.z,
                 ]}
                 distanceFactor={0.21}

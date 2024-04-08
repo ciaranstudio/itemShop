@@ -145,13 +145,13 @@ export const Annotation = ({
                 }}
               >
                 <button
-                  className="colorExitBtn"
+                  className="color-exit-btn"
                   onClick={(e) => closePartOptions(e)}
                 >
                   <CloseOutlinedIcon fontSize="inherit" />
                 </button>
                 <button
-                  className="colorBgrdBtn"
+                  className="color-bgrd-btn"
                   onClick={(e) => partShowBackground(e)}
                 >
                   <VisibilityIcon fontSize="inherit" />
@@ -173,7 +173,7 @@ export const Annotation = ({
                         {options.stains.map((stain) => {
                           return (
                             <button
-                              className="colorBtn"
+                              className="color-btn"
                               key={stain}
                               onClick={(e) =>
                                 handlePartOption(
@@ -226,7 +226,7 @@ export const Annotation = ({
                                   true,
                                 )
                               }
-                              className="colorBtn"
+                              className="color-btn"
                               style={{
                                 backgroundColor:
                                   paint === "alabaster"
@@ -263,7 +263,7 @@ export const Annotation = ({
 
                   <div className="shuffle-color-block">
                     <button
-                      className="colorShuffleBtn"
+                      className="color-shuffle-btn"
                       onClick={(e) =>
                         randomCurrentItemParts(e, itemName, "stainSingle")
                       }
@@ -271,7 +271,7 @@ export const Annotation = ({
                       <ShuffleOnIcon fontSize="inherit" color="white" />
                     </button>
                     <button
-                      className="colorShuffleBtn "
+                      className="color-shuffle-btn "
                       onClick={(e) =>
                         randomCurrentItemParts(e, itemName, "stainMixed")
                       }
@@ -279,7 +279,7 @@ export const Annotation = ({
                       <ShuffleOnIcon fontSize="inherit" color="secondary" />
                     </button>
                     <button
-                      className="colorShuffleBtn "
+                      className="color-shuffle-btn "
                       onClick={(e) =>
                         randomCurrentItemParts(e, itemName, "allMixed")
                       }
@@ -287,7 +287,7 @@ export const Annotation = ({
                       <ShuffleOnIcon fontSize="inherit" color="success" />
                     </button>
                     <button
-                      className="colorShuffleBtn "
+                      className="color-shuffle-btn "
                       onClick={(e) =>
                         randomCurrentItemParts(e, itemName, "paintMixed")
                       }
@@ -295,7 +295,7 @@ export const Annotation = ({
                       <ShuffleOnIcon fontSize="inherit" color="warning" />
                     </button>
                     <button
-                      className="colorShuffleBtn "
+                      className="color-shuffle-btn "
                       onClick={(e) =>
                         randomCurrentItemParts(e, itemName, "paintSingle")
                       }
@@ -305,7 +305,7 @@ export const Annotation = ({
                   </div>
                   <div className="buy-info-block">
                     <button
-                      className="colorShuffleBtn "
+                      className="color-shuffle-btn "
                       onClick={togglePhotoBox}
                     >
                       <PhotoLibraryIcon fontSize="inherit" color="primary" />
@@ -316,7 +316,7 @@ export const Annotation = ({
                       aria-label="add to shopping cart"
                     />
                     <button
-                      className="colorShuffleBtn "
+                      className="color-shuffle-btn "
                       onClick={toggleInfoBox}
                     >
                       <InfoIcon fontSize="inherit" color="info" />

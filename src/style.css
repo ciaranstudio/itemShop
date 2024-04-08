@@ -298,7 +298,7 @@ img {
   background-color: rgb(233, 234, 233);
 }
 
-.colorBtn {
+.color-btn {
   background-color: rgba(255, 255, 255, 0.8);
   /* text-align: center; */
   /* font-size: 5rem; */
@@ -319,7 +319,7 @@ img {
   transition: transform 0.25s ease-in-out 0.5s;
 } */
 
-.colorExitBtn {
+.color-exit-btn {
   position: absolute;
   top: 2.5rem;
   left: 1.5rem;
@@ -334,7 +334,7 @@ img {
   margin: 1rem;
 }
 
-.colorBgrdBtn {
+.color-bgrd-btn {
   position: absolute;
   top: 3rem;
   right: 2.05rem;
@@ -349,7 +349,7 @@ img {
   margin: 1rem;
 }
 
-.colorShuffleBtn {
+.color-shuffle-btn {
   /* position: absolute; */
   /* bottom: -0.75rem; */
   /* background-color: rgb(178, 178, 178); */
@@ -371,17 +371,17 @@ img {
   border: none;
 }
 
-.colorExitBtn:active {
+.color-exit-btn:active {
   transform: scale(1.2);
   /* transition: transform 0.1s ease-in-out 0.1s; */
 }
 
-.colorBgrdBtn:active {
+.color-bgrd-btn:active {
   transform: scale(1.2);
   /* transition: transform 0.1s ease-in-out 0.1s; */
 }
 
-.colorShuffleBtn:active {
+.color-shuffle-btn:active {
   transform: scale(1.2);
   /* transition: transform 0.1s ease-in-out 0.1s; */
 }
@@ -405,6 +405,9 @@ img {
     font-size: 9rem;
   }
   .color-menu-part-title {
+    font-size: 6rem;
+  }
+  .part-select-icon {
     font-size: 6rem;
   }
 }
