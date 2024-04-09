@@ -192,28 +192,6 @@ img {
   /* border: 0.35rem solid rgb(155, 155, 155); */
 }
 
-.shuffle-color-block {
-  display: grid;
-  grid-template-columns: auto auto auto auto auto;
-  background: lightGrey;
-  padding-top: 0.2rem;
-  /* padding-top: 1.75rem; */
-  /* padding-bottom: 1rem; */
-  /* border-radius: 3rem; */
-}
-
-.buy-info-block {
-  display: grid;
-  grid-template-columns: auto auto auto;
-  text-align: center;
-  background: lightGrey;
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
-  /* padding-top: 1.75rem;
-  padding-bottom: 1rem; */
-  /* border-radius: 3rem; */
-}
-
 .annotation {
   /* display: grid;
   grid-template-columns: auto auto auto; */
@@ -287,9 +265,9 @@ img {
 .grid-container-stain {
   display: grid;
   grid-template-columns: auto auto;
-  gap: 0.5rem;
+  gap: 0;
   /* gap: 2.5rem; */
-  padding: 0.5rem;
+  padding: 0;
   /* padding: 2rem; */
   margin-right: 0.25rem;
   /* margin-right: 1rem; */
@@ -305,9 +283,9 @@ img {
 .grid-container-paint {
   display: grid;
   grid-template-columns: auto auto auto;
-  gap: 0.5rem;
+  gap: 0;
   /* gap: 2.5rem; */
-  padding: 0.5rem;
+  padding: 0;
   /* padding: 2rem; */
   margin-left: 0.25rem;
   /* margin-left: 1.5rem; */
@@ -329,6 +307,29 @@ img {
   cursor: pointer;
   padding: 1rem;
   /* padding: 8rem; */
+}
+
+.shuffle-color-block {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  background: lightGrey;
+  /* padding-top: 0.2rem; */
+  text-align: center;
+  /* padding-top: 1.75rem; */
+  /* padding-bottom: 1rem; */
+  /* border-radius: 3rem; */
+}
+
+.buy-info-block {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  text-align: center;
+  background: lightGrey;
+  padding-top: 0.5rem;
+  padding-bottom: 0.25rem;
+  /* padding-top: 1.75rem;
+  padding-bottom: 1rem; */
+  /* border-radius: 3rem; */
 }
 
 /* button:hover {
@@ -396,7 +397,7 @@ img {
 
 .part-select-icon {
   background: transparent;
-  font-size: 9rem;
+  font-size: 7rem;
   color: lightGrey;
   border: none;
 }

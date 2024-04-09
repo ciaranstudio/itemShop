@@ -1,6 +1,7 @@
 import React, { useState, useLayoutEffect } from "react";
 import { useGLTF, Html } from "@react-three/drei";
-import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
+// import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
+import CircleIcon from "@mui/icons-material/Circle";
 
 export const SelectIcon = ({
   model,
@@ -52,7 +53,7 @@ export const SelectIcon = ({
               >
                 <div>
                   <button className="part-select-icon">
-                    <RadioButtonCheckedIcon fontSize="inherit" color="white" />
+                    <CircleIcon fontSize="inherit" />
                   </button>
                 </div>
               </Html>,
