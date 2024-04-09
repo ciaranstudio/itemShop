@@ -1034,12 +1034,12 @@ export default function Scene({
         <mesh
           position={
             width >= 376 && width < 600
-              ? [0, -0.25, 0]
+              ? [0, -0.3, 0]
               : width < 376
-                ? [0, -0.25, 0] // looks right on chrome simulator [0, -0.275, 0]
+                ? [0, -0.3, 0] // looks right on chrome simulator [0, -0.275, 0]
                 : width >= 600 && width < 1100
-                  ? [0, -0.25, 0]
-                  : [0, -0.25, 0]
+                  ? [0, -0.3, 0]
+                  : [0, -0.3, 0]
           }
           scale={0.0055}
           // rotation={[0, 0, 0]}
