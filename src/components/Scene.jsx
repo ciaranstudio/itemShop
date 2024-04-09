@@ -29,21 +29,15 @@ import { shopItems } from "../data/objects.jsx";
 import useWindowDimensions from "../helpers/useWindowDimensions";
 import { useSnipcart } from "use-snipcart";
 import { Logo } from "./Logo.jsx";
-import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
-import IconButton from "@mui/material/IconButton";
-import SimpleSlider from "./SimpleSlider.jsx";
 import { SelectIcon } from "./SelectIcon.jsx";
 // import { CameraHelper } from "three";
 // import { DirectionalLightHelper } from "three";
 // import { Perf } from "r3f-perf";
 // import { ShelfPositions } from "./room/ShelfPositions.jsx";
-import * as React from "react";
-import Button from "@mui/material/Button";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
+// import * as React from "react";
 import InfoBox from "./InfoBox.jsx";
 import PhotoBox from "./PhotoBox.jsx";
+import { ArrowIcon } from "./ArrowIcon.jsx";
 
 export default function Scene({
   currentItemSelected,
@@ -1047,31 +1041,19 @@ export default function Scene({
                   ? [0, -0.25, 0]
                   : [0, -0.25, 0]
           }
-          scale={0.015}
-          rotation={[0, 0.75, 0]}
+          scale={0.0055}
+          // rotation={[0, 0, 0]}
           onClick={handleArrowIconClick}
           onPointerOver={() => hover(true)}
           onPointerOut={() => hover(false)}
         >
-          {/* <Bag
-            currentColor={textures.brownBag}
-            currentTexture={textures.paintedTexture}
+          <ArrowIcon
+            currentColor={textures.alabasterPaint}
+            currentTexture={textures.whiteTexture}
             cartCount={cartCount}
             handleCartClick={handleCartClick}
-          /> */}
-          <torusKnotGeometry />
-          <meshStandardMaterial color="orange" />
+          />
         </mesh>
-        {/* <Html center>
-          <div className="info">
-            <div id="description">
-              {showLongDesc
-                ? currentItemSelected.itemLongDescription
-                : currentItemSelected.itemDescription}
-            </div>
-            <div id="size">{currentItemSelected.size}</div>
-          </div>
-        </Html> */}
       </ScreenSpace>
 
       <color args={["#27271a"]} attach="background" />
