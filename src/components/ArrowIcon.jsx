@@ -2,18 +2,26 @@ import React, { useState, useLayoutEffect } from "react";
 import { useGLTF, useTexture } from "@react-three/drei";
 import InfoBoxAll from "./InfoBoxAll.jsx";
 import PhotoBoxAll from "./PhotoBoxAll.jsx";
+import OptionBox from "./OptionBox.jsx";
 // import { useOptionStore } from "../store/useOptionStore.tsx";
 
 export const ArrowIcon = ({
   currentColor,
   currentTexture,
-  // item,
   currentItemSelected,
   toggleInfoBox,
   open,
   showLongDesc,
   togglePhotoBox,
   showPhotos,
+  currentItemName,
+  currentPartName,
+  showBackground,
+  setShowBackground,
+  showPartOptions,
+  setShowPartOptions,
+  handlePartOption,
+  getRandomInt,
 }) => {
   const { scene, nodes, materials } = useGLTF("./models/arrow.gltf");
   const [annotations, setAnnotations] = useState([]);
@@ -75,6 +83,19 @@ export const ArrowIcon = ({
                   togglePhotoBox={togglePhotoBox}
                   showPhotos={showPhotos}
                 />
+                <OptionBox
+                  item={currentItemSelected}
+                  currentItemName={currentItemName}
+                  currentPartName={currentPartName}
+                  showBackground={showBackground}
+                  setShowBackground={setShowBackground}
+                  showPartOptions={showPartOptions}
+                  setShowPartOptions={setShowPartOptions}
+                  handlePartOption={handlePartOption}
+                  getRandomInt={getRandomInt}
+                  toggleInfoBox={toggleInfoBox}
+                  togglePhotoBox={togglePhotoBox}
+                />
               </group>,
             );
           }
@@ -82,7 +103,16 @@ export const ArrowIcon = ({
       }
     });
     setAnnotations(currentAnnotations);
-  }, [scene, open, togglePhotoBox, showPhotos]);
+  }, [
+    scene,
+    open,
+    showPhotos,
+    currentItemSelected,
+    currentItemName,
+    currentPartName,
+    showBackground,
+    showPartOptions,
+  ]);
 
   useLayoutEffect(() => {
     scene.traverse((o) => {

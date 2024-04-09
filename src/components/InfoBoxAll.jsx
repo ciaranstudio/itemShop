@@ -59,7 +59,7 @@ export default function InfoBoxAll({
           aria-label="close order box"
         >
           <CloseOutlinedIcon
-            fontSize="medium"
+            // fontSize="medium"
             sx={{ color: "primary.light" }}
           />
         </IconButton>

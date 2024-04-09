@@ -53,7 +53,10 @@ export default function PhotoBoxAll({ item, togglePhotoBox, showPhotos }) {
           }}
           aria-label="close order box"
         >
-          <CloseOutlinedIcon fontSize="small" sx={{ color: "primary.light" }} />
+          <CloseOutlinedIcon
+            // fontSize="medium"
+            sx={{ color: "primary.light" }}
+          />
         </IconButton>
         <div id="title">{item.itemTitle}</div>
         <SimpleSlider />

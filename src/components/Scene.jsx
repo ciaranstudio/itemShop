@@ -19,7 +19,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ItemPart } from "./ItemPart.jsx";
 import { Bag } from "./Bag.jsx";
-import { Annotation } from "./Annotation.jsx";
+// import { Annotation } from "./Annotation.jsx";
 import RingCircle from "./RingCircle.jsx";
 import { Floor } from "./room/Floor.jsx";
 import { Walls } from "./room/Walls.jsx";
@@ -273,14 +273,14 @@ export default function Scene({
       setOpen(false);
       setInfoBoxIcon(true);
       animateParts();
-      if (orbitRef.current) {
-        orbitRef.current.enableZoom = false;
-      }
+      // if (orbitRef.current) {
+      //   orbitRef.current.enableZoom = false;
+      // }
     } else if (showBackground && currentItemSelected !== unselectedItem) {
       animateParts();
-      if (orbitRef.current) {
-        orbitRef.current.enableZoom = true;
-      }
+      // if (orbitRef.current) {
+      //   orbitRef.current.enableZoom = true;
+      // }
     }
   }, [showBackground]);
 
@@ -796,9 +796,9 @@ export default function Scene({
             yPlus = 0.5; // 0.5 // 0.5
             zPlus = -1.5; // 1.75 // -1.25
           } else if (currentItemSelected.itemName === "horse") {
-            xPlus = -1.5; // -1.75
+            xPlus = -1.9; // -1.75
             yPlus = 1.25; // 1
-            zPlus = -1.5; // -1.75
+            zPlus = -1.9; // -1.75
           } else if (currentItemSelected.itemName === "squatter") {
             xPlus = 1.5; // 1.75
             yPlus = 0.5; // 0.5
@@ -861,7 +861,7 @@ export default function Scene({
     }
   }, [showBackground]);
 
-  const stagePositionY = -0.15;
+  const stagePositionY = -0.1;
 
   const dirLightXPosition = 2.5; // 2.5
   const dirLightYPosition = 3.6; // 3.6
@@ -1050,13 +1050,20 @@ export default function Scene({
           <ArrowIcon
             currentColor={textures.alabasterPaint}
             currentTexture={textures.whiteTexture}
-            // item={currentItemSelected}
             currentItemSelected={currentItemSelected}
             toggleInfoBox={toggleInfoBox}
             open={open}
             showLongDesc={showLongDesc}
             togglePhotoBox={togglePhotoBox}
             showPhotos={showPhotos}
+            currentItemName={currentItemName}
+            currentPartName={currentPartName}
+            showBackground={showBackground}
+            setShowBackground={setShowBackground}
+            showPartOptions={showPartOptions}
+            setShowPartOptions={setShowPartOptions}
+            handlePartOption={handlePartOption}
+            getRandomInt={getRandomInt}
           />
         </mesh>
       </ScreenSpace>
@@ -1163,7 +1170,7 @@ export default function Scene({
                       />
                     </mesh>
 
-                    <Annotation
+                    {/* <Annotation
                       model={part.model}
                       itemName={part.itemName}
                       itemTitle={item.itemTitle}
@@ -1183,7 +1190,7 @@ export default function Scene({
                       toggleInfoBox={toggleInfoBox}
                       toggleLongDesc={toggleLongDesc}
                       togglePhotoBox={togglePhotoBox}
-                    />
+                    /> */}
 
                     <SelectIcon
                       model={part.model}
