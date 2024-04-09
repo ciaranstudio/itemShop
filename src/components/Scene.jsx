@@ -35,8 +35,8 @@ import { SelectIcon } from "./SelectIcon.jsx";
 // import { Perf } from "r3f-perf";
 // import { ShelfPositions } from "./room/ShelfPositions.jsx";
 // import * as React from "react";
-import InfoBox from "./InfoBox.jsx";
-import PhotoBox from "./PhotoBox.jsx";
+// import InfoBox from "./InfoBox.jsx";
+// import PhotoBox from "./PhotoBox.jsx";
 import { ArrowIcon } from "./ArrowIcon.jsx";
 
 export default function Scene({
@@ -1050,8 +1050,13 @@ export default function Scene({
           <ArrowIcon
             currentColor={textures.alabasterPaint}
             currentTexture={textures.whiteTexture}
-            cartCount={cartCount}
-            handleCartClick={handleCartClick}
+            // item={currentItemSelected}
+            currentItemSelected={currentItemSelected}
+            toggleInfoBox={toggleInfoBox}
+            open={open}
+            showLongDesc={showLongDesc}
+            togglePhotoBox={togglePhotoBox}
+            showPhotos={showPhotos}
           />
         </mesh>
       </ScreenSpace>
@@ -1128,7 +1133,7 @@ export default function Scene({
                     : false
               }
             >
-              <InfoBox
+              {/* <InfoBox
                 item={item}
                 currentItemSelected={currentItemSelected}
                 toggleInfoBox={toggleInfoBox}
@@ -1140,7 +1145,7 @@ export default function Scene({
                 currentItemSelected={currentItemSelected}
                 togglePhotoBox={togglePhotoBox}
                 showPhotos={showPhotos}
-              />
+              /> */}
               {item.parts.map((part, index) => {
                 return (
                   <group

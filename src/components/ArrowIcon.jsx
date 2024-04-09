@@ -1,8 +1,20 @@
 import React, { useState, useLayoutEffect } from "react";
-import { useGLTF, useTexture, Html } from "@react-three/drei";
+import { useGLTF, useTexture } from "@react-three/drei";
+import InfoBoxAll from "./InfoBoxAll.jsx";
+import PhotoBoxAll from "./PhotoBoxAll.jsx";
 // import { useOptionStore } from "../store/useOptionStore.tsx";
 
-export const ArrowIcon = ({ currentColor, currentTexture }) => {
+export const ArrowIcon = ({
+  currentColor,
+  currentTexture,
+  // item,
+  currentItemSelected,
+  toggleInfoBox,
+  open,
+  showLongDesc,
+  togglePhotoBox,
+  showPhotos,
+}) => {
   const { scene, nodes, materials } = useGLTF("./models/arrow.gltf");
   const [annotations, setAnnotations] = useState([]);
 
@@ -37,36 +49,40 @@ export const ArrowIcon = ({ currentColor, currentTexture }) => {
     metalnessMap,
   ]);
 
-  // useLayoutEffect(() => {
-  //   const currentAnnotations = [];
-  //   scene.traverse((o) => {
-  //     // console.log("o from scene.traverse in Annotations: ", o);
-  //     if (o.isObject3D) {
-  //       if (o.userData.name) {
-  //         if (o.userData.name.startsWith("AnchorPoint")) {
-  //           // console.log(o.userData.name);
-  //           currentAnnotations.push(
-  //             <Html
-  //               // transform
-  //               key={o.uuid}
-  //               position={[o.position.x, o.position.y, o.position.z]}
-  //               distanceFactor={0.25}
-  //             >
-  //               <div
-  //                 className="cart"
-  //                 onClick={handleCartClick}
-  //                 style={{ display: cartCount > 0 ? "block" : "none" }}
-  //               >
-  //                 {cartCount > 0 ? cartCount : ""}
-  //               </div>
-  //             </Html>,
-  //           );
-  //         }
-  //       }
-  //     }
-  //   });
-  //   setAnnotations(currentAnnotations);
-  // }, [scene, cartCount]);
+  useLayoutEffect(() => {
+    const currentAnnotations = [];
+    scene.traverse((o) => {
+      // console.log("o from scene.traverse in Annotations: ", o);
+      if (o.isObject3D) {
+        if (o.userData.name) {
+          if (o.userData.name.startsWith("AnchorPoint")) {
+            // console.log(o.userData.name);
+            currentAnnotations.push(
+              <group
+                key={o.uuid}
+                position={[o.position.x, o.position.y, o.position.z]}
+              >
+                <InfoBoxAll
+                  item={currentItemSelected}
+                  // currentItemSelected={currentItemSelected}
+                  toggleInfoBox={toggleInfoBox}
+                  open={open}
+                  showLongDesc={showLongDesc}
+                />
+                <PhotoBoxAll
+                  item={currentItemSelected}
+                  // currentItemSelected={currentItemSelected}
+                  togglePhotoBox={togglePhotoBox}
+                  showPhotos={showPhotos}
+                />
+              </group>,
+            );
+          }
+        }
+      }
+    });
+    setAnnotations(currentAnnotations);
+  }, [scene, open, togglePhotoBox, showPhotos]);
 
   useLayoutEffect(() => {
     scene.traverse((o) => {
@@ -81,6 +97,6 @@ export const ArrowIcon = ({ currentColor, currentTexture }) => {
     });
   }, []);
 
-  return <primitive object={scene} />;
-  // return <primitive object={scene}>{annotations}</primitive>;
+  // return <primitive object={scene} />;
+  return <primitive object={scene}>{annotations}</primitive>;
 };
