@@ -2,6 +2,7 @@ import React, { useState, useLayoutEffect } from "react";
 import { useGLTF, useTexture, Html } from "@react-three/drei";
 // import * as React from "react";
 import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
@@ -54,21 +55,66 @@ export const Logo = ({ currentColor, currentTexture }) => {
                 // transform
                 center
                 key={o.uuid}
-                position={[o.position.x, o.position.y, o.position.z]}
+                position={[o.position.x, o.position.y + 7.5, o.position.z]}
                 distanceFactor={0.25}
               >
                 <PopupState variant="popover" popupId="demo-popup-menu">
                   {(popupState) => (
                     <React.Fragment>
-                      <Button variant="contained" {...bindTrigger(popupState)}>
-                        Dashboard
-                      </Button>
-                      <Menu {...bindMenu(popupState)}>
-                        <MenuItem onClick={popupState.close}>Profile</MenuItem>
-                        <MenuItem onClick={popupState.close}>
-                          My account
+                      <Box
+                        variant="contained"
+                        {...bindTrigger(popupState)}
+                        // sx={{
+                        //   width: "21rem",
+                        //   fontSize: "3rem",
+                        // }}
+                        sx={{
+                          padding: "12rem",
+                          paddingX: "14rem",
+                          // border: "0.5rem solid white",
+                          borderRadius: "2rem",
+                          cursor: "pointer",
+                        }}
+                      ></Box>
+                      <Menu
+                        {...bindMenu(popupState)}
+                        autoFocus={false}
+                        sx={{
+                          "& .MuiPaper-root": {
+                            backgroundColor: "lightgrey",
+                          },
+                        }}
+                      >
+                        <MenuItem
+                          onClick={popupState.close}
+                          sx={{ fontFamily: "var(--leva-fonts-mono)" }}
+                        >
+                          About
                         </MenuItem>
-                        <MenuItem onClick={popupState.close}>Logout</MenuItem>
+                        <MenuItem
+                          onClick={popupState.close}
+                          sx={{ fontFamily: "var(--leva-fonts-mono)" }}
+                        >
+                          Photos
+                        </MenuItem>
+                        <MenuItem
+                          onClick={popupState.close}
+                          sx={{ fontFamily: "var(--leva-fonts-mono)" }}
+                        >
+                          Custom Work
+                        </MenuItem>
+                        <MenuItem
+                          onClick={popupState.close}
+                          sx={{ fontFamily: "var(--leva-fonts-mono)" }}
+                        >
+                          Contact
+                        </MenuItem>
+                        <MenuItem
+                          onClick={popupState.close}
+                          sx={{ fontFamily: "var(--leva-fonts-mono)" }}
+                        >
+                          Exhibitions
+                        </MenuItem>
                       </Menu>
                     </React.Fragment>
                   )}

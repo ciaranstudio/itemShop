@@ -88,8 +88,8 @@ img {
   /* right: calc(50% - 10rem); */
   text-align: center;
   /* background: #181c20; */
-  background: #5580b0;
-  opacity: 0.35;
+  background: #adbaba;
+  opacity: 0.98;
   /* color: #8c92a4; */
   color: #ffffff;
   padding: 0.25rem;
@@ -397,9 +397,13 @@ img {
 
 .part-select-icon {
   background: transparent;
-  font-size: 7rem;
-  color: lightGrey;
+  font-size: 5rem;
+  color: white;
   border: none;
+  /* padding: 1rem;
+  padding-bottom: 0rem;
+  border: 0.5rem solid white;
+  border-radius: 50%; */
 }
 
 .color-exit-btn:active {
