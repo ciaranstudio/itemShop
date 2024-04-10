@@ -684,10 +684,22 @@ export default function Scene({
   // animation camera target on item click
   const controlsTargetVec = new THREE.Vector3();
   useGSAP(() => {
-    if (previousItemSelected.itemName.includes("shelf")) {
+    if (
+      previousItemSelected.itemName.includes("shelfA32") ||
+      previousItemSelected.itemName.includes("shelfB16")
+    ) {
       controlsTargetVec.set(
         previousItemSelected.position.x,
         previousItemSelected.position.y + 1,
+        previousItemSelected.position.z,
+      );
+    } else if (
+      previousItemSelected.itemName.includes("shelfA16") ||
+      previousItemSelected.itemName.includes("shelfB32")
+    ) {
+      controlsTargetVec.set(
+        previousItemSelected.position.x,
+        previousItemSelected.position.y + 1.25,
         previousItemSelected.position.z,
       );
     } else {
