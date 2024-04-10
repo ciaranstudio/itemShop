@@ -6,6 +6,7 @@ import { objects } from "../data/objects.jsx";
 import { options, allOptions } from "../data/options.jsx";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material";
+import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import VisibilityIcon from "@mui/icons-material/Visibility";
@@ -18,6 +19,7 @@ import FilterOutlinedIcon from "@mui/icons-material/FilterOutlined";
 import CircleIcon from "@mui/icons-material/Circle";
 import BuyButton from "./BuyButton.jsx";
 import SplitButton from "./SplitButton.jsx";
+import useWindowDimensions from "../helpers/useWindowDimensions";
 
 export default function OptionBox({
   item,
@@ -35,6 +37,8 @@ export default function OptionBox({
   allPhotos,
   aboutInfo,
 }) {
+  const { height, width } = useWindowDimensions();
+
   const [stainSingle, setStainSingle] = useState("");
   const [paintSingle, setPaintSingle] = useState("");
 
@@ -95,7 +99,7 @@ export default function OptionBox({
   };
   return (
     <Html
-      position={[0, 12.5, 0]}
+      position={[0, width < 400 ? 14.5 : 13, 0]}
       center={true}
       style={{
         display: showPartOptions && !showBackground ? "block" : "none",
@@ -147,8 +151,23 @@ export default function OptionBox({
           className="color-bgrd-btn"
           onClick={(e) => partShowBackground(e)}
         ></button> */}
-          <div className="color-menu-item-title">{item.itemTitle}</div>
-          <div className="color-menu-part-title">{item.itemDescription}</div>
+
+          <div className="color-menu-item-title">
+            <Typography
+              variant="h6"
+              sx={{ fontFamily: "var(--leva-fonts-mono)" }}
+            >
+              {item.itemTitle}
+            </Typography>
+          </div>
+          <div className="color-menu-part-title">
+            <Typography
+              variant="subtitle2"
+              sx={{ fontFamily: "var(--leva-fonts-mono)" }}
+            >
+              {item.itemDescription}
+            </Typography>
+          </div>
           {/* <div className="color-menu-part-title">{item.size}</div> */}
           <div className="annotation">
             <div

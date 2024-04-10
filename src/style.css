@@ -114,6 +114,7 @@ img {
   background: #c6cfd1;
   opacity: 1;
   padding: 1rem;
+  padding-top: 0.75rem;
   padding-bottom: 2rem;
   border-radius: 0.75rem;
   border: 1.5px solid grey;
@@ -131,8 +132,9 @@ img {
   right: calc(50% - 9rem);
   text-align: center;
   background: #b8c2c4;
-  opacity: 0.98;
+  opacity: 0.96;
   padding: 1rem;
+  padding-top: 0.75rem;
   border-radius: 0.75rem;
   border: 1.5px solid grey;
   font-size: 1.25rem;
@@ -150,7 +152,7 @@ img {
   background: lightGrey;
   color: #212121;
   padding: 0.85rem;
-  border-radius: 2rem;
+  border-radius: 1rem;
   margin-top: 0.25rem;
 }
 
@@ -192,6 +194,7 @@ img {
   /* padding-top: 4rem; */
   padding-bottom: 0.5rem;
   border: 0.15rem solid rgb(155, 155, 155);
+  opacity: 0.96;
   /* border: 0.35rem solid rgb(155, 155, 155); */
 }
 
@@ -243,13 +246,13 @@ img {
 }
 
 .color-menu-item-title {
-  padding-top: 0.5rem;
+  padding-top: 0.75rem;
   /* padding-top: 1rem; */
   text-align: center;
-  color: #181c20;
-  border-radius: 2rem;
+  /* color: #181c20;
+  border-radius: 2rem; */
   user-select: none;
-  font-size: 1.5rem;
+  /* font-size: 1.5rem; */
   /* font-size: 8rem; */
   cursor: grab;
 }
@@ -257,12 +260,14 @@ img {
 .color-menu-part-title {
   /* padding-top: 0.5rem; */
   text-align: center;
-  color: #424242;
-  border-radius: 2rem;
+  /* color: #424242;
+  border-radius: 2rem; */
   user-select: none;
-  font-size: 0.95rem;
+  /* font-size: 0.95rem; */
   /* font-size: 8rem; */
   cursor: grab;
+  max-width: 15rem;
+  margin: auto;
 }
 
 .grid-container-stain {
@@ -333,7 +338,7 @@ img {
   grid-template-columns: auto auto auto;
   text-align: center;
   background: lightGrey;
-  padding-top: 0.5rem;
+  padding-top: 0.75rem;
   padding-bottom: 0.25rem;
   /* padding-top: 1.75rem;
   padding-bottom: 1rem; */
