@@ -717,12 +717,13 @@ img {
   --bgColor-input-autofill: hsl(208, 35%, 61%);
   /* --bgColor-input-autofill: hsl(210, 60%, 15%); */
 
-  --bgColor-buttonPrimary: hsl(220, 70%, 22%);
+  --bgColor-buttonPrimary: hsl(220, 47%, 41%);
   /* --bgColor-buttonPrimary: hsl(220, 70%, 22%); */
   --bgColor-buttonPrimary-hover: hsl(220, 70%, 30%);
   --bgColor-buttonPrimary-active: var(--bgColor-buttonPrimary);
   --bgColor-buttonPrimary-focus: var(--bgColor-buttonPrimary);
-  --bgColor-buttonPrimary-disabled: hsl(210, 10%, 25%);
+  --bgColor-buttonPrimary-disabled: hsl(207, 6%, 63%);
+  /* --bgColor-buttonPrimary-disabled: hsl(210, 10%, 25%); */
   --bgColor-buttonPrimary-success: hsl(144, 66%, 30%);
   --bgColor-buttonPrimary-error: hsl(6, 60%, 35%);
 
@@ -730,7 +731,8 @@ img {
   --bgColor-buttonSecondary-hover: hsl(210, 60%, 18%);
   --bgColor-buttonSecondary-active: var(--bgColor-buttonSecondary);
   --bgColor-buttonSecondary-focus: var(--bgColor-buttonSecondary);
-  --bgColor-buttonSecondary-disabled: hsl(210, 10%, 9%);
+  --bgColor-buttonSecondary-disabled: hsl(210, 7%, 29%);
+  /* --bgColor-buttonSecondary-disabled: hsl(210, 10%, 9%); */
   --bgColor-buttonSecondary-success: var(--bgColor-success);
   --bgColor-buttonSecondary-error: var(--bgColor-error);
 
@@ -746,7 +748,8 @@ img {
   /* --bgColor-badge: hsl(210, 55%, 10%); */
   --bgColor-badge-active: hsl(0, 0%, 100%);
   /* --bgColor-badge-active: hsl(210, 60%, 15%); */
-  --bgColor-badge-disabled: hsl(210, 10%, 11%);
+  --bgColor-badge-disabled: hsl(0, 0%, 91%);
+  /* --bgColor-badge-disabled: hsl(210, 10%, 11%); */
 
   /* ----------------- 
         Shadows

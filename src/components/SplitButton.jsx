@@ -11,13 +11,7 @@ import MenuList from "@mui/material/MenuList";
 // import ShuffleOnIcon from "@mui/icons-material/ShuffleOn";
 import ShuffleOutlinedIcon from "@mui/icons-material/ShuffleOutlined";
 
-const options = [
-  "Single stain",
-  "Mixed stain",
-  "Mixed stain / paint",
-  "Mixed paint",
-  "Single paint",
-];
+const options = ["Stain", "Stains", "Stains / Paints", "Paints", "Paint"];
 
 export default function SplitButton({ theme }) {
   const [open, setOpen] = React.useState(false);
