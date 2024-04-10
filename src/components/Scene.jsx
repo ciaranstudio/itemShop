@@ -169,7 +169,7 @@ export default function Scene({
 
   const dirLightA = useRef();
 
-  const loadingBarElement = document.querySelector(".loading-bar");
+  // const loadingBarElement = document.querySelector(".loading-bar");
   const { active, progress, errors, item, loaded, total } = useProgress();
   const overlayOpacity = { value: 1 };
   const [overlayAlpha, setOverlayAlpha] = useState(1);
@@ -196,7 +196,8 @@ export default function Scene({
   });
 
   useEffect(() => {
-    loadingBarElement.style.transform = `scaleX(${progress / 100})`;
+    // loadingBarElement.style.transform = `scaleX(${progress / 100})`;
+    // loadingBarElement.style.transform = `scaleX(${loaded / total})`;
     if (progress == 100) {
       window.setTimeout(() => {
         // animate overlay
@@ -212,12 +213,17 @@ export default function Scene({
           },
         });
         // update loadingBarElement
-        loadingBarElement.classList.add("ended");
-        loadingBarElement.style.transform = "";
+        // loadingBarElement.classList.add("ended");
+        // loadingBarElement.style.transform = "";
       }, 500);
     }
     // console.log(overlayGeometry);
   }, [progress]);
+
+  useEffect(() => {
+    console.log("loaded: ", loaded);
+    console.log("total: ", total);
+  }, [loaded, total]);
 
   // const [initialLoad, setInitialLoad] = useState(false);
   const [controlsDragging, setControlsDragging] = useState(false);

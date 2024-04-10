@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect, Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
+import { useProgress } from "@react-three/drei";
 import { Leva } from "leva"; // only here for the font as a placeholder, no longer using debugControls, find font replacement
 import * as THREE from "three";
 import Scene from "./components/Scene.jsx";
@@ -201,6 +202,39 @@ function App() {
     });
     console.log("random colors generated list: ", randomAllItemsColors);
   };
+
+  const loadingBarElement = document.querySelector(".loading-bar");
+  const { active, progress, errors, item, loaded, total } = useProgress();
+  useEffect(() => {
+    // loadingBarElement.style.transform = `scaleX(${progress / 100})`;
+    loadingBarElement.style.transform = `scaleX(${loaded / 149})`;
+    console.log("progress: ", progress);
+    if (loaded / 149 === 1) {
+      window.setTimeout(() => {
+        // animate overlay
+        // gsap.to(overlayOpacity, {
+        //   duration: 3,
+        //   value: 0,
+        //   delay: 1,
+        //   onUpdate: () => {
+        //     setOverlayAlpha(overlayOpacity.value);
+        //   },
+        //   onComplete: () => {
+        //     // setInitialLoad(true);
+        //   },
+        // });
+        // update loadingBarElement
+        loadingBarElement.classList.add("ended");
+        loadingBarElement.style.transform = "";
+      }, 500);
+    }
+    // console.log(overlayGeometry);
+  }, [progress]);
+
+  useEffect(() => {
+    console.log("loaded: ", loaded);
+    console.log("total: ", total);
+  }, [loaded, total]);
 
   return (
     <>
