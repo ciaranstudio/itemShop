@@ -91,6 +91,7 @@ export default function SplitButton({ theme }) {
                       // disabled={index === 2}
                       selected={index === selectedIndex}
                       onClick={(event) => handleMenuItemClick(event, index)}
+                      sx={{ fontFamily: "var(--leva-fonts-mono)" }}
                     >
                       {option}
                     </MenuItem>

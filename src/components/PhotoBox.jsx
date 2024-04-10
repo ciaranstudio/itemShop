@@ -1,11 +1,18 @@
 import { Html } from "@react-three/drei";
+import CssBaseline from "@mui/material/CssBaseline";
+import { ThemeProvider } from "@mui/material";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import IconButton from "@mui/material/IconButton";
 import SimpleSlider from "./SimpleSlider.jsx";
-import CssBaseline from "@mui/material/CssBaseline";
-import { ThemeProvider } from "@mui/material";
+import { allImages } from "../data/objects.jsx";
 
-export default function PhotoBox({ item, togglePhotoBox, showPhotos, theme }) {
+export default function PhotoBox({
+  item,
+  togglePhotoBox,
+  showPhotos,
+  theme,
+  allPhotos,
+}) {
   return (
     <Html
       center
@@ -41,7 +48,7 @@ export default function PhotoBox({ item, togglePhotoBox, showPhotos, theme }) {
         }}
       >
         <IconButton
-          onClick={(e) => togglePhotoBox(e)}
+          onClick={(e) => togglePhotoBox(e, false)}
           color="inherit"
           // disabled={
           //   currentItemSelected.itemTitle === "noSelectTitle" ? true : false
@@ -60,8 +67,8 @@ export default function PhotoBox({ item, togglePhotoBox, showPhotos, theme }) {
             sx={{ color: "primary.light" }}
           />
         </IconButton>
-        <div id="title">{item.itemTitle}</div>
-        <SimpleSlider />
+        <div id="title">{allPhotos ? "Images" : item.itemTitle}</div>
+        <SimpleSlider images={allPhotos ? allImages : item.images} />
       </div>
     </Html>
   );

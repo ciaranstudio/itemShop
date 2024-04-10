@@ -22,6 +22,10 @@ export const ArrowIcon = ({
   setShowPartOptions,
   handlePartOption,
   getRandomInt,
+  allPhotos,
+  aboutInfo,
+  // setAllPhotos,
+  // setAboutInfo,
 }) => {
   const { scene, nodes, materials } = useGLTF("./models/arrow.gltf");
   const [annotations, setAnnotations] = useState([]);
@@ -107,6 +111,7 @@ export const ArrowIcon = ({
                   toggleInfoBox={toggleInfoBox}
                   open={open}
                   theme={theme}
+                  aboutInfo={aboutInfo}
                 />
                 <PhotoBox
                   item={currentItemSelected}
@@ -114,6 +119,7 @@ export const ArrowIcon = ({
                   togglePhotoBox={togglePhotoBox}
                   showPhotos={showPhotos}
                   theme={theme}
+                  allPhotos={allPhotos}
                 />
                 <OptionBox
                   item={currentItemSelected}
@@ -128,6 +134,8 @@ export const ArrowIcon = ({
                   toggleInfoBox={toggleInfoBox}
                   togglePhotoBox={togglePhotoBox}
                   theme={theme}
+                  allPhotos={allPhotos}
+                  aboutInfo={aboutInfo}
                 />
               </group>,
             );

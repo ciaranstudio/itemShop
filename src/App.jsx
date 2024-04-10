@@ -38,8 +38,10 @@ function App() {
 
   const [open, setOpen] = useState(false);
   const [infoBoxIcon, setInfoBoxIcon] = useState(true);
-  const [showLongDesc, setShowLongDesc] = useState(true);
+  // const [showLongDesc, setShowLongDesc] = useState(true);
   const [showPhotos, setShowPhotos] = useState(false);
+  const [allPhotos, setAllPhotos] = useState(false);
+  const [aboutInfo, setAboutInfo] = useState(false);
 
   const [showBackground, setShowBackground] = useState(true);
   const [showPartOptions, setShowPartOptions] = useState(false);
@@ -261,11 +263,13 @@ function App() {
               setOpen={setOpen}
               infoBoxIcon={infoBoxIcon}
               setInfoBoxIcon={setInfoBoxIcon}
-              showLongDesc={showLongDesc}
-              setShowLongDesc={setShowLongDesc}
               showPhotos={showPhotos}
               setShowPhotos={setShowPhotos}
               sceneLoaded={sceneLoaded}
+              allPhotos={allPhotos}
+              setAllPhotos={setAllPhotos}
+              aboutInfo={aboutInfo}
+              setAboutInfo={setAboutInfo}
             />
           </SnipcartProvider>
         </Suspense>

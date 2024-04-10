@@ -12,6 +12,7 @@ export default class Item {
     size,
     position,
     parts,
+    images,
   ) {
     this.itemNo = itemNo;
     this.itemName = itemName;
@@ -25,5 +26,6 @@ export default class Item {
     this.size = size;
     this.position = position;
     this.parts = parts;
+    this.images = images;
   }
 }

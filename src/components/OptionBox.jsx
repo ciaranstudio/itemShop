@@ -4,20 +4,20 @@ import { useOptionStore } from "../store/useOptionStore.tsx";
 // import { textures } from "../data/textures.jsx";
 import { objects } from "../data/objects.jsx";
 import { options, allOptions } from "../data/options.jsx";
+import CssBaseline from "@mui/material/CssBaseline";
+import { ThemeProvider } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import ShuffleOnIcon from "@mui/icons-material/ShuffleOn";
-import InfoIcon from "@mui/icons-material/Info";
+// import ShuffleOnIcon from "@mui/icons-material/ShuffleOn";
+// import InfoIcon from "@mui/icons-material/Info";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import PhotoLibraryIcon from "@mui/icons-material/PhotoLibrary";
-import CropOriginalOutlinedIcon from "@mui/icons-material/CropOriginalOutlined";
+// import PhotoLibraryIcon from "@mui/icons-material/PhotoLibrary";
+// import CropOriginalOutlinedIcon from "@mui/icons-material/CropOriginalOutlined";
 import FilterOutlinedIcon from "@mui/icons-material/FilterOutlined";
 import CircleIcon from "@mui/icons-material/Circle";
 import BuyButton from "./BuyButton.jsx";
 import SplitButton from "./SplitButton.jsx";
-import CssBaseline from "@mui/material/CssBaseline";
-import { ThemeProvider } from "@mui/material";
 
 export default function OptionBox({
   item,
@@ -32,6 +32,8 @@ export default function OptionBox({
   toggleInfoBox,
   togglePhotoBox,
   theme,
+  allPhotos,
+  aboutInfo,
 }) {
   const [stainSingle, setStainSingle] = useState("");
   const [paintSingle, setPaintSingle] = useState("");
@@ -190,7 +192,7 @@ export default function OptionBox({
                                       : "#ffffff",
                             border:
                               thisPartColorName === stain
-                                ? "0.15rem solid #5580b0"
+                                ? "0.15rem solid grey" // #5580b0
                                 : "0.15rem solid lightGrey",
                             borderRadius: "50%",
                           }}
@@ -237,7 +239,7 @@ export default function OptionBox({
                                           : "#ffffff",
                             border:
                               thisPartColorName === paint
-                                ? "0.15rem solid #5580b0"
+                                ? "0.15rem solid grey" // #5580b0
                                 : "0.15rem solid lightGrey",
                             borderRadius: "50%",
                           }}
@@ -250,7 +252,7 @@ export default function OptionBox({
             </div>
           </div>
           <span className="split-shuffle-block">
-            <SplitButton theme={theme} />
+            <SplitButton theme={theme} images={item.images} />
           </span>
           {/* <div className="shuffle-color-block">
           <span>
@@ -312,7 +314,7 @@ export default function OptionBox({
           <div className="buy-info-block">
             <span>
               <IconButton
-                onClick={togglePhotoBox}
+                onClick={(e) => togglePhotoBox(e, false)}
                 color="info"
                 aria-label="close order box"
               >
@@ -329,7 +331,7 @@ export default function OptionBox({
             />
             <span>
               <IconButton
-                onClick={toggleInfoBox}
+                onClick={(e) => toggleInfoBox(e, false)}
                 color="info"
                 aria-label="close order box"
               >

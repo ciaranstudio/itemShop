@@ -49,6 +49,10 @@ export default function Scene({
   showPhotos,
   setShowPhotos,
   sceneLoaded,
+  allPhotos,
+  setAllPhotos,
+  aboutInfo,
+  setAboutInfo,
 }) {
   const { height, width } = useWindowDimensions();
   // useEffect(() => {
@@ -924,13 +928,15 @@ export default function Scene({
     return position;
   };
 
-  const toggleInfoBox = (e) => {
+  const toggleInfoBox = (e, aboutInfo) => {
     e.preventDefault();
     e.stopPropagation();
-    // setShowPartOptions(false);
-    // setShowBackground(true);
+    if (aboutInfo) {
+      setAboutInfo(true);
+    } else if (!aboutInfo) {
+      setAboutInfo(false);
+    }
     setOpen(!open);
-    // setInfoBoxIcon(!infoBoxIcon);
     setShowPhotos(false);
     if (showPartOptions) {
       setShowPartOptions(false);
@@ -939,9 +945,14 @@ export default function Scene({
     }
   };
 
-  const togglePhotoBox = (e) => {
+  const togglePhotoBox = (e, allPhotos) => {
     e.preventDefault();
     e.stopPropagation();
+    if (allPhotos) {
+      setAllPhotos(true);
+    } else if (!allPhotos) {
+      setAllPhotos(false);
+    }
     if (showPartOptions) {
       setShowPartOptions(false);
     } else {
@@ -1002,6 +1013,8 @@ export default function Scene({
           <Logo
             currentColor={textures.blueTape}
             currentTexture={textures.paintedTexture}
+            toggleInfoBox={toggleInfoBox}
+            togglePhotoBox={togglePhotoBox}
           />
           {/* <Html center position={[0, -12, 0]}>
              <div className="w3-container">
@@ -1051,7 +1064,6 @@ export default function Scene({
               currentItemSelected={currentItemSelected}
               toggleInfoBox={toggleInfoBox}
               open={open}
-              // showLongDesc={showLongDesc}
               togglePhotoBox={togglePhotoBox}
               showPhotos={showPhotos}
               currentItemName={currentItemName}
@@ -1062,6 +1074,10 @@ export default function Scene({
               setShowPartOptions={setShowPartOptions}
               handlePartOption={handlePartOption}
               getRandomInt={getRandomInt}
+              allPhotos={allPhotos}
+              aboutInfo={aboutInfo}
+              // setAllPhotos={setAllPhotos}
+              // setAboutInfo={setAboutInfo}
             />
           </mesh>
           <mesh

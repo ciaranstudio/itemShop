@@ -65,6 +65,32 @@ export const objects = {
         "./models/grampsModels/grampsLeg4.gltf",
       ),
     ],
+    [
+      {
+        label: "San Francisco – Oakland Bay Bridge, United States",
+        imgPath: "https://images.unsplash.com/photo-1537944434965-cf4679d1a598",
+      },
+      {
+        label: "Bird",
+        imgPath: "https://images.unsplash.com/photo-1538032746644-0212e812a9e7",
+      },
+      {
+        label: "Bali, Indonesia",
+        imgPath: "https://images.unsplash.com/photo-1537996194471-e657df975ab4",
+      },
+      {
+        label: "San Francisco – Oakland Bay Bridge, United States",
+        imgPath: "https://images.unsplash.com/photo-1537944434965-cf4679d1a598",
+      },
+      {
+        label: "Bird",
+        imgPath: "https://images.unsplash.com/photo-1538032746644-0212e812a9e7",
+      },
+      {
+        label: "Bali, Indonesia",
+        imgPath: "https://images.unsplash.com/photo-1537996194471-e657df975ab4",
+      },
+    ],
   ),
   squatter: new Item(
     1,
@@ -107,6 +133,32 @@ export const objects = {
         "negZ",
         "./models/squatterModels/squatterSide2.gltf",
       ),
+    ],
+    [
+      {
+        label: "San Francisco – Oakland Bay Bridge, United States",
+        imgPath: "https://images.unsplash.com/photo-1537944434965-cf4679d1a598",
+      },
+      {
+        label: "Bird",
+        imgPath: "https://images.unsplash.com/photo-1538032746644-0212e812a9e7",
+      },
+      {
+        label: "Bali, Indonesia",
+        imgPath: "https://images.unsplash.com/photo-1537996194471-e657df975ab4",
+      },
+      {
+        label: "San Francisco – Oakland Bay Bridge, United States",
+        imgPath: "https://images.unsplash.com/photo-1537944434965-cf4679d1a598",
+      },
+      {
+        label: "Bird",
+        imgPath: "https://images.unsplash.com/photo-1538032746644-0212e812a9e7",
+      },
+      {
+        label: "Bali, Indonesia",
+        imgPath: "https://images.unsplash.com/photo-1537996194471-e657df975ab4",
+      },
     ],
   ),
   block: new Item(
@@ -157,6 +209,32 @@ export const objects = {
         "posX",
         "./models/blockModels/blockSide2.gltf",
       ),
+    ],
+    [
+      {
+        label: "San Francisco – Oakland Bay Bridge, United States",
+        imgPath: "https://images.unsplash.com/photo-1537944434965-cf4679d1a598",
+      },
+      {
+        label: "Bird",
+        imgPath: "https://images.unsplash.com/photo-1538032746644-0212e812a9e7",
+      },
+      {
+        label: "Bali, Indonesia",
+        imgPath: "https://images.unsplash.com/photo-1537996194471-e657df975ab4",
+      },
+      {
+        label: "San Francisco – Oakland Bay Bridge, United States",
+        imgPath: "https://images.unsplash.com/photo-1537944434965-cf4679d1a598",
+      },
+      {
+        label: "Bird",
+        imgPath: "https://images.unsplash.com/photo-1538032746644-0212e812a9e7",
+      },
+      {
+        label: "Bali, Indonesia",
+        imgPath: "https://images.unsplash.com/photo-1537996194471-e657df975ab4",
+      },
     ],
   ),
   horse: new Item(
@@ -214,6 +292,32 @@ export const objects = {
         "posZ",
         "./models/horseModels/horseLeg4.gltf",
       ),
+    ],
+    [
+      {
+        label: "San Francisco – Oakland Bay Bridge, United States",
+        imgPath: "https://images.unsplash.com/photo-1537944434965-cf4679d1a598",
+      },
+      {
+        label: "Bird",
+        imgPath: "https://images.unsplash.com/photo-1538032746644-0212e812a9e7",
+      },
+      {
+        label: "Bali, Indonesia",
+        imgPath: "https://images.unsplash.com/photo-1537996194471-e657df975ab4",
+      },
+      {
+        label: "San Francisco – Oakland Bay Bridge, United States",
+        imgPath: "https://images.unsplash.com/photo-1537944434965-cf4679d1a598",
+      },
+      {
+        label: "Bird",
+        imgPath: "https://images.unsplash.com/photo-1538032746644-0212e812a9e7",
+      },
+      {
+        label: "Bali, Indonesia",
+        imgPath: "https://images.unsplash.com/photo-1537996194471-e657df975ab4",
+      },
     ],
   ),
   shelfA16: new Item(
@@ -287,6 +391,32 @@ export const objects = {
         "./models/shelfA32Models/shelfA32Cleat.gltf",
       ),
     ],
+    [
+      {
+        label: "San Francisco – Oakland Bay Bridge, United States",
+        imgPath: "https://images.unsplash.com/photo-1537944434965-cf4679d1a598",
+      },
+      {
+        label: "Bird",
+        imgPath: "https://images.unsplash.com/photo-1538032746644-0212e812a9e7",
+      },
+      {
+        label: "Bali, Indonesia",
+        imgPath: "https://images.unsplash.com/photo-1537996194471-e657df975ab4",
+      },
+      {
+        label: "San Francisco – Oakland Bay Bridge, United States",
+        imgPath: "https://images.unsplash.com/photo-1537944434965-cf4679d1a598",
+      },
+      {
+        label: "Bird",
+        imgPath: "https://images.unsplash.com/photo-1538032746644-0212e812a9e7",
+      },
+      {
+        label: "Bali, Indonesia",
+        imgPath: "https://images.unsplash.com/photo-1537996194471-e657df975ab4",
+      },
+    ],
   ),
   shelfB16: new Item(
     6,
@@ -329,6 +459,32 @@ export const objects = {
         "none",
         "./models/shelfB16Models/shelfB16Cleat.gltf",
       ),
+    ],
+    [
+      {
+        label: "San Francisco – Oakland Bay Bridge, United States",
+        imgPath: "https://images.unsplash.com/photo-1537944434965-cf4679d1a598",
+      },
+      {
+        label: "Bird",
+        imgPath: "https://images.unsplash.com/photo-1538032746644-0212e812a9e7",
+      },
+      {
+        label: "Bali, Indonesia",
+        imgPath: "https://images.unsplash.com/photo-1537996194471-e657df975ab4",
+      },
+      {
+        label: "San Francisco – Oakland Bay Bridge, United States",
+        imgPath: "https://images.unsplash.com/photo-1537944434965-cf4679d1a598",
+      },
+      {
+        label: "Bird",
+        imgPath: "https://images.unsplash.com/photo-1538032746644-0212e812a9e7",
+      },
+      {
+        label: "Bali, Indonesia",
+        imgPath: "https://images.unsplash.com/photo-1537996194471-e657df975ab4",
+      },
     ],
   ),
   shelfB32: new Item(
@@ -373,6 +529,32 @@ export const objects = {
         "./models/shelfB32Models/shelfB32Cleat.gltf",
       ),
     ],
+    [
+      {
+        label: "San Francisco – Oakland Bay Bridge, United States",
+        imgPath: "https://images.unsplash.com/photo-1537944434965-cf4679d1a598",
+      },
+      {
+        label: "Bird",
+        imgPath: "https://images.unsplash.com/photo-1538032746644-0212e812a9e7",
+      },
+      {
+        label: "Bali, Indonesia",
+        imgPath: "https://images.unsplash.com/photo-1537996194471-e657df975ab4",
+      },
+      {
+        label: "San Francisco – Oakland Bay Bridge, United States",
+        imgPath: "https://images.unsplash.com/photo-1537944434965-cf4679d1a598",
+      },
+      {
+        label: "Bird",
+        imgPath: "https://images.unsplash.com/photo-1538032746644-0212e812a9e7",
+      },
+      {
+        label: "Bali, Indonesia",
+        imgPath: "https://images.unsplash.com/photo-1537996194471-e657df975ab4",
+      },
+    ],
   ),
 };
 
@@ -389,6 +571,32 @@ export const unselectedItem = new Item(
   [], // size
   { x: 0, y: 0, z: 0 }, // position
   [new Part("", "", "", "", "")], // parts
+  [
+    {
+      label: "San Francisco – Oakland Bay Bridge, United States",
+      imgPath: "https://images.unsplash.com/photo-1537944434965-cf4679d1a598",
+    },
+    {
+      label: "Bird",
+      imgPath: "https://images.unsplash.com/photo-1538032746644-0212e812a9e7",
+    },
+    {
+      label: "Bali, Indonesia",
+      imgPath: "https://images.unsplash.com/photo-1537996194471-e657df975ab4",
+    },
+    {
+      label: "San Francisco – Oakland Bay Bridge, United States",
+      imgPath: "https://images.unsplash.com/photo-1537944434965-cf4679d1a598",
+    },
+    {
+      label: "Bird",
+      imgPath: "https://images.unsplash.com/photo-1538032746644-0212e812a9e7",
+    },
+    {
+      label: "Bali, Indonesia",
+      imgPath: "https://images.unsplash.com/photo-1537996194471-e657df975ab4",
+    },
+  ],
 );
 
 export const shopItems = [
@@ -400,4 +608,31 @@ export const shopItems = [
   objects.shelfA32,
   objects.shelfB16,
   objects.shelfB32,
+];
+
+export const allImages = [
+  {
+    label: "San Francisco – Oakland Bay Bridge, United States",
+    imgPath: "https://images.unsplash.com/photo-1537944434965-cf4679d1a598",
+  },
+  {
+    label: "Bird",
+    imgPath: "https://images.unsplash.com/photo-1538032746644-0212e812a9e7",
+  },
+  {
+    label: "Bali, Indonesia",
+    imgPath: "https://images.unsplash.com/photo-1537996194471-e657df975ab4",
+  },
+  {
+    label: "San Francisco – Oakland Bay Bridge, United States",
+    imgPath: "https://images.unsplash.com/photo-1537944434965-cf4679d1a598",
+  },
+  {
+    label: "Bird",
+    imgPath: "https://images.unsplash.com/photo-1538032746644-0212e812a9e7",
+  },
+  {
+    label: "Bali, Indonesia",
+    imgPath: "https://images.unsplash.com/photo-1537996194471-e657df975ab4",
+  },
 ];

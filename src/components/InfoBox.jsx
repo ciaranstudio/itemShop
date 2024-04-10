@@ -1,8 +1,8 @@
 import { Html } from "@react-three/drei";
-import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
-import IconButton from "@mui/material/IconButton";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material";
+import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
+import IconButton from "@mui/material/IconButton";
 
 export default function InfoBox({
   item,
@@ -10,7 +10,9 @@ export default function InfoBox({
   toggleInfoBox,
   open,
   theme,
+  aboutInfo,
 }) {
+  const aboutText = "About text...";
   return (
     <Html
       center
@@ -46,7 +48,7 @@ export default function InfoBox({
         }}
       >
         <IconButton
-          onClick={(e) => toggleInfoBox(e)}
+          onClick={(e) => toggleInfoBox(e, false)}
           color="inherit"
           // disabled={
           //   currentItemSelected.itemTitle === "noSelectTitle" ? true : false
@@ -65,11 +67,11 @@ export default function InfoBox({
             sx={{ color: "primary.light" }}
           />
         </IconButton>
-        <div id="title">
-          {item.itemTitle === "noSelectTitle" ? "" : item.itemTitle}
+        <div id="title">{aboutInfo ? "About" : item.itemTitle}</div>
+        <div id="description">
+          {aboutInfo ? aboutText : item.itemLongDescription}
         </div>
-        <div id="description">{item.itemLongDescription}</div>
-        <div id="size">{item.size}</div>
+        <div id="size">{aboutInfo ? "" : item.size}</div>
       </div>
     </Html>
   );
