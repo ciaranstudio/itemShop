@@ -3,44 +3,39 @@ import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import IconButton from "@mui/material/IconButton";
 import SimpleSlider from "./SimpleSlider.jsx";
 
-export default function PhotoBox({
-  item,
-  currentItemSelected,
-  togglePhotoBox,
-  showPhotos,
-}) {
+export default function PhotoBox({ item, togglePhotoBox, showPhotos }) {
   return (
     <Html
       center
-      position={[
-        0,
-        item.itemName.includes("shelf") &&
-        item.itemName.includes("B") &&
-        item.itemName.includes("16")
-          ? 0.35
-          : item.itemName.includes("shelf") &&
-              item.itemName.includes("B") &&
-              item.itemName.includes("32")
-            ? 0.15
-            : item.itemName.includes("shelf") &&
-                item.itemName.includes("A") &&
-                item.itemName.includes("32")
-              ? 0.35
-              : item.itemName.includes("shelf") &&
-                  item.itemName.includes("A") &&
-                  item.itemName.includes("16")
-                ? 0.15
-                : item.itemName.includes("horse")
-                  ? -1.1
-                  : -0.85, // -0.65
-        0,
-      ]}
+      // position={[
+      //   0,
+      //   item.itemName.includes("shelf") &&
+      //   item.itemName.includes("B") &&
+      //   item.itemName.includes("16")
+      //     ? 0.35
+      //     : item.itemName.includes("shelf") &&
+      //         item.itemName.includes("B") &&
+      //         item.itemName.includes("32")
+      //       ? 0.15
+      //       : item.itemName.includes("shelf") &&
+      //           item.itemName.includes("A") &&
+      //           item.itemName.includes("32")
+      //         ? 0.35
+      //         : item.itemName.includes("shelf") &&
+      //             item.itemName.includes("A") &&
+      //             item.itemName.includes("16")
+      //           ? 0.15
+      //           : item.itemName.includes("horse")
+      //             ? -1.1
+      //             : -0.85, // -0.65
+      //   0,
+      // ]}
+      position={[0, -15, 0]}
     >
       <div
         className="photos"
         style={{
-          display:
-            showPhotos && currentItemSelected === item ? "block" : "none",
+          display: showPhotos ? "block" : "none",
         }}
       >
         <IconButton
@@ -58,9 +53,12 @@ export default function PhotoBox({
           }}
           aria-label="close order box"
         >
-          <CloseOutlinedIcon fontSize="small" sx={{ color: "primary.light" }} />
+          <CloseOutlinedIcon
+            // fontSize="medium"
+            sx={{ color: "primary.light" }}
+          />
         </IconButton>
-        <div id="title">{currentItemSelected.itemTitle}</div>
+        <div id="title">{item.itemTitle}</div>
         <SimpleSlider />
       </div>
     </Html>

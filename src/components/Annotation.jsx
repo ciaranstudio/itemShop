@@ -30,7 +30,7 @@ export const Annotation = ({
   getRandomInt,
   positionBottom,
   toggleInfoBox,
-  toggleLongDesc,
+  // toggleLongDesc,
   togglePhotoBox,
 }) => {
   const url = model;

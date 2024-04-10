@@ -5,15 +5,9 @@ import {
   OrbitControls,
   // useHelper,
   useTexture,
-  useProgress,
   Sky,
   ScreenSpace,
   useCursor,
-  Html,
-  // Center,
-  // Text3D,
-  // Text,
-  // Ring
 } from "@react-three/drei";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -34,9 +28,6 @@ import { SelectIcon } from "./SelectIcon.jsx";
 // import { DirectionalLightHelper } from "three";
 // import { Perf } from "r3f-perf";
 // import { ShelfPositions } from "./room/ShelfPositions.jsx";
-// import * as React from "react";
-// import InfoBox from "./InfoBox.jsx";
-// import PhotoBox from "./PhotoBox.jsx";
 import { ArrowIcon } from "./ArrowIcon.jsx";
 
 export default function Scene({
@@ -55,12 +46,9 @@ export default function Scene({
   randomAllItemsParts,
   open,
   setOpen,
-  infoBoxIcon,
-  setInfoBoxIcon,
-  showLongDesc,
-  setShowLongDesc,
   showPhotos,
   setShowPhotos,
+  sceneLoaded,
 }) {
   const { height, width } = useWindowDimensions();
   // useEffect(() => {
@@ -169,8 +157,6 @@ export default function Scene({
 
   const dirLightA = useRef();
 
-  // const loadingBarElement = document.querySelector(".loading-bar");
-  const { active, progress, errors, item, loaded, total } = useProgress();
   const overlayOpacity = { value: 1 };
   const [overlayAlpha, setOverlayAlpha] = useState(1);
   const overlayGeometry = new THREE.PlaneGeometry(2, 2, 1, 1);
@@ -196,9 +182,7 @@ export default function Scene({
   });
 
   useEffect(() => {
-    // loadingBarElement.style.transform = `scaleX(${progress / 100})`;
-    // loadingBarElement.style.transform = `scaleX(${loaded / total})`;
-    if (progress == 100) {
+    if (sceneLoaded) {
       window.setTimeout(() => {
         // animate overlay
         gsap.to(overlayOpacity, {
@@ -212,18 +196,10 @@ export default function Scene({
             // setInitialLoad(true);
           },
         });
-        // update loadingBarElement
-        // loadingBarElement.classList.add("ended");
-        // loadingBarElement.style.transform = "";
       }, 500);
     }
     // console.log(overlayGeometry);
-  }, [progress]);
-
-  useEffect(() => {
-    console.log("loaded: ", loaded);
-    console.log("total: ", total);
-  }, [loaded, total]);
+  }, [sceneLoaded]);
 
   // const [initialLoad, setInitialLoad] = useState(false);
   const [controlsDragging, setControlsDragging] = useState(false);
@@ -277,7 +253,7 @@ export default function Scene({
     }
     if (!showBackground) {
       setOpen(false);
-      setInfoBoxIcon(true);
+      // setInfoBoxIcon(true);
       animateParts();
       // if (orbitRef.current) {
       //   orbitRef.current.enableZoom = false;
@@ -312,18 +288,6 @@ export default function Scene({
         }
         setPreviousItemSelected(currentItemSelected);
         setCurrentItemSelected(matchedItem);
-        // if (
-        //   !open &&
-        //   infoBoxIcon &&
-        //   showBackground &&
-        //   currentItemSelected === unselectedItem
-        // ) {
-        //   setInfoBoxIcon(!infoBoxIcon);
-        //   setOpen(!open);
-        // }
-        // if (!showBackground) {
-        //   setShowPartOptions(true);
-        // }
       }
     }
   };
@@ -884,6 +848,7 @@ export default function Scene({
   const dirLightCamTop = 5;
 
   const ambLightIntensity = 1;
+
   const animatedPosition = (animation, animDist) => {
     let x = 0;
     let y = 0;
@@ -936,18 +901,7 @@ export default function Scene({
       setShowPartOptions(true);
     }
   };
-  const toggleLongDesc = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (showPartOptions) {
-      setShowPartOptions(!showPartOptions);
-    }
-    setShowLongDesc(!showLongDesc);
-    // setShowPartOptions(false);
-    // setShowBackground(!showBackground);
-    // setOpen(!open);
-    // setInfoBoxIcon(!infoBoxIcon);
-  };
+
   const togglePhotoBox = (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -958,10 +912,6 @@ export default function Scene({
     }
     setOpen(false);
     setShowPhotos(!showPhotos);
-    // setShowPartOptions(false);
-    // setShowBackground(true);
-    // setOpen(!open);
-    // setInfoBoxIcon(!infoBoxIcon);
   };
 
   return (
@@ -1059,7 +1009,7 @@ export default function Scene({
             currentItemSelected={currentItemSelected}
             toggleInfoBox={toggleInfoBox}
             open={open}
-            showLongDesc={showLongDesc}
+            // showLongDesc={showLongDesc}
             togglePhotoBox={togglePhotoBox}
             showPhotos={showPhotos}
             currentItemName={currentItemName}
@@ -1110,21 +1060,6 @@ export default function Scene({
         shadow-camera-top={dirLightCamTop} // 150
         // target={grampsRef.current}
       />
-      {/* <Text
-          position={[0, 1.75, 0]}
-          font="./noto-sans-v35-latin-regular.woff"
-          fontSize={0.75}
-          color="#000000"
-          // maxWidth={10.3}
-          textAlign="center"
-          visible={true}
-          characters="abcdefghijklmnopqrstuvwxyz0123456789!"
-        >
-          Eli Gfell Studio
-        </Text> */}
-      {/* <Center top left>
-        <Text3D>hello</Text3D>
-      </Center> */}
       {/* all objects (except logo and cart/bag) */}
       <group position={[0, stagePositionY, 0]}>
         <ambientLight intensity={ambLightIntensity} />
@@ -1146,19 +1081,6 @@ export default function Scene({
                     : false
               }
             >
-              {/* <InfoBox
-                item={item}
-                currentItemSelected={currentItemSelected}
-                toggleInfoBox={toggleInfoBox}
-                open={open}
-                showLongDesc={showLongDesc}
-              />
-              <PhotoBox
-                item={item}
-                currentItemSelected={currentItemSelected}
-                togglePhotoBox={togglePhotoBox}
-                showPhotos={showPhotos}
-              /> */}
               {item.parts.map((part, index) => {
                 return (
                   <group
@@ -1193,8 +1115,7 @@ export default function Scene({
                       handlePartOption={handlePartOption}
                       getRandomInt={getRandomInt}
                       positionBottom={true}
-                      toggleInfoBox={toggleInfoBox}
-                      toggleLongDesc={toggleLongDesc}
+                      toggleInfoBox={toggleInfoBox}                   
                       togglePhotoBox={togglePhotoBox}
                     /> */}
 

@@ -1,7 +1,7 @@
 import React, { useState, useLayoutEffect } from "react";
 import { useGLTF, useTexture } from "@react-three/drei";
-import InfoBoxAll from "./InfoBoxAll.jsx";
-import PhotoBoxAll from "./PhotoBoxAll.jsx";
+import InfoBox from "./InfoBox.jsx";
+import PhotoBox from "./PhotoBox.jsx";
 import OptionBox from "./OptionBox.jsx";
 // import { useOptionStore } from "../store/useOptionStore.tsx";
 
@@ -11,7 +11,6 @@ export const ArrowIcon = ({
   currentItemSelected,
   toggleInfoBox,
   open,
-  showLongDesc,
   togglePhotoBox,
   showPhotos,
   currentItemName,
@@ -70,14 +69,14 @@ export const ArrowIcon = ({
                 key={o.uuid}
                 position={[o.position.x, o.position.y, o.position.z]}
               >
-                <InfoBoxAll
+                <InfoBox
                   item={currentItemSelected}
                   // currentItemSelected={currentItemSelected}
                   toggleInfoBox={toggleInfoBox}
                   open={open}
-                  showLongDesc={showLongDesc}
+                  // showLongDesc={showLongDesc}
                 />
-                <PhotoBoxAll
+                <PhotoBox
                   item={currentItemSelected}
                   // currentItemSelected={currentItemSelected}
                   togglePhotoBox={togglePhotoBox}

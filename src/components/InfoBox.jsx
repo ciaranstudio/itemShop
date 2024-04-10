@@ -4,42 +4,43 @@ import IconButton from "@mui/material/IconButton";
 
 export default function InfoBox({
   item,
-  currentItemSelected,
+  // currentItemSelected,
   toggleInfoBox,
   open,
-  showLongDesc,
+  // showLongDesc,
 }) {
   return (
     <Html
       center
-      position={[
-        0,
-        item.itemName.includes("shelf") &&
-        item.itemName.includes("B") &&
-        item.itemName.includes("16")
-          ? 0.4
-          : item.itemName.includes("shelf") &&
-              item.itemName.includes("B") &&
-              item.itemName.includes("32")
-            ? 0.18
-            : item.itemName.includes("shelf") &&
-                item.itemName.includes("A") &&
-                item.itemName.includes("32")
-              ? 0.4
-              : item.itemName.includes("shelf") &&
-                  item.itemName.includes("A") &&
-                  item.itemName.includes("16")
-                ? 0.18
-                : item.itemName.includes("horse")
-                  ? -0.8
-                  : -0.6,
-        0,
-      ]}
+      // position={[
+      //   0,
+      //   item.itemName.includes("shelf") &&
+      //   item.itemName.includes("B") &&
+      //   item.itemName.includes("16")
+      //     ? 0.4
+      //     : item.itemName.includes("shelf") &&
+      //         item.itemName.includes("B") &&
+      //         item.itemName.includes("32")
+      //       ? 0.18
+      //       : item.itemName.includes("shelf") &&
+      //           item.itemName.includes("A") &&
+      //           item.itemName.includes("32")
+      //         ? 0.4
+      //         : item.itemName.includes("shelf") &&
+      //             item.itemName.includes("A") &&
+      //             item.itemName.includes("16")
+      //           ? 0.18
+      //           : item.itemName.includes("horse")
+      //             ? -0.8
+      //             : -0.6,
+      //   0,
+      // ]}
+      position={[0, -10, 0]}
     >
       <div
         className="info"
         style={{
-          display: open && currentItemSelected === item ? "block" : "none",
+          display: open ? "block" : "none",
         }}
       >
         <IconButton
@@ -58,21 +59,15 @@ export default function InfoBox({
           aria-label="close order box"
         >
           <CloseOutlinedIcon
-            fontSize="medium"
+            // fontSize="medium"
             sx={{ color: "primary.light" }}
           />
         </IconButton>
         <div id="title">
-          {currentItemSelected.itemTitle === "noSelectTitle"
-            ? ""
-            : currentItemSelected.itemTitle}
+          {item.itemTitle === "noSelectTitle" ? "" : item.itemTitle}
         </div>
-        <div id="description">
-          {showLongDesc
-            ? currentItemSelected.itemLongDescription
-            : currentItemSelected.itemDescription}
-        </div>
-        <div id="size">{currentItemSelected.size}</div>
+        <div id="description">{item.itemLongDescription}</div>
+        <div id="size">{item.size}</div>
       </div>
     </Html>
   );

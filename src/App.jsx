@@ -203,32 +203,23 @@ function App() {
     console.log("random colors generated list: ", randomAllItemsColors);
   };
 
+  const [sceneLoaded, setSceneLoaded] = useState(false);
   const loadingBarElement = document.querySelector(".loading-bar");
   const { active, progress, errors, item, loaded, total } = useProgress();
   useEffect(() => {
     // loadingBarElement.style.transform = `scaleX(${progress / 100})`;
     loadingBarElement.style.transform = `scaleX(${loaded / 149})`;
     console.log("progress: ", progress);
-    if (loaded / 149 === 1) {
-      window.setTimeout(() => {
-        // animate overlay
-        // gsap.to(overlayOpacity, {
-        //   duration: 3,
-        //   value: 0,
-        //   delay: 1,
-        //   onUpdate: () => {
-        //     setOverlayAlpha(overlayOpacity.value);
-        //   },
-        //   onComplete: () => {
-        //     // setInitialLoad(true);
-        //   },
-        // });
-        // update loadingBarElement
-        loadingBarElement.classList.add("ended");
-        loadingBarElement.style.transform = "";
-      }, 500);
+    if (loaded >= 143) {
+      if (loaded / 149 === 1 || progress === 100) {
+        setSceneLoaded(true);
+        window.setTimeout(() => {
+          // update loadingBarElement
+          loadingBarElement.classList.add("ended");
+          loadingBarElement.style.transform = "";
+        }, 500);
+      }
     }
-    // console.log(overlayGeometry);
   }, [progress]);
 
   useEffect(() => {
@@ -274,6 +265,7 @@ function App() {
               setShowLongDesc={setShowLongDesc}
               showPhotos={showPhotos}
               setShowPhotos={setShowPhotos}
+              sceneLoaded={sceneLoaded}
             />
           </SnipcartProvider>
         </Suspense>
