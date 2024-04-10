@@ -8,17 +8,21 @@ import Paper from "@mui/material/Paper";
 import Popper from "@mui/material/Popper";
 import MenuItem from "@mui/material/MenuItem";
 import MenuList from "@mui/material/MenuList";
+// import ShuffleOnIcon from "@mui/icons-material/ShuffleOn";
+import ShuffleOutlinedIcon from "@mui/icons-material/ShuffleOutlined";
 
 const options = [
-  "Create a merge commit",
-  "Squash and merge",
-  "Rebase and merge",
+  "Single stain",
+  "Mixed stain",
+  "Mixed stain / paint",
+  "Mixed paint",
+  "Single paint",
 ];
 
-export default function SplitButton() {
+export default function SplitButton({ theme }) {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
-  const [selectedIndex, setSelectedIndex] = React.useState(1);
+  const [selectedIndex, setSelectedIndex] = React.useState(2);
 
   const handleClick = () => {
     console.info(`You clicked ${options[selectedIndex]}`);
@@ -47,8 +51,14 @@ export default function SplitButton() {
         variant="contained"
         ref={anchorRef}
         aria-label="Button group with a nested menu"
+        color="warning"
       >
-        <Button onClick={handleClick}>{options[selectedIndex]}</Button>
+        <Button
+          onClick={handleClick}
+          startIcon={<ShuffleOutlinedIcon color="primary" />}
+        >
+          {options[selectedIndex]}
+        </Button>
         <Button
           size="small"
           aria-controls={open ? "split-button-menu" : undefined}
@@ -84,7 +94,7 @@ export default function SplitButton() {
                   {options.map((option, index) => (
                     <MenuItem
                       key={option}
-                      disabled={index === 2}
+                      // disabled={index === 2}
                       selected={index === selectedIndex}
                       onClick={(event) => handleMenuItemClick(event, index)}
                     >

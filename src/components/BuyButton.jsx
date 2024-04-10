@@ -1,18 +1,13 @@
 // import { useEffect } from "react";
-import Box from "@mui/material/Box";
+// import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { useOptionStore } from "../store/useOptionStore.tsx";
 import { unselectedItem } from "../data/objects.jsx";
 import { objects } from "../data/objects.jsx";
-
 import CssBaseline from "@mui/material/CssBaseline";
-import { createTheme } from "@mui/material";
 import { ThemeProvider } from "@mui/material";
 
-export default function BuyButton({
-  item,
-  // theme
-}) {
+export default function BuyButton({ item, theme }) {
   const optionSelectedPrice = useOptionStore(
     (state) =>
       state.items[
@@ -20,31 +15,31 @@ export default function BuyButton({
       ].optionSelectedPrice,
   );
 
-  const theme = createTheme({
-    palette: {
-      primary: {
-        main: "#212121",
-        light: "#757575",
-      },
+  // const theme = createTheme({
+  //   palette: {
+  //     primary: {
+  //       main: "#212121",
+  //       light: "#757575",
+  //     },
 
-      secondary: {
-        main: "#929d84",
-        light: "#E0E0E0",
-      },
-    },
-    shadows: Array(25).fill("none"),
-    // components: {
-    //   MuiDrawer: {
-    //     styleOverrides: {
-    //       modal: {
-    //         ".MuiModal-backdrop": {
-    //           background: "none",
-    //         },
-    //       },
-    //     },
-    //   },
-    // },
-  });
+  //     secondary: {
+  //       main: "#929d84",
+  //       light: "#E0E0E0",
+  //     },
+  //   },
+  //   shadows: Array(25).fill("none"),
+  //   // components: {
+  //   //   MuiDrawer: {
+  //   //     styleOverrides: {
+  //   //       modal: {
+  //   //         ".MuiModal-backdrop": {
+  //   //           background: "none",
+  //   //         },
+  //   //       },
+  //   //     },
+  //   //   },
+  //   // },
+  // });
 
   // const stainSingle = useOptionStore(
   //   (state) =>
@@ -131,7 +126,7 @@ export default function BuyButton({
 
       <Button
         variant="contained"
-        color="secondary"
+        color="success"
         disabled={optionSelectedPrice === 0}
         // onClick={handleAddToCart}
         className="snipcart-add-item"

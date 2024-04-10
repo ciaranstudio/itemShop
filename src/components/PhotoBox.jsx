@@ -2,8 +2,10 @@ import { Html } from "@react-three/drei";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import IconButton from "@mui/material/IconButton";
 import SimpleSlider from "./SimpleSlider.jsx";
+import CssBaseline from "@mui/material/CssBaseline";
+import { ThemeProvider } from "@mui/material";
 
-export default function PhotoBox({ item, togglePhotoBox, showPhotos }) {
+export default function PhotoBox({ item, togglePhotoBox, showPhotos, theme }) {
   return (
     <Html
       center

@@ -3,6 +3,7 @@ import { useGLTF, useTexture } from "@react-three/drei";
 import InfoBox from "./InfoBox.jsx";
 import PhotoBox from "./PhotoBox.jsx";
 import OptionBox from "./OptionBox.jsx";
+import { createTheme } from "@mui/material";
 // import { useOptionStore } from "../store/useOptionStore.tsx";
 
 export const ArrowIcon = ({
@@ -24,6 +25,37 @@ export const ArrowIcon = ({
 }) => {
   const { scene, nodes, materials } = useGLTF("./models/arrow.gltf");
   const [annotations, setAnnotations] = useState([]);
+
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: "#212121",
+        light: "#bdbdbd",
+      },
+      secondary: {
+        main: "#757575",
+        light: "#E0E0E0",
+      },
+      success: {
+        main: "#929d84",
+        light: "#c8cec1",
+      },
+      info: { main: "#ffffff" },
+      warning: { main: "#BDBDBD" },
+    },
+    shadows: Array(25).fill("none"),
+    // components: {
+    //   MuiDrawer: {
+    //     styleOverrides: {
+    //       modal: {
+    //         ".MuiModal-backdrop": {
+    //           background: "none",
+    //         },
+    //       },
+    //     },
+    //   },
+    // },
+  });
 
   const [
     map,
@@ -74,13 +106,14 @@ export const ArrowIcon = ({
                   // currentItemSelected={currentItemSelected}
                   toggleInfoBox={toggleInfoBox}
                   open={open}
-                  // showLongDesc={showLongDesc}
+                  theme={theme}
                 />
                 <PhotoBox
                   item={currentItemSelected}
                   // currentItemSelected={currentItemSelected}
                   togglePhotoBox={togglePhotoBox}
                   showPhotos={showPhotos}
+                  theme={theme}
                 />
                 <OptionBox
                   item={currentItemSelected}
@@ -94,6 +127,7 @@ export const ArrowIcon = ({
                   getRandomInt={getRandomInt}
                   toggleInfoBox={toggleInfoBox}
                   togglePhotoBox={togglePhotoBox}
+                  theme={theme}
                 />
               </group>,
             );

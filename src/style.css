@@ -323,6 +323,11 @@ img {
   /* border-radius: 3rem; */
 }
 
+.split-shuffle-block {
+  display: flex;
+  justify-content: center;
+}
+
 .buy-info-block {
   display: grid;
   grid-template-columns: auto auto auto;

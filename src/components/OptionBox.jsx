@@ -9,10 +9,15 @@ import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import ShuffleOnIcon from "@mui/icons-material/ShuffleOn";
 import InfoIcon from "@mui/icons-material/Info";
-// import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import PhotoLibraryIcon from "@mui/icons-material/PhotoLibrary";
+import CropOriginalOutlinedIcon from "@mui/icons-material/CropOriginalOutlined";
+import FilterOutlinedIcon from "@mui/icons-material/FilterOutlined";
 import CircleIcon from "@mui/icons-material/Circle";
 import BuyButton from "./BuyButton.jsx";
+import SplitButton from "./SplitButton.jsx";
+import CssBaseline from "@mui/material/CssBaseline";
+import { ThemeProvider } from "@mui/material";
 
 export default function OptionBox({
   item,
@@ -26,6 +31,7 @@ export default function OptionBox({
   getRandomInt,
   toggleInfoBox,
   togglePhotoBox,
+  theme,
 }) {
   const [stainSingle, setStainSingle] = useState("");
   const [paintSingle, setPaintSingle] = useState("");
@@ -94,155 +100,159 @@ export default function OptionBox({
         // transition: "display 0s ease-out 0.25s",
       }}
     >
-      <div className="annotation-wrapper">
-        <IconButton
-          onClick={(e) => closePartOptions(e)}
-          color="primary"
-          // disabled={
-          //   currentItemSelected.itemTitle === "noSelectTitle" ? true : false
-          // }
-          sx={{
-            position: "absolute",
-            pointerEvents: "auto",
-            top: "0.15rem",
-            left: "0.15rem",
-            padding: "0.5rem",
-          }}
-          aria-label="close order box"
-        >
-          <CloseOutlinedIcon fontSize="inherit" />
-        </IconButton>
-        {/* <button className="color-exit-btn" onClick={(e) => closePartOptions(e)}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <div className="annotation-wrapper">
+          <IconButton
+            onClick={(e) => closePartOptions(e)}
+            color="primary"
+            // disabled={
+            //   currentItemSelected.itemTitle === "noSelectTitle" ? true : false
+            // }
+            sx={{
+              position: "absolute",
+              pointerEvents: "auto",
+              top: "0.15rem",
+              left: "0.15rem",
+              padding: "0.5rem",
+            }}
+            aria-label="close order box"
+          >
+            <CloseOutlinedIcon color="secondary" fontSize="inherit" />
+          </IconButton>
+          {/* <button className="color-exit-btn" onClick={(e) => closePartOptions(e)}>
           <CloseOutlinedIcon fontSize="inherit" />
         </button> */}
 
-        <IconButton
-          onClick={(e) => partShowBackground(e)}
-          color="white"
-          // disabled={
-          //   currentItemSelected.itemTitle === "noSelectTitle" ? true : false
-          // }
-          sx={{
-            position: "absolute",
-            pointerEvents: "auto",
-            top: "0.15rem",
-            right: "0.15rem",
-            padding: "0.5rem",
-          }}
-          aria-label="close order box"
-        >
-          <VisibilityIcon fontSize="inherit" />
-        </IconButton>
-        {/* <button
+          <IconButton
+            onClick={(e) => partShowBackground(e)}
+            color="white"
+            // disabled={
+            //   currentItemSelected.itemTitle === "noSelectTitle" ? true : false
+            // }
+            sx={{
+              position: "absolute",
+              pointerEvents: "auto",
+              top: "0.15rem",
+              right: "0.15rem",
+              padding: "0.5rem",
+            }}
+            aria-label="close order box"
+          >
+            <VisibilityIcon color="info" fontSize="inherit" />
+          </IconButton>
+          {/* <button
           className="color-bgrd-btn"
           onClick={(e) => partShowBackground(e)}
         ></button> */}
-        <div className="color-menu-item-title">{item.itemTitle}</div>
-        <div className="color-menu-part-title">{item.itemDescription}</div>
-        {/* <div className="color-menu-part-title">{item.size}</div> */}
-        <div className="annotation">
-          <div
-            className="annotation-options"
-            // style={{
-            //   // pointerEvents: "none",
-            //   // userSelect: "none",
-            //   display: "grid",
-            // }}
-          >
-            {/* {o.userData.name} */}
-            <div className="grid-container-stain">
-              {options.stains.map((stain) => {
-                return (
-                  <span key={stain}>
-                    <IconButton
-                      onClick={(e) =>
-                        handlePartOption(
-                          e,
-                          currentItemName,
-                          currentPartName,
-                          stain,
-                          true,
-                        )
-                      }
-                      color="info"
-                      aria-label="close order box"
-                    >
-                      <CircleIcon
-                        fontSize="large"
-                        sx={{
-                          color:
-                            stain === "white"
-                              ? "#a89d93"
-                              : stain === "natural"
-                                ? "#908073"
-                                : stain === "black"
-                                  ? "#635245"
-                                  : stain === "allBlack"
-                                    ? "#0b0502"
-                                    : "#ffffff",
-                          border:
-                            thisPartColorName === stain
-                              ? "0.15rem solid #5580b0"
-                              : "0.15rem solid lightGrey",
-                          borderRadius: "50%",
-                        }}
-                      />
-                    </IconButton>
-                  </span>
-                );
-              })}
-            </div>
+          <div className="color-menu-item-title">{item.itemTitle}</div>
+          <div className="color-menu-part-title">{item.itemDescription}</div>
+          {/* <div className="color-menu-part-title">{item.size}</div> */}
+          <div className="annotation">
+            <div
+              className="annotation-options"
+              // style={{
+              //   // pointerEvents: "none",
+              //   // userSelect: "none",
+              //   display: "grid",
+              // }}
+            >
+              {/* {o.userData.name} */}
+              <div className="grid-container-stain">
+                {options.stains.map((stain) => {
+                  return (
+                    <span key={stain}>
+                      <IconButton
+                        onClick={(e) =>
+                          handlePartOption(
+                            e,
+                            currentItemName,
+                            currentPartName,
+                            stain,
+                            true,
+                          )
+                        }
+                        color="info"
+                        aria-label="close order box"
+                      >
+                        <CircleIcon
+                          fontSize="large"
+                          sx={{
+                            color:
+                              stain === "white"
+                                ? "#a89d93"
+                                : stain === "natural"
+                                  ? "#908073"
+                                  : stain === "black"
+                                    ? "#635245"
+                                    : stain === "allBlack"
+                                      ? "#0b0502"
+                                      : "#ffffff",
+                            border:
+                              thisPartColorName === stain
+                                ? "0.15rem solid #5580b0"
+                                : "0.15rem solid lightGrey",
+                            borderRadius: "50%",
+                          }}
+                        />
+                      </IconButton>
+                    </span>
+                  );
+                })}
+              </div>
 
-            <div className="grid-container-paint">
-              {options.paints.map((paint) => {
-                return (
-                  <span key={paint}>
-                    <IconButton
-                      onClick={(e) =>
-                        handlePartOption(
-                          e,
-                          currentItemName,
-                          currentPartName,
-                          paint,
-                          true,
-                        )
-                      }
-                      color="info"
-                      aria-label="close order box"
-                    >
-                      <CircleIcon
-                        fontSize="large"
-                        sx={{
-                          color:
-                            paint === "alabaster"
-                              ? "#fffdf0"
-                              : paint === "pink"
-                                ? "#f2d1c6"
-                                : paint === "basil"
-                                  ? "#929d84"
-                                  : paint === "yellow"
-                                    ? "#f2d684"
-                                    : paint === "blue"
-                                      ? "#96b0aa"
-                                      : paint === "gray"
-                                        ? "#8c8b81"
-                                        : "#ffffff",
-                          border:
-                            thisPartColorName === paint
-                              ? "0.15rem solid #5580b0"
-                              : "0.15rem solid lightGrey",
-                          borderRadius: "50%",
-                        }}
-                      />
-                    </IconButton>
-                  </span>
-                );
-              })}
+              <div className="grid-container-paint">
+                {options.paints.map((paint) => {
+                  return (
+                    <span key={paint}>
+                      <IconButton
+                        onClick={(e) =>
+                          handlePartOption(
+                            e,
+                            currentItemName,
+                            currentPartName,
+                            paint,
+                            true,
+                          )
+                        }
+                        color="info"
+                        aria-label="close order box"
+                      >
+                        <CircleIcon
+                          fontSize="large"
+                          sx={{
+                            color:
+                              paint === "alabaster"
+                                ? "#fffdf0"
+                                : paint === "pink"
+                                  ? "#f2d1c6"
+                                  : paint === "basil"
+                                    ? "#929d84"
+                                    : paint === "yellow"
+                                      ? "#f2d684"
+                                      : paint === "blue"
+                                        ? "#96b0aa"
+                                        : paint === "gray"
+                                          ? "#8c8b81"
+                                          : "#ffffff",
+                            border:
+                              thisPartColorName === paint
+                                ? "0.15rem solid #5580b0"
+                                : "0.15rem solid lightGrey",
+                            borderRadius: "50%",
+                          }}
+                        />
+                      </IconButton>
+                    </span>
+                  );
+                })}
+              </div>
             </div>
           </div>
-        </div>
-
-        <div className="shuffle-color-block">
+          <span className="split-shuffle-block">
+            <SplitButton theme={theme} />
+          </span>
+          {/* <div className="shuffle-color-block">
           <span>
             <IconButton
               onClick={(e) =>
@@ -254,14 +264,6 @@ export default function OptionBox({
               <ShuffleOnIcon fontSize="inherit" color="white" />
             </IconButton>
           </span>
-          {/* <button
-            className="color-shuffle-btn"
-            onClick={(e) =>
-              randomCurrentItemParts(e, currentItemName, "stainSingle")
-            }
-          >
-            <ShuffleOnIcon fontSize="inherit" color="white" />
-          </button> */}
           <span>
             <IconButton
               onClick={(e) =>
@@ -273,14 +275,6 @@ export default function OptionBox({
               <ShuffleOnIcon fontSize="inherit" color="secondary" />
             </IconButton>
           </span>
-          {/* <button
-            className="color-shuffle-btn "
-            onClick={(e) =>
-              randomCurrentItemParts(e, currentItemName, "stainMixed")
-            }
-          >
-            <ShuffleOnIcon fontSize="inherit" color="secondary" />
-          </button> */}
           <span>
             <IconButton
               onClick={(e) =>
@@ -292,14 +286,6 @@ export default function OptionBox({
               <ShuffleOnIcon fontSize="inherit" color="success" />
             </IconButton>
           </span>
-          {/* <button
-            className="color-shuffle-btn "
-            onClick={(e) =>
-              randomCurrentItemParts(e, currentItemName, "allMixed")
-            }
-          >
-            <ShuffleOnIcon fontSize="inherit" color="success" />
-          </button> */}
           <span>
             <IconButton
               onClick={(e) =>
@@ -311,14 +297,6 @@ export default function OptionBox({
               <ShuffleOnIcon fontSize="inherit" color="warning" />
             </IconButton>
           </span>
-          {/* <button
-            className="color-shuffle-btn "
-            onClick={(e) =>
-              randomCurrentItemParts(e, currentItemName, "paintMixed")
-            }
-          >
-            <ShuffleOnIcon fontSize="inherit" color="warning" />
-          </button> */}
           <span>
             <IconButton
               onClick={(e) =>
@@ -330,47 +308,40 @@ export default function OptionBox({
               <ShuffleOnIcon fontSize="inherit" color="error" />
             </IconButton>
           </span>
-          {/* <button
-            className="color-shuffle-btn "
-            onClick={(e) =>
-              randomCurrentItemParts(e, currentItemName, "paintSingle")
-            }
-          >
-            <ShuffleOnIcon fontSize="inherit" color="error" />
-          </button> */}
-        </div>
-        <div className="buy-info-block">
-          <span>
-            <IconButton
-              onClick={togglePhotoBox}
-              color="info"
-              aria-label="close order box"
-            >
-              <PhotoLibraryIcon fontSize="inherit" color="primary" />
-            </IconButton>
-          </span>
-          {/* <button className="color-shuffle-btn " onClick={togglePhotoBox}>
+        </div> */}
+          <div className="buy-info-block">
+            <span>
+              <IconButton
+                onClick={togglePhotoBox}
+                color="info"
+                aria-label="close order box"
+              >
+                <FilterOutlinedIcon fontSize="inherit" color="secondary" />
+              </IconButton>
+            </span>
+            {/* <button className="color-shuffle-btn " onClick={togglePhotoBox}>
             <PhotoLibraryIcon fontSize="inherit" color="primary" />
           </button> */}
-          <BuyButton
-            // theme={theme}
-            item={objects[currentItemName]}
-            aria-label="add to shopping cart"
-          />
-          <span>
-            <IconButton
-              onClick={toggleInfoBox}
-              color="info"
-              aria-label="close order box"
-            >
-              <InfoIcon fontSize="inherit" color="primary" />
-            </IconButton>
-          </span>
-          {/* <button className="color-shuffle-btn " onClick={toggleInfoBox}>
+            <BuyButton
+              theme={theme}
+              item={objects[currentItemName]}
+              aria-label="add to shopping cart"
+            />
+            <span>
+              <IconButton
+                onClick={toggleInfoBox}
+                color="info"
+                aria-label="close order box"
+              >
+                <InfoOutlinedIcon fontSize="inherit" color="secondary" />
+              </IconButton>
+            </span>
+            {/* <button className="color-shuffle-btn " onClick={toggleInfoBox}>
             <InfoIcon fontSize="inherit" color="info" />
           </button> */}
+          </div>
         </div>
-      </div>
+      </ThemeProvider>
     </Html>
   );
 }
