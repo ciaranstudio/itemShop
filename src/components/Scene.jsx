@@ -799,21 +799,21 @@ export default function Scene({
             yPlus = 0.5; // 0.5
             zPlus = -1.5; // 1
           } else if (currentItemSelected.itemName === "shelfA16") {
-            xPlus = 1; // 1.5
+            xPlus = 1.5; // 1 // 1.5
             yPlus = 2; // 1.75 // 1.25
-            zPlus = -1; // 1.5
+            zPlus = -0.5; // -1 // 1.5
           } else if (currentItemSelected.itemName === "shelfA32") {
-            xPlus = 1.25; // 1.5
+            xPlus = 2; // 1.5
             yPlus = 1.5; // 1
-            zPlus = -1.25; // 1.5
+            zPlus = -1; // 1.5
           } else if (currentItemSelected.itemName === "shelfB16") {
-            xPlus = -1; // -1.5
-            yPlus = 1.5; //  1
-            zPlus = -1; // -1.5
+            xPlus = -0.75; // -1.5
+            yPlus = 1.25; //  1
+            zPlus = -1.75; // -1.5
           } else if (currentItemSelected.itemName === "shelfB32") {
-            xPlus = -1.25; // -1.5
-            yPlus = 2; // 1.75  // 1.25
-            zPlus = -1.25; // -1.5
+            xPlus = -1; // -1.5
+            yPlus = 1.75; // 1.75  // 1.25
+            zPlus = -2.25; // -1.5
           }
 
           controlsPositionVec.set(
