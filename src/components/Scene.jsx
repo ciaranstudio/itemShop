@@ -1012,41 +1012,65 @@ export default function Scene({
           </Html> */}
         </mesh>
         {/* Arrow icon at bottom of screen */}
-        <mesh
-          position={
-            width >= 376 && width < 600
-              ? [0, -0.3, 0]
-              : width < 376
-                ? [0, -0.3, 0] // looks right on chrome simulator [0, -0.275, 0]
-                : width >= 600 && width < 1100
-                  ? [0, -0.3, 0]
-                  : [0, -0.3, 0]
-          }
-          scale={0.0055}
-          // rotation={[0, 0, 0]}
+        <group
           onClick={handleArrowIconClick}
           onPointerOver={() => hover(true)}
           onPointerOut={() => hover(false)}
         >
-          <ArrowIcon
-            currentColor={textures.alabasterPaint}
-            currentTexture={textures.whiteTexture}
-            currentItemSelected={currentItemSelected}
-            toggleInfoBox={toggleInfoBox}
-            open={open}
-            // showLongDesc={showLongDesc}
-            togglePhotoBox={togglePhotoBox}
-            showPhotos={showPhotos}
-            currentItemName={currentItemName}
-            currentPartName={currentPartName}
-            showBackground={showBackground}
-            setShowBackground={setShowBackground}
-            showPartOptions={showPartOptions}
-            setShowPartOptions={setShowPartOptions}
-            handlePartOption={handlePartOption}
-            getRandomInt={getRandomInt}
-          />
-        </mesh>
+          <mesh
+            position={
+              width >= 376 && width < 600
+                ? [0, -0.3, 0]
+                : width < 376
+                  ? [0, -0.3, 0] // looks right on chrome simulator [0, -0.275, 0]
+                  : width >= 600 && width < 1100
+                    ? [0, -0.3, 0]
+                    : [0, -0.3, 0]
+            }
+            scale={0.0055}
+            // rotation={[0, 0, 0]}
+            // onClick={handleArrowIconClick}
+            // onPointerOver={() => hover(true)}
+            // onPointerOut={() => hover(false)}
+          >
+            <ArrowIcon
+              currentColor={textures.alabasterPaint}
+              currentTexture={textures.whiteTexture}
+              currentItemSelected={currentItemSelected}
+              toggleInfoBox={toggleInfoBox}
+              open={open}
+              // showLongDesc={showLongDesc}
+              togglePhotoBox={togglePhotoBox}
+              showPhotos={showPhotos}
+              currentItemName={currentItemName}
+              currentPartName={currentPartName}
+              showBackground={showBackground}
+              setShowBackground={setShowBackground}
+              showPartOptions={showPartOptions}
+              setShowPartOptions={setShowPartOptions}
+              handlePartOption={handlePartOption}
+              getRandomInt={getRandomInt}
+            />
+          </mesh>
+          <mesh
+            position={
+              width >= 376 && width < 600
+                ? [0, -0.3, 0]
+                : width < 376
+                  ? [0, -0.3, 0] // looks right on chrome simulator [0, -0.275, 0]
+                  : width >= 600 && width < 1100
+                    ? [0, -0.3, 0]
+                    : [0, -0.3, 0]
+            }
+          >
+            <circleGeometry args={[0.06, 64]} />
+            <meshBasicMaterial
+              transparent
+              opacity={0}
+              // side={THREE.DoubleSide}
+            />
+          </mesh>
+        </group>
       </ScreenSpace>
 
       <color args={["#27271a"]} attach="background" />
