@@ -1206,6 +1206,8 @@ export default function Scene({
                     <RingCircle
                       selected={currentItemSelected === item ? true : false}
                       showBackground={showBackground}
+                      isShelf={part.itemName.includes("shelf") ? true : false}
+                      itemName={part.itemName}
                     />
                   </group>
                 );

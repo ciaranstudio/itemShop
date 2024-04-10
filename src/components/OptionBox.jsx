@@ -153,46 +153,8 @@ export default function OptionBox({
             <div className="grid-container-stain">
               {options.stains.map((stain) => {
                 return (
-                  <>
-                    <span key={stain}>
-                      <IconButton
-                        onClick={(e) =>
-                          handlePartOption(
-                            e,
-                            currentItemName,
-                            currentPartName,
-                            stain,
-                            true,
-                          )
-                        }
-                        color="info"
-                        aria-label="close order box"
-                      >
-                        <CircleIcon
-                          fontSize="large"
-                          sx={{
-                            color:
-                              stain === "white"
-                                ? "#a89d93"
-                                : stain === "natural"
-                                  ? "#908073"
-                                  : stain === "black"
-                                    ? "#635245"
-                                    : stain === "allBlack"
-                                      ? "#0b0502"
-                                      : "#ffffff",
-                            border:
-                              thisPartColorName === stain
-                                ? "0.15rem solid #5580b0"
-                                : "0.15rem solid lightGrey",
-                            borderRadius: "50%",
-                          }}
-                        />
-                      </IconButton>
-                    </span>
-                    {/* <button
-                      className="color-btn"
-                      key={stain}
+                  <span key={stain}>
+                    <IconButton
                       onClick={(e) =>
                         handlePartOption(
                           e,
@@ -202,35 +164,31 @@ export default function OptionBox({
                           true,
                         )
                       }
-                      style={{
-                        backgroundColor:
-                          stain === "white"
-                            ? "#a89d93"
-                            : stain === "natural"
-                              ? "#908073"
-                              : stain === "black"
-                                ? "#635245"
-                                : stain === "allBlack"
-                                  ? "#0b0502"
-                                  : "#ffffff",
-                        border:
-                          thisPartColorName === stain
-                            ? "0.15rem solid #5580b0"
-                            : "0.15rem solid #ffffff",
-                        // border:
-                        //   thisPartColorName === stain
-                        //     ? "0.75rem solid #5580b0"
-                        //     : "0.75rem solid #ffffff",
-                        // transform:
-                        //   thisPartColorName === stain
-                        //     ? "scale(0.975)"
-                        //     : "scale(0.95)",
-                        // transition: "transform 0.1s ease-in-out 0.1s",
-                        // color:
-                        //   thisPartColorName === stain ? "white" : "black",
-                      }}
-                    ></button> */}
-                  </>
+                      color="info"
+                      aria-label="close order box"
+                    >
+                      <CircleIcon
+                        fontSize="large"
+                        sx={{
+                          color:
+                            stain === "white"
+                              ? "#a89d93"
+                              : stain === "natural"
+                                ? "#908073"
+                                : stain === "black"
+                                  ? "#635245"
+                                  : stain === "allBlack"
+                                    ? "#0b0502"
+                                    : "#ffffff",
+                          border:
+                            thisPartColorName === stain
+                              ? "0.15rem solid #5580b0"
+                              : "0.15rem solid lightGrey",
+                          borderRadius: "50%",
+                        }}
+                      />
+                    </IconButton>
+                  </span>
                 );
               })}
             </div>
@@ -238,50 +196,8 @@ export default function OptionBox({
             <div className="grid-container-paint">
               {options.paints.map((paint) => {
                 return (
-                  <>
-                    <span key={paint}>
-                      <IconButton
-                        onClick={(e) =>
-                          handlePartOption(
-                            e,
-                            currentItemName,
-                            currentPartName,
-                            paint,
-                            true,
-                          )
-                        }
-                        color="info"
-                        aria-label="close order box"
-                      >
-                        <CircleIcon
-                          fontSize="large"
-                          sx={{
-                            color:
-                              paint === "alabaster"
-                                ? "#fffdf0"
-                                : paint === "pink"
-                                  ? "#f2d1c6"
-                                  : paint === "basil"
-                                    ? "#929d84"
-                                    : paint === "yellow"
-                                      ? "#f2d684"
-                                      : paint === "blue"
-                                        ? "#96b0aa"
-                                        : paint === "gray"
-                                          ? "#8c8b81"
-                                          : "#ffffff",
-                            border:
-                              thisPartColorName === paint
-                                ? "0.15rem solid #5580b0"
-                                : "0.15rem solid lightGrey",
-                            borderRadius: "50%",
-                          }}
-                        />
-                      </IconButton>
-                    </span>
-
-                    {/* <button
-                      key={paint}
+                  <span key={paint}>
+                    <IconButton
                       onClick={(e) =>
                         handlePartOption(
                           e,
@@ -291,40 +207,35 @@ export default function OptionBox({
                           true,
                         )
                       }
-                      className="color-btn"
-                      style={{
-                        backgroundColor:
-                          paint === "alabaster"
-                            ? "#fffdf0"
-                            : paint === "pink"
-                              ? "#f2d1c6"
-                              : paint === "basil"
-                                ? "#929d84"
-                                : paint === "yellow"
-                                  ? "#f2d684"
-                                  : paint === "blue"
-                                    ? "#96b0aa"
-                                    : paint === "gray"
-                                      ? "#8c8b81"
-                                      : "#ffffff",
-                        border:
-                          thisPartColorName === paint
-                            ? "0.15rem solid #5580b0"
-                            : "0.15rem solid #ffffff",
-                        // border:
-                        //   thisPartColorName === paint
-                        //     ? "0.75rem solid #5580b0"
-                        //     : "0.75rem solid #ffffff",
-                        // transform:
-                        //   thisPartColorName === paint
-                        //     ? "scale(0.975)"
-                        //     : "scale(0.95)",
-                        // transition: "transform 0.1s ease-in-out 0.1s",
-                        // color:
-                        //   thisPartColorName === paint ? "white" : "black",
-                      }}
-                    ></button> */}
-                  </>
+                      color="info"
+                      aria-label="close order box"
+                    >
+                      <CircleIcon
+                        fontSize="large"
+                        sx={{
+                          color:
+                            paint === "alabaster"
+                              ? "#fffdf0"
+                              : paint === "pink"
+                                ? "#f2d1c6"
+                                : paint === "basil"
+                                  ? "#929d84"
+                                  : paint === "yellow"
+                                    ? "#f2d684"
+                                    : paint === "blue"
+                                      ? "#96b0aa"
+                                      : paint === "gray"
+                                        ? "#8c8b81"
+                                        : "#ffffff",
+                          border:
+                            thisPartColorName === paint
+                              ? "0.15rem solid #5580b0"
+                              : "0.15rem solid lightGrey",
+                          borderRadius: "50%",
+                        }}
+                      />
+                    </IconButton>
+                  </span>
                 );
               })}
             </div>
