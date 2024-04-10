@@ -719,13 +719,38 @@ export default function Scene({
           orbitRef.current.update();
         },
       });
-    } else if (currentItemSelected.itemName.includes("shelf")) {
+    } else if (
+      currentItemSelected.itemName.includes("shelfA32") ||
+      currentItemSelected.itemName.includes("shelfB16")
+    ) {
       let tl = gsap.timeline();
       tl.to(controlsTargetVec, {
         delay: 0.15,
         duration: 0.75,
         x: currentItemSelected.position.x,
         y: currentItemSelected.position.y + 1,
+        z: currentItemSelected.position.z,
+        ease: "easeIn",
+        onUpdate: () => {
+          orbitRef.current.target.set(
+            controlsTargetVec.x,
+            controlsTargetVec.y,
+            controlsTargetVec.z,
+          );
+          orbitRef.current.object.updateProjectionMatrix();
+          orbitRef.current.update();
+        },
+      });
+    } else if (
+      currentItemSelected.itemName.includes("shelfA16") ||
+      currentItemSelected.itemName.includes("shelfB32")
+    ) {
+      let tl = gsap.timeline();
+      tl.to(controlsTargetVec, {
+        delay: 0.15,
+        duration: 0.75,
+        x: currentItemSelected.position.x,
+        y: currentItemSelected.position.y + 1.25,
         z: currentItemSelected.position.z,
         ease: "easeIn",
         onUpdate: () => {
@@ -762,9 +787,9 @@ export default function Scene({
             yPlus = 0.5; // 0.5
             zPlus = -1.5; // -0.75
           } else if (currentItemSelected.itemName === "block") {
-            xPlus = -1.5; // 0 // -0.75
-            yPlus = 0.5; // 0.5 // 0.5
-            zPlus = -1.5; // 1.75 // -1.25
+            xPlus = -1.25; // 0 // -0.75
+            yPlus = 0.25; // 0.5 // 0.5
+            zPlus = -1.25; // 1.75 // -1.25
           } else if (currentItemSelected.itemName === "horse") {
             xPlus = -1.9; // -1.75
             yPlus = 1.25; // 1
@@ -774,21 +799,21 @@ export default function Scene({
             yPlus = 0.5; // 0.5
             zPlus = -1.5; // 1
           } else if (currentItemSelected.itemName === "shelfA16") {
-            xPlus = 1.5; // 1.5
-            yPlus = 1.75; // 1.25
-            zPlus = -1.5; // 1.5
+            xPlus = 1; // 1.5
+            yPlus = 2; // 1.75 // 1.25
+            zPlus = -1; // 1.5
           } else if (currentItemSelected.itemName === "shelfA32") {
-            xPlus = 1.5; // 1.5
-            yPlus = 1; // 1
-            zPlus = -1.5; // 1.5
+            xPlus = 1.25; // 1.5
+            yPlus = 1.5; // 1
+            zPlus = -1.25; // 1.5
           } else if (currentItemSelected.itemName === "shelfB16") {
-            xPlus = -1.5; // -1.5
-            yPlus = 1; //  1
-            zPlus = -1.5; // -1.5
+            xPlus = -1; // -1.5
+            yPlus = 1.5; //  1
+            zPlus = -1; // -1.5
           } else if (currentItemSelected.itemName === "shelfB32") {
-            xPlus = -1.5; // -1.5
-            yPlus = 1.75; // 1.25
-            zPlus = -1.5; // -1.5
+            xPlus = -1.25; // -1.5
+            yPlus = 2; // 1.75  // 1.25
+            zPlus = -1.25; // -1.5
           }
 
           controlsPositionVec.set(
@@ -1034,9 +1059,10 @@ export default function Scene({
         maxDistance={15}
         minDistance={1.45} // 1.75 good on iphone xr portrait // 1.375 // 60
         maxPolarAngle={
-          currentItemSelected.itemName.includes("shelf")
-            ? Math.PI / 2 + Math.PI / 32
-            : Math.PI / 2 - Math.PI / 16
+          // showBackground && currentItemSelected.itemName.includes("shelf")
+          //   ? Math.PI / 2 + Math.PI / 32
+          //   :
+          showBackground ? Math.PI / 2 - Math.PI / 16 : Math.PI * 2
         } // {Math.PI / 2 - Math.PI / 16}
         enableDamping={true}
         autoRotate

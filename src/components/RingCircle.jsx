@@ -1,5 +1,6 @@
 import React from "react";
 import { Edges } from "@react-three/drei";
+import * as THREE from "three";
 
 export default function RingCircle({
   selected,
@@ -34,7 +35,7 @@ export default function RingCircle({
       depthTest={false}
     >
       <circleGeometry args={[0.5, 64]} />
-      <meshBasicMaterial transparent opacity={0} />
+      <meshBasicMaterial transparent opacity={0} side={THREE.DoubleSide} />
       <Edges
         threshold={90}
         color="white"
