@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Html } from "@react-three/drei";
 import { useOptionStore } from "../store/useOptionStore.tsx";
 // import { textures } from "../data/textures.jsx";
@@ -17,6 +17,8 @@ import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 // import CropOriginalOutlinedIcon from "@mui/icons-material/CropOriginalOutlined";
 import FilterOutlinedIcon from "@mui/icons-material/FilterOutlined";
 import CircleIcon from "@mui/icons-material/Circle";
+import HeightIcon from "@mui/icons-material/Height";
+import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import BuyButton from "./BuyButton.jsx";
 import SplitButton from "./SplitButton.jsx";
 import useWindowDimensions from "../helpers/useWindowDimensions";
@@ -36,8 +38,32 @@ export default function OptionBox({
   theme,
   allPhotos,
   aboutInfo,
+  optionBoxHeightMin,
+  setOptionBoxHeightMin,
 }) {
   const { height, width } = useWindowDimensions();
+
+  const toggleOptionBoxHeight = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setOptionBoxHeightMin(!optionBoxHeightMin);
+    // if (aboutInfo) {
+    //   setAboutInfo(true);
+    // } else if (!aboutInfo) {
+    //   setAboutInfo(false);
+    // }
+    // setOpen(!open);
+    // setShowPhotos(false);
+    // if (showPartOptions) {
+    //   setShowPartOptions(false);
+    // } else {
+    //   setShowPartOptions(true);
+    // }
+  };
+
+  useEffect(() => {
+    console.log("optionBoxHeightMin: ", optionBoxHeightMin);
+  }, [optionBoxHeightMin]);
 
   const [stainSingle, setStainSingle] = useState("");
   const [paintSingle, setPaintSingle] = useState("");
@@ -99,7 +125,15 @@ export default function OptionBox({
   };
   return (
     <Html
-      position={[0, width < 400 ? 14.5 : 13, 0]}
+      position={[
+        0,
+        width < 400 && currentItemName.includes("horse")
+          ? 24
+          : width < 400 && !currentItemName.includes("horse")
+            ? 20
+            : 13,
+        0,
+      ]} // 20 good for all but horse on SE, 25 good for horse on SE
       center={true}
       style={{
         display: showPartOptions && !showBackground ? "block" : "none",
@@ -126,9 +160,6 @@ export default function OptionBox({
           >
             <CloseOutlinedIcon color="secondary" fontSize="inherit" />
           </IconButton>
-          {/* <button className="color-exit-btn" onClick={(e) => closePartOptions(e)}>
-          <CloseOutlinedIcon fontSize="inherit" />
-        </button> */}
 
           <IconButton
             onClick={(e) => partShowBackground(e)}
@@ -147,10 +178,28 @@ export default function OptionBox({
           >
             <VisibilityIcon color="info" fontSize="inherit" />
           </IconButton>
-          {/* <button
-          className="color-bgrd-btn"
-          onClick={(e) => partShowBackground(e)}
-        ></button> */}
+
+          <IconButton
+            onClick={toggleOptionBoxHeight}
+            color="white"
+            // disabled={
+            //   currentItemSelected.itemTitle === "noSelectTitle" ? true : false
+            // }
+            sx={{
+              position: "absolute",
+              pointerEvents: "auto",
+              top: "0.15rem",
+              right: "2.25rem",
+              padding: "0.5rem",
+            }}
+            aria-label="close order box"
+          >
+            {optionBoxHeightMin ? (
+              <AttachMoneyIcon color="secondary" fontSize="inherit" />
+            ) : (
+              <HeightIcon color="secondary" fontSize="inherit" />
+            )}
+          </IconButton>
 
           <div className="color-menu-item-title">
             <Typography
@@ -160,7 +209,10 @@ export default function OptionBox({
               {item.itemTitle}
             </Typography>
           </div>
-          <div className="color-menu-part-title">
+          <div
+            className="color-menu-part-title"
+            style={{ display: optionBoxHeightMin ? "none" : "block" }}
+          >
             <Typography
               variant="subtitle2"
               sx={{ fontFamily: "var(--leva-fonts-mono)" }}
@@ -330,7 +382,10 @@ export default function OptionBox({
             </IconButton>
           </span>
         </div> */}
-          <div className="buy-info-block">
+          <div
+            className="buy-info-block"
+            style={{ display: optionBoxHeightMin ? "none" : "grid" }}
+          >
             <span>
               <IconButton
                 onClick={(e) => togglePhotoBox(e, false)}

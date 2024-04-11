@@ -53,6 +53,8 @@ export default function Scene({
   setAllPhotos,
   aboutInfo,
   setAboutInfo,
+  optionBoxHeightMin,
+  setOptionBoxHeightMin,
 }) {
   const { height, width } = useWindowDimensions();
   // useEffect(() => {
@@ -1078,6 +1080,8 @@ export default function Scene({
               aboutInfo={aboutInfo}
               // setAllPhotos={setAllPhotos}
               // setAboutInfo={setAboutInfo}
+              optionBoxHeightMin={optionBoxHeightMin}
+              setOptionBoxHeightMin={setOptionBoxHeightMin}
             />
           </mesh>
           <mesh

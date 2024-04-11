@@ -42,6 +42,7 @@ function App() {
   const [showPhotos, setShowPhotos] = useState(false);
   const [allPhotos, setAllPhotos] = useState(false);
   const [aboutInfo, setAboutInfo] = useState(false);
+  const [optionBoxHeightMin, setOptionBoxHeightMin] = useState(false);
 
   const [showBackground, setShowBackground] = useState(true);
   const [showPartOptions, setShowPartOptions] = useState(false);
@@ -270,6 +271,8 @@ function App() {
               setAllPhotos={setAllPhotos}
               aboutInfo={aboutInfo}
               setAboutInfo={setAboutInfo}
+              optionBoxHeightMin={optionBoxHeightMin}
+              setOptionBoxHeightMin={setOptionBoxHeightMin}
             />
           </SnipcartProvider>
         </Suspense>
