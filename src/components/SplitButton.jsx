@@ -13,13 +13,28 @@ import ShuffleOutlinedIcon from "@mui/icons-material/ShuffleOutlined";
 
 const options = ["Stain", "Stains", "Stains / Paints", "Paints", "Paint"];
 
-export default function SplitButton({ theme }) {
+export default function SplitButton({
+  theme,
+  currentItemName,
+  randomCurrentItemParts,
+}) {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
   const [selectedIndex, setSelectedIndex] = React.useState(2);
 
-  const handleClick = () => {
+  const handleClick = (e) => {
     console.info(`You clicked ${options[selectedIndex]}`);
+    if (selectedIndex === 0) {
+      randomCurrentItemParts(e, currentItemName, "stainSingle");
+    } else if (selectedIndex === 1) {
+      randomCurrentItemParts(e, currentItemName, "stainMixed");
+    } else if (selectedIndex === 2) {
+      randomCurrentItemParts(e, currentItemName, "allMixed");
+    } else if (selectedIndex === 3) {
+      randomCurrentItemParts(e, currentItemName, "paintMixed");
+    } else if (selectedIndex === 4) {
+      randomCurrentItemParts(e, currentItemName, "paintSingle");
+    }
   };
 
   const handleMenuItemClick = (event, index) => {

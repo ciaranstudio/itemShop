@@ -385,7 +385,12 @@ export default function OptionBox({
             </div>
           </div>
           <span className="split-shuffle-block">
-            <SplitButton theme={theme} images={item.images} />
+            <SplitButton
+              theme={theme}
+              images={item.images}
+              currentItemName={currentItemName}
+              randomCurrentItemParts={randomCurrentItemParts}
+            />
           </span>
           {/* <div className="shuffle-color-block">
           <span>
