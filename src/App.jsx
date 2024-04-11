@@ -68,8 +68,18 @@ function App() {
   const animDistRunTarget = 0.15;
   const animDistReturnTarget = 0;
 
+  const stagePosYRun = {
+    value: 0,
+  };
+  const stagePosYReturn = {
+    value: 0.15,
+  };
+  const stagePosYRunTarget = 0.15;
+  const stagePosYReturnTarget = 0;
+
   const [animToggled, setAnimToggled] = useState(false);
   const [animActive, setAnimActive] = useState(false);
+  const [stagePosY, setStagePosY] = useState(-0.1);
 
   const { contextSafe } = useGSAP({ scope: container });
 
@@ -78,6 +88,31 @@ function App() {
       setAnimToggled(!animToggled);
       if (!animToggled) {
         let tl = gsap.timeline();
+
+        if (currentItemSelected.itemName.includes("block")) {
+          tl.to(stagePosYRun, {
+            // delay: 0.15,
+            duration: 0.5,
+            value: stagePosYRunTarget,
+            ease: "easeIn",
+            onStart: () => {
+              // console.log("starting animDistRun animation: ", animDistRun.value);
+              setAnimActive(true);
+              // if (currentItemSelected.itemName.includes("block")) {
+              //   setStagePosY(0.1);
+              // }
+            },
+            onUpdate: () => {
+              // console.log("updating animDistRun animation: ", animDistRun.value);
+              setStagePosY(stagePosYRun.value);
+            },
+            onComplete: () => {
+              // console.log("animDistRun.value: ", animDistRun.value);
+              // setAnimActive(false);
+            },
+          });
+        }
+
         tl.to(animDistRun, {
           delay: 0.15,
           duration: 1,
@@ -85,7 +120,9 @@ function App() {
           ease: "easeIn",
           onStart: () => {
             // console.log("starting animDistRun animation: ", animDistRun.value);
-            setAnimActive(true);
+            if (!currentItemSelected.itemName.includes("block")) {
+              setAnimActive(true);
+            }
           },
           onUpdate: () => {
             // console.log("updating animDistRun animation: ", animDistRun.value);
@@ -98,6 +135,29 @@ function App() {
         });
       } else {
         let tl = gsap.timeline();
+        if (currentItemSelected.itemName.includes("block")) {
+          tl.to(stagePosYReturn, {
+            // delay: 0.15,
+            duration: 0.5,
+            value: stagePosYReturnTarget,
+            ease: "easeIn",
+            onStart: () => {
+              // console.log("starting animDistRun animation: ", animDistRun.value);
+              setAnimActive(true);
+              // if (currentItemSelected.itemName.includes("block")) {
+              //   setStagePosY(0.1);
+              // }
+            },
+            onUpdate: () => {
+              // console.log("updating animDistRun animation: ", animDistRun.value);
+              setStagePosY(stagePosYReturn.value);
+            },
+            onComplete: () => {
+              // console.log("animDistRun.value: ", animDistRun.value);
+              // setAnimActive(false);
+            },
+          });
+        }
         tl.to(animDistReturn, {
           delay: 0.15,
           duration: 1,
@@ -108,7 +168,12 @@ function App() {
             //   "starting animDistReturn animation: ",
             //   animDistReturn.value,
             // );
-            setAnimActive(true);
+            if (!currentItemSelected.itemName.includes("block")) {
+              setAnimActive(true);
+            }
+            // if (currentItemSelected.itemName.includes("block")) {
+            //   setStagePosY(-0.1);
+            // }
           },
           onUpdate: () => {
             // console.log(
@@ -273,6 +338,7 @@ function App() {
               setAboutInfo={setAboutInfo}
               optionBoxHeightMin={optionBoxHeightMin}
               setOptionBoxHeightMin={setOptionBoxHeightMin}
+              stagePosY={stagePosY}
             />
           </SnipcartProvider>
         </Suspense>

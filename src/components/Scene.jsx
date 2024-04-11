@@ -55,6 +55,7 @@ export default function Scene({
   setAboutInfo,
   optionBoxHeightMin,
   setOptionBoxHeightMin,
+  stagePosY,
 }) {
   const { height, width } = useWindowDimensions();
   // useEffect(() => {
@@ -255,6 +256,7 @@ export default function Scene({
       setCurrentPartName(
         objects[currentItemSelected.itemName].parts[0].partName,
       );
+      setOptionBoxHeightMin(false);
       setShowPartOptions(true);
     }
     if (!showBackground) {
@@ -1143,7 +1145,7 @@ export default function Scene({
         // target={grampsRef.current}
       />
       {/* all objects (except logo and cart/bag) */}
-      <group position={[0, stagePositionY, 0]}>
+      <group position={[0, stagePosY, 0]}>
         <ambientLight intensity={ambLightIntensity} />
         {/* furniture items */}
         {shopItems.map((item, index) => {

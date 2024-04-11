@@ -61,8 +61,30 @@ export default function OptionBox({
     // }
   };
 
+  const [boxPosY, setBoxPosY] = useState(13);
+
   useEffect(() => {
     console.log("optionBoxHeightMin: ", optionBoxHeightMin);
+    if (optionBoxHeightMin) {
+      if (
+        (width < 400 && currentItemName.includes("horse")) ||
+        currentItemName.includes("shelf")
+      ) {
+        setBoxPosY(14);
+      } else if (width < 400 && !currentItemName.includes("horse")) {
+        setBoxPosY(14);
+      } else {
+        setBoxPosY(7);
+      }
+    } else if (!optionBoxHeightMin) {
+      if (width < 400 && currentItemName.includes("horse")) {
+        setBoxPosY(24);
+      } else if (width < 400 && !currentItemName.includes("horse")) {
+        setBoxPosY(20);
+      } else {
+        setBoxPosY(13);
+      }
+    }
   }, [optionBoxHeightMin]);
 
   const [stainSingle, setStainSingle] = useState("");
@@ -127,11 +149,12 @@ export default function OptionBox({
     <Html
       position={[
         0,
-        width < 400 && currentItemName.includes("horse")
-          ? 24
-          : width < 400 && !currentItemName.includes("horse")
-            ? 20
-            : 13,
+        // width < 400 && currentItemName.includes("horse")
+        //   ? 24
+        //   : width < 400 && !currentItemName.includes("horse")
+        //     ? 20
+        //     : 13,
+        boxPosY,
         0,
       ]} // 20 good for all but horse on SE, 25 good for horse on SE
       center={true}
