@@ -1081,7 +1081,9 @@ export default function Scene({
             setShowPhotos={setShowPhotos}
             showPartOptions={showPartOptions}
             setShowPartOptions={setShowPartOptions}
+            aboutInfo={aboutInfo}
             setAboutInfo={setAboutInfo}
+            allPhotos={allPhotos}
             setAllPhotos={setAllPhotos}
           />
           {/* <Html center position={[0, -12, 0]}>
@@ -1180,12 +1182,13 @@ export default function Scene({
         enableZoom={true}
         enablePan={false}
         maxDistance={15}
-        minDistance={1.45} // 1.75 good on iphone xr portrait // 1.375 // 60
+        minDistance={1.5} // 1.75 good on iphone xr portrait // 1.375 // 60
         maxPolarAngle={
-          // showBackground && currentItemSelected.itemName.includes("shelf")
-          //   ? Math.PI / 2 + Math.PI / 32
-          //   :
-          showBackground ? Math.PI / 2 - Math.PI / 16 : Math.PI * 2
+          showBackground && currentItemSelected.itemName.includes("shelf")
+            ? Math.PI / 2 + Math.PI / 32
+            : showBackground && !currentItemSelected.itemName.includes("shelf")
+              ? Math.PI / 2 - Math.PI / 8
+              : Math.PI * 2
         } // {Math.PI / 2 - Math.PI / 16}
         enableDamping={true}
         autoRotate

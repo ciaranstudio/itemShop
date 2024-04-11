@@ -11,7 +11,9 @@ export const Logo = ({
   setShowPhotos,
   showPartOptions,
   setShowPartOptions,
+  aboutInfo,
   setAboutInfo,
+  allPhotos,
   setAllPhotos,
 }) => {
   const { scene, nodes, materials } = useGLTF("./models/logoAnnotated.gltf");
@@ -69,9 +71,11 @@ export const Logo = ({
                   setOpen={setOpen}
                   showPhotos={showPhotos}
                   setShowPhotos={setShowPhotos}
-                  showPartOptions={showPartOptions}
+                  // showPartOptions={showPartOptions}
                   setShowPartOptions={setShowPartOptions}
+                  aboutInfo={aboutInfo}
                   setAboutInfo={setAboutInfo}
+                  allPhotos={allPhotos}
                   setAllPhotos={setAllPhotos}
                 />
               </Html>,
@@ -81,7 +85,7 @@ export const Logo = ({
       }
     });
     setAnnotations(currentAnnotations);
-  }, [scene]);
+  }, [scene, open, showPhotos, aboutInfo, allPhotos]);
 
   useLayoutEffect(() => {
     scene.traverse((o) => {

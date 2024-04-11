@@ -1,6 +1,7 @@
 import React from "react";
 // import { ThemeProvider } from "@mui/material";
 // import CssBaseline from "@mui/material/CssBaseline";
+import { useState, useEffect } from "react";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
@@ -13,12 +14,19 @@ export default function NavMenu({
   setShowPhotos,
   showPartOptions,
   setShowPartOptions,
+  aboutInfo,
   setAboutInfo,
+  allPhotos,
   setAllPhotos,
 }) {
   // (e) => togglePhotoBox(e, false);
   // (e) => toggleInfoBox(e, false);
   // window.open("https://www.apple.com/store", "_blank", "noreferrer");
+
+  // const [aboutSelected, setAboutSeleected] = useState(false);
+  // const [photosSelected, setPhotosSeleected] = useState(false);
+
+  // useEffect(()=>{},[])
 
   const selectHandler = (e, menuItem, popupState) => {
     if (menuItem === "about") {
@@ -28,6 +36,7 @@ export default function NavMenu({
       }
       setShowPartOptions(false);
       setShowPhotos(false);
+      setAllPhotos(false);
       popupState.close;
     } else if (menuItem === "images") {
       setAllPhotos(true);
@@ -36,6 +45,7 @@ export default function NavMenu({
       }
       setShowPartOptions(false);
       setOpen(false);
+      setAboutInfo(false);
       popupState.close;
     } else if (menuItem === "custom") {
       window.open(
@@ -105,6 +115,7 @@ export default function NavMenu({
               // onClick={popupState.close}
               onClick={(e) => selectHandler(e, "about", popupState)}
               sx={{ fontFamily: "var(--leva-fonts-mono)" }}
+              selected={aboutInfo}
             >
               About
             </MenuItem>
@@ -112,6 +123,7 @@ export default function NavMenu({
               // onClick={popupState.close}
               onClick={(e) => selectHandler(e, "images", popupState)}
               sx={{ fontFamily: "var(--leva-fonts-mono)" }}
+              selected={allPhotos}
             >
               Images
             </MenuItem>
