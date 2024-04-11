@@ -142,7 +142,10 @@ export default function OptionBox({
     >
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <div className="annotation-wrapper">
+        <div
+          className="annotation-wrapper"
+          style={{ paddingTop: optionBoxHeightMin ? "2rem" : "0rem" }}
+        >
           <IconButton
             onClick={(e) => closePartOptions(e)}
             color="primary"
@@ -201,9 +204,19 @@ export default function OptionBox({
             )}
           </IconButton>
 
-          <div className="color-menu-item-title">
+          <div
+            className="color-menu-item-title"
+            style={{
+              position: optionBoxHeightMin ? "absolute" : "static",
+              top: optionBoxHeightMin ? "0.5rem" : "0",
+              right: optionBoxHeightMin ? "calc(50% - 1rem)" : "0",
+              paddingTop: optionBoxHeightMin ? "0rem" : "0.75rem",
+            }}
+
+            // style={{ display: optionBoxHeightMin ? "none" : "block" }}
+          >
             <Typography
-              variant="h6"
+              variant={optionBoxHeightMin ? "subtitle1" : "h6"}
               sx={{ fontFamily: "var(--leva-fonts-mono)" }}
             >
               {item.itemTitle}
