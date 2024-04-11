@@ -40,6 +40,7 @@ export default function OptionBox({
   aboutInfo,
   optionBoxHeightMin,
   setOptionBoxHeightMin,
+  animActive,
 }) {
   const { height, width } = useWindowDimensions();
 
@@ -60,6 +61,24 @@ export default function OptionBox({
     //   setShowPartOptions(true);
     // }
   };
+
+  // const toggleShowbackground = (e) => {
+  //   e.preventDefault();
+  //   e.stopPropagation();
+  //   setOptionBoxHeightMin(!optionBoxHeightMin);
+  //   // if (aboutInfo) {
+  //   //   setAboutInfo(true);
+  //   // } else if (!aboutInfo) {
+  //   //   setAboutInfo(false);
+  //   // }
+  //   // setOpen(!open);
+  //   // setShowPhotos(false);
+  //   // if (showPartOptions) {
+  //   //   setShowPartOptions(false);
+  //   // } else {
+  //   //   setShowPartOptions(true);
+  //   // }
+  // };
 
   const [boxPosY, setBoxPosY] = useState(13);
 
@@ -142,9 +161,13 @@ export default function OptionBox({
   const partShowBackground = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    setShowPartOptions(false);
-    setShowBackground(true);
+    // if animation is active disable
+    if (!animActive && !showBackground) {
+      setShowPartOptions(false);
+      setShowBackground(true);
+    }
   };
+
   return (
     <Html
       position={[
@@ -189,7 +212,6 @@ export default function OptionBox({
 
           <IconButton
             onClick={(e) => partShowBackground(e)}
-            color="white"
             // disabled={
             //   currentItemSelected.itemTitle === "noSelectTitle" ? true : false
             // }
@@ -201,8 +223,12 @@ export default function OptionBox({
               padding: "0.5rem",
             }}
             aria-label="close order box"
+            disabled={animActive}
           >
-            <VisibilityIcon color="info" fontSize="inherit" />
+            <VisibilityIcon
+              color={!animActive ? "info" : "warning"}
+              fontSize="inherit"
+            />
           </IconButton>
 
           <IconButton
@@ -215,15 +241,15 @@ export default function OptionBox({
               position: "absolute",
               pointerEvents: "auto",
               top: "0.15rem",
-              right: "2.25rem",
+              right: "2rem",
               padding: "0.5rem",
             }}
             aria-label="close order box"
           >
             {optionBoxHeightMin ? (
-              <AttachMoneyIcon color="secondary" fontSize="inherit" />
+              <AttachMoneyIcon color="success" fontSize="inherit" />
             ) : (
-              <HeightIcon color="secondary" fontSize="inherit" />
+              <HeightIcon color="success" fontSize="inherit" />
             )}
           </IconButton>
 

@@ -36,6 +36,7 @@ export default function Scene({
   previousItemSelected,
   setPreviousItemSelected,
   animDist,
+  animActive,
   showBackground,
   setShowBackground,
   showPartOptions,
@@ -327,10 +328,12 @@ export default function Scene({
     //   setCurrentItemSelected(objects.gramps);
     // }
     if (showBackground) {
-      setOpen(false);
-      setShowPhotos(false);
-      setShowBackground(!showBackground);
-      // animateParts();
+      if (!animActive) {
+        setOpen(false);
+        setShowPhotos(false);
+        setShowBackground(!showBackground);
+        // animateParts();
+      }
     }
   };
 
@@ -344,9 +347,11 @@ export default function Scene({
         setShowBackground(!showBackground);
       }, "750");
     } else {
-      setOpen(false);
-      setShowPhotos(false);
-      setShowBackground(!showBackground);
+      if (!animActive) {
+        setOpen(false);
+        setShowPhotos(false);
+        setShowBackground(!showBackground);
+      }
     }
   };
 
@@ -808,7 +813,7 @@ export default function Scene({
             zPlus = -1.5; // -0.75
           } else if (currentItemSelected.itemName === "block") {
             xPlus = -1.25; // 0 // -0.75
-            yPlus = 0.25; // 0.5 // 0.5
+            yPlus = 0.5; // 0.5 // 0.5
             zPlus = -1.25; // 1.75 // -1.25
           } else if (currentItemSelected.itemName === "horse") {
             xPlus = -1.9; // -1.75
@@ -1084,6 +1089,7 @@ export default function Scene({
               // setAboutInfo={setAboutInfo}
               optionBoxHeightMin={optionBoxHeightMin}
               setOptionBoxHeightMin={setOptionBoxHeightMin}
+              animActive={animActive}
             />
           </mesh>
           <mesh

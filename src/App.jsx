@@ -74,8 +74,8 @@ function App() {
   const stagePosYReturn = {
     value: 0.15,
   };
-  const stagePosYRunTarget = 0.15;
-  const stagePosYReturnTarget = 0;
+  const stagePosYRunTarget = 0.05;
+  const stagePosYReturnTarget = -0.1;
 
   const [animToggled, setAnimToggled] = useState(false);
   const [animActive, setAnimActive] = useState(false);
@@ -133,7 +133,7 @@ function App() {
             setAnimActive(false);
           },
         });
-      } else {
+      } else if (animToggled) {
         let tl = gsap.timeline();
         if (currentItemSelected.itemName.includes("block")) {
           tl.to(stagePosYReturn, {
@@ -317,6 +317,7 @@ function App() {
               previousItemSelected={previousItemSelected}
               setPreviousItemSelected={setPreviousItemSelected}
               animDist={animDist}
+              animActive={animActive}
               showBackground={showBackground}
               setShowBackground={setShowBackground}
               showPartOptions={showPartOptions}
