@@ -36,11 +36,11 @@ export const ArrowIcon = ({
   const theme = createTheme({
     palette: {
       primary: {
-        main: "#212121",
+        main: "#373737",
         light: "#bdbdbd",
       },
       secondary: {
-        main: "#757575",
+        main: "#636363",
         light: "#E0E0E0",
       },
       success: {

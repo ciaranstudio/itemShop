@@ -68,13 +68,14 @@ export default function InfoBox({
             <CloseOutlinedIcon
               // fontSize="medium"
               // sx={{ color: "primary.light" }}
-              color="secondary"
+              color="success"
             />
           </IconButton>
           <div id="title">
             <Typography
               variant="h6"
               sx={{ fontFamily: "var(--leva-fonts-mono)" }}
+              color="primary"
             >
               {aboutInfo ? "About" : item.itemTitle}
             </Typography>
@@ -83,6 +84,7 @@ export default function InfoBox({
             <Typography
               variant="subtitle2"
               sx={{ fontFamily: "var(--leva-fonts-mono)" }}
+              color="primary"
             >
               {aboutInfo ? aboutText : item.itemLongDescription}
             </Typography>
@@ -94,6 +96,7 @@ export default function InfoBox({
           >
             <Typography
               variant="subtitle2"
+              color="primary"
               sx={{
                 fontFamily: "var(--leva-fonts-mono)",
                 // borderColor: aboutInfo ? "transparent" : "lightGrey",

@@ -209,7 +209,7 @@ export default function OptionBox({
             }}
             aria-label="close order box"
           >
-            <CloseOutlinedIcon color="secondary" fontSize="inherit" />
+            <CloseOutlinedIcon color="success" fontSize="inherit" />
           </IconButton>
 
           <IconButton
@@ -269,6 +269,7 @@ export default function OptionBox({
             <Typography
               variant={optionBoxHeightMin ? "h6" : "h6"}
               sx={{ fontFamily: "var(--leva-fonts-mono)" }}
+              color="primary"
             >
               {item.itemTitle}
             </Typography>
@@ -280,6 +281,7 @@ export default function OptionBox({
             <Typography
               variant="subtitle2"
               sx={{ fontFamily: "var(--leva-fonts-mono)" }}
+              color="secondary"
             >
               {item.itemDescription}
             </Typography>

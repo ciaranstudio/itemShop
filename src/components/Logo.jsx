@@ -9,7 +9,7 @@ export const Logo = ({
   setOpen,
   showPhotos,
   setShowPhotos,
-  showPartOptions,
+  // showPartOptions,
   setShowPartOptions,
   aboutInfo,
   setAboutInfo,

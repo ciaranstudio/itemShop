@@ -1079,7 +1079,7 @@ export default function Scene({
             setOpen={setOpen}
             showPhotos={showPhotos}
             setShowPhotos={setShowPhotos}
-            showPartOptions={showPartOptions}
+            // showPartOptions={showPartOptions}
             setShowPartOptions={setShowPartOptions}
             aboutInfo={aboutInfo}
             setAboutInfo={setAboutInfo}

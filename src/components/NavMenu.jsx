@@ -12,22 +12,13 @@ export default function NavMenu({
   setOpen,
   showPhotos,
   setShowPhotos,
-  showPartOptions,
+  // showPartOptions,
   setShowPartOptions,
   aboutInfo,
   setAboutInfo,
   allPhotos,
   setAllPhotos,
 }) {
-  // (e) => togglePhotoBox(e, false);
-  // (e) => toggleInfoBox(e, false);
-  // window.open("https://www.apple.com/store", "_blank", "noreferrer");
-
-  // const [aboutSelected, setAboutSeleected] = useState(false);
-  // const [photosSelected, setPhotosSeleected] = useState(false);
-
-  // useEffect(()=>{},[])
-
   const selectHandler = (e, menuItem, popupState) => {
     if (menuItem === "about") {
       setAboutInfo(true);

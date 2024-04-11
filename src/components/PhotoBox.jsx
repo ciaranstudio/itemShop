@@ -69,13 +69,14 @@ export default function PhotoBox({
             <CloseOutlinedIcon
               // fontSize="medium"
               // sx={{ color: "primary.light" }}
-              color="secondary"
+              color="success"
             />
           </IconButton>
           <div id="title">
             <Typography
               variant="h6"
               sx={{ fontFamily: "var(--leva-fonts-mono)" }}
+              color="primary"
             >
               {allPhotos ? "Images" : item.itemTitle}
             </Typography>
