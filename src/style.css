@@ -437,45 +437,48 @@ img {
   /* transition: transform 0.1s ease-in-out 0.1s; */
 }
 
-/* @media only screen and (max-width: 380px) {
+@media only screen and (max-width: 380px) {
   .photos {
-    bottom: 2rem;
-    width: 20rem;
-    right: calc(50% - 10rem);
+    /* bottom: 2rem; */
+    width: 22rem;
+    right: calc(50% - 11rem);
   }
-} */
+}
 
-/* this one may not be necessary (min-width: 381px) */
-/* @media only screen and (min-width: 381px) {
+@media only screen and (max-width: 599px) and (min-width: 381px) {
   .photos {
-    bottom: 2rem;
+    /* bottom: 2rem; */
     width: 23rem;
     right: calc(50% - 11.5rem);
   }
-} */
+}
 
-/* @media screen and (max-width: 900px) and (min-width: 600px) {
+@media screen and (max-width: 900px) and (min-width: 600px) {
   .photos {
-    bottom: 2rem;
+    /* bottom: 2rem; */
     width: 32rem;
     right: calc(50% - 16rem);
   }
 }
+
 @media screen and (max-width: 1040px) and (min-width: 901px) {
   .photos {
-    bottom: 2rem;
-    width: 30rem;
-    right: calc(50% - 15rem);
-  }
-}
-@media screen and (max-width: 2000px) and (min-width: 1041px) {
-  .photos {
-    bottom: 2rem;
-    width: 30rem;
-    right: calc(50% - 15rem);
+    /* bottom: 2rem; */
+    width: 38rem;
+    right: calc(50% - 19rem);
   }
 }
 
+@media screen and (max-width: 2000px) and (min-width: 1041px) {
+  .photos {
+    /* bottom: 2rem; */
+    width: 38rem;
+    right: calc(50% - 19rem);
+  }
+}
+
+/* need to make these queries for landscape orientation mobile screens exclusive to mobile devices, not on desktop/monitors */
+/*
 @media only screen and (max-width: 670px) and (min-width: 360px) and (orientation: landscape) {
   .photos {
     bottom: 0.25rem;
