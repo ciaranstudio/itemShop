@@ -6,9 +6,80 @@ import MenuItem from "@mui/material/MenuItem";
 import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
 import Box from "@mui/material/Box";
 
-export default function NavMenu({ toggleInfoBox, togglePhotoBox }) {
+export default function NavMenu({
+  open,
+  setOpen,
+  showPhotos,
+  setShowPhotos,
+  showPartOptions,
+  setShowPartOptions,
+  setAboutInfo,
+  setAllPhotos,
+}) {
+  // (e) => togglePhotoBox(e, false);
+  // (e) => toggleInfoBox(e, false);
+  // window.open("https://www.apple.com/store", "_blank", "noreferrer");
+
+  const selectHandler = (e, menuItem, popupState) => {
+    if (menuItem === "about") {
+      setAboutInfo(true);
+      if (!open) {
+        setOpen(true);
+      }
+      setShowPartOptions(false);
+      setShowPhotos(false);
+      popupState.close;
+    } else if (menuItem === "images") {
+      setAllPhotos(true);
+      if (!showPhotos) {
+        setShowPhotos(true);
+      }
+      setShowPartOptions(false);
+      setOpen(false);
+      popupState.close;
+    } else if (menuItem === "custom") {
+      window.open(
+        "https://www.eligfellstudio.com/new-page",
+        "_blank",
+        "noreferrer",
+      );
+      popupState.close;
+    } else if (menuItem === "contact") {
+      window.open(
+        "https://www.eligfellstudio.com/contact-1",
+        "_blank",
+        "noreferrer",
+      );
+      popupState.close;
+    } else if (menuItem === "exhibitions") {
+      window.open(
+        "https://cargocollective.com/eligfell",
+        "_blank",
+        "noreferrer",
+      );
+      popupState.close;
+    }
+  };
+
+  // const togglePhotoBox = (e, allPhotos) => {
+  //   e.preventDefault();
+  //   e.stopPropagation();
+  //   if (allPhotos) {
+  //     setAllPhotos(true);
+  //   } else if (!allPhotos) {
+  //     setAllPhotos(false);
+  //   }
+  //   if (showPartOptions) {
+  //     setShowPartOptions(false);
+  //   } else {
+  //     setShowPartOptions(true);
+  //   }
+  //   setOpen(false);
+  //   setShowPhotos(!showPhotos);
+  // };
+
   return (
-    <PopupState variant="popover" popupId="demo-popup-menu">
+    <PopupState variant="popover" popupId="popup-menu">
       {(popupState) => (
         <React.Fragment>
           <Box
@@ -31,31 +102,36 @@ export default function NavMenu({ toggleInfoBox, togglePhotoBox }) {
             }}
           >
             <MenuItem
-              onClick={popupState.close}
+              // onClick={popupState.close}
+              onClick={(e) => selectHandler(e, "about", popupState)}
               sx={{ fontFamily: "var(--leva-fonts-mono)" }}
             >
               About
             </MenuItem>
             <MenuItem
-              onClick={popupState.close}
+              // onClick={popupState.close}
+              onClick={(e) => selectHandler(e, "images", popupState)}
               sx={{ fontFamily: "var(--leva-fonts-mono)" }}
             >
               Images
             </MenuItem>
             <MenuItem
-              onClick={popupState.close}
+              // onClick={popupState.close}
+              onClick={(e) => selectHandler(e, "custom", popupState)}
               sx={{ fontFamily: "var(--leva-fonts-mono)" }}
             >
               Custom Work
             </MenuItem>
             <MenuItem
-              onClick={popupState.close}
+              // onClick={popupState.close}
+              onClick={(e) => selectHandler(e, "contact", popupState)}
               sx={{ fontFamily: "var(--leva-fonts-mono)" }}
             >
               Contact
             </MenuItem>
             <MenuItem
-              onClick={popupState.close}
+              // onClick={popupState.close}
+              onClick={(e) => selectHandler(e, "exhibitions", popupState)}
               sx={{ fontFamily: "var(--leva-fonts-mono)" }}
             >
               Exhibitions

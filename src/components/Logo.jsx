@@ -5,8 +5,14 @@ import NavMenu from "./NavMenu";
 export const Logo = ({
   currentColor,
   currentTexture,
-  toggleInfoBox,
-  togglePhotoBox,
+  open,
+  setOpen,
+  showPhotos,
+  setShowPhotos,
+  showPartOptions,
+  setShowPartOptions,
+  setAboutInfo,
+  setAllPhotos,
 }) => {
   const { scene, nodes, materials } = useGLTF("./models/logoAnnotated.gltf");
   const [annotations, setAnnotations] = useState([]);
@@ -59,8 +65,14 @@ export const Logo = ({
                 distanceFactor={0.25}
               >
                 <NavMenu
-                  toggleInfoBox={toggleInfoBox}
-                  togglePhotoBox={togglePhotoBox}
+                  open={open}
+                  setOpen={setOpen}
+                  showPhotos={showPhotos}
+                  setShowPhotos={setShowPhotos}
+                  showPartOptions={showPartOptions}
+                  setShowPartOptions={setShowPartOptions}
+                  setAboutInfo={setAboutInfo}
+                  setAllPhotos={setAllPhotos}
                 />
               </Html>,
             );

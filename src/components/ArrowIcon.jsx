@@ -161,6 +161,8 @@ export const ArrowIcon = ({
     showPartOptions,
     optionBoxHeightMin,
     animActive,
+    allPhotos,
+    aboutInfo,
   ]);
 
   useLayoutEffect(() => {

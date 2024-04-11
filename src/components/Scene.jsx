@@ -82,8 +82,8 @@ export default function Scene({
     // console.log("subtotal:", subtotal);
     if (window.Snipcart) {
       setSnipcartLoaded(true);
-      console.log("setting snipcartLoaded state = true");
-      console.log("window.Snipcart.api: ", window.Snipcart);
+      // console.log("setting snipcartLoaded state = true");
+      // console.log("window.Snipcart.api: ", window.Snipcart);
       if (cart.items) setCartCount(cart.items.count);
       // window.Snipcart.api.theme.cart.open();
     } else {
@@ -422,7 +422,7 @@ export default function Scene({
           // document.getElementById("footer").innerHTML =
           //   "start touch registered ";
           // document.getElementById("footer").innerHTML += position;
-          console.log("start");
+          // console.log("start");
           setDragTime(0);
           // console.log(
           //   "from `start` controls listener: orbitControls object.object.fov: ",
@@ -465,7 +465,7 @@ export default function Scene({
           // }
           // document.getElementById("footer").innerHTML = "end touch registered ";
           // document.getElementById("footer").innerHTML += position;
-          console.log("end");
+          // console.log("end");
           // console.log(
           //   "from `end` controls listener: orbitControls orbitRef.current.object.position: ",
           //   orbitRef.current.object.position,
@@ -520,7 +520,7 @@ export default function Scene({
   useFrame((state, delta) => {
     if (controlsDragging) {
       setDragTime(dragTime + delta);
-      console.log("controls dragging for ", dragTime);
+      // console.log("controls dragging for ", dragTime);
     } else if (!controlsDragging && !showBackground && !activeZoomAnim) {
     }
     // if (isTouching && !controlsDragging) {
@@ -937,14 +937,49 @@ export default function Scene({
     return position;
   };
 
-  const toggleInfoBox = (e, aboutInfo) => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (aboutInfo) {
-      setAboutInfo(true);
-    } else if (!aboutInfo) {
-      setAboutInfo(false);
+  // useEffect(() => {
+  //   if (aboutInfo && open) {
+  //     setOpen(false);
+  //     setTimeout(() => {
+  //       setOpen(true);
+  //       setShowPhotos(false);
+  //       setShowPartOptions(false);
+  //     }, "250");
+  //   }
+  // }, [aboutInfo]);
+
+  // useEffect(() => {
+  //   if (allPhotos && showPhotos) {
+  //     setShowPhotos(false);
+  //   }
+  // }, [allPhotos]);
+
+  // const toggleInfoBox = (e, aboutInfo) => {
+  //   if (e) {
+  //     e.preventDefault();
+  //     e.stopPropagation();
+  //   }
+  //   if (aboutInfo) {
+  //     setAboutInfo(true);
+  //     setShowPartOptions(false);
+  //   } else if (!aboutInfo) {
+  //     setAboutInfo(false);
+  //   }
+  //   setOpen(!open);
+  //   setShowPhotos(false);
+  //   if (showPartOptions) {
+  //     setShowPartOptions(false);
+  //   } else {
+  //     setShowPartOptions(true);
+  //   }
+  // };
+
+  const toggleInfoBox = (e) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
     }
+    setAboutInfo(false);
     setOpen(!open);
     setShowPhotos(false);
     if (showPartOptions) {
@@ -954,22 +989,40 @@ export default function Scene({
     }
   };
 
-  const togglePhotoBox = (e, allPhotos) => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (allPhotos) {
-      setAllPhotos(true);
-    } else if (!allPhotos) {
-      setAllPhotos(false);
+  const togglePhotoBox = (e) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
     }
+    setAllPhotos(false);
+    setOpen(false);
+    setShowPhotos(!showPhotos);
     if (showPartOptions) {
       setShowPartOptions(false);
     } else {
       setShowPartOptions(true);
     }
-    setOpen(false);
-    setShowPhotos(!showPhotos);
   };
+
+  // const togglePhotoBox = (e, allPhotos) => {
+  //   e.preventDefault();
+  //   e.stopPropagation();
+  //   if (allPhotos) {
+  //     setAllPhotos(true);
+  //     setOpen(false);
+  //     setShowPhotos(true);
+  //     setShowPartOptions(false);
+  //   } else if (!allPhotos) {
+  //     setAllPhotos(false);
+  //     setOpen(false);
+  //     setShowPhotos(!showPhotos);
+  //     if (showPartOptions) {
+  //       setShowPartOptions(false);
+  //     } else {
+  //       setShowPartOptions(true);
+  //     }
+  //   }
+  // };
 
   return (
     <>
@@ -1022,8 +1075,14 @@ export default function Scene({
           <Logo
             currentColor={textures.blueTape}
             currentTexture={textures.paintedTexture}
-            toggleInfoBox={toggleInfoBox}
-            togglePhotoBox={togglePhotoBox}
+            open={open}
+            setOpen={setOpen}
+            showPhotos={showPhotos}
+            setShowPhotos={setShowPhotos}
+            showPartOptions={showPartOptions}
+            setShowPartOptions={setShowPartOptions}
+            setAboutInfo={setAboutInfo}
+            setAllPhotos={setAllPhotos}
           />
           {/* <Html center position={[0, -12, 0]}>
              <div className="w3-container">

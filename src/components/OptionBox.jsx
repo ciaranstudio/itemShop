@@ -83,7 +83,7 @@ export default function OptionBox({
   const [boxPosY, setBoxPosY] = useState(13);
 
   useEffect(() => {
-    console.log("optionBoxHeightMin: ", optionBoxHeightMin);
+    // console.log("optionBoxHeightMin: ", optionBoxHeightMin);
     if (optionBoxHeightMin) {
       if (
         (width < 400 && currentItemName.includes("horse")) ||
@@ -257,7 +257,7 @@ export default function OptionBox({
             className="color-menu-item-title"
             style={{
               position: optionBoxHeightMin ? "absolute" : "static",
-              top: optionBoxHeightMin ? "0.5rem" : "0",
+              top: optionBoxHeightMin ? "0.65rem" : "0",
               right: optionBoxHeightMin ? "calc(50% - 1rem)" : "0",
               paddingTop: optionBoxHeightMin ? "0rem" : "0.75rem",
             }}
@@ -455,7 +455,7 @@ export default function OptionBox({
           >
             <span>
               <IconButton
-                onClick={(e) => togglePhotoBox(e, false)}
+                onClick={(e) => togglePhotoBox(e)}
                 color="info"
                 aria-label="close order box"
               >
@@ -472,7 +472,7 @@ export default function OptionBox({
             />
             <span>
               <IconButton
-                onClick={(e) => toggleInfoBox(e, false)}
+                onClick={(e) => toggleInfoBox(e)}
                 color="info"
                 aria-label="close order box"
               >

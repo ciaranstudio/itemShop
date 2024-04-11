@@ -268,7 +268,7 @@ function App() {
       });
       return itemColors;
     });
-    console.log("random colors generated list: ", randomAllItemsColors);
+    // console.log("random colors generated list: ", randomAllItemsColors);
   };
 
   const [sceneLoaded, setSceneLoaded] = useState(false);

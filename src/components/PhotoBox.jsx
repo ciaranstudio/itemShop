@@ -40,7 +40,7 @@ export default function PhotoBox({
       //             : -0.85, // -0.65
       //   0,
       // ]}
-      position={[0, -15, 0]}
+      position={[0, 54, 0]}
     >
       <ThemeProvider theme={theme}>
         <CssBaseline />
@@ -51,7 +51,7 @@ export default function PhotoBox({
           }}
         >
           <IconButton
-            onClick={(e) => togglePhotoBox(e, false)}
+            onClick={(e) => togglePhotoBox(e)}
             color="inherit"
             // disabled={
             //   currentItemSelected.itemTitle === "noSelectTitle" ? true : false

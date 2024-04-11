@@ -40,7 +40,7 @@ export default function InfoBox({
       //             : -0.6,
       //   0,
       // ]}
-      position={[0, -10, 0]}
+      position={[0, 80, 0]}
     >
       <ThemeProvider theme={theme}>
         <CssBaseline />
@@ -51,7 +51,7 @@ export default function InfoBox({
           }}
         >
           <IconButton
-            onClick={(e) => toggleInfoBox(e, false)}
+            onClick={(e) => toggleInfoBox(e)}
             color="inherit"
             // disabled={
             //   currentItemSelected.itemTitle === "noSelectTitle" ? true : false
@@ -87,12 +87,17 @@ export default function InfoBox({
               {aboutInfo ? aboutText : item.itemLongDescription}
             </Typography>
           </div>
-          <div id="size">
+          <div
+            id="size"
+            // style={{ borderColor: aboutInfo ? "transparent" : "lightGrey" }}
+            style={{ display: aboutInfo ? "none" : "block" }}
+          >
             <Typography
               variant="subtitle2"
               sx={{
                 fontFamily: "var(--leva-fonts-mono)",
-                borderColor: aboutInfo ? "tranparent" : "lightGrey",
+                // borderColor: aboutInfo ? "transparent" : "lightGrey",
+                // border: aboutInfo ? "0px solid lightGrey" : "0",
               }}
             >
               {aboutInfo ? "" : item.size}
