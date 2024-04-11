@@ -1,3 +1,4 @@
+// import React, { Suspense } from "react";
 import { Html } from "@react-three/drei";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material";
@@ -79,7 +80,9 @@ export default function PhotoBox({
               {allPhotos ? "Images" : item.itemTitle}
             </Typography>
           </div>
+          {/* <Suspense> */}
           <SimpleSlider images={allPhotos ? allImages : item.images} />
+          {/* </Suspense> */}
         </div>
       </ThemeProvider>
     </Html>

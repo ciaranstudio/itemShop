@@ -410,13 +410,9 @@ img {
 
 .part-select-icon {
   background: transparent;
-  font-size: 5rem;
+  font-size: 14rem;
   color: white;
   border: none;
-  /* padding: 1rem;
-  padding-bottom: 0rem;
-  border: 0.5rem solid white;
-  border-radius: 50%; */
 }
 
 .color-exit-btn:active {

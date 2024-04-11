@@ -116,6 +116,7 @@ export const ArrowIcon = ({
                   theme={theme}
                   aboutInfo={aboutInfo}
                 />
+
                 <PhotoBox
                   item={currentItemSelected}
                   // currentItemSelected={currentItemSelected}
@@ -124,6 +125,7 @@ export const ArrowIcon = ({
                   theme={theme}
                   allPhotos={allPhotos}
                 />
+
                 <OptionBox
                   item={currentItemSelected}
                   currentItemName={currentItemName}

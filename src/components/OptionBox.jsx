@@ -17,7 +17,9 @@ import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 // import CropOriginalOutlinedIcon from "@mui/icons-material/CropOriginalOutlined";
 import FilterOutlinedIcon from "@mui/icons-material/FilterOutlined";
 import CircleIcon from "@mui/icons-material/Circle";
-import HeightIcon from "@mui/icons-material/Height";
+import UnfoldLessIcon from "@mui/icons-material/UnfoldLess";
+import UnfoldMoreIcon from "@mui/icons-material/UnfoldMore";
+// import HeightIcon from "@mui/icons-material/Height";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import BuyButton from "./BuyButton.jsx";
 import SplitButton from "./SplitButton.jsx";
@@ -241,15 +243,15 @@ export default function OptionBox({
               position: "absolute",
               pointerEvents: "auto",
               top: "0.15rem",
-              right: "2rem",
+              right: "2.25rem",
               padding: "0.5rem",
             }}
             aria-label="close order box"
           >
             {optionBoxHeightMin ? (
-              <AttachMoneyIcon color="success" fontSize="inherit" />
+              <UnfoldMoreIcon color="success" fontSize="inherit" />
             ) : (
-              <HeightIcon color="success" fontSize="inherit" />
+              <UnfoldLessIcon color="success" fontSize="inherit" />
             )}
           </IconButton>
 
@@ -257,15 +259,15 @@ export default function OptionBox({
             className="color-menu-item-title"
             style={{
               position: optionBoxHeightMin ? "absolute" : "static",
-              top: optionBoxHeightMin ? "0.65rem" : "0",
+              top: optionBoxHeightMin ? "0.45rem" : "0",
               right: optionBoxHeightMin ? "calc(50% - 1rem)" : "0",
-              paddingTop: optionBoxHeightMin ? "0rem" : "0.75rem",
+              paddingTop: optionBoxHeightMin ? "0rem" : "0.5rem",
             }}
 
             // style={{ display: optionBoxHeightMin ? "none" : "block" }}
           >
             <Typography
-              variant={optionBoxHeightMin ? "subtitle1" : "h6"}
+              variant={optionBoxHeightMin ? "h6" : "h6"}
               sx={{ fontFamily: "var(--leva-fonts-mono)" }}
             >
               {item.itemTitle}

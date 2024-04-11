@@ -69,10 +69,10 @@ function App() {
   const animDistReturnTarget = 0;
 
   const stagePosYRun = {
-    value: 0,
+    value: -0.1,
   };
   const stagePosYReturn = {
-    value: 0.15,
+    value: 0.05,
   };
   const stagePosYRunTarget = 0.05;
   const stagePosYReturnTarget = -0.1;
@@ -91,8 +91,8 @@ function App() {
 
         if (currentItemSelected.itemName.includes("block")) {
           tl.to(stagePosYRun, {
-            // delay: 0.15,
-            duration: 0.5,
+            delay: 0.15,
+            duration: 1,
             value: stagePosYRunTarget,
             ease: "easeIn",
             onStart: () => {
@@ -114,7 +114,7 @@ function App() {
         }
 
         tl.to(animDistRun, {
-          delay: 0.15,
+          delay: !currentItemSelected.itemName.includes("block") ? 0.15 : 0,
           duration: 1,
           value: animDistRunTarget,
           ease: "easeIn",
@@ -135,29 +135,7 @@ function App() {
         });
       } else if (animToggled) {
         let tl = gsap.timeline();
-        if (currentItemSelected.itemName.includes("block")) {
-          tl.to(stagePosYReturn, {
-            // delay: 0.15,
-            duration: 0.5,
-            value: stagePosYReturnTarget,
-            ease: "easeIn",
-            onStart: () => {
-              // console.log("starting animDistRun animation: ", animDistRun.value);
-              setAnimActive(true);
-              // if (currentItemSelected.itemName.includes("block")) {
-              //   setStagePosY(0.1);
-              // }
-            },
-            onUpdate: () => {
-              // console.log("updating animDistRun animation: ", animDistRun.value);
-              setStagePosY(stagePosYReturn.value);
-            },
-            onComplete: () => {
-              // console.log("animDistRun.value: ", animDistRun.value);
-              // setAnimActive(false);
-            },
-          });
-        }
+
         tl.to(animDistReturn, {
           delay: 0.15,
           duration: 1,
@@ -168,9 +146,10 @@ function App() {
             //   "starting animDistReturn animation: ",
             //   animDistReturn.value,
             // );
-            if (!currentItemSelected.itemName.includes("block")) {
-              setAnimActive(true);
-            }
+            setAnimActive(true);
+            // if (!currentItemSelected.itemName.includes("block")) {
+            //   setAnimActive(true);
+            // }
             // if (currentItemSelected.itemName.includes("block")) {
             //   setStagePosY(-0.1);
             // }
@@ -184,9 +163,36 @@ function App() {
           },
           onComplete: () => {
             // console.log("animDistReturn.value: ", animDistReturn.value);
-            setAnimActive(false);
+            // setAnimActive(false);
+            if (!currentItemSelected.itemName.includes("block")) {
+              setAnimActive(false);
+            }
           },
         });
+        if (currentItemSelected.itemName.includes("block")) {
+          tl.to(stagePosYReturn, {
+            // delay: 0.15,
+            duration: 1,
+            value: stagePosYReturnTarget,
+            ease: "easeIn",
+            onStart: () => {
+              // console.log("starting animDistRun animation: ", animDistRun.value);
+              // setAnimActive(true);
+              // if (currentItemSelected.itemName.includes("block")) {
+              //   setStagePosY(0.1);
+              // }
+            },
+            onUpdate: () => {
+              // console.log("updating animDistRun animation: ", animDistRun.value);
+              setStagePosY(stagePosYReturn.value);
+            },
+            onComplete: () => {
+              // console.log("animDistRun.value: ", animDistRun.value);
+              // setAnimActive(false);
+              setAnimActive(false);
+            },
+          });
+        }
       }
     }
   });

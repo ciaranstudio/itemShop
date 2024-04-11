@@ -2,6 +2,11 @@ import React, { useState, useLayoutEffect } from "react";
 import { useGLTF, Html } from "@react-three/drei";
 // import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
 import CircleIcon from "@mui/icons-material/Circle";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 
 export const SelectIcon = ({
   model,
@@ -30,9 +35,9 @@ export const SelectIcon = ({
                 position={[
                   o.position.x,
                   itemName.includes("shelfA") && partName.includes("bottom")
-                    ? o.position.y - 0.04
+                    ? o.position.y - 0.03 // 0.04
                     : itemName.includes("shelfB") && partName.includes("bottom")
-                      ? o.position.y - 0.06
+                      ? o.position.y - 0.03 // 0.06
                       : itemName.includes("shelfB") &&
                           partName.includes("middle")
                         ? o.position.y
@@ -53,7 +58,15 @@ export const SelectIcon = ({
               >
                 <div>
                   <button className="part-select-icon">
-                    <CircleIcon fontSize="inherit" />
+                    {partName.includes("bottom") &&
+                    itemName.includes("shelf") ? (
+                      <KeyboardArrowUpIcon fontSize="inherit" />
+                    ) : partName.includes("middle") &&
+                      itemName.includes("shelf") ? (
+                      <KeyboardArrowLeftIcon fontSize="inherit" />
+                    ) : (
+                      <KeyboardArrowDownIcon fontSize="inherit" />
+                    )}
                   </button>
                 </div>
               </Html>,
