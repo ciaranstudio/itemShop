@@ -121,7 +121,7 @@ img {
   padding-top: 0.75rem;
   padding-bottom: 2rem;
   border-radius: 0.75rem;
-  border: 1.5px solid grey;
+  border: 0.085rem solid grey;
   font-size: 1.25rem;
   pointer-events: manipulation;
   /* font-family: var(--leva-fonts-mono); */
@@ -140,7 +140,7 @@ img {
   padding: 1rem;
   padding-top: 0.75rem;
   border-radius: 0.75rem;
-  border: 1.5px solid grey;
+  border: 0.085rem solid grey;
   font-size: 1.25rem;
   pointer-events: none;
   /* font-family: var(--leva-fonts-mono); */
