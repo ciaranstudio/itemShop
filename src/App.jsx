@@ -70,6 +70,7 @@ function App() {
 
   // floor y position
   const dropDuration = 1.05;
+  const raiseDuration = 0.55;
   const yPositionHigh = 0.015;
   const yPositionLow = -0.075;
   const stagePosYRunTarget = yPositionHigh;
@@ -92,14 +93,17 @@ function App() {
   // need to disable zoom while this animation is happening on way in / to showBackground false / parts opened (maybe not on way out / back to showBackground normal)
   const animateParts = contextSafe(() => {
     if (!animActive) {
+      // if (orbitRef.current) orbitRef.current.autoRotate = false;
+      // orbitRef.current.autoRotateSpeed = 1.25;
       setAnimToggled(!animToggled);
+      // check state of animation switch, if animToggled = false then open the object, if true close it
       if (!animToggled) {
         setPartsOpen(false);
         setAnimActive(true);
         let tl = gsap.timeline();
 
         tl.to(stagePosYRun, {
-          delay: 0.15,
+          delay: 0.75,
           duration: dropDuration,
           value: stagePosYRunTarget,
           ease: "easeIn",
@@ -120,9 +124,11 @@ function App() {
           },
         });
 
+        // open
+        // animating the item's parts away from eachother / opening parts, end of this animation partsOpen = true
         tl.to(animDistRun, {
-          delay: !currentItemSelected.itemName.includes("block") ? 0.15 : 0,
-          duration: 1,
+          delay: 0.1,
+          duration: 1.25,
           value: animDistRunTarget,
           ease: "easeIn",
           onStart: () => {
@@ -145,8 +151,10 @@ function App() {
         setAnimActive(true);
         let tl = gsap.timeline();
 
+        // close
+        // close the object, bring parts back together, ending with no distance between them
         tl.to(animDistReturn, {
-          delay: 0.15,
+          delay: 0.1,
           duration: 1,
           value: animDistReturnTarget,
           ease: "easeOut",
@@ -180,8 +188,8 @@ function App() {
         });
 
         tl.to(stagePosYReturn, {
-          // delay: 0.15,
-          duration: dropDuration,
+          delay: 0,
+          duration: raiseDuration,
           value: stagePosYReturnTarget,
           ease: "easeIn",
           onStart: () => {
@@ -300,7 +308,7 @@ function App() {
           // update loadingBarElement
           loadingBarElement.classList.add("ended");
           loadingBarElement.style.transform = "";
-        }, 500);
+        }, 50); // was 500
       }
     }
   }, [progress]);

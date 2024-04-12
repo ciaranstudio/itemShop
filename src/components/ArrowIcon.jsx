@@ -50,6 +50,7 @@ export const ArrowIcon = ({
       },
       info: { main: "#ffffff" },
       warning: { main: "#BDBDBD" },
+      error: { main: "#d3d3d3" },
     },
     shadows: Array(25).fill("none"),
     // components: {

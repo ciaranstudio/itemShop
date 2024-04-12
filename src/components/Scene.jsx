@@ -222,9 +222,10 @@ export default function Scene({
   const [currentPartName, setCurrentPartName] = useState("top");
   const [currentItemName, setCurrentItemName] = useState("gramps");
 
-  useEffect(() => {
-    randomAllItemsParts(false);
-  }, []);
+  // is this necessary with the setCount / setInterval call in count useEffect below? testing without it
+  // useEffect(() => {
+  //   randomAllItemsParts(false);
+  // }, []);
 
   const [count, setCount] = useState(0);
 
@@ -235,7 +236,8 @@ export default function Scene({
     //Implementing the setInterval method
     const interval = setInterval(() => {
       setCount(count + 1);
-    }, 1000);
+    }, 2500);
+    // was 1000
     //Clearing the interval
     return () => clearInterval(interval);
   }, [count]);
@@ -852,8 +854,8 @@ export default function Scene({
           );
           let tl = gsap.timeline();
           tl.to(controlsPositionVec, {
-            delay: 0.1,
-            duration: 1.25,
+            delay: 0.2,
+            duration: 1.5,
             x: currentItemSelected.position.x + xPlus,
             y: currentItemSelected.position.y + yPlus,
             z: currentItemSelected.position.z + zPlus,
@@ -878,6 +880,8 @@ export default function Scene({
               setTargetVec(controlsPositionVec);
               orbitRef.current.enabled = true;
               setActiveZoomAnim(false);
+              orbitRef.current.autoRotate = true;
+              orbitRef.current.autoRotateSpeed = 1.1;
             },
           });
         }

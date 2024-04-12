@@ -48,7 +48,7 @@ export default function OptionBox({
   const { height, width } = useWindowDimensions();
   // const [boxPosY, setBoxPosY] = useState(12);
   const boxPosYMobileMax = 14; // 14 looks good on chrome simulator 04/11/2024
-  const boxPosYMobileMin = 5; // 5 looks good on chrome simulator 04/11/2024
+  const boxPosYMobileMin = 10; // 5 looks good on chrome simulator 04/11/2024
   const boxPosYDesktopMax = 3; // 3 looks good on chrome simulator 04/11/2024
   const boxPosYDesktopMin = -4; // -4 looks good on chrome simulator 04/11/2024
   const notTinyScreenOffsetMinimized = -6; // -6 looks good on chrome simulator 04/11/2024
@@ -261,7 +261,7 @@ export default function OptionBox({
               position: "absolute",
               pointerEvents: "auto",
               top: "0.15rem",
-              right: "2.25rem",
+              right: "2.45rem",
               padding: "0.5rem",
             }}
             aria-label="close order box"
@@ -293,7 +293,7 @@ export default function OptionBox({
             </Typography>
           </div>
           <div
-            className="color-menu-part-title"
+            className="color-menu-part-title description"
             style={{ display: optionBoxHeightMin ? "none" : "block" }}
           >
             <Typography

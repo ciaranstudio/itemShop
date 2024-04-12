@@ -41,7 +41,7 @@ export default function InfoBox({
       //             : -0.6,
       //   0,
       // ]}
-      position={[0, 70, 0]} // when ArrowIcon position Y was -0.3: [0, 80, 0]
+      position={[0, 50, 0]} // when ArrowIcon position Y was -0.3: [0, 80, 0]
     >
       <ThemeProvider theme={theme}>
         <CssBaseline />

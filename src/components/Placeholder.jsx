@@ -5,6 +5,7 @@ export default function Placeholder() {
   const boxRefInner = useRef();
   const boxRefMiddle = useRef();
   const boxRefOuter = useRef();
+  const boxGroupRef = useRef();
 
   const innerBoxGeoArgs = [0.75, 0.75, 0.75, 2, 2, 2]; // [0.5, 0.5, 0.5, 3, 3, 3]
   const middleBoxGeoArgs = [1.25, 1.25, 1.25, 3, 3, 3];
@@ -12,21 +13,22 @@ export default function Placeholder() {
 
   useFrame((state) => {
     const angle = state.clock.elapsedTime;
-    boxRefInner.current.rotation.y = angle;
-    boxRefMiddle.current.rotation.x = angle / 2;
-    boxRefOuter.current.rotation.z = angle / 4;
+    boxRefInner.current.rotation.y = angle / 3;
+    boxRefMiddle.current.rotation.x = angle / 4;
+    boxRefOuter.current.rotation.z = angle / 6;
+    boxGroupRef.current.rotation.y = angle / 2;
   });
 
   return (
     <>
-      <group>
+      <group ref={boxGroupRef}>
         <mesh ref={boxRefInner} position={[0, 0.65, 0]}>
           <boxGeometry args={innerBoxGeoArgs} />
-          <meshBasicMaterial wireframe color="white" />
+          <meshBasicMaterial wireframe color="red" />
         </mesh>
         <mesh ref={boxRefMiddle} position={[0, 0.65, 0]}>
           <boxGeometry args={middleBoxGeoArgs} />
-          <meshBasicMaterial wireframe color="red" />
+          <meshBasicMaterial wireframe color="white" />
         </mesh>
         <mesh ref={boxRefOuter} position={[0, 0.65, 0]}>
           <boxGeometry args={outerBoxGeoArgs} />

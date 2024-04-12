@@ -56,14 +56,15 @@ body,
   transform: scaleX(0.1);
   transform-origin: top left;
   /* transform-origin: top left; */
-  transition: transform 0.5s;
+  transition: transform 0.25s;
 }
 
 .loading-bar.ended {
   transform: scaleX(0);
   /* transform-origin: 100% 0; */
   transform-origin: bottom right;
-  transition: transform 1.5s ease-in-out;
+  /* transition: transform 1.5s ease-in-out; */
+  transition: transform 0.25s ease-in-out;
 }
 
 /* .snipcart-modal__container {
@@ -91,13 +92,16 @@ img {
   /* right: calc(50% - 10rem); */
   text-align: center;
   /* background: #181c20; */
-  background: #adbaba;
+  /* match top inset background color */
+  /* background: #adbaba;  */
+  background: transparent;
   opacity: 0.98;
   /* color: #8c92a4; */
-  color: #17385b;
+  color: #2c69aa;
   padding: 0.25rem;
   /* border-radius: 0.75rem; */
-  font-size: 1.15rem;
+  /* font-size: 1.15rem; */
+  font-size: 1.075rem;
   pointer-events: none;
   /* font-family: var(--leva-fonts-mono); */
 }
