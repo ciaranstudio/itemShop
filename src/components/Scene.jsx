@@ -1034,7 +1034,7 @@ export default function Scene({
 
   const arrowY = -0.25; // -0.25
   const orbitPolarShowBgdShelf = Math.PI / 2 + Math.PI / 16;
-  const orbitPolarShowBgdNotShelf = Math.PI / 2 - Math.PI / 12;
+  const orbitPolarShowBgdNotShelf = Math.PI / 2 - Math.PI / 9.06;
 
   return (
     <>
@@ -1205,7 +1205,7 @@ export default function Scene({
         enableZoom={!animActive} // showBackground ? true : false
         enablePan={false}
         maxDistance={!showBackground && partsOpen ? 4 : 15}
-        minDistance={1.65} // 1.75 good on iphone xr portrait // 1.375 // 60
+        minDistance={1.45} // 1.65 on 04/11/2024 // before 04/11/2024 1.75 good on iphone xr portrait // 1.375 // 60
         maxPolarAngle={
           showBackground && currentItemSelected.itemName.includes("shelf")
             ? orbitPolarShowBgdShelf // Math.PI / 2 + Math.PI / 128
