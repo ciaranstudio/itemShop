@@ -371,7 +371,9 @@ function App() {
               stagePosY={stagePosY}
               mobileView={mobileView}
               partsOpen={partsOpen}
-              setPartsOpen={setPartsOpen}
+              // setPartsOpen={setPartsOpen}
+              changeItemNoBackground={changeItemNoBackground}
+              setChangeItemNoBackground={setChangeItemNoBackground}
             />
           </SnipcartProvider>
         </Suspense>

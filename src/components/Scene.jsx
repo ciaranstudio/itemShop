@@ -59,7 +59,9 @@ export default function Scene({
   stagePosY,
   mobileView,
   partsOpen,
-  setPartsOpen,
+  // setPartsOpen,
+  changeItemNoBackground,
+  setChangeItemNoBackground,
 }) {
   const { height, width } = useWindowDimensions();
   // useEffect(() => {
@@ -887,9 +889,7 @@ export default function Scene({
         }
       }
     }
-  }, [showBackground]);
-
-  // const stagePositionY = -0.1;
+  }, [showBackground, changeItemNoBackground]);
 
   const dirLightXPosition = 2.5; // 2.5
   const dirLightYPosition = 3.6; // 3.6
@@ -1175,6 +1175,8 @@ export default function Scene({
               setOptionBoxHeightMin={setOptionBoxHeightMin}
               animActive={animActive}
               mobileView={mobileView}
+              changeItemNoBackground={changeItemNoBackground}
+              setChangeItemNoBackground={setChangeItemNoBackground}
             />
           </mesh>
           <mesh

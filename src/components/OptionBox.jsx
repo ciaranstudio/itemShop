@@ -51,6 +51,8 @@ export default function OptionBox({
   setOptionBoxHeightMin,
   animActive,
   mobileView,
+  changeItemNoBackground,
+  setChangeItemNoBackground,
 }) {
   const { height, width } = useWindowDimensions();
   // const [boxPosY, setBoxPosY] = useState(12);
@@ -187,6 +189,38 @@ export default function OptionBox({
     }
   };
 
+  const itemMenuSelectHandler = (e, itemName, popupState) => {
+    // console.log(popupState);
+    switch (itemName) {
+      case "negX":
+        setChangeItemNoBackground();
+        break;
+      case "posX":
+        setChangeItemNoBackground();
+        break;
+      case "negZ":
+        setChangeItemNoBackground();
+        break;
+      case "posZ":
+        setChangeItemNoBackground();
+        break;
+      case "posY1":
+        setChangeItemNoBackground();
+        break;
+      case "posY2":
+        setChangeItemNoBackground();
+        break;
+      case "negZposY1":
+        setChangeItemNoBackground();
+        break;
+      case "posXposY1":
+        setChangeItemNoBackground();
+        break;
+      case "none":
+        break;
+    }
+  };
+
   return (
     <Html
       position={[
@@ -225,7 +259,10 @@ export default function OptionBox({
         <CssBaseline />
         <div
           className="annotation-wrapper"
-          style={{ paddingTop: optionBoxHeightMin ? "2rem" : "0rem" }}
+          style={{
+            paddingTop: optionBoxHeightMin ? "2.75rem" : "0rem",
+            marginTop: optionBoxHeightMin ? "1.25rem" : "0rem",
+          }}
         >
           <IconButton
             onClick={(e) => closePartOptions(e)}
@@ -236,7 +273,7 @@ export default function OptionBox({
             sx={{
               position: "absolute",
               pointerEvents: "auto",
-              top: "0.15rem",
+              top: optionBoxHeightMin ? "1.25rem" : "1",
               left: "0.15rem",
               padding: "0.5rem",
             }}
@@ -253,8 +290,8 @@ export default function OptionBox({
             sx={{
               position: "absolute",
               pointerEvents: "auto",
-              top: "0.15rem",
-              right: "0.15rem",
+              top: optionBoxHeightMin ? "1.5rem" : "1",
+              right: "0.25rem",
               padding: "0.5rem",
             }}
             aria-label="close order box"
@@ -275,7 +312,7 @@ export default function OptionBox({
             sx={{
               position: "absolute",
               pointerEvents: "auto",
-              top: "0.15rem",
+              top: optionBoxHeightMin ? "1.5rem" : "1",
               right: "2.45rem",
               padding: "0.5rem",
             }}
@@ -292,7 +329,7 @@ export default function OptionBox({
             className="color-menu-item-title"
             style={{
               position: optionBoxHeightMin ? "absolute" : "static",
-              top: optionBoxHeightMin ? "-0.2rem" : "0",
+              top: optionBoxHeightMin ? "1.4rem" : "0",
               right: optionBoxHeightMin ? "calc(50% - 1.2rem)" : "0",
               paddingTop: optionBoxHeightMin ? "0rem" : "0.5rem",
             }}
@@ -322,10 +359,17 @@ export default function OptionBox({
                       },
                     }}
                   >
-                    {shopItems.map((shopItem) => {
+                    {shopItems.map((shopItem, index) => {
                       return (
                         <MenuItem
-                          onClick={popupState.close}
+                          key={shopItem.itemNo}
+                          onClick={(e) =>
+                            itemMenuSelectHandler(
+                              e,
+                              shopItem.itemName,
+                              popupState,
+                            )
+                          }
                           sx={{ fontFamily: "var(--leva-fonts-mono)" }}
                         >
                           {shopItem.itemTitle}

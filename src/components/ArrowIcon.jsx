@@ -30,6 +30,8 @@ export const ArrowIcon = ({
   setOptionBoxHeightMin,
   animActive,
   mobileView,
+  changeItemNoBackground,
+  setChangeItemNoBackground,
 }) => {
   const { scene, nodes, materials } = useGLTF("./models/arrow.gltf");
   const [annotations, setAnnotations] = useState([]);
@@ -149,6 +151,8 @@ export const ArrowIcon = ({
                   setOptionBoxHeightMin={setOptionBoxHeightMin}
                   animActive={animActive}
                   mobileView={mobileView}
+                  changeItemNoBackground={changeItemNoBackground}
+                  setChangeItemNoBackground={setChangeItemNoBackground}
                 />
               </group>,
             );
