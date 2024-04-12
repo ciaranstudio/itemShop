@@ -152,12 +152,12 @@ img {
 }
 
 #description {
-  font-size: 0.875rem;
+  /* font-size: 0.875rem; */
   background: lightGrey;
   color: #212121;
   padding: 0.85rem;
   border-radius: 1rem;
-  margin-top: 0.25rem;
+  /* margin-top: 0.25rem; */
 }
 
 #size {
@@ -212,6 +212,7 @@ img {
   /* color: #8c92a4; */
   color: #181c20;
   padding: 0.75rem;
+  padding-top: 0.5rem;
   /* padding: 1rem; */
   /* padding-top: 1rem; */
   /* padding-top: 2rem; */
@@ -244,14 +245,10 @@ img {
   grid-template-columns: auto auto;
   /* gap: 3.5rem; */
   width: 100%;
-  /* padding: 2.25rem; */
-  /* padding-top: 1rem; */
-  /* padding-bottom: 0.5rem; */
 }
 
 .color-menu-item-title {
-  padding-top: 0.75rem;
-  /* padding-top: 1rem; */
+  margin-top: 0.45rem;
   text-align: center;
   /* color: #181c20;
   border-radius: 2rem; */
@@ -266,6 +263,7 @@ img {
   text-align: center;
   /* color: #424242;
   border-radius: 2rem; */
+  padding-top: 0.25rem;
   user-select: none;
   /* font-size: 0.95rem; */
   /* font-size: 8rem; */

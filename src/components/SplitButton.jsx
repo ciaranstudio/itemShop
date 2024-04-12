@@ -71,6 +71,7 @@ export default function SplitButton({
         <Button
           onClick={handleClick}
           startIcon={<ShuffleOutlinedIcon color="primary" />}
+          sx={{ fontFamily: "var(--leva-fonts-mono)" }}
         >
           {options[selectedIndex]}
         </Button>
@@ -106,7 +107,8 @@ export default function SplitButton({
             <Paper
               sx={{
                 backgroundColor: "lightGrey",
-                border: "0.075rem solid rgb(155, 155, 155);",
+                // border: "0.075rem solid rgb(155, 155, 155);",
+                border: "0.075rem solid rgb(255, 255, 255);",
               }}
               // sx={{
               //   "& .MuiPaper-root": {

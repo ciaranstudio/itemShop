@@ -100,6 +100,7 @@ export default function NavMenu({
             sx={{
               "& .MuiPaper-root": {
                 backgroundColor: "lightgrey",
+                border: "0.05rem solid rgb(155, 155, 155);",
               },
             }}
           >

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Html } from "@react-three/drei";
 import { useOptionStore } from "../store/useOptionStore.tsx";
 // import { textures } from "../data/textures.jsx";
-import { objects } from "../data/objects.jsx";
+import { objects, shopItems } from "../data/objects.jsx";
 import { options, allOptions } from "../data/options.jsx";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material";
@@ -25,6 +25,12 @@ import ExpandCircleDownIcon from "@mui/icons-material/ExpandCircleDown";
 import BuyButton from "./BuyButton.jsx";
 import SplitButton from "./SplitButton.jsx";
 import useWindowDimensions from "../helpers/useWindowDimensions";
+
+// import * as React from "react";
+import Button from "@mui/material/Button";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
 
 export default function OptionBox({
   item,
@@ -293,16 +299,53 @@ export default function OptionBox({
 
             // style={{ display: optionBoxHeightMin ? "none" : "block" }}
           >
-            <Typography
+            <PopupState variant="popover" popupId="demo-popup-menu">
+              {(popupState) => (
+                <React.Fragment>
+                  <Button
+                    variant="outlined"
+                    {...bindTrigger(popupState)}
+                    sx={{
+                      fontFamily: "var(--leva-fonts-mono)",
+                      fontSize: optionBoxHeightMin ? "0.65rem" : "1.1rem",
+                    }}
+                    size="large"
+                  >
+                    {item.itemTitle}
+                  </Button>
+                  <Menu
+                    {...bindMenu(popupState)}
+                    sx={{
+                      "& .MuiPaper-root": {
+                        backgroundColor: "lightgrey",
+                        border: "0.075rem solid rgb(255, 255, 255);",
+                      },
+                    }}
+                  >
+                    {shopItems.map((shopItem) => {
+                      return (
+                        <MenuItem
+                          onClick={popupState.close}
+                          sx={{ fontFamily: "var(--leva-fonts-mono)" }}
+                        >
+                          {shopItem.itemTitle}
+                        </MenuItem>
+                      );
+                    })}
+                  </Menu>
+                </React.Fragment>
+              )}
+            </PopupState>
+            {/* <Typography
               variant={optionBoxHeightMin ? "h6" : "h6"}
               sx={{ fontFamily: "var(--leva-fonts-mono)" }}
               color="primary"
             >
               {item.itemTitle}
-            </Typography>
+            </Typography> */}
           </div>
           <div
-            className="color-menu-part-title description"
+            className="color-menu-part-title"
             style={{ display: optionBoxHeightMin ? "none" : "block" }}
           >
             <Typography
