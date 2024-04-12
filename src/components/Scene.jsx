@@ -276,6 +276,7 @@ export default function Scene({
       //   orbitRef.current.enableZoom = false;
       // }
     } else if (showBackground && currentItemSelected !== unselectedItem) {
+      setChangeItemNoBackground(false);
       animateParts();
       // if (orbitRef.current) {
       //   orbitRef.current.enableZoom = true;
@@ -705,6 +706,7 @@ export default function Scene({
   // animation camera target on item click
   const controlsTargetVec = new THREE.Vector3();
   useGSAP(() => {
+    // setAnimActive()
     if (
       previousItemSelected.itemName.includes("shelfA32") ||
       previousItemSelected.itemName.includes("shelfB16")
@@ -856,8 +858,9 @@ export default function Scene({
           );
           let tl = gsap.timeline();
           tl.to(controlsPositionVec, {
+            // delay: changeItemNoBackground ? 1 : 0.2,
             delay: 0.2,
-            duration: 1.5,
+            duration: 1.85,
             x: currentItemSelected.position.x + xPlus,
             y: currentItemSelected.position.y + yPlus,
             z: currentItemSelected.position.z + zPlus,
@@ -866,6 +869,7 @@ export default function Scene({
               // setOpen(!open);
               // setInfoBoxIcon(!infoBoxIcon);
               setActiveZoomAnim(true);
+              if (changeItemNoBackground) orbitRef.current.autoRotate = false;
               orbitRef.current.enabled = false;
             },
             onUpdate: () => {
@@ -884,12 +888,13 @@ export default function Scene({
               setActiveZoomAnim(false);
               orbitRef.current.autoRotate = true;
               orbitRef.current.autoRotateSpeed = 1.1;
+              // setChangeItemNoBackground(false);
             },
           });
         }
       }
     }
-  }, [showBackground, changeItemNoBackground]);
+  }, [showBackground]);
 
   const dirLightXPosition = 2.5; // 2.5
   const dirLightYPosition = 3.6; // 3.6
@@ -1155,12 +1160,16 @@ export default function Scene({
               currentColor={textures.alabasterPaint}
               currentTexture={textures.whiteTexture}
               currentItemSelected={currentItemSelected}
+              setCurrentItemSelected={setCurrentItemSelected}
+              setPreviousItemSelected={setPreviousItemSelected}
               toggleInfoBox={toggleInfoBox}
               open={open}
               togglePhotoBox={togglePhotoBox}
               showPhotos={showPhotos}
               currentItemName={currentItemName}
+              setCurrentItemName={setCurrentItemName}
               currentPartName={currentPartName}
+              setCurrentPartName={setCurrentPartName}
               showBackground={showBackground}
               setShowBackground={setShowBackground}
               showPartOptions={showPartOptions}

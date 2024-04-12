@@ -10,12 +10,16 @@ export const ArrowIcon = ({
   currentColor,
   currentTexture,
   currentItemSelected,
+  setCurrentItemSelected,
+  setPreviousItemSelected,
   toggleInfoBox,
   open,
   togglePhotoBox,
   showPhotos,
   currentItemName,
+  setCurrentItemName,
   currentPartName,
+  setCurrentPartName,
   showBackground,
   setShowBackground,
   showPartOptions,
@@ -134,8 +138,12 @@ export const ArrowIcon = ({
 
                 <OptionBox
                   item={currentItemSelected}
+                  setCurrentItemSelected={setCurrentItemSelected}
+                  setPreviousItemSelected={setPreviousItemSelected}
                   currentItemName={currentItemName}
+                  setCurrentItemName={setCurrentItemName}
                   currentPartName={currentPartName}
+                  setCurrentPartName={setCurrentPartName}
                   showBackground={showBackground}
                   setShowBackground={setShowBackground}
                   showPartOptions={showPartOptions}

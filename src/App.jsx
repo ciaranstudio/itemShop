@@ -47,16 +47,20 @@ function App() {
   const [showBackground, setShowBackground] = useState(true);
   const [showPartOptions, setShowPartOptions] = useState(false);
 
+  const [currentItemSelected, setCurrentItemSelected] =
+    useState(unselectedItem);
+  const [previousItemSelected, setPreviousItemSelected] =
+    useState(unselectedItem);
+
   // use this to trigger gsap camera position animation to zoom to new target when changing while in !showBackground view,
   // change select from OptionBox menu (like old title as select box format from March)
   // need to call this after the currentItemSelected is swapped in state
   // after setCurrentItemSelected call to change selected object/item
   const [changeItemNoBackground, setChangeItemNoBackground] = useState(false);
 
-  const [currentItemSelected, setCurrentItemSelected] =
-    useState(unselectedItem);
-  const [previousItemSelected, setPreviousItemSelected] =
-    useState(unselectedItem);
+  useEffect(() => {
+    console.log("changeItemNoBackground: ", changeItemNoBackground);
+  }, [changeItemNoBackground]);
 
   useEffect(() => {
     window.LoadSnipcart();

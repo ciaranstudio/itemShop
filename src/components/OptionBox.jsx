@@ -34,8 +34,12 @@ import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
 
 export default function OptionBox({
   item,
+  setCurrentItemSelected,
+  setPreviousItemSelected,
   currentItemName,
+  setCurrentItemName,
   currentPartName,
+  setCurrentPartName,
   showBackground,
   setShowBackground,
   showPartOptions,
@@ -189,36 +193,42 @@ export default function OptionBox({
     }
   };
 
-  const itemMenuSelectHandler = (e, itemName, popupState) => {
+  const itemMenuSelectHandler = (e, itemNo, popupState) => {
     // console.log(popupState);
-    switch (itemName) {
-      case "negX":
-        setChangeItemNoBackground();
-        break;
-      case "posX":
-        setChangeItemNoBackground();
-        break;
-      case "negZ":
-        setChangeItemNoBackground();
-        break;
-      case "posZ":
-        setChangeItemNoBackground();
-        break;
-      case "posY1":
-        setChangeItemNoBackground();
-        break;
-      case "posY2":
-        setChangeItemNoBackground();
-        break;
-      case "negZposY1":
-        setChangeItemNoBackground();
-        break;
-      case "posXposY1":
-        setChangeItemNoBackground();
-        break;
-      case "none":
-        break;
-    }
+    setChangeItemNoBackground(true);
+    setCurrentItemName(shopItems[itemNo].itemName);
+    setCurrentPartName(shopItems[itemNo].parts[0].partName);
+    setPreviousItemSelected(item);
+    setCurrentItemSelected(shopItems[itemNo]);
+    popupState.close();
+    // switch (itemName) {
+    //   case "gramps":
+    //     setChangeItemNoBackground(shopItems[itemName]);
+    //     break;
+    //   case "squatter":
+    //     setChangeItemNoBackground();
+    //     break;
+    //   case "block":
+    //     setChangeItemNoBackground();
+    //     break;
+    //   case "horse":
+    //     setChangeItemNoBackground();
+    //     break;
+    //   case "shelfA16":
+    //     setChangeItemNoBackground();
+    //     break;
+    //   case "shelfA32":
+    //     setChangeItemNoBackground();
+    //     break;
+    //   case "shelfB16":
+    //     setChangeItemNoBackground();
+    //     break;
+    //   case "shelfB32":
+    //     setChangeItemNoBackground();
+    //     break;
+    //   // case "none":
+    //   //   break;
+    // }
   };
 
   return (
@@ -273,7 +283,7 @@ export default function OptionBox({
             sx={{
               position: "absolute",
               pointerEvents: "auto",
-              top: optionBoxHeightMin ? "1.25rem" : "1",
+              top: optionBoxHeightMin ? "1.5rem" : "1",
               left: "0.15rem",
               padding: "0.5rem",
             }}
@@ -312,16 +322,17 @@ export default function OptionBox({
             sx={{
               position: "absolute",
               pointerEvents: "auto",
-              top: optionBoxHeightMin ? "1.5rem" : "1",
-              right: "2.45rem",
+              top: optionBoxHeightMin ? "1.5rem" : "2.5rem",
+              // right: "2.45rem",
+              right: optionBoxHeightMin ? "2.5rem" : "0.25rem",
               padding: "0.5rem",
             }}
             aria-label="close order box"
           >
             {optionBoxHeightMin ? (
-              <ExpandCircleDownIcon color="success" fontSize="inherit" />
+              <ExpandCircleDownIcon color="secondary" fontSize="inherit" />
             ) : (
-              <UnfoldLessIcon color="success" fontSize="inherit" />
+              <UnfoldLessIcon color="secondary" fontSize="inherit" />
             )}
           </IconButton>
 
@@ -366,7 +377,7 @@ export default function OptionBox({
                           onClick={(e) =>
                             itemMenuSelectHandler(
                               e,
-                              shopItem.itemName,
+                              shopItem.itemNo,
                               popupState,
                             )
                           }
