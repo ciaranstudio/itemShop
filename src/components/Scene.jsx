@@ -1036,6 +1036,9 @@ export default function Scene({
       {/* <Perf position="bottom-left" /> */}
       {/* Logo and Cart/Bag at top of screen */}
       <ScreenSpace depth={1}>
+        {/* light in very center for illuminating on zoom in !showBackground desktop / wide screens */}
+        <pointLight position={[0, 0.3, 0.75]} intensity={0.9} />
+        {/* <pointLight position={[0, 0.3, 0.25]} intensity={0.15} /> */}
         <pointLight position={[width / 2850, 0.2, 0.1]} intensity={0.15} />
         <mesh
           position={
@@ -1062,7 +1065,7 @@ export default function Scene({
 
         <pointLight
           position={[-width / 2800 + 0.2, 0.5, 0.1]}
-          intensity={0.75}
+          intensity={0.25}
         />
         <mesh
           position={
