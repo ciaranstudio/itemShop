@@ -804,21 +804,21 @@ export default function Scene({
           //   orbitRef.current.object.position,
           // );
           let xPlus = -1.5;
-          let yPlus = 0.75;
+          let yPlus = 1.25;
           let zPlus = -1.5;
 
           if (currentItemSelected.itemName === "gramps") {
             xPlus = -1.5; // -1.75
-            yPlus = 0.5; // 0.5
-            zPlus = -1.5; // -0.75
+            yPlus = 1.35; // 0.5
+            zPlus = -0.75; // -0.75
           } else if (currentItemSelected.itemName === "block") {
-            xPlus = -1.25; // 0 // -0.75
-            yPlus = 0.5; // 0.5 // 0.5
-            zPlus = -1.25; // 1.75 // -1.25
+            xPlus = -0.5; // 0 // -0.75
+            yPlus = 0.75; // 0.5 // 0.5
+            zPlus = -1.5; // 1.75 // -1.25
           } else if (currentItemSelected.itemName === "horse") {
-            xPlus = -1.9; // -1.75
+            xPlus = 1.75; // -1.75
             yPlus = 1.25; // 1
-            zPlus = -1.9; // -1.75
+            zPlus = -2.1; // -1.75
           } else if (currentItemSelected.itemName === "squatter") {
             xPlus = 1.5; // 1.75
             yPlus = 0.5; // 0.5
@@ -1179,7 +1179,7 @@ export default function Scene({
       <OrbitControls
         makeDefault
         ref={orbitRef}
-        enableZoom={true}
+        enableZoom={showBackground ? true : false}
         enablePan={false}
         maxDistance={15}
         minDistance={1.5} // 1.75 good on iphone xr portrait // 1.375 // 60

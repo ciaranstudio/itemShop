@@ -68,18 +68,23 @@ function App() {
   const animDistRunTarget = 0.15;
   const animDistReturnTarget = 0;
 
+  // floor y position
+  const dropDuration = 1.25;
+  const yPositionHigh = 0.055;
+  const yPositionLow = -0.5;
+  const stagePosYRunTarget = yPositionHigh;
+  const stagePosYReturnTarget = yPositionLow;
+
   const stagePosYRun = {
-    value: -0.1,
+    value: yPositionLow,
   };
   const stagePosYReturn = {
-    value: 0.05,
+    value: yPositionHigh,
   };
-  const stagePosYRunTarget = 0.05;
-  const stagePosYReturnTarget = -0.1;
 
   const [animToggled, setAnimToggled] = useState(false);
   const [animActive, setAnimActive] = useState(false);
-  const [stagePosY, setStagePosY] = useState(-0.1);
+  const [stagePosY, setStagePosY] = useState(yPositionLow);
 
   const { contextSafe } = useGSAP({ scope: container });
 
@@ -89,29 +94,27 @@ function App() {
       if (!animToggled) {
         let tl = gsap.timeline();
 
-        if (currentItemSelected.itemName.includes("block")) {
-          tl.to(stagePosYRun, {
-            delay: 0.15,
-            duration: 1,
-            value: stagePosYRunTarget,
-            ease: "easeIn",
-            onStart: () => {
-              // console.log("starting animDistRun animation: ", animDistRun.value);
-              setAnimActive(true);
-              // if (currentItemSelected.itemName.includes("block")) {
-              //   setStagePosY(0.1);
-              // }
-            },
-            onUpdate: () => {
-              // console.log("updating animDistRun animation: ", animDistRun.value);
-              setStagePosY(stagePosYRun.value);
-            },
-            onComplete: () => {
-              // console.log("animDistRun.value: ", animDistRun.value);
-              // setAnimActive(false);
-            },
-          });
-        }
+        tl.to(stagePosYRun, {
+          delay: 0.15,
+          duration: dropDuration,
+          value: stagePosYRunTarget,
+          ease: "easeIn",
+          onStart: () => {
+            // console.log("starting animDistRun animation: ", animDistRun.value);
+            setAnimActive(true);
+            // if (currentItemSelected.itemName.includes("block")) {
+            //   setStagePosY(0.1);
+            // }
+          },
+          onUpdate: () => {
+            // console.log("updating animDistRun animation: ", animDistRun.value);
+            setStagePosY(stagePosYRun.value);
+          },
+          onComplete: () => {
+            // console.log("animDistRun.value: ", animDistRun.value);
+            // setAnimActive(false);
+          },
+        });
 
         tl.to(animDistRun, {
           delay: !currentItemSelected.itemName.includes("block") ? 0.15 : 0,
@@ -120,9 +123,9 @@ function App() {
           ease: "easeIn",
           onStart: () => {
             // console.log("starting animDistRun animation: ", animDistRun.value);
-            if (!currentItemSelected.itemName.includes("block")) {
-              setAnimActive(true);
-            }
+            // if (!currentItemSelected.itemName.includes("block")) {
+            //   setAnimActive(true);
+            // }
           },
           onUpdate: () => {
             // console.log("updating animDistRun animation: ", animDistRun.value);
@@ -164,35 +167,34 @@ function App() {
           onComplete: () => {
             // console.log("animDistReturn.value: ", animDistReturn.value);
             // setAnimActive(false);
-            if (!currentItemSelected.itemName.includes("block")) {
-              setAnimActive(false);
-            }
+            // if (!currentItemSelected.itemName.includes("block")) {
+            //   setAnimActive(false);
+            // }
           },
         });
-        if (currentItemSelected.itemName.includes("block")) {
-          tl.to(stagePosYReturn, {
-            // delay: 0.15,
-            duration: 1,
-            value: stagePosYReturnTarget,
-            ease: "easeIn",
-            onStart: () => {
-              // console.log("starting animDistRun animation: ", animDistRun.value);
-              // setAnimActive(true);
-              // if (currentItemSelected.itemName.includes("block")) {
-              //   setStagePosY(0.1);
-              // }
-            },
-            onUpdate: () => {
-              // console.log("updating animDistRun animation: ", animDistRun.value);
-              setStagePosY(stagePosYReturn.value);
-            },
-            onComplete: () => {
-              // console.log("animDistRun.value: ", animDistRun.value);
-              // setAnimActive(false);
-              setAnimActive(false);
-            },
-          });
-        }
+
+        tl.to(stagePosYReturn, {
+          // delay: 0.15,
+          duration: dropDuration,
+          value: stagePosYReturnTarget,
+          ease: "easeIn",
+          onStart: () => {
+            // console.log("starting animDistRun animation: ", animDistRun.value);
+            // setAnimActive(true);
+            // if (currentItemSelected.itemName.includes("block")) {
+            //   setStagePosY(0.1);
+            // }
+          },
+          onUpdate: () => {
+            // console.log("updating animDistRun animation: ", animDistRun.value);
+            setStagePosY(stagePosYReturn.value);
+          },
+          onComplete: () => {
+            // console.log("animDistRun.value: ", animDistRun.value);
+            // setAnimActive(false);
+            setAnimActive(false);
+          },
+        });
       }
     }
   });
@@ -309,7 +311,7 @@ function App() {
         dpr={[1, 2]}
         shadows={{ type: THREE.PCFSoftShadowMap }}
         camera={{
-          fov: 45,
+          fov: 45, // 45
           near: 0.1, // 15
           far: 22, // 900
           position: [12, 12, -12], // [0, 16, 0], // position: [9, 5, -9], // position: [7.5, 15, 7.5],

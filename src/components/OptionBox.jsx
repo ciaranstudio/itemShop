@@ -260,7 +260,7 @@ export default function OptionBox({
             style={{
               position: optionBoxHeightMin ? "absolute" : "static",
               top: optionBoxHeightMin ? "0.45rem" : "0",
-              right: optionBoxHeightMin ? "calc(50% - 1rem)" : "0",
+              right: optionBoxHeightMin ? "calc(50% - 1.2rem)" : "0",
               paddingTop: optionBoxHeightMin ? "0rem" : "0.5rem",
             }}
 
