@@ -20,6 +20,7 @@ export default function NavMenu({
   setAllPhotos,
 }) {
   const selectHandler = (e, menuItem, popupState) => {
+    // console.log(popupState);
     if (menuItem === "about") {
       setAboutInfo(true);
       if (!open) {
@@ -28,7 +29,7 @@ export default function NavMenu({
       setShowPartOptions(false);
       setShowPhotos(false);
       setAllPhotos(false);
-      popupState.close;
+      popupState.close();
     } else if (menuItem === "images") {
       setAllPhotos(true);
       if (!showPhotos) {
@@ -37,28 +38,28 @@ export default function NavMenu({
       setShowPartOptions(false);
       setOpen(false);
       setAboutInfo(false);
-      popupState.close;
+      popupState.close();
     } else if (menuItem === "custom") {
       window.open(
         "https://www.eligfellstudio.com/new-page",
         "_blank",
         "noreferrer",
       );
-      popupState.close;
+      popupState.close();
     } else if (menuItem === "contact") {
       window.open(
         "https://www.eligfellstudio.com/contact-1",
         "_blank",
         "noreferrer",
       );
-      popupState.close;
+      popupState.close();
     } else if (menuItem === "exhibitions") {
       window.open(
         "https://cargocollective.com/eligfell",
         "_blank",
         "noreferrer",
       );
-      popupState.close;
+      popupState.close();
     }
   };
 
