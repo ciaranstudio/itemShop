@@ -1029,7 +1029,8 @@ export default function Scene({
   // };
 
   const arrowY = -0.25; // -0.25
-  const orbitPolarShowBackground = Math.PI / 2 - Math.PI / 8;
+  const orbitPolarShowBgdShelf = Math.PI / 2 + Math.PI / 16;
+  const orbitPolarShowBgdNotShelf = Math.PI / 2 - Math.PI / 12;
 
   return (
     <>
@@ -1203,9 +1204,9 @@ export default function Scene({
         minDistance={1.65} // 1.75 good on iphone xr portrait // 1.375 // 60
         maxPolarAngle={
           showBackground && currentItemSelected.itemName.includes("shelf")
-            ? Math.PI / 2 + Math.PI / 128
+            ? orbitPolarShowBgdShelf // Math.PI / 2 + Math.PI / 128
             : showBackground && !currentItemSelected.itemName.includes("shelf")
-              ? orbitPolarShowBackground // 04/11/24 - was Math.PI / 2 - Math.PI / 8
+              ? orbitPolarShowBgdNotShelf // 04/11/24 - was Math.PI / 2 - Math.PI / 8
               : Math.PI * 2
         } // {Math.PI / 2 - Math.PI / 16}
         enableDamping={true}

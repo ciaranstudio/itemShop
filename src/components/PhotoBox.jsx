@@ -42,7 +42,7 @@ export default function PhotoBox({
       //             : -0.85, // -0.65
       //   0,
       // ]}
-      position={[0, 54, 0]}
+      position={[0, 44, 0]} // when ArrowIcon position Y was -0.3: [0, 54, 0]
     >
       <ThemeProvider theme={theme}>
         <CssBaseline />
