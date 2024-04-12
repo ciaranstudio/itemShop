@@ -84,14 +84,18 @@ function App() {
 
   const [animToggled, setAnimToggled] = useState(false);
   const [animActive, setAnimActive] = useState(false);
+  const [partsOpen, setPartsOpen] = useState(false);
   const [stagePosY, setStagePosY] = useState(yPositionLow);
 
   const { contextSafe } = useGSAP({ scope: container });
 
+  // need to disable zoom while this animation is happening on way in / to showBackground false / parts opened (maybe not on way out / back to showBackground normal)
   const animateParts = contextSafe(() => {
     if (!animActive) {
       setAnimToggled(!animToggled);
       if (!animToggled) {
+        setPartsOpen(false);
+        setAnimActive(true);
         let tl = gsap.timeline();
 
         tl.to(stagePosYRun, {
@@ -101,7 +105,7 @@ function App() {
           ease: "easeIn",
           onStart: () => {
             // console.log("starting animDistRun animation: ", animDistRun.value);
-            setAnimActive(true);
+            // setAnimActive(true);
             // if (currentItemSelected.itemName.includes("block")) {
             //   setStagePosY(0.1);
             // }
@@ -134,9 +138,11 @@ function App() {
           onComplete: () => {
             // console.log("animDistRun.value: ", animDistRun.value);
             setAnimActive(false);
+            setPartsOpen(true);
           },
         });
       } else if (animToggled) {
+        setAnimActive(true);
         let tl = gsap.timeline();
 
         tl.to(animDistReturn, {
@@ -149,7 +155,7 @@ function App() {
             //   "starting animDistReturn animation: ",
             //   animDistReturn.value,
             // );
-            setAnimActive(true);
+            // setAnimActive(true);
             // if (!currentItemSelected.itemName.includes("block")) {
             //   setAnimActive(true);
             // }
@@ -192,6 +198,7 @@ function App() {
           onComplete: () => {
             // console.log("animDistRun.value: ", animDistRun.value);
             // setAnimActive(false);
+            setPartsOpen(false);
             setAnimActive(false);
           },
         });
@@ -349,6 +356,8 @@ function App() {
               setOptionBoxHeightMin={setOptionBoxHeightMin}
               stagePosY={stagePosY}
               mobileView={mobileView}
+              partsOpen={partsOpen}
+              setPartsOpen={setPartsOpen}
             />
           </SnipcartProvider>
         </Suspense>

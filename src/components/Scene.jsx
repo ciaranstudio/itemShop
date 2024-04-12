@@ -58,6 +58,8 @@ export default function Scene({
   setOptionBoxHeightMin,
   stagePosY,
   mobileView,
+  partsOpen,
+  setPartsOpen,
 }) {
   const { height, width } = useWindowDimensions();
   // useEffect(() => {
@@ -1192,9 +1194,9 @@ export default function Scene({
       <OrbitControls
         makeDefault
         ref={orbitRef}
-        enableZoom={showBackground ? true : false}
+        enableZoom={!animActive} // showBackground ? true : false
         enablePan={false}
-        maxDistance={15}
+        maxDistance={!showBackground && partsOpen ? 4 : 15}
         minDistance={1.65} // 1.75 good on iphone xr portrait // 1.375 // 60
         maxPolarAngle={
           showBackground && currentItemSelected.itemName.includes("shelf")
