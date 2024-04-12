@@ -198,7 +198,7 @@ export default function Scene({
         gsap.to(overlayOpacity, {
           duration: 3,
           value: 0,
-          delay: 1,
+          delay: 0, //
           onUpdate: () => {
             setOverlayAlpha(overlayOpacity.value);
           },
@@ -810,21 +810,21 @@ export default function Scene({
           let zPlus = -1.165;
 
           if (currentItemSelected.itemName === "gramps") {
-            xPlus = -1.75; // -1.75
+            xPlus = -2.15; // -1.75
             yPlus = 1; // 0.5
-            zPlus = -0.5; // -0.75
+            zPlus = -0.575; // -0.75
           } else if (currentItemSelected.itemName === "block") {
             xPlus = -0.5; // 0 // -0.75
             yPlus = 0.75; // 0.5 // 0.5
             zPlus = -1.5; // 1.75 // -1.25
           } else if (currentItemSelected.itemName === "horse") {
-            xPlus = 1.75; // -1.75
-            yPlus = 1.25; // 1
-            zPlus = -2.1; // -1.75
+            xPlus = 2; // -1.75
+            yPlus = 1.25; // 1.25
+            zPlus = -2.5; // -2.1
           } else if (currentItemSelected.itemName === "squatter") {
-            xPlus = 1.5; // 1.75
+            xPlus = 1.95; // 1.75
             yPlus = 0.75; // 0.5
-            zPlus = 0.75; // 1
+            zPlus = 1.15; // 1
           } else if (currentItemSelected.itemName === "shelfA16") {
             xPlus = 1.5; // 1 // 1.5
             yPlus = 2; // 1.75 // 1.25
