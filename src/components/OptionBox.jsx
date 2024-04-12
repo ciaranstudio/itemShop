@@ -47,12 +47,16 @@ export default function OptionBox({
 }) {
   const { height, width } = useWindowDimensions();
   // const [boxPosY, setBoxPosY] = useState(12);
-  const boxPosYMobileMax = 14; // 14 looks good on chrome simulator 04/11/2024
-  const boxPosYMobileMin = 10; // 5 looks good on chrome simulator 04/11/2024
+  const boxPosYMobileMax = 15; // 14 looks good on chrome simulator 04/11/2024
+  const boxPosYMobileMin = 5; // 5 looks good on chrome simulator 04/11/2024
+
   const boxPosYDesktopMax = 3; // 3 looks good on chrome simulator 04/11/2024
   const boxPosYDesktopMin = -4; // -4 looks good on chrome simulator 04/11/2024
+
   const notTinyScreenOffsetMinimized = -6; // -6 looks good on chrome simulator 04/11/2024
-  const notTinyScreenOffsetNotMinimized = -2; // -2 looks good on chrome simulator 04/11/2024
+  const notTinyScreenOffsetNotMinimized = 1; // -2 looks good on chrome simulator 04/11/2024
+
+  const breakpointWidthSmallest = 380;
 
   const toggleOptionBoxHeight = (e) => {
     e.preventDefault();
@@ -185,15 +189,19 @@ export default function OptionBox({
         //   : width < 400 && !currentItemName.includes("horse")
         //     ? 20
         //     : 13,
-        mobileView && !optionBoxHeightMin && width < 400
+        mobileView && !optionBoxHeightMin && width < breakpointWidthSmallest
           ? boxPosYMobileMax
-          : mobileView && optionBoxHeightMin && width > 400
+          : mobileView && optionBoxHeightMin && width > breakpointWidthSmallest
             ? boxPosYMobileMin + notTinyScreenOffsetMinimized
             : !mobileView && !optionBoxHeightMin
               ? boxPosYDesktopMax
-              : mobileView && optionBoxHeightMin && width < 400
+              : mobileView &&
+                  optionBoxHeightMin &&
+                  width < breakpointWidthSmallest
                 ? boxPosYMobileMin
-                : mobileView && !optionBoxHeightMin && width > 400
+                : mobileView &&
+                    !optionBoxHeightMin &&
+                    width > breakpointWidthSmallest
                   ? boxPosYMobileMin + notTinyScreenOffsetNotMinimized
                   : !mobileView && optionBoxHeightMin
                     ? boxPosYDesktopMin

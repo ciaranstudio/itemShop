@@ -41,7 +41,9 @@ export default function InfoBox({
       //             : -0.6,
       //   0,
       // ]}
-      position={[0, 50, 0]} // when ArrowIcon position Y was -0.3: [0, 80, 0]
+      // Set up a breakpoint for SE width < 390, and one for if width > 390, bring in useWindow for width and height of screen from OptionBox above
+      // wait to see how long this element gets with incoming product specifications and disclaimer, TBD height necessary for div - 04/11/2024
+      position={[0, 58, 0]} // when ArrowIcon position Y was -0.3: [0, 80, 0]
     >
       <ThemeProvider theme={theme}>
         <CssBaseline />

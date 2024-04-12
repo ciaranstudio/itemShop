@@ -8,7 +8,7 @@ export default function Placeholder() {
   const boxGroupRef = useRef();
 
   const innerBoxGeoArgs = [0.75, 0.75, 0.75, 2, 2, 2]; // [0.5, 0.5, 0.5, 3, 3, 3]
-  const middleBoxGeoArgs = [1.25, 1.25, 1.25, 3, 3, 3];
+  const middleBoxGeoArgs = [1.25, 1.25, 1.25, 1, 1, 1];
   const outerBoxGeoArgs = [2, 2, 2, 1, 1, 1];
 
   useFrame((state) => {
