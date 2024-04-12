@@ -1187,7 +1187,7 @@ export default function Scene({
           showBackground && currentItemSelected.itemName.includes("shelf")
             ? Math.PI / 2 + Math.PI / 32
             : showBackground && !currentItemSelected.itemName.includes("shelf")
-              ? Math.PI / 2 - Math.PI / 8
+              ? Math.PI / 2 // what it was 04/11/24 Math.PI / 2 - Math.PI / 8
               : Math.PI * 2
         } // {Math.PI / 2 - Math.PI / 16}
         enableDamping={true}

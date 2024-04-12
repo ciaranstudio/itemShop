@@ -71,7 +71,7 @@ function App() {
   // floor y position
   const dropDuration = 1.25;
   const yPositionHigh = 0.055;
-  const yPositionLow = -0.5;
+  const yPositionLow = -0.25;
   const stagePosYRunTarget = yPositionHigh;
   const stagePosYReturnTarget = yPositionLow;
 
