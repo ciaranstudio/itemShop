@@ -21,9 +21,9 @@ import { useOptionStore } from "./store/useOptionStore.tsx";
 
 function App() {
   const [mobileView, setMobileView] = useState(false);
-  const iOS =
-    typeof navigator !== "undefined" &&
-    /iPad|iPhone|iPod/.test(navigator.userAgent);
+  // const iOS =
+  //   typeof navigator !== "undefined" &&
+  //   /iPad|iPhone|iPod/.test(navigator.userAgent);
 
   useEffect(() => {
     // Check if using a touch control device
@@ -69,9 +69,9 @@ function App() {
   const animDistReturnTarget = 0;
 
   // floor y position
-  const dropDuration = 1.25;
-  const yPositionHigh = 0.055;
-  const yPositionLow = -0.25;
+  const dropDuration = 1.05;
+  const yPositionHigh = 0.015;
+  const yPositionLow = -0.075;
   const stagePosYRunTarget = yPositionHigh;
   const stagePosYReturnTarget = yPositionLow;
 
@@ -348,6 +348,7 @@ function App() {
               optionBoxHeightMin={optionBoxHeightMin}
               setOptionBoxHeightMin={setOptionBoxHeightMin}
               stagePosY={stagePosY}
+              mobileView={mobileView}
             />
           </SnipcartProvider>
         </Suspense>

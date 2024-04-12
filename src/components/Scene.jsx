@@ -57,6 +57,7 @@ export default function Scene({
   optionBoxHeightMin,
   setOptionBoxHeightMin,
   stagePosY,
+  mobileView,
 }) {
   const { height, width } = useWindowDimensions();
   // useEffect(() => {
@@ -168,6 +169,7 @@ export default function Scene({
   const overlayOpacity = { value: 1 };
   const [overlayAlpha, setOverlayAlpha] = useState(1);
   const overlayGeometry = new THREE.PlaneGeometry(2, 2, 1, 1);
+  // gl_FragColor = vec4(0.153, 0.153, 0.102, uAlpha); // (previous gl_FragColor)
   const overlayMaterial = new THREE.ShaderMaterial({
     transparent: true,
     uniforms: {
@@ -184,7 +186,7 @@ export default function Scene({
 
         void main()
         {
-            gl_FragColor = vec4(0.153, 0.153, 0.102, uAlpha);
+            gl_FragColor = vec4(0.67843137126, 0.72941176332, 0.72941176332, uAlpha);
         }
     `,
   });
@@ -803,14 +805,14 @@ export default function Scene({
           //   "checking controls current position: ",
           //   orbitRef.current.object.position,
           // );
-          let xPlus = -1.5;
+          let xPlus = -1.65;
           let yPlus = 1.25;
-          let zPlus = -1.5;
+          let zPlus = -1.165;
 
           if (currentItemSelected.itemName === "gramps") {
-            xPlus = -1.5; // -1.75
-            yPlus = 1.35; // 0.5
-            zPlus = -0.75; // -0.75
+            xPlus = -1.75; // -1.75
+            yPlus = 1; // 0.5
+            zPlus = -0.5; // -0.75
           } else if (currentItemSelected.itemName === "block") {
             xPlus = -0.5; // 0 // -0.75
             yPlus = 0.75; // 0.5 // 0.5
@@ -821,8 +823,8 @@ export default function Scene({
             zPlus = -2.1; // -1.75
           } else if (currentItemSelected.itemName === "squatter") {
             xPlus = 1.5; // 1.75
-            yPlus = 0.5; // 0.5
-            zPlus = -1.5; // 1
+            yPlus = 0.75; // 0.5
+            zPlus = 0.75; // 1
           } else if (currentItemSelected.itemName === "shelfA16") {
             xPlus = 1.5; // 1 // 1.5
             yPlus = 2; // 1.75 // 1.25
@@ -881,7 +883,7 @@ export default function Scene({
     }
   }, [showBackground]);
 
-  const stagePositionY = -0.1;
+  // const stagePositionY = -0.1;
 
   const dirLightXPosition = 2.5; // 2.5
   const dirLightYPosition = 3.6; // 3.6
@@ -1024,10 +1026,12 @@ export default function Scene({
   //   }
   // };
 
+  const arrowY = -0.25;
+  const orbitPolarShowBackground = Math.PI / 2 - Math.PI / 8;
+
   return (
     <>
       {/* <Perf position="bottom-left" /> */}
-
       {/* Logo and Cart/Bag at top of screen */}
       <ScreenSpace depth={1}>
         <pointLight position={[width / 2850, 0.2, 0.1]} intensity={0.15} />
@@ -1114,14 +1118,23 @@ export default function Scene({
         >
           <mesh
             position={
-              width >= 376 && width < 600
-                ? [0, -0.3, 0]
+              width >= 376 && width < 600 // y value was -0.3
+                ? [0, arrowY, 0]
                 : width < 376
-                  ? [0, -0.3, 0] // looks right on chrome simulator [0, -0.275, 0]
+                  ? [0, arrowY, 0] // looks right on chrome simulator [0, -0.275, 0]
                   : width >= 600 && width < 1100
-                    ? [0, -0.3, 0]
-                    : [0, -0.3, 0]
+                    ? [0, arrowY, 0]
+                    : [0, arrowY, 0]
             }
+            // position={
+            //   width >= 376 && width < 600
+            //     ? [0, -0.3, 0]
+            //     : width < 376
+            //       ? [0, -0.3, 0] // looks right on chrome simulator [0, -0.275, 0]
+            //       : width >= 600 && width < 1100
+            //         ? [0, -0.3, 0]
+            //         : [0, -0.3, 0]
+            // }
             scale={0.0055}
             // rotation={[0, 0, 0]}
             // onClick={handleArrowIconClick}
@@ -1151,6 +1164,7 @@ export default function Scene({
               optionBoxHeightMin={optionBoxHeightMin}
               setOptionBoxHeightMin={setOptionBoxHeightMin}
               animActive={animActive}
+              mobileView={mobileView}
             />
           </mesh>
           <mesh
@@ -1173,8 +1187,7 @@ export default function Scene({
           </mesh>
         </group>
       </ScreenSpace>
-
-      <color args={["#27271a"]} attach="background" />
+      <color args={["#adbaba"]} attach="background" />
       <mesh geometry={overlayGeometry} material={overlayMaterial}></mesh>
       <OrbitControls
         makeDefault
@@ -1182,12 +1195,12 @@ export default function Scene({
         enableZoom={showBackground ? true : false}
         enablePan={false}
         maxDistance={15}
-        minDistance={1.5} // 1.75 good on iphone xr portrait // 1.375 // 60
+        minDistance={1.65} // 1.75 good on iphone xr portrait // 1.375 // 60
         maxPolarAngle={
           showBackground && currentItemSelected.itemName.includes("shelf")
-            ? Math.PI / 2 + Math.PI / 32
+            ? Math.PI / 2 + Math.PI / 128
             : showBackground && !currentItemSelected.itemName.includes("shelf")
-              ? Math.PI / 2 // what it was 04/11/24 Math.PI / 2 - Math.PI / 8
+              ? orbitPolarShowBackground // 04/11/24 - was Math.PI / 2 - Math.PI / 8
               : Math.PI * 2
         } // {Math.PI / 2 - Math.PI / 16}
         enableDamping={true}

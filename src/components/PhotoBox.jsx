@@ -14,6 +14,7 @@ export default function PhotoBox({
   showPhotos,
   theme,
   allPhotos,
+  mobileView,
 }) {
   return (
     <Html

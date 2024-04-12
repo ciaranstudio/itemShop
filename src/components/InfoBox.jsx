@@ -12,6 +12,7 @@ export default function InfoBox({
   open,
   theme,
   aboutInfo,
+  mobileView,
 }) {
   const aboutText = "About text...";
   return (

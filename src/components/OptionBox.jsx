@@ -43,8 +43,16 @@ export default function OptionBox({
   optionBoxHeightMin,
   setOptionBoxHeightMin,
   animActive,
+  mobileView,
 }) {
   const { height, width } = useWindowDimensions();
+  // const [boxPosY, setBoxPosY] = useState(12);
+  const boxPosYMobileMax = 14; // 14 looks good on chrome simulator 04/11/2024
+  const boxPosYMobileMin = 5; // 5 looks good on chrome simulator 04/11/2024
+  const boxPosYDesktopMax = 3; // 3 looks good on chrome simulator 04/11/2024
+  const boxPosYDesktopMin = -4; // -4 looks good on chrome simulator 04/11/2024
+  const notTinyScreenOffsetMinimized = -6; // -6 looks good on chrome simulator 04/11/2024
+  const notTinyScreenOffsetNotMinimized = -2; // -2 looks good on chrome simulator 04/11/2024
 
   const toggleOptionBoxHeight = (e) => {
     e.preventDefault();
@@ -82,31 +90,29 @@ export default function OptionBox({
   //   // }
   // };
 
-  const [boxPosY, setBoxPosY] = useState(13);
-
-  useEffect(() => {
-    // console.log("optionBoxHeightMin: ", optionBoxHeightMin);
-    if (optionBoxHeightMin) {
-      if (
-        (width < 400 && currentItemName.includes("horse")) ||
-        currentItemName.includes("shelf")
-      ) {
-        setBoxPosY(14);
-      } else if (width < 400 && !currentItemName.includes("horse")) {
-        setBoxPosY(14);
-      } else {
-        setBoxPosY(7);
-      }
-    } else if (!optionBoxHeightMin) {
-      if (width < 400 && currentItemName.includes("horse")) {
-        setBoxPosY(24);
-      } else if (width < 400 && !currentItemName.includes("horse")) {
-        setBoxPosY(20);
-      } else {
-        setBoxPosY(13);
-      }
-    }
-  }, [optionBoxHeightMin]);
+  // useEffect(() => {
+  //   // console.log("optionBoxHeightMin: ", optionBoxHeightMin);
+  //   if (optionBoxHeightMin) {
+  //     if (
+  //       (width < 400 && currentItemName.includes("horse")) ||
+  //       currentItemName.includes("shelf")
+  //     ) {
+  //       setBoxPosY(14);
+  //     } else if (width < 400 && !currentItemName.includes("horse")) {
+  //       setBoxPosY(14);
+  //     } else {
+  //       setBoxPosY(7);
+  //     }
+  //   } else if (!optionBoxHeightMin) {
+  //     if (width < 400 && currentItemName.includes("horse")) {
+  //       setBoxPosY(24);
+  //     } else if (width < 400 && !currentItemName.includes("horse")) {
+  //       setBoxPosY(20);
+  //     } else {
+  //       setBoxPosY(13);
+  //     }
+  //   }
+  // }, [optionBoxHeightMin]);
 
   const [stainSingle, setStainSingle] = useState("");
   const [paintSingle, setPaintSingle] = useState("");
@@ -179,7 +185,19 @@ export default function OptionBox({
         //   : width < 400 && !currentItemName.includes("horse")
         //     ? 20
         //     : 13,
-        boxPosY,
+        mobileView && !optionBoxHeightMin && width < 400
+          ? boxPosYMobileMax
+          : mobileView && optionBoxHeightMin && width > 400
+            ? boxPosYMobileMin + notTinyScreenOffsetMinimized
+            : !mobileView && !optionBoxHeightMin
+              ? boxPosYDesktopMax
+              : mobileView && optionBoxHeightMin && width < 400
+                ? boxPosYMobileMin
+                : mobileView && !optionBoxHeightMin && width > 400
+                  ? boxPosYMobileMin + notTinyScreenOffsetNotMinimized
+                  : !mobileView && optionBoxHeightMin
+                    ? boxPosYDesktopMin
+                    : 0,
         0,
       ]} // 20 good for all but horse on SE, 25 good for horse on SE
       center={true}
