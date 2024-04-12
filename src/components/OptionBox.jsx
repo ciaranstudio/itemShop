@@ -292,7 +292,7 @@ export default function OptionBox({
             className="color-menu-item-title"
             style={{
               position: optionBoxHeightMin ? "absolute" : "static",
-              top: optionBoxHeightMin ? "0.45rem" : "0",
+              top: optionBoxHeightMin ? "-0.2rem" : "0",
               right: optionBoxHeightMin ? "calc(50% - 1.2rem)" : "0",
               paddingTop: optionBoxHeightMin ? "0rem" : "0.5rem",
             }}
@@ -345,7 +345,7 @@ export default function OptionBox({
             </Typography> */}
           </div>
           <div
-            className="color-menu-part-title"
+            className="color-menu-item-description"
             style={{ display: optionBoxHeightMin ? "none" : "block" }}
           >
             <Typography
