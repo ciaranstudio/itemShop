@@ -101,7 +101,7 @@ img {
   padding: 0.25rem;
   /* border-radius: 0.75rem; */
   /* font-size: 1.15rem; */
-  font-size: 1.075rem;
+  font-size: 1rem;
   pointer-events: none;
   /* font-family: var(--leva-fonts-mono); */
 }
@@ -197,7 +197,7 @@ img {
   /* padding: 0.35rem; */
   /* padding-top: 4rem; */
   padding-bottom: 0.75rem;
-  border: 0.15rem solid rgb(155, 155, 155);
+  border: 0.085rem solid rgb(155, 155, 155);
   opacity: 0.9;
   /* border: 0.35rem solid rgb(155, 155, 155); */
 }

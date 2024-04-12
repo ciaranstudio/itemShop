@@ -7,16 +7,19 @@ export default function Placeholder() {
   const boxRefOuter = useRef();
   const boxGroupRef = useRef();
 
-  const innerBoxGeoArgs = [0.75, 0.75, 0.75, 2, 2, 2]; // [0.5, 0.5, 0.5, 3, 3, 3]
+  const innerBoxGeoArgs = [0.95, 0.95, 0.95, 2, 2, 2]; // [0.5, 0.5, 0.5, 3, 3, 3]
   const middleBoxGeoArgs = [1.25, 1.25, 1.25, 1, 1, 1];
-  const outerBoxGeoArgs = [2, 2, 2, 1, 1, 1];
+  const outerBoxGeoArgs = [1.65, 1.65, 1.65, 1, 1, 1];
 
   useFrame((state) => {
     const angle = state.clock.elapsedTime;
+    // boxRefInner.current.rotation.x = angle / 3;
     boxRefInner.current.rotation.y = angle / 3;
-    boxRefMiddle.current.rotation.x = angle / 4;
-    boxRefOuter.current.rotation.z = angle / 6;
-    boxGroupRef.current.rotation.y = angle / 2;
+    // boxRefMiddle.current.rotation.z = -angle / 4;
+    // boxRefOuter.current.rotation.x = angle / 6;
+    boxRefOuter.current.rotation.x = -angle / 6;
+    // boxGroupRef.current.rotation.x = angle / 2;
+    boxGroupRef.current.rotation.y = angle / 3;
   });
 
   return (

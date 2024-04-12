@@ -103,7 +103,17 @@ export default function SplitButton({
                 placement === "bottom" ? "center top" : "center bottom",
             }}
           >
-            <Paper>
+            <Paper
+              sx={{
+                backgroundColor: "lightGrey",
+                border: "0.075rem solid rgb(155, 155, 155);",
+              }}
+              // sx={{
+              //   "& .MuiPaper-root": {
+              //     backgroundColor: "lightgrey",
+              //   },
+              // }}
+            >
               <ClickAwayListener onClickAway={handleClose}>
                 <MenuList id="split-button-menu" autoFocusItem>
                   {options.map((option, index) => (

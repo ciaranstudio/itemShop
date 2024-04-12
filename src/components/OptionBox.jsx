@@ -18,9 +18,10 @@ import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import FilterOutlinedIcon from "@mui/icons-material/FilterOutlined";
 import CircleIcon from "@mui/icons-material/Circle";
 import UnfoldLessIcon from "@mui/icons-material/UnfoldLess";
-import UnfoldMoreIcon from "@mui/icons-material/UnfoldMore";
+// import UnfoldMoreIcon from "@mui/icons-material/UnfoldMore";
+import ExpandCircleDownIcon from "@mui/icons-material/ExpandCircleDown";
 // import HeightIcon from "@mui/icons-material/Height";
-import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
+// import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import BuyButton from "./BuyButton.jsx";
 import SplitButton from "./SplitButton.jsx";
 import useWindowDimensions from "../helpers/useWindowDimensions";
@@ -127,14 +128,14 @@ export default function OptionBox({
 
   const randomCurrentItemParts = (e, currentItemName, type) => {
     e.preventDefault(); //  is this necessary if it is also being called in handlePartOption function ? Remove from one of them or make conditional in handlePartOption like e.stopPropogation ?
-    console.log(
-      "randomPartsClick() - find item in objects data by part itemName: ",
-      objects[currentItemName],
-    );
-    console.log(
-      "then get the parts array for that found item: ",
-      objects[currentItemName].parts,
-    );
+    // console.log(
+    //   "randomPartsClick() - find item in objects data by part itemName: ",
+    //   objects[currentItemName],
+    // );
+    // console.log(
+    //   "then get the parts array for that found item: ",
+    //   objects[currentItemName].parts,
+    // );
     let color = "";
     let tempStainSingle = options.stains[getRandomInt(options.stains.length)];
     let tempPaintSingle = options.paints[getRandomInt(options.paints.length)];
@@ -275,7 +276,7 @@ export default function OptionBox({
             aria-label="close order box"
           >
             {optionBoxHeightMin ? (
-              <UnfoldMoreIcon color="success" fontSize="inherit" />
+              <ExpandCircleDownIcon color="success" fontSize="inherit" />
             ) : (
               <UnfoldLessIcon color="success" fontSize="inherit" />
             )}
