@@ -1028,7 +1028,7 @@ export default function Scene({
   //   }
   // };
 
-  const arrowY = -0.25;
+  const arrowY = -0.3; // -0.25
   const orbitPolarShowBackground = Math.PI / 2 - Math.PI / 8;
 
   return (
