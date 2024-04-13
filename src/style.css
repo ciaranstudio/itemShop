@@ -83,8 +83,8 @@ img {
 }
 
 .slick-slide img {
-  height: 30rem;
-  width: 20rem;
+  height: 27rem;
+  width: 18rem;
 }
 .slick-slide:not(:first-of-type) {
   display: none;
