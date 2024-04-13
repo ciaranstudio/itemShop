@@ -1392,6 +1392,9 @@ export default function Scene({
               optionBoxHeightMin={optionBoxHeightMin}
               setOptionBoxHeightMin={setOptionBoxHeightMin}
               animActive={animActive}
+              activeCamPosAnim={activeCamPosAnim}
+              activeCamTargAnim={activeCamTargAnim}
+              activeCamAnim={activeCamAnim}
               mobileView={mobileView}
               // optionBoxItemChanged={optionBoxItemChanged}
               setOptionBoxItemChanged={setOptionBoxItemChanged}

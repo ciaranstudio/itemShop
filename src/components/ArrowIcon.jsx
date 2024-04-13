@@ -33,6 +33,9 @@ export const ArrowIcon = ({
   optionBoxHeightMin,
   setOptionBoxHeightMin,
   animActive,
+  activeCamPosAnim,
+  activeCamTargAnim,
+  activeCamAnim,
   mobileView,
   // optionBoxItemChanged,
   setOptionBoxItemChanged,
@@ -166,6 +169,9 @@ export const ArrowIcon = ({
                   optionBoxHeightMin={optionBoxHeightMin}
                   setOptionBoxHeightMin={setOptionBoxHeightMin}
                   animActive={animActive}
+                  activeCamPosAnim={activeCamPosAnim}
+                  activeCamTargAnim={activeCamTargAnim}
+                  activeCamAnim={activeCamAnim}
                   mobileView={mobileView}
                   // optionBoxItemChanged={optionBoxItemChanged}
                   setOptionBoxItemChanged={setOptionBoxItemChanged}
@@ -190,6 +196,7 @@ export const ArrowIcon = ({
     showPartOptions,
     optionBoxHeightMin,
     animActive,
+    activeCamAnim,
     allPhotos,
     aboutInfo,
     mobileView,

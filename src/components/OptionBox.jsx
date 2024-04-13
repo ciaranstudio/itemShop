@@ -54,6 +54,9 @@ export default function OptionBox({
   optionBoxHeightMin,
   setOptionBoxHeightMin,
   animActive,
+  activeCamPosAnim,
+  activeCamTargAnim,
+  activeCamAnim,
   mobileView,
   // optionBoxItemChanged,
   setOptionBoxItemChanged,
@@ -151,12 +154,14 @@ export default function OptionBox({
 
   const itemMenuSelectHandler = (e, itemNo, popupState) => {
     // console.log(popupState);
-    setOptionBoxItemChanged(true);
-    setOptionBoxItemToggle(!optionBoxItemToggle);
-    setCurrentItemName(shopItems[itemNo].itemName);
-    setCurrentPartName(shopItems[itemNo].parts[0].partName);
-    setPreviousItemSelected(item);
-    setCurrentItemSelected(shopItems[itemNo]);
+    if (!activeCamAnim) {
+      setOptionBoxItemChanged(true);
+      setOptionBoxItemToggle(!optionBoxItemToggle);
+      setCurrentItemName(shopItems[itemNo].itemName);
+      setCurrentPartName(shopItems[itemNo].parts[0].partName);
+      setPreviousItemSelected(item);
+      setCurrentItemSelected(shopItems[itemNo]);
+    }
     popupState.close();
   };
 
