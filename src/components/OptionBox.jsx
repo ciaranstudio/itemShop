@@ -81,7 +81,7 @@ export default function OptionBox({
 
   const toggleOptionBoxHeight = (e) => {
     e.preventDefault();
-    e.stopPropagation();
+    // e.stopPropagation();
     setOptionBoxHeightMin(!optionBoxHeightMin);
   };
 
@@ -135,13 +135,13 @@ export default function OptionBox({
 
   const closePartOptions = (e) => {
     e.preventDefault();
-    e.stopPropagation();
+    // e.stopPropagation();
     setShowPartOptions(false);
   };
 
   const partShowBackground = (e) => {
     e.preventDefault();
-    e.stopPropagation();
+    // e.stopPropagation();
     // if animation is active disable
     if (!animActive && !showBackground) {
       setShowPartOptions(false);
@@ -250,7 +250,7 @@ export default function OptionBox({
             sx={{
               position: "absolute",
               pointerEvents: "auto",
-              top: optionBoxHeightMin ? "1.5rem" : "2rem",
+              top: optionBoxHeightMin ? "1.5rem" : "2.15rem",
               // right: "2.45rem",
               right: optionBoxHeightMin ? "2.5rem" : "0.25rem",
               padding: "0.5rem",

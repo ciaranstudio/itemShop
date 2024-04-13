@@ -3,7 +3,9 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import IconButton from "@mui/material/IconButton";
+import { ReportGmailerrorred } from "@mui/icons-material";
 
 export default function InfoBox({
   item,
@@ -15,6 +17,20 @@ export default function InfoBox({
   mobileView,
 }) {
   const aboutText = "About text...";
+
+  const openUserEmail = (e) => {
+    if (e) {
+      e.preventDefault();
+      // e.stopPropagation();
+    }
+    const email = "eliwgfell@gmail.com";
+    const subject = "Contact from shop";
+    const emailBody = "Yeah yeah yeah...";
+
+    document.location =
+      "mailto:" + email + "?subject=" + subject + "&body=" + emailBody;
+  };
+
   return (
     <Html
       center
@@ -109,6 +125,25 @@ export default function InfoBox({
               {aboutInfo ? "" : item.size}
             </Typography>
           </div>
+          <IconButton
+            onClick={(e) => openUserEmail(e)}
+            color="inherit"
+            sx={{
+              display: aboutInfo ? "block" : "none",
+              position: "absolute",
+              pointerEvents: "auto",
+              top: "0.15rem",
+              right: "0.2rem",
+              padding: "0.5rem",
+            }}
+            aria-label="contact by email"
+          >
+            <MailOutlineIcon
+              // fontSize="medium"
+              // sx={{ color: "primary.light" }}
+              color="info"
+            />
+          </IconButton>
         </div>
       </ThemeProvider>
     </Html>

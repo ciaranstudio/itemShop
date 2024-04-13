@@ -1059,7 +1059,7 @@ export default function Scene({
   const toggleInfoBox = (e) => {
     if (e) {
       e.preventDefault();
-      e.stopPropagation();
+      // e.stopPropagation();
     }
     setAboutInfo(false);
     setOpen(!open);
@@ -1074,7 +1074,7 @@ export default function Scene({
   const togglePhotoBox = (e) => {
     if (e) {
       e.preventDefault();
-      e.stopPropagation();
+      // e.stopPropagation();
     }
     setAllPhotos(false);
     setOpen(false);
