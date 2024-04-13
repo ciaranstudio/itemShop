@@ -18,6 +18,7 @@ export default function NavMenu({
   setAboutInfo,
   allPhotos,
   setAllPhotos,
+  openUserEmail,
 }) {
   const selectHandler = (e, menuItem, popupState) => {
     // console.log(popupState);
@@ -129,7 +130,8 @@ export default function NavMenu({
             </MenuItem>
             <MenuItem
               // onClick={popupState.close}
-              onClick={(e) => selectHandler(e, "contact", popupState)}
+              // onClick={(e) => selectHandler(e, "contact", popupState)}
+              onClick={(e) => openUserEmail(e)}
               sx={{ fontFamily: "var(--leva-fonts-mono)" }}
             >
               Contact

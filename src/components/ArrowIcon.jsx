@@ -40,6 +40,7 @@ export const ArrowIcon = ({
   setOptionBoxItemToggle,
   showSlider,
   setShowSlider,
+  openUserEmail,
 }) => {
   const { scene, nodes, materials } = useGLTF("./models/arrow.gltf");
   const [annotations, setAnnotations] = useState([]);
@@ -128,6 +129,7 @@ export const ArrowIcon = ({
                   theme={theme}
                   aboutInfo={aboutInfo}
                   mobileView={mobileView}
+                  openUserEmail={openUserEmail}
                 />
 
                 <PhotoBox

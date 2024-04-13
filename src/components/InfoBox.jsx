@@ -15,21 +15,22 @@ export default function InfoBox({
   theme,
   aboutInfo,
   mobileView,
+  openUserEmail,
 }) {
   const aboutText = "About text...";
 
-  const openUserEmail = (e) => {
-    if (e) {
-      e.preventDefault();
-      // e.stopPropagation();
-    }
-    const email = "eliwgfell@gmail.com";
-    const subject = "Contact from shop";
-    const emailBody = "Yeah yeah yeah...";
+  // const openUserEmail = (e) => {
+  //   if (e) {
+  //     e.preventDefault();
+  //     // e.stopPropagation();
+  //   }
+  //   const email = "eliwgfell@gmail.com";
+  //   const subject = "Contact from shop";
+  //   const emailBody = "Yeah yeah yeah...";
 
-    document.location =
-      "mailto:" + email + "?subject=" + subject + "&body=" + emailBody;
-  };
+  //   document.location =
+  //     "mailto:" + email + "?subject=" + subject + "&body=" + emailBody;
+  // };
 
   return (
     <Html

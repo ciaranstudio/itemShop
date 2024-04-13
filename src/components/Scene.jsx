@@ -1139,6 +1139,18 @@ export default function Scene({
   //   // case "none":
   //   //   break;
   // }
+  const openUserEmail = (e) => {
+    if (e) {
+      e.preventDefault();
+      // e.stopPropagation();
+    }
+    const email = "eliwgfell@gmail.com";
+    const subject = "Contact from shop";
+    const emailBody = "Yeah yeah yeah...";
+
+    document.location =
+      "mailto:" + email + "?subject=" + subject + "&body=" + emailBody;
+  };
 
   return (
     <>
@@ -1206,6 +1218,7 @@ export default function Scene({
             setAboutInfo={setAboutInfo}
             allPhotos={allPhotos}
             setAllPhotos={setAllPhotos}
+            openUserEmail={openUserEmail}
           />
           {/* <Html center position={[0, -12, 0]}>
              <div className="w3-container">
@@ -1292,6 +1305,7 @@ export default function Scene({
               setOptionBoxItemToggle={setOptionBoxItemToggle}
               showSlider={showSlider}
               setShowSlider={setShowSlider}
+              openUserEmail={openUserEmail}
             />
           </mesh>
           <mesh

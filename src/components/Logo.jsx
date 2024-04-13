@@ -15,6 +15,7 @@ export const Logo = ({
   setAboutInfo,
   allPhotos,
   setAllPhotos,
+  openUserEmail,
 }) => {
   const { scene, nodes, materials } = useGLTF("./models/logoAnnotated.gltf");
   const [annotations, setAnnotations] = useState([]);
@@ -77,6 +78,7 @@ export const Logo = ({
                   setAboutInfo={setAboutInfo}
                   allPhotos={allPhotos}
                   setAllPhotos={setAllPhotos}
+                  openUserEmail={openUserEmail}
                 />
               </Html>,
             );
