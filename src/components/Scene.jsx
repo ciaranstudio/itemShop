@@ -60,8 +60,16 @@ export default function Scene({
   mobileView,
   partsOpen,
   // setPartsOpen,
-  changeItemNoBackground,
-  setChangeItemNoBackground,
+  optionBoxItemChanged,
+  setOptionBoxItemChanged,
+  optionBoxItemToggle,
+  setOptionBoxItemToggle,
+  activeCamPosAnim,
+  setActiveCamPosAnim,
+  activeCamTargAnim,
+  setActiveCamTargAnim,
+  activeCamAnim,
+  setActiveCamAnim,
 }) {
   const { height, width } = useWindowDimensions();
   // useEffect(() => {
@@ -277,7 +285,7 @@ export default function Scene({
       //   orbitRef.current.enableZoom = false;
       // }
     } else if (showBackground && currentItemSelected !== unselectedItem) {
-      setChangeItemNoBackground(false);
+      setOptionBoxItemChanged(false);
       animateParts();
       // if (orbitRef.current) {
       //   orbitRef.current.enableZoom = true;
@@ -531,7 +539,6 @@ export default function Scene({
     if (controlsDragging) {
       setDragTime(dragTime + delta);
       // console.log("controls dragging for ", dragTime);
-    } else if (!controlsDragging && !showBackground && !activeZoomAnim) {
     }
     // if (isTouching && !controlsDragging) {
     //   document.getElementById("footer").innerHTML =
@@ -704,6 +711,13 @@ export default function Scene({
     }
   }, [isTouching]);
 
+  // activeCamPosAnim
+  // setActiveCamPosAnim
+  // activeCamTargAnim
+  // setActiveCamTargAnim
+  // activeCamAnim
+  // setActiveCamAnim
+
   const camTargAnimDelay = 0.15;
   const camTargAnimDuration = 0.75;
   // animation camera target on item click
@@ -748,6 +762,8 @@ export default function Scene({
         z: currentItemSelected.position.z,
         ease: "easeIn",
         onStart: () => {
+          setActiveCamTargAnim(true);
+          setActiveCamAnim(true);
           orbitRef.current.enableRotate = false;
           orbitRef.current.enableZoom = false;
         },
@@ -765,6 +781,8 @@ export default function Scene({
           orbitRef.current.update();
           orbitRef.current.enableRotate = true;
           orbitRef.current.enableZoom = true;
+          setActiveCamTargAnim(false);
+          if (!optionBoxItemChanged) setActiveCamAnim(false);
         },
       });
     } else if (
@@ -780,6 +798,8 @@ export default function Scene({
         z: currentItemSelected.position.z,
         ease: "easeIn",
         onStart: () => {
+          setActiveCamTargAnim(true);
+          setActiveCamAnim(true);
           orbitRef.current.enableRotate = false;
           orbitRef.current.enableZoom = false;
         },
@@ -797,6 +817,8 @@ export default function Scene({
           orbitRef.current.update();
           orbitRef.current.enableRotate = true;
           orbitRef.current.enableZoom = true;
+          setActiveCamTargAnim(false);
+          if (!optionBoxItemChanged) setActiveCamAnim(false);
         },
       });
     } else if (
@@ -812,6 +834,8 @@ export default function Scene({
         z: currentItemSelected.position.z,
         ease: "easeIn",
         onStart: () => {
+          setActiveCamTargAnim(true);
+          setActiveCamAnim(true);
           orbitRef.current.enableRotate = false;
           orbitRef.current.enableZoom = false;
         },
@@ -829,6 +853,8 @@ export default function Scene({
           orbitRef.current.update();
           orbitRef.current.enableRotate = true;
           orbitRef.current.enableZoom = true;
+          setActiveCamTargAnim(false);
+          if (!optionBoxItemChanged) setActiveCamAnim(false);
         },
       });
     }
@@ -839,7 +865,6 @@ export default function Scene({
   // animate camera position on item double click / showBackground turning false
   const controlsPositionVec = new THREE.Vector3();
   const [targetVec, setTargetVec] = useState(new THREE.Vector3());
-  const [activeZoomAnim, setActiveZoomAnim] = useState(false);
   useGSAP(() => {
     if (!showBackground) {
       if (orbitRef.current) {
@@ -893,8 +918,10 @@ export default function Scene({
           );
           let tl = gsap.timeline();
           tl.to(controlsPositionVec, {
-            // delay: changeItemNoBackground ? 1 : 0.2,
-            delay: camPosAnimDelay, // 0.2
+            // delay: optionBoxItemChanged ? 1 : 0.2,
+            delay: optionBoxItemChanged
+              ? camPosAnimDelay + 0.5
+              : camPosAnimDelay, // 0.2
             duration: camPosAnimDuration, // 1.85
             x: currentItemSelected.position.x + xPlus,
             y: currentItemSelected.position.y + yPlus,
@@ -903,8 +930,9 @@ export default function Scene({
             onStart: () => {
               // setOpen(!open);
               // setInfoBoxIcon(!infoBoxIcon);
-              setActiveZoomAnim(true);
-              if (changeItemNoBackground) orbitRef.current.autoRotate = false;
+              setActiveCamPosAnim(true);
+              setActiveCamAnim(true);
+              if (optionBoxItemChanged) orbitRef.current.autoRotate = false;
               // orbitRef.current.enabled = false;
               orbitRef.current.enableRotate = false;
               orbitRef.current.enableZoom = false;
@@ -924,17 +952,18 @@ export default function Scene({
               // orbitRef.current.enabled = true;
               orbitRef.current.enableRotate = true;
               orbitRef.current.enableZoom = true;
-              setActiveZoomAnim(false);
+              setActiveCamPosAnim(false);
+              setActiveCamAnim(false);
               // set a timeout to delay this toggle of autoRotate?
               orbitRef.current.autoRotate = true;
               orbitRef.current.autoRotateSpeed = 1.1;
-              // setChangeItemNoBackground(false);
+              // setOptionBoxItemChanged(false);
             },
           });
         }
       }
     }
-  }, [showBackground]);
+  }, [showBackground, optionBoxItemToggle]);
 
   const dirLightXPosition = 2.5; // 2.5
   const dirLightYPosition = 3.6; // 3.6
@@ -1084,28 +1113,28 @@ export default function Scene({
 
   // switch (itemName) {
   //   case "gramps":
-  //     setChangeItemNoBackground(shopItems[itemName]);
+  //     setOptionBoxItemChanged(shopItems[itemName]);
   //     break;
   //   case "squatter":
-  //     setChangeItemNoBackground();
+  //     setOptionBoxItemChanged();
   //     break;
   //   case "block":
-  //     setChangeItemNoBackground();
+  //     setOptionBoxItemChanged();
   //     break;
   //   case "horse":
-  //     setChangeItemNoBackground();
+  //     setOptionBoxItemChanged();
   //     break;
   //   case "shelfA16":
-  //     setChangeItemNoBackground();
+  //     setOptionBoxItemChanged();
   //     break;
   //   case "shelfA32":
-  //     setChangeItemNoBackground();
+  //     setOptionBoxItemChanged();
   //     break;
   //   case "shelfB16":
-  //     setChangeItemNoBackground();
+  //     setOptionBoxItemChanged();
   //     break;
   //   case "shelfB32":
-  //     setChangeItemNoBackground();
+  //     setOptionBoxItemChanged();
   //     break;
   //   // case "none":
   //   //   break;
@@ -1257,8 +1286,10 @@ export default function Scene({
               setOptionBoxHeightMin={setOptionBoxHeightMin}
               animActive={animActive}
               mobileView={mobileView}
-              // changeItemNoBackground={changeItemNoBackground}
-              setChangeItemNoBackground={setChangeItemNoBackground}
+              // optionBoxItemChanged={optionBoxItemChanged}
+              setOptionBoxItemChanged={setOptionBoxItemChanged}
+              optionBoxItemToggle={optionBoxItemToggle}
+              setOptionBoxItemToggle={setOptionBoxItemToggle}
               showSlider={showSlider}
               setShowSlider={setShowSlider}
             />

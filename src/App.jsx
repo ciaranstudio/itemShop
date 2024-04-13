@@ -25,6 +25,11 @@ function App() {
   //   typeof navigator !== "undefined" &&
   //   /iPad|iPhone|iPod/.test(navigator.userAgent);
 
+  // optionBoxItemChanged
+  // setOptionBoxItemChanged
+  // optionBoxItemChanged
+  // setOptionBoxItemChanged
+
   useEffect(() => {
     // Check if using a touch control device
     if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
@@ -56,11 +61,12 @@ function App() {
   // change select from OptionBox menu (like old title as select box format from March)
   // need to call this after the currentItemSelected is swapped in state
   // after setCurrentItemSelected call to change selected object/item
-  const [changeItemNoBackground, setChangeItemNoBackground] = useState(false);
+  const [optionBoxItemChanged, setOptionBoxItemChanged] = useState(false);
+  const [optionBoxItemToggle, setOptionBoxItemToggle] = useState(false);
 
   // useEffect(() => {
-  //   console.log("changeItemNoBackground: ", changeItemNoBackground);
-  // }, [changeItemNoBackground]);
+  //   console.log("optionBoxItemChanged: ", optionBoxItemChanged);
+  // }, [optionBoxItemChanged]);
 
   useEffect(() => {
     window.LoadSnipcart();
@@ -105,6 +111,10 @@ function App() {
 
   const [animToggled, setAnimToggled] = useState(false);
   const [animActive, setAnimActive] = useState(false);
+  const [activeCamPosAnim, setActiveCamPosAnim] = useState(false);
+  const [activeCamTargAnim, setActiveCamTargAnim] = useState(false);
+  const [activeCamAnim, setActiveCamAnim] = useState(false);
+
   const [partsOpen, setPartsOpen] = useState(false);
   const [stagePosY, setStagePosY] = useState(yPosRunLowTarg);
 
@@ -386,8 +396,16 @@ function App() {
               mobileView={mobileView}
               partsOpen={partsOpen}
               // setPartsOpen={setPartsOpen}
-              changeItemNoBackground={changeItemNoBackground}
-              setChangeItemNoBackground={setChangeItemNoBackground}
+              optionBoxItemChanged={optionBoxItemChanged}
+              setOptionBoxItemChanged={setOptionBoxItemChanged}
+              optionBoxItemToggle={optionBoxItemToggle}
+              setOptionBoxItemToggle={setOptionBoxItemToggle}
+              activeCamPosAnim={activeCamPosAnim}
+              setActiveCamPosAnim={setActiveCamPosAnim}
+              activeCamTargAnim={activeCamTargAnim}
+              setActiveCamTargAnim={setActiveCamTargAnim}
+              activeCamAnim={activeCamAnim}
+              setActiveCamAnim={setActiveCamAnim}
             />
           </SnipcartProvider>
         </Suspense>

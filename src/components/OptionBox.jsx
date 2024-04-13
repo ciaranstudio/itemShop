@@ -55,8 +55,10 @@ export default function OptionBox({
   setOptionBoxHeightMin,
   animActive,
   mobileView,
-  // changeItemNoBackground,
-  setChangeItemNoBackground,
+  // optionBoxItemChanged,
+  setOptionBoxItemChanged,
+  optionBoxItemToggle,
+  setOptionBoxItemToggle,
 }) {
   const { height, width } = useWindowDimensions();
 
@@ -149,7 +151,8 @@ export default function OptionBox({
 
   const itemMenuSelectHandler = (e, itemNo, popupState) => {
     // console.log(popupState);
-    setChangeItemNoBackground(true);
+    setOptionBoxItemChanged(true);
+    setOptionBoxItemToggle(!optionBoxItemToggle);
     setCurrentItemName(shopItems[itemNo].itemName);
     setCurrentPartName(shopItems[itemNo].parts[0].partName);
     setPreviousItemSelected(item);
