@@ -100,46 +100,38 @@ export default function Scene({
       // console.log("window.Snipcart.api: ", window.Snipcart);
       if (cart.items) setCartCount(cart.items.count);
       // window.Snipcart.api.theme.cart.open();
-      toast.loading("Cart", {
-        duration: 6000,
+      toast("Cart", {
+        duration: 7000,
         position: "top-right",
-
         // Styling
         style: {},
         className: "",
-
         // Custom Icon
-        icon: "👈",
-
+        icon: "🛒",
         // Change colors of success/error/loading icon
         iconTheme: {
           primary: "#000",
           secondary: "#fff",
         },
-
         // Aria
         ariaProps: {
           role: "status",
           "aria-live": "polite",
         },
       });
-      toast.loading("Menu", {
-        duration: 6000,
+      toast("Menu", {
+        duration: 7000,
         position: "top-left",
-
         // Styling
         style: {},
         className: "",
-
         // Custom Icon
-        icon: "👉",
-
+        icon: "📑",
         // Change colors of success/error/loading icon
         iconTheme: {
           primary: "#000",
           secondary: "#fff",
         },
-
         // Aria
         ariaProps: {
           role: "status",
@@ -294,49 +286,41 @@ export default function Scene({
     //Implementing the setInterval method
     const interval = setInterval(() => {
       setCount(count + 1);
-    }, 2500);
+    }, 2000);
     // was 1000
     if (count === 1) {
-      toast.loading("Arrow for options", {
-        duration: 5000,
+      toast("Arrow for options", {
+        duration: 9000,
         position: "bottom-center",
-
         // Styling
         style: {},
         className: "",
-
         // Custom Icon
         icon: "☝️",
-
         // Change colors of success/error/loading icon
         iconTheme: {
           primary: "#000",
           secondary: "#fff",
         },
-
         // Aria
         ariaProps: {
           role: "status",
           "aria-live": "polite",
         },
       });
-      toast.loading("Drag screen to navigate", {
-        duration: 5000,
-        position: "top-center",
-
+      toast("Drag to rotate", {
+        duration: 7000,
+        position: "bottom-center",
         // Styling
         style: {},
         className: "",
-
         // Custom Icon
         icon: "🫳",
-
         // Change colors of success/error/loading icon
         iconTheme: {
           primary: "#000",
           secondary: "#fff",
         },
-
         // Aria
         ariaProps: {
           role: "status",
