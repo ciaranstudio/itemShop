@@ -352,7 +352,7 @@ function App() {
           loadingBarElement.style.transform = "";
           toast.success("All set!", {
             id: toastId,
-            duration: 2000,
+            duration: 4000,
           });
         }, 50); // was 500
       }
@@ -366,7 +366,7 @@ function App() {
 
   return (
     <>
-      <Toaster />
+      <Toaster reverseOrder={true} />
       <Canvas
         ref={container} // will this work, if not use forwardRef and pass into Scene for use in objects group?
         // flat // changes color rendering, see https://stackoverflow.com/questions/64899716/color-differences-between-threejs-vanilla-js-and-react-three-fiber-create-re

@@ -278,7 +278,7 @@ export default function Scene({
   // }, []);
 
   const [count, setCount] = useState(0);
-
+  const toastDuration = 9000;
   useEffect(() => {
     if (currentItemSelected === unselectedItem) {
       randomAllItemsParts(false);
@@ -290,13 +290,32 @@ export default function Scene({
     // was 1000
     if (count === 1) {
       toast("Arrow for options", {
-        duration: 9000,
-        position: "bottom-center",
+        duration: toastDuration,
+        position: "bottom-right",
         // Styling
         style: {},
         className: "",
         // Custom Icon
-        icon: "☝️",
+        icon: "▲",
+        // Change colors of success/error/loading icon
+        iconTheme: {
+          primary: "#000",
+          secondary: "#fff",
+        },
+        // Aria
+        ariaProps: {
+          role: "status",
+          "aria-live": "polite",
+        },
+      });
+      toast("Tap to select", {
+        duration: toastDuration,
+        position: "bottom-left",
+        // Styling
+        style: {},
+        className: "",
+        // Custom Icon
+        icon: "🫵",
         // Change colors of success/error/loading icon
         iconTheme: {
           primary: "#000",
@@ -309,8 +328,8 @@ export default function Scene({
         },
       });
       toast("Drag to rotate", {
-        duration: 7000,
-        position: "bottom-center",
+        duration: toastDuration,
+        position: "top-left",
         // Styling
         style: {},
         className: "",
@@ -328,8 +347,8 @@ export default function Scene({
         },
       });
       toast("Pinch to zoom", {
-        duration: 6000,
-        position: "bottom-center",
+        duration: toastDuration,
+        position: "top-right",
         // Styling
         style: {},
         className: "",
@@ -382,6 +401,102 @@ export default function Scene({
       // if (orbitRef.current) {
       //   orbitRef.current.enableZoom = false;
       // }
+      // add select color toast here
+      toast("Select colors", {
+        duration: 3000,
+        position: "top-center",
+        // Styling
+        style: {},
+        className: "",
+        // Custom Icon
+        icon: "🎨",
+        // Change colors of success/error/loading icon
+        iconTheme: {
+          primary: "#000",
+          secondary: "#fff",
+        },
+        // Aria
+        ariaProps: {
+          role: "status",
+          "aria-live": "polite",
+        },
+      });
+      toast("Eye to return", {
+        duration: 3000,
+        position: "bottom-right",
+        // Styling
+        style: {},
+        className: "",
+        // Custom Icon
+        icon: "👁️",
+        // Change colors of success/error/loading icon
+        iconTheme: {
+          primary: "#000",
+          secondary: "#fff",
+        },
+        // Aria
+        ariaProps: {
+          role: "status",
+          "aria-live": "polite",
+        },
+      });
+      toast("Shuffle colors", {
+        duration: 3000,
+        position: "bottom-left",
+        // Styling
+        style: {},
+        className: "",
+        // Custom Icon
+        icon: "🔀",
+        // Change colors of success/error/loading icon
+        iconTheme: {
+          primary: "#000",
+          secondary: "#fff",
+        },
+        // Aria
+        ariaProps: {
+          role: "status",
+          "aria-live": "polite",
+        },
+      });
+      // toast("Stains or paints", {
+      //   duration: 3000,
+      //   position: "bottom-center",
+      //   // Styling
+      //   style: {},
+      //   className: "",
+      //   // Custom Icon
+      //   icon: "🖌️",
+      //   // Change colors of success/error/loading icon
+      //   iconTheme: {
+      //     primary: "#000",
+      //     secondary: "#fff",
+      //   },
+      //   // Aria
+      //   ariaProps: {
+      //     role: "status",
+      //     "aria-live": "polite",
+      //   },
+      // });
+      toast("Tap parts to select", {
+        duration: 6000,
+        position: "top-center",
+        // Styling
+        style: {},
+        className: "",
+        // Custom Icon
+        icon: "👇",
+        // Change colors of success/error/loading icon
+        iconTheme: {
+          primary: "#000",
+          secondary: "#fff",
+        },
+        // Aria
+        ariaProps: {
+          role: "status",
+          "aria-live": "polite",
+        },
+      });
     } else if (showBackground && currentItemSelected !== unselectedItem) {
       setOptionBoxItemChanged(false);
       animateParts();
