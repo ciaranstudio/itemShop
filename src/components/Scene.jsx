@@ -703,6 +703,8 @@ export default function Scene({
     }
   }, [isTouching]);
 
+  const camTargAnimDelay = 0.15;
+  const camTargAnimDuration = 0.75;
   // animation camera target on item click
   const controlsTargetVec = new THREE.Vector3();
   useGSAP(() => {
@@ -738,8 +740,8 @@ export default function Scene({
     ) {
       let tl = gsap.timeline();
       tl.to(controlsTargetVec, {
-        delay: 0.15,
-        duration: 0.75,
+        delay: camTargAnimDelay,
+        duration: camTargAnimDuration,
         x: currentItemSelected.position.x,
         y: currentItemSelected.position.y,
         z: currentItemSelected.position.z,
@@ -770,8 +772,8 @@ export default function Scene({
     ) {
       let tl = gsap.timeline();
       tl.to(controlsTargetVec, {
-        delay: 0.15,
-        duration: 0.75,
+        delay: camTargAnimDelay,
+        duration: camTargAnimDuration,
         x: currentItemSelected.position.x,
         y: currentItemSelected.position.y + 1,
         z: currentItemSelected.position.z,
@@ -802,8 +804,8 @@ export default function Scene({
     ) {
       let tl = gsap.timeline();
       tl.to(controlsTargetVec, {
-        delay: 0.15,
-        duration: 0.75,
+        delay: camTargAnimDelay,
+        duration: camTargAnimDuration,
         x: currentItemSelected.position.x,
         y: currentItemSelected.position.y + 1.25,
         z: currentItemSelected.position.z,
@@ -831,6 +833,8 @@ export default function Scene({
     }
   }, [currentItemSelected]);
 
+  const camPosAnimDelay = 0.2;
+  const camPosAnimDuration = 2.1;
   // animate camera position on item double click / showBackground turning false
   const controlsPositionVec = new THREE.Vector3();
   const [targetVec, setTargetVec] = useState(new THREE.Vector3());
@@ -889,8 +893,8 @@ export default function Scene({
           let tl = gsap.timeline();
           tl.to(controlsPositionVec, {
             // delay: changeItemNoBackground ? 1 : 0.2,
-            delay: 0.2,
-            duration: 1.85,
+            delay: camPosAnimDelay, // 0.2
+            duration: camPosAnimDuration, // 1.85
             x: currentItemSelected.position.x + xPlus,
             y: currentItemSelected.position.y + yPlus,
             z: currentItemSelected.position.z + zPlus,

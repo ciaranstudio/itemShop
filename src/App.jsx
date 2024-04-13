@@ -69,34 +69,44 @@ function App() {
   const container = useRef();
 
   const [animDist, setAnimDist] = useState(0);
-  const animDistRun = {
-    value: 0,
-  };
-  const animDistReturn = {
-    value: 0.15,
-  };
   const animDistRunTarget = 0.15;
   const animDistReturnTarget = 0;
 
-  // floor y position
+  const animDistRun = {
+    value: animDistReturnTarget,
+  };
+  const animDistReturn = {
+    value: animDistRunTarget,
+  };
+
+  const dropDelay = 0;
   const dropDuration = 1.05;
+  const raiseDelay = 0.75;
   const raiseDuration = 0.55;
-  const yPositionHigh = 0.015;
-  const yPositionLow = -0.075;
-  const stagePosYRunTarget = yPositionHigh;
-  const stagePosYReturnTarget = yPositionLow;
+
+  const runDelay = 0.6;
+  const runDuration = 1.25;
+  const returnDelay = 0.1;
+  const returnDuration = 1;
+
+  // floor y position
+  const yPosRunHighTarg = 0.015;
+  const yPosRunLowTarg = -0.075;
+
+  const stagePosYRunTarget = yPosRunHighTarg;
+  const stagePosYReturnTarget = yPosRunLowTarg;
 
   const stagePosYRun = {
-    value: yPositionLow,
+    value: yPosRunLowTarg,
   };
   const stagePosYReturn = {
-    value: yPositionHigh,
+    value: yPosRunHighTarg,
   };
 
   const [animToggled, setAnimToggled] = useState(false);
   const [animActive, setAnimActive] = useState(false);
   const [partsOpen, setPartsOpen] = useState(false);
-  const [stagePosY, setStagePosY] = useState(yPositionLow);
+  const [stagePosY, setStagePosY] = useState(yPosRunLowTarg);
 
   const { contextSafe } = useGSAP({ scope: container });
 
@@ -113,7 +123,7 @@ function App() {
         let tl = gsap.timeline();
 
         tl.to(stagePosYRun, {
-          delay: 0.75,
+          delay: raiseDelay,
           duration: dropDuration,
           value: stagePosYRunTarget,
           ease: "easeIn",
@@ -137,8 +147,8 @@ function App() {
         // open
         // animating the item's parts away from eachother / opening parts, end of this animation partsOpen = true
         tl.to(animDistRun, {
-          delay: 0.1,
-          duration: 1.25,
+          delay: runDelay,
+          duration: runDuration,
           value: animDistRunTarget,
           ease: "easeIn",
           onStart: () => {
@@ -164,8 +174,8 @@ function App() {
         // close
         // close the object, bring parts back together, ending with no distance between them
         tl.to(animDistReturn, {
-          delay: 0.1,
-          duration: 1,
+          delay: returnDelay,
+          duration: returnDuration,
           value: animDistReturnTarget,
           ease: "easeOut",
           onStart: () => {
@@ -198,7 +208,7 @@ function App() {
         });
 
         tl.to(stagePosYReturn, {
-          delay: 0,
+          delay: dropDelay,
           duration: raiseDuration,
           value: stagePosYReturnTarget,
           ease: "easeIn",
