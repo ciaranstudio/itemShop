@@ -755,8 +755,12 @@ export default function Scene({
     ) {
       let tl = gsap.timeline();
       tl.to(controlsTargetVec, {
-        delay: camTargAnimDelay,
-        duration: camTargAnimDuration,
+        delay: optionBoxItemChanged
+          ? camTargAnimDelay - 0.075
+          : camTargAnimDelay,
+        duration: optionBoxItemChanged
+          ? camTargAnimDuration * 1.5
+          : camTargAnimDuration,
         x: currentItemSelected.position.x,
         y: currentItemSelected.position.y,
         z: currentItemSelected.position.z,
@@ -791,8 +795,12 @@ export default function Scene({
     ) {
       let tl = gsap.timeline();
       tl.to(controlsTargetVec, {
-        delay: camTargAnimDelay,
-        duration: camTargAnimDuration,
+        delay: optionBoxItemChanged
+          ? camTargAnimDelay - 0.075
+          : camTargAnimDelay,
+        duration: optionBoxItemChanged
+          ? camTargAnimDuration * 1.5
+          : camTargAnimDuration,
         x: currentItemSelected.position.x,
         y: currentItemSelected.position.y + 1,
         z: currentItemSelected.position.z,
@@ -827,8 +835,12 @@ export default function Scene({
     ) {
       let tl = gsap.timeline();
       tl.to(controlsTargetVec, {
-        delay: camTargAnimDelay,
-        duration: camTargAnimDuration,
+        delay: optionBoxItemChanged
+          ? camTargAnimDelay - 0.075
+          : camTargAnimDelay,
+        duration: optionBoxItemChanged
+          ? camTargAnimDuration * 1.5
+          : camTargAnimDuration,
         x: currentItemSelected.position.x,
         y: currentItemSelected.position.y + 1.25,
         z: currentItemSelected.position.z,
@@ -861,7 +873,7 @@ export default function Scene({
   }, [currentItemSelected]);
 
   const camPosAnimDelay = 0.175;
-  const camPosAnimDuration = 2.1;
+  const camPosAnimDuration = 1.85;
   // animate camera position on item double click / showBackground turning false
   const controlsPositionVec = new THREE.Vector3();
   const [targetVec, setTargetVec] = useState(new THREE.Vector3());
@@ -920,9 +932,12 @@ export default function Scene({
           tl.to(controlsPositionVec, {
             // delay: optionBoxItemChanged ? 1 : 0.2,
             delay: optionBoxItemChanged
-              ? camPosAnimDelay + 0.35
+              ? camPosAnimDelay + 0.2
               : camPosAnimDelay, // 0.2
-            duration: camPosAnimDuration, // 1.85
+            // duration: camPosAnimDuration, // 1.85
+            duration: optionBoxItemChanged
+              ? camPosAnimDuration + 0.75
+              : camPosAnimDuration, // 0.2
             x: currentItemSelected.position.x + xPlus,
             y: currentItemSelected.position.y + yPlus,
             z: currentItemSelected.position.z + zPlus,

@@ -90,7 +90,7 @@ function App() {
   const raiseDelay = 0.75;
   const raiseDuration = 0.55;
 
-  const runDelay = 0.6;
+  const runDelay = 0.45;
   const runDuration = 1.25;
   const returnDelay = 0.1;
   const returnDuration = 1;
