@@ -352,7 +352,7 @@ function App() {
           loadingBarElement.style.transform = "";
           toast.success("All set!", {
             id: toastId,
-            duration: 1250,
+            duration: 2000,
           });
         }, 50); // was 500
       }
