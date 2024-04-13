@@ -744,14 +744,24 @@ export default function Scene({
         y: currentItemSelected.position.y,
         z: currentItemSelected.position.z,
         ease: "easeIn",
+        onStart: () => {
+          orbitRef.current.enableRotate = false;
+          orbitRef.current.enableZoom = false;
+        },
         onUpdate: () => {
           orbitRef.current.target.set(
             controlsTargetVec.x,
             controlsTargetVec.y,
             controlsTargetVec.z,
           );
+          // orbitRef.current.object.updateProjectionMatrix();
+          // orbitRef.current.update();
+        },
+        onComplete: () => {
           orbitRef.current.object.updateProjectionMatrix();
           orbitRef.current.update();
+          orbitRef.current.enableRotate = true;
+          orbitRef.current.enableZoom = true;
         },
       });
     } else if (
@@ -766,14 +776,24 @@ export default function Scene({
         y: currentItemSelected.position.y + 1,
         z: currentItemSelected.position.z,
         ease: "easeIn",
+        onStart: () => {
+          orbitRef.current.enableRotate = false;
+          orbitRef.current.enableZoom = false;
+        },
         onUpdate: () => {
           orbitRef.current.target.set(
             controlsTargetVec.x,
             controlsTargetVec.y,
             controlsTargetVec.z,
           );
+          // orbitRef.current.object.updateProjectionMatrix();
+          // orbitRef.current.update();
+        },
+        onComplete: () => {
           orbitRef.current.object.updateProjectionMatrix();
           orbitRef.current.update();
+          orbitRef.current.enableRotate = true;
+          orbitRef.current.enableZoom = true;
         },
       });
     } else if (
@@ -788,14 +808,24 @@ export default function Scene({
         y: currentItemSelected.position.y + 1.25,
         z: currentItemSelected.position.z,
         ease: "easeIn",
+        onStart: () => {
+          orbitRef.current.enableRotate = false;
+          orbitRef.current.enableZoom = false;
+        },
         onUpdate: () => {
           orbitRef.current.target.set(
             controlsTargetVec.x,
             controlsTargetVec.y,
             controlsTargetVec.z,
           );
+          // orbitRef.current.object.updateProjectionMatrix();
+          // orbitRef.current.update();
+        },
+        onComplete: () => {
           orbitRef.current.object.updateProjectionMatrix();
           orbitRef.current.update();
+          orbitRef.current.enableRotate = true;
+          orbitRef.current.enableZoom = true;
         },
       });
     }
@@ -870,7 +900,9 @@ export default function Scene({
               // setInfoBoxIcon(!infoBoxIcon);
               setActiveZoomAnim(true);
               if (changeItemNoBackground) orbitRef.current.autoRotate = false;
-              orbitRef.current.enabled = false;
+              // orbitRef.current.enabled = false;
+              orbitRef.current.enableRotate = false;
+              orbitRef.current.enableZoom = false;
             },
             onUpdate: () => {
               setTargetVec(controlsPositionVec);
@@ -884,8 +916,11 @@ export default function Scene({
             },
             onComplete: () => {
               setTargetVec(controlsPositionVec);
-              orbitRef.current.enabled = true;
+              // orbitRef.current.enabled = true;
+              orbitRef.current.enableRotate = true;
+              orbitRef.current.enableZoom = true;
               setActiveZoomAnim(false);
+              // set a timeout to delay this toggle of autoRotate?
               orbitRef.current.autoRotate = true;
               orbitRef.current.autoRotateSpeed = 1.1;
               // setChangeItemNoBackground(false);
