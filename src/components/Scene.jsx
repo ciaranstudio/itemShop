@@ -65,9 +65,9 @@ export default function Scene({
   setOptionBoxItemChanged,
   optionBoxItemToggle,
   setOptionBoxItemToggle,
-  activeCamPosAnim,
+  // activeCamPosAnim,
   setActiveCamPosAnim,
-  activeCamTargAnim,
+  // activeCamTargAnim,
   setActiveCamTargAnim,
   activeCamAnim,
   setActiveCamAnim,
@@ -436,6 +436,7 @@ export default function Scene({
 
   const handleArrowIconClick = (e) => {
     e.stopPropagation();
+    toast.dismiss();
     if (currentItemSelected === unselectedItem) {
       setCurrentItemSelected(objects.gramps);
       setTimeout(() => {
@@ -1392,8 +1393,8 @@ export default function Scene({
               optionBoxHeightMin={optionBoxHeightMin}
               setOptionBoxHeightMin={setOptionBoxHeightMin}
               animActive={animActive}
-              activeCamPosAnim={activeCamPosAnim}
-              activeCamTargAnim={activeCamTargAnim}
+              // activeCamPosAnim={activeCamPosAnim}
+              // activeCamTargAnim={activeCamTargAnim}
               activeCamAnim={activeCamAnim}
               mobileView={mobileView}
               // optionBoxItemChanged={optionBoxItemChanged}

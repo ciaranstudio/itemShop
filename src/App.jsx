@@ -417,9 +417,9 @@ function App() {
               setOptionBoxItemChanged={setOptionBoxItemChanged}
               optionBoxItemToggle={optionBoxItemToggle}
               setOptionBoxItemToggle={setOptionBoxItemToggle}
-              activeCamPosAnim={activeCamPosAnim}
+              // activeCamPosAnim={activeCamPosAnim}
               setActiveCamPosAnim={setActiveCamPosAnim}
-              activeCamTargAnim={activeCamTargAnim}
+              // activeCamTargAnim={activeCamTargAnim}
               setActiveCamTargAnim={setActiveCamTargAnim}
               activeCamAnim={activeCamAnim}
               setActiveCamAnim={setActiveCamAnim}
