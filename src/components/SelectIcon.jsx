@@ -56,7 +56,7 @@ export const SelectIcon = ({
                       : "none",
                 }}
               >
-                <div>
+                <div style={{ pointerEvents: "none", userSelect: "none" }}>
                   <button className="part-select-icon">
                     {partName.includes("bottom") &&
                     itemName.includes("shelf") ? (
