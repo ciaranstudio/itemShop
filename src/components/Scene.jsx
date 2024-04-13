@@ -860,7 +860,7 @@ export default function Scene({
     }
   }, [currentItemSelected]);
 
-  const camPosAnimDelay = 0.2;
+  const camPosAnimDelay = 0.175;
   const camPosAnimDuration = 2.1;
   // animate camera position on item double click / showBackground turning false
   const controlsPositionVec = new THREE.Vector3();
@@ -920,7 +920,7 @@ export default function Scene({
           tl.to(controlsPositionVec, {
             // delay: optionBoxItemChanged ? 1 : 0.2,
             delay: optionBoxItemChanged
-              ? camPosAnimDelay + 0.5
+              ? camPosAnimDelay + 0.35
               : camPosAnimDelay, // 0.2
             duration: camPosAnimDuration, // 1.85
             x: currentItemSelected.position.x + xPlus,
