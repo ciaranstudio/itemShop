@@ -15,9 +15,13 @@ import { useGSAP } from "@gsap/react";
 // import OrderBox from "./components/OrderBox.jsx";
 import { textures } from "./data/textures.jsx";
 import { shopItems } from "./data/objects.jsx";
-import { objects } from "./data/objects.jsx";
-import { options, allOptions } from "./data/options.jsx";
+// import { objects } from "./data/objects.jsx";
+import {
+  // options,
+  allOptions,
+} from "./data/options.jsx";
 import { useOptionStore } from "./store/useOptionStore.tsx";
+import toast, { Toaster } from "react-hot-toast";
 
 function App() {
   const [mobileView, setMobileView] = useState(false);
@@ -327,6 +331,14 @@ function App() {
   const [sceneLoaded, setSceneLoaded] = useState(false);
   const loadingBarElement = document.querySelector(".loading-bar");
   const { active, progress, errors, item, loaded, total } = useProgress();
+
+  const toastId = toast;
+  useEffect(() => {
+    toast.loading("Loading...", {
+      id: toastId,
+      position: "top-right",
+    });
+  }, []);
   useEffect(() => {
     // loadingBarElement.style.transform = `scaleX(${progress / 100})`;
     loadingBarElement.style.transform = `scaleX(${loaded / 149})`;
@@ -338,6 +350,10 @@ function App() {
           // update loadingBarElement
           loadingBarElement.classList.add("ended");
           loadingBarElement.style.transform = "";
+          toast.success("All set!", {
+            id: toastId,
+            duration: 1000,
+          });
         }, 50); // was 500
       }
     }
@@ -350,6 +366,7 @@ function App() {
 
   return (
     <>
+      <Toaster />
       <Canvas
         ref={container} // will this work, if not use forwardRef and pass into Scene for use in objects group?
         // flat // changes color rendering, see https://stackoverflow.com/questions/64899716/color-differences-between-threejs-vanilla-js-and-react-three-fiber-create-re

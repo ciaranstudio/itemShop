@@ -13,7 +13,6 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ItemPart } from "./ItemPart.jsx";
 import { Bag } from "./Bag.jsx";
-// import { Annotation } from "./Annotation.jsx";
 import RingCircle from "./RingCircle.jsx";
 import { Floor } from "./room/Floor.jsx";
 import { Walls } from "./room/Walls.jsx";
@@ -24,11 +23,13 @@ import useWindowDimensions from "../helpers/useWindowDimensions";
 import { useSnipcart } from "use-snipcart";
 import { Logo } from "./Logo.jsx";
 import { SelectIcon } from "./SelectIcon.jsx";
+import { ArrowIcon } from "./ArrowIcon.jsx";
+import toast from "react-hot-toast";
+// import { Annotation } from "./Annotation.jsx";
 // import { CameraHelper } from "three";
 // import { DirectionalLightHelper } from "three";
 // import { Perf } from "r3f-perf";
 // import { ShelfPositions } from "./room/ShelfPositions.jsx";
-import { ArrowIcon } from "./ArrowIcon.jsx";
 
 export default function Scene({
   currentItemSelected,
@@ -99,6 +100,52 @@ export default function Scene({
       // console.log("window.Snipcart.api: ", window.Snipcart);
       if (cart.items) setCartCount(cart.items.count);
       // window.Snipcart.api.theme.cart.open();
+      toast.loading("Cart", {
+        duration: 6000,
+        position: "top-right",
+
+        // Styling
+        style: {},
+        className: "",
+
+        // Custom Icon
+        icon: "👈",
+
+        // Change colors of success/error/loading icon
+        iconTheme: {
+          primary: "#000",
+          secondary: "#fff",
+        },
+
+        // Aria
+        ariaProps: {
+          role: "status",
+          "aria-live": "polite",
+        },
+      });
+      toast.loading("Menu", {
+        duration: 6000,
+        position: "top-left",
+
+        // Styling
+        style: {},
+        className: "",
+
+        // Custom Icon
+        icon: "👉",
+
+        // Change colors of success/error/loading icon
+        iconTheme: {
+          primary: "#000",
+          secondary: "#fff",
+        },
+
+        // Aria
+        ariaProps: {
+          role: "status",
+          "aria-live": "polite",
+        },
+      });
     } else {
       setSnipcartLoaded(false);
     }
@@ -249,6 +296,54 @@ export default function Scene({
       setCount(count + 1);
     }, 2500);
     // was 1000
+    if (count === 1) {
+      toast.loading("Arrow for options", {
+        duration: 5000,
+        position: "bottom-center",
+
+        // Styling
+        style: {},
+        className: "",
+
+        // Custom Icon
+        icon: "☝️",
+
+        // Change colors of success/error/loading icon
+        iconTheme: {
+          primary: "#000",
+          secondary: "#fff",
+        },
+
+        // Aria
+        ariaProps: {
+          role: "status",
+          "aria-live": "polite",
+        },
+      });
+      toast.loading("Drag screen to navigate", {
+        duration: 5000,
+        position: "top-center",
+
+        // Styling
+        style: {},
+        className: "",
+
+        // Custom Icon
+        icon: "🫳",
+
+        // Change colors of success/error/loading icon
+        iconTheme: {
+          primary: "#000",
+          secondary: "#fff",
+        },
+
+        // Aria
+        ariaProps: {
+          role: "status",
+          "aria-live": "polite",
+        },
+      });
+    }
     //Clearing the interval
     return () => clearInterval(interval);
   }, [count]);
