@@ -168,6 +168,7 @@ export default function Scene({
     // aoMapPainted,
   ] = useTexture(textures.paintedTexture);
 
+  const [showSlider, setShowSlider] = useState(false);
   const dirLightA = useRef();
 
   const overlayOpacity = { value: 1 };
@@ -1049,6 +1050,7 @@ export default function Scene({
     setAllPhotos(false);
     setOpen(false);
     setShowPhotos(!showPhotos);
+    setShowSlider(false);
     if (showPartOptions) {
       setShowPartOptions(false);
     } else {
@@ -1225,6 +1227,8 @@ export default function Scene({
               mobileView={mobileView}
               changeItemNoBackground={changeItemNoBackground}
               setChangeItemNoBackground={setChangeItemNoBackground}
+              showSlider={showSlider}
+              setShowSlider={setShowSlider}
             />
           </mesh>
           <mesh

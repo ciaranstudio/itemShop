@@ -15,6 +15,8 @@ export default function PhotoBox({
   theme,
   allPhotos,
   mobileView,
+  showSlider,
+  setShowSlider,
 }) {
   return (
     <Html
@@ -42,7 +44,7 @@ export default function PhotoBox({
       //             : -0.85, // -0.65
       //   0,
       // ]}
-      position={[0, 40, 0]} // when ArrowIcon position Y was -0.3: [0, 54, 0]
+      position={[0, 44, 0]} // 40 looked okay on simulator but small cut off at bottom on desktop/iPad //  when ArrowIcon position Y was -0.3: [0, 54, 0]
     >
       <ThemeProvider theme={theme}>
         <CssBaseline />
@@ -82,9 +84,11 @@ export default function PhotoBox({
               {allPhotos ? "Images" : item.itemTitle}
             </Typography>
           </div>
-          {/* <Suspense> */}
-          <SimpleSlider images={allPhotos ? allImages : item.images} />
-          {/* </Suspense> */}
+          <SimpleSlider
+            images={allPhotos ? allImages : item.images}
+            showSlider={showSlider}
+            setShowSlider={setShowSlider}
+          />
         </div>
       </ThemeProvider>
     </Html>

@@ -1,7 +1,7 @@
 import React from "react";
 import Slider from "react-slick";
 
-export default function SimpleSlider({ images }) {
+export default function SimpleSlider({ images, showSlider, setShowSlider }) {
   // const images = [
   //   {
   //     label: "San Francisco – Oakland Bay Bridge, United States",
@@ -35,12 +35,22 @@ export default function SimpleSlider({ images }) {
     slidesToScroll: 1,
     accessibility: true,
     fade: true,
+    swipeToSlide: false,
+    onInit: () => {
+      console.log("initialized slider");
+    },
+    // onReInit: () => {
+    //   setTimeout(() => {
+    //     console.log("showing slider");
+    //     setShowSlider(true);
+    //   }, 5000);
+    // },
     // waitForAnimate: false,
     // autoplay: true,
     // speed: 1000,
     // pauseOnFocus: true,
     // pauseOnHover: true,
-    swipeToSlide: false,
+
     // adaptiveHeight: true,
     // vertical: true,
     // verticalSwiping: true,
@@ -77,7 +87,15 @@ export default function SimpleSlider({ images }) {
   return (
     <Slider {...settings}>
       {images.map((image, index) => {
-        return <img key={index} src={image.imgPath} alt={image.label} />;
+        return (
+          <img
+            key={index}
+            src={image.imgPath}
+            alt={image.label}
+            // width="20rem"
+            // height="30rem"
+          />
+        );
       })}
     </Slider>
   );

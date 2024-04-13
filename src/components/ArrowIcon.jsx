@@ -36,6 +36,8 @@ export const ArrowIcon = ({
   mobileView,
   changeItemNoBackground,
   setChangeItemNoBackground,
+  showSlider,
+  setShowSlider,
 }) => {
   const { scene, nodes, materials } = useGLTF("./models/arrow.gltf");
   const [annotations, setAnnotations] = useState([]);
@@ -134,6 +136,8 @@ export const ArrowIcon = ({
                   theme={theme}
                   allPhotos={allPhotos}
                   mobileView={mobileView}
+                  showSlider={showSlider}
+                  setShowSlider={setShowSlider}
                 />
 
                 <OptionBox
@@ -183,6 +187,7 @@ export const ArrowIcon = ({
     allPhotos,
     aboutInfo,
     mobileView,
+    // showSlider,
   ]);
 
   useLayoutEffect(() => {
