@@ -1,5 +1,56 @@
 import * as THREE from "three";
 
+// ELI PAINT COLORS (GENERAL FINISHES MILK PAINT)
+// https://www.oaktreesupply.com/products/general-finishes-milk-paints-quart?variant=40633282232519
+
+// ALABASTER
+// HEX:
+// #FFFDF0
+// RGB:
+// rgb(255,253,240)
+// HSL:
+// hsl(52,100,97)
+
+// BALLET PINK
+// HEX:
+// #F2D1C6
+// RGB:
+// rgb(242,209,198)
+// HSL:
+// hsl(15,63,86)
+
+// PERFECT GRAY
+// HEX:
+// #8C8B81
+// RGB:
+// rgb(140,139,129)
+// HSL:
+// hsl(55,5,53)
+
+// PERSIAN BLUE
+// HEX:
+// #96B0AA
+// RGB:
+// rgb(150,176,170)
+// HSL:
+// hsl(166,14,64)
+
+// BASIL
+// HEX:
+// #909D83
+// RGB:
+// rgb(144,157,131)
+// HSL:
+// hsl(90,12,56)
+
+// HARVEST YELLOW
+// HEX:
+// #F2D684
+// RGB:
+// rgb(242,214,132)
+// HSL:
+// hsl(45,81,73)
+
 export const textures = {
   noSelectWhite: new THREE.Color(0xffffff),
   concreteFloor: new THREE.Color(0x909090),
@@ -14,7 +65,7 @@ export const textures = {
 
   alabasterPaint: new THREE.Color(0xfffdf0),
   pinkPaint: new THREE.Color(0xf2d1c6),
-  basilPaint: new THREE.Color(0x929d84),
+  basilPaint: new THREE.Color(0x909d83),
   yellowPaint: new THREE.Color(0xf2d684),
   bluePaint: new THREE.Color(0x96b0aa),
   grayPaint: new THREE.Color(0x8c8b81),
