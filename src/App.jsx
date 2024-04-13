@@ -58,9 +58,9 @@ function App() {
   // after setCurrentItemSelected call to change selected object/item
   const [changeItemNoBackground, setChangeItemNoBackground] = useState(false);
 
-  useEffect(() => {
-    console.log("changeItemNoBackground: ", changeItemNoBackground);
-  }, [changeItemNoBackground]);
+  // useEffect(() => {
+  //   console.log("changeItemNoBackground: ", changeItemNoBackground);
+  // }, [changeItemNoBackground]);
 
   useEffect(() => {
     window.LoadSnipcart();
@@ -320,7 +320,7 @@ function App() {
   useEffect(() => {
     // loadingBarElement.style.transform = `scaleX(${progress / 100})`;
     loadingBarElement.style.transform = `scaleX(${loaded / 149})`;
-    console.log("progress: ", progress);
+    // console.log("progress: ", progress);
     if (loaded >= 143) {
       if (loaded / 149 === 1 || progress === 100) {
         setSceneLoaded(true);
@@ -333,10 +333,10 @@ function App() {
     }
   }, [progress]);
 
-  useEffect(() => {
-    console.log("loaded: ", loaded);
-    console.log("total: ", total);
-  }, [loaded, total]);
+  // useEffect(() => {
+  //   console.log("loaded: ", loaded);
+  //   console.log("total: ", total);
+  // }, [loaded, total]);
 
   return (
     <>
