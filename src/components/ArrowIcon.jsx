@@ -34,7 +34,7 @@ export const ArrowIcon = ({
   setOptionBoxHeightMin,
   animActive,
   mobileView,
-  changeItemNoBackground,
+  // changeItemNoBackground,
   setChangeItemNoBackground,
   showSlider,
   setShowSlider,
@@ -157,13 +157,13 @@ export const ArrowIcon = ({
                   toggleInfoBox={toggleInfoBox}
                   togglePhotoBox={togglePhotoBox}
                   theme={theme}
-                  allPhotos={allPhotos}
-                  aboutInfo={aboutInfo}
+                  // allPhotos={allPhotos}
+                  // aboutInfo={aboutInfo}
                   optionBoxHeightMin={optionBoxHeightMin}
                   setOptionBoxHeightMin={setOptionBoxHeightMin}
                   animActive={animActive}
                   mobileView={mobileView}
-                  changeItemNoBackground={changeItemNoBackground}
+                  // changeItemNoBackground={changeItemNoBackground}
                   setChangeItemNoBackground={setChangeItemNoBackground}
                 />
               </group>,

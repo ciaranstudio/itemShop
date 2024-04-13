@@ -1082,6 +1082,35 @@ export default function Scene({
   const orbitPolarShowBgdShelf = Math.PI / 2 + Math.PI / 16;
   const orbitPolarShowBgdNotShelf = Math.PI / 2 - Math.PI / 9.06;
 
+  // switch (itemName) {
+  //   case "gramps":
+  //     setChangeItemNoBackground(shopItems[itemName]);
+  //     break;
+  //   case "squatter":
+  //     setChangeItemNoBackground();
+  //     break;
+  //   case "block":
+  //     setChangeItemNoBackground();
+  //     break;
+  //   case "horse":
+  //     setChangeItemNoBackground();
+  //     break;
+  //   case "shelfA16":
+  //     setChangeItemNoBackground();
+  //     break;
+  //   case "shelfA32":
+  //     setChangeItemNoBackground();
+  //     break;
+  //   case "shelfB16":
+  //     setChangeItemNoBackground();
+  //     break;
+  //   case "shelfB32":
+  //     setChangeItemNoBackground();
+  //     break;
+  //   // case "none":
+  //   //   break;
+  // }
+
   return (
     <>
       {/* <Perf position="bottom-left" /> */}
@@ -1225,7 +1254,7 @@ export default function Scene({
               setOptionBoxHeightMin={setOptionBoxHeightMin}
               animActive={animActive}
               mobileView={mobileView}
-              changeItemNoBackground={changeItemNoBackground}
+              // changeItemNoBackground={changeItemNoBackground}
               setChangeItemNoBackground={setChangeItemNoBackground}
               showSlider={showSlider}
               setShowSlider={setShowSlider}

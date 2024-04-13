@@ -49,17 +49,17 @@ export default function OptionBox({
   toggleInfoBox,
   togglePhotoBox,
   theme,
-  allPhotos,
-  aboutInfo,
+  // allPhotos,
+  // aboutInfo,
   optionBoxHeightMin,
   setOptionBoxHeightMin,
   animActive,
   mobileView,
-  changeItemNoBackground,
+  // changeItemNoBackground,
   setChangeItemNoBackground,
 }) {
   const { height, width } = useWindowDimensions();
-  // const [boxPosY, setBoxPosY] = useState(12);
+
   const boxPosYMobileMax = 15; // 14 looks good on chrome simulator 04/11/2024
   const boxPosYMobileMin = 5; // 5 looks good on chrome simulator 04/11/2024
 
@@ -71,65 +71,27 @@ export default function OptionBox({
 
   const breakpointWidthSmallest = 380;
 
+  const [mobilePosYMax, setMobilePosYMax] = useState(boxPosYMobileMax);
+  const [mobilePosYMin, setMobilePosYMin] = useState(boxPosYMobileMin);
+
+  const [desktopPosYMax, setDesktopPosYMax] = useState(boxPosYDesktopMax);
+  const [desktopPosYMin, setDesktopPosYMin] = useState(boxPosYDesktopMin);
+
   const toggleOptionBoxHeight = (e) => {
     e.preventDefault();
     e.stopPropagation();
     setOptionBoxHeightMin(!optionBoxHeightMin);
-    // if (aboutInfo) {
-    //   setAboutInfo(true);
-    // } else if (!aboutInfo) {
-    //   setAboutInfo(false);
-    // }
-    // setOpen(!open);
-    // setShowPhotos(false);
-    // if (showPartOptions) {
-    //   setShowPartOptions(false);
-    // } else {
-    //   setShowPartOptions(true);
-    // }
   };
 
-  // const toggleShowbackground = (e) => {
-  //   e.preventDefault();
-  //   e.stopPropagation();
-  //   setOptionBoxHeightMin(!optionBoxHeightMin);
-  //   // if (aboutInfo) {
-  //   //   setAboutInfo(true);
-  //   // } else if (!aboutInfo) {
-  //   //   setAboutInfo(false);
-  //   // }
-  //   // setOpen(!open);
-  //   // setShowPhotos(false);
-  //   // if (showPartOptions) {
-  //   //   setShowPartOptions(false);
-  //   // } else {
-  //   //   setShowPartOptions(true);
-  //   // }
-  // };
-
-  // useEffect(() => {
-  //   // console.log("optionBoxHeightMin: ", optionBoxHeightMin);
-  //   if (optionBoxHeightMin) {
-  //     if (
-  //       (width < 400 && currentItemName.includes("horse")) ||
-  //       currentItemName.includes("shelf")
-  //     ) {
-  //       setBoxPosY(14);
-  //     } else if (width < 400 && !currentItemName.includes("horse")) {
-  //       setBoxPosY(14);
-  //     } else {
-  //       setBoxPosY(7);
-  //     }
-  //   } else if (!optionBoxHeightMin) {
-  //     if (width < 400 && currentItemName.includes("horse")) {
-  //       setBoxPosY(24);
-  //     } else if (width < 400 && !currentItemName.includes("horse")) {
-  //       setBoxPosY(20);
-  //     } else {
-  //       setBoxPosY(13);
-  //     }
-  //   }
-  // }, [optionBoxHeightMin]);
+  useEffect(() => {
+    if (mobileView && !optionBoxHeightMin) {
+      if (item.itemName === "horse" || item.itemName.includes("shelf")) {
+        setMobilePosYMax(boxPosYMobileMax + 2.5);
+      } else {
+        setMobilePosYMax(boxPosYMobileMax);
+      }
+    }
+  }, [item, mobileView, optionBoxHeightMin]);
 
   const [stainSingle, setStainSingle] = useState("");
   const [paintSingle, setPaintSingle] = useState("");
@@ -140,14 +102,6 @@ export default function OptionBox({
 
   const randomCurrentItemParts = (e, currentItemName, type) => {
     e.preventDefault(); //  is this necessary if it is also being called in handlePartOption function ? Remove from one of them or make conditional in handlePartOption like e.stopPropogation ?
-    // console.log(
-    //   "randomPartsClick() - find item in objects data by part itemName: ",
-    //   objects[currentItemName],
-    // );
-    // console.log(
-    //   "then get the parts array for that found item: ",
-    //   objects[currentItemName].parts,
-    // );
     let color = "";
     let tempStainSingle = options.stains[getRandomInt(options.stains.length)];
     let tempPaintSingle = options.paints[getRandomInt(options.paints.length)];
@@ -201,64 +155,35 @@ export default function OptionBox({
     setPreviousItemSelected(item);
     setCurrentItemSelected(shopItems[itemNo]);
     popupState.close();
-    // switch (itemName) {
-    //   case "gramps":
-    //     setChangeItemNoBackground(shopItems[itemName]);
-    //     break;
-    //   case "squatter":
-    //     setChangeItemNoBackground();
-    //     break;
-    //   case "block":
-    //     setChangeItemNoBackground();
-    //     break;
-    //   case "horse":
-    //     setChangeItemNoBackground();
-    //     break;
-    //   case "shelfA16":
-    //     setChangeItemNoBackground();
-    //     break;
-    //   case "shelfA32":
-    //     setChangeItemNoBackground();
-    //     break;
-    //   case "shelfB16":
-    //     setChangeItemNoBackground();
-    //     break;
-    //   case "shelfB32":
-    //     setChangeItemNoBackground();
-    //     break;
-    //   // case "none":
-    //   //   break;
-    // }
   };
 
+  // mobilePosYMax
+  // mobilePosYMin
+  // desktopPosYMax
+  // desktopPosYMin
   return (
     <Html
       position={[
         0,
-        // width < 400 && currentItemName.includes("horse")
-        //   ? 24
-        //   : width < 400 && !currentItemName.includes("horse")
-        //     ? 20
-        //     : 13,
         mobileView && !optionBoxHeightMin && width < breakpointWidthSmallest
-          ? boxPosYMobileMax
+          ? mobilePosYMax
           : mobileView && optionBoxHeightMin && width > breakpointWidthSmallest
-            ? boxPosYMobileMin + notTinyScreenOffsetMinimized
+            ? mobilePosYMin + notTinyScreenOffsetMinimized
             : !mobileView && !optionBoxHeightMin
-              ? boxPosYDesktopMax
+              ? desktopPosYMax
               : mobileView &&
                   optionBoxHeightMin &&
                   width < breakpointWidthSmallest
-                ? boxPosYMobileMin
+                ? mobilePosYMin
                 : mobileView &&
                     !optionBoxHeightMin &&
                     width > breakpointWidthSmallest
-                  ? boxPosYMobileMin + notTinyScreenOffsetNotMinimized
+                  ? mobilePosYMin + notTinyScreenOffsetNotMinimized
                   : !mobileView && optionBoxHeightMin
-                    ? boxPosYDesktopMin
+                    ? desktopPosYMin
                     : 0,
         0,
-      ]} // 20 good for all but horse on SE, 25 good for horse on SE
+      ]}
       center={true}
       style={{
         display: showPartOptions && !showBackground ? "block" : "none",
@@ -322,7 +247,7 @@ export default function OptionBox({
             sx={{
               position: "absolute",
               pointerEvents: "auto",
-              top: optionBoxHeightMin ? "1.5rem" : "2.5rem",
+              top: optionBoxHeightMin ? "1.5rem" : "2rem",
               // right: "2.45rem",
               right: optionBoxHeightMin ? "2.5rem" : "0.25rem",
               padding: "0.5rem",
