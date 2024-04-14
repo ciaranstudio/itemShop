@@ -9,31 +9,30 @@ import { ThemeProvider } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-// import ShuffleOnIcon from "@mui/icons-material/ShuffleOn";
-// import InfoIcon from "@mui/icons-material/Info";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-// import PhotoLibraryIcon from "@mui/icons-material/PhotoLibrary";
-// import CropOriginalOutlinedIcon from "@mui/icons-material/CropOriginalOutlined";
 import FilterOutlinedIcon from "@mui/icons-material/FilterOutlined";
 import CircleIcon from "@mui/icons-material/Circle";
 import UnfoldLessIcon from "@mui/icons-material/UnfoldLess";
-// import UnfoldMoreIcon from "@mui/icons-material/UnfoldMore";
-import ExpandCircleDownIcon from "@mui/icons-material/ExpandCircleDown";
-// import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-// import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import UnfoldMoreIcon from "@mui/icons-material/UnfoldMore";
+import OpenInFullIcon from "@mui/icons-material/OpenInFull";
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
-// import HeightIcon from "@mui/icons-material/Height";
-// import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import BuyButton from "./BuyButton.jsx";
 import SplitButton from "./SplitButton.jsx";
 import useWindowDimensions from "../helpers/useWindowDimensions";
-
-// import * as React from "react";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
+// import VisibilityIcon from "@mui/icons-material/Visibility";
+// import ShuffleOnIcon from "@mui/icons-material/ShuffleOn";
+// import InfoIcon from "@mui/icons-material/Info";
+// import PhotoLibraryIcon from "@mui/icons-material/PhotoLibrary";
+// import CropOriginalOutlinedIcon from "@mui/icons-material/CropOriginalOutlined";
+// import ExpandCircleDownIcon from "@mui/icons-material/ExpandCircleDown";
+// import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+// import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+// import HeightIcon from "@mui/icons-material/Height";
+// import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 
 export default function OptionBox({
   item,
@@ -241,10 +240,7 @@ export default function OptionBox({
 
           <IconButton
             onClick={toggleAnimateParts}
-            color="white"
-            // disabled={
-            //   currentItemSelected.itemTitle === "noSelectTitle" ? true : false
-            // }
+            disabled={animActive ? true : false}
             sx={{
               position: "absolute",
               pointerEvents: "auto",
@@ -256,9 +252,15 @@ export default function OptionBox({
             aria-label="close order box"
           >
             {optionBoxHeightMin ? (
-              <ExpandCircleDownIcon color="secondary" fontSize="inherit" />
+              <OpenInFullIcon
+                color={animActive ? "warning" : "success"}
+                fontSize="inherit"
+              />
             ) : (
-              <UnfoldLessIcon color="secondary" fontSize="inherit" />
+              <OpenInFullIcon
+                color={animActive ? "warning" : "success"}
+                fontSize="inherit"
+              />
             )}
           </IconButton>
 
@@ -300,7 +302,7 @@ export default function OptionBox({
             aria-label="close order box"
           >
             {optionBoxHeightMin ? (
-              <ExpandCircleDownIcon color="secondary" fontSize="inherit" />
+              <UnfoldMoreIcon color="secondary" fontSize="inherit" />
             ) : (
               <UnfoldLessIcon color="secondary" fontSize="inherit" />
             )}
