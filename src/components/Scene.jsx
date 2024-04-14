@@ -305,7 +305,7 @@ export default function Scene({
         style: {},
         className: "",
         // Custom Icon
-        icon: "🫵",
+        icon: "👇",
         // Change colors of success/error/loading icon
         iconTheme: {
           primary: "#000",
@@ -380,6 +380,30 @@ export default function Scene({
           "aria-live": "polite",
         },
       });
+    } else if (count === 10) {
+      // toast("Tap to select", {
+      //   duration: toastDuration,
+      //   position: "top-center",
+      //   // Styling
+      //   style: {
+      //     background: "#212121",
+      //     color: "#ffffff",
+      //     fontFamily: "var(--leva-fonts-mono)",
+      //   },
+      //   className: "",
+      //   // Custom Icon
+      //   icon: "👇",
+      //   // Change colors of success/error/loading icon
+      //   iconTheme: {
+      //     primary: "#000",
+      //     secondary: "#fff",
+      //   },
+      //   // Aria
+      //   ariaProps: {
+      //     role: "status",
+      //     "aria-live": "polite",
+      //   },
+      // });
     }
     //Clearing the interval
     return () => clearInterval(interval);
@@ -421,7 +445,12 @@ export default function Scene({
         duration: 3000,
         position: "top-left",
         // Styling
-        style: {},
+        style: {
+          background: "lightGrey",
+          color: "#212121",
+          fontFamily: "var(--leva-fonts-mono)",
+          borderTop: "0.1rem solid #e0e0e0,",
+        },
         className: "",
         // Custom Icon
         icon: "🎨",
@@ -436,6 +465,27 @@ export default function Scene({
           "aria-live": "polite",
         },
       });
+
+      // toast("Shuffle colors", {
+      //   duration: 3000,
+      //   position: "top-left",
+      //   // Styling
+      //   style: {},
+      //   className: "",
+      //   // Custom Icon
+      //   icon: "🔀",
+      //   // Change colors of success/error/loading icon
+      //   iconTheme: {
+      //     primary: "#000",
+      //     secondary: "#fff",
+      //   },
+      //   // Aria
+      //   ariaProps: {
+      //     role: "status",
+      //     "aria-live": "polite",
+      //   },
+      // });
+
       toast("Eye to return", {
         duration: 3000,
         position: "top-left",
@@ -444,25 +494,6 @@ export default function Scene({
         className: "",
         // Custom Icon
         icon: "👁️",
-        // Change colors of success/error/loading icon
-        iconTheme: {
-          primary: "#000",
-          secondary: "#fff",
-        },
-        // Aria
-        ariaProps: {
-          role: "status",
-          "aria-live": "polite",
-        },
-      });
-      toast("Shuffle colors", {
-        duration: 3000,
-        position: "top-left",
-        // Styling
-        style: {},
-        className: "",
-        // Custom Icon
-        icon: "🔀",
         // Change colors of success/error/loading icon
         iconTheme: {
           primary: "#000",
@@ -493,25 +524,6 @@ export default function Scene({
       //     "aria-live": "polite",
       //   },
       // });
-      toast("Tap parts to select", {
-        duration: 6000,
-        position: "top-center",
-        // Styling
-        style: {},
-        className: "",
-        // Custom Icon
-        icon: "👇",
-        // Change colors of success/error/loading icon
-        iconTheme: {
-          primary: "#000",
-          secondary: "#fff",
-        },
-        // Aria
-        ariaProps: {
-          role: "status",
-          "aria-live": "polite",
-        },
-      });
     } else if (showBackground && currentItemSelected !== unselectedItem) {
       setOptionBoxItemChanged(false);
       animateParts();

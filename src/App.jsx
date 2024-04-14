@@ -337,6 +337,12 @@ function App() {
     toast.loading("Loading...", {
       id: toastId,
       position: "top-right",
+      style: {
+        background: "lightGrey",
+        color: "#212121",
+        fontFamily: "var(--leva-fonts-mono)",
+        borderTop: "0.1rem solid #e0e0e0,",
+      },
     });
   }, []);
   useEffect(() => {
@@ -355,6 +361,12 @@ function App() {
             duration: 1000,
             // position: mobileView ? "top-right" : "top-center",
             position: "top-right",
+            style: {
+              background: "lightGrey",
+              color: "#212121",
+              fontFamily: "var(--leva-fonts-mono)",
+              borderTop: "0.1rem solid #e0e0e0,",
+            },
           });
         }, 50); // was 500
       }
