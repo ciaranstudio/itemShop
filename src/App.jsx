@@ -336,7 +336,7 @@ function App() {
   useEffect(() => {
     toast.loading("Loading...", {
       id: toastId,
-      position: "top-center",
+      position: "top-right",
     });
   }, []);
   useEffect(() => {
@@ -352,7 +352,9 @@ function App() {
           loadingBarElement.style.transform = "";
           toast.success("All set!", {
             id: toastId,
-            duration: 4000,
+            duration: 1000,
+            // position: mobileView ? "top-right" : "top-center",
+            position: "top-right",
           });
         }, 50); // was 500
       }

@@ -79,7 +79,7 @@ img {
 }
 
 .photos {
-  width: 22rem;
+  width: 20rem;
   right: calc(50% - 11rem);
   text-align: center;
   background: #c6cfd1;
@@ -106,8 +106,8 @@ img {
 
 .info {
   position: absolute;
-  width: 22rem;
-  right: calc(50% - 11rem);
+  width: 18rem;
+  right: calc(50% - 9rem);
   text-align: center;
   background: #b8c2c4;
   opacity: 0.96;
@@ -310,30 +310,30 @@ img {
 
 @media screen and (max-width: 900px) and (min-width: 600px) {
   .photos {
-    width: 32rem;
-    right: calc(50% - 16rem);
+    width: 25rem;
+    right: calc(50% - 12.5rem);
   }
   .slick-slide img {
-    height: 45rem;
-    width: 30rem;
+    height: 37.5rem;
+    width: 25rem;
   }
 }
 
 @media screen and (max-width: 1040px) and (min-width: 901px) {
   .photos {
-    width: 32rem;
-    right: calc(50% - 16rem);
+    width: 27rem;
+    right: calc(50% - 13.5rem);
   }
   .slick-slide img {
-    height: 45rem;
-    width: 30rem;
+    height: 40.5rem;
+    width: 27rem;
   }
 }
 
 @media screen and (max-width: 2000px) and (min-width: 1041px) {
   .photos {
-    width: 32rem;
-    right: calc(50% - 16rem);
+    width: 30rem;
+    right: calc(50% - 15rem);
   }
   .slick-slide img {
     height: 45rem;

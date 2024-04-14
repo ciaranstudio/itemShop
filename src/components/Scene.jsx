@@ -104,10 +104,15 @@ export default function Scene({
         duration: 7000,
         position: "top-right",
         // Styling
-        style: {},
+        style: {
+          background: "#212121",
+          color: "#ffffff",
+          fontFamily: "var(--leva-fonts-mono)",
+        },
+        // style: { background: "#adbaba", color: "#ffffff" },
         className: "",
         // Custom Icon
-        icon: "🛒",
+        // icon: "🛒",
         // Change colors of success/error/loading icon
         iconTheme: {
           primary: "#000",
@@ -123,10 +128,14 @@ export default function Scene({
         duration: 7000,
         position: "top-left",
         // Styling
-        style: {},
+        style: {
+          background: "#212121",
+          color: "#ffffff",
+          fontFamily: "var(--leva-fonts-mono)",
+        },
         className: "",
         // Custom Icon
-        icon: "📑",
+        // icon: "📑",
         // Change colors of success/error/loading icon
         iconTheme: {
           primary: "#000",
@@ -288,29 +297,10 @@ export default function Scene({
       setCount(count + 1);
     }, 2000);
     // was 1000
-    if (count === 1) {
-      toast("Arrow for options", {
-        duration: toastDuration,
-        position: "bottom-right",
-        // Styling
-        style: {},
-        className: "",
-        // Custom Icon
-        icon: "▲",
-        // Change colors of success/error/loading icon
-        iconTheme: {
-          primary: "#000",
-          secondary: "#fff",
-        },
-        // Aria
-        ariaProps: {
-          role: "status",
-          "aria-live": "polite",
-        },
-      });
+    if (count === 3) {
       toast("Tap to select", {
         duration: toastDuration,
-        position: "bottom-left",
+        position: "top-left",
         // Styling
         style: {},
         className: "",
@@ -348,12 +338,37 @@ export default function Scene({
       });
       toast("Pinch to zoom", {
         duration: toastDuration,
-        position: "top-right",
+        position: "top-left",
+        // position: mobileView ? "top-right" : "top-right",
         // Styling
         style: {},
         className: "",
         // Custom Icon
         icon: "🤏",
+        // Change colors of success/error/loading icon
+        iconTheme: {
+          primary: "#000",
+          secondary: "#fff",
+        },
+        // Aria
+        ariaProps: {
+          role: "status",
+          "aria-live": "polite",
+        },
+      });
+    } else if (count === 8) {
+      toast("Arrow for options", {
+        duration: toastDuration,
+        position: "top-center",
+        // Styling
+        style: {
+          background: "#212121",
+          color: "#ffffff",
+          fontFamily: "var(--leva-fonts-mono)",
+        },
+        className: "",
+        // Custom Icon
+        icon: "▲",
         // Change colors of success/error/loading icon
         iconTheme: {
           primary: "#000",
@@ -404,7 +419,7 @@ export default function Scene({
       // add select color toast here
       toast("Select colors", {
         duration: 3000,
-        position: "top-center",
+        position: "top-left",
         // Styling
         style: {},
         className: "",
@@ -423,7 +438,7 @@ export default function Scene({
       });
       toast("Eye to return", {
         duration: 3000,
-        position: "bottom-right",
+        position: "top-left",
         // Styling
         style: {},
         className: "",
@@ -442,7 +457,7 @@ export default function Scene({
       });
       toast("Shuffle colors", {
         duration: 3000,
-        position: "bottom-left",
+        position: "top-left",
         // Styling
         style: {},
         className: "",
