@@ -79,8 +79,12 @@ img {
 }
 
 .photos {
+  position: absolute;
   width: 20rem;
-  right: calc(50% - 11rem);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* right: calc(50% - 11rem); */
   text-align: center;
   background: #c6cfd1;
   opacity: 1;
@@ -107,7 +111,10 @@ img {
 .info {
   position: absolute;
   width: 18rem;
-  right: calc(50% - 9rem);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* right: calc(50% - 9rem); */
   text-align: center;
   background: #b8c2c4;
   opacity: 0.96;
@@ -274,7 +281,9 @@ img {
 }
 
 .color-shuffle-btn {
-  left: calc(50% - 4.75rem);
+  /* left: calc(50% - 4.75rem); */
+  left: 50%;
+  transform: translate(-50%);
   background: transparent;
   font-size: 1.75rem;
   color: #ffffff;
@@ -311,7 +320,7 @@ img {
 @media screen and (max-width: 900px) and (min-width: 600px) {
   .photos {
     width: 25rem;
-    right: calc(50% - 12.5rem);
+    /* right: calc(50% - 12.5rem); */
   }
   .slick-slide img {
     height: 37.5rem;
@@ -322,7 +331,7 @@ img {
 @media screen and (max-width: 1040px) and (min-width: 901px) {
   .photos {
     width: 27rem;
-    right: calc(50% - 13.5rem);
+    /* right: calc(50% - 13.5rem); */
   }
   .slick-slide img {
     height: 40.5rem;
@@ -333,7 +342,7 @@ img {
 @media screen and (max-width: 2000px) and (min-width: 1041px) {
   .photos {
     width: 30rem;
-    right: calc(50% - 15rem);
+    /* right: calc(50% - 15rem); */
   }
   .slick-slide img {
     height: 45rem;

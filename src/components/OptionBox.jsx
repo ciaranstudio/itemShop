@@ -65,6 +65,7 @@ export default function OptionBox({
   setOptionBoxItemChanged,
   optionBoxItemToggle,
   setOptionBoxItemToggle,
+  animateParts,
 }) {
   const { height, width } = useWindowDimensions();
 
@@ -220,12 +221,35 @@ export default function OptionBox({
               position: "absolute",
               pointerEvents: "auto",
               top: optionBoxHeightMin ? "1.5rem" : "1",
-              left: "0.15rem",
+              left: "0.25rem",
               padding: "0.5rem",
             }}
             aria-label="close order box"
           >
             <CloseOutlinedIcon color="success" fontSize="inherit" />
+          </IconButton>
+
+          <IconButton
+            onClick={animateParts}
+            color="white"
+            // disabled={
+            //   currentItemSelected.itemTitle === "noSelectTitle" ? true : false
+            // }
+            sx={{
+              position: "absolute",
+              pointerEvents: "auto",
+              top: optionBoxHeightMin ? "1.5rem" : "2.15rem",
+              // right: "2.45rem",
+              left: optionBoxHeightMin ? "2.5rem" : "0.25rem",
+              padding: "0.5rem",
+            }}
+            aria-label="close order box"
+          >
+            {optionBoxHeightMin ? (
+              <ExpandCircleDownIcon color="secondary" fontSize="inherit" />
+            ) : (
+              <UnfoldLessIcon color="secondary" fontSize="inherit" />
+            )}
           </IconButton>
 
           <IconButton
@@ -275,9 +299,11 @@ export default function OptionBox({
           <div
             className="color-menu-item-title"
             style={{
+              // position: optionBoxHeightMin ? "absolute" : "static",
               position: optionBoxHeightMin ? "absolute" : "static",
               top: optionBoxHeightMin ? "1.4rem" : "0",
-              right: optionBoxHeightMin ? "calc(50% - 1.2rem)" : "0",
+              left: optionBoxHeightMin ? "50%" : "0",
+              transform: optionBoxHeightMin ? "translate(-50%)" : "none",
               paddingTop: optionBoxHeightMin ? "0rem" : "0.5rem",
             }}
 

@@ -1525,6 +1525,7 @@ export default function Scene({
               showSlider={showSlider}
               setShowSlider={setShowSlider}
               openUserEmail={openUserEmail}
+              animateParts={animateParts}
             />
           </mesh>
           <mesh
