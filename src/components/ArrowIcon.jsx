@@ -45,6 +45,8 @@ export const ArrowIcon = ({
   setShowSlider,
   openUserEmail,
   animateParts,
+  animIconToggle,
+  setAnimIconToggle,
 }) => {
   const { scene, nodes, materials } = useGLTF("./models/arrow.gltf");
   const [annotations, setAnnotations] = useState([]);
@@ -179,6 +181,8 @@ export const ArrowIcon = ({
                   optionBoxItemToggle={optionBoxItemToggle}
                   setOptionBoxItemToggle={setOptionBoxItemToggle}
                   animateParts={animateParts}
+                  animIconToggle={animIconToggle}
+                  setAnimIconToggle={setAnimIconToggle}
                 />
               </group>,
             );

@@ -66,6 +66,8 @@ export default function OptionBox({
   optionBoxItemToggle,
   setOptionBoxItemToggle,
   animateParts,
+  animIconToggle,
+  setAnimIconToggle,
 }) {
   const { height, width } = useWindowDimensions();
 
@@ -90,6 +92,14 @@ export default function OptionBox({
     e.preventDefault();
     e.stopPropagation();
     setOptionBoxHeightMin(!optionBoxHeightMin);
+  };
+
+  const toggleAnimateParts = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setAnimIconToggle(true);
+    animateParts();
+    // setOptionBoxHeightMin(!optionBoxHeightMin);
   };
 
   useEffect(() => {
@@ -230,7 +240,7 @@ export default function OptionBox({
           </IconButton>
 
           <IconButton
-            onClick={animateParts}
+            onClick={toggleAnimateParts}
             color="white"
             // disabled={
             //   currentItemSelected.itemTitle === "noSelectTitle" ? true : false

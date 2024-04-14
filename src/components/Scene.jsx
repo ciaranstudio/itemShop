@@ -43,6 +43,8 @@ export default function Scene({
   showPartOptions,
   setShowPartOptions,
   animateParts,
+  animIconToggle,
+  setAnimIconToggle,
   handlePartOption,
   getRandomInt,
   randomAllItemsParts,
@@ -438,34 +440,11 @@ export default function Scene({
       // setInfoBoxIcon(true);
       animateParts();
     } else if (showBackground && currentItemSelected !== unselectedItem) {
+      setAnimIconToggle(false);
       setOptionBoxItemChanged(false);
-      animateParts();
+      if (partsOpen) animateParts();
     }
     if (!showBackground && previousItemSelected.itemName === "noSelect") {
-      // toast("Or <- to return", {
-      //   duration: toastDuration + 2000,
-      //   position: "top-right",
-      //   // Styling
-      //   style: {
-      //     fontSize: toastFontSize,
-      //     background: toastBackground,
-      //     color: toastColor,
-      //     fontFamily: "var(--leva-fonts-mono)",
-      //   },
-      //   className: "",
-      //   // Custom Icon
-      //   icon: "⬅",
-      //   // Change colors of success/error/loading icon
-      //   iconTheme: {
-      //     primary: "#000",
-      //     secondary: "#fff",
-      //   },
-      //   // Aria
-      //   ariaProps: {
-      //     role: "status",
-      //     "aria-live": "polite",
-      //   },
-      // });
       toast("Tap to return", {
         duration: toastDuration + 2000,
         position: "top-right",
@@ -1526,6 +1505,8 @@ export default function Scene({
               setShowSlider={setShowSlider}
               openUserEmail={openUserEmail}
               animateParts={animateParts}
+              animIconToggle={animIconToggle}
+              setAnimIconToggle={setAnimIconToggle}
             />
           </mesh>
           <mesh

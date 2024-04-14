@@ -93,15 +93,15 @@ function App() {
     value: animDistRunTarget,
   };
 
-  const dropDelay = 0;
-  const dropDuration = 1.05;
-  const raiseDelay = 0.75;
-  const raiseDuration = 0.55;
+  const dropDelay = 0.15;
+  const dropDuration = 0.75;
+  const raiseDelay = 0.15;
+  const raiseDuration = 0.75;
 
-  const runDelay = 0.45;
-  const runDuration = 1.25;
-  const returnDelay = 0.1;
-  const returnDuration = 1;
+  const runDelay = 1.2;
+  const runDuration = 0.9;
+  const returnDelay = 0.15;
+  const returnDuration = 0.9;
 
   // floor y position
   const yPosRunHighTarg = 0.015;
@@ -126,6 +126,8 @@ function App() {
   const [partsOpen, setPartsOpen] = useState(false);
   const [stagePosY, setStagePosY] = useState(yPosRunLowTarg);
 
+  const [animIconToggle, setAnimIconToggle] = useState(false);
+
   const { contextSafe } = useGSAP({ scope: container });
 
   // need to disable zoom while this animation is happening on way in / to showBackground false / parts opened (maybe not on way out / back to showBackground normal)
@@ -142,7 +144,7 @@ function App() {
 
         tl.to(stagePosYRun, {
           delay: raiseDelay,
-          duration: dropDuration,
+          duration: raiseDuration,
           value: stagePosYRunTarget,
           ease: "easeIn",
           onStart: () => {
@@ -165,7 +167,7 @@ function App() {
         // open
         // animating the item's parts away from eachother / opening parts, end of this animation partsOpen = true
         tl.to(animDistRun, {
-          delay: runDelay,
+          delay: animIconToggle ? runDelay - 1 : runDelay,
           duration: runDuration,
           value: animDistRunTarget,
           ease: "easeIn",
@@ -227,7 +229,7 @@ function App() {
 
         tl.to(stagePosYReturn, {
           delay: dropDelay,
-          duration: raiseDuration,
+          duration: dropDuration,
           value: stagePosYReturnTarget,
           ease: "easeIn",
           onStart: () => {
@@ -417,6 +419,8 @@ function App() {
               showPartOptions={showPartOptions}
               setShowPartOptions={setShowPartOptions}
               animateParts={animateParts}
+              animIconToggle={animIconToggle}
+              setAnimIconToggle={setAnimIconToggle}
               handlePartOption={handlePartOption}
               getRandomInt={getRandomInt}
               randomAllItemsParts={randomAllItemsParts}
