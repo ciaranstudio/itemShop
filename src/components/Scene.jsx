@@ -380,31 +380,32 @@ export default function Scene({
           "aria-live": "polite",
         },
       });
-    } else if (count === 10) {
-      // toast("Tap to select", {
-      //   duration: toastDuration,
-      //   position: "top-center",
-      //   // Styling
-      //   style: {
-      //     background: "#212121",
-      //     color: "#ffffff",
-      //     fontFamily: "var(--leva-fonts-mono)",
-      //   },
-      //   className: "",
-      //   // Custom Icon
-      //   icon: "👇",
-      //   // Change colors of success/error/loading icon
-      //   iconTheme: {
-      //     primary: "#000",
-      //     secondary: "#fff",
-      //   },
-      //   // Aria
-      //   ariaProps: {
-      //     role: "status",
-      //     "aria-live": "polite",
-      //   },
-      // });
     }
+    // else if (count === 10) {
+    //   // toast("Tap to select", {
+    //   //   duration: toastDuration,
+    //   //   position: "top-center",
+    //   //   // Styling
+    //   //   style: {
+    //   //     background: "#212121",
+    //   //     color: "#ffffff",
+    //   //     fontFamily: "var(--leva-fonts-mono)",
+    //   //   },
+    //   //   className: "",
+    //   //   // Custom Icon
+    //   //   icon: "👇",
+    //   //   // Change colors of success/error/loading icon
+    //   //   iconTheme: {
+    //   //     primary: "#000",
+    //   //     secondary: "#fff",
+    //   //   },
+    //   //   // Aria
+    //   //   ariaProps: {
+    //   //     role: "status",
+    //   //     "aria-live": "polite",
+    //   //   },
+    //   // });
+    // }
     //Clearing the interval
     return () => clearInterval(interval);
   }, [count]);
