@@ -20,6 +20,9 @@ import CircleIcon from "@mui/icons-material/Circle";
 import UnfoldLessIcon from "@mui/icons-material/UnfoldLess";
 // import UnfoldMoreIcon from "@mui/icons-material/UnfoldMore";
 import ExpandCircleDownIcon from "@mui/icons-material/ExpandCircleDown";
+// import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+// import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
 // import HeightIcon from "@mui/icons-material/Height";
 // import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import BuyButton from "./BuyButton.jsx";
@@ -84,7 +87,7 @@ export default function OptionBox({
 
   const toggleOptionBoxHeight = (e) => {
     e.preventDefault();
-    // e.stopPropagation();
+    e.stopPropagation();
     setOptionBoxHeightMin(!optionBoxHeightMin);
   };
 
@@ -138,13 +141,13 @@ export default function OptionBox({
 
   const closePartOptions = (e) => {
     e.preventDefault();
-    // e.stopPropagation();
+    e.stopPropagation();
     setShowPartOptions(false);
   };
 
   const partShowBackground = (e) => {
     e.preventDefault();
-    // e.stopPropagation();
+    e.stopPropagation();
     // if animation is active disable
     if (!animActive && !showBackground) {
       setShowPartOptions(false);
@@ -240,7 +243,7 @@ export default function OptionBox({
             aria-label="close order box"
             disabled={animActive}
           >
-            <VisibilityIcon
+            <KeyboardReturnIcon
               color={!animActive ? "info" : "warning"}
               fontSize="inherit"
             />
@@ -291,6 +294,8 @@ export default function OptionBox({
                       fontSize: optionBoxHeightMin ? "0.65rem" : "1.1rem",
                     }}
                     size="large"
+                    // color={activeCamAnim ? "info" : "primary"}
+                    disabled={activeCamAnim ? true : false}
                   >
                     {item.itemTitle}
                   </Button>

@@ -302,32 +302,7 @@ export default function Scene({
       setCount(count + 1);
     }, 2000);
     // was 1000
-    if (count === 2) {
-      toast("Tap arrow for options", {
-        duration: toastDuration,
-        position: "top-left",
-        // Styling
-        style: {
-          fontSize: toastFontSize,
-          background: toastBackground,
-          color: toastColor,
-          fontFamily: "var(--leva-fonts-mono)",
-        },
-        className: "",
-        // Custom Icon
-        // icon: "▲",
-        // Change colors of success/error/loading icon
-        iconTheme: {
-          primary: "#000",
-          secondary: "#fff",
-        },
-        // Aria
-        ariaProps: {
-          role: "status",
-          "aria-live": "polite",
-        },
-      });
-    } else if (count === 3) {
+    if (count === 1) {
       toast("Drag to rotate", {
         duration: toastDuration,
         position: "top-left",
@@ -353,6 +328,7 @@ export default function Scene({
           "aria-live": "polite",
         },
       });
+    } else if (count === 2) {
       toast("Pinch to zoom", {
         duration: toastDuration,
         position: "top-left",
@@ -378,8 +354,8 @@ export default function Scene({
           "aria-live": "polite",
         },
       });
-    } else if (count === 4) {
-      toast("Tap to select items", {
+    } else if (count === 3) {
+      toast("Tap to select", {
         duration: toastDuration,
         position: "top-left",
         // Styling
@@ -392,6 +368,31 @@ export default function Scene({
         className: "",
         // Custom Icon
         // icon: "👇",
+        // Change colors of success/error/loading icon
+        iconTheme: {
+          primary: "#000",
+          secondary: "#fff",
+        },
+        // Aria
+        ariaProps: {
+          role: "status",
+          "aria-live": "polite",
+        },
+      });
+    } else if (count === 4) {
+      toast("^ for options", {
+        duration: toastDuration,
+        position: "top-left",
+        // Styling
+        style: {
+          fontSize: toastFontSize,
+          background: toastBackground,
+          color: toastColor,
+          fontFamily: "var(--leva-fonts-mono)",
+        },
+        className: "",
+        // Custom Icon
+        // icon: "▲",
         // Change colors of success/error/loading icon
         iconTheme: {
           primary: "#000",
@@ -441,7 +442,31 @@ export default function Scene({
       animateParts();
     }
     if (!showBackground && previousItemSelected.itemName === "noSelect") {
-      toast("Select eye to return", {
+      // toast("Or <- to return", {
+      //   duration: toastDuration + 2000,
+      //   position: "top-right",
+      //   // Styling
+      //   style: {
+      //     fontSize: toastFontSize,
+      //     background: toastBackground,
+      //     color: toastColor,
+      //     fontFamily: "var(--leva-fonts-mono)",
+      //   },
+      //   className: "",
+      //   // Custom Icon
+      //   icon: "⬅",
+      //   // Change colors of success/error/loading icon
+      //   iconTheme: {
+      //     primary: "#000",
+      //     secondary: "#fff",
+      //   },
+      //   // Aria
+      //   ariaProps: {
+      //     role: "status",
+      //     "aria-live": "polite",
+      //   },
+      // });
+      toast("Tap to return", {
         duration: toastDuration + 2000,
         position: "top-right",
         // Styling
@@ -453,7 +478,7 @@ export default function Scene({
         },
         className: "",
         // Custom Icon
-        icon: "👁️",
+        icon: "⮐",
         // Change colors of success/error/loading icon
         iconTheme: {
           primary: "#000",
@@ -1250,7 +1275,7 @@ export default function Scene({
   const toggleInfoBox = (e) => {
     if (e) {
       e.preventDefault();
-      // e.stopPropagation();
+      e.stopPropagation();
     }
     setAboutInfo(false);
     setOpen(!open);
@@ -1265,7 +1290,7 @@ export default function Scene({
   const togglePhotoBox = (e) => {
     if (e) {
       e.preventDefault();
-      // e.stopPropagation();
+      e.stopPropagation();
     }
     setAllPhotos(false);
     setOpen(false);
