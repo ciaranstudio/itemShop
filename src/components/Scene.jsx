@@ -71,6 +71,10 @@ export default function Scene({
   setActiveCamTargAnim,
   activeCamAnim,
   setActiveCamAnim,
+  toastDuration,
+  toastFontSize,
+  toastBackground,
+  toastColor,
 }) {
   const { height, width } = useWindowDimensions();
   // useEffect(() => {
@@ -101,12 +105,13 @@ export default function Scene({
       if (cart.items) setCartCount(cart.items.count);
       // window.Snipcart.api.theme.cart.open();
       toast("Cart", {
-        duration: 7000,
+        duration: toastDuration,
         position: "top-right",
         // Styling
         style: {
-          background: "#212121",
-          color: "#ffffff",
+          fontSize: toastFontSize,
+          background: toastBackground,
+          color: toastColor,
           fontFamily: "var(--leva-fonts-mono)",
         },
         // style: { background: "#adbaba", color: "#ffffff" },
@@ -125,12 +130,13 @@ export default function Scene({
         },
       });
       toast("Menu", {
-        duration: 7000,
+        duration: toastDuration,
         position: "top-left",
         // Styling
         style: {
-          background: "#212121",
-          color: "#ffffff",
+          fontSize: toastFontSize,
+          background: toastBackground,
+          color: toastColor,
           fontFamily: "var(--leva-fonts-mono)",
         },
         className: "",
@@ -287,7 +293,6 @@ export default function Scene({
   // }, []);
 
   const [count, setCount] = useState(0);
-  const toastDuration = 9000;
   useEffect(() => {
     if (currentItemSelected === unselectedItem) {
       randomAllItemsParts(false);
@@ -297,15 +302,20 @@ export default function Scene({
       setCount(count + 1);
     }, 2000);
     // was 1000
-    if (count === 3) {
-      toast("Tap to select", {
+    if (count === 2) {
+      toast("Tap arrow for options", {
         duration: toastDuration,
         position: "top-left",
         // Styling
-        style: {},
+        style: {
+          fontSize: toastFontSize,
+          background: toastBackground,
+          color: toastColor,
+          fontFamily: "var(--leva-fonts-mono)",
+        },
         className: "",
         // Custom Icon
-        icon: "👇",
+        // icon: "▲",
         // Change colors of success/error/loading icon
         iconTheme: {
           primary: "#000",
@@ -317,14 +327,21 @@ export default function Scene({
           "aria-live": "polite",
         },
       });
+    } else if (count === 3) {
       toast("Drag to rotate", {
         duration: toastDuration,
         position: "top-left",
+        // position: mobileView ? "top-right" : "top-right",
         // Styling
-        style: {},
+        style: {
+          fontSize: toastFontSize,
+          background: toastBackground,
+          color: toastColor,
+          fontFamily: "var(--leva-fonts-mono)",
+        },
         className: "",
         // Custom Icon
-        icon: "🫳",
+        // icon: "🤏",
         // Change colors of success/error/loading icon
         iconTheme: {
           primary: "#000",
@@ -341,10 +358,15 @@ export default function Scene({
         position: "top-left",
         // position: mobileView ? "top-right" : "top-right",
         // Styling
-        style: {},
+        style: {
+          fontSize: toastFontSize,
+          background: toastBackground,
+          color: toastColor,
+          fontFamily: "var(--leva-fonts-mono)",
+        },
         className: "",
         // Custom Icon
-        icon: "🤏",
+        // icon: "🤏",
         // Change colors of success/error/loading icon
         iconTheme: {
           primary: "#000",
@@ -356,19 +378,20 @@ export default function Scene({
           "aria-live": "polite",
         },
       });
-    } else if (count === 8) {
-      toast("Arrow for options", {
+    } else if (count === 4) {
+      toast("Tap to select items", {
         duration: toastDuration,
-        position: "top-center",
+        position: "top-left",
         // Styling
         style: {
-          background: "#212121",
-          color: "#ffffff",
+          fontSize: toastFontSize,
+          background: toastBackground,
+          color: toastColor,
           fontFamily: "var(--leva-fonts-mono)",
         },
         className: "",
         // Custom Icon
-        icon: "▲",
+        // icon: "👇",
         // Change colors of success/error/loading icon
         iconTheme: {
           primary: "#000",
@@ -381,31 +404,6 @@ export default function Scene({
         },
       });
     }
-    // else if (count === 10) {
-    //   // toast("Tap to select", {
-    //   //   duration: toastDuration,
-    //   //   position: "top-center",
-    //   //   // Styling
-    //   //   style: {
-    //   //     background: "#212121",
-    //   //     color: "#ffffff",
-    //   //     fontFamily: "var(--leva-fonts-mono)",
-    //   //   },
-    //   //   className: "",
-    //   //   // Custom Icon
-    //   //   icon: "👇",
-    //   //   // Change colors of success/error/loading icon
-    //   //   iconTheme: {
-    //   //     primary: "#000",
-    //   //     secondary: "#fff",
-    //   //   },
-    //   //   // Aria
-    //   //   ariaProps: {
-    //   //     role: "status",
-    //   //     "aria-live": "polite",
-    //   //   },
-    //   // });
-    // }
     //Clearing the interval
     return () => clearInterval(interval);
   }, [count]);
@@ -438,60 +436,21 @@ export default function Scene({
       setOpen(false);
       // setInfoBoxIcon(true);
       animateParts();
-      // if (orbitRef.current) {
-      //   orbitRef.current.enableZoom = false;
-      // }
-      // add select color toast here
-      toast("Select colors", {
-        duration: 3000,
-        position: "top-left",
+    } else if (showBackground && currentItemSelected !== unselectedItem) {
+      setOptionBoxItemChanged(false);
+      animateParts();
+    }
+    if (!showBackground && previousItemSelected.itemName === "noSelect") {
+      toast("Select eye to return", {
+        duration: toastDuration + 2000,
+        position: "top-right",
         // Styling
         style: {
-          background: "lightGrey",
-          color: "#212121",
+          fontSize: toastFontSize,
+          background: toastBackground,
+          color: toastColor,
           fontFamily: "var(--leva-fonts-mono)",
-          borderTop: "0.1rem solid #e0e0e0,",
         },
-        className: "",
-        // Custom Icon
-        icon: "🎨",
-        // Change colors of success/error/loading icon
-        iconTheme: {
-          primary: "#000",
-          secondary: "#fff",
-        },
-        // Aria
-        ariaProps: {
-          role: "status",
-          "aria-live": "polite",
-        },
-      });
-
-      // toast("Shuffle colors", {
-      //   duration: 3000,
-      //   position: "top-left",
-      //   // Styling
-      //   style: {},
-      //   className: "",
-      //   // Custom Icon
-      //   icon: "🔀",
-      //   // Change colors of success/error/loading icon
-      //   iconTheme: {
-      //     primary: "#000",
-      //     secondary: "#fff",
-      //   },
-      //   // Aria
-      //   ariaProps: {
-      //     role: "status",
-      //     "aria-live": "polite",
-      //   },
-      // });
-
-      toast("Eye to return", {
-        duration: 3000,
-        position: "top-left",
-        // Styling
-        style: {},
         className: "",
         // Custom Icon
         icon: "👁️",
@@ -506,31 +465,6 @@ export default function Scene({
           "aria-live": "polite",
         },
       });
-      // toast("Stains or paints", {
-      //   duration: 3000,
-      //   position: "bottom-center",
-      //   // Styling
-      //   style: {},
-      //   className: "",
-      //   // Custom Icon
-      //   icon: "🖌️",
-      //   // Change colors of success/error/loading icon
-      //   iconTheme: {
-      //     primary: "#000",
-      //     secondary: "#fff",
-      //   },
-      //   // Aria
-      //   ariaProps: {
-      //     role: "status",
-      //     "aria-live": "polite",
-      //   },
-      // });
-    } else if (showBackground && currentItemSelected !== unselectedItem) {
-      setOptionBoxItemChanged(false);
-      animateParts();
-      // if (orbitRef.current) {
-      //   orbitRef.current.enableZoom = true;
-      // }
     }
   }, [showBackground]);
 

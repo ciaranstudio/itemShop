@@ -25,6 +25,10 @@ import toast, { Toaster } from "react-hot-toast";
 
 function App() {
   const [mobileView, setMobileView] = useState(false);
+  const toastDuration = 4000;
+  const toastFontSize = "0.9rem";
+  const toastBackground = "lightGrey";
+  const toastColor = "#212121";
   // const iOS =
   //   typeof navigator !== "undefined" &&
   //   /iPad|iPhone|iPod/.test(navigator.userAgent);
@@ -338,13 +342,18 @@ function App() {
       id: toastId,
       position: "top-right",
       style: {
-        background: "lightGrey",
-        color: "#212121",
+        fontSize: toastFontSize,
+        background: toastBackground,
+        color: toastColor,
         fontFamily: "var(--leva-fonts-mono)",
         borderTop: "0.1rem solid #e0e0e0,",
       },
     });
   }, []);
+  // toastDuration
+  // toastFontSize
+  // toastBackground
+  // toastColor
   useEffect(() => {
     // loadingBarElement.style.transform = `scaleX(${progress / 100})`;
     loadingBarElement.style.transform = `scaleX(${loaded / 149})`;
@@ -358,12 +367,13 @@ function App() {
           loadingBarElement.style.transform = "";
           toast.success("All set!", {
             id: toastId,
-            duration: 1000,
+            duration: toastDuration - 2000,
             // position: mobileView ? "top-right" : "top-center",
             position: "top-right",
             style: {
-              background: "lightGrey",
-              color: "#212121",
+              fontSize: toastFontSize,
+              background: toastBackground,
+              color: toastColor,
               fontFamily: "var(--leva-fonts-mono)",
               borderTop: "0.1rem solid #e0e0e0,",
             },
@@ -437,6 +447,10 @@ function App() {
               setActiveCamTargAnim={setActiveCamTargAnim}
               activeCamAnim={activeCamAnim}
               setActiveCamAnim={setActiveCamAnim}
+              toastDuration={toastDuration}
+              toastFontSize={toastFontSize}
+              toastBackground={toastBackground}
+              toastColor={toastColor}
             />
           </SnipcartProvider>
         </Suspense>
