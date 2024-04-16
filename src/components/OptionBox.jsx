@@ -268,6 +268,7 @@ export default function OptionBox({
               left: optionBoxHeightMin ? "50%" : "0",
               transform: optionBoxHeightMin ? "translate(-50%)" : "none",
               paddingTop: optionBoxHeightMin ? "0rem" : "0.5rem",
+              marginBottom: "0.1rem",
             }}
 
             // style={{ display: optionBoxHeightMin ? "none" : "block" }}
@@ -345,6 +346,15 @@ export default function OptionBox({
               gridTemplateColumns: "auto auto auto auto auto auto",
               textAlign: "center",
               marginTop: "0.5rem",
+              marginRight: "2rem",
+              marginLeft: "2rem",
+              marginBottom: "0.15rem",
+              border: "0.1rem solid rgb(155, 155, 155)",
+              // border: optionBoxHeightMin
+              //   ? "none"
+              //   : "0.1rem solid rgb(155, 155, 155)",
+              borderRadius: "2rem",
+              backgroundColor: "rgb(233, 234, 233)",
             }}
           >
             <span></span>
@@ -516,7 +526,7 @@ export default function OptionBox({
                 gridTemplateColumns: "auto auto auto auto",
                 columnGap: "1rem",
                 alignItems: "center",
-                paddingTop: "0.5rem",
+                paddingTop: "0.25rem",
               }}
             >
               <span></span>

@@ -174,9 +174,10 @@ img {
   text-align: center;
   background: lightGrey;
   color: #181c20;
-  padding: 0.75rem;
+  padding: 0.5rem;
   padding-top: 0.35rem;
   padding-bottom: 0.25rem;
+
   user-select: none;
   cursor: grab;
 }
@@ -212,6 +213,7 @@ img {
   grid-template-columns: auto auto;
   gap: 0;
   padding: 0;
+
   margin-right: 0.25rem;
   border: 0.15rem solid rgb(170, 170, 170);
   border-radius: 1rem;
