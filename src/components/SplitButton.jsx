@@ -11,7 +11,7 @@ import MenuList from "@mui/material/MenuList";
 // import ShuffleOnIcon from "@mui/icons-material/ShuffleOn";
 import ShuffleOutlinedIcon from "@mui/icons-material/ShuffleOutlined";
 
-const options = ["Stain", "Stains", "Stains / Paints", "Paints", "Paint"];
+const options = ["Stain", "Stains", "All", "Paints", "Paint"];
 
 export default function SplitButton({
   theme,

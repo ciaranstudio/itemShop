@@ -239,32 +239,6 @@ export default function OptionBox({
           </IconButton>
 
           <IconButton
-            onClick={toggleAnimateParts}
-            disabled={animActive ? true : false}
-            sx={{
-              position: "absolute",
-              pointerEvents: "auto",
-              top: optionBoxHeightMin ? "1.5rem" : "2.15rem",
-              // right: "2.45rem",
-              left: optionBoxHeightMin ? "2.5rem" : "0.25rem",
-              padding: "0.5rem",
-            }}
-            aria-label="close order box"
-          >
-            {optionBoxHeightMin ? (
-              <OpenInFullIcon
-                color={animActive ? "warning" : "success"}
-                fontSize="inherit"
-              />
-            ) : (
-              <OpenInFullIcon
-                color={animActive ? "warning" : "success"}
-                fontSize="inherit"
-              />
-            )}
-          </IconButton>
-
-          <IconButton
             onClick={(e) => partShowBackground(e)}
             // disabled={
             //   currentItemSelected.itemTitle === "noSelectTitle" ? true : false
@@ -285,35 +259,12 @@ export default function OptionBox({
             />
           </IconButton>
 
-          <IconButton
-            onClick={toggleOptionBoxHeight}
-            color="white"
-            // disabled={
-            //   currentItemSelected.itemTitle === "noSelectTitle" ? true : false
-            // }
-            sx={{
-              position: "absolute",
-              pointerEvents: "auto",
-              top: optionBoxHeightMin ? "1.5rem" : "2.15rem",
-              // right: "2.45rem",
-              right: optionBoxHeightMin ? "2.5rem" : "0.25rem",
-              padding: "0.5rem",
-            }}
-            aria-label="close order box"
-          >
-            {optionBoxHeightMin ? (
-              <UnfoldMoreIcon color="secondary" fontSize="inherit" />
-            ) : (
-              <UnfoldLessIcon color="secondary" fontSize="inherit" />
-            )}
-          </IconButton>
-
           <div
             className="color-menu-item-title"
             style={{
               // position: optionBoxHeightMin ? "absolute" : "static",
               position: optionBoxHeightMin ? "absolute" : "static",
-              top: optionBoxHeightMin ? "1.4rem" : "0",
+              top: optionBoxHeightMin ? "1.6rem" : "0",
               left: optionBoxHeightMin ? "50%" : "0",
               transform: optionBoxHeightMin ? "translate(-50%)" : "none",
               paddingTop: optionBoxHeightMin ? "0rem" : "0.5rem",
@@ -375,7 +326,7 @@ export default function OptionBox({
               {item.itemTitle}
             </Typography> */}
           </div>
-          <div
+          {/* <div
             className="color-menu-item-description"
             style={{ display: optionBoxHeightMin ? "none" : "block" }}
           >
@@ -386,17 +337,86 @@ export default function OptionBox({
             >
               {item.itemDescription}
             </Typography>
-          </div>
+          </div> */}
           {/* <div className="color-menu-part-title">{item.size}</div> */}
+          <span
+            style={{
+              display: "grid",
+              gridTemplateColumns: "auto auto auto auto auto auto",
+              textAlign: "center",
+              marginTop: "0.5rem",
+            }}
+          >
+            <span></span>
+            <span>
+              <IconButton
+                onClick={toggleAnimateParts}
+                disabled={animActive ? true : false}
+                sx={{
+                  padding: "0.5rem",
+                }}
+                aria-label="close order box"
+              >
+                {optionBoxHeightMin ? (
+                  <OpenInFullIcon
+                    color={animActive ? "warning" : "success"}
+                    fontSize="inherit"
+                  />
+                ) : (
+                  <OpenInFullIcon
+                    color={animActive ? "warning" : "success"}
+                    fontSize="inherit"
+                  />
+                )}
+              </IconButton>
+            </span>
+            <span>
+              <IconButton
+                onClick={togglePhotoBox}
+                color="info"
+                // aria-label="close order box"
+                sx={{
+                  padding: "0.5rem",
+                }}
+              >
+                <FilterOutlinedIcon fontSize="inherit" color="secondary" />
+              </IconButton>
+            </span>
+            <span>
+              <IconButton
+                onClick={toggleInfoBox}
+                color="info"
+                // aria-label="close order box"
+                sx={{
+                  padding: "0.5rem",
+                }}
+              >
+                <InfoOutlinedIcon fontSize="inherit" color="secondary" />
+              </IconButton>
+            </span>
+            <span>
+              <IconButton
+                onClick={toggleOptionBoxHeight}
+                color="white"
+                // disabled={
+                //   currentItemSelected.itemTitle === "noSelectTitle" ? true : false
+                // }
+                sx={{
+                  padding: "0.5rem",
+                }}
+                aria-label="close order box"
+              >
+                {optionBoxHeightMin ? (
+                  <UnfoldMoreIcon color="secondary" fontSize="inherit" />
+                ) : (
+                  <UnfoldLessIcon color="secondary" fontSize="inherit" />
+                )}
+              </IconButton>
+            </span>
+          </span>
+
           <div className="annotation">
-            <div
-              className="annotation-options"
-              // style={{
-              //   // pointerEvents: "none",
-              //   // userSelect: "none",
-              //   display: "grid",
-              // }}
-            >
+            <div className="annotation-options">
               {/* {o.userData.name} */}
               <div className="grid-container-stain">
                 {options.stains.map((stain) => {
@@ -490,104 +510,39 @@ export default function OptionBox({
             </div>
           </div>
           <span className="split-shuffle-block">
-            <SplitButton
-              theme={theme}
-              images={item.images}
-              currentItemName={currentItemName}
-              randomCurrentItemParts={randomCurrentItemParts}
-            />
-          </span>
-          {/* <div className="shuffle-color-block">
-          <span>
-            <IconButton
-              onClick={(e) =>
-                randomCurrentItemParts(e, currentItemName, "stainSingle")
-              }
-              color="info"
-              aria-label="close order box"
+            <div
+              style={{
+                display: optionBoxHeightMin ? "none" : "grid",
+                gridTemplateColumns: "auto auto auto auto",
+                columnGap: "1rem",
+                alignItems: "center",
+                paddingTop: "0.5rem",
+              }}
             >
-              <ShuffleOnIcon fontSize="inherit" color="white" />
-            </IconButton>
-          </span>
-          <span>
-            <IconButton
-              onClick={(e) =>
-                randomCurrentItemParts(e, currentItemName, "stainMixed")
-              }
-              color="info"
-              aria-label="close order box"
-            >
-              <ShuffleOnIcon fontSize="inherit" color="secondary" />
-            </IconButton>
-          </span>
-          <span>
-            <IconButton
-              onClick={(e) =>
-                randomCurrentItemParts(e, currentItemName, "allMixed")
-              }
-              color="info"
-              aria-label="close order box"
-            >
-              <ShuffleOnIcon fontSize="inherit" color="success" />
-            </IconButton>
-          </span>
-          <span>
-            <IconButton
-              onClick={(e) =>
-                randomCurrentItemParts(e, currentItemName, "paintMixed")
-              }
-              color="info"
-              aria-label="close order box"
-            >
-              <ShuffleOnIcon fontSize="inherit" color="warning" />
-            </IconButton>
-          </span>
-          <span>
-            <IconButton
-              onClick={(e) =>
-                randomCurrentItemParts(e, currentItemName, "paintSingle")
-              }
-              color="info"
-              aria-label="close order box"
-            >
-              <ShuffleOnIcon fontSize="inherit" color="error" />
-            </IconButton>
-          </span>
-        </div> */}
-          <div
-            className="buy-info-block"
-            style={{ display: optionBoxHeightMin ? "none" : "grid" }}
-          >
-            <span>
-              <IconButton
-                onClick={(e) => togglePhotoBox(e)}
-                color="info"
-                aria-label="close order box"
+              <span></span>
+              <div>
+                <SplitButton
+                  theme={theme}
+                  images={item.images}
+                  currentItemName={currentItemName}
+                  randomCurrentItemParts={randomCurrentItemParts}
+                />
+              </div>
+              <span
+                className="buy-info-block"
+                style={{
+                  display: optionBoxHeightMin ? "none" : "block",
+                  // paddingBottom: ".25rem",
+                }}
               >
-                <FilterOutlinedIcon fontSize="inherit" color="secondary" />
-              </IconButton>
-            </span>
-            {/* <button className="color-shuffle-btn " onClick={togglePhotoBox}>
-            <PhotoLibraryIcon fontSize="inherit" color="primary" />
-          </button> */}
-            <BuyButton
-              theme={theme}
-              item={objects[currentItemName]}
-              aria-label="add to shopping cart"
-            />
-            <span>
-              <IconButton
-                onClick={(e) => toggleInfoBox(e)}
-                color="info"
-                aria-label="close order box"
-              >
-                <InfoOutlinedIcon fontSize="inherit" color="secondary" />
-              </IconButton>
-            </span>
-            {/* <button className="color-shuffle-btn " onClick={toggleInfoBox}>
-            <InfoIcon fontSize="inherit" color="info" />
-          </button> */}
-          </div>
+                <BuyButton
+                  theme={theme}
+                  item={objects[currentItemName]}
+                  aria-label="add to shopping cart"
+                />
+              </span>
+            </div>
+          </span>
         </div>
       </ThemeProvider>
     </Html>

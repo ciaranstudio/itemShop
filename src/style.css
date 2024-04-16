@@ -113,7 +113,7 @@ img {
   width: 18rem;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%);
   /* right: calc(50% - 9rem); */
   text-align: center;
   background: #b8c2c4;
@@ -175,7 +175,8 @@ img {
   background: lightGrey;
   color: #181c20;
   padding: 0.75rem;
-  padding-top: 0.5rem;
+  padding-top: 0.35rem;
+  padding-bottom: 0.25rem;
   user-select: none;
   cursor: grab;
 }
@@ -253,8 +254,8 @@ img {
   grid-template-columns: auto auto auto;
   text-align: center;
   background: lightGrey;
-  padding-top: 0.75rem;
-  padding-bottom: 0.25rem;
+  /* padding-top: 0.75rem;
+  padding-bottom: 0.25rem; */
 }
 
 .color-exit-btn {

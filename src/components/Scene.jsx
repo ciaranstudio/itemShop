@@ -1057,6 +1057,7 @@ export default function Scene({
   // animate camera position on item double click / showBackground turning false
   const controlsPositionVec = new THREE.Vector3();
   const [targetVec, setTargetVec] = useState(new THREE.Vector3());
+
   useGSAP(() => {
     if (!showBackground) {
       if (orbitRef.current) {
