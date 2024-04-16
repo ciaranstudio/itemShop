@@ -1212,6 +1212,7 @@ export default function Scene({
   }, [showBackground, optionBoxItemToggle]);
 
   // make animation hook for ArrowIcon to rotate on its x axis away from the user (towards -z from camera view)
+  // connect it to same animation toggle state variable in hook dependencies
   // const camPosAnimDelay = 0.175;
   // const camPosAnimDuration = 1.85;
   // // animate camera position on item double click / showBackground turning false

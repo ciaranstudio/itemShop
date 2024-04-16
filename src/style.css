@@ -167,7 +167,7 @@ img {
   border-radius: 1rem;
   padding-bottom: 0.75rem;
   border: 0.085rem solid rgb(155, 155, 155);
-  opacity: 0.9;
+  opacity: 0.925;
 }
 
 .annotation {
@@ -213,8 +213,7 @@ img {
   grid-template-columns: auto auto;
   gap: 0;
   padding: 0;
-
-  margin-right: 0.25rem;
+  margin-right: 0.15rem;
   border: 0.15rem solid rgb(170, 170, 170);
   border-radius: 1rem;
   background-color: rgb(233, 234, 233);
@@ -225,7 +224,7 @@ img {
   grid-template-columns: auto auto auto;
   gap: 0;
   padding: 0;
-  margin-left: 0.25rem;
+  margin-left: 0.15rem;
   border: 0.15rem solid rgb(170, 170, 170);
   border-radius: 1rem;
   background-color: rgb(233, 234, 233);

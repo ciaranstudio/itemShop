@@ -282,6 +282,7 @@ export default function OptionBox({
                     sx={{
                       fontFamily: "var(--leva-fonts-mono)",
                       fontSize: optionBoxHeightMin ? "0.65rem" : "1.1rem",
+                      backgroundColor: "rgb(233, 234, 233)",
                     }}
                     size="large"
                     // color={activeCamAnim ? "info" : "primary"}
@@ -343,12 +344,11 @@ export default function OptionBox({
           <span
             style={{
               display: "grid",
-              gridTemplateColumns: "auto auto auto auto auto auto",
+              gridTemplateColumns: "auto auto auto auto",
               textAlign: "center",
               marginTop: "0.5rem",
               marginRight: "2rem",
               marginLeft: "2rem",
-              marginBottom: "0.15rem",
               border: "0.1rem solid rgb(155, 155, 155)",
               // border: optionBoxHeightMin
               //   ? "none"
@@ -357,7 +357,6 @@ export default function OptionBox({
               backgroundColor: "rgb(233, 234, 233)",
             }}
           >
-            <span></span>
             <span>
               <IconButton
                 onClick={toggleAnimateParts}

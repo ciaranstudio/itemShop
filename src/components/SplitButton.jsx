@@ -71,7 +71,10 @@ export default function SplitButton({
         <Button
           onClick={handleClick}
           startIcon={<ShuffleOutlinedIcon color="primary" />}
-          sx={{ fontFamily: "var(--leva-fonts-mono)" }}
+          sx={{
+            fontFamily: "var(--leva-fonts-mono)",
+            backgroundColor: "rgb(233, 234, 233)",
+          }}
         >
           {options[selectedIndex]}
         </Button>
@@ -79,9 +82,10 @@ export default function SplitButton({
           size="small"
           aria-controls={open ? "split-button-menu" : undefined}
           aria-expanded={open ? "true" : undefined}
-          aria-label="select merge strategy"
+          aria-label="select shuffle colors option"
           aria-haspopup="menu"
           onClick={handleToggle}
+          sx={{ backgroundColor: "rgb(233, 234, 233)" }}
         >
           <ArrowDropDownIcon />
         </Button>
