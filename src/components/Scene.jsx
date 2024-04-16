@@ -106,55 +106,55 @@ export default function Scene({
       // console.log("window.Snipcart.api: ", window.Snipcart);
       if (cart.items) setCartCount(cart.items.count);
       // window.Snipcart.api.theme.cart.open();
-      toast("Cart", {
-        duration: toastDuration,
-        position: "top-right",
-        // Styling
-        style: {
-          fontSize: toastFontSize,
-          background: toastBackground,
-          color: toastColor,
-          fontFamily: "var(--leva-fonts-mono)",
-        },
-        // style: { background: "#adbaba", color: "#ffffff" },
-        className: "",
-        // Custom Icon
-        // icon: "🛒",
-        // Change colors of success/error/loading icon
-        iconTheme: {
-          primary: "#000",
-          secondary: "#fff",
-        },
-        // Aria
-        ariaProps: {
-          role: "status",
-          "aria-live": "polite",
-        },
-      });
-      toast("Menu", {
-        duration: toastDuration,
-        position: "top-left",
-        // Styling
-        style: {
-          fontSize: toastFontSize,
-          background: toastBackground,
-          color: toastColor,
-          fontFamily: "var(--leva-fonts-mono)",
-        },
-        className: "",
-        // Custom Icon
-        // icon: "📑",
-        // Change colors of success/error/loading icon
-        iconTheme: {
-          primary: "#000",
-          secondary: "#fff",
-        },
-        // Aria
-        ariaProps: {
-          role: "status",
-          "aria-live": "polite",
-        },
-      });
+      // toast("Cart", {
+      //   duration: toastDuration,
+      //   position: "top-right",
+      //   // Styling
+      //   style: {
+      //     fontSize: toastFontSize,
+      //     background: toastBackground,
+      //     color: toastColor,
+      //     fontFamily: "var(--leva-fonts-mono)",
+      //   },
+      //   // style: { background: "#adbaba", color: "#ffffff" },
+      //   className: "",
+      //   // Custom Icon
+      //   // icon: "🛒",
+      //   // Change colors of success/error/loading icon
+      //   iconTheme: {
+      //     primary: "#000",
+      //     secondary: "#fff",
+      //   },
+      //   // Aria
+      //   ariaProps: {
+      //     role: "status",
+      //     "aria-live": "polite",
+      //   },
+      // });
+      // toast("Menu", {
+      //   duration: toastDuration,
+      //   position: "top-left",
+      //   // Styling
+      //   style: {
+      //     fontSize: toastFontSize,
+      //     background: toastBackground,
+      //     color: toastColor,
+      //     fontFamily: "var(--leva-fonts-mono)",
+      //   },
+      //   className: "",
+      //   // Custom Icon
+      //   // icon: "📑",
+      //   // Change colors of success/error/loading icon
+      //   iconTheme: {
+      //     primary: "#000",
+      //     secondary: "#fff",
+      //   },
+      //   // Aria
+      //   ariaProps: {
+      //     role: "status",
+      //     "aria-live": "polite",
+      //   },
+      // });
     } else {
       setSnipcartLoaded(false);
     }
@@ -395,6 +395,56 @@ export default function Scene({
         className: "",
         // Custom Icon
         // icon: "▲",
+        // Change colors of success/error/loading icon
+        iconTheme: {
+          primary: "#000",
+          secondary: "#fff",
+        },
+        // Aria
+        ariaProps: {
+          role: "status",
+          "aria-live": "polite",
+        },
+      });
+    } else if (count === 10) {
+      toast("Cart", {
+        duration: toastDuration,
+        position: "top-right",
+        // Styling
+        style: {
+          fontSize: toastFontSize,
+          background: toastBackground,
+          color: toastColor,
+          fontFamily: "var(--leva-fonts-mono)",
+        },
+        // style: { background: "#adbaba", color: "#ffffff" },
+        className: "",
+        // Custom Icon
+        // icon: "🛒",
+        // Change colors of success/error/loading icon
+        iconTheme: {
+          primary: "#000",
+          secondary: "#fff",
+        },
+        // Aria
+        ariaProps: {
+          role: "status",
+          "aria-live": "polite",
+        },
+      });
+      toast("Menu", {
+        duration: toastDuration,
+        position: "top-left",
+        // Styling
+        style: {
+          fontSize: toastFontSize,
+          background: toastBackground,
+          color: toastColor,
+          fontFamily: "var(--leva-fonts-mono)",
+        },
+        className: "",
+        // Custom Icon
+        // icon: "📑",
         // Change colors of success/error/loading icon
         iconTheme: {
           primary: "#000",
@@ -898,8 +948,8 @@ export default function Scene({
   // activeCamAnim
   // setActiveCamAnim
 
-  const camTargAnimDelay = 0.15;
-  const camTargAnimDuration = 0.75;
+  const camTargAnimDelay = 0.1;
+  const camTargAnimDuration = 1;
   // animation camera target on item click
   const controlsTargetVec = new THREE.Vector3();
   useGSAP(() => {
@@ -1160,6 +1210,116 @@ export default function Scene({
       }
     }
   }, [showBackground, optionBoxItemToggle]);
+
+  // make animation hook for ArrowIcon to rotate on its x axis away from the user (towards -z from camera view)
+  // const camPosAnimDelay = 0.175;
+  // const camPosAnimDuration = 1.85;
+  // // animate camera position on item double click / showBackground turning false
+  // const controlsPositionVec = new THREE.Vector3();
+  // const [targetVec, setTargetVec] = useState(new THREE.Vector3());
+
+  // useGSAP(() => {
+  //   if (!showBackground) {
+  //     if (orbitRef.current) {
+  //       if (orbitRef.current.object.position !== targetVec) {
+  //         // console.log(
+  //         //   "checking controls current position: ",
+  //         //   orbitRef.current.object.position,
+  //         // );
+  //         let xPlus = -1.65;
+  //         let yPlus = 1.25;
+  //         let zPlus = -1.165;
+
+  //         if (currentItemSelected.itemName === "gramps") {
+  //           xPlus = -2.15; // -1.75
+  //           yPlus = 1; // 0.5
+  //           zPlus = -0.575; // -0.75
+  //         } else if (currentItemSelected.itemName === "block") {
+  //           xPlus = -0.5; // 0 // -0.75
+  //           yPlus = 0.75; // 0.5 // 0.5
+  //           zPlus = -1.5; // 1.75 // -1.25
+  //         } else if (currentItemSelected.itemName === "horse") {
+  //           xPlus = 2; // -1.75
+  //           yPlus = 1.25; // 1.25
+  //           zPlus = -2.5; // -2.1
+  //         } else if (currentItemSelected.itemName === "squatter") {
+  //           xPlus = 1.95; // 1.75
+  //           yPlus = 0.75; // 0.5
+  //           zPlus = 1.15; // 1
+  //         } else if (currentItemSelected.itemName === "shelfA16") {
+  //           xPlus = 1.5; // 1 // 1.5
+  //           yPlus = 2; // 1.75 // 1.25
+  //           zPlus = -0.5; // -1 // 1.5
+  //         } else if (currentItemSelected.itemName === "shelfA32") {
+  //           xPlus = 2; // 1.5
+  //           yPlus = 1.5; // 1
+  //           zPlus = -1; // 1.5
+  //         } else if (currentItemSelected.itemName === "shelfB16") {
+  //           xPlus = -0.75; // -1.5
+  //           yPlus = 1.25; //  1
+  //           zPlus = -1.75; // -1.5
+  //         } else if (currentItemSelected.itemName === "shelfB32") {
+  //           xPlus = -1; // -1.5
+  //           yPlus = 1.75; // 1.75  // 1.25
+  //           zPlus = -2.25; // -1.5
+  //         }
+
+  //         controlsPositionVec.set(
+  //           orbitRef.current.object.position.x,
+  //           orbitRef.current.object.position.y,
+  //           orbitRef.current.object.position.z,
+  //         );
+  //         let tl = gsap.timeline();
+  //         tl.to(controlsPositionVec, {
+  //           // delay: optionBoxItemChanged ? 1 : 0.2,
+  //           delay: optionBoxItemChanged
+  //             ? camPosAnimDelay + 0.2
+  //             : camPosAnimDelay, // 0.2
+  //           // duration: camPosAnimDuration, // 1.85
+  //           duration: optionBoxItemChanged
+  //             ? camPosAnimDuration + 0.75
+  //             : camPosAnimDuration, // 0.2
+  //           x: currentItemSelected.position.x + xPlus,
+  //           y: currentItemSelected.position.y + yPlus,
+  //           z: currentItemSelected.position.z + zPlus,
+  //           ease: "easeIn",
+  //           onStart: () => {
+  //             // setOpen(!open);
+  //             // setInfoBoxIcon(!infoBoxIcon);
+  //             setActiveCamPosAnim(true);
+  //             setActiveCamAnim(true);
+  //             if (optionBoxItemChanged) orbitRef.current.autoRotate = false;
+  //             // orbitRef.current.enabled = false;
+  //             orbitRef.current.enableRotate = false;
+  //             orbitRef.current.enableZoom = false;
+  //           },
+  //           onUpdate: () => {
+  //             setTargetVec(controlsPositionVec);
+  //             orbitRef.current.object.position.set(
+  //               controlsPositionVec.x,
+  //               controlsPositionVec.y,
+  //               controlsPositionVec.z,
+  //             );
+  //             orbitRef.current.object.updateProjectionMatrix();
+  //             orbitRef.current.update();
+  //           },
+  //           onComplete: () => {
+  //             setTargetVec(controlsPositionVec);
+  //             // orbitRef.current.enabled = true;
+  //             orbitRef.current.enableRotate = true;
+  //             orbitRef.current.enableZoom = true;
+  //             setActiveCamPosAnim(false);
+  //             setActiveCamAnim(false);
+  //             // set a timeout to delay this toggle of autoRotate?
+  //             orbitRef.current.autoRotate = true;
+  //             orbitRef.current.autoRotateSpeed = 1.1;
+  //             // setOptionBoxItemChanged(false);
+  //           },
+  //         });
+  //       }
+  //     }
+  //   }
+  // }, [showBackground, optionBoxItemToggle]);
 
   const dirLightXPosition = 2.5; // 2.5
   const dirLightYPosition = 3.6; // 3.6
