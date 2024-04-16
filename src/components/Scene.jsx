@@ -302,9 +302,9 @@ export default function Scene({
     //Implementing the setInterval method
     const interval = setInterval(() => {
       setCount(count + 1);
-    }, 2000);
+    }, 1500);
     // was 1000
-    if (count === 1) {
+    if (count === 2) {
       toast("Drag to rotate", {
         duration: toastDuration,
         position: "top-left",
@@ -330,7 +330,7 @@ export default function Scene({
           "aria-live": "polite",
         },
       });
-    } else if (count === 2) {
+    } else if (count === 4) {
       toast("Pinch to zoom", {
         duration: toastDuration,
         position: "top-left",
@@ -356,7 +356,7 @@ export default function Scene({
           "aria-live": "polite",
         },
       });
-    } else if (count === 3) {
+    } else if (count === 6) {
       toast("Tap to select", {
         duration: toastDuration,
         position: "top-left",
@@ -381,7 +381,7 @@ export default function Scene({
           "aria-live": "polite",
         },
       });
-    } else if (count === 4) {
+    } else if (count === 8) {
       toast("^ for options", {
         duration: toastDuration,
         position: "top-left",

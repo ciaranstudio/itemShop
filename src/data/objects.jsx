@@ -102,7 +102,7 @@ export const objects = {
     100, // stained single color
     50,
     100,
-    "16 x 12 x 18 in.", // L x D x H
+    "16 x 12 x 16 in.", // L x D x H
     { x: -1.75, y: 0, z: 0 },
     [
       new Part(
@@ -454,7 +454,7 @@ export const objects = {
     50,
     50,
     50,
-    "16 x 4 x 4 in.", // L x D x H
+    "16 x 6 x 4 in.", // L x D x H
     { x: 0.86, y: 0, z: 3 }, //  { x: 33.685, y: 0, z: 118.25 },
     [
       new Part(
@@ -523,7 +523,7 @@ export const objects = {
     50,
     50,
     50,
-    "32 x 4 x 4 in.", // L x D x H
+    "32 x 6 x 4 in.", // L x D x H
     { x: 1.8775, y: 0, z: 3 }, // { x: 73.685, y: 0, z: 118.25 },
     [
       new Part(

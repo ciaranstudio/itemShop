@@ -342,7 +342,7 @@ function App() {
   useEffect(() => {
     toast.loading("Loading...", {
       id: toastId,
-      position: "top-right",
+      position: "top-left",
       style: {
         fontSize: toastFontSize,
         background: toastBackground,
@@ -371,7 +371,7 @@ function App() {
             id: toastId,
             duration: toastDuration - 2000,
             // position: mobileView ? "top-right" : "top-center",
-            position: "top-right",
+            position: "top-left",
             style: {
               fontSize: toastFontSize,
               background: toastBackground,
