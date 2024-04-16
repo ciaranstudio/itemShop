@@ -70,8 +70,8 @@ export default function OptionBox({
 }) {
   const { height, width } = useWindowDimensions();
 
-  const boxPosYMobileMax = 15; // 15 looks good on chrome simulator 04/11/2024
-  const boxPosYMobileMin = 5; // 5 looks good on chrome simulator 04/11/2024
+  const boxPosYMobileMax = 16; // 15 looks good on chrome simulator 04/11/2024
+  const boxPosYMobileMin = 11; // 5 looks good on chrome simulator 04/11/2024
 
   const boxPosYDesktopMax = 3; // 3 looks good on chrome simulator 04/11/2024
   const boxPosYDesktopMin = -4; // -4 looks good on chrome simulator 04/11/2024
@@ -268,7 +268,6 @@ export default function OptionBox({
               left: optionBoxHeightMin ? "50%" : "0",
               transform: optionBoxHeightMin ? "translate(-50%)" : "none",
               paddingTop: optionBoxHeightMin ? "0rem" : "0.5rem",
-              marginBottom: "0.1rem",
             }}
 
             // style={{ display: optionBoxHeightMin ? "none" : "block" }}
@@ -346,7 +345,7 @@ export default function OptionBox({
               display: "grid",
               gridTemplateColumns: "auto auto auto auto",
               textAlign: "center",
-              marginTop: "0.5rem",
+              marginTop: "0.45rem",
               marginRight: "2rem",
               marginLeft: "2rem",
               border: "0.1rem solid rgb(155, 155, 155)",
