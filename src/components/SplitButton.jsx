@@ -18,10 +18,12 @@ export default function SplitButton({
   currentItemName,
   randomCurrentItemParts,
 }) {
-  const [open, setOpen] = React.useState(false);
-  const anchorRef = React.useRef(null);
-  const [selectedIndex, setSelectedIndex] = React.useState(2);
+  // useStates
+  const [open, setOpen] = useState(false);
+  const anchorRef = useRef(null);
+  const [selectedIndex, setSelectedIndex] = useState(2);
 
+  // functions
   const handleClick = (e) => {
     console.info(`You clicked ${options[selectedIndex]}`);
     if (selectedIndex === 0) {
@@ -36,26 +38,22 @@ export default function SplitButton({
       randomCurrentItemParts(e, currentItemName, "paintSingle");
     }
   };
-
   const handleMenuItemClick = (event, index) => {
     setSelectedIndex(index);
     setOpen(false);
   };
-
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
   };
-
   const handleClose = (event) => {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
     }
-
     setOpen(false);
   };
 
   return (
-    <React.Fragment>
+    <>
       <ButtonGroup
         variant="outlined"
         ref={anchorRef}
@@ -133,6 +131,6 @@ export default function SplitButton({
           </Grow>
         )}
       </Popper>
-    </React.Fragment>
+    </>
   );
 }
