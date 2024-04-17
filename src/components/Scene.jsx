@@ -139,9 +139,9 @@ export default function Scene({
   const orbitPolarShowBgdNotShelf = Math.PI / 2 - Math.PI / 9.06;
 
   // useRefs
+  // const shadowCameraRef = useRef();
   const dirLightA = useRef();
   const orbitRef = useRef();
-  // const shadowCameraRef = useRef();
 
   // helper hooks
   const { height, width } = useWindowDimensions();
@@ -149,11 +149,11 @@ export default function Scene({
 
   // snipcart hook values
   const snipcart = useSnipcart();
-  const { cart = {} } = useSnipcart();
-  const { subtotal = "0.00" } = cart;
   // const unsubscribe = window.Snipcart.events.on("item.removed", (cartItem) => {
   //   console.log("item removed: ", cartItem);
   // });
+  const { cart = {} } = useSnipcart();
+  const { subtotal = "0.00" } = cart;
 
   // useStates
   const [snipcartLoaded, setSnipcartLoaded] = useState(false);
@@ -164,8 +164,12 @@ export default function Scene({
   const [controlsDragging, setControlsDragging] = useState(false);
   const [hovered, hover] = useState(false);
   useCursor(hovered);
+
+  // move these to store:
   const [currentPartName, setCurrentPartName] = useState("top");
   const [currentItemName, setCurrentItemName] = useState("gramps");
+  // move these to store ^
+
   const [count, setCount] = useState(0);
   // const [randomTime, setRandomTime] = useState(0);
   const [prevStartAzimuthAng, setPrevStartAzimuthAng] = useState(0);
@@ -637,6 +641,21 @@ export default function Scene({
     };
   }, []);
   // useEffect(() => {
+  //   if (aboutInfo && open) {
+  //     setOpen(false);
+  //     setTimeout(() => {
+  //       setOpen(true);
+  //       setShowPhotos(false);
+  //       setShowPartOptions(false);
+  //     }, "250");
+  //   }
+  // }, [aboutInfo]);
+  // useEffect(() => {
+  //   if (allPhotos && showPhotos) {
+  //     setShowPhotos(false);
+  //   }
+  // }, [allPhotos]);
+  // useEffect(() => {
   //   // console.log("height: ", height);
   //   // console.log("width: ", width);
   // }, [height, width]);
@@ -794,21 +813,6 @@ export default function Scene({
       }
     }
   }, [isTouching]);
-  // useEffect(() => {
-  //   if (aboutInfo && open) {
-  //     setOpen(false);
-  //     setTimeout(() => {
-  //       setOpen(true);
-  //       setShowPhotos(false);
-  //       setShowPartOptions(false);
-  //     }, "250");
-  //   }
-  // }, [aboutInfo]);
-  // useEffect(() => {
-  //   if (allPhotos && showPhotos) {
-  //     setShowPhotos(false);
-  //   }
-  // }, [allPhotos]);
 
   // animation constants for loading overlay opacity animation
   const overlayGeometry = new THREE.PlaneGeometry(2, 2, 1, 1);

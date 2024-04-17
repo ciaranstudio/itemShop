@@ -178,10 +178,6 @@ export default function OptionBox({
     popupState.close();
   };
 
-  // mobilePosYMax
-  // mobilePosYMin
-  // desktopPosYMax
-  // desktopPosYMin
   return (
     <Html
       position={[

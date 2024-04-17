@@ -54,12 +54,6 @@ export default function SplitButton({
     setOpen(false);
   };
 
-  // (e) => randomCurrentItemParts(e, currentItemName, "stainSingle")
-  // (e) => randomCurrentItemParts(e, currentItemName, "stainMixed")
-  // (e) => randomCurrentItemParts(e, currentItemName, "allMixed")
-  // (e) => randomCurrentItemParts(e, currentItemName, "paintMixed")
-  // (e) => randomCurrentItemParts(e, currentItemName, "paintSingle")
-
   return (
     <React.Fragment>
       <ButtonGroup

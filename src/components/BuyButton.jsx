@@ -15,32 +15,6 @@ export default function BuyButton({ item, theme }) {
       ].optionSelectedPrice,
   );
 
-  // const theme = createTheme({
-  //   palette: {
-  //     primary: {
-  //       main: "#212121",
-  //       light: "#757575",
-  //     },
-
-  //     secondary: {
-  //       main: "#929d84",
-  //       light: "#E0E0E0",
-  //     },
-  //   },
-  //   shadows: Array(25).fill("none"),
-  //   // components: {
-  //   //   MuiDrawer: {
-  //   //     styleOverrides: {
-  //   //       modal: {
-  //   //         ".MuiModal-backdrop": {
-  //   //           background: "none",
-  //   //         },
-  //   //       },
-  //   //     },
-  //   //   },
-  //   // },
-  // });
-
   // const stainSingle = useOptionStore(
   //   (state) =>
   //     state.items[

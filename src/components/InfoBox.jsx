@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import IconButton from "@mui/material/IconButton";
-import { ReportGmailerrorred } from "@mui/icons-material";
+// import { ReportGmailerrorred } from "@mui/icons-material";
 
 export default function InfoBox({
   item,
@@ -18,19 +18,6 @@ export default function InfoBox({
   openUserEmail,
 }) {
   const aboutText = "About text...";
-
-  // const openUserEmail = (e) => {
-  //   if (e) {
-  //     e.preventDefault();
-  //     // e.stopPropagation();
-  //   }
-  //   const email = "eliwgfell@gmail.com";
-  //   const subject = "Contact from shop";
-  //   const emailBody = "Yeah yeah yeah...";
-
-  //   document.location =
-  //     "mailto:" + email + "?subject=" + subject + "&body=" + emailBody;
-  // };
 
   return (
     <Html

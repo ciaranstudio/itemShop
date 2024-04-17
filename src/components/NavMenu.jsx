@@ -64,23 +64,6 @@ export default function NavMenu({
     }
   };
 
-  // const togglePhotoBox = (e, allPhotos) => {
-  //   e.preventDefault();
-  //   e.stopPropagation();
-  //   if (allPhotos) {
-  //     setAllPhotos(true);
-  //   } else if (!allPhotos) {
-  //     setAllPhotos(false);
-  //   }
-  //   if (showPartOptions) {
-  //     setShowPartOptions(false);
-  //   } else {
-  //     setShowPartOptions(true);
-  //   }
-  //   setOpen(false);
-  //   setShowPhotos(!showPhotos);
-  // };
-
   return (
     <PopupState variant="popover" popupId="popup-menu">
       {(popupState) => (

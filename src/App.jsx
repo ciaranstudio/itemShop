@@ -29,7 +29,6 @@ function App() {
   const toastFontSize = "0.9rem";
   const toastBackground = "lightGrey";
   const toastColor = "#212121";
-
   // animation constants for position Y (up and down)
   const yPosRunHighTarg = 0.015;
   const yPosRunLowTarg = -0.075;
@@ -49,7 +48,6 @@ function App() {
   // loading bar element for left to right on animation on app load
   const loadingBarElement = document.querySelector(".loading-bar");
   const toastId = toast;
-
   // animation value objects for object raise/lower animation and exploding view animation
   const animDistRun = {
     value: animDistReturnTarget,
@@ -71,9 +69,12 @@ function App() {
   const { active, progress, errors, item, loaded, total } = useProgress();
 
   // useStates
+  const [animDist, setAnimDist] = useState(0);
+  const [sceneLoaded, setSceneLoaded] = useState(false);
+  // move these to store:
   const [mobileView, setMobileView] = useState(false);
   const [open, setOpen] = useState(false);
-  const [infoBoxIcon, setInfoBoxIcon] = useState(true);
+  // const [infoBoxIcon, setInfoBoxIcon] = useState(true);
   const [showPhotos, setShowPhotos] = useState(false);
   const [allPhotos, setAllPhotos] = useState(false);
   const [aboutInfo, setAboutInfo] = useState(false);
@@ -86,7 +87,6 @@ function App() {
     useState(unselectedItem);
   const [optionBoxItemChanged, setOptionBoxItemChanged] = useState(false);
   const [optionBoxItemToggle, setOptionBoxItemToggle] = useState(false);
-  const [animDist, setAnimDist] = useState(0);
   const [animToggled, setAnimToggled] = useState(false);
   const [animActive, setAnimActive] = useState(false);
   const [activeCamPosAnim, setActiveCamPosAnim] = useState(false);
@@ -95,7 +95,7 @@ function App() {
   const [partsOpen, setPartsOpen] = useState(false);
   const [stagePosY, setStagePosY] = useState(yPosRunLowTarg);
   const [animIconToggle, setAnimIconToggle] = useState(false);
-  const [sceneLoaded, setSceneLoaded] = useState(false);
+  // move these to store ^
 
   // useEffects
   useEffect(() => {
@@ -115,6 +115,10 @@ function App() {
   // useEffect(() => {
   //   window.LoadSnipcart();
   // }, []);
+  // useEffect(() => {
+  //   console.log("loaded: ", loaded);
+  //   console.log("total: ", total);
+  // }, [loaded, total]);
   useEffect(() => {
     toast.loading("Loading...", {
       id: toastId,
@@ -156,10 +160,6 @@ function App() {
       }
     }
   }, [progress]);
-  // useEffect(() => {
-  //   console.log("loaded: ", loaded);
-  //   console.log("total: ", total);
-  // }, [loaded, total]);
 
   // functions
   const { contextSafe } = useGSAP({ scope: container });
@@ -285,7 +285,6 @@ function App() {
       }
     }
   });
-
   function getRandomInt(max) {
     return Math.floor(Math.random() * max);
   }
@@ -399,8 +398,8 @@ function App() {
               randomAllItemsParts={randomAllItemsParts}
               open={open}
               setOpen={setOpen}
-              infoBoxIcon={infoBoxIcon}
-              setInfoBoxIcon={setInfoBoxIcon}
+              // infoBoxIcon={infoBoxIcon}
+              // setInfoBoxIcon={setInfoBoxIcon}
               showPhotos={showPhotos}
               setShowPhotos={setShowPhotos}
               sceneLoaded={sceneLoaded}

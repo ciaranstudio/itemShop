@@ -1,11 +1,11 @@
 import React, { useState, useLayoutEffect } from "react";
 import { useGLTF, Html } from "@react-three/drei";
 // import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
-import CircleIcon from "@mui/icons-material/Circle";
+// import CircleIcon from "@mui/icons-material/Circle";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 
-import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+// import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 
 export const SelectIcon = ({

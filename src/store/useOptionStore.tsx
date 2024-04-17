@@ -5,6 +5,38 @@ import { textures } from "../data/textures.jsx";
 import { options } from "../data/options.jsx";
 import { objects } from "../data/objects.jsx";
 
+// // (from App component)
+// // move these to store:
+// const [mobileView, setMobileView] = useState(false);
+// const [open, setOpen] = useState(false);
+// // const [infoBoxIcon, setInfoBoxIcon] = useState(true);
+// const [showPhotos, setShowPhotos] = useState(false);
+// const [allPhotos, setAllPhotos] = useState(false);
+// const [aboutInfo, setAboutInfo] = useState(false);
+// const [optionBoxHeightMin, setOptionBoxHeightMin] = useState(false);
+// const [showBackground, setShowBackground] = useState(true);
+// const [showPartOptions, setShowPartOptions] = useState(false);
+// const [currentItemSelected, setCurrentItemSelected] = useState(unselectedItem);
+// const [previousItemSelected, setPreviousItemSelected] =
+//   useState(unselectedItem);
+// const [optionBoxItemChanged, setOptionBoxItemChanged] = useState(false);
+// const [optionBoxItemToggle, setOptionBoxItemToggle] = useState(false);
+// const [animToggled, setAnimToggled] = useState(false);
+// const [animActive, setAnimActive] = useState(false);
+// const [activeCamPosAnim, setActiveCamPosAnim] = useState(false);
+// const [activeCamTargAnim, setActiveCamTargAnim] = useState(false);
+// const [activeCamAnim, setActiveCamAnim] = useState(false);
+// const [partsOpen, setPartsOpen] = useState(false);
+// const [stagePosY, setStagePosY] = useState(yPosRunLowTarg);
+// const [animIconToggle, setAnimIconToggle] = useState(false);
+// // move these to store ^
+
+// // (from Scene component)
+// // move these to store:
+// const [currentPartName, setCurrentPartName] = useState("top");
+// const [currentItemName, setCurrentItemName] = useState("gramps");
+// // move these to store ^
+
 type State = {
   currentItemSelected: {};
   previousItemSelected: {};
