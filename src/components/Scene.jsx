@@ -25,6 +25,7 @@ import { Logo } from "./Logo.jsx";
 import { SelectIcon } from "./SelectIcon.jsx";
 import { ArrowIcon } from "./ArrowIcon.jsx";
 import toast from "react-hot-toast";
+import { useOptionStore } from "../store/useOptionStore.tsx";
 // import { Annotation } from "./Annotation.jsx";
 // import { CameraHelper } from "three";
 // import { DirectionalLightHelper } from "three";
@@ -32,47 +33,47 @@ import toast from "react-hot-toast";
 // import { ShelfPositions } from "./room/ShelfPositions.jsx";
 
 export default function Scene({
-  currentItemSelected,
-  setCurrentItemSelected,
-  previousItemSelected,
-  setPreviousItemSelected,
+  // currentItemSelected,
+  // setCurrentItemSelected,
+  // previousItemSelected,
+  // setPreviousItemSelected,
   animDist,
-  animActive,
-  showBackground,
-  setShowBackground,
-  showPartOptions,
-  setShowPartOptions,
+  // animActive,
+  // showBackground,
+  // setShowBackground,
+  // showPartOptions,
+  // setShowPartOptions,
   animateParts,
-  animIconToggle,
-  setAnimIconToggle,
+  // animIconToggle,
+  // setAnimIconToggle,
   handlePartOption,
-  getRandomInt,
+  // getRandomInt,
   randomAllItemsParts,
-  open,
-  setOpen,
-  showPhotos,
-  setShowPhotos,
-  sceneLoaded,
-  allPhotos,
-  setAllPhotos,
-  aboutInfo,
-  setAboutInfo,
-  optionBoxHeightMin,
-  setOptionBoxHeightMin,
+  // open,
+  // setOpen,
+  // showPhotos,
+  // setShowPhotos,
+  // sceneLoaded,
+  // allPhotos,
+  // setAllPhotos,
+  // aboutInfo,
+  // setAboutInfo,
+  // optionBoxHeightMin,
+  // setOptionBoxHeightMin,
   stagePosY,
-  mobileView,
-  partsOpen,
+  // mobileView,
+  // partsOpen,
   // setPartsOpen,
-  optionBoxItemChanged,
-  setOptionBoxItemChanged,
-  optionBoxItemToggle,
-  setOptionBoxItemToggle,
+  // optionBoxItemChanged,
+  // setOptionBoxItemChanged,
+  // optionBoxItemToggle,
+  // setOptionBoxItemToggle,
   // activeCamPosAnim,
-  setActiveCamPosAnim,
+  // setActiveCamPosAnim,
   // activeCamTargAnim,
-  setActiveCamTargAnim,
-  activeCamAnim,
-  setActiveCamAnim,
+  // setActiveCamTargAnim,
+  // activeCamAnim,
+  // setActiveCamAnim,
   toastDuration,
   toastFontSize,
   toastBackground,
@@ -143,8 +144,17 @@ export default function Scene({
   const dirLightA = useRef();
   const orbitRef = useRef();
 
+  // useStates
+  const [snipcartLoaded, setSnipcartLoaded] = useState(false);
+  const [cartCount, setCartCount] = useState(0);
+  const [overlayAlpha, setOverlayAlpha] = useState(1);
+  // const [initialLoad, setInitialLoad] = useState(false);
+  const [controlsDragging, setControlsDragging] = useState(false);
+  const [hovered, hover] = useState(false);
+
   // helper hooks
   const { height, width } = useWindowDimensions();
+  useCursor(hovered);
   // useHelper(shadowCameraRef, CameraHelper, 1, "lightBlue");
 
   // snipcart hook values
@@ -155,19 +165,9 @@ export default function Scene({
   const { cart = {} } = useSnipcart();
   const { subtotal = "0.00" } = cart;
 
-  // useStates
-  const [snipcartLoaded, setSnipcartLoaded] = useState(false);
-  const [cartCount, setCartCount] = useState(0);
-  const [showSlider, setShowSlider] = useState(false);
-  const [overlayAlpha, setOverlayAlpha] = useState(1);
-  // const [initialLoad, setInitialLoad] = useState(false);
-  const [controlsDragging, setControlsDragging] = useState(false);
-  const [hovered, hover] = useState(false);
-  useCursor(hovered);
-
   // move these to store:
-  const [currentPartName, setCurrentPartName] = useState("top");
-  const [currentItemName, setCurrentItemName] = useState("gramps");
+  // const [currentPartName, setCurrentPartName] = useState("top");
+  // const [currentItemName, setCurrentItemName] = useState("gramps");
   // move these to store ^
 
   const [count, setCount] = useState(0);
@@ -183,80 +183,103 @@ export default function Scene({
   // const [azCheckAng, setAzCheckAng] = useState(0);
   const [targetVec, setTargetVec] = useState(new THREE.Vector3());
 
-  // const currentItemSelected = useOptionStore(
-  //   (state) => state.currentItemSelected,
-  // );
-  // const setCurrentItemSelected = useOptionStore((state) => state.setCurrentItemSelected);
+  const currentItemSelected = useOptionStore(
+    (state) => state.currentItemSelected,
+  );
+  const setCurrentItemSelected = useOptionStore(
+    (state) => state.setCurrentItemSelected,
+  );
 
-  // const previousItemSelected = useOptionStore(
-  //   (state) => state.previousItemSelected,
-  // );
-  // const setPreviousItemSelected = useOptionStore((state) => state.setPreviousItemSelected);
+  const previousItemSelected = useOptionStore(
+    (state) => state.previousItemSelected,
+  );
+  const setPreviousItemSelected = useOptionStore(
+    (state) => state.setPreviousItemSelected,
+  );
 
-  // const currentPartName = useOptionStore(
-  //   (state) => state.currentPartName,
-  // );
-  // const setCurrentPartName = useOptionStore((state) => state.setCurrentPartName);
+  const currentPartName = useOptionStore((state) => state.currentPartName);
+  const setCurrentPartName = useOptionStore(
+    (state) => state.setCurrentPartName,
+  );
 
-  // const currentItemName = useOptionStore(
-  //   (state) => state.currentItemName,
-  // );
-  // const setCurrentItemName = useOptionStore((state) => state.setCurrentItemName);
+  const currentItemName = useOptionStore((state) => state.currentItemName);
+  const setCurrentItemName = useOptionStore(
+    (state) => state.setCurrentItemName,
+  );
 
   // const mobileView = useOptionStore((state) => state.mobileView);
   // const setMobileView = useOptionStore((state) => state.setMobileView);
 
-  // const open = useOptionStore((state) => state.mobileView);
-  // const setOpen = useOptionStore((state) => state.setOpen);
+  const sceneLoaded = useOptionStore((state) => state.sceneLoaded);
+  // const setSceneLoaded = useOptionStore((state) => state.setSceneLoaded);
 
-  // const showPhotos = useOptionStore((state) => state.showPhotos);
-  // const setShowPhotos = useOptionStore((state) => state.setShowPhotos);
+  const open = useOptionStore((state) => state.open);
+  const setOpen = useOptionStore((state) => state.setOpen);
 
-  // const allPhotos = useOptionStore((state) => state.allPhotos);
-  // const setAllPhotos = useOptionStore((state) => state.setAllPhotos);
+  const showPhotos = useOptionStore((state) => state.showPhotos);
+  const setShowPhotos = useOptionStore((state) => state.setShowPhotos);
 
-  // const aboutInfo = useOptionStore((state) => state.aboutInfo);
-  // const setAboutInfo = useOptionStore((state) => state.setAboutInfo);
+  const allPhotos = useOptionStore((state) => state.allPhotos);
+  const setAllPhotos = useOptionStore((state) => state.setAllPhotos);
 
-  // const optionBoxHeightMin = useOptionStore((state) => state.optionBoxHeightMin);
-  // const setOptionBoxHeightMin = useOptionStore((state) => state.setOptionBoxHeightMin);
+  const aboutInfo = useOptionStore((state) => state.aboutInfo);
+  const setAboutInfo = useOptionStore((state) => state.setAboutInfo);
 
-  // const showBackground = useOptionStore((state) => state.showBackground);
-  // const setShowBackground = useOptionStore((state) => state.setShowBackground);
+  const optionBoxHeightMin = useOptionStore(
+    (state) => state.optionBoxHeightMin,
+  );
+  const setOptionBoxHeightMin = useOptionStore(
+    (state) => state.setOptionBoxHeightMin,
+  );
 
-  // const showPartOptions = useOptionStore((state) => state.showPartOptions);
-  // const setShowPartOptions = useOptionStore((state) => state.setShowPartOptions);
+  const showBackground = useOptionStore((state) => state.showBackground);
+  const setShowBackground = useOptionStore((state) => state.setShowBackground);
 
-  // const optionBoxItemChanged = useOptionStore(
-  //   (state) => state.optionBoxItemChanged,
-  // );
-  // const setOptionBoxItemChanged = useOptionStore((state) => state.setOptionBoxItemChanged);
+  const showPartOptions = useOptionStore((state) => state.showPartOptions);
+  const setShowPartOptions = useOptionStore(
+    (state) => state.setShowPartOptions,
+  );
 
-  // const optionBoxItemToggle = useOptionStore(
-  //   (state) => state.optionBoxItemToggle,
-  // );
-  // const setOptionBoxItemToggle = useOptionStore((state) => state.setOptionBoxItemToggle);
+  const optionBoxItemChanged = useOptionStore(
+    (state) => state.optionBoxItemChanged,
+  );
+  const setOptionBoxItemChanged = useOptionStore(
+    (state) => state.setOptionBoxItemChanged,
+  );
+
+  const optionBoxItemToggle = useOptionStore(
+    (state) => state.optionBoxItemToggle,
+  );
+  const setOptionBoxItemToggle = useOptionStore(
+    (state) => state.setOptionBoxItemToggle,
+  );
 
   // const animToggled = useOptionStore((state) => state.animToggled);
   // const setAnimToggled = useOptionStore((state) => state.setAnimToggled);
 
-  // const animActive = useOptionStore((state) => state.animActive);
-  // const setAnimActive = useOptionStore((state) => state.setAnimActive);
+  const animActive = useOptionStore((state) => state.animActive);
+  const setAnimActive = useOptionStore((state) => state.setAnimActive);
 
-  // const activeCamPosAnim = useOptionStore((state) => state.activeCamPosAnim);
-  // const setActiveCamPosAnim = useOptionStore((state) => state.setActiveCamPosAnim);
+  const activeCamPosAnim = useOptionStore((state) => state.activeCamPosAnim);
+  const setActiveCamPosAnim = useOptionStore(
+    (state) => state.setActiveCamPosAnim,
+  );
 
-  // const activeCamTargAnim = useOptionStore((state) => state.activeCamTargAnim);
-  // const setActiveCamTargAnim = useOptionStore((state) => state.setActiveCamTargAnim);
+  const activeCamTargAnim = useOptionStore((state) => state.activeCamTargAnim);
+  const setActiveCamTargAnim = useOptionStore(
+    (state) => state.setActiveCamTargAnim,
+  );
 
-  // const activeCamAnim = useOptionStore((state) => state.activeCamAnim);
-  // const setActiveCamAnim = useOptionStore((state) => state.setActiveCamAnim);
+  const activeCamAnim = useOptionStore((state) => state.activeCamAnim);
+  const setActiveCamAnim = useOptionStore((state) => state.setActiveCamAnim);
 
-  // const partsOpen = useOptionStore((state) => state.partsOpen);
-  // const setPartsOpen = useOptionStore((state) => state.setPartsOpen);
+  const partsOpen = useOptionStore((state) => state.partsOpen);
+  const setPartsOpen = useOptionStore((state) => state.setPartsOpen);
 
-  // const animIconToggle = useOptionStore((state) => state.animIconToggle);
-  // const setAnimIconToggle = useOptionStore((state) => state.setAnimIconToggle);
+  const animIconToggle = useOptionStore((state) => state.animIconToggle);
+  const setAnimIconToggle = useOptionStore((state) => state.setAnimIconToggle);
+
+  const getRandomInt = useOptionStore((state) => state.getRandomInt);
 
   // useEffects
   useEffect(() => {
@@ -1089,12 +1112,18 @@ export default function Scene({
     setAboutInfo(false);
     setOpen(!open);
     setShowPhotos(false);
+
     if (showPartOptions) {
       setShowPartOptions(false);
     } else {
       setShowPartOptions(true);
     }
   };
+
+  // useEffect(() => {
+  //   console.log("open value (from useEffect): ", open);
+  // }, [open]);
+
   const togglePhotoBox = (e) => {
     if (e) {
       e.preventDefault();
@@ -1103,7 +1132,6 @@ export default function Scene({
     setAllPhotos(false);
     setOpen(false);
     setShowPhotos(!showPhotos);
-    setShowSlider(false);
     if (showPartOptions) {
       setShowPartOptions(false);
     } else {
@@ -1113,7 +1141,7 @@ export default function Scene({
   const openUserEmail = (e) => {
     if (e) {
       e.preventDefault();
-      // e.stopPropagation();
+      e.stopPropagation();
     }
     const email = "eliwgfell@gmail.com";
     const subject = "Contact from shop";
@@ -1385,12 +1413,14 @@ export default function Scene({
                 controlsPositionVec.y,
                 controlsPositionVec.z,
               );
-              orbitRef.current.object.updateProjectionMatrix();
-              orbitRef.current.update();
+              // orbitRef.current.object.updateProjectionMatrix();
+              // orbitRef.current.update();
             },
             onComplete: () => {
               setTargetVec(controlsPositionVec);
               // orbitRef.current.enabled = true;
+              orbitRef.current.object.updateProjectionMatrix();
+              orbitRef.current.update();
               orbitRef.current.enableRotate = true;
               orbitRef.current.enableZoom = true;
               setActiveCamPosAnim(false);
@@ -1572,16 +1602,16 @@ export default function Scene({
           <Logo
             currentColor={textures.blueTape}
             currentTexture={textures.paintedTexture}
-            open={open}
-            setOpen={setOpen}
-            showPhotos={showPhotos}
-            setShowPhotos={setShowPhotos}
+            // open={open}
+            // setOpen={setOpen}
+            // showPhotos={showPhotos}
+            // setShowPhotos={setShowPhotos}
             // showPartOptions={showPartOptions}
-            setShowPartOptions={setShowPartOptions}
-            aboutInfo={aboutInfo}
-            setAboutInfo={setAboutInfo}
-            allPhotos={allPhotos}
-            setAllPhotos={setAllPhotos}
+            // setShowPartOptions={setShowPartOptions}
+            // aboutInfo={aboutInfo}
+            // setAboutInfo={setAboutInfo}
+            // allPhotos={allPhotos}
+            // setAllPhotos={setAllPhotos}
             openUserEmail={openUserEmail}
           />
           {/* <Html center position={[0, -12, 0]}>
@@ -1638,44 +1668,42 @@ export default function Scene({
             <ArrowIcon
               currentColor={textures.alabasterPaint}
               currentTexture={textures.whiteTexture}
-              currentItemSelected={currentItemSelected}
-              setCurrentItemSelected={setCurrentItemSelected}
-              setPreviousItemSelected={setPreviousItemSelected}
+              // currentItemSelected={currentItemSelected}
+              // setCurrentItemSelected={setCurrentItemSelected}
+              // setPreviousItemSelected={setPreviousItemSelected}
               toggleInfoBox={toggleInfoBox}
-              open={open}
+              // open={open}
               togglePhotoBox={togglePhotoBox}
-              showPhotos={showPhotos}
-              currentItemName={currentItemName}
-              setCurrentItemName={setCurrentItemName}
-              currentPartName={currentPartName}
-              setCurrentPartName={setCurrentPartName}
-              showBackground={showBackground}
-              setShowBackground={setShowBackground}
-              showPartOptions={showPartOptions}
-              setShowPartOptions={setShowPartOptions}
+              // showPhotos={showPhotos}
+              // currentItemName={currentItemName}
+              // setCurrentItemName={setCurrentItemName}
+              // currentPartName={currentPartName}
+              // setCurrentPartName={setCurrentPartName}
+              // showBackground={showBackground}
+              // setShowBackground={setShowBackground}
+              // showPartOptions={showPartOptions}
+              // setShowPartOptions={setShowPartOptions}
               handlePartOption={handlePartOption}
-              getRandomInt={getRandomInt}
-              allPhotos={allPhotos}
-              aboutInfo={aboutInfo}
+              // getRandomInt={getRandomInt}
+              // allPhotos={allPhotos}
+              // aboutInfo={aboutInfo}
               // setAllPhotos={setAllPhotos}
               // setAboutInfo={setAboutInfo}
-              optionBoxHeightMin={optionBoxHeightMin}
-              setOptionBoxHeightMin={setOptionBoxHeightMin}
-              animActive={animActive}
+              // optionBoxHeightMin={optionBoxHeightMin}
+              // setOptionBoxHeightMin={setOptionBoxHeightMin}
+              // animActive={animActive}
               // activeCamPosAnim={activeCamPosAnim}
               // activeCamTargAnim={activeCamTargAnim}
-              activeCamAnim={activeCamAnim}
-              mobileView={mobileView}
+              // activeCamAnim={activeCamAnim}
+              // mobileView={mobileView}
               // optionBoxItemChanged={optionBoxItemChanged}
-              setOptionBoxItemChanged={setOptionBoxItemChanged}
-              optionBoxItemToggle={optionBoxItemToggle}
-              setOptionBoxItemToggle={setOptionBoxItemToggle}
-              showSlider={showSlider}
-              setShowSlider={setShowSlider}
+              // setOptionBoxItemChanged={setOptionBoxItemChanged}
+              // optionBoxItemToggle={optionBoxItemToggle}
+              // setOptionBoxItemToggle={setOptionBoxItemToggle}
               openUserEmail={openUserEmail}
-              animateParts={animateParts}
-              animIconToggle={animIconToggle}
-              setAnimIconToggle={setAnimIconToggle}
+              // animateParts={animateParts}
+              // animIconToggle={animIconToggle}
+              // setAnimIconToggle={setAnimIconToggle}
             />
           </mesh>
           <group
@@ -1803,14 +1831,14 @@ export default function Scene({
                       partName={part.partName}
                       animation={part.animation}
                       animDist={animDist}
-                      currentItemName={currentItemName}
-                      currentPartName={currentPartName}
-                      showBackground={showBackground}
-                      showPartOptions={showPartOptions}
+                      // currentItemName={currentItemName}
+                      // currentPartName={currentPartName}
+                      // showBackground={showBackground}
+                      // showPartOptions={showPartOptions}
                     />
                     <RingCircle
                       selected={currentItemSelected === item ? true : false}
-                      showBackground={showBackground}
+                      // showBackground={showBackground}
                       isShelf={part.itemName.includes("shelf") ? true : false}
                       itemName={part.itemName}
                       forArrow={false}

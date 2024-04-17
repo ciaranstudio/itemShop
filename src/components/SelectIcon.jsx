@@ -4,9 +4,9 @@ import { useGLTF, Html } from "@react-three/drei";
 // import CircleIcon from "@mui/icons-material/Circle";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-
 // import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
+import { useOptionStore } from "../store/useOptionStore.tsx";
 
 export const SelectIcon = ({
   model,
@@ -14,10 +14,10 @@ export const SelectIcon = ({
   partName,
   animation,
   animDist,
-  currentItemName,
-  currentPartName,
-  showBackground,
-  showPartOptions,
+  // currentItemName,
+  // currentPartName,
+  // showBackground,
+  // showPartOptions,
 }) => {
   const url = model;
   const { scene } = useGLTF(url);
@@ -33,20 +33,20 @@ export const SelectIcon = ({
   // );
   // const setPreviousItemSelected = useOptionStore((state) => state.setPreviousItemSelected);
 
-  // const currentPartName = useOptionStore(
-  //   (state) => state.currentPartName,
-  // );
-  // const setCurrentPartName = useOptionStore((state) => state.setCurrentPartName);
+  const currentPartName = useOptionStore((state) => state.currentPartName);
+  const setCurrentPartName = useOptionStore(
+    (state) => state.setCurrentPartName,
+  );
 
-  // const currentItemName = useOptionStore(
-  //   (state) => state.currentItemName,
-  // );
-  // const setCurrentItemName = useOptionStore((state) => state.setCurrentItemName);
+  const currentItemName = useOptionStore((state) => state.currentItemName);
+  const setCurrentItemName = useOptionStore(
+    (state) => state.setCurrentItemName,
+  );
 
   // const mobileView = useOptionStore((state) => state.mobileView);
   // const setMobileView = useOptionStore((state) => state.setMobileView);
 
-  // const open = useOptionStore((state) => state.mobileView);
+  // const open = useOptionStore((state) => state.open);
   // const setOpen = useOptionStore((state) => state.setOpen);
 
   // const showPhotos = useOptionStore((state) => state.showPhotos);
@@ -61,11 +61,13 @@ export const SelectIcon = ({
   // const optionBoxHeightMin = useOptionStore((state) => state.optionBoxHeightMin);
   // const setOptionBoxHeightMin = useOptionStore((state) => state.setOptionBoxHeightMin);
 
-  // const showBackground = useOptionStore((state) => state.showBackground);
-  // const setShowBackground = useOptionStore((state) => state.setShowBackground);
+  const showBackground = useOptionStore((state) => state.showBackground);
+  const setShowBackground = useOptionStore((state) => state.setShowBackground);
 
-  // const showPartOptions = useOptionStore((state) => state.showPartOptions);
-  // const setShowPartOptions = useOptionStore((state) => state.setShowPartOptions);
+  const showPartOptions = useOptionStore((state) => state.showPartOptions);
+  const setShowPartOptions = useOptionStore(
+    (state) => state.setShowPartOptions,
+  );
 
   // const optionBoxItemChanged = useOptionStore(
   //   (state) => state.optionBoxItemChanged,

@@ -12,6 +12,7 @@ type State = {
   currentPartName: string;
   currentItemName: string;
   mobileView: boolean;
+  sceneLoaded: boolean;
   open: boolean;
   showPhotos: boolean;
   allPhotos: boolean;
@@ -28,6 +29,7 @@ type State = {
   activeCamAnim: boolean;
   partsOpen: boolean;
   animIconToggle: boolean;
+  animateButton: boolean;
   items: {
     gramps: {
       data: {};
@@ -442,6 +444,7 @@ type Action = {
   setCurrentPartName: (partName: string) => void;
   setCurrentItemName: (itemName: string) => void;
   setMobileView: (value: boolean) => void;
+  setSceneLoaded: (value: boolean) => void;
   setOpen: (value: boolean) => void;
   setShowPhotos: (value: boolean) => void;
   setAllPhotos: (value: boolean) => void;
@@ -458,6 +461,8 @@ type Action = {
   setActiveCamAnim: (value: boolean) => void;
   setPartsOpen: (value: boolean) => void;
   setAnimIconToggle: (value: boolean) => void;
+  setAnimateButton: (value: boolean) => void;
+  getRandomInt: (max: number) => number;
 };
 
 export const useOptionStore = create<State & Action>((set) => ({
@@ -466,12 +471,13 @@ export const useOptionStore = create<State & Action>((set) => ({
   currentPartName: "top",
   currentItemName: "gramps",
   mobileView: false,
+  sceneLoaded: false,
   open: false,
   showPhotos: false,
   allPhotos: false,
   aboutInfo: false,
   optionBoxHeightMin: false,
-  showBackground: false,
+  showBackground: true,
   showPartOptions: false,
   optionBoxItemChanged: false,
   optionBoxItemToggle: false,
@@ -482,6 +488,7 @@ export const useOptionStore = create<State & Action>((set) => ({
   activeCamAnim: false,
   partsOpen: false,
   animIconToggle: false,
+  animateButton: false,
   items: {
     gramps: {
       data: objects.gramps,
@@ -1084,6 +1091,12 @@ export const useOptionStore = create<State & Action>((set) => ({
         state.mobileView = value;
       }),
     ),
+  setSceneLoaded: (value) =>
+    set(
+      produce((state: State) => {
+        state.sceneLoaded = value;
+      }),
+    ),
   setOpen: (value) =>
     set(
       produce((state: State) => {
@@ -1180,4 +1193,13 @@ export const useOptionStore = create<State & Action>((set) => ({
         state.animIconToggle = value;
       }),
     ),
+  setAnimateButton: (value) =>
+    set(
+      produce((state: State) => {
+        state.animateButton = value;
+      }),
+    ),
+  getRandomInt: (max) => {
+    return Math.floor(Math.random() * max);
+  },
 }));

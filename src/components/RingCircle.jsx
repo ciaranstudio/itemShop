@@ -1,14 +1,17 @@
 import React from "react";
 import { Edges } from "@react-three/drei";
 import * as THREE from "three";
+import { useOptionStore } from "../store/useOptionStore.tsx";
 
 export default function RingCircle({
   selected,
-  showBackground,
+  // showBackground,
   isShelf,
   itemName,
   forArrow,
 }) {
+  const showBackground = useOptionStore((state) => state.showBackground);
+
   return (
     <mesh
       position={

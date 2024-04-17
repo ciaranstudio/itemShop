@@ -35,38 +35,37 @@ import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
 // import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 
 export default function OptionBox({
-  item,
-  setCurrentItemSelected,
-  setPreviousItemSelected,
-  currentItemName,
-  setCurrentItemName,
-  currentPartName,
-  setCurrentPartName,
-  showBackground,
-  setShowBackground,
-  showPartOptions,
-  setShowPartOptions,
+  // item,
+  // setCurrentItemSelected,
+  // setPreviousItemSelected,
+  // currentItemName,
+  // setCurrentItemName,
+  // currentPartName,
+  // setCurrentPartName,
+  // showBackground,
+  // setShowBackground,
+  // showPartOptions,
+  // setShowPartOptions,
+  // getRandomInt,
   handlePartOption,
-  getRandomInt,
   toggleInfoBox,
   togglePhotoBox,
   theme,
   // allPhotos,
   // aboutInfo,
-  optionBoxHeightMin,
-  setOptionBoxHeightMin,
-  animActive,
+  // optionBoxHeightMin,
+  // setOptionBoxHeightMin,
+  // animActive,
   // activeCamPosAnim,
   // activeCamTargAnim,
-  activeCamAnim,
-  mobileView,
+  // activeCamAnim,
+  // mobileView,
   // optionBoxItemChanged,
-  setOptionBoxItemChanged,
-  optionBoxItemToggle,
-  setOptionBoxItemToggle,
-  animateParts,
-  animIconToggle,
-  setAnimIconToggle,
+  // setOptionBoxItemChanged,
+  // optionBoxItemToggle,
+  // setOptionBoxItemToggle,
+  // animIconToggle,
+  // setAnimIconToggle,
 }) {
   // helper hook
   const { height, width } = useWindowDimensions();
@@ -88,35 +87,34 @@ export default function OptionBox({
   const [stainSingle, setStainSingle] = useState("");
   const [paintSingle, setPaintSingle] = useState("");
 
-  // state from store
-  const thisPartColorName = useOptionStore(
-    (state) => state.items[currentItemName].parts[currentPartName].colorName,
+  const currentItemSelected = useOptionStore(
+    (state) => state.currentItemSelected,
+  );
+  const setCurrentItemSelected = useOptionStore(
+    (state) => state.setCurrentItemSelected,
   );
 
-  // const currentItemSelected = useOptionStore(
-  //   (state) => state.currentItemSelected,
-  // );
-  // const setCurrentItemSelected = useOptionStore((state) => state.setCurrentItemSelected);
+  const previousItemSelected = useOptionStore(
+    (state) => state.previousItemSelected,
+  );
+  const setPreviousItemSelected = useOptionStore(
+    (state) => state.setPreviousItemSelected,
+  );
 
-  // const previousItemSelected = useOptionStore(
-  //   (state) => state.previousItemSelected,
-  // );
-  // const setPreviousItemSelected = useOptionStore((state) => state.setPreviousItemSelected);
+  const currentPartName = useOptionStore((state) => state.currentPartName);
+  const setCurrentPartName = useOptionStore(
+    (state) => state.setCurrentPartName,
+  );
 
-  // const currentPartName = useOptionStore(
-  //   (state) => state.currentPartName,
-  // );
-  // const setCurrentPartName = useOptionStore((state) => state.setCurrentPartName);
+  const currentItemName = useOptionStore((state) => state.currentItemName);
+  const setCurrentItemName = useOptionStore(
+    (state) => state.setCurrentItemName,
+  );
 
-  // const currentItemName = useOptionStore(
-  //   (state) => state.currentItemName,
-  // );
-  // const setCurrentItemName = useOptionStore((state) => state.setCurrentItemName);
+  const mobileView = useOptionStore((state) => state.mobileView);
+  const setMobileView = useOptionStore((state) => state.setMobileView);
 
-  // const mobileView = useOptionStore((state) => state.mobileView);
-  // const setMobileView = useOptionStore((state) => state.setMobileView);
-
-  // const open = useOptionStore((state) => state.mobileView);
+  // const open = useOptionStore((state) => state.open);
   // const setOpen = useOptionStore((state) => state.setOpen);
 
   // const showPhotos = useOptionStore((state) => state.showPhotos);
@@ -128,30 +126,40 @@ export default function OptionBox({
   // const aboutInfo = useOptionStore((state) => state.aboutInfo);
   // const setAboutInfo = useOptionStore((state) => state.setAboutInfo);
 
-  // const optionBoxHeightMin = useOptionStore((state) => state.optionBoxHeightMin);
-  // const setOptionBoxHeightMin = useOptionStore((state) => state.setOptionBoxHeightMin);
+  const optionBoxHeightMin = useOptionStore(
+    (state) => state.optionBoxHeightMin,
+  );
+  const setOptionBoxHeightMin = useOptionStore(
+    (state) => state.setOptionBoxHeightMin,
+  );
 
-  // const showBackground = useOptionStore((state) => state.showBackground);
-  // const setShowBackground = useOptionStore((state) => state.setShowBackground);
+  const showBackground = useOptionStore((state) => state.showBackground);
+  const setShowBackground = useOptionStore((state) => state.setShowBackground);
 
-  // const showPartOptions = useOptionStore((state) => state.showPartOptions);
-  // const setShowPartOptions = useOptionStore((state) => state.setShowPartOptions);
+  const showPartOptions = useOptionStore((state) => state.showPartOptions);
+  const setShowPartOptions = useOptionStore(
+    (state) => state.setShowPartOptions,
+  );
 
-  // const optionBoxItemChanged = useOptionStore(
-  //   (state) => state.optionBoxItemChanged,
-  // );
-  // const setOptionBoxItemChanged = useOptionStore((state) => state.setOptionBoxItemChanged);
+  const optionBoxItemChanged = useOptionStore(
+    (state) => state.optionBoxItemChanged,
+  );
+  const setOptionBoxItemChanged = useOptionStore(
+    (state) => state.setOptionBoxItemChanged,
+  );
 
-  // const optionBoxItemToggle = useOptionStore(
-  //   (state) => state.optionBoxItemToggle,
-  // );
-  // const setOptionBoxItemToggle = useOptionStore((state) => state.setOptionBoxItemToggle);
+  const optionBoxItemToggle = useOptionStore(
+    (state) => state.optionBoxItemToggle,
+  );
+  const setOptionBoxItemToggle = useOptionStore(
+    (state) => state.setOptionBoxItemToggle,
+  );
 
   // const animToggled = useOptionStore((state) => state.animToggled);
   // const setAnimToggled = useOptionStore((state) => state.setAnimToggled);
 
-  // const animActive = useOptionStore((state) => state.animActive);
-  // const setAnimActive = useOptionStore((state) => state.setAnimActive);
+  const animActive = useOptionStore((state) => state.animActive);
+  const setAnimActive = useOptionStore((state) => state.setAnimActive);
 
   // const activeCamPosAnim = useOptionStore((state) => state.activeCamPosAnim);
   // const setActiveCamPosAnim = useOptionStore((state) => state.setActiveCamPosAnim);
@@ -159,25 +167,38 @@ export default function OptionBox({
   // const activeCamTargAnim = useOptionStore((state) => state.activeCamTargAnim);
   // const setActiveCamTargAnim = useOptionStore((state) => state.setActiveCamTargAnim);
 
-  // const activeCamAnim = useOptionStore((state) => state.activeCamAnim);
-  // const setActiveCamAnim = useOptionStore((state) => state.setActiveCamAnim);
+  const activeCamAnim = useOptionStore((state) => state.activeCamAnim);
+  const setActiveCamAnim = useOptionStore((state) => state.setActiveCamAnim);
 
   // const partsOpen = useOptionStore((state) => state.partsOpen);
   // const setPartsOpen = useOptionStore((state) => state.setPartsOpen);
 
-  // const animIconToggle = useOptionStore((state) => state.animIconToggle);
-  // const setAnimIconToggle = useOptionStore((state) => state.setAnimIconToggle);
+  const animIconToggle = useOptionStore((state) => state.animIconToggle);
+  const setAnimIconToggle = useOptionStore((state) => state.setAnimIconToggle);
+
+  // state from store
+  const thisPartColorName = useOptionStore(
+    (state) => state.items[currentItemName].parts[currentPartName].colorName,
+  );
+
+  const animateButton = useOptionStore((state) => state.animateButton);
+  const setAnimateButton = useOptionStore((state) => state.setAnimateButton);
+
+  const getRandomInt = useOptionStore((state) => state.getRandomInt);
 
   // useEffects
   useEffect(() => {
     if (mobileView && !optionBoxHeightMin) {
-      if (item.itemName === "horse" || item.itemName.includes("shelf")) {
+      if (
+        currentItemSelected.itemName === "horse" ||
+        currentItemSelected.itemName.includes("shelf")
+      ) {
         setMobilePosYMax(boxPosYMobileMax + 2.5);
       } else {
         setMobilePosYMax(boxPosYMobileMax);
       }
     }
-  }, [item, mobileView, optionBoxHeightMin]);
+  }, [currentItemSelected, mobileView, optionBoxHeightMin]);
 
   // functions
   const toggleOptionBoxHeight = (e) => {
@@ -189,8 +210,8 @@ export default function OptionBox({
     e.preventDefault();
     e.stopPropagation();
     setAnimIconToggle(true);
-    animateParts();
-    // setOptionBoxHeightMin(!optionBoxHeightMin);
+    // animateParts();
+    setAnimateButton(!animateButton);
   };
   const randomCurrentItemParts = (e, currentItemName, type) => {
     e.preventDefault(); //  is this necessary if it is also being called in handlePartOption function ? Remove from one of them or make conditional in handlePartOption like e.stopPropogation ?
@@ -243,7 +264,7 @@ export default function OptionBox({
       setOptionBoxItemToggle(!optionBoxItemToggle);
       setCurrentItemName(shopItems[itemNo].itemName);
       setCurrentPartName(shopItems[itemNo].parts[0].partName);
-      setPreviousItemSelected(item);
+      setPreviousItemSelected(currentItemSelected);
       setCurrentItemSelected(shopItems[itemNo]);
     }
     popupState.close();
@@ -354,7 +375,7 @@ export default function OptionBox({
                     // color={activeCamAnim ? "info" : "primary"}
                     disabled={activeCamAnim ? true : false}
                   >
-                    {item.itemTitle}
+                    {currentItemSelected.itemTitle}
                   </Button>
                   <Menu
                     {...bindMenu(popupState)}
@@ -598,7 +619,6 @@ export default function OptionBox({
               <div>
                 <SplitButton
                   theme={theme}
-                  images={item.images}
                   currentItemName={currentItemName}
                   randomCurrentItemParts={randomCurrentItemParts}
                 />

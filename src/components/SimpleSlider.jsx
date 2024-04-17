@@ -1,7 +1,7 @@
 import React from "react";
 import Slider from "react-slick";
 
-export default function SimpleSlider({ images, showSlider, setShowSlider }) {
+export default function SimpleSlider({ images }) {
   var settings = {
     dots: true,
     infinite: true,
@@ -10,9 +10,9 @@ export default function SimpleSlider({ images, showSlider, setShowSlider }) {
     accessibility: true,
     fade: true,
     swipeToSlide: false,
-    onInit: () => {
-      console.log("initialized slider");
-    },
+    // onInit: () => {
+    //   // console.log("initialized slider");
+    // },
     // onReInit: () => {
     //   setTimeout(() => {
     //     console.log("showing slider");

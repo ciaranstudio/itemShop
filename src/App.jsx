@@ -70,7 +70,6 @@ function App() {
 
   // useStates
   const [animDist, setAnimDist] = useState(0);
-  const [sceneLoaded, setSceneLoaded] = useState(false);
   const [stagePosY, setStagePosY] = useState(yPosRunLowTarg);
 
   // move these to store:
@@ -78,9 +77,9 @@ function App() {
     useState(unselectedItem);
   const [previousItemSelected, setPreviousItemSelected] =
     useState(unselectedItem);
-  const [mobileView, setMobileView] = useState(false);
+  // const [mobileView, setMobileView] = useState(false);
+  // const [sceneLoaded, setSceneLoaded] = useState(false);
   const [open, setOpen] = useState(false);
-  // const [infoBoxIcon, setInfoBoxIcon] = useState(true);
   const [showPhotos, setShowPhotos] = useState(false);
   const [allPhotos, setAllPhotos] = useState(false);
   const [aboutInfo, setAboutInfo] = useState(false);
@@ -89,13 +88,13 @@ function App() {
   const [showPartOptions, setShowPartOptions] = useState(false);
   const [optionBoxItemChanged, setOptionBoxItemChanged] = useState(false);
   const [optionBoxItemToggle, setOptionBoxItemToggle] = useState(false);
-  const [animToggled, setAnimToggled] = useState(false);
-  const [animActive, setAnimActive] = useState(false);
+  // const [animToggled, setAnimToggled] = useState(false);
+  // const [animActive, setAnimActive] = useState(false);
   const [activeCamPosAnim, setActiveCamPosAnim] = useState(false);
   const [activeCamTargAnim, setActiveCamTargAnim] = useState(false);
   const [activeCamAnim, setActiveCamAnim] = useState(false);
-  const [partsOpen, setPartsOpen] = useState(false);
-  const [animIconToggle, setAnimIconToggle] = useState(false);
+  // const [partsOpen, setPartsOpen] = useState(false);
+  // const [animIconToggle, setAnimIconToggle] = useState(false);
   // move these to store ^
 
   // const currentItemSelected = useOptionStore(
@@ -118,10 +117,13 @@ function App() {
   // );
   // const setCurrentItemName = useOptionStore((state) => state.setCurrentItemName);
 
-  // const mobileView = useOptionStore((state) => state.mobileView);
-  // const setMobileView = useOptionStore((state) => state.setMobileView);
+  const mobileView = useOptionStore((state) => state.mobileView);
+  const setMobileView = useOptionStore((state) => state.setMobileView);
 
-  // const open = useOptionStore((state) => state.mobileView);
+  const sceneLoaded = useOptionStore((state) => state.sceneLoaded);
+  const setSceneLoaded = useOptionStore((state) => state.setSceneLoaded);
+
+  // const open = useOptionStore((state) => state.open);
   // const setOpen = useOptionStore((state) => state.setOpen);
 
   // const showPhotos = useOptionStore((state) => state.showPhotos);
@@ -152,11 +154,11 @@ function App() {
   // );
   // const setOptionBoxItemToggle = useOptionStore((state) => state.setOptionBoxItemToggle);
 
-  // const animToggled = useOptionStore((state) => state.animToggled);
-  // const setAnimToggled = useOptionStore((state) => state.setAnimToggled);
+  const animToggled = useOptionStore((state) => state.animToggled);
+  const setAnimToggled = useOptionStore((state) => state.setAnimToggled);
 
-  // const animActive = useOptionStore((state) => state.animActive);
-  // const setAnimActive = useOptionStore((state) => state.setAnimActive);
+  const animActive = useOptionStore((state) => state.animActive);
+  const setAnimActive = useOptionStore((state) => state.setAnimActive);
 
   // const activeCamPosAnim = useOptionStore((state) => state.activeCamPosAnim);
   // const setActiveCamPosAnim = useOptionStore((state) => state.setActiveCamPosAnim);
@@ -167,11 +169,16 @@ function App() {
   // const activeCamAnim = useOptionStore((state) => state.activeCamAnim);
   // const setActiveCamAnim = useOptionStore((state) => state.setActiveCamAnim);
 
-  // const partsOpen = useOptionStore((state) => state.partsOpen);
-  // const setPartsOpen = useOptionStore((state) => state.setPartsOpen);
+  const partsOpen = useOptionStore((state) => state.partsOpen);
+  const setPartsOpen = useOptionStore((state) => state.setPartsOpen);
 
-  // const animIconToggle = useOptionStore((state) => state.animIconToggle);
-  // const setAnimIconToggle = useOptionStore((state) => state.setAnimIconToggle);
+  const animIconToggle = useOptionStore((state) => state.animIconToggle);
+  const setAnimIconToggle = useOptionStore((state) => state.setAnimIconToggle);
+
+  const animateButton = useOptionStore((state) => state.animateButton);
+  const setAnimateButton = useOptionStore((state) => state.setAnimateButton);
+
+  const getRandomInt = useOptionStore((state) => state.getRandomInt);
 
   // useEffects
   useEffect(() => {
@@ -236,6 +243,13 @@ function App() {
       }
     }
   }, [progress]);
+  // useEffect(() => {
+  //   console.log("animIconToggle (from useEffect in App): ", animIconToggle);
+  //   console.log("animToggled (from useEffect in App): ", animToggled);
+  // }, [animIconToggle, animToggled]);
+  useEffect(() => {
+    if (animIconToggle) animateParts();
+  }, [animateButton]);
 
   // functions
   const { contextSafe } = useGSAP({ scope: container });
@@ -276,6 +290,7 @@ function App() {
         // animating the item's parts away from eachother / opening parts, end of this animation partsOpen = true
         tl.to(animDistRun, {
           delay: animIconToggle ? runDelay - 1 : runDelay,
+          // delay: runDelay,
           duration: runDuration,
           value: animDistRunTarget,
           ease: "easeIn",
@@ -361,9 +376,9 @@ function App() {
       }
     }
   });
-  function getRandomInt(max) {
-    return Math.floor(Math.random() * max);
-  }
+  // function getRandomInt(max) {
+  //   return Math.floor(Math.random() * max);
+  // }
   // actions from store
   const updatePartColor = useOptionStore((state) => state.updatePartColor);
   const updatePartColorName = useOptionStore(
@@ -426,8 +441,8 @@ function App() {
   };
   const randomAllItemsParts = (e) => {
     if (e) {
-      //  is this necessary if it is also being called in handlePartOption function ? Remove from one of them or make conditional in handlePartOption like e.stopPropogation ?
       e.preventDefault();
+      e.stopPropagation();
     }
     let randomAllItemsColors = shopItems.map((item) => {
       let itemColors = item.parts.map((part) => {
@@ -458,49 +473,47 @@ function App() {
         <Suspense fallback={<Placeholder />}>
           <SnipcartProvider>
             <Scene
-              currentItemSelected={currentItemSelected}
-              setCurrentItemSelected={setCurrentItemSelected}
-              previousItemSelected={previousItemSelected}
-              setPreviousItemSelected={setPreviousItemSelected}
+              // currentItemSelected={currentItemSelected}
+              // setCurrentItemSelected={setCurrentItemSelected}
+              // previousItemSelected={previousItemSelected}
+              // setPreviousItemSelected={setPreviousItemSelected}
               animDist={animDist}
-              animActive={animActive}
-              showBackground={showBackground}
-              setShowBackground={setShowBackground}
-              showPartOptions={showPartOptions}
-              setShowPartOptions={setShowPartOptions}
+              // animActive={animActive}
+              // showBackground={showBackground}
+              // setShowBackground={setShowBackground}
+              // showPartOptions={showPartOptions}
+              // setShowPartOptions={setShowPartOptions}
               animateParts={animateParts}
-              animIconToggle={animIconToggle}
-              setAnimIconToggle={setAnimIconToggle}
+              // animIconToggle={animIconToggle}
+              // setAnimIconToggle={setAnimIconToggle}
               handlePartOption={handlePartOption}
-              getRandomInt={getRandomInt}
+              // getRandomInt={getRandomInt}
               randomAllItemsParts={randomAllItemsParts}
-              open={open}
-              setOpen={setOpen}
-              // infoBoxIcon={infoBoxIcon}
-              // setInfoBoxIcon={setInfoBoxIcon}
-              showPhotos={showPhotos}
-              setShowPhotos={setShowPhotos}
-              sceneLoaded={sceneLoaded}
-              allPhotos={allPhotos}
-              setAllPhotos={setAllPhotos}
-              aboutInfo={aboutInfo}
-              setAboutInfo={setAboutInfo}
-              optionBoxHeightMin={optionBoxHeightMin}
-              setOptionBoxHeightMin={setOptionBoxHeightMin}
+              // open={open}
+              // setOpen={setOpen}
+              // showPhotos={showPhotos}
+              // setShowPhotos={setShowPhotos}
+              // sceneLoaded={sceneLoaded}
+              // allPhotos={allPhotos}
+              // setAllPhotos={setAllPhotos}
+              // aboutInfo={aboutInfo}
+              // setAboutInfo={setAboutInfo}
+              // optionBoxHeightMin={optionBoxHeightMin}
+              // setOptionBoxHeightMin={setOptionBoxHeightMin}
               stagePosY={stagePosY}
-              mobileView={mobileView}
-              partsOpen={partsOpen}
+              // mobileView={mobileView}
+              // partsOpen={partsOpen}
               // setPartsOpen={setPartsOpen}
-              optionBoxItemChanged={optionBoxItemChanged}
-              setOptionBoxItemChanged={setOptionBoxItemChanged}
-              optionBoxItemToggle={optionBoxItemToggle}
-              setOptionBoxItemToggle={setOptionBoxItemToggle}
+              // optionBoxItemChanged={optionBoxItemChanged}
+              // setOptionBoxItemChanged={setOptionBoxItemChanged}
+              // optionBoxItemToggle={optionBoxItemToggle}
+              // setOptionBoxItemToggle={setOptionBoxItemToggle}
               // activeCamPosAnim={activeCamPosAnim}
-              setActiveCamPosAnim={setActiveCamPosAnim}
+              // setActiveCamPosAnim={setActiveCamPosAnim}
               // activeCamTargAnim={activeCamTargAnim}
-              setActiveCamTargAnim={setActiveCamTargAnim}
-              activeCamAnim={activeCamAnim}
-              setActiveCamAnim={setActiveCamAnim}
+              // setActiveCamTargAnim={setActiveCamTargAnim}
+              // activeCamAnim={activeCamAnim}
+              // setActiveCamAnim={setActiveCamAnim}
               toastDuration={toastDuration}
               toastFontSize={toastFontSize}
               toastBackground={toastBackground}

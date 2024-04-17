@@ -4,49 +4,47 @@ import InfoBox from "./InfoBox.jsx";
 import PhotoBox from "./PhotoBox.jsx";
 import OptionBox from "./OptionBox.jsx";
 import { createTheme } from "@mui/material";
-// import { useOptionStore } from "../store/useOptionStore.tsx";
+import { useOptionStore } from "../store/useOptionStore.tsx";
 
 export const ArrowIcon = ({
   currentColor,
   currentTexture,
-  currentItemSelected,
-  setCurrentItemSelected,
-  setPreviousItemSelected,
+  // currentItemSelected,
+  // setCurrentItemSelected,
+  // setPreviousItemSelected,
   toggleInfoBox,
-  open,
   togglePhotoBox,
-  showPhotos,
-  currentItemName,
-  setCurrentItemName,
-  currentPartName,
-  setCurrentPartName,
-  showBackground,
-  setShowBackground,
-  showPartOptions,
-  setShowPartOptions,
+  // open,
+  // showPhotos,
+  // currentItemName,
+  // setCurrentItemName,
+  // currentPartName,
+  // setCurrentPartName,
+  // showBackground,
+  // setShowBackground,
+  // showPartOptions,
+  // setShowPartOptions,
   handlePartOption,
-  getRandomInt,
-  allPhotos,
-  aboutInfo,
+  // getRandomInt,
+  // allPhotos,
+  // aboutInfo,
   // setAllPhotos,
   // setAboutInfo,
-  optionBoxHeightMin,
-  setOptionBoxHeightMin,
-  animActive,
+  // optionBoxHeightMin,
+  // setOptionBoxHeightMin,
+  // animActive,
   // activeCamPosAnim,
   // activeCamTargAnim,
-  activeCamAnim,
-  mobileView,
+  // activeCamAnim,
+  // mobileView,
   // optionBoxItemChanged,
-  setOptionBoxItemChanged,
-  optionBoxItemToggle,
-  setOptionBoxItemToggle,
-  showSlider,
-  setShowSlider,
+  // setOptionBoxItemChanged,
+  // optionBoxItemToggle,
+  // setOptionBoxItemToggle,
   openUserEmail,
-  animateParts,
-  animIconToggle,
-  setAnimIconToggle,
+  // animateParts,
+  // animIconToggle,
+  // setAnimIconToggle,
 }) => {
   const { scene, nodes, materials } = useGLTF("./models/arrow.gltf");
   const [annotations, setAnnotations] = useState([]);
@@ -92,65 +90,81 @@ export const ArrowIcon = ({
     // aoMap,
   ] = useTexture(currentTexture);
 
-  // const currentItemSelected = useOptionStore(
-  //   (state) => state.currentItemSelected,
-  // );
-  // const setCurrentItemSelected = useOptionStore((state) => state.setCurrentItemSelected);
+  // const animToggled = useOptionStore((state) => state.animToggled);
 
-  // const previousItemSelected = useOptionStore(
-  //   (state) => state.previousItemSelected,
-  // );
-  // const setPreviousItemSelected = useOptionStore((state) => state.setPreviousItemSelected);
+  const currentItemSelected = useOptionStore(
+    (state) => state.currentItemSelected,
+  );
+  const setCurrentItemSelected = useOptionStore(
+    (state) => state.setCurrentItemSelected,
+  );
 
-  // const currentPartName = useOptionStore(
-  //   (state) => state.currentPartName,
-  // );
-  // const setCurrentPartName = useOptionStore((state) => state.setCurrentPartName);
+  const previousItemSelected = useOptionStore(
+    (state) => state.previousItemSelected,
+  );
+  const setPreviousItemSelected = useOptionStore(
+    (state) => state.setPreviousItemSelected,
+  );
 
-  // const currentItemName = useOptionStore(
-  //   (state) => state.currentItemName,
-  // );
-  // const setCurrentItemName = useOptionStore((state) => state.setCurrentItemName);
+  const currentPartName = useOptionStore((state) => state.currentPartName);
+  const setCurrentPartName = useOptionStore(
+    (state) => state.setCurrentPartName,
+  );
 
-  // const mobileView = useOptionStore((state) => state.mobileView);
-  // const setMobileView = useOptionStore((state) => state.setMobileView);
+  const currentItemName = useOptionStore((state) => state.currentItemName);
+  const setCurrentItemName = useOptionStore(
+    (state) => state.setCurrentItemName,
+  );
 
-  // const open = useOptionStore((state) => state.mobileView);
-  // const setOpen = useOptionStore((state) => state.setOpen);
+  const mobileView = useOptionStore((state) => state.mobileView);
+  const setMobileView = useOptionStore((state) => state.setMobileView);
 
-  // const showPhotos = useOptionStore((state) => state.showPhotos);
-  // const setShowPhotos = useOptionStore((state) => state.setShowPhotos);
+  const open = useOptionStore((state) => state.open);
+  const setOpen = useOptionStore((state) => state.setOpen);
 
-  // const allPhotos = useOptionStore((state) => state.allPhotos);
-  // const setAllPhotos = useOptionStore((state) => state.setAllPhotos);
+  const showPhotos = useOptionStore((state) => state.showPhotos);
+  const setShowPhotos = useOptionStore((state) => state.setShowPhotos);
 
-  // const aboutInfo = useOptionStore((state) => state.aboutInfo);
-  // const setAboutInfo = useOptionStore((state) => state.setAboutInfo);
+  const allPhotos = useOptionStore((state) => state.allPhotos);
+  const setAllPhotos = useOptionStore((state) => state.setAllPhotos);
 
-  // const optionBoxHeightMin = useOptionStore((state) => state.optionBoxHeightMin);
-  // const setOptionBoxHeightMin = useOptionStore((state) => state.setOptionBoxHeightMin);
+  const aboutInfo = useOptionStore((state) => state.aboutInfo);
+  const setAboutInfo = useOptionStore((state) => state.setAboutInfo);
 
-  // const showBackground = useOptionStore((state) => state.showBackground);
-  // const setShowBackground = useOptionStore((state) => state.setShowBackground);
+  const optionBoxHeightMin = useOptionStore(
+    (state) => state.optionBoxHeightMin,
+  );
+  const setOptionBoxHeightMin = useOptionStore(
+    (state) => state.setOptionBoxHeightMin,
+  );
 
-  // const showPartOptions = useOptionStore((state) => state.showPartOptions);
-  // const setShowPartOptions = useOptionStore((state) => state.setShowPartOptions);
+  const showBackground = useOptionStore((state) => state.showBackground);
+  const setShowBackground = useOptionStore((state) => state.setShowBackground);
 
-  // const optionBoxItemChanged = useOptionStore(
-  //   (state) => state.optionBoxItemChanged,
-  // );
-  // const setOptionBoxItemChanged = useOptionStore((state) => state.setOptionBoxItemChanged);
+  const showPartOptions = useOptionStore((state) => state.showPartOptions);
+  const setShowPartOptions = useOptionStore(
+    (state) => state.setShowPartOptions,
+  );
 
-  // const optionBoxItemToggle = useOptionStore(
-  //   (state) => state.optionBoxItemToggle,
-  // );
-  // const setOptionBoxItemToggle = useOptionStore((state) => state.setOptionBoxItemToggle);
+  const optionBoxItemChanged = useOptionStore(
+    (state) => state.optionBoxItemChanged,
+  );
+  const setOptionBoxItemChanged = useOptionStore(
+    (state) => state.setOptionBoxItemChanged,
+  );
+
+  const optionBoxItemToggle = useOptionStore(
+    (state) => state.optionBoxItemToggle,
+  );
+  const setOptionBoxItemToggle = useOptionStore(
+    (state) => state.setOptionBoxItemToggle,
+  );
 
   // const animToggled = useOptionStore((state) => state.animToggled);
   // const setAnimToggled = useOptionStore((state) => state.setAnimToggled);
 
-  // const animActive = useOptionStore((state) => state.animActive);
-  // const setAnimActive = useOptionStore((state) => state.setAnimActive);
+  const animActive = useOptionStore((state) => state.animActive);
+  const setAnimActive = useOptionStore((state) => state.setAnimActive);
 
   // const activeCamPosAnim = useOptionStore((state) => state.activeCamPosAnim);
   // const setActiveCamPosAnim = useOptionStore((state) => state.setActiveCamPosAnim);
@@ -158,14 +172,14 @@ export const ArrowIcon = ({
   // const activeCamTargAnim = useOptionStore((state) => state.activeCamTargAnim);
   // const setActiveCamTargAnim = useOptionStore((state) => state.setActiveCamTargAnim);
 
-  // const activeCamAnim = useOptionStore((state) => state.activeCamAnim);
-  // const setActiveCamAnim = useOptionStore((state) => state.setActiveCamAnim);
+  const activeCamAnim = useOptionStore((state) => state.activeCamAnim);
+  const setActiveCamAnim = useOptionStore((state) => state.setActiveCamAnim);
 
   // const partsOpen = useOptionStore((state) => state.partsOpen);
   // const setPartsOpen = useOptionStore((state) => state.setPartsOpen);
 
-  // const animIconToggle = useOptionStore((state) => state.animIconToggle);
-  // const setAnimIconToggle = useOptionStore((state) => state.setAnimIconToggle);
+  const animIconToggle = useOptionStore((state) => state.animIconToggle);
+  const setAnimIconToggle = useOptionStore((state) => state.setAnimIconToggle);
 
   useLayoutEffect(() => {
     Object.assign(materials.Material, {
@@ -203,61 +217,58 @@ export const ArrowIcon = ({
                 position={[o.position.x, o.position.y, o.position.z]}
               >
                 <InfoBox
-                  item={currentItemSelected}
+                  // item={currentItemSelected}
                   // currentItemSelected={currentItemSelected}
                   toggleInfoBox={toggleInfoBox}
-                  open={open}
+                  // open={open}
                   theme={theme}
-                  aboutInfo={aboutInfo}
-                  mobileView={mobileView}
+                  // aboutInfo={aboutInfo}
+                  // mobileView={mobileView}
                   openUserEmail={openUserEmail}
                 />
-
                 <PhotoBox
-                  item={currentItemSelected}
+                  // item={currentItemSelected}
                   // currentItemSelected={currentItemSelected}
                   togglePhotoBox={togglePhotoBox}
-                  showPhotos={showPhotos}
+                  // showPhotos={showPhotos}
                   theme={theme}
-                  allPhotos={allPhotos}
-                  mobileView={mobileView}
-                  showSlider={showSlider}
-                  setShowSlider={setShowSlider}
+                  // allPhotos={allPhotos}
+                  // mobileView={mobileView}
                 />
 
                 <OptionBox
-                  item={currentItemSelected}
-                  setCurrentItemSelected={setCurrentItemSelected}
-                  setPreviousItemSelected={setPreviousItemSelected}
-                  currentItemName={currentItemName}
-                  setCurrentItemName={setCurrentItemName}
-                  currentPartName={currentPartName}
-                  setCurrentPartName={setCurrentPartName}
-                  showBackground={showBackground}
-                  setShowBackground={setShowBackground}
-                  showPartOptions={showPartOptions}
-                  setShowPartOptions={setShowPartOptions}
+                  // item={currentItemSelected}
+                  // setCurrentItemSelected={setCurrentItemSelected}
+                  // setPreviousItemSelected={setPreviousItemSelected}
+                  // currentItemName={currentItemName}
+                  // setCurrentItemName={setCurrentItemName}
+                  // currentPartName={currentPartName}
+                  // setCurrentPartName={setCurrentPartName}
+                  // showBackground={showBackground}
+                  // setShowBackground={setShowBackground}
+                  // showPartOptions={showPartOptions}
+                  // setShowPartOptions={setShowPartOptions}
+                  // getRandomInt={getRandomInt}
                   handlePartOption={handlePartOption}
-                  getRandomInt={getRandomInt}
                   toggleInfoBox={toggleInfoBox}
                   togglePhotoBox={togglePhotoBox}
                   theme={theme}
                   // allPhotos={allPhotos}
                   // aboutInfo={aboutInfo}
-                  optionBoxHeightMin={optionBoxHeightMin}
-                  setOptionBoxHeightMin={setOptionBoxHeightMin}
-                  animActive={animActive}
+                  // optionBoxHeightMin={optionBoxHeightMin}
+                  // setOptionBoxHeightMin={setOptionBoxHeightMin}
+                  // animActive={animActive}
                   // activeCamPosAnim={activeCamPosAnim}
                   // activeCamTargAnim={activeCamTargAnim}
-                  activeCamAnim={activeCamAnim}
-                  mobileView={mobileView}
+                  // activeCamAnim={activeCamAnim}
+                  // mobileView={mobileView}
                   // optionBoxItemChanged={optionBoxItemChanged}
-                  setOptionBoxItemChanged={setOptionBoxItemChanged}
-                  optionBoxItemToggle={optionBoxItemToggle}
-                  setOptionBoxItemToggle={setOptionBoxItemToggle}
-                  animateParts={animateParts}
-                  animIconToggle={animIconToggle}
-                  setAnimIconToggle={setAnimIconToggle}
+                  // setOptionBoxItemChanged={setOptionBoxItemChanged}
+                  // optionBoxItemToggle={optionBoxItemToggle}
+                  // setOptionBoxItemToggle={setOptionBoxItemToggle}
+                  // animateParts={animateParts}
+                  // animIconToggle={animIconToggle}
+                  // setAnimIconToggle={setAnimIconToggle}
                 />
               </group>,
             );
@@ -281,7 +292,6 @@ export const ArrowIcon = ({
     allPhotos,
     aboutInfo,
     mobileView,
-    // showSlider,
   ]);
 
   useLayoutEffect(() => {

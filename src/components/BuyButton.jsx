@@ -102,7 +102,7 @@ export default function BuyButton({ item, theme }) {
   // const mobileView = useOptionStore((state) => state.mobileView);
   // const setMobileView = useOptionStore((state) => state.setMobileView);
 
-  // const open = useOptionStore((state) => state.mobileView);
+  // const open = useOptionStore((state) => state.open);
   // const setOpen = useOptionStore((state) => state.setOpen);
 
   // const showPhotos = useOptionStore((state) => state.showPhotos);

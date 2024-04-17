@@ -6,23 +6,26 @@ import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import IconButton from "@mui/material/IconButton";
 // import { ReportGmailerrorred } from "@mui/icons-material";
+import { useOptionStore } from "../store/useOptionStore.tsx";
 
 export default function InfoBox({
-  item,
+  // item,
   // currentItemSelected,
   toggleInfoBox,
-  open,
+  // open,
   theme,
-  aboutInfo,
-  mobileView,
+  // aboutInfo,
+  // mobileView,
   openUserEmail,
 }) {
   const aboutText = "About text...";
 
-  // const currentItemSelected = useOptionStore(
-  //   (state) => state.currentItemSelected,
-  // );
-  // const setCurrentItemSelected = useOptionStore((state) => state.setCurrentItemSelected);
+  const currentItemSelected = useOptionStore(
+    (state) => state.currentItemSelected,
+  );
+  const setCurrentItemSelected = useOptionStore(
+    (state) => state.setCurrentItemSelected,
+  );
 
   // const previousItemSelected = useOptionStore(
   //   (state) => state.previousItemSelected,
@@ -39,11 +42,11 @@ export default function InfoBox({
   // );
   // const setCurrentItemName = useOptionStore((state) => state.setCurrentItemName);
 
-  // const mobileView = useOptionStore((state) => state.mobileView);
-  // const setMobileView = useOptionStore((state) => state.setMobileView);
+  const mobileView = useOptionStore((state) => state.mobileView);
+  const setMobileView = useOptionStore((state) => state.setMobileView);
 
-  // const open = useOptionStore((state) => state.mobileView);
-  // const setOpen = useOptionStore((state) => state.setOpen);
+  const open = useOptionStore((state) => state.open);
+  const setOpen = useOptionStore((state) => state.setOpen);
 
   // const showPhotos = useOptionStore((state) => state.showPhotos);
   // const setShowPhotos = useOptionStore((state) => state.setShowPhotos);
@@ -51,8 +54,8 @@ export default function InfoBox({
   // const allPhotos = useOptionStore((state) => state.allPhotos);
   // const setAllPhotos = useOptionStore((state) => state.setAllPhotos);
 
-  // const aboutInfo = useOptionStore((state) => state.aboutInfo);
-  // const setAboutInfo = useOptionStore((state) => state.setAboutInfo);
+  const aboutInfo = useOptionStore((state) => state.aboutInfo);
+  const setAboutInfo = useOptionStore((state) => state.setAboutInfo);
 
   // const optionBoxHeightMin = useOptionStore((state) => state.optionBoxHeightMin);
   // const setOptionBoxHeightMin = useOptionStore((state) => state.setOptionBoxHeightMin);
@@ -159,7 +162,7 @@ export default function InfoBox({
               sx={{ fontFamily: "var(--leva-fonts-mono)" }}
               color="primary"
             >
-              {aboutInfo ? "About" : item.itemTitle}
+              {aboutInfo ? "About" : currentItemSelected.itemTitle}
             </Typography>
           </div>
           <div id="description">
@@ -168,7 +171,7 @@ export default function InfoBox({
               sx={{ fontFamily: "var(--leva-fonts-mono)" }}
               color="primary"
             >
-              {aboutInfo ? aboutText : item.itemLongDescription}
+              {aboutInfo ? aboutText : currentItemSelected.itemLongDescription}
             </Typography>
           </div>
           <div
@@ -185,7 +188,7 @@ export default function InfoBox({
                 // border: aboutInfo ? "0px solid lightGrey" : "0",
               }}
             >
-              {aboutInfo ? "" : item.size}
+              {aboutInfo ? "" : currentItemSelected.size}
             </Typography>
           </div>
           <IconButton

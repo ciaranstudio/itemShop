@@ -7,21 +7,22 @@ import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import IconButton from "@mui/material/IconButton";
 import SimpleSlider from "./SimpleSlider.jsx";
 import { allImages } from "../data/objects.jsx";
+import { useOptionStore } from "../store/useOptionStore.tsx";
 
 export default function PhotoBox({
-  item,
+  // item,
   togglePhotoBox,
-  showPhotos,
+  // showPhotos,
   theme,
-  allPhotos,
-  mobileView,
-  showSlider,
-  setShowSlider,
+  // allPhotos,
+  // mobileView,
 }) {
-  // const currentItemSelected = useOptionStore(
-  //   (state) => state.currentItemSelected,
-  // );
-  // const setCurrentItemSelected = useOptionStore((state) => state.setCurrentItemSelected);
+  const currentItemSelected = useOptionStore(
+    (state) => state.currentItemSelected,
+  );
+  const setCurrentItemSelected = useOptionStore(
+    (state) => state.setCurrentItemSelected,
+  );
 
   // const previousItemSelected = useOptionStore(
   //   (state) => state.previousItemSelected,
@@ -38,17 +39,17 @@ export default function PhotoBox({
   // );
   // const setCurrentItemName = useOptionStore((state) => state.setCurrentItemName);
 
-  // const mobileView = useOptionStore((state) => state.mobileView);
-  // const setMobileView = useOptionStore((state) => state.setMobileView);
+  const mobileView = useOptionStore((state) => state.mobileView);
+  const setMobileView = useOptionStore((state) => state.setMobileView);
 
-  // const open = useOptionStore((state) => state.mobileView);
+  // const open = useOptionStore((state) => state.open);
   // const setOpen = useOptionStore((state) => state.setOpen);
 
-  // const showPhotos = useOptionStore((state) => state.showPhotos);
-  // const setShowPhotos = useOptionStore((state) => state.setShowPhotos);
+  const showPhotos = useOptionStore((state) => state.showPhotos);
+  const setShowPhotos = useOptionStore((state) => state.setShowPhotos);
 
-  // const allPhotos = useOptionStore((state) => state.allPhotos);
-  // const setAllPhotos = useOptionStore((state) => state.setAllPhotos);
+  const allPhotos = useOptionStore((state) => state.allPhotos);
+  const setAllPhotos = useOptionStore((state) => state.setAllPhotos);
 
   // const aboutInfo = useOptionStore((state) => state.aboutInfo);
   // const setAboutInfo = useOptionStore((state) => state.setAboutInfo);
@@ -156,13 +157,11 @@ export default function PhotoBox({
               sx={{ fontFamily: "var(--leva-fonts-mono)" }}
               color="primary"
             >
-              {allPhotos ? "Images" : item.itemTitle}
+              {allPhotos ? "Images" : currentItemSelected.itemTitle}
             </Typography>
           </div>
           <SimpleSlider
-            images={allPhotos ? allImages : item.images}
-            showSlider={showSlider}
-            setShowSlider={setShowSlider}
+            images={allPhotos ? allImages : currentItemSelected.images}
           />
         </div>
       </ThemeProvider>
