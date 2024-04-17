@@ -24,20 +24,80 @@ import { useOptionStore } from "./store/useOptionStore.tsx";
 import toast, { Toaster } from "react-hot-toast";
 
 function App() {
-  const [mobileView, setMobileView] = useState(false);
+  // constants
   const toastDuration = 4000;
   const toastFontSize = "0.9rem";
   const toastBackground = "lightGrey";
   const toastColor = "#212121";
-  // const iOS =
-  //   typeof navigator !== "undefined" &&
-  //   /iPad|iPhone|iPod/.test(navigator.userAgent);
 
-  // optionBoxItemChanged
-  // setOptionBoxItemChanged
-  // optionBoxItemChanged
-  // setOptionBoxItemChanged
+  // animation constants for position Y (up and down)
+  const yPosRunHighTarg = 0.015;
+  const yPosRunLowTarg = -0.075;
+  const stagePosYRunTarget = yPosRunHighTarg;
+  const stagePosYReturnTarget = yPosRunLowTarg;
+  const dropDelay = 0.15;
+  const dropDuration = 0.75;
+  const raiseDelay = 0.15;
+  const raiseDuration = 0.75;
+  // animation constants for exploding view animation / distance of parts from origin position (opening and closing exploding view)
+  const animDistRunTarget = 0.15;
+  const animDistReturnTarget = 0;
+  const runDelay = 1.2;
+  const runDuration = 0.9;
+  const returnDelay = 0.15;
+  const returnDuration = 0.9;
+  // loading bar element for left to right on animation on app load
+  const loadingBarElement = document.querySelector(".loading-bar");
+  const toastId = toast;
 
+  // animation value objects for object raise/lower animation and exploding view animation
+  const animDistRun = {
+    value: animDistReturnTarget,
+  };
+  const animDistReturn = {
+    value: animDistRunTarget,
+  };
+  const stagePosYRun = {
+    value: yPosRunLowTarg,
+  };
+  const stagePosYReturn = {
+    value: yPosRunHighTarg,
+  };
+
+  // useRefs
+  const container = useRef();
+
+  // loading progress hook
+  const { active, progress, errors, item, loaded, total } = useProgress();
+
+  // useStates
+  const [mobileView, setMobileView] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [infoBoxIcon, setInfoBoxIcon] = useState(true);
+  const [showPhotos, setShowPhotos] = useState(false);
+  const [allPhotos, setAllPhotos] = useState(false);
+  const [aboutInfo, setAboutInfo] = useState(false);
+  const [optionBoxHeightMin, setOptionBoxHeightMin] = useState(false);
+  const [showBackground, setShowBackground] = useState(true);
+  const [showPartOptions, setShowPartOptions] = useState(false);
+  const [currentItemSelected, setCurrentItemSelected] =
+    useState(unselectedItem);
+  const [previousItemSelected, setPreviousItemSelected] =
+    useState(unselectedItem);
+  const [optionBoxItemChanged, setOptionBoxItemChanged] = useState(false);
+  const [optionBoxItemToggle, setOptionBoxItemToggle] = useState(false);
+  const [animDist, setAnimDist] = useState(0);
+  const [animToggled, setAnimToggled] = useState(false);
+  const [animActive, setAnimActive] = useState(false);
+  const [activeCamPosAnim, setActiveCamPosAnim] = useState(false);
+  const [activeCamTargAnim, setActiveCamTargAnim] = useState(false);
+  const [activeCamAnim, setActiveCamAnim] = useState(false);
+  const [partsOpen, setPartsOpen] = useState(false);
+  const [stagePosY, setStagePosY] = useState(yPosRunLowTarg);
+  const [animIconToggle, setAnimIconToggle] = useState(false);
+  const [sceneLoaded, setSceneLoaded] = useState(false);
+
+  // useEffects
   useEffect(() => {
     // Check if using a touch control device
     if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
@@ -47,90 +107,62 @@ function App() {
       // console.log("not mobile view");
       setMobileView(false);
     }
-  }, []);
-
-  const [open, setOpen] = useState(false);
-  const [infoBoxIcon, setInfoBoxIcon] = useState(true);
-  // const [showLongDesc, setShowLongDesc] = useState(true);
-  const [showPhotos, setShowPhotos] = useState(false);
-  const [allPhotos, setAllPhotos] = useState(false);
-  const [aboutInfo, setAboutInfo] = useState(false);
-  const [optionBoxHeightMin, setOptionBoxHeightMin] = useState(false);
-
-  const [showBackground, setShowBackground] = useState(true);
-  const [showPartOptions, setShowPartOptions] = useState(false);
-
-  const [currentItemSelected, setCurrentItemSelected] =
-    useState(unselectedItem);
-  const [previousItemSelected, setPreviousItemSelected] =
-    useState(unselectedItem);
-
-  // use this to trigger gsap camera position animation to zoom to new target when changing while in !showBackground view,
-  // change select from OptionBox menu (like old title as select box format from March)
-  // need to call this after the currentItemSelected is swapped in state
-  // after setCurrentItemSelected call to change selected object/item
-  const [optionBoxItemChanged, setOptionBoxItemChanged] = useState(false);
-  const [optionBoxItemToggle, setOptionBoxItemToggle] = useState(false);
-
-  // useEffect(() => {
-  //   console.log("optionBoxItemChanged: ", optionBoxItemChanged);
-  // }, [optionBoxItemChanged]);
-
-  useEffect(() => {
     window.LoadSnipcart();
   }, []);
+  // const iOS =
+  //   typeof navigator !== "undefined" &&
+  //   /iPad|iPhone|iPod/.test(navigator.userAgent);
+  // useEffect(() => {
+  //   window.LoadSnipcart();
+  // }, []);
+  useEffect(() => {
+    toast.loading("Loading...", {
+      id: toastId,
+      position: "top-left",
+      style: {
+        fontSize: toastFontSize,
+        background: toastBackground,
+        color: toastColor,
+        fontFamily: "var(--leva-fonts-mono)",
+        borderTop: "0.1rem solid #e0e0e0,",
+      },
+    });
+  }, []);
+  useEffect(() => {
+    // loadingBarElement.style.transform = `scaleX(${progress / 100})`;
+    loadingBarElement.style.transform = `scaleX(${loaded / 149})`;
+    // console.log("progress: ", progress);
+    if (loaded >= 143) {
+      if (loaded / 149 === 1 || progress === 100) {
+        setSceneLoaded(true);
+        window.setTimeout(() => {
+          // update loadingBarElement
+          loadingBarElement.classList.add("ended");
+          loadingBarElement.style.transform = "";
+          toast.success("All set!", {
+            id: toastId,
+            duration: toastDuration - 2000,
+            // position: mobileView ? "top-right" : "top-center",
+            position: "top-left",
+            style: {
+              fontSize: toastFontSize,
+              background: toastBackground,
+              color: toastColor,
+              fontFamily: "var(--leva-fonts-mono)",
+              borderTop: "0.1rem solid #e0e0e0,",
+            },
+          });
+        }, 50); // was 500
+      }
+    }
+  }, [progress]);
+  // useEffect(() => {
+  //   console.log("loaded: ", loaded);
+  //   console.log("total: ", total);
+  // }, [loaded, total]);
 
-  const container = useRef();
-
-  const [animDist, setAnimDist] = useState(0);
-  const animDistRunTarget = 0.15;
-  const animDistReturnTarget = 0;
-
-  const animDistRun = {
-    value: animDistReturnTarget,
-  };
-  const animDistReturn = {
-    value: animDistRunTarget,
-  };
-
-  const dropDelay = 0.15;
-  const dropDuration = 0.75;
-  const raiseDelay = 0.15;
-  const raiseDuration = 0.75;
-
-  const runDelay = 1.2;
-  const runDuration = 0.9;
-  const returnDelay = 0.15;
-  const returnDuration = 0.9;
-
-  // floor y position
-  const yPosRunHighTarg = 0.015;
-  const yPosRunLowTarg = -0.075;
-
-  const stagePosYRunTarget = yPosRunHighTarg;
-  const stagePosYReturnTarget = yPosRunLowTarg;
-
-  const stagePosYRun = {
-    value: yPosRunLowTarg,
-  };
-  const stagePosYReturn = {
-    value: yPosRunHighTarg,
-  };
-
-  const [animToggled, setAnimToggled] = useState(false);
-  const [animActive, setAnimActive] = useState(false);
-  const [activeCamPosAnim, setActiveCamPosAnim] = useState(false);
-  const [activeCamTargAnim, setActiveCamTargAnim] = useState(false);
-  const [activeCamAnim, setActiveCamAnim] = useState(false);
-
-  const [partsOpen, setPartsOpen] = useState(false);
-  const [stagePosY, setStagePosY] = useState(yPosRunLowTarg);
-
-  const [animIconToggle, setAnimIconToggle] = useState(false);
-
+  // functions
   const { contextSafe } = useGSAP({ scope: container });
-
-  // need to disable zoom while this animation is happening on way in / to showBackground false / parts opened (maybe not on way out / back to showBackground normal)
   const animateParts = contextSafe(() => {
     if (!animActive) {
       // if (orbitRef.current) orbitRef.current.autoRotate = false;
@@ -257,7 +289,6 @@ function App() {
   function getRandomInt(max) {
     return Math.floor(Math.random() * max);
   }
-
   const updatePartColor = useOptionStore((state) => state.updatePartColor);
   const updatePartColorName = useOptionStore(
     (state) => state.updatePartColorName,
@@ -266,7 +297,6 @@ function App() {
   const calculateItemPrice = useOptionStore(
     (state) => state.calculateItemPrice,
   );
-
   const handlePartOption = (e, itemName, partName, color, stopPropogation) => {
     if (e) {
       e.preventDefault();
@@ -317,7 +347,6 @@ function App() {
     }
     calculateItemPrice(itemName);
   };
-
   const randomAllItemsParts = (e) => {
     if (e) {
       //  is this necessary if it is also being called in handlePartOption function ? Remove from one of them or make conditional in handlePartOption like e.stopPropogation ?
@@ -333,62 +362,6 @@ function App() {
     });
     // console.log("random colors generated list: ", randomAllItemsColors);
   };
-
-  const [sceneLoaded, setSceneLoaded] = useState(false);
-  const loadingBarElement = document.querySelector(".loading-bar");
-  const { active, progress, errors, item, loaded, total } = useProgress();
-
-  const toastId = toast;
-  useEffect(() => {
-    toast.loading("Loading...", {
-      id: toastId,
-      position: "top-left",
-      style: {
-        fontSize: toastFontSize,
-        background: toastBackground,
-        color: toastColor,
-        fontFamily: "var(--leva-fonts-mono)",
-        borderTop: "0.1rem solid #e0e0e0,",
-      },
-    });
-  }, []);
-  // toastDuration
-  // toastFontSize
-  // toastBackground
-  // toastColor
-  useEffect(() => {
-    // loadingBarElement.style.transform = `scaleX(${progress / 100})`;
-    loadingBarElement.style.transform = `scaleX(${loaded / 149})`;
-    // console.log("progress: ", progress);
-    if (loaded >= 143) {
-      if (loaded / 149 === 1 || progress === 100) {
-        setSceneLoaded(true);
-        window.setTimeout(() => {
-          // update loadingBarElement
-          loadingBarElement.classList.add("ended");
-          loadingBarElement.style.transform = "";
-          toast.success("All set!", {
-            id: toastId,
-            duration: toastDuration - 2000,
-            // position: mobileView ? "top-right" : "top-center",
-            position: "top-left",
-            style: {
-              fontSize: toastFontSize,
-              background: toastBackground,
-              color: toastColor,
-              fontFamily: "var(--leva-fonts-mono)",
-              borderTop: "0.1rem solid #e0e0e0,",
-            },
-          });
-        }, 50); // was 500
-      }
-    }
-  }, [progress]);
-
-  // useEffect(() => {
-  //   console.log("loaded: ", loaded);
-  //   console.log("total: ", total);
-  // }, [loaded, total]);
 
   return (
     <>

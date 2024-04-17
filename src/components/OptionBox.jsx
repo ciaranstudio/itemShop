@@ -216,7 +216,7 @@ export default function OptionBox({
         <div
           className="annotation-wrapper"
           style={{
-            paddingTop: optionBoxHeightMin ? "2.75rem" : "0rem",
+            paddingTop: optionBoxHeightMin ? "3rem" : "0rem",
             marginTop: optionBoxHeightMin ? "1.25rem" : "0rem",
           }}
         >

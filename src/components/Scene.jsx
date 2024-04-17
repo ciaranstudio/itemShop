@@ -78,18 +78,108 @@ export default function Scene({
   toastBackground,
   toastColor,
 }) {
-  const { height, width } = useWindowDimensions();
-  // useEffect(() => {
-  //   // console.log("height: ", height);
-  //   // console.log("width: ", width);
-  // }, [height, width]);
+  // textures
+  const [
+    colorMapWhiteStain,
+    // displacementMap,
+    normalMapWhiteStain,
+    roughnessWhiteMapStain,
+    metalnessWhiteMapStain,
+    // aoMap,
+  ] = useTexture(textures.whiteTexture);
+  const [
+    colorMapNaturalStain,
+    // displacementMap,
+    normalMapNaturalStain,
+    roughnessNaturalMapStain,
+    metalnessNaturalMapStain,
+    // aoMap,
+  ] = useTexture(textures.naturalTexture);
+  const [
+    colorMapBlackStain,
+    // displacementMap,
+    normalMapBlackStain,
+    roughnessBlackMapStain,
+    metalnessBlackMapStain,
+    // aoMap,
+  ] = useTexture(textures.blackTexture);
+  const [
+    colorMapAllBlackStain,
+    // displacementMap,
+    normalMapAllBlackStain,
+    roughnessAllBlackMapStain,
+    metalnessAllBlackMapStain,
+    // aoMap,
+  ] = useTexture(textures.allBlackTexture);
+  const [
+    colorMapPainted,
+    // displacementMapPainted,
+    normalMapPainted,
+    roughnessMapPainted,
+    metalnessMapPainted,
+    // aoMapPainted,
+  ] = useTexture(textures.paintedTexture);
 
+  // constants
+  const dirLightXPosition = 2.5; // 2.5
+  const dirLightYPosition = 3.6; // 3.6
+  const dirLightZPosition = -3; // -3
+  const dirLightIntensity = 1.5;
+  const dirLightNormBias = 0.04; // 0.04 previously, adjusted to reduce shadow acne on Block inner shelf cavities
+  const dirLightMapSize = 512;
+  const dirLightCamNear = -5;
+  const dirLightCamFar = 8;
+  const dirLightCamLeft = -5;
+  const dirLightCamRight = 5;
+  const dirLightCamBottom = -5;
+  const dirLightCamTop = 5;
+  const ambLightIntensity = 1;
+  const arrowY = -0.25; // -0.25
+  const orbitPolarShowBgdShelf = Math.PI / 2 + Math.PI / 16;
+  const orbitPolarShowBgdNotShelf = Math.PI / 2 - Math.PI / 9.06;
+
+  // useRefs
+  const dirLightA = useRef();
+  const orbitRef = useRef();
+  // const shadowCameraRef = useRef();
+
+  // helper hooks
+  const { height, width } = useWindowDimensions();
+  // useHelper(shadowCameraRef, CameraHelper, 1, "lightBlue");
+
+  // snipcart hook values
   const snipcart = useSnipcart();
   const { cart = {} } = useSnipcart();
   const { subtotal = "0.00" } = cart;
+  // const unsubscribe = window.Snipcart.events.on("item.removed", (cartItem) => {
+  //   console.log("item removed: ", cartItem);
+  // });
+
+  // useStates
   const [snipcartLoaded, setSnipcartLoaded] = useState(false);
   const [cartCount, setCartCount] = useState(0);
+  const [showSlider, setShowSlider] = useState(false);
+  const [overlayAlpha, setOverlayAlpha] = useState(1);
+  // const [initialLoad, setInitialLoad] = useState(false);
+  const [controlsDragging, setControlsDragging] = useState(false);
+  const [hovered, hover] = useState(false);
+  useCursor(hovered);
+  const [currentPartName, setCurrentPartName] = useState("top");
+  const [currentItemName, setCurrentItemName] = useState("gramps");
+  const [count, setCount] = useState(0);
+  // const [randomTime, setRandomTime] = useState(0);
+  const [prevStartAzimuthAng, setPrevStartAzimuthAng] = useState(0);
+  const [prevEndAzimuthAng, setPrevEndAzimuthAng] = useState(0);
+  const [startAzimuthAng, setStartAzimuthAng] = useState(0);
+  const [endAzimuthAng, setEndAzimuthAng] = useState(0);
+  const [isTouching, setIsTouching] = useState(false);
+  const [dragTime, setDragTime] = useState(0);
+  const [brokenCount, setBrokenCount] = useState(0);
+  // const [azCheckCount, setAzCheckCount] = useState(0);
+  // const [azCheckAng, setAzCheckAng] = useState(0);
+  const [targetVec, setTargetVec] = useState(new THREE.Vector3());
 
+  // useEffects
   useEffect(() => {
     // console.log("snipcartLoaded: ", snipcartLoaded);
     // console.log("useSnipcart: ", snipcart);
@@ -163,11 +253,17 @@ export default function Scene({
       setSnipcartLoaded(false);
     };
   }, [window.Snipcart]);
-
-  // const unsubscribe = window.Snipcart.events.on("item.removed", (cartItem) => {
-  //   console.log("item removed: ", cartItem);
-  // });
-
+  useEffect(() => {
+    if (snipcartLoaded) {
+      if (cart) {
+        if (cart.items) {
+          setCartCount(cart.items.count);
+          // document.getElementById("footer").innerHTML =
+          //   `snipcartLoaded = ${snipcartLoaded}, cartCount = ${cart.items.count}, cart = ${cart}`;
+        }
+      }
+    }
+  }, [snipcartLoaded, cart, controlsDragging]);
   // useEffect(() => {
   //   if (snipcartLoaded) {
   //     // console.log("snipcartLoaded: ", snipcartLoaded);
@@ -180,86 +276,6 @@ export default function Scene({
   //     }
   //   }
   // }, [snipcartLoaded]);
-
-  function handleCartClick() {
-    if (snipcartLoaded) {
-      window.Snipcart.api.theme.cart.open();
-    }
-  }
-
-  const [
-    colorMapWhiteStain,
-    // displacementMap,
-    normalMapWhiteStain,
-    roughnessWhiteMapStain,
-    metalnessWhiteMapStain,
-    // aoMap,
-  ] = useTexture(textures.whiteTexture);
-
-  const [
-    colorMapNaturalStain,
-    // displacementMap,
-    normalMapNaturalStain,
-    roughnessNaturalMapStain,
-    metalnessNaturalMapStain,
-    // aoMap,
-  ] = useTexture(textures.naturalTexture);
-
-  const [
-    colorMapBlackStain,
-    // displacementMap,
-    normalMapBlackStain,
-    roughnessBlackMapStain,
-    metalnessBlackMapStain,
-    // aoMap,
-  ] = useTexture(textures.blackTexture);
-
-  const [
-    colorMapAllBlackStain,
-    // displacementMap,
-    normalMapAllBlackStain,
-    roughnessAllBlackMapStain,
-    metalnessAllBlackMapStain,
-    // aoMap,
-  ] = useTexture(textures.allBlackTexture);
-
-  const [
-    colorMapPainted,
-    // displacementMapPainted,
-    normalMapPainted,
-    roughnessMapPainted,
-    metalnessMapPainted,
-    // aoMapPainted,
-  ] = useTexture(textures.paintedTexture);
-
-  const [showSlider, setShowSlider] = useState(false);
-  const dirLightA = useRef();
-
-  const overlayOpacity = { value: 1 };
-  const [overlayAlpha, setOverlayAlpha] = useState(1);
-  const overlayGeometry = new THREE.PlaneGeometry(2, 2, 1, 1);
-  // gl_FragColor = vec4(0.153, 0.153, 0.102, uAlpha); // (previous gl_FragColor)
-  const overlayMaterial = new THREE.ShaderMaterial({
-    transparent: true,
-    uniforms: {
-      uAlpha: { value: overlayAlpha },
-    },
-    vertexShader: `
-        void main()
-        {
-            gl_Position = vec4(position, 1.0);
-        }
-    `,
-    fragmentShader: `
-        uniform float uAlpha;
-
-        void main()
-        {
-            gl_FragColor = vec4(0.67843137126, 0.72941176332, 0.72941176332, uAlpha);
-        }
-    `,
-  });
-
   useEffect(() => {
     if (sceneLoaded) {
       window.setTimeout(() => {
@@ -279,22 +295,10 @@ export default function Scene({
     }
     // console.log(overlayGeometry);
   }, [sceneLoaded]);
-
-  // const [initialLoad, setInitialLoad] = useState(false);
-  const [controlsDragging, setControlsDragging] = useState(false);
-
-  const [hovered, hover] = useState(false);
-  useCursor(hovered);
-
-  const [currentPartName, setCurrentPartName] = useState("top");
-  const [currentItemName, setCurrentItemName] = useState("gramps");
-
   // is this necessary with the setCount / setInterval call in count useEffect below? testing without it
   // useEffect(() => {
   //   randomAllItemsParts(false);
   // }, []);
-
-  const [count, setCount] = useState(0);
   useEffect(() => {
     if (currentItemSelected === unselectedItem) {
       randomAllItemsParts(false);
@@ -460,16 +464,6 @@ export default function Scene({
     //Clearing the interval
     return () => clearInterval(interval);
   }, [count]);
-
-  // const [randomTime, setRandomTime] = useState(0);
-  // useFrame((state, delta) => {
-  //   setRandomTime(randomTime + delta);
-  //   console.log(randomTime);
-  //   if (Math.floor(randomTime) % 2 === 0) {
-  //     if (currentItemSelected === unselectedItem) randomAllItemsParts(false);
-  //   }
-  // });
-
   useEffect(() => {
     if (!showBackground && !showPartOptions) {
       // console.log(
@@ -521,120 +515,6 @@ export default function Scene({
       });
     }
   }, [showBackground]);
-
-  const handleClick = (e) => {
-    e.stopPropagation();
-    const { eventObject } = e;
-    // console.log(eventObject.position);
-    if (showBackground) {
-      let tempObjectPosition = eventObject.position;
-      let positionMatch = (element) =>
-        element.position.x === tempObjectPosition.x &&
-        element.position.y === tempObjectPosition.y &&
-        element.position.z === tempObjectPosition.z;
-      if (positionMatch) {
-        // console.log(
-        //   "shopItems.find(positionMatch): ",
-        //   shopItems.find(positionMatch),
-        // );
-        let matchedItem = shopItems.find(positionMatch);
-        // console.log("matchedItem from handleClick function: ", matchedItem);
-        if (currentItemSelected === unselectedItem) {
-          randomAllItemsParts(false);
-        }
-        setPreviousItemSelected(currentItemSelected);
-        setCurrentItemSelected(matchedItem);
-      }
-    }
-  };
-
-  const handleItemPartClick = (e, part) => {
-    // e.preventDefault; // not necessary
-    // e.stopPropagation(); // disables item part / item click connecting to entire item mesh/group
-    // console.log(part.itemName, part.partName, " clicked");
-    if (!showBackground) {
-      if (!showPhotos && !open) setShowPartOptions(true);
-      if (part.itemName === currentItemSelected.itemName) {
-        setCurrentItemName(part.itemName);
-        setCurrentPartName(part.partName);
-      }
-    } else {
-      setCurrentItemName(part.itemName);
-      setCurrentPartName(part.partName);
-    }
-    // setCurrentItemName(part.itemName);
-    // setCurrentPartName(part.partName);
-    // if (!showBackground) {
-    //   if (!showPhotos && !open) setShowPartOptions(true);
-    // }
-  };
-
-  const handleDoubleClick = (e) => {
-    e.stopPropagation();
-    // if (currentItemSelected === unselectedItem) {
-    //   setCurrentItemSelected(objects.gramps);
-    // }
-    if (showBackground) {
-      if (!animActive) {
-        setOpen(false);
-        setShowPhotos(false);
-        setShowBackground(!showBackground);
-        // animateParts();
-      }
-    }
-  };
-
-  const handleArrowIconClick = (e) => {
-    e.stopPropagation();
-    toast.dismiss();
-    if (currentItemSelected === unselectedItem) {
-      setCurrentItemSelected(objects.gramps);
-      setTimeout(() => {
-        setOpen(false);
-        setShowPhotos(false);
-        setShowBackground(!showBackground);
-      }, "750");
-    } else {
-      if (!animActive) {
-        setOpen(false);
-        setShowPhotos(false);
-        setShowBackground(!showBackground);
-      }
-    }
-  };
-
-  // const handleOffClick = (e) => {
-  //   e.stopPropagation();
-  //   // console.log("onPointerMissed click");
-  // };
-
-  const orbitRef = useRef();
-  // const shadowCameraRef = useRef();
-  // useHelper(shadowCameraRef, CameraHelper, 1, "lightBlue");
-
-  // reload window if orbit controls are broken by unusual gestures / touch behavior on mobile devices (especially iOS)
-  const [prevStartAzimuthAng, setPrevStartAzimuthAng] = useState(0);
-  const [prevEndAzimuthAng, setPrevEndAzimuthAng] = useState(0);
-  const [startAzimuthAng, setStartAzimuthAng] = useState(0);
-  const [endAzimuthAng, setEndAzimuthAng] = useState(0);
-  const [isTouching, setIsTouching] = useState(false);
-  const [dragTime, setDragTime] = useState(0);
-  const [brokenCount, setBrokenCount] = useState(0);
-  // const [azCheckCount, setAzCheckCount] = useState(0);
-  // const [azCheckAng, setAzCheckAng] = useState(0);
-
-  useEffect(() => {
-    if (snipcartLoaded) {
-      if (cart) {
-        if (cart.items) {
-          setCartCount(cart.items.count);
-          // document.getElementById("footer").innerHTML =
-          //   `snipcartLoaded = ${snipcartLoaded}, cartCount = ${cart.items.count}, cart = ${cart}`;
-        }
-      }
-    }
-  }, [snipcartLoaded, cart, controlsDragging]);
-
   useEffect(() => {
     // prevent swipe back navigation gesture on iOS mobile devices
     const element = document.querySelector("canvas");
@@ -756,7 +636,10 @@ export default function Scene({
       }
     };
   }, []);
-
+  // useEffect(() => {
+  //   // console.log("height: ", height);
+  //   // console.log("width: ", width);
+  // }, [height, width]);
   // useEffect(() => {
   //   if (isTouching && !controlsDragging) {
   //     if (orbitRef.current) {
@@ -764,29 +647,6 @@ export default function Scene({
   //     }
   //   }
   // }, [isTouching]);
-
-  useFrame((state, delta) => {
-    if (controlsDragging) {
-      setDragTime(dragTime + delta);
-      // console.log("controls dragging for ", dragTime);
-    }
-    // if (isTouching && !controlsDragging) {
-    //   document.getElementById("footer").innerHTML =
-    //     " isTouching = true & controlsDragging = false ";
-    //   if (orbitRef.current) {
-    //     let checkAzAng = orbitRef.current.getAzimuthalAngle();
-    //     if (checkAzAng === azCheckAng || checkAzAng === endAzimuthAng) {
-    //       // document.getElementById("footer").innerHTML =
-    //       //   " controls aren't changing even though touches are registered ";
-    //       document.getElementById("footer").innerHTML +=
-    //         " useFrame azCheck: matched azimuth angles ";
-    //       setAzCheckCount(azCheckCount + 1);
-    //       // window.location.reload();
-    //     }
-    //   }
-    // }
-  });
-
   // useEffect(() => {
   //   if (azCheckCount === 1) {
   //     document.getElementById("footer").innerHTML =
@@ -794,8 +654,6 @@ export default function Scene({
   //     window.location.reload();
   //   }
   // }, [azCheckCount]);
-
-  const allEqual = (arr) => arr.every((v) => v === arr[0]);
   useEffect(() => {
     if (controlsDragging) {
       setPrevEndAzimuthAng(endAzimuthAng);
@@ -841,7 +699,6 @@ export default function Scene({
         //   ` dragTime: ${dragTime} `;
         // document.getElementById("footer").innerHTML +=
         //   ` prevStart: ${prevStartAzString} prevEnd: ${prevEndAzString} `;
-
         if (allEqual(azArr) && dragTime > 0.5 && brokenCount < 4) {
           // document.getElementById("footer").innerHTML +=
           //   "might need to reset page, controls could be broken ";
@@ -850,7 +707,6 @@ export default function Scene({
       }
     }
   }, [controlsDragging]);
-
   useEffect(() => {
     if (brokenCount === 4) {
       // document.getElementById("footer").innerHTML +=
@@ -858,8 +714,6 @@ export default function Scene({
       window.location.reload();
     }
   }, [brokenCount]);
-
-  // commented out for test on normal use but 04/05/2024
   useEffect(() => {
     if (isTouching && !controlsDragging) {
       // document.getElementById("footer").innerHTML = " isTouching = true ";
@@ -940,18 +794,287 @@ export default function Scene({
       }
     }
   }, [isTouching]);
+  // useEffect(() => {
+  //   if (aboutInfo && open) {
+  //     setOpen(false);
+  //     setTimeout(() => {
+  //       setOpen(true);
+  //       setShowPhotos(false);
+  //       setShowPartOptions(false);
+  //     }, "250");
+  //   }
+  // }, [aboutInfo]);
+  // useEffect(() => {
+  //   if (allPhotos && showPhotos) {
+  //     setShowPhotos(false);
+  //   }
+  // }, [allPhotos]);
 
-  // activeCamPosAnim
-  // setActiveCamPosAnim
-  // activeCamTargAnim
-  // setActiveCamTargAnim
-  // activeCamAnim
-  // setActiveCamAnim
+  // animation constants for loading overlay opacity animation
+  const overlayGeometry = new THREE.PlaneGeometry(2, 2, 1, 1);
+  // gl_FragColor = vec4(0.153, 0.153, 0.102, uAlpha); // (previous gl_FragColor)
+  const overlayMaterial = new THREE.ShaderMaterial({
+    transparent: true,
+    uniforms: {
+      uAlpha: { value: overlayAlpha },
+    },
+    vertexShader: `
+        void main()
+        {
+            gl_Position = vec4(position, 1.0);
+        }
+    `,
+    fragmentShader: `
+        uniform float uAlpha;
 
+        void main()
+        {
+            gl_FragColor = vec4(0.67843137126, 0.72941176332, 0.72941176332, uAlpha);
+        }
+    `,
+  });
+
+  // animation objects for loading overlay opacity animation
+  const overlayOpacity = { value: 1 };
+
+  // animation constants for camera target animation
   const camTargAnimDelay = 0.1;
   const camTargAnimDuration = 1;
-  // animation camera target on item click
-  const controlsTargetVec = new THREE.Vector3();
+  const controlsTargetVec = new THREE.Vector3(); // animation camera target on item click
+
+  // animation constants for camera position animation
+  const camPosAnimDelay = 0.175;
+  const camPosAnimDuration = 1.85;
+
+  // animate camera position on item double click / showBackground turning false
+  const controlsPositionVec = new THREE.Vector3();
+
+  // functions
+  function handleCartClick() {
+    if (snipcartLoaded) {
+      window.Snipcart.api.theme.cart.open();
+    }
+  }
+  const handleClick = (e) => {
+    e.stopPropagation();
+    const { eventObject } = e;
+    // console.log(eventObject.position);
+    if (showBackground) {
+      let tempObjectPosition = eventObject.position;
+      let positionMatch = (element) =>
+        element.position.x === tempObjectPosition.x &&
+        element.position.y === tempObjectPosition.y &&
+        element.position.z === tempObjectPosition.z;
+      if (positionMatch) {
+        // console.log(
+        //   "shopItems.find(positionMatch): ",
+        //   shopItems.find(positionMatch),
+        // );
+        let matchedItem = shopItems.find(positionMatch);
+        // console.log("matchedItem from handleClick function: ", matchedItem);
+        if (currentItemSelected === unselectedItem) {
+          randomAllItemsParts(false);
+        }
+        setPreviousItemSelected(currentItemSelected);
+        setCurrentItemSelected(matchedItem);
+      }
+    }
+  };
+  const handleItemPartClick = (e, part) => {
+    // e.preventDefault; // not necessary
+    // e.stopPropagation(); // disables item part / item click connecting to entire item mesh/group
+    // console.log(part.itemName, part.partName, " clicked");
+    if (!showBackground) {
+      if (!showPhotos && !open) setShowPartOptions(true);
+      if (part.itemName === currentItemSelected.itemName) {
+        setCurrentItemName(part.itemName);
+        setCurrentPartName(part.partName);
+      }
+    } else {
+      setCurrentItemName(part.itemName);
+      setCurrentPartName(part.partName);
+    }
+    // setCurrentItemName(part.itemName);
+    // setCurrentPartName(part.partName);
+    // if (!showBackground) {
+    //   if (!showPhotos && !open) setShowPartOptions(true);
+    // }
+  };
+  const handleDoubleClick = (e) => {
+    e.stopPropagation();
+    // if (currentItemSelected === unselectedItem) {
+    //   setCurrentItemSelected(objects.gramps);
+    // }
+    if (showBackground) {
+      if (!animActive) {
+        setOpen(false);
+        setShowPhotos(false);
+        setShowBackground(!showBackground);
+        // animateParts();
+      }
+    }
+  };
+  const handleArrowIconClick = (e) => {
+    e.stopPropagation();
+    toast.dismiss();
+    if (currentItemSelected === unselectedItem) {
+      setCurrentItemSelected(objects.gramps);
+      setTimeout(() => {
+        setOpen(false);
+        setShowPhotos(false);
+        setShowBackground(!showBackground);
+      }, "750");
+    } else {
+      if (!animActive) {
+        setOpen(false);
+        setShowPhotos(false);
+        setShowBackground(!showBackground);
+      }
+    }
+  };
+  // const handleOffClick = (e) => {
+  //   e.stopPropagation();
+  //   // console.log("onPointerMissed click");
+  // };
+  const allEqual = (arr) => arr.every((v) => v === arr[0]);
+  const animatedPosition = (animation, animDist) => {
+    let x = 0;
+    let y = 0;
+    let z = 0;
+    switch (animation) {
+      case "negX":
+        x = -animDist;
+        break;
+      case "posX":
+        x = animDist;
+        break;
+      case "negZ":
+        z = -animDist;
+        break;
+      case "posZ":
+        z = animDist;
+        break;
+      case "posY1":
+        y = animDist;
+        break;
+      case "posY2":
+        y = animDist + animDist / 2;
+        break;
+      case "negZposY1":
+        z = -animDist;
+        y = animDist;
+        break;
+      case "posXposY1":
+        x = animDist;
+        y = animDist;
+        break;
+      case "none":
+        break;
+    }
+    let position = [x, y, z];
+    return position;
+  };
+  // switch (itemName) {
+  //   case "gramps":
+  //     setOptionBoxItemChanged(shopItems[itemName]);
+  //     break;
+  //   case "squatter":
+  //     setOptionBoxItemChanged();
+  //     break;
+  //   case "block":
+  //     setOptionBoxItemChanged();
+  //     break;
+  //   case "horse":
+  //     setOptionBoxItemChanged();
+  //     break;
+  //   case "shelfA16":
+  //     setOptionBoxItemChanged();
+  //     break;
+  //   case "shelfA32":
+  //     setOptionBoxItemChanged();
+  //     break;
+  //   case "shelfB16":
+  //     setOptionBoxItemChanged();
+  //     break;
+  //   case "shelfB32":
+  //     setOptionBoxItemChanged();
+  //     break;
+  //   // case "none":
+  //   //   break;
+  // }
+  const toggleInfoBox = (e) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    setAboutInfo(false);
+    setOpen(!open);
+    setShowPhotos(false);
+    if (showPartOptions) {
+      setShowPartOptions(false);
+    } else {
+      setShowPartOptions(true);
+    }
+  };
+  const togglePhotoBox = (e) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    setAllPhotos(false);
+    setOpen(false);
+    setShowPhotos(!showPhotos);
+    setShowSlider(false);
+    if (showPartOptions) {
+      setShowPartOptions(false);
+    } else {
+      setShowPartOptions(true);
+    }
+  };
+  const openUserEmail = (e) => {
+    if (e) {
+      e.preventDefault();
+      // e.stopPropagation();
+    }
+    const email = "eliwgfell@gmail.com";
+    const subject = "Contact from shop";
+    const emailBody = "Yeah yeah yeah...";
+
+    document.location =
+      "mailto:" + email + "?subject=" + subject + "&body=" + emailBody;
+  };
+
+  // useFrames
+  // useFrame((state, delta) => {
+  //   setRandomTime(randomTime + delta);
+  //   console.log(randomTime);
+  //   if (Math.floor(randomTime) % 2 === 0) {
+  //     if (currentItemSelected === unselectedItem) randomAllItemsParts(false);
+  //   }
+  // });
+  useFrame((state, delta) => {
+    if (controlsDragging) {
+      setDragTime(dragTime + delta);
+      // console.log("controls dragging for ", dragTime);
+    }
+    // if (isTouching && !controlsDragging) {
+    //   document.getElementById("footer").innerHTML =
+    //     " isTouching = true & controlsDragging = false ";
+    //   if (orbitRef.current) {
+    //     let checkAzAng = orbitRef.current.getAzimuthalAngle();
+    //     if (checkAzAng === azCheckAng || checkAzAng === endAzimuthAng) {
+    //       // document.getElementById("footer").innerHTML =
+    //       //   " controls aren't changing even though touches are registered ";
+    //       document.getElementById("footer").innerHTML +=
+    //         " useFrame azCheck: matched azimuth angles ";
+    //       setAzCheckCount(azCheckCount + 1);
+    //       // window.location.reload();
+    //     }
+    //   }
+    // }
+  });
+
+  // gsap animation hooks (camera target animation and camera position animation)
   useGSAP(() => {
     // setAnimActive()
     if (
@@ -1101,13 +1224,6 @@ export default function Scene({
       });
     }
   }, [currentItemSelected]);
-
-  const camPosAnimDelay = 0.175;
-  const camPosAnimDuration = 1.85;
-  // animate camera position on item double click / showBackground turning false
-  const controlsPositionVec = new THREE.Vector3();
-  const [targetVec, setTargetVec] = useState(new THREE.Vector3());
-
   useGSAP(() => {
     if (!showBackground) {
       if (orbitRef.current) {
@@ -1218,7 +1334,6 @@ export default function Scene({
   // // animate camera position on item double click / showBackground turning false
   // const controlsPositionVec = new THREE.Vector3();
   // const [targetVec, setTargetVec] = useState(new THREE.Vector3());
-
   // useGSAP(() => {
   //   if (!showBackground) {
   //     if (orbitRef.current) {
@@ -1321,193 +1436,6 @@ export default function Scene({
   //     }
   //   }
   // }, [showBackground, optionBoxItemToggle]);
-
-  const dirLightXPosition = 2.5; // 2.5
-  const dirLightYPosition = 3.6; // 3.6
-  const dirLightZPosition = -3; // -3
-
-  const dirLightIntensity = 1.5;
-  const dirLightNormBias = 0.04; // 0.04 previously, adjusted to reduce shadow acne on Block inner shelf cavities
-  const dirLightMapSize = 512;
-  const dirLightCamNear = -5;
-  const dirLightCamFar = 8;
-  const dirLightCamLeft = -5;
-  const dirLightCamRight = 5;
-  const dirLightCamBottom = -5;
-  const dirLightCamTop = 5;
-
-  const ambLightIntensity = 1;
-
-  const animatedPosition = (animation, animDist) => {
-    let x = 0;
-    let y = 0;
-    let z = 0;
-    switch (animation) {
-      case "negX":
-        x = -animDist;
-        break;
-      case "posX":
-        x = animDist;
-        break;
-      case "negZ":
-        z = -animDist;
-        break;
-      case "posZ":
-        z = animDist;
-        break;
-      case "posY1":
-        y = animDist;
-        break;
-      case "posY2":
-        y = animDist + animDist / 2;
-        break;
-      case "negZposY1":
-        z = -animDist;
-        y = animDist;
-        break;
-      case "posXposY1":
-        x = animDist;
-        y = animDist;
-        break;
-      case "none":
-        break;
-    }
-    let position = [x, y, z];
-    return position;
-  };
-
-  // useEffect(() => {
-  //   if (aboutInfo && open) {
-  //     setOpen(false);
-  //     setTimeout(() => {
-  //       setOpen(true);
-  //       setShowPhotos(false);
-  //       setShowPartOptions(false);
-  //     }, "250");
-  //   }
-  // }, [aboutInfo]);
-
-  // useEffect(() => {
-  //   if (allPhotos && showPhotos) {
-  //     setShowPhotos(false);
-  //   }
-  // }, [allPhotos]);
-
-  // const toggleInfoBox = (e, aboutInfo) => {
-  //   if (e) {
-  //     e.preventDefault();
-  //     e.stopPropagation();
-  //   }
-  //   if (aboutInfo) {
-  //     setAboutInfo(true);
-  //     setShowPartOptions(false);
-  //   } else if (!aboutInfo) {
-  //     setAboutInfo(false);
-  //   }
-  //   setOpen(!open);
-  //   setShowPhotos(false);
-  //   if (showPartOptions) {
-  //     setShowPartOptions(false);
-  //   } else {
-  //     setShowPartOptions(true);
-  //   }
-  // };
-
-  const toggleInfoBox = (e) => {
-    if (e) {
-      e.preventDefault();
-      e.stopPropagation();
-    }
-    setAboutInfo(false);
-    setOpen(!open);
-    setShowPhotos(false);
-    if (showPartOptions) {
-      setShowPartOptions(false);
-    } else {
-      setShowPartOptions(true);
-    }
-  };
-
-  const togglePhotoBox = (e) => {
-    if (e) {
-      e.preventDefault();
-      e.stopPropagation();
-    }
-    setAllPhotos(false);
-    setOpen(false);
-    setShowPhotos(!showPhotos);
-    setShowSlider(false);
-    if (showPartOptions) {
-      setShowPartOptions(false);
-    } else {
-      setShowPartOptions(true);
-    }
-  };
-
-  // const togglePhotoBox = (e, allPhotos) => {
-  //   e.preventDefault();
-  //   e.stopPropagation();
-  //   if (allPhotos) {
-  //     setAllPhotos(true);
-  //     setOpen(false);
-  //     setShowPhotos(true);
-  //     setShowPartOptions(false);
-  //   } else if (!allPhotos) {
-  //     setAllPhotos(false);
-  //     setOpen(false);
-  //     setShowPhotos(!showPhotos);
-  //     if (showPartOptions) {
-  //       setShowPartOptions(false);
-  //     } else {
-  //       setShowPartOptions(true);
-  //     }
-  //   }
-  // };
-
-  const arrowY = -0.25; // -0.25
-  const orbitPolarShowBgdShelf = Math.PI / 2 + Math.PI / 16;
-  const orbitPolarShowBgdNotShelf = Math.PI / 2 - Math.PI / 9.06;
-
-  // switch (itemName) {
-  //   case "gramps":
-  //     setOptionBoxItemChanged(shopItems[itemName]);
-  //     break;
-  //   case "squatter":
-  //     setOptionBoxItemChanged();
-  //     break;
-  //   case "block":
-  //     setOptionBoxItemChanged();
-  //     break;
-  //   case "horse":
-  //     setOptionBoxItemChanged();
-  //     break;
-  //   case "shelfA16":
-  //     setOptionBoxItemChanged();
-  //     break;
-  //   case "shelfA32":
-  //     setOptionBoxItemChanged();
-  //     break;
-  //   case "shelfB16":
-  //     setOptionBoxItemChanged();
-  //     break;
-  //   case "shelfB32":
-  //     setOptionBoxItemChanged();
-  //     break;
-  //   // case "none":
-  //   //   break;
-  // }
-  const openUserEmail = (e) => {
-    if (e) {
-      e.preventDefault();
-      // e.stopPropagation();
-    }
-    const email = "eliwgfell@gmail.com";
-    const subject = "Contact from shop";
-    const emailBody = "Yeah yeah yeah...";
-
-    document.location =
-      "mailto:" + email + "?subject=" + subject + "&body=" + emailBody;
-  };
 
   return (
     <>
@@ -1671,24 +1599,26 @@ export default function Scene({
               setAnimIconToggle={setAnimIconToggle}
             />
           </mesh>
-          <mesh
+          <group
             position={
               width >= 376 && width < 600
-                ? [0, -0.3, 0]
+                ? [0, arrowY + 0.01, 0]
                 : width < 376
-                  ? [0, -0.3, 0] // looks right on chrome simulator [0, -0.275, 0]
+                  ? [0, arrowY + 0.01, 0] // looks right on chrome simulator [0, -0.275, 0]
                   : width >= 600 && width < 1100
-                    ? [0, -0.3, 0]
-                    : [0, -0.3, 0]
+                    ? [0, arrowY + 0.01, 0]
+                    : [0, arrowY + 0.01, 0]
             }
           >
-            <circleGeometry args={[0.06, 64]} />
-            <meshBasicMaterial
-              transparent
-              opacity={0}
-              // side={THREE.DoubleSide}
+            <RingCircle
+              selected={animActive ? true : false}
+              showBackground={showBackground}
+              isShelf={false}
+              itemName={"arrow"}
+              forArrow={true}
+              // arrowY={arrowY}
             />
-          </mesh>
+          </group>
         </group>
       </ScreenSpace>
       <color args={["#adbaba"]} attach="background" />
@@ -1804,6 +1734,8 @@ export default function Scene({
                       showBackground={showBackground}
                       isShelf={part.itemName.includes("shelf") ? true : false}
                       itemName={part.itemName}
+                      forArrow={false}
+                      // arrowY={arrowY}
                     />
                   </group>
                 );
