@@ -3,43 +3,31 @@ import { produce } from "immer";
 import * as THREE from "three";
 import { textures } from "../data/textures.jsx";
 import { options } from "../data/options.jsx";
-import { objects } from "../data/objects.jsx";
-
-// // (from App component)
-// // move these to store:
-// const [mobileView, setMobileView] = useState(false);
-// const [open, setOpen] = useState(false);
-// // const [infoBoxIcon, setInfoBoxIcon] = useState(true);
-// const [showPhotos, setShowPhotos] = useState(false);
-// const [allPhotos, setAllPhotos] = useState(false);
-// const [aboutInfo, setAboutInfo] = useState(false);
-// const [optionBoxHeightMin, setOptionBoxHeightMin] = useState(false);
-// const [showBackground, setShowBackground] = useState(true);
-// const [showPartOptions, setShowPartOptions] = useState(false);
-// const [currentItemSelected, setCurrentItemSelected] = useState(unselectedItem);
-// const [previousItemSelected, setPreviousItemSelected] =
-//   useState(unselectedItem);
-// const [optionBoxItemChanged, setOptionBoxItemChanged] = useState(false);
-// const [optionBoxItemToggle, setOptionBoxItemToggle] = useState(false);
-// const [animToggled, setAnimToggled] = useState(false);
-// const [animActive, setAnimActive] = useState(false);
-// const [activeCamPosAnim, setActiveCamPosAnim] = useState(false);
-// const [activeCamTargAnim, setActiveCamTargAnim] = useState(false);
-// const [activeCamAnim, setActiveCamAnim] = useState(false);
-// const [partsOpen, setPartsOpen] = useState(false);
-// const [stagePosY, setStagePosY] = useState(yPosRunLowTarg);
-// const [animIconToggle, setAnimIconToggle] = useState(false);
-// // move these to store ^
-
-// // (from Scene component)
-// // move these to store:
-// const [currentPartName, setCurrentPartName] = useState("top");
-// const [currentItemName, setCurrentItemName] = useState("gramps");
-// // move these to store ^
+import { objects, unselectedItem } from "../data/objects.jsx";
+import Item from "../data/Item.jsx";
 
 type State = {
-  currentItemSelected: {};
-  previousItemSelected: {};
+  currentItemSelected: Item;
+  previousItemSelected: Item;
+  currentPartName: string;
+  currentItemName: string;
+  mobileView: boolean;
+  open: boolean;
+  showPhotos: boolean;
+  allPhotos: boolean;
+  aboutInfo: boolean;
+  optionBoxHeightMin: boolean;
+  showBackground: boolean;
+  showPartOptions: boolean;
+  optionBoxItemChanged: boolean;
+  optionBoxItemToggle: boolean;
+  animToggled: boolean;
+  animActive: boolean;
+  activeCamPosAnim: boolean;
+  activeCamTargAnim: boolean;
+  activeCamAnim: boolean;
+  partsOpen: boolean;
+  animIconToggle: boolean;
   items: {
     gramps: {
       data: {};
@@ -449,11 +437,51 @@ type Action = {
     colorName: string,
   ) => void;
   calculateItemPrice: (itemName: string) => void;
+  setCurrentItemSelected: (item: Item) => void;
+  setPreviousItemSelected: (item: Item) => void;
+  setCurrentPartName: (partName: string) => void;
+  setCurrentItemName: (itemName: string) => void;
+  setMobileView: (value: boolean) => void;
+  setOpen: (value: boolean) => void;
+  setShowPhotos: (value: boolean) => void;
+  setAllPhotos: (value: boolean) => void;
+  setAboutInfo: (value: boolean) => void;
+  setOptionBoxHeightMin: (value: boolean) => void;
+  setShowBackground: (value: boolean) => void;
+  setShowPartOptions: (value: boolean) => void;
+  setOptionBoxItemChanged: (value: boolean) => void;
+  setOptionBoxItemToggle: (value: boolean) => void;
+  setAnimToggled: (value: boolean) => void;
+  setAnimActive: (value: boolean) => void;
+  setActiveCamPosAnim: (value: boolean) => void;
+  setActiveCamTargAnim: (value: boolean) => void;
+  setActiveCamAnim: (value: boolean) => void;
+  setPartsOpen: (value: boolean) => void;
+  setAnimIconToggle: (value: boolean) => void;
 };
 
 export const useOptionStore = create<State & Action>((set) => ({
-  currentItemSelected: {},
-  previousItemSelected: {},
+  currentItemSelected: unselectedItem,
+  previousItemSelected: unselectedItem,
+  currentPartName: "top",
+  currentItemName: "gramps",
+  mobileView: false,
+  open: false,
+  showPhotos: false,
+  allPhotos: false,
+  aboutInfo: false,
+  optionBoxHeightMin: false,
+  showBackground: false,
+  showPartOptions: false,
+  optionBoxItemChanged: false,
+  optionBoxItemToggle: false,
+  animToggled: false,
+  animActive: false,
+  activeCamPosAnim: false,
+  activeCamTargAnim: false,
+  activeCamAnim: false,
+  partsOpen: false,
+  animIconToggle: false,
   items: {
     gramps: {
       data: objects.gramps,
@@ -1024,6 +1052,132 @@ export const useOptionStore = create<State & Action>((set) => ({
     set(
       produce((state: State) => {
         state.items[itemName].parts[partName].texture = texture;
+      }),
+    ),
+  setCurrentItemSelected: (item) =>
+    set(
+      produce((state: State) => {
+        state.currentItemSelected = item;
+      }),
+    ),
+  setPreviousItemSelected: (item) =>
+    set(
+      produce((state: State) => {
+        state.previousItemSelected = item;
+      }),
+    ),
+  setCurrentPartName: (partName) =>
+    set(
+      produce((state: State) => {
+        state.currentPartName = partName;
+      }),
+    ),
+  setCurrentItemName: (itemName) =>
+    set(
+      produce((state: State) => {
+        state.currentItemName = itemName;
+      }),
+    ),
+  setMobileView: (value) =>
+    set(
+      produce((state: State) => {
+        state.mobileView = value;
+      }),
+    ),
+  setOpen: (value) =>
+    set(
+      produce((state: State) => {
+        state.open = value;
+      }),
+    ),
+  setShowPhotos: (value) =>
+    set(
+      produce((state: State) => {
+        state.showPhotos = value;
+      }),
+    ),
+  setAllPhotos: (value) =>
+    set(
+      produce((state: State) => {
+        state.allPhotos = value;
+      }),
+    ),
+  setAboutInfo: (value) =>
+    set(
+      produce((state: State) => {
+        state.aboutInfo = value;
+      }),
+    ),
+  setOptionBoxHeightMin: (value) =>
+    set(
+      produce((state: State) => {
+        state.optionBoxHeightMin = value;
+      }),
+    ),
+  setShowBackground: (value) =>
+    set(
+      produce((state: State) => {
+        state.showBackground = value;
+      }),
+    ),
+  setShowPartOptions: (value) =>
+    set(
+      produce((state: State) => {
+        state.showPartOptions = value;
+      }),
+    ),
+  setOptionBoxItemChanged: (value) =>
+    set(
+      produce((state: State) => {
+        state.optionBoxItemChanged = value;
+      }),
+    ),
+  setOptionBoxItemToggle: (value) =>
+    set(
+      produce((state: State) => {
+        state.optionBoxItemToggle = value;
+      }),
+    ),
+  setAnimToggled: (value) =>
+    set(
+      produce((state: State) => {
+        state.animToggled = value;
+      }),
+    ),
+  setAnimActive: (value) =>
+    set(
+      produce((state: State) => {
+        state.animActive = value;
+      }),
+    ),
+  setActiveCamPosAnim: (value) =>
+    set(
+      produce((state: State) => {
+        state.activeCamPosAnim = value;
+      }),
+    ),
+  setActiveCamTargAnim: (value) =>
+    set(
+      produce((state: State) => {
+        state.activeCamTargAnim = value;
+      }),
+    ),
+  setActiveCamAnim: (value) =>
+    set(
+      produce((state: State) => {
+        state.activeCamAnim = value;
+      }),
+    ),
+  setPartsOpen: (value) =>
+    set(
+      produce((state: State) => {
+        state.partsOpen = value;
+      }),
+    ),
+  setAnimIconToggle: (value) =>
+    set(
+      produce((state: State) => {
+        state.animIconToggle = value;
       }),
     ),
 }));

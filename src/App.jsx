@@ -71,7 +71,13 @@ function App() {
   // useStates
   const [animDist, setAnimDist] = useState(0);
   const [sceneLoaded, setSceneLoaded] = useState(false);
+  const [stagePosY, setStagePosY] = useState(yPosRunLowTarg);
+
   // move these to store:
+  const [currentItemSelected, setCurrentItemSelected] =
+    useState(unselectedItem);
+  const [previousItemSelected, setPreviousItemSelected] =
+    useState(unselectedItem);
   const [mobileView, setMobileView] = useState(false);
   const [open, setOpen] = useState(false);
   // const [infoBoxIcon, setInfoBoxIcon] = useState(true);
@@ -81,10 +87,6 @@ function App() {
   const [optionBoxHeightMin, setOptionBoxHeightMin] = useState(false);
   const [showBackground, setShowBackground] = useState(true);
   const [showPartOptions, setShowPartOptions] = useState(false);
-  const [currentItemSelected, setCurrentItemSelected] =
-    useState(unselectedItem);
-  const [previousItemSelected, setPreviousItemSelected] =
-    useState(unselectedItem);
   const [optionBoxItemChanged, setOptionBoxItemChanged] = useState(false);
   const [optionBoxItemToggle, setOptionBoxItemToggle] = useState(false);
   const [animToggled, setAnimToggled] = useState(false);
@@ -93,7 +95,6 @@ function App() {
   const [activeCamTargAnim, setActiveCamTargAnim] = useState(false);
   const [activeCamAnim, setActiveCamAnim] = useState(false);
   const [partsOpen, setPartsOpen] = useState(false);
-  const [stagePosY, setStagePosY] = useState(yPosRunLowTarg);
   const [animIconToggle, setAnimIconToggle] = useState(false);
   // move these to store ^
 
