@@ -302,7 +302,8 @@ export default function Scene({
       setCount(count + 1);
     }, 1500);
     // was 1000
-    if (count === 1) {
+    if (count === 2) {
+      toast.dismiss();
       toast("Cart", {
         duration: toastDuration,
         position: "top-right",
@@ -352,7 +353,8 @@ export default function Scene({
           "aria-live": "polite",
         },
       });
-    } else if (count === 2) {
+    } else if (count === 5) {
+      toast.dismiss();
       toast("Drag to rotate", {
         duration: toastDuration,
         position: "top-left",
@@ -378,7 +380,7 @@ export default function Scene({
           "aria-live": "polite",
         },
       });
-    } else if (count === 4) {
+    } else if (count === 7) {
       toast("Pinch to zoom", {
         duration: toastDuration,
         position: "top-left",
@@ -404,7 +406,7 @@ export default function Scene({
           "aria-live": "polite",
         },
       });
-    } else if (count === 5) {
+    } else if (count === 9) {
       toast("Tap to select", {
         duration: toastDuration,
         position: "top-left",
@@ -429,7 +431,8 @@ export default function Scene({
           "aria-live": "polite",
         },
       });
-    } else if (count === 6) {
+    } else if (count === 17) {
+      toast.dismiss();
       toast("^ for options", {
         duration: toastDuration,
         position: "top-left",
@@ -454,7 +457,7 @@ export default function Scene({
           "aria-live": "polite",
         },
       });
-    } else if (count === 12 && currentItemSelected === unselectedItem) {
+    } else if (count === 20 && currentItemSelected === unselectedItem) {
       handleArrowIconClick(null);
     }
     //Clearing the interval
@@ -485,7 +488,7 @@ export default function Scene({
     }
     if (!showBackground && previousItemSelected.itemName === "noSelect") {
       toast("Return to room", {
-        duration: toastDuration + 4000,
+        duration: toastDuration + 6000,
         position: "top-right",
         // Styling
         style: {

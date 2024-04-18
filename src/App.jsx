@@ -19,7 +19,7 @@ import toast, { Toaster } from "react-hot-toast";
 
 function App() {
   // constants
-  const toastDuration = 8000;
+  const toastDuration = 10000;
   const toastFontSize = "0.9rem";
   const toastBackground = "lightGrey";
   const toastColor = "#212121";
@@ -131,7 +131,7 @@ function App() {
           loadingBarElement.style.transform = "";
           toast.success("All set!", {
             id: toastId,
-            duration: toastDuration - 5000,
+            duration: toastDuration - 7000,
             position: "top-left",
             style: {
               fontSize: toastFontSize,

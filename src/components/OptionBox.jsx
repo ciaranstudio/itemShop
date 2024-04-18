@@ -21,6 +21,7 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
+import toast from "react-hot-toast";
 
 export default function OptionBox({
   handlePartOption,
@@ -172,6 +173,7 @@ export default function OptionBox({
     if (!animActive && !showBackground) {
       setShowPartOptions(false);
       setShowBackground(true);
+      toast.dismiss();
     }
   };
   const itemMenuSelectHandler = (e, itemNo, popupState) => {
