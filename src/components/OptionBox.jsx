@@ -32,12 +32,15 @@ export default function OptionBox({
   const { height, width } = useWindowDimensions();
 
   // constants
-  const boxPosYMobileMax = 16; // 15 looks good on chrome simulator 04/11/2024
-  const boxPosYMobileMin = 11; // 5 looks good on chrome simulator 04/11/2024
+  const boxPosYMobileMax = 12; // 15 looks good on chrome simulator 04/11/2024
+  const boxPosYMobileMin = 7.5; // 5 looks good on chrome simulator 04/11/2024
+
   const boxPosYDesktopMax = 3; // 3 looks good on chrome simulator 04/11/2024
-  const boxPosYDesktopMin = -4; // -4 looks good on chrome simulator 04/11/2024
-  const notTinyScreenOffsetMinimized = -3; // -6 looks good on chrome simulator 04/11/2024
-  const notTinyScreenOffsetNotMinimized = -4; // 0 looks good on chrome simulator 04/11/2024
+  const boxPosYDesktopMin = 0; // -4 looks good on chrome simulator 04/11/2024
+
+  const notTinyScreenOffsetMinimized = -13; // -3 a bit too high on XR // -6 looks good on chrome simulator 04/11/2024
+  const notTinyScreenOffsetNotMinimized = -15; // -4 a bit too high on XR // 0 looks good on chrome simulator 04/11/2024
+
   const breakpointWidthSmallest = 380;
 
   // useStates
