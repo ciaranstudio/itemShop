@@ -17,33 +17,7 @@ export default function PhotoBox({ togglePhotoBox, theme }) {
   const allPhotos = useOptionStore((state) => state.allPhotos);
 
   return (
-    <Html
-      center
-      // position={[
-      //   0,
-      //   item.itemName.includes("shelf") &&
-      //   item.itemName.includes("B") &&
-      //   item.itemName.includes("16")
-      //     ? 0.35
-      //     : item.itemName.includes("shelf") &&
-      //         item.itemName.includes("B") &&
-      //         item.itemName.includes("32")
-      //       ? 0.15
-      //       : item.itemName.includes("shelf") &&
-      //           item.itemName.includes("A") &&
-      //           item.itemName.includes("32")
-      //         ? 0.35
-      //         : item.itemName.includes("shelf") &&
-      //             item.itemName.includes("A") &&
-      //             item.itemName.includes("16")
-      //           ? 0.15
-      //           : item.itemName.includes("horse")
-      //             ? -1.1
-      //             : -0.85, // -0.65
-      //   0,
-      // ]}
-      position={[0, 44, 0]} // 40 looked okay on simulator but small cut off at bottom on desktop/iPad //  when ArrowIcon position Y was -0.3: [0, 54, 0]
-    >
+    <Html center position={[0, 44, 0]}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <div
@@ -62,7 +36,7 @@ export default function PhotoBox({ togglePhotoBox, theme }) {
               left: "0.15rem",
               padding: "0.5rem",
             }}
-            aria-label="close order box"
+            aria-label="close photo box"
           >
             <CloseOutlinedIcon color="success" />
           </IconButton>

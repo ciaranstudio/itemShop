@@ -26,6 +26,7 @@ import { SelectIcon } from "./SelectIcon.jsx";
 import { ArrowIcon } from "./ArrowIcon.jsx";
 import toast from "react-hot-toast";
 import { useOptionStore } from "../store/useOptionStore.tsx";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 // import { CameraHelper } from "three";
 // import { DirectionalLightHelper } from "three";
 // import { Perf } from "r3f-perf";
@@ -358,7 +359,6 @@ export default function Scene({
       toast("Drag to rotate", {
         duration: toastDuration,
         position: "top-left",
-        // position: mobileView ? "top-right" : "top-right",
         // Styling
         style: {
           fontSize: toastFontSize,
@@ -368,8 +368,6 @@ export default function Scene({
         },
         className: "",
         // Custom Icon
-        // icon: "🤏",
-        // Change colors of success/error/loading icon
         iconTheme: {
           primary: "#000",
           secondary: "#fff",
@@ -384,7 +382,6 @@ export default function Scene({
       toast("Pinch to zoom", {
         duration: toastDuration,
         position: "top-left",
-        // position: mobileView ? "top-right" : "top-right",
         // Styling
         style: {
           fontSize: toastFontSize,
@@ -394,8 +391,6 @@ export default function Scene({
         },
         className: "",
         // Custom Icon
-        // icon: "🤏",
-        // Change colors of success/error/loading icon
         iconTheme: {
           primary: "#000",
           secondary: "#fff",
@@ -419,8 +414,6 @@ export default function Scene({
         },
         className: "",
         // Custom Icon
-        // icon: "👇",
-        // Change colors of success/error/loading icon
         iconTheme: {
           primary: "#000",
           secondary: "#fff",
@@ -444,8 +437,7 @@ export default function Scene({
         },
         className: "",
         // Custom Icon
-        icon: "🔼",
-        // Change colors of success/error/loading icon
+        icon: <KeyboardArrowUpIcon />,
         iconTheme: {
           primary: "#000",
           secondary: "#fff",
@@ -522,7 +514,7 @@ export default function Scene({
         },
         className: "",
         // Custom Icon
-        icon: "🔼",
+        icon: <KeyboardArrowUpIcon />,
         // Change colors of success/error/loading icon
         iconTheme: {
           primary: "#000",
@@ -1172,7 +1164,7 @@ export default function Scene({
           tl.to(controlsPositionVec, {
             delay:
               previousItemSelected === unselectedItem
-                ? camPosAnimDelay + 0.15
+                ? camPosAnimDelay + 0.1
                 : optionBoxItemChanged
                   ? camPosAnimDelay + 0.2
                   : camPosAnimDelay,

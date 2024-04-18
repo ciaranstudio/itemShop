@@ -250,7 +250,7 @@ export default function OptionBox({
               right: "0.25rem",
               padding: "0.5rem",
             }}
-            aria-label="close order box"
+            aria-label="show background"
             disabled={animActive}
           >
             <KeyboardReturnIcon
@@ -336,7 +336,7 @@ export default function OptionBox({
                 sx={{
                   padding: "0.5rem",
                 }}
-                aria-label="close order box"
+                aria-label="animate item parts to explode apart"
               >
                 {optionBoxHeightMin ? (
                   <OpenInFullIcon
@@ -355,7 +355,7 @@ export default function OptionBox({
               <IconButton
                 onClick={togglePhotoBox}
                 color="info"
-                // aria-label="close order box"
+                aria-label="toggle photo box"
                 sx={{
                   padding: "0.5rem",
                 }}
@@ -367,7 +367,7 @@ export default function OptionBox({
               <IconButton
                 onClick={toggleInfoBox}
                 color="info"
-                // aria-label="close order box"
+                aria-label="toggle info box"
                 sx={{
                   padding: "0.5rem",
                 }}
@@ -382,7 +382,7 @@ export default function OptionBox({
                 sx={{
                   padding: "0.5rem",
                 }}
-                aria-label="close order box"
+                aria-label="toggle minimize/maximize option box height"
               >
                 {optionBoxHeightMin ? (
                   <UnfoldMoreIcon color="secondary" fontSize="inherit" />
@@ -411,7 +411,7 @@ export default function OptionBox({
                           )
                         }
                         color="info"
-                        aria-label="close order box"
+                        aria-label="select stain color"
                       >
                         <CircleIcon
                           fontSize="large"
@@ -454,7 +454,7 @@ export default function OptionBox({
                           )
                         }
                         color="info"
-                        aria-label="close order box"
+                        aria-label="select paint color"
                       >
                         <CircleIcon
                           fontSize="large"
@@ -503,6 +503,7 @@ export default function OptionBox({
                   // theme={theme}
                   currentItemName={currentItemName}
                   randomCurrentItemParts={randomCurrentItemParts}
+                  aria-label="shuffle stains/paints colors with random values"
                 />
               </div>
               <span

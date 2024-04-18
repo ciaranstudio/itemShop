@@ -18,35 +18,7 @@ export default function InfoBox({ toggleInfoBox, theme, openUserEmail }) {
   const aboutInfo = useOptionStore((state) => state.aboutInfo);
 
   return (
-    <Html
-      center
-      // position={[
-      //   0,
-      //   item.itemName.includes("shelf") &&
-      //   item.itemName.includes("B") &&
-      //   item.itemName.includes("16")
-      //     ? 0.4
-      //     : item.itemName.includes("shelf") &&
-      //         item.itemName.includes("B") &&
-      //         item.itemName.includes("32")
-      //       ? 0.18
-      //       : item.itemName.includes("shelf") &&
-      //           item.itemName.includes("A") &&
-      //           item.itemName.includes("32")
-      //         ? 0.4
-      //         : item.itemName.includes("shelf") &&
-      //             item.itemName.includes("A") &&
-      //             item.itemName.includes("16")
-      //           ? 0.18
-      //           : item.itemName.includes("horse")
-      //             ? -0.8
-      //             : -0.6,
-      //   0,
-      // ]}
-      // Set up a breakpoint for SE width < 390, and one for if width > 390, bring in useWindow for width and height of screen from OptionBox above
-      // wait to see how long this element gets with incoming product specifications and disclaimer, TBD height necessary for div - 04/11/2024
-      position={[0, 58, 0]} // when ArrowIcon position Y was -0.3: [0, 80, 0]
-    >
+    <Html center position={[0, 58, 0]}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <div
@@ -65,7 +37,7 @@ export default function InfoBox({ toggleInfoBox, theme, openUserEmail }) {
               left: "0.15rem",
               padding: "0.5rem",
             }}
-            aria-label="close order box"
+            aria-label="close info box"
           >
             <CloseOutlinedIcon color="success" />
           </IconButton>
