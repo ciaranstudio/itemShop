@@ -302,7 +302,7 @@ export default function Scene({
       setCount(count + 1);
     }, 1500);
     // was 1000
-    if (count === 2) {
+    if (count === 2 && showBackground) {
       toast.dismiss();
       toast("Cart", {
         duration: toastDuration,
@@ -353,7 +353,7 @@ export default function Scene({
           "aria-live": "polite",
         },
       });
-    } else if (count === 5) {
+    } else if (count === 5 && showBackground) {
       toast.dismiss();
       toast("Drag to rotate", {
         duration: toastDuration,
@@ -380,7 +380,7 @@ export default function Scene({
           "aria-live": "polite",
         },
       });
-    } else if (count === 7) {
+    } else if (count === 7 && showBackground) {
       toast("Pinch to zoom", {
         duration: toastDuration,
         position: "top-left",
@@ -406,7 +406,7 @@ export default function Scene({
           "aria-live": "polite",
         },
       });
-    } else if (count === 9) {
+    } else if (count === 9 && showBackground) {
       toast("Tap to select", {
         duration: toastDuration,
         position: "top-left",
@@ -431,9 +431,8 @@ export default function Scene({
           "aria-live": "polite",
         },
       });
-    } else if (count === 17) {
-      toast.dismiss();
-      toast("^ for options", {
+    } else if (count === 12 && showBackground) {
+      toast("Toggles options", {
         duration: toastDuration,
         position: "top-left",
         // Styling
@@ -445,7 +444,7 @@ export default function Scene({
         },
         className: "",
         // Custom Icon
-        // icon: "▲",
+        icon: "🔼",
         // Change colors of success/error/loading icon
         iconTheme: {
           primary: "#000",
@@ -457,7 +456,7 @@ export default function Scene({
           "aria-live": "polite",
         },
       });
-    } else if (count === 20 && currentItemSelected === unselectedItem) {
+    } else if (count === 17 && currentItemSelected === unselectedItem) {
       handleArrowIconClick(null);
     }
     //Clearing the interval
@@ -487,8 +486,8 @@ export default function Scene({
       if (partsOpen) animateParts();
     }
     if (!showBackground && previousItemSelected.itemName === "noSelect") {
-      toast("Return to room", {
-        duration: toastDuration + 6000,
+      toast("Toggles background", {
+        duration: toastDuration + 3000,
         position: "top-right",
         // Styling
         style: {
@@ -500,6 +499,30 @@ export default function Scene({
         className: "",
         // Custom Icon
         icon: "⮐",
+        // Change colors of success/error/loading icon
+        iconTheme: {
+          primary: "#000",
+          secondary: "#fff",
+        },
+        // Aria
+        ariaProps: {
+          role: "status",
+          "aria-live": "polite",
+        },
+      });
+      toast("Also toggles background", {
+        duration: toastDuration + 3000,
+        position: "top-right",
+        // Styling
+        style: {
+          fontSize: toastFontSize,
+          background: toastBackground,
+          color: toastColor,
+          fontFamily: "var(--leva-fonts-mono)",
+        },
+        className: "",
+        // Custom Icon
+        icon: "🔼",
         // Change colors of success/error/loading icon
         iconTheme: {
           primary: "#000",
@@ -802,7 +825,6 @@ export default function Scene({
   };
   const handleArrowIconClick = (e) => {
     if (e) e.stopPropagation();
-    // setArrowAnimActive(true);
     toast.dismiss();
     if (currentItemSelected === unselectedItem) {
       setShowPartOptions(false);
