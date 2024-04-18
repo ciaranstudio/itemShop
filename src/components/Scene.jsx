@@ -294,7 +294,57 @@ export default function Scene({
       setCount(count + 1);
     }, 1500);
     // was 1000
-    if (count === 2) {
+    if (count === 1) {
+      toast("Cart", {
+        duration: toastDuration,
+        position: "top-right",
+        // Styling
+        style: {
+          fontSize: toastFontSize,
+          background: toastBackground,
+          color: toastColor,
+          fontFamily: "var(--leva-fonts-mono)",
+        },
+        // style: { background: "#adbaba", color: "#ffffff" },
+        className: "",
+        // Custom Icon
+        // icon: "🛒",
+        // Change colors of success/error/loading icon
+        iconTheme: {
+          primary: "#000",
+          secondary: "#fff",
+        },
+        // Aria
+        ariaProps: {
+          role: "status",
+          "aria-live": "polite",
+        },
+      });
+      toast("Menu", {
+        duration: toastDuration,
+        position: "top-left",
+        // Styling
+        style: {
+          fontSize: toastFontSize,
+          background: toastBackground,
+          color: toastColor,
+          fontFamily: "var(--leva-fonts-mono)",
+        },
+        className: "",
+        // Custom Icon
+        // icon: "📑",
+        // Change colors of success/error/loading icon
+        iconTheme: {
+          primary: "#000",
+          secondary: "#fff",
+        },
+        // Aria
+        ariaProps: {
+          role: "status",
+          "aria-live": "polite",
+        },
+      });
+    } else if (count === 2) {
       toast("Drag to rotate", {
         duration: toastDuration,
         position: "top-left",
@@ -396,56 +446,8 @@ export default function Scene({
           "aria-live": "polite",
         },
       });
-    } else if (count === 10) {
-      toast("Cart", {
-        duration: toastDuration,
-        position: "top-right",
-        // Styling
-        style: {
-          fontSize: toastFontSize,
-          background: toastBackground,
-          color: toastColor,
-          fontFamily: "var(--leva-fonts-mono)",
-        },
-        // style: { background: "#adbaba", color: "#ffffff" },
-        className: "",
-        // Custom Icon
-        // icon: "🛒",
-        // Change colors of success/error/loading icon
-        iconTheme: {
-          primary: "#000",
-          secondary: "#fff",
-        },
-        // Aria
-        ariaProps: {
-          role: "status",
-          "aria-live": "polite",
-        },
-      });
-      toast("Menu", {
-        duration: toastDuration,
-        position: "top-left",
-        // Styling
-        style: {
-          fontSize: toastFontSize,
-          background: toastBackground,
-          color: toastColor,
-          fontFamily: "var(--leva-fonts-mono)",
-        },
-        className: "",
-        // Custom Icon
-        // icon: "📑",
-        // Change colors of success/error/loading icon
-        iconTheme: {
-          primary: "#000",
-          secondary: "#fff",
-        },
-        // Aria
-        ariaProps: {
-          role: "status",
-          "aria-live": "polite",
-        },
-      });
+    } else if (count === 10 && currentItemSelected === unselectedItem) {
+      handleArrowIconClick(null);
     }
     //Clearing the interval
     return () => clearInterval(interval);
@@ -474,8 +476,8 @@ export default function Scene({
       if (partsOpen) animateParts();
     }
     if (!showBackground && previousItemSelected.itemName === "noSelect") {
-      toast("Tap to return", {
-        duration: toastDuration + 2000,
+      toast("Return to room", {
+        duration: toastDuration + 4000,
         position: "top-right",
         // Styling
         style: {
@@ -788,7 +790,7 @@ export default function Scene({
     }
   };
   const handleArrowIconClick = (e) => {
-    e.stopPropagation();
+    if (e) e.stopPropagation();
     toast.dismiss();
     if (currentItemSelected === unselectedItem) {
       setCurrentItemSelected(objects.gramps);
@@ -1131,11 +1133,12 @@ export default function Scene({
           );
           let tl = gsap.timeline();
           tl.to(controlsPositionVec, {
-            delay: optionBoxItemChanged
-              ? camPosAnimDelay + 0.2
-              : previousItemSelected === unselectedItem
-                ? camPosAnimDelay + 0.25
-                : camPosAnimDelay,
+            delay:
+              previousItemSelected === unselectedItem
+                ? camPosAnimDelay + 0.15
+                : optionBoxItemChanged
+                  ? camPosAnimDelay + 0.2
+                  : camPosAnimDelay,
             duration: optionBoxItemChanged
               ? camPosAnimDuration + 0.75
               : camPosAnimDuration,
