@@ -15,29 +15,15 @@ export const Walls = ({ currentColor, currentTexture }) => {
   ] = useTexture(currentTexture);
 
   const repeatVal = 8;
-  // map.minFilter = THREE.LinearFilter;
-  // map.magFilter = THREE.NearestFilter;
-  // map.colorSpace = THREE.SRGBColorSpace;
+
   map.wrapS = THREE.RepeatWrapping;
   map.wrapT = THREE.RepeatWrapping;
   map.repeat.set(repeatVal, repeatVal);
 
-  // displacementMap.wrapS = THREE.RepeatWrapping;
-  // displacementMap.wrapT = THREE.RepeatWrapping;
-  // displacementMap.repeat.set(8, 8);
-
-  // aoMap.wrapS = THREE.RepeatWrapping;
-  // aoMap.wrapT = THREE.RepeatWrapping;
-  // aoMap.repeat.set(8, 8);
-
-  // normalMap.minFilter = THREE.LinearFilter;
-  // normalMap.magFilter = THREE.NearestFilter;
   normalMap.wrapS = THREE.RepeatWrapping;
   normalMap.wrapT = THREE.RepeatWrapping;
   normalMap.repeat.set(repeatVal, repeatVal);
 
-  // roughnessMap.minFilter = THREE.LinearFilter;
-  // roughnessMap.magFilter = THREE.NearestFilter;
   roughnessMap.wrapS = THREE.RepeatWrapping;
   roughnessMap.wrapT = THREE.RepeatWrapping;
   roughnessMap.repeat.set(repeatVal, repeatVal);

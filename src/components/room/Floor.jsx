@@ -9,9 +9,6 @@ export const Floor = ({ currentColor, currentTexture }) => {
     useTexture(currentTexture);
 
   const repeatVal = 3;
-  // map.minFilter = THREE.LinearFilter;
-  // map.magFilter = THREE.NearestFilter;
-  // map.colorSpace = THREE.SRGBColorSpace;
 
   map.wrapS = THREE.RepeatWrapping;
   map.wrapT = THREE.RepeatWrapping;
@@ -25,15 +22,9 @@ export const Floor = ({ currentColor, currentTexture }) => {
   aoMap.wrapT = THREE.RepeatWrapping;
   aoMap.repeat.set(repeatVal, repeatVal);
 
-  // normalMap.minFilter = THREE.LinearFilter;
-  // normalMap.magFilter = THREE.NearestFilter;
-
   normalMap.wrapS = THREE.RepeatWrapping;
   normalMap.wrapT = THREE.RepeatWrapping;
   normalMap.repeat.set(repeatVal, repeatVal);
-
-  // roughnessMap.minFilter = THREE.LinearFilter;
-  // roughnessMap.magFilter = THREE.NearestFilter;
 
   roughnessMap.wrapS = THREE.RepeatWrapping;
   roughnessMap.wrapT = THREE.RepeatWrapping;
@@ -54,7 +45,6 @@ export const Floor = ({ currentColor, currentTexture }) => {
   useLayoutEffect(() => {
     scene.traverse((o) => {
       if (o.isMesh) {
-        // o.castShadow = true;
         o.receiveShadow = true;
         o.material.roughness = 1;
         o.material.metalness = 0;

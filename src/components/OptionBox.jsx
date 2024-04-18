@@ -132,7 +132,7 @@ export default function OptionBox({
     setAnimateButton(!animateButton);
   };
   const randomCurrentItemParts = (e, currentItemName, type) => {
-    e.preventDefault(); //  is this necessary if it is also being called in handlePartOption function ? Remove from one of them or make conditional in handlePartOption like e.stopPropogation ?
+    e.preventDefault();
     let color = "";
     let tempStainSingle = options.stains[getRandomInt(options.stains.length)];
     let tempPaintSingle = options.paints[getRandomInt(options.paints.length)];

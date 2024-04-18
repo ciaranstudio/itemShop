@@ -45,11 +45,9 @@ export const Bag = ({
   useLayoutEffect(() => {
     const currentAnnotations = [];
     scene.traverse((o) => {
-      // console.log("o from scene.traverse in Annotations: ", o);
       if (o.isObject3D) {
         if (o.userData.name) {
           if (o.userData.name.startsWith("AnchorPoint")) {
-            // console.log(o.userData.name);
             currentAnnotations.push(
               <Html
                 // transform
@@ -80,8 +78,6 @@ export const Bag = ({
         o.receiveShadow = true;
         o.material.roughness = 1;
         o.material.metalness = 0;
-        // o.material.map.colorSpace = THREE.SRGBColorSpace;
-        // console.log(o.material);
       }
     });
   }, []);

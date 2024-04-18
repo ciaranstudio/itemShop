@@ -786,9 +786,6 @@ export default function Scene({
     }
   };
   const handleItemPartClick = (e, part) => {
-    // e.preventDefault; // not necessary
-    // e.stopPropagation(); // disables item part / item click connecting to entire item mesh/group
-    // console.log(part.itemName, part.partName, " clicked");
     if (!showBackground) {
       if (!showPhotos && !open && !arrowAnimActive) setShowPartOptions(true);
       if (part.itemName === currentItemSelected.itemName) {
@@ -799,11 +796,6 @@ export default function Scene({
       setCurrentItemName(part.itemName);
       setCurrentPartName(part.partName);
     }
-    // setCurrentItemName(part.itemName);
-    // setCurrentPartName(part.partName);
-    // if (!showBackground) {
-    //   if (!showPhotos && !open) setShowPartOptions(true);
-    // }
   };
   const handleDoubleClick = (e) => {
     e.stopPropagation();

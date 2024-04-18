@@ -156,8 +156,6 @@ export const ArrowIcon = ({
         o.receiveShadow = true;
         o.material.roughness = 1;
         o.material.metalness = 0;
-        // o.material.map.colorSpace = THREE.SRGBColorSpace;
-        // console.log(o.material);
       }
     });
   }, []);
