@@ -4,6 +4,8 @@ import { useOptionStore } from "../store/useOptionStore.tsx";
 
 export const ItemPart = ({ model, itemName, partName }) => {
   const { scene, nodes, materials } = useGLTF(model);
+
+  // state from store
   const currentPartColor = useOptionStore(
     (state) => state.items[itemName].parts[partName].color,
   );
@@ -11,6 +13,7 @@ export const ItemPart = ({ model, itemName, partName }) => {
     (state) => state.items[itemName].parts[partName].texture,
   );
 
+  // texture
   const [
     map,
     // displacementMap,

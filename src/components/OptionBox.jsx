@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Html } from "@react-three/drei";
 import { useOptionStore } from "../store/useOptionStore.tsx";
-// import { textures } from "../data/textures.jsx";
 import { objects, shopItems } from "../data/objects.jsx";
 import { options, allOptions } from "../data/options.jsx";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material";
-import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
@@ -23,49 +21,12 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
-// import VisibilityIcon from "@mui/icons-material/Visibility";
-// import ShuffleOnIcon from "@mui/icons-material/ShuffleOn";
-// import InfoIcon from "@mui/icons-material/Info";
-// import PhotoLibraryIcon from "@mui/icons-material/PhotoLibrary";
-// import CropOriginalOutlinedIcon from "@mui/icons-material/CropOriginalOutlined";
-// import ExpandCircleDownIcon from "@mui/icons-material/ExpandCircleDown";
-// import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-// import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-// import HeightIcon from "@mui/icons-material/Height";
-// import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 
 export default function OptionBox({
-  // item,
-  // setCurrentItemSelected,
-  // setPreviousItemSelected,
-  // currentItemName,
-  // setCurrentItemName,
-  // currentPartName,
-  // setCurrentPartName,
-  // showBackground,
-  // setShowBackground,
-  // showPartOptions,
-  // setShowPartOptions,
-  // getRandomInt,
   handlePartOption,
   toggleInfoBox,
   togglePhotoBox,
   theme,
-  // allPhotos,
-  // aboutInfo,
-  // optionBoxHeightMin,
-  // setOptionBoxHeightMin,
-  // animActive,
-  // activeCamPosAnim,
-  // activeCamTargAnim,
-  // activeCamAnim,
-  // mobileView,
-  // optionBoxItemChanged,
-  // setOptionBoxItemChanged,
-  // optionBoxItemToggle,
-  // setOptionBoxItemToggle,
-  // animIconToggle,
-  // setAnimIconToggle,
 }) {
   // helper hook
   const { height, width } = useWindowDimensions();
@@ -87,103 +48,56 @@ export default function OptionBox({
   const [stainSingle, setStainSingle] = useState("");
   const [paintSingle, setPaintSingle] = useState("");
 
+  // state from store
   const currentItemSelected = useOptionStore(
     (state) => state.currentItemSelected,
   );
+  const currentPartName = useOptionStore((state) => state.currentPartName);
+  const currentItemName = useOptionStore((state) => state.currentItemName);
+  const mobileView = useOptionStore((state) => state.mobileView);
+  const optionBoxHeightMin = useOptionStore(
+    (state) => state.optionBoxHeightMin,
+  );
+  const showBackground = useOptionStore((state) => state.showBackground);
+  const showPartOptions = useOptionStore((state) => state.showPartOptions);
+  const optionBoxItemToggle = useOptionStore(
+    (state) => state.optionBoxItemToggle,
+  );
+  const animActive = useOptionStore((state) => state.animActive);
+  const activeCamAnim = useOptionStore((state) => state.activeCamAnim);
+  const thisPartColorName = useOptionStore(
+    (state) => state.items[currentItemName].parts[currentPartName].colorName,
+  );
+  const animateButton = useOptionStore((state) => state.animateButton);
+  const setAnimateButton = useOptionStore((state) => state.setAnimateButton);
+
+  // actions from store
   const setCurrentItemSelected = useOptionStore(
     (state) => state.setCurrentItemSelected,
-  );
-
-  const previousItemSelected = useOptionStore(
-    (state) => state.previousItemSelected,
   );
   const setPreviousItemSelected = useOptionStore(
     (state) => state.setPreviousItemSelected,
   );
-
-  const currentPartName = useOptionStore((state) => state.currentPartName);
   const setCurrentPartName = useOptionStore(
     (state) => state.setCurrentPartName,
   );
-
-  const currentItemName = useOptionStore((state) => state.currentItemName);
   const setCurrentItemName = useOptionStore(
     (state) => state.setCurrentItemName,
-  );
-
-  const mobileView = useOptionStore((state) => state.mobileView);
-  const setMobileView = useOptionStore((state) => state.setMobileView);
-
-  // const open = useOptionStore((state) => state.open);
-  // const setOpen = useOptionStore((state) => state.setOpen);
-
-  // const showPhotos = useOptionStore((state) => state.showPhotos);
-  // const setShowPhotos = useOptionStore((state) => state.setShowPhotos);
-
-  // const allPhotos = useOptionStore((state) => state.allPhotos);
-  // const setAllPhotos = useOptionStore((state) => state.setAllPhotos);
-
-  // const aboutInfo = useOptionStore((state) => state.aboutInfo);
-  // const setAboutInfo = useOptionStore((state) => state.setAboutInfo);
-
-  const optionBoxHeightMin = useOptionStore(
-    (state) => state.optionBoxHeightMin,
   );
   const setOptionBoxHeightMin = useOptionStore(
     (state) => state.setOptionBoxHeightMin,
   );
-
-  const showBackground = useOptionStore((state) => state.showBackground);
   const setShowBackground = useOptionStore((state) => state.setShowBackground);
-
-  const showPartOptions = useOptionStore((state) => state.showPartOptions);
   const setShowPartOptions = useOptionStore(
     (state) => state.setShowPartOptions,
-  );
-
-  const optionBoxItemChanged = useOptionStore(
-    (state) => state.optionBoxItemChanged,
   );
   const setOptionBoxItemChanged = useOptionStore(
     (state) => state.setOptionBoxItemChanged,
   );
-
-  const optionBoxItemToggle = useOptionStore(
-    (state) => state.optionBoxItemToggle,
-  );
   const setOptionBoxItemToggle = useOptionStore(
     (state) => state.setOptionBoxItemToggle,
   );
-
-  // const animToggled = useOptionStore((state) => state.animToggled);
-  // const setAnimToggled = useOptionStore((state) => state.setAnimToggled);
-
-  const animActive = useOptionStore((state) => state.animActive);
-  const setAnimActive = useOptionStore((state) => state.setAnimActive);
-
-  // const activeCamPosAnim = useOptionStore((state) => state.activeCamPosAnim);
-  // const setActiveCamPosAnim = useOptionStore((state) => state.setActiveCamPosAnim);
-
-  // const activeCamTargAnim = useOptionStore((state) => state.activeCamTargAnim);
-  // const setActiveCamTargAnim = useOptionStore((state) => state.setActiveCamTargAnim);
-
-  const activeCamAnim = useOptionStore((state) => state.activeCamAnim);
-  const setActiveCamAnim = useOptionStore((state) => state.setActiveCamAnim);
-
-  // const partsOpen = useOptionStore((state) => state.partsOpen);
-  // const setPartsOpen = useOptionStore((state) => state.setPartsOpen);
-
-  const animIconToggle = useOptionStore((state) => state.animIconToggle);
   const setAnimIconToggle = useOptionStore((state) => state.setAnimIconToggle);
-
-  // state from store
-  const thisPartColorName = useOptionStore(
-    (state) => state.items[currentItemName].parts[currentPartName].colorName,
-  );
-
-  const animateButton = useOptionStore((state) => state.animateButton);
-  const setAnimateButton = useOptionStore((state) => state.setAnimateButton);
-
   const getRandomInt = useOptionStore((state) => state.getRandomInt);
 
   // useEffects
@@ -296,7 +210,6 @@ export default function OptionBox({
       center={true}
       style={{
         display: showPartOptions && !showBackground ? "block" : "none",
-        // transition: "display 0s ease-out 0.25s",
       }}
     >
       <ThemeProvider theme={theme}>
@@ -311,9 +224,6 @@ export default function OptionBox({
           <IconButton
             onClick={(e) => closePartOptions(e)}
             color="primary"
-            // disabled={
-            //   currentItemSelected.itemTitle === "noSelectTitle" ? true : false
-            // }
             sx={{
               position: "absolute",
               pointerEvents: "auto",
@@ -328,9 +238,6 @@ export default function OptionBox({
 
           <IconButton
             onClick={(e) => partShowBackground(e)}
-            // disabled={
-            //   currentItemSelected.itemTitle === "noSelectTitle" ? true : false
-            // }
             sx={{
               position: "absolute",
               pointerEvents: "auto",
@@ -350,15 +257,12 @@ export default function OptionBox({
           <div
             className="color-menu-item-title"
             style={{
-              // position: optionBoxHeightMin ? "absolute" : "static",
               position: optionBoxHeightMin ? "absolute" : "static",
               top: optionBoxHeightMin ? "1.6rem" : "0",
               left: optionBoxHeightMin ? "50%" : "0",
               transform: optionBoxHeightMin ? "translate(-50%)" : "none",
               paddingTop: optionBoxHeightMin ? "0rem" : "0.5rem",
             }}
-
-            // style={{ display: optionBoxHeightMin ? "none" : "block" }}
           >
             <PopupState variant="popover" popupId="demo-popup-menu">
               {(popupState) => (
@@ -372,7 +276,6 @@ export default function OptionBox({
                       backgroundColor: "rgb(233, 234, 233)",
                     }}
                     size="large"
-                    // color={activeCamAnim ? "info" : "primary"}
                     disabled={activeCamAnim ? true : false}
                   >
                     {currentItemSelected.itemTitle}
@@ -407,27 +310,7 @@ export default function OptionBox({
                 </React.Fragment>
               )}
             </PopupState>
-            {/* <Typography
-              variant={optionBoxHeightMin ? "h6" : "h6"}
-              sx={{ fontFamily: "var(--leva-fonts-mono)" }}
-              color="primary"
-            >
-              {item.itemTitle}
-            </Typography> */}
           </div>
-          {/* <div
-            className="color-menu-item-description"
-            style={{ display: optionBoxHeightMin ? "none" : "block" }}
-          >
-            <Typography
-              variant="subtitle2"
-              sx={{ fontFamily: "var(--leva-fonts-mono)" }}
-              color="secondary"
-            >
-              {item.itemDescription}
-            </Typography>
-          </div> */}
-          {/* <div className="color-menu-part-title">{item.size}</div> */}
           <span
             style={{
               display: "grid",
@@ -437,9 +320,6 @@ export default function OptionBox({
               marginRight: "2rem",
               marginLeft: "2rem",
               border: "0.1rem solid rgb(155, 155, 155)",
-              // border: optionBoxHeightMin
-              //   ? "none"
-              //   : "0.1rem solid rgb(155, 155, 155)",
               borderRadius: "2rem",
               backgroundColor: "rgb(233, 234, 233)",
             }}
@@ -494,9 +374,6 @@ export default function OptionBox({
               <IconButton
                 onClick={toggleOptionBoxHeight}
                 color="white"
-                // disabled={
-                //   currentItemSelected.itemTitle === "noSelectTitle" ? true : false
-                // }
                 sx={{
                   padding: "0.5rem",
                 }}
@@ -618,7 +495,7 @@ export default function OptionBox({
               <span></span>
               <div>
                 <SplitButton
-                  theme={theme}
+                  // theme={theme}
                   currentItemName={currentItemName}
                   randomCurrentItemParts={randomCurrentItemParts}
                 />
@@ -627,7 +504,6 @@ export default function OptionBox({
                 className="buy-info-block"
                 style={{
                   display: optionBoxHeightMin ? "none" : "block",
-                  // paddingBottom: ".25rem",
                 }}
               >
                 <BuyButton

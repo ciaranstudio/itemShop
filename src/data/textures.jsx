@@ -79,15 +79,6 @@ export const textures = {
     // "./textures/VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_AO_2K_METALNESS.png",
   ],
 
-  woodFloorAshWhiteTexture: [
-    "./textures/WoodFlooringAshSuperWhite001/WoodFlooringAshSuperWhite001_COL_2K.jpg",
-    "./textures/WoodFlooringAshSuperWhite001/WoodFlooringAshSuperWhite001_DISP_2K.jpg",
-    "./textures/WoodFlooringAshSuperWhite001/WoodFlooringAshSuperWhite001_NRM_2K.png",
-    "./textures/WoodFlooringAshSuperWhite001/WoodFlooringAshSuperWhite001_GLOSS_2K_inverted.jpg",
-    "./textures/VeneerWhiteOakRandomMatched001/VeneerWhiteOakRandomMatched001_ROUGHNESS_2K_METALNESS.png",
-    "./textures/WoodFlooringAshSuperWhite001/WoodFlooringAshSuperWhite001_AO_2K.jpg",
-  ],
-
   woodFloorWornPlanksTexture: [
     "./textures/WoodPlanksWorn001/WoodPlanksWorn001_COL_2K.jpg",
     "./textures/WoodPlanksWorn001/WoodPlanksWorn001_DISP_2K.jpg",

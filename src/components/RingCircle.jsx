@@ -3,13 +3,8 @@ import { Edges } from "@react-three/drei";
 import * as THREE from "three";
 import { useOptionStore } from "../store/useOptionStore.tsx";
 
-export default function RingCircle({
-  selected,
-  // showBackground,
-  isShelf,
-  itemName,
-  forArrow,
-}) {
+export default function RingCircle({ selected, isShelf, itemName, forArrow }) {
+  // state from store
   const showBackground = useOptionStore((state) => state.showBackground);
 
   return (

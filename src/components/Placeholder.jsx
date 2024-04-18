@@ -2,23 +2,22 @@ import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 
 export default function Placeholder() {
+  // useRefs
   const boxRefInner = useRef();
   const boxRefMiddle = useRef();
   const boxRefOuter = useRef();
   const boxGroupRef = useRef();
 
-  const innerBoxGeoArgs = [0.95, 0.95, 0.95, 2, 2, 2]; // [0.5, 0.5, 0.5, 3, 3, 3]
+  // constants
+  const innerBoxGeoArgs = [0.95, 0.95, 0.95, 2, 2, 2];
   const middleBoxGeoArgs = [1.25, 1.25, 1.25, 1, 1, 1];
   const outerBoxGeoArgs = [1.65, 1.65, 1.65, 1, 1, 1];
 
+  // useFrames
   useFrame((state) => {
     const angle = state.clock.elapsedTime;
-    // boxRefInner.current.rotation.x = angle / 3;
     boxRefInner.current.rotation.y = angle / 3;
-    // boxRefMiddle.current.rotation.z = -angle / 4;
-    // boxRefOuter.current.rotation.x = angle / 6;
     boxRefOuter.current.rotation.x = -angle / 6;
-    // boxGroupRef.current.rotation.x = angle / 2;
     boxGroupRef.current.rotation.y = angle / 3;
   });
 

@@ -2,16 +2,7 @@ import React, { useLayoutEffect } from "react";
 import { useGLTF, useTexture } from "@react-three/drei";
 import * as THREE from "three";
 
-export const Walls = ({
-  // map,
-  // // displacementMap,
-  // normalMap,
-  // roughnessMap,
-  // metalnessMap,
-  // // aoMap,
-  currentColor,
-  currentTexture,
-}) => {
+export const Walls = ({ currentColor, currentTexture }) => {
   const { scene, nodes, materials } = useGLTF("./models/walls.gltf");
 
   const [
@@ -61,24 +52,7 @@ export const Walls = ({
       // aoMap: aoMap,
       color: currentColor,
     });
-  }, [
-    scene,
-    nodes,
-    materials,
-    // currentColor,
-    // currentTexture,
-    // map,
-    // displacementMap,
-    // normalMap,
-    // roughnessMap,
-    // metalnessMap,
-    // aoMap,
-  ]);
-
-  // useLayoutEffect(
-  //   () => scene.traverse((o) => o.isMesh && (o.receiveShadow = true)),
-  //   [],
-  // );
+  }, [scene, nodes, materials]);
 
   useLayoutEffect(() => {
     scene.traverse((o) => {

@@ -1,6 +1,5 @@
 import React, { useState, useLayoutEffect } from "react";
 import { useGLTF, useTexture, Html } from "@react-three/drei";
-// import { useOptionStore } from "../store/useOptionStore.tsx";
 
 export const Bag = ({
   currentColor,
@@ -11,6 +10,7 @@ export const Bag = ({
   const { scene, nodes, materials } = useGLTF("./models/bag.gltf");
   const [annotations, setAnnotations] = useState([]);
 
+  // texture
   const [
     map,
     // displacementMap,

@@ -26,54 +26,17 @@ import { SelectIcon } from "./SelectIcon.jsx";
 import { ArrowIcon } from "./ArrowIcon.jsx";
 import toast from "react-hot-toast";
 import { useOptionStore } from "../store/useOptionStore.tsx";
-// import { Annotation } from "./Annotation.jsx";
 // import { CameraHelper } from "three";
 // import { DirectionalLightHelper } from "three";
 // import { Perf } from "r3f-perf";
 // import { ShelfPositions } from "./room/ShelfPositions.jsx";
 
 export default function Scene({
-  // currentItemSelected,
-  // setCurrentItemSelected,
-  // previousItemSelected,
-  // setPreviousItemSelected,
   animDist,
-  // animActive,
-  // showBackground,
-  // setShowBackground,
-  // showPartOptions,
-  // setShowPartOptions,
   animateParts,
-  // animIconToggle,
-  // setAnimIconToggle,
   handlePartOption,
-  // getRandomInt,
   randomAllItemsParts,
-  // open,
-  // setOpen,
-  // showPhotos,
-  // setShowPhotos,
-  // sceneLoaded,
-  // allPhotos,
-  // setAllPhotos,
-  // aboutInfo,
-  // setAboutInfo,
-  // optionBoxHeightMin,
-  // setOptionBoxHeightMin,
   stagePosY,
-  // mobileView,
-  // partsOpen,
-  // setPartsOpen,
-  // optionBoxItemChanged,
-  // setOptionBoxItemChanged,
-  // optionBoxItemToggle,
-  // setOptionBoxItemToggle,
-  // activeCamPosAnim,
-  // setActiveCamPosAnim,
-  // activeCamTargAnim,
-  // setActiveCamTargAnim,
-  // activeCamAnim,
-  // setActiveCamAnim,
   toastDuration,
   toastFontSize,
   toastBackground,
@@ -140,38 +103,29 @@ export default function Scene({
   const orbitPolarShowBgdNotShelf = Math.PI / 2 - Math.PI / 9.06;
 
   // useRefs
-  // const shadowCameraRef = useRef();
   const dirLightA = useRef();
+  // const shadowCameraRef = useRef();
   const orbitRef = useRef();
 
   // useStates
   const [snipcartLoaded, setSnipcartLoaded] = useState(false);
   const [cartCount, setCartCount] = useState(0);
   const [overlayAlpha, setOverlayAlpha] = useState(1);
-  // const [initialLoad, setInitialLoad] = useState(false);
   const [controlsDragging, setControlsDragging] = useState(false);
   const [hovered, hover] = useState(false);
 
   // helper hooks
   const { height, width } = useWindowDimensions();
-  useCursor(hovered);
   // useHelper(shadowCameraRef, CameraHelper, 1, "lightBlue");
+  useCursor(hovered);
 
   // snipcart hook values
   const snipcart = useSnipcart();
-  // const unsubscribe = window.Snipcart.events.on("item.removed", (cartItem) => {
-  //   console.log("item removed: ", cartItem);
-  // });
   const { cart = {} } = useSnipcart();
   const { subtotal = "0.00" } = cart;
 
-  // move these to store:
-  // const [currentPartName, setCurrentPartName] = useState("top");
-  // const [currentItemName, setCurrentItemName] = useState("gramps");
-  // move these to store ^
-
+  // useStates
   const [count, setCount] = useState(0);
-  // const [randomTime, setRandomTime] = useState(0);
   const [prevStartAzimuthAng, setPrevStartAzimuthAng] = useState(0);
   const [prevEndAzimuthAng, setPrevEndAzimuthAng] = useState(0);
   const [startAzimuthAng, setStartAzimuthAng] = useState(0);
@@ -179,178 +133,76 @@ export default function Scene({
   const [isTouching, setIsTouching] = useState(false);
   const [dragTime, setDragTime] = useState(0);
   const [brokenCount, setBrokenCount] = useState(0);
-  // const [azCheckCount, setAzCheckCount] = useState(0);
-  // const [azCheckAng, setAzCheckAng] = useState(0);
   const [targetVec, setTargetVec] = useState(new THREE.Vector3());
 
+  // state from store
   const currentItemSelected = useOptionStore(
     (state) => state.currentItemSelected,
   );
-  const setCurrentItemSelected = useOptionStore(
-    (state) => state.setCurrentItemSelected,
-  );
-
   const previousItemSelected = useOptionStore(
     (state) => state.previousItemSelected,
+  );
+  const sceneLoaded = useOptionStore((state) => state.sceneLoaded);
+  const open = useOptionStore((state) => state.open);
+  const showPhotos = useOptionStore((state) => state.showPhotos);
+  const showBackground = useOptionStore((state) => state.showBackground);
+  const showPartOptions = useOptionStore((state) => state.showPartOptions);
+  const optionBoxItemChanged = useOptionStore(
+    (state) => state.optionBoxItemChanged,
+  );
+  const optionBoxItemToggle = useOptionStore(
+    (state) => state.optionBoxItemToggle,
+  );
+  const animActive = useOptionStore((state) => state.animActive);
+  const partsOpen = useOptionStore((state) => state.partsOpen);
+
+  // actions from store
+  const setCurrentItemSelected = useOptionStore(
+    (state) => state.setCurrentItemSelected,
   );
   const setPreviousItemSelected = useOptionStore(
     (state) => state.setPreviousItemSelected,
   );
-
-  const currentPartName = useOptionStore((state) => state.currentPartName);
   const setCurrentPartName = useOptionStore(
     (state) => state.setCurrentPartName,
   );
-
-  const currentItemName = useOptionStore((state) => state.currentItemName);
   const setCurrentItemName = useOptionStore(
     (state) => state.setCurrentItemName,
   );
-
-  // const mobileView = useOptionStore((state) => state.mobileView);
-  // const setMobileView = useOptionStore((state) => state.setMobileView);
-
-  const sceneLoaded = useOptionStore((state) => state.sceneLoaded);
-  // const setSceneLoaded = useOptionStore((state) => state.setSceneLoaded);
-
-  const open = useOptionStore((state) => state.open);
   const setOpen = useOptionStore((state) => state.setOpen);
-
-  const showPhotos = useOptionStore((state) => state.showPhotos);
   const setShowPhotos = useOptionStore((state) => state.setShowPhotos);
-
-  const allPhotos = useOptionStore((state) => state.allPhotos);
   const setAllPhotos = useOptionStore((state) => state.setAllPhotos);
-
-  const aboutInfo = useOptionStore((state) => state.aboutInfo);
   const setAboutInfo = useOptionStore((state) => state.setAboutInfo);
-
-  const optionBoxHeightMin = useOptionStore(
-    (state) => state.optionBoxHeightMin,
-  );
   const setOptionBoxHeightMin = useOptionStore(
     (state) => state.setOptionBoxHeightMin,
   );
-
-  const showBackground = useOptionStore((state) => state.showBackground);
   const setShowBackground = useOptionStore((state) => state.setShowBackground);
-
-  const showPartOptions = useOptionStore((state) => state.showPartOptions);
   const setShowPartOptions = useOptionStore(
     (state) => state.setShowPartOptions,
-  );
-
-  const optionBoxItemChanged = useOptionStore(
-    (state) => state.optionBoxItemChanged,
   );
   const setOptionBoxItemChanged = useOptionStore(
     (state) => state.setOptionBoxItemChanged,
   );
-
-  const optionBoxItemToggle = useOptionStore(
-    (state) => state.optionBoxItemToggle,
-  );
-  const setOptionBoxItemToggle = useOptionStore(
-    (state) => state.setOptionBoxItemToggle,
-  );
-
-  // const animToggled = useOptionStore((state) => state.animToggled);
-  // const setAnimToggled = useOptionStore((state) => state.setAnimToggled);
-
-  const animActive = useOptionStore((state) => state.animActive);
-  const setAnimActive = useOptionStore((state) => state.setAnimActive);
-
-  const activeCamPosAnim = useOptionStore((state) => state.activeCamPosAnim);
   const setActiveCamPosAnim = useOptionStore(
     (state) => state.setActiveCamPosAnim,
   );
-
-  const activeCamTargAnim = useOptionStore((state) => state.activeCamTargAnim);
   const setActiveCamTargAnim = useOptionStore(
     (state) => state.setActiveCamTargAnim,
   );
-
-  const activeCamAnim = useOptionStore((state) => state.activeCamAnim);
   const setActiveCamAnim = useOptionStore((state) => state.setActiveCamAnim);
-
-  const partsOpen = useOptionStore((state) => state.partsOpen);
-  const setPartsOpen = useOptionStore((state) => state.setPartsOpen);
-
-  const animIconToggle = useOptionStore((state) => state.animIconToggle);
   const setAnimIconToggle = useOptionStore((state) => state.setAnimIconToggle);
-
-  const getRandomInt = useOptionStore((state) => state.getRandomInt);
 
   // useEffects
   useEffect(() => {
-    // console.log("snipcartLoaded: ", snipcartLoaded);
-    // console.log("useSnipcart: ", snipcart);
     // let state = snipcart.getState();
     // console.log("snipCart state: ", state);
-    // console.log("cart:", cart);
-    // if (cart.items) {
-    // console.log("cart.items.count:", cart.items.count);
-    // }
-    // console.log("subtotal:", subtotal);
     if (window.Snipcart) {
       setSnipcartLoaded(true);
-      // console.log("setting snipcartLoaded state = true");
       // console.log("window.Snipcart.api: ", window.Snipcart);
       if (cart.items) setCartCount(cart.items.count);
-      // window.Snipcart.api.theme.cart.open();
-      // toast("Cart", {
-      //   duration: toastDuration,
-      //   position: "top-right",
-      //   // Styling
-      //   style: {
-      //     fontSize: toastFontSize,
-      //     background: toastBackground,
-      //     color: toastColor,
-      //     fontFamily: "var(--leva-fonts-mono)",
-      //   },
-      //   // style: { background: "#adbaba", color: "#ffffff" },
-      //   className: "",
-      //   // Custom Icon
-      //   // icon: "🛒",
-      //   // Change colors of success/error/loading icon
-      //   iconTheme: {
-      //     primary: "#000",
-      //     secondary: "#fff",
-      //   },
-      //   // Aria
-      //   ariaProps: {
-      //     role: "status",
-      //     "aria-live": "polite",
-      //   },
-      // });
-      // toast("Menu", {
-      //   duration: toastDuration,
-      //   position: "top-left",
-      //   // Styling
-      //   style: {
-      //     fontSize: toastFontSize,
-      //     background: toastBackground,
-      //     color: toastColor,
-      //     fontFamily: "var(--leva-fonts-mono)",
-      //   },
-      //   className: "",
-      //   // Custom Icon
-      //   // icon: "📑",
-      //   // Change colors of success/error/loading icon
-      //   iconTheme: {
-      //     primary: "#000",
-      //     secondary: "#fff",
-      //   },
-      //   // Aria
-      //   ariaProps: {
-      //     role: "status",
-      //     "aria-live": "polite",
-      //   },
-      // });
     } else {
       setSnipcartLoaded(false);
     }
-
     return () => {
       setSnipcartLoaded(false);
     };
@@ -378,6 +230,9 @@ export default function Scene({
   //     }
   //   }
   // }, [snipcartLoaded]);
+  // const unsubscribe = window.Snipcart.events.on("item.removed", (cartItem) => {
+  //   console.log("item removed: ", cartItem);
+  // });
   useEffect(() => {
     if (sceneLoaded) {
       window.setTimeout(() => {
@@ -397,10 +252,6 @@ export default function Scene({
     }
     // console.log(overlayGeometry);
   }, [sceneLoaded]);
-  // is this necessary with the setCount / setInterval call in count useEffect below? testing without it
-  // useEffect(() => {
-  //   randomAllItemsParts(false);
-  // }, []);
   useEffect(() => {
     if (currentItemSelected === unselectedItem) {
       randomAllItemsParts(false);
@@ -583,7 +434,6 @@ export default function Scene({
     }
     if (!showBackground) {
       setOpen(false);
-      // setInfoBoxIcon(true);
       animateParts();
     } else if (showBackground && currentItemSelected !== unselectedItem) {
       setAnimIconToggle(false);
@@ -622,8 +472,6 @@ export default function Scene({
     const element = document.querySelector("canvas");
     element.addEventListener("touchstart", (e) => {
       setIsTouching(true);
-      // document.getElementById("footer").innerHTML +=
-      //   " touchstart registered (outside of controls) ";
       // is not near edge of view, exit
       // if (e.pageX > 20 && e.pageX < window.innerWidth - 20) return; // suggested by reference showing this method of preventing edge swipes iOS
       if (e.pageX > 30 && e.pageX < window.innerWidth - 30) return;
@@ -632,32 +480,17 @@ export default function Scene({
     });
     element.addEventListener("touchmove", (e) => {
       setIsTouching(true);
-      // document.getElementById("footer").innerHTML +=
-      //   "   touchmove registered (outside of controls)";
     });
     element.addEventListener("touchend", (e) => {
       setIsTouching(false);
-      // document.getElementById("footer").innerHTML +=
-      //   " touchend registered (outside of controls) ";
     });
     // setInitialLoad(true);
     if (orbitRef.current) {
       orbitRef.current.addEventListener(
         "start",
         () => {
-          // let position = orbitRef.current.getAzimuthalAngle(); // orbitRef.current.object.position.x;
-          // if (position === null) {
-          //   position = "null";
-          // }
-          // document.getElementById("footer").innerHTML =
-          //   "start touch registered ";
-          // document.getElementById("footer").innerHTML += position;
           // console.log("start");
           setDragTime(0);
-          // console.log(
-          //   "from `start` controls listener: orbitControls object.object.fov: ",
-          //   orbitRef.current.object.position,
-          // );
           setControlsDragging(true);
           setIsTouching(true);
           if (orbitRef.current.autoRotate) orbitRef.current.autoRotate = false;
@@ -668,20 +501,7 @@ export default function Scene({
       orbitRef.current.addEventListener(
         "change",
         () => {
-          // let position = orbitRef.current.getAzimuthalAngle(); // orbitRef.current.object.position.x;
-          // if (position === null) {
-          //   position = "null";
-          // }
-          // document.getElementById("footer").innerHTML =
-          //   "change touch registered ";
-          // document.getElementById("footer").innerHTML += position;
           // console.log("change");
-          // console.log(
-          //   "from `change` controls listener: orbitControls orbitRef.current.object.position: ",
-          //   orbitRef.current.object.position,
-          // );
-          // setPreviousAzimuthAng(orbitRef.current.getAzimuthalAngle());
-          // setCurrentAzimuthAng(orbitRef.current.getAzimuthalAngle());
           // setControlsDragging(true);
         },
         true,
@@ -689,17 +509,7 @@ export default function Scene({
       orbitRef.current.addEventListener(
         "end",
         () => {
-          // let position = orbitRef.current.getAzimuthalAngle(); // orbitRef.current.object.position.x;
-          // if (position === null) {
-          //   position = "null";
-          // }
-          // document.getElementById("footer").innerHTML = "end touch registered ";
-          // document.getElementById("footer").innerHTML += position;
           // console.log("end");
-          // console.log(
-          //   "from `end` controls listener: orbitControls orbitRef.current.object.position: ",
-          //   orbitRef.current.object.position,
-          // );
           setIsTouching(false);
           setControlsDragging(false);
           setEndAzimuthAng(orbitRef.current.getAzimuthalAngle());
@@ -739,38 +549,9 @@ export default function Scene({
     };
   }, []);
   // useEffect(() => {
-  //   if (aboutInfo && open) {
-  //     setOpen(false);
-  //     setTimeout(() => {
-  //       setOpen(true);
-  //       setShowPhotos(false);
-  //       setShowPartOptions(false);
-  //     }, "250");
-  //   }
-  // }, [aboutInfo]);
-  // useEffect(() => {
-  //   if (allPhotos && showPhotos) {
-  //     setShowPhotos(false);
-  //   }
-  // }, [allPhotos]);
-  // useEffect(() => {
   //   // console.log("height: ", height);
   //   // console.log("width: ", width);
   // }, [height, width]);
-  // useEffect(() => {
-  //   if (isTouching && !controlsDragging) {
-  //     if (orbitRef.current) {
-  //       setAzCheckAng(orbitRef.current.getAzimuthalAngle());
-  //     }
-  //   }
-  // }, [isTouching]);
-  // useEffect(() => {
-  //   if (azCheckCount === 1) {
-  //     document.getElementById("footer").innerHTML =
-  //       " useFrame azCheck: controls stuck, reloading ";
-  //     window.location.reload();
-  //   }
-  // }, [azCheckCount]);
   useEffect(() => {
     if (controlsDragging) {
       setPrevEndAzimuthAng(endAzimuthAng);
@@ -1004,15 +785,11 @@ export default function Scene({
   };
   const handleDoubleClick = (e) => {
     e.stopPropagation();
-    // if (currentItemSelected === unselectedItem) {
-    //   setCurrentItemSelected(objects.gramps);
-    // }
     if (showBackground) {
       if (!animActive) {
         setOpen(false);
         setShowPhotos(false);
         setShowBackground(!showBackground);
-        // animateParts();
       }
     }
   };
@@ -1076,6 +853,7 @@ export default function Scene({
     let position = [x, y, z];
     return position;
   };
+  // switch block for use later on, replace ternary chains in position props throughout
   // switch (itemName) {
   //   case "gramps":
   //     setOptionBoxItemChanged(shopItems[itemName]);
@@ -1119,11 +897,6 @@ export default function Scene({
       setShowPartOptions(true);
     }
   };
-
-  // useEffect(() => {
-  //   console.log("open value (from useEffect): ", open);
-  // }, [open]);
-
   const togglePhotoBox = (e) => {
     if (e) {
       e.preventDefault();
@@ -1146,39 +919,16 @@ export default function Scene({
     const email = "eliwgfell@gmail.com";
     const subject = "Contact from shop";
     const emailBody = "Yeah yeah yeah...";
-
     document.location =
       "mailto:" + email + "?subject=" + subject + "&body=" + emailBody;
   };
 
   // useFrames
-  // useFrame((state, delta) => {
-  //   setRandomTime(randomTime + delta);
-  //   console.log(randomTime);
-  //   if (Math.floor(randomTime) % 2 === 0) {
-  //     if (currentItemSelected === unselectedItem) randomAllItemsParts(false);
-  //   }
-  // });
   useFrame((state, delta) => {
     if (controlsDragging) {
       setDragTime(dragTime + delta);
       // console.log("controls dragging for ", dragTime);
     }
-    // if (isTouching && !controlsDragging) {
-    //   document.getElementById("footer").innerHTML =
-    //     " isTouching = true & controlsDragging = false ";
-    //   if (orbitRef.current) {
-    //     let checkAzAng = orbitRef.current.getAzimuthalAngle();
-    //     if (checkAzAng === azCheckAng || checkAzAng === endAzimuthAng) {
-    //       // document.getElementById("footer").innerHTML =
-    //       //   " controls aren't changing even though touches are registered ";
-    //       document.getElementById("footer").innerHTML +=
-    //         " useFrame azCheck: matched azimuth angles ";
-    //       setAzCheckCount(azCheckCount + 1);
-    //       // window.location.reload();
-    //     }
-    //   }
-    // }
   });
 
   // gsap animation hooks (camera target animation and camera position animation)
@@ -1384,25 +1134,20 @@ export default function Scene({
           );
           let tl = gsap.timeline();
           tl.to(controlsPositionVec, {
-            // delay: optionBoxItemChanged ? 1 : 0.2,
             delay: optionBoxItemChanged
               ? camPosAnimDelay + 0.2
-              : camPosAnimDelay, // 0.2
-            // duration: camPosAnimDuration, // 1.85
+              : camPosAnimDelay,
             duration: optionBoxItemChanged
               ? camPosAnimDuration + 0.75
-              : camPosAnimDuration, // 0.2
+              : camPosAnimDuration,
             x: currentItemSelected.position.x + xPlus,
             y: currentItemSelected.position.y + yPlus,
             z: currentItemSelected.position.z + zPlus,
             ease: "easeIn",
             onStart: () => {
-              // setOpen(!open);
-              // setInfoBoxIcon(!infoBoxIcon);
               setActiveCamPosAnim(true);
               setActiveCamAnim(true);
               if (optionBoxItemChanged) orbitRef.current.autoRotate = false;
-              // orbitRef.current.enabled = false;
               orbitRef.current.enableRotate = false;
               orbitRef.current.enableZoom = false;
             },
@@ -1438,113 +1183,6 @@ export default function Scene({
 
   // make animation hook for ArrowIcon to rotate on its x axis away from the user (towards -z from camera view)
   // connect it to same animation toggle state variable in hook dependencies
-  // const camPosAnimDelay = 0.175;
-  // const camPosAnimDuration = 1.85;
-  // // animate camera position on item double click / showBackground turning false
-  // const controlsPositionVec = new THREE.Vector3();
-  // const [targetVec, setTargetVec] = useState(new THREE.Vector3());
-  // useGSAP(() => {
-  //   if (!showBackground) {
-  //     if (orbitRef.current) {
-  //       if (orbitRef.current.object.position !== targetVec) {
-  //         // console.log(
-  //         //   "checking controls current position: ",
-  //         //   orbitRef.current.object.position,
-  //         // );
-  //         let xPlus = -1.65;
-  //         let yPlus = 1.25;
-  //         let zPlus = -1.165;
-
-  //         if (currentItemSelected.itemName === "gramps") {
-  //           xPlus = -2.15; // -1.75
-  //           yPlus = 1; // 0.5
-  //           zPlus = -0.575; // -0.75
-  //         } else if (currentItemSelected.itemName === "block") {
-  //           xPlus = -0.5; // 0 // -0.75
-  //           yPlus = 0.75; // 0.5 // 0.5
-  //           zPlus = -1.5; // 1.75 // -1.25
-  //         } else if (currentItemSelected.itemName === "horse") {
-  //           xPlus = 2; // -1.75
-  //           yPlus = 1.25; // 1.25
-  //           zPlus = -2.5; // -2.1
-  //         } else if (currentItemSelected.itemName === "squatter") {
-  //           xPlus = 1.95; // 1.75
-  //           yPlus = 0.75; // 0.5
-  //           zPlus = 1.15; // 1
-  //         } else if (currentItemSelected.itemName === "shelfA16") {
-  //           xPlus = 1.5; // 1 // 1.5
-  //           yPlus = 2; // 1.75 // 1.25
-  //           zPlus = -0.5; // -1 // 1.5
-  //         } else if (currentItemSelected.itemName === "shelfA32") {
-  //           xPlus = 2; // 1.5
-  //           yPlus = 1.5; // 1
-  //           zPlus = -1; // 1.5
-  //         } else if (currentItemSelected.itemName === "shelfB16") {
-  //           xPlus = -0.75; // -1.5
-  //           yPlus = 1.25; //  1
-  //           zPlus = -1.75; // -1.5
-  //         } else if (currentItemSelected.itemName === "shelfB32") {
-  //           xPlus = -1; // -1.5
-  //           yPlus = 1.75; // 1.75  // 1.25
-  //           zPlus = -2.25; // -1.5
-  //         }
-
-  //         controlsPositionVec.set(
-  //           orbitRef.current.object.position.x,
-  //           orbitRef.current.object.position.y,
-  //           orbitRef.current.object.position.z,
-  //         );
-  //         let tl = gsap.timeline();
-  //         tl.to(controlsPositionVec, {
-  //           // delay: optionBoxItemChanged ? 1 : 0.2,
-  //           delay: optionBoxItemChanged
-  //             ? camPosAnimDelay + 0.2
-  //             : camPosAnimDelay, // 0.2
-  //           // duration: camPosAnimDuration, // 1.85
-  //           duration: optionBoxItemChanged
-  //             ? camPosAnimDuration + 0.75
-  //             : camPosAnimDuration, // 0.2
-  //           x: currentItemSelected.position.x + xPlus,
-  //           y: currentItemSelected.position.y + yPlus,
-  //           z: currentItemSelected.position.z + zPlus,
-  //           ease: "easeIn",
-  //           onStart: () => {
-  //             // setOpen(!open);
-  //             // setInfoBoxIcon(!infoBoxIcon);
-  //             setActiveCamPosAnim(true);
-  //             setActiveCamAnim(true);
-  //             if (optionBoxItemChanged) orbitRef.current.autoRotate = false;
-  //             // orbitRef.current.enabled = false;
-  //             orbitRef.current.enableRotate = false;
-  //             orbitRef.current.enableZoom = false;
-  //           },
-  //           onUpdate: () => {
-  //             setTargetVec(controlsPositionVec);
-  //             orbitRef.current.object.position.set(
-  //               controlsPositionVec.x,
-  //               controlsPositionVec.y,
-  //               controlsPositionVec.z,
-  //             );
-  //             orbitRef.current.object.updateProjectionMatrix();
-  //             orbitRef.current.update();
-  //           },
-  //           onComplete: () => {
-  //             setTargetVec(controlsPositionVec);
-  //             // orbitRef.current.enabled = true;
-  //             orbitRef.current.enableRotate = true;
-  //             orbitRef.current.enableZoom = true;
-  //             setActiveCamPosAnim(false);
-  //             setActiveCamAnim(false);
-  //             // set a timeout to delay this toggle of autoRotate?
-  //             orbitRef.current.autoRotate = true;
-  //             orbitRef.current.autoRotateSpeed = 1.1;
-  //             // setOptionBoxItemChanged(false);
-  //           },
-  //         });
-  //       }
-  //     }
-  //   }
-  // }, [showBackground, optionBoxItemToggle]);
 
   return (
     <>
@@ -1582,7 +1220,6 @@ export default function Scene({
 
         <pointLight
           position={[-width / 2900 + 0.2, 0.5, 0.1]}
-          // position={[-width / 2800 + 0.2, 0.5, 0.1]}
           intensity={0.25}
         />
         <mesh
@@ -1602,37 +1239,8 @@ export default function Scene({
           <Logo
             currentColor={textures.blueTape}
             currentTexture={textures.paintedTexture}
-            // open={open}
-            // setOpen={setOpen}
-            // showPhotos={showPhotos}
-            // setShowPhotos={setShowPhotos}
-            // showPartOptions={showPartOptions}
-            // setShowPartOptions={setShowPartOptions}
-            // aboutInfo={aboutInfo}
-            // setAboutInfo={setAboutInfo}
-            // allPhotos={allPhotos}
-            // setAllPhotos={setAllPhotos}
             openUserEmail={openUserEmail}
           />
-          {/* <Html center position={[0, -12, 0]}>
-             <div className="w3-container">
-              <div className="w3-bar w3-light-grey">
-                <div className="w3-dropdown-click">
-                  <div className="w3-dropdown-content w3-bar-block w3-card">
-                    <a href="#" className="w3-bar-item w3-button">
-                      Link 1
-                    </a>
-                    <a href="#" className="w3-bar-item w3-button">
-                      Link 2
-                    </a>
-                    <a href="#" className="w3-bar-item w3-button">
-                      Link 3
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>        
-          </Html> */}
         </mesh>
         {/* Arrow icon at bottom of screen */}
         <group
@@ -1650,60 +1258,15 @@ export default function Scene({
                     ? [0, arrowY, 0]
                     : [0, arrowY, 0]
             }
-            // position={
-            //   width >= 376 && width < 600
-            //     ? [0, -0.3, 0]
-            //     : width < 376
-            //       ? [0, -0.3, 0] // looks right on chrome simulator [0, -0.275, 0]
-            //       : width >= 600 && width < 1100
-            //         ? [0, -0.3, 0]
-            //         : [0, -0.3, 0]
-            // }
             scale={0.0055}
-            // rotation={[0, 0, 0]}
-            // onClick={handleArrowIconClick}
-            // onPointerOver={() => hover(true)}
-            // onPointerOut={() => hover(false)}
           >
             <ArrowIcon
               currentColor={textures.alabasterPaint}
               currentTexture={textures.whiteTexture}
-              // currentItemSelected={currentItemSelected}
-              // setCurrentItemSelected={setCurrentItemSelected}
-              // setPreviousItemSelected={setPreviousItemSelected}
               toggleInfoBox={toggleInfoBox}
-              // open={open}
               togglePhotoBox={togglePhotoBox}
-              // showPhotos={showPhotos}
-              // currentItemName={currentItemName}
-              // setCurrentItemName={setCurrentItemName}
-              // currentPartName={currentPartName}
-              // setCurrentPartName={setCurrentPartName}
-              // showBackground={showBackground}
-              // setShowBackground={setShowBackground}
-              // showPartOptions={showPartOptions}
-              // setShowPartOptions={setShowPartOptions}
               handlePartOption={handlePartOption}
-              // getRandomInt={getRandomInt}
-              // allPhotos={allPhotos}
-              // aboutInfo={aboutInfo}
-              // setAllPhotos={setAllPhotos}
-              // setAboutInfo={setAboutInfo}
-              // optionBoxHeightMin={optionBoxHeightMin}
-              // setOptionBoxHeightMin={setOptionBoxHeightMin}
-              // animActive={animActive}
-              // activeCamPosAnim={activeCamPosAnim}
-              // activeCamTargAnim={activeCamTargAnim}
-              // activeCamAnim={activeCamAnim}
-              // mobileView={mobileView}
-              // optionBoxItemChanged={optionBoxItemChanged}
-              // setOptionBoxItemChanged={setOptionBoxItemChanged}
-              // optionBoxItemToggle={optionBoxItemToggle}
-              // setOptionBoxItemToggle={setOptionBoxItemToggle}
               openUserEmail={openUserEmail}
-              // animateParts={animateParts}
-              // animIconToggle={animIconToggle}
-              // setAnimIconToggle={setAnimIconToggle}
             />
           </mesh>
           <group
@@ -1723,7 +1286,6 @@ export default function Scene({
               isShelf={false}
               itemName={"arrow"}
               forArrow={true}
-              // arrowY={arrowY}
             />
           </group>
         </group>
@@ -1733,7 +1295,7 @@ export default function Scene({
       <OrbitControls
         makeDefault
         ref={orbitRef}
-        enableZoom={!animActive} // showBackground ? true : false
+        enableZoom={!animActive}
         enablePan={false}
         maxDistance={!showBackground && partsOpen ? 4 : 15}
         minDistance={1.45} // 1.65 on 04/11/2024 // before 04/11/2024 1.75 good on iphone xr portrait // 1.375 // 60
@@ -1749,7 +1311,7 @@ export default function Scene({
         autoRotateSpeed={0.8}
       />
       <Sky distance={55} sunPosition={[40, 8.5, -50]} />
-      {/* grampsLight */}
+      {/* directional light for all objects */}
       <directionalLight
         castShadow
         ref={dirLightA}
@@ -1766,7 +1328,7 @@ export default function Scene({
         shadow-camera-top={dirLightCamTop} // 150
         // target={grampsRef.current}
       />
-      {/* all objects (except logo and cart/bag) */}
+      {/* all objects (except logo, cart/bag, arrow / objects in ScreenSpace) */}
       <group position={[0, stagePosY, 0]}>
         <ambientLight intensity={ambLightIntensity} />
         {/* furniture items */}
@@ -1793,56 +1355,25 @@ export default function Scene({
                     key={part.partName}
                     onClick={(e) => handleItemPartClick(e, part)}
                   >
-                    <mesh
-                      position={animatedPosition(part.animation, animDist)}
-                      // visible={false}
-                    >
+                    <mesh position={animatedPosition(part.animation, animDist)}>
                       <ItemPart
                         model={part.model}
                         itemName={part.itemName}
                         partName={part.partName}
                       />
                     </mesh>
-
-                    {/* <Annotation
-                      model={part.model}
-                      itemName={part.itemName}
-                      itemTitle={item.itemTitle}
-                      partName={part.partName}
-                      descPartName={part.descPartName}
-                      animation={part.animation}
-                      animDist={animDist}
-                      currentItemName={currentItemName}
-                      currentPartName={currentPartName}
-                      showBackground={showBackground}
-                      setShowBackground={setShowBackground}
-                      showPartOptions={showPartOptions}
-                      setShowPartOptions={setShowPartOptions}
-                      handlePartOption={handlePartOption}
-                      getRandomInt={getRandomInt}
-                      positionBottom={true}
-                      toggleInfoBox={toggleInfoBox}                   
-                      togglePhotoBox={togglePhotoBox}
-                    /> */}
-
                     <SelectIcon
                       model={part.model}
                       itemName={part.itemName}
                       partName={part.partName}
                       animation={part.animation}
                       animDist={animDist}
-                      // currentItemName={currentItemName}
-                      // currentPartName={currentPartName}
-                      // showBackground={showBackground}
-                      // showPartOptions={showPartOptions}
                     />
                     <RingCircle
                       selected={currentItemSelected === item ? true : false}
-                      // showBackground={showBackground}
                       isShelf={part.itemName.includes("shelf") ? true : false}
                       itemName={part.itemName}
                       forArrow={false}
-                      // arrowY={arrowY}
                     />
                   </group>
                 );
@@ -1851,11 +1382,7 @@ export default function Scene({
           );
         })}
         {/* floor */}
-        <mesh
-          visible={showBackground}
-          position={[0, -0.498, 0]}
-          // onClick={handleOffClick}
-        >
+        <mesh visible={showBackground} position={[0, -0.498, 0]}>
           <Floor
             currentColor={textures.floorStain}
             currentTexture={textures.woodFloorWornPlanksTexture} // woodFloorWornPlanksTexture
@@ -1863,12 +1390,9 @@ export default function Scene({
         </mesh>
 
         {/* wallsAndMoulding */}
-        <mesh
-          visible={showBackground}
-          // onClick={handleOffClick}
-        >
+        <mesh visible={showBackground}>
           <Walls
-            currentColor={textures.floorStain} // whiteStain
+            currentColor={textures.floorStain}
             currentTexture={textures.paintedTexture}
           />
         </mesh>
