@@ -282,6 +282,7 @@ export default function OptionBox({
                     }}
                     size="large"
                     disabled={activeCamAnim ? true : false}
+                    aria-label="open item select list"
                   >
                     {currentItemSelected.itemTitle}
                   </Button>
@@ -293,6 +294,7 @@ export default function OptionBox({
                         border: "0.075rem solid rgb(255, 255, 255);",
                       },
                     }}
+                    aria-label="item select menu"
                   >
                     {shopItems.map((shopItem, index) => {
                       return (
@@ -503,7 +505,6 @@ export default function OptionBox({
                   // theme={theme}
                   currentItemName={currentItemName}
                   randomCurrentItemParts={randomCurrentItemParts}
-                  aria-label="shuffle stains/paints colors with random values"
                 />
               </div>
               <span
@@ -512,11 +513,7 @@ export default function OptionBox({
                   display: optionBoxHeightMin ? "none" : "block",
                 }}
               >
-                <BuyButton
-                  theme={theme}
-                  item={objects[currentItemName]}
-                  aria-label="add to shopping cart"
-                />
+                <BuyButton theme={theme} item={objects[currentItemName]} />
               </span>
             </div>
           </span>

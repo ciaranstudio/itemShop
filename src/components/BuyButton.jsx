@@ -34,6 +34,7 @@ export default function BuyButton({ item, theme }) {
         color="success"
         disabled={optionSelectedPrice === 0}
         className="snipcart-add-item"
+        aria-label="add to shopping cart"
         data-item-id={item.itemNo}
         // data-item-image={imageUrl}
         data-item-name={item.itemTitle}

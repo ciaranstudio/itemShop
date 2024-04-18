@@ -69,6 +69,7 @@ export default function SplitButton({
             fontFamily: "var(--leva-fonts-mono)",
             backgroundColor: "rgb(233, 234, 233)",
           }}
+          aria-label="shuffle colors randomly"
         >
           {options[selectedIndex]}
         </Button>

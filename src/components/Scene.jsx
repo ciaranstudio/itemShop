@@ -479,8 +479,8 @@ export default function Scene({
     }
     if (!showBackground && previousItemSelected.itemName === "noSelect") {
       toast("Toggles background", {
-        duration: toastDuration + 3000,
-        position: "top-right",
+        duration: toastDuration,
+        position: "top-left",
         // Styling
         style: {
           fontSize: toastFontSize,
@@ -503,8 +503,8 @@ export default function Scene({
         },
       });
       toast("Also toggles background", {
-        duration: toastDuration + 3000,
-        position: "top-right",
+        duration: toastDuration,
+        position: "top-left",
         // Styling
         style: {
           fontSize: toastFontSize,
