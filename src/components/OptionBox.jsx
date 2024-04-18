@@ -38,8 +38,8 @@ export default function OptionBox({
   const boxPosYDesktopMax = 3; // 3 looks good on chrome simulator 04/11/2024
   const boxPosYDesktopMin = 0; // -4 looks good on chrome simulator 04/11/2024
 
-  const notTinyScreenOffsetMinimized = -13; // -3 a bit too high on XR // -6 looks good on chrome simulator 04/11/2024
-  const notTinyScreenOffsetNotMinimized = -15; // -4 a bit too high on XR // 0 looks good on chrome simulator 04/11/2024
+  const notTinyScreenOffsetMinimized = -9.5; // -3 a bit too high on XR // -6 looks good on chrome simulator 04/11/2024
+  const notTinyScreenOffsetNotMinimized = -10.25; // -4 a bit too high on XR // 0 looks good on chrome simulator 04/11/2024
 
   const breakpointWidthSmallest = 380;
 
@@ -104,18 +104,18 @@ export default function OptionBox({
   const getRandomInt = useOptionStore((state) => state.getRandomInt);
 
   // useEffects
-  useEffect(() => {
-    if (mobileView && !optionBoxHeightMin) {
-      if (
-        currentItemSelected.itemName === "horse" ||
-        currentItemSelected.itemName.includes("shelf")
-      ) {
-        setMobilePosYMax(boxPosYMobileMax + 2.5);
-      } else {
-        setMobilePosYMax(boxPosYMobileMax);
-      }
-    }
-  }, [currentItemSelected, mobileView, optionBoxHeightMin]);
+  // useEffect(() => {
+  //   if (mobileView && !optionBoxHeightMin) {
+  //     if (
+  //       currentItemSelected.itemName === "horse" ||
+  //       currentItemSelected.itemName.includes("shelf")
+  //     ) {
+  //       setMobilePosYMax(boxPosYMobileMax + 2.5);
+  //     } else {
+  //       setMobilePosYMax(boxPosYMobileMax);
+  //     }
+  //   }
+  // }, [currentItemSelected, mobileView, optionBoxHeightMin]);
 
   // functions
   const toggleOptionBoxHeight = (e) => {
