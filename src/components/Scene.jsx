@@ -962,9 +962,12 @@ export default function Scene({
         delay: optionBoxItemChanged
           ? camTargAnimDelay - 0.075
           : camTargAnimDelay,
-        duration: optionBoxItemChanged
-          ? camTargAnimDuration * 1.5
-          : camTargAnimDuration,
+        duration:
+          previousItemSelected === unselectedItem
+            ? camTargAnimDuration - 0.3
+            : optionBoxItemChanged
+              ? camTargAnimDuration * 1.5
+              : camTargAnimDuration,
         x: currentItemSelected.position.x,
         y: currentItemSelected.position.y,
         z: currentItemSelected.position.z,
