@@ -404,7 +404,7 @@ export default function Scene({
           "aria-live": "polite",
         },
       });
-    } else if (count === 6) {
+    } else if (count === 5) {
       toast("Tap to select", {
         duration: toastDuration,
         position: "top-left",
@@ -429,7 +429,7 @@ export default function Scene({
           "aria-live": "polite",
         },
       });
-    } else if (count === 8) {
+    } else if (count === 6) {
       toast("^ for options", {
         duration: toastDuration,
         position: "top-left",
@@ -454,7 +454,7 @@ export default function Scene({
           "aria-live": "polite",
         },
       });
-    } else if (count === 10 && currentItemSelected === unselectedItem) {
+    } else if (count === 12 && currentItemSelected === unselectedItem) {
       handleArrowIconClick(null);
     }
     //Clearing the interval
