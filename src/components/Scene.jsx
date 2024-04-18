@@ -128,6 +128,7 @@ export default function Scene({
   const [dragTime, setDragTime] = useState(0);
   const [brokenCount, setBrokenCount] = useState(0);
   const [targetVec, setTargetVec] = useState(new THREE.Vector3());
+  const [arrowRotationX, setArrowRotationX] = useState(Math.PI * 2);
 
   // state from store
   const currentItemSelected = useOptionStore(
@@ -149,6 +150,7 @@ export default function Scene({
   );
   const animActive = useOptionStore((state) => state.animActive);
   const partsOpen = useOptionStore((state) => state.partsOpen);
+  const arrowAnimActive = useOptionStore((state) => state.arrowAnimActive);
 
   // actions from store
   const setCurrentItemSelected = useOptionStore(
@@ -185,6 +187,9 @@ export default function Scene({
   );
   const setActiveCamAnim = useOptionStore((state) => state.setActiveCamAnim);
   const setAnimIconToggle = useOptionStore((state) => state.setAnimIconToggle);
+  const setArrowAnimActive = useOptionStore(
+    (state) => state.setArrowAnimActive,
+  );
 
   // helper hooks
   const { height, width } = useWindowDimensions();
@@ -196,7 +201,7 @@ export default function Scene({
   const { cart = {} } = useSnipcart();
   const { subtotal = "0.00" } = cart;
 
-  // animation constants for loading overlay opacity animation
+  // animation geometry and material for loading overlay opacity animation
   const overlayGeometry = new THREE.PlaneGeometry(2, 2, 1, 1);
   // gl_FragColor = vec4(0.153, 0.153, 0.102, uAlpha); // (previous gl_FragColor)
   const overlayMaterial = new THREE.ShaderMaterial({
@@ -219,11 +224,14 @@ export default function Scene({
         }
     `,
   });
-  // animation objects for loading overlay opacity animation
+  // animation object for loading overlay opacity animation
   const overlayOpacity = { value: 1 };
   // vector3s for camera target and camera position animations
   const controlsTargetVec = new THREE.Vector3();
   const controlsPositionVec = new THREE.Vector3();
+  // animation object for rotating ArrowIcon on toggle
+  const arrowRotationUp = { value: Math.PI * 2 };
+  const arrowRotationDown = { value: 0 };
 
   // useEffects
   useEffect(() => {
@@ -465,7 +473,7 @@ export default function Scene({
         objects[currentItemSelected.itemName].parts[0].partName,
       );
       setOptionBoxHeightMin(false);
-      setShowPartOptions(true);
+      // setShowPartOptions(true);
     }
     if (!showBackground) {
       setOpen(false);
@@ -764,7 +772,7 @@ export default function Scene({
     // e.stopPropagation(); // disables item part / item click connecting to entire item mesh/group
     // console.log(part.itemName, part.partName, " clicked");
     if (!showBackground) {
-      if (!showPhotos && !open) setShowPartOptions(true);
+      if (!showPhotos && !open && !arrowAnimActive) setShowPartOptions(true);
       if (part.itemName === currentItemSelected.itemName) {
         setCurrentItemName(part.itemName);
         setCurrentPartName(part.partName);
@@ -791,6 +799,8 @@ export default function Scene({
   };
   const handleArrowIconClick = (e) => {
     if (e) e.stopPropagation();
+    // setArrowAnimActive(true);
+    setShowPartOptions(false);
     toast.dismiss();
     if (currentItemSelected === unselectedItem) {
       setCurrentItemSelected(objects.gramps);
@@ -886,7 +896,6 @@ export default function Scene({
     setAboutInfo(false);
     setOpen(!open);
     setShowPhotos(false);
-
     if (showPartOptions) {
       setShowPartOptions(false);
     } else {
@@ -901,6 +910,7 @@ export default function Scene({
     setAllPhotos(false);
     setOpen(false);
     setShowPhotos(!showPhotos);
+
     if (showPartOptions) {
       setShowPartOptions(false);
     } else {
@@ -927,6 +937,7 @@ export default function Scene({
     }
   });
 
+  // camera (target and position) animations
   // gsap animation hooks (camera target animation and camera position animation)
   useGSAP(() => {
     // setAnimActive()
@@ -966,7 +977,7 @@ export default function Scene({
           : camTargAnimDelay,
         duration:
           previousItemSelected === unselectedItem
-            ? camTargAnimDuration - 0.3
+            ? camTargAnimDuration - 0.15
             : optionBoxItemChanged
               ? camTargAnimDuration * 1.5
               : camTargAnimDuration,
@@ -1185,6 +1196,49 @@ export default function Scene({
 
   // make animation hook for ArrowIcon to rotate on its x axis away from the user (towards -z from camera view)
   // connect it to same animation toggle state variable in hook dependencies
+  useGSAP(() => {
+    if (!showBackground) {
+      if (orbitRef.current) {
+        let tl = gsap.timeline();
+        tl.to(arrowRotationUp, {
+          delay: 0.1,
+          duration: 1.5,
+          value: 0,
+          ease: "easeIn",
+          onStart: () => {
+            setArrowAnimActive(true);
+            setShowPartOptions(false);
+          },
+          onUpdate: () => {
+            console.log("arrowRotationX: ", arrowRotationX);
+            setArrowRotationX(arrowRotationUp.value);
+          },
+          onComplete: () => {
+            setArrowAnimActive(false);
+            setShowPartOptions(true);
+          },
+        });
+      }
+    } else if (showBackground) {
+      let tl = gsap.timeline();
+      tl.to(arrowRotationDown, {
+        delay: 0.1,
+        duration: 1.5,
+        value: Math.PI * 2,
+        ease: "easeOut",
+        onStart: () => {
+          setArrowAnimActive(true);
+        },
+        onUpdate: () => {
+          setArrowRotationX(arrowRotationDown.value);
+        },
+        onComplete: () => {
+          setArrowAnimActive(false);
+          // setShowPartOptions(true);
+        },
+      });
+    }
+  }, [showBackground]);
 
   return (
     <>
@@ -1261,6 +1315,7 @@ export default function Scene({
                     : [0, arrowY, 0]
             }
             scale={0.0055}
+            rotation={[arrowRotationX, 0, 0]}
           >
             <ArrowIcon
               currentColor={textures.alabasterPaint}
@@ -1281,6 +1336,7 @@ export default function Scene({
                     ? [0, arrowY + 0.01, 0]
                     : [0, arrowY + 0.01, 0]
             }
+            // rotation={[arrowRotationX, 0, 0]}
           >
             <RingCircle
               selected={animActive ? true : false}

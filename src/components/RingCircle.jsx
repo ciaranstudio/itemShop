@@ -42,7 +42,7 @@ export default function RingCircle({ selected, isShelf, itemName, forArrow }) {
       <Edges
         threshold={90}
         color="white"
-        visible={forArrow ? true : selected && showBackground ? true : false}
+        visible={forArrow ? false : selected && showBackground ? true : false}
       />
     </mesh>
   );

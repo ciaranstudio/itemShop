@@ -30,6 +30,7 @@ type State = {
   partsOpen: boolean;
   animIconToggle: boolean;
   animateButton: boolean;
+  arrowAnimActive: boolean;
   items: {
     gramps: {
       data: {};
@@ -463,6 +464,7 @@ type Action = {
   setAnimIconToggle: (value: boolean) => void;
   setAnimateButton: (value: boolean) => void;
   getRandomInt: (max: number) => number;
+  setArrowAnimActive: (value: boolean) => void;
 };
 
 export const useOptionStore = create<State & Action>((set) => ({
@@ -489,6 +491,7 @@ export const useOptionStore = create<State & Action>((set) => ({
   partsOpen: false,
   animIconToggle: false,
   animateButton: false,
+  arrowAnimActive: false,
   items: {
     gramps: {
       data: objects.gramps,
@@ -1202,4 +1205,10 @@ export const useOptionStore = create<State & Action>((set) => ({
   getRandomInt: (max) => {
     return Math.floor(Math.random() * max);
   },
+  setArrowAnimActive: (value) =>
+    set(
+      produce((state: State) => {
+        state.arrowAnimActive = value;
+      }),
+    ),
 }));
