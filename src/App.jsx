@@ -12,7 +12,7 @@ import { SnipcartProvider } from "use-snipcart";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { textures } from "./data/textures.jsx";
-import { shopItems } from "./data/objects.jsx";
+import { shopItems, unselectedItem } from "./data/objects.jsx";
 import { allOptions } from "./data/options.jsx";
 import { useOptionStore } from "./store/useOptionStore.tsx";
 import toast, { Toaster } from "react-hot-toast";
@@ -71,6 +71,9 @@ function App() {
   const animActive = useOptionStore((state) => state.animActive);
   const animIconToggle = useOptionStore((state) => state.animIconToggle);
   const animateButton = useOptionStore((state) => state.animateButton);
+  const previousItemSelected = useOptionStore(
+    (state) => state.previousItemSelected,
+  );
 
   // actions from store
   const setMobileView = useOptionStore((state) => state.setMobileView);
@@ -168,10 +171,15 @@ function App() {
         // open
         // animating the item's parts away from eachother / opening parts, end of this animation partsOpen = true
         tl.to(animDistRun, {
-          delay: animIconToggle ? runDelay - 1 : runDelay,
+          delay:
+            previousItemSelected === unselectedItem
+              ? runDelay + 0.5
+              : animIconToggle
+                ? runDelay - 1
+                : runDelay,
           duration: runDuration,
           value: animDistRunTarget,
-          ease: "easeIn",
+          ease: "easeOut",
           onUpdate: () => {
             setAnimDist(animDistRun.value);
           },

@@ -101,6 +101,12 @@ export default function Scene({
   const arrowY = -0.25; // -0.25
   const orbitPolarShowBgdShelf = Math.PI / 2 + Math.PI / 16;
   const orbitPolarShowBgdNotShelf = Math.PI / 2 - Math.PI / 9.06;
+  // animation constants for camera target animation
+  const camTargAnimDelay = 0.1;
+  const camTargAnimDuration = 1;
+  // animation constants for camera position animation
+  const camPosAnimDelay = 0.175;
+  const camPosAnimDuration = 1.85;
 
   // useRefs
   const dirLightA = useRef();
@@ -113,18 +119,6 @@ export default function Scene({
   const [overlayAlpha, setOverlayAlpha] = useState(1);
   const [controlsDragging, setControlsDragging] = useState(false);
   const [hovered, hover] = useState(false);
-
-  // helper hooks
-  const { height, width } = useWindowDimensions();
-  // useHelper(shadowCameraRef, CameraHelper, 1, "lightBlue");
-  useCursor(hovered);
-
-  // snipcart hook values
-  const snipcart = useSnipcart();
-  const { cart = {} } = useSnipcart();
-  const { subtotal = "0.00" } = cart;
-
-  // useStates
   const [count, setCount] = useState(0);
   const [prevStartAzimuthAng, setPrevStartAzimuthAng] = useState(0);
   const [prevEndAzimuthAng, setPrevEndAzimuthAng] = useState(0);
@@ -191,6 +185,45 @@ export default function Scene({
   );
   const setActiveCamAnim = useOptionStore((state) => state.setActiveCamAnim);
   const setAnimIconToggle = useOptionStore((state) => state.setAnimIconToggle);
+
+  // helper hooks
+  const { height, width } = useWindowDimensions();
+  // useHelper(shadowCameraRef, CameraHelper, 1, "lightBlue");
+  useCursor(hovered);
+
+  // snipcart hook values
+  const snipcart = useSnipcart();
+  const { cart = {} } = useSnipcart();
+  const { subtotal = "0.00" } = cart;
+
+  // animation constants for loading overlay opacity animation
+  const overlayGeometry = new THREE.PlaneGeometry(2, 2, 1, 1);
+  // gl_FragColor = vec4(0.153, 0.153, 0.102, uAlpha); // (previous gl_FragColor)
+  const overlayMaterial = new THREE.ShaderMaterial({
+    transparent: true,
+    uniforms: {
+      uAlpha: { value: overlayAlpha },
+    },
+    vertexShader: `
+        void main()
+        {
+            gl_Position = vec4(position, 1.0);
+        }
+    `,
+    fragmentShader: `
+        uniform float uAlpha;
+
+        void main()
+        {
+            gl_FragColor = vec4(0.67843137126, 0.72941176332, 0.72941176332, uAlpha);
+        }
+    `,
+  });
+  // animation objects for loading overlay opacity animation
+  const overlayOpacity = { value: 1 };
+  // vector3s for camera target and camera position animations
+  const controlsTargetVec = new THREE.Vector3();
+  const controlsPositionVec = new THREE.Vector3();
 
   // useEffects
   useEffect(() => {
@@ -693,45 +726,6 @@ export default function Scene({
     }
   }, [isTouching]);
 
-  // animation constants for loading overlay opacity animation
-  const overlayGeometry = new THREE.PlaneGeometry(2, 2, 1, 1);
-  // gl_FragColor = vec4(0.153, 0.153, 0.102, uAlpha); // (previous gl_FragColor)
-  const overlayMaterial = new THREE.ShaderMaterial({
-    transparent: true,
-    uniforms: {
-      uAlpha: { value: overlayAlpha },
-    },
-    vertexShader: `
-        void main()
-        {
-            gl_Position = vec4(position, 1.0);
-        }
-    `,
-    fragmentShader: `
-        uniform float uAlpha;
-
-        void main()
-        {
-            gl_FragColor = vec4(0.67843137126, 0.72941176332, 0.72941176332, uAlpha);
-        }
-    `,
-  });
-
-  // animation objects for loading overlay opacity animation
-  const overlayOpacity = { value: 1 };
-
-  // animation constants for camera target animation
-  const camTargAnimDelay = 0.1;
-  const camTargAnimDuration = 1;
-  const controlsTargetVec = new THREE.Vector3(); // animation camera target on item click
-
-  // animation constants for camera position animation
-  const camPosAnimDelay = 0.175;
-  const camPosAnimDuration = 1.85;
-
-  // animate camera position on item double click / showBackground turning false
-  const controlsPositionVec = new THREE.Vector3();
-
   // functions
   function handleCartClick() {
     if (snipcartLoaded) {
@@ -1136,7 +1130,9 @@ export default function Scene({
           tl.to(controlsPositionVec, {
             delay: optionBoxItemChanged
               ? camPosAnimDelay + 0.2
-              : camPosAnimDelay,
+              : previousItemSelected === unselectedItem
+                ? camPosAnimDelay + 0.25
+                : camPosAnimDelay,
             duration: optionBoxItemChanged
               ? camPosAnimDuration + 0.75
               : camPosAnimDuration,
