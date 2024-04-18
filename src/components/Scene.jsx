@@ -803,9 +803,9 @@ export default function Scene({
   const handleArrowIconClick = (e) => {
     if (e) e.stopPropagation();
     // setArrowAnimActive(true);
-    setShowPartOptions(false);
     toast.dismiss();
     if (currentItemSelected === unselectedItem) {
+      setShowPartOptions(false);
       setCurrentItemSelected(objects.gramps);
       setTimeout(() => {
         setOpen(false);
@@ -813,7 +813,8 @@ export default function Scene({
         setShowBackground(!showBackground);
       }, "750");
     } else {
-      if (!animActive) {
+      if (!animActive && !arrowAnimActive) {
+        setShowPartOptions(false);
         setOpen(false);
         setShowPhotos(false);
         setShowBackground(!showBackground);
