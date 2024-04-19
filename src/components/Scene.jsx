@@ -18,7 +18,6 @@ import { Floor } from "./room/Floor.jsx";
 import { Walls } from "./room/Walls.jsx";
 import { objects, unselectedItem, shopItems } from "../data/objects.jsx";
 import { textures } from "../data/textures.jsx";
-// import { shopItems } from "../data/objects.jsx";
 import useWindowDimensions from "../helpers/useWindowDimensions";
 import { useSnipcart } from "use-snipcart";
 import { Logo } from "./Logo.jsx";
