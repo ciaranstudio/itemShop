@@ -18,7 +18,7 @@ export default function InfoBox({ toggleInfoBox, theme, openUserEmail }) {
   const aboutInfo = useOptionStore((state) => state.aboutInfo);
 
   return (
-    <Html center position={[0, 58, 0]}>
+    <Html center position={[0, 50, 0]}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <div

@@ -17,7 +17,7 @@ export default function PhotoBox({ togglePhotoBox, theme }) {
   const allPhotos = useOptionStore((state) => state.allPhotos);
 
   return (
-    <Html center position={[0, 44, 0]}>
+    <Html center position={[0, 50, 0]}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <div
