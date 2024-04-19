@@ -40,7 +40,7 @@ export default function OptionBox({
   const boxPosYDesktopMin = 1; // 1 confirmed good on my desktop monitor
 
   const tinyScreenOffsetMinimized = 3.5; // -9.5
-  const tinyScreenOffsetNotMinimized = 3.5; // -10.25
+  const tinyScreenOffsetNotMinimized = 4.25; // -10.25
 
   const breakpointWidthSmallest = 380;
 
