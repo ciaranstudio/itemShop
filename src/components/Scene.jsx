@@ -99,9 +99,9 @@ export default function Scene({
   const dirLightCamBottom = -5;
   const dirLightCamTop = 5;
   const ambLightIntensity = 1;
-  const arrowY = -0.25; // -0.25
+  const arrowY = -0.3; // -0.25
   const orbitPolarShowBgdShelf = Math.PI / 2 + Math.PI / 16;
-  const orbitPolarShowBgdNotShelf = Math.PI / 2 - Math.PI / 9.06;
+  const orbitPolarShowBgdNotShelf = Math.PI / 2 - Math.PI / 7.25; // 9.06 when arrowY was -0.25
   // animation constants for camera target animation
   const camTargAnimDelay = 0.1;
   const camTargAnimDuration = 1;
