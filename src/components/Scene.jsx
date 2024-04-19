@@ -1315,15 +1315,7 @@ export default function Scene({
           onPointerOut={() => hover(false)}
         >
           <mesh
-            position={
-              width >= 376 && width < 600 // y value was -0.3
-                ? [0, arrowY, 0]
-                : width < 376
-                  ? [0, arrowY, 0] // looks right on chrome simulator [0, -0.275, 0]
-                  : width >= 600 && width < 1100
-                    ? [0, arrowY, 0]
-                    : [0, arrowY, 0]
-            }
+            position={[0, arrowY, 0]}
             scale={0.0055}
             rotation={[arrowRotationX, 0, 0]}
           >
