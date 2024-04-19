@@ -16,9 +16,9 @@ import { Bag } from "./Bag.jsx";
 import RingCircle from "./RingCircle.jsx";
 import { Floor } from "./room/Floor.jsx";
 import { Walls } from "./room/Walls.jsx";
-import { objects, unselectedItem } from "../data/objects.jsx";
+import { objects, unselectedItem, shopItems } from "../data/objects.jsx";
 import { textures } from "../data/textures.jsx";
-import { shopItems } from "../data/objects.jsx";
+// import { shopItems } from "../data/objects.jsx";
 import useWindowDimensions from "../helpers/useWindowDimensions";
 import { useSnipcart } from "use-snipcart";
 import { Logo } from "./Logo.jsx";
@@ -1333,7 +1333,7 @@ export default function Scene({
             // rotation={[arrowRotationX, 0, 0]}
           >
             <RingCircle
-              selected={animActive ? true : false}
+              selected={false}
               showBackground={showBackground}
               isShelf={false}
               itemName={"arrow"}
