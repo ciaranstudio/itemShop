@@ -33,14 +33,14 @@ export default function OptionBox({
   const { height, width } = useWindowDimensions();
 
   // constants
-  const boxPosYMobileMax = 14; // 14
-  const boxPosYMobileMin = 10.15; // 7.5
+  const boxPosYMobileMax = 14; // 14 confirmed good on iPhone XR
+  const boxPosYMobileMin = 10.15; // 10.15 confirmed good on iPhone XR
 
-  const boxPosYDesktopMax = 4; // 4
-  const boxPosYDesktopMin = 1; // 1
+  const boxPosYDesktopMax = 4; // 4 confirmed good on my desktop monitor
+  const boxPosYDesktopMin = 1; // 1 confirmed good on my desktop monitor
 
-  const notTinyScreenOffsetMinimized = 0; // -9.5
-  const notTinyScreenOffsetNotMinimized = 0; // -10.25
+  const tinyScreenOffsetMinimized = 3.5; // -9.5
+  const tinyScreenOffsetNotMinimized = 3.5; // -10.25
 
   const breakpointWidthSmallest = 380;
 
@@ -194,19 +194,19 @@ export default function OptionBox({
       position={[
         0,
         mobileView && !optionBoxHeightMin && width < breakpointWidthSmallest
-          ? mobilePosYMax
+          ? mobilePosYMax + tinyScreenOffsetNotMinimized
           : mobileView && optionBoxHeightMin && width > breakpointWidthSmallest
-            ? mobilePosYMin + notTinyScreenOffsetMinimized
+            ? mobilePosYMin
             : !mobileView && !optionBoxHeightMin
               ? desktopPosYMax
               : mobileView &&
                   optionBoxHeightMin &&
                   width < breakpointWidthSmallest
-                ? mobilePosYMin
+                ? mobilePosYMin + tinyScreenOffsetMinimized
                 : mobileView &&
                     !optionBoxHeightMin &&
                     width > breakpointWidthSmallest
-                  ? mobilePosYMax + notTinyScreenOffsetNotMinimized
+                  ? mobilePosYMax
                   : !mobileView && optionBoxHeightMin
                     ? desktopPosYMin
                     : 0,
