@@ -152,6 +152,7 @@ export default function Scene({
   const animActive = useOptionStore((state) => state.animActive);
   const partsOpen = useOptionStore((state) => state.partsOpen);
   const arrowAnimActive = useOptionStore((state) => state.arrowAnimActive);
+  const mobileView = useOptionStore((state) => state.mobileView);
 
   // actions from store
   const setCurrentItemSelected = useOptionStore(
@@ -1263,13 +1264,13 @@ export default function Scene({
 
         <mesh
           position={
-            width >= 376 && width < 600
-              ? [0.175, 0.345, 0] // looks right on actual device [width / 2600, 0.345, 0] // looks right on chrome simulator
-              : width < 376
-                ? [0.21, 0.345, 0] // looks right on chrome simulator [0.175, 0.345, 0]
-                : width >= 600 && width < 1100
+            width >= 376 && width < 600 && mobileView
+              ? [0.175, 0.345, 0]
+              : width < 376 && mobileView
+                ? [0.21, 0.345, 0]
+                : width >= 600 && width < 1100 && mobileView
                   ? [0.23, 0.345, 0]
-                  : [width / 2900, 0.345, 0] // [width / 2600, 0.345, 0]
+                  : [width / 2750, 0.345, 0]
           }
           scale={0.125}
           onClick={handleCartClick}
@@ -1283,20 +1284,19 @@ export default function Scene({
             handleCartClick={handleCartClick}
           />
         </mesh>
-
         <pointLight
           position={[-width / 2900 + 0.2, 0.5, 0.1]}
           intensity={0.25}
         />
         <mesh
           position={
-            width >= 376 && width < 600
-              ? [-0.165, 0.345, 0] // looks right on actual device [-width / 2800, 0.36, 0] // looks right on chrome simulator [-width / 3100, 0.36, 0]
-              : width < 376
-                ? [-0.19, 0.345, 0] // looks right on chrome simulator [-0.165, 0.36, 0]
-                : width >= 600 && width < 1100
+            width >= 376 && width < 600 && mobileView
+              ? [-0.165, 0.345, 0]
+              : width < 376 && mobileView
+                ? [-0.19, 0.345, 0]
+                : width >= 600 && width < 1100 && mobileView
                   ? [-0.21, 0.345, 0]
-                  : [-width / 2900, 0.36, 0] // [-width / 2800, 0.36, 0]
+                  : [-width / 3000, 0.35, 0]
           }
           onPointerOver={() => hover(true)}
           onPointerOut={() => hover(false)}
