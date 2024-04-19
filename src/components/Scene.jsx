@@ -1329,15 +1329,7 @@ export default function Scene({
             />
           </mesh>
           <group
-            position={
-              width >= 376 && width < 600
-                ? [0, arrowY + 0.01, 0]
-                : width < 376
-                  ? [0, arrowY + 0.01, 0] // looks right on chrome simulator [0, -0.275, 0]
-                  : width >= 600 && width < 1100
-                    ? [0, arrowY + 0.01, 0]
-                    : [0, arrowY + 0.01, 0]
-            }
+            position={[0, arrowY + 0.01, 0]}
             // rotation={[arrowRotationX, 0, 0]}
           >
             <RingCircle
