@@ -1258,8 +1258,8 @@ export default function Scene({
         {/* light in very center for illuminating on zoom in !showBackground desktop / wide screens */}
         <pointLight position={[0, 0.3, 0.75]} intensity={0.9} />
         {/* <pointLight position={[0, 0.3, 0.25]} intensity={0.15} /> */}
-        <pointLight position={[width / 3150, 0.2, 0.1]} intensity={0.15} />
-        {/* <pointLight position={[width / 2850, 0.2, 0.1]} intensity={0.15} /> */}
+        <pointLight position={[width / 2750, 0.2, 0.1]} intensity={0.15} />
+        {/* <pointLight position={[width / 3150, 0.2, 0.1]} intensity={0.15} /> */}
 
         <mesh
           position={
@@ -1284,8 +1284,8 @@ export default function Scene({
           />
         </mesh>
         <pointLight
-          position={[-width / 2900 + 0.2, 0.5, 0.1]}
-          intensity={0.25}
+          position={[-width / 3000 + 0.2, 0.5, 0.1]}
+          intensity={0.75}
         />
         <mesh
           position={
