@@ -106,8 +106,8 @@ function App() {
   //   console.log("total: ", total);
   // }, [loaded, total]);
   useEffect(() => {
-    toast.loading("Loading...", {
-      id: toastId,
+    toastId.loading("Loading...", {
+      id: "loadingToast",
       position: "top-left",
       style: {
         fontSize: toastFontSize,
@@ -129,8 +129,8 @@ function App() {
           // update loadingBarElement
           loadingBarElement.classList.add("ended");
           loadingBarElement.style.transform = "";
-          toast.success("All set!", {
-            id: toastId,
+          toastId.success("All set!", {
+            id: "loadingToast",
             duration: toastDuration - 7000,
             position: "top-left",
             style: {
