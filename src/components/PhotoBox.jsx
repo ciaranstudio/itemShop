@@ -50,7 +50,7 @@ export default function PhotoBox({ togglePhotoBox, theme }) {
               variant="h6"
               sx={{
                 fontFamily: "var(--leva-fonts-mono)",
-                fontSize: "1rem",
+                fontSize: "0.9rem",
               }}
             >
               {allPhotos ? "Images" : currentItemSelected.itemTitle}
