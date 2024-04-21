@@ -95,6 +95,21 @@ export default function InfoBox({ toggleInfoBox, theme, openUserEmail }) {
           >
             <CloseOutlinedIcon color="success" />
           </IconButton>
+          <IconButton
+            onClick={(e) => nextPage(e)}
+            color="inherit"
+            sx={{
+              display: aboutInfo ? "block" : "none",
+              position: "absolute",
+              pointerEvents: "auto",
+              top: "0.25rem",
+              right: "0.5rem",
+              padding: "0.5rem",
+            }}
+            aria-label="contact by email"
+          >
+            <ReadMoreIcon color="secondary" />
+          </IconButton>
           <div
             id="title"
             style={{
@@ -174,21 +189,6 @@ export default function InfoBox({ toggleInfoBox, theme, openUserEmail }) {
               </IconButton>
             </div>
           </div>
-          <IconButton
-            onClick={(e) => nextPage(e)}
-            color="inherit"
-            sx={{
-              display: aboutInfo ? "block" : "none",
-              position: "absolute",
-              pointerEvents: "auto",
-              top: "0.5rem",
-              right: "0.5rem",
-              padding: "0.5rem",
-            }}
-            aria-label="contact by email"
-          >
-            <ReadMoreIcon color="secondary" />
-          </IconButton>
         </div>
       </ThemeProvider>
     </Html>
