@@ -76,7 +76,7 @@ function App() {
   );
 
   // actions from store
-  // const setMobileView = useOptionStore((state) => state.setMobileView);
+  const setMobileView = useOptionStore((state) => state.setMobileView);
   const setSceneLoaded = useOptionStore((state) => state.setSceneLoaded);
   const setAnimToggled = useOptionStore((state) => state.setAnimToggled);
   const setAnimActive = useOptionStore((state) => state.setAnimActive);
@@ -85,14 +85,14 @@ function App() {
 
   // useEffects
   useEffect(() => {
-    // // Check if using a touch control device
-    // if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
-    //   // console.log("mobile view");
-    //   setMobileView(true);
-    // } else {
-    //   // console.log("not mobile view");
-    //   setMobileView(false);
-    // }
+    // Check if using a touch control device
+    if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
+      // console.log("mobile view");
+      setMobileView(true);
+    } else {
+      // console.log("not mobile view");
+      setMobileView(false);
+    }
     window.LoadSnipcart();
   }, []);
 
@@ -104,14 +104,6 @@ function App() {
   //   console.log("total: ", total);
   // }, [loaded, total]);
   useEffect(() => {
-    // // Check if using a touch control device
-    // if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
-    //   // console.log("mobile view");
-    //   setMobileView(true);
-    // } else {
-    //   // console.log("not mobile view");
-    //   setMobileView(false);
-    // }
     toastId.loading("Loading...", {
       id: "loadingToast",
       position: "top-left",

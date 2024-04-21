@@ -1305,7 +1305,7 @@ export default function Scene({
             setShowPartOptions(false);
           },
           onUpdate: () => {
-            console.log("arrowRotationX: ", arrowRotationX);
+            // console.log("arrowRotationX: ", arrowRotationX);
             setArrowRotationX(arrowRotationUp.value);
           },
           onComplete: () => {

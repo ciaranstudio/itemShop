@@ -18,6 +18,15 @@ export default function useWindowDimensions() {
   );
 
   useEffect(() => {
+    // // Check if using a touch control device
+    // if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
+    //   // console.log("mobile view");
+    //   setMobileView(true);
+    // } else {
+    //   // console.log("not mobile view");
+    //   setMobileView(false);
+    // }
+
     function handleResize() {
       setWindowDimensions(getWindowDimensions());
     }
