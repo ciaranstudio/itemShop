@@ -92,7 +92,7 @@ img {
   padding-top: 0.75rem;
   padding-bottom: 2rem;
   border-radius: 0.75rem;
-  border: 0.085rem solid grey;
+  border: 0.085rem solid rgb(155, 155, 155);
   font-size: 1.25rem;
   pointer-events: manipulation;
 }
@@ -121,19 +121,19 @@ img {
   padding: 1rem;
   padding-top: 0.75rem;
   border-radius: 0.75rem;
-  border: 0.085rem solid grey;
-  font-size: 1.25rem;
+  border: 0.085rem solid rgb(155, 155, 155);
+  /* font-size: 1.25rem; */
   pointer-events: none;
 }
 
 #title {
-  color: #212121;
+  /* color: #212121; */
   margin-bottom: 0.25rem;
 }
 
 #description {
   background: lightGrey;
-  color: #212121;
+  /* color: #212121; */
   padding: 0.85rem;
   border-radius: 1rem;
 }
@@ -142,7 +142,7 @@ img {
   margin-top: 0.75rem;
   margin-bottom: 0.25rem;
   font-size: 0.875rem;
-  color: #212121;
+  /* color: #212121; */
   padding: 0.25rem;
   border-radius: 2rem;
   border: 2px solid lightGrey;

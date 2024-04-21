@@ -15,6 +15,7 @@ export default function PhotoBox({ togglePhotoBox, theme }) {
   );
   const showPhotos = useOptionStore((state) => state.showPhotos);
   const allPhotos = useOptionStore((state) => state.allPhotos);
+  const aboutInfo = useOptionStore((state) => state.aboutInfo);
 
   return (
     <Html center position={[0, 50, 0]}>
@@ -40,11 +41,18 @@ export default function PhotoBox({ togglePhotoBox, theme }) {
           >
             <CloseOutlinedIcon color="success" />
           </IconButton>
-          <div id="title">
+          <div
+            id="title"
+            style={{
+              color: theme.palette.secondary.main,
+            }}
+          >
             <Typography
               variant="h6"
-              sx={{ fontFamily: "var(--leva-fonts-mono)" }}
-              color="primary"
+              sx={{
+                fontFamily: "var(--leva-fonts-mono)",
+                fontSize: "1rem",
+              }}
             >
               {allPhotos ? "Images" : currentItemSelected.itemTitle}
             </Typography>

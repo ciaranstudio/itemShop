@@ -85,22 +85,20 @@ function App() {
 
   // useEffects
   useEffect(() => {
-    // Check if using a touch control device
-    if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
-      // console.log("mobile view");
-      setMobileView(true);
-    } else {
-      // console.log("not mobile view");
-      setMobileView(false);
-    }
+    // // Check if using a touch control device
+    // if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
+    //   // console.log("mobile view");
+    //   setMobileView(true);
+    // } else {
+    //   // console.log("not mobile view");
+    //   setMobileView(false);
+    // }
     window.LoadSnipcart();
   }, []);
-  // const iOS =
-  //   typeof navigator !== "undefined" &&
-  //   /iPad|iPhone|iPod/.test(navigator.userAgent);
-  // useEffect(() => {
-  //   window.LoadSnipcart();
-  // }, []);
+
+  useEffect(() => {
+    window.LoadSnipcart();
+  }, []);
   // useEffect(() => {
   //   console.log("loaded: ", loaded);
   //   console.log("total: ", total);
@@ -302,7 +300,7 @@ function App() {
       <Toaster reverseOrder={true} />
       <Canvas
         ref={container}
-        // flat // changes color rendering, see https://stackoverflow.com/questions/64899716/color-differences-between-threejs-vanilla-js-and-react-three-fiber-create-re
+        // flat
         dpr={[1, 2]}
         shadows={{ type: THREE.PCFSoftShadowMap }}
         camera={{
