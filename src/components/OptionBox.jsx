@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Html } from "@react-three/drei";
 import { useOptionStore } from "../store/useOptionStore.tsx";
 import { objects, shopItems } from "../data/objects.jsx";

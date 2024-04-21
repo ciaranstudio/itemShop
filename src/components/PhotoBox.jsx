@@ -15,7 +15,6 @@ export default function PhotoBox({ togglePhotoBox, theme }) {
   );
   const showPhotos = useOptionStore((state) => state.showPhotos);
   const allPhotos = useOptionStore((state) => state.allPhotos);
-  const aboutInfo = useOptionStore((state) => state.aboutInfo);
 
   return (
     <Html center position={[0, 50, 0]}>

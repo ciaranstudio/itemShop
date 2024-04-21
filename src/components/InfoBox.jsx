@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import { Html } from "@react-three/drei";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material";
@@ -7,22 +8,41 @@ import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import ReadMoreIcon from "@mui/icons-material/ReadMore";
 import IconButton from "@mui/material/IconButton";
 import { useOptionStore } from "../store/useOptionStore.tsx";
+import { MailOutlineOutlined } from "@mui/icons-material";
 
 export default function InfoBox({ toggleInfoBox, theme, openUserEmail }) {
-  const aboutText = `This shop is meant to be an experimental and collaborative space. My designs are conceptually playful but functional and accessible.`;
-  const aboutTextB = `Each piece is a unique artwork designed with utility and versatility in mind.`;
+  // about text blocks
+  const aboutTextArr = [
+    {
+      id: 0,
+      textA: `This shop is meant to be an experimental and collaborative space. My designs are conceptually playful but functional and accessible.`,
+      textB: `Each piece is a unique artwork designed with utility and versatility in mind.`,
+    },
+    {
+      id: 1,
+      textA: `This deliberately humble furniture line is available in fully interchangeable, customizable paints and finishes.`,
+      textB: `Every design is built to last and made by hand at my studio in Cleveland, OH.`,
+    },
+    {
+      id: 2,
+      textA: `I use locally sawn white and red oak finished with hardwax oil for stained components. Painted components are made from poplar and MDO coated with vegan milk paint.`,
+      textB: `We\’re a small family-run operation and everything is made to order. Customers can expect lead times of 6-8 weeks for most orders.`,
+    },
+    {
+      id: 3,
+      textA: `We communicate at each stage of the process from design to production to shipping.`,
+      textB: `We work with care and precision, but value character over perfection.`,
+    },
+    {
+      id: 4,
+      textA: `Feel free to reach out to me with any questions, inquiries or ideas. I\’m always happy to discuss custom design work.`,
+      textB: `My team also provides custom wood working, finish carpentry, cabinetry, painting, art handling and consultation services for the greater Cleveland, OH area.`,
+    },
+  ];
 
-  const aboutText1 = `This deliberately humble furniture line is available in fully interchangeable, customizable paints and finishes.`;
-  const aboutText1B = `Every design is built to last and made by hand at my studio in Cleveland, OH.`;
-
-  const aboutText2 = `I use locally sawn white and red oak finished with hardwax oil for stained components. Painted components are made from poplar and MDO coated with vegan milk paint.`;
-  const aboutText2B = `We\’re a small family-run operation and everything is made to order. Customers can expect lead times of 6-8 weeks for most orders.`;
-
-  const aboutText3 = `We communicate at each stage of the process from design to production to shipping.`;
-  const aboutText3B = `We work with care and precision, but value character over perfection.`;
-
-  const aboutText4 = `Feel free to reach out to me with any questions, inquiries or ideas. I\’m always happy to discuss custom design work.`;
-  const aboutText4B = `My team also provides custom wood working, finish carpentry, cabinetry, painting, art handling and consultation services for the greater Cleveland, OH area.`;
+  // useStates
+  const [aboutPageToggle, setAboutPageToggle] = useState(false);
+  const [aboutIndex, setAboutIndex] = useState(0);
 
   // state from store
   const currentItemSelected = useOptionStore(
@@ -30,6 +50,25 @@ export default function InfoBox({ toggleInfoBox, theme, openUserEmail }) {
   );
   const open = useOptionStore((state) => state.open);
   const aboutInfo = useOptionStore((state) => state.aboutInfo);
+
+  // functions
+  const nextPage = (e) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    setAboutPageToggle(!aboutPageToggle);
+  };
+
+  useEffect(() => {
+    let nextIndex;
+    if (aboutIndex === 4) {
+      nextIndex = 0;
+    } else {
+      nextIndex = aboutIndex + 1;
+    }
+    setAboutIndex(nextIndex);
+  }, [aboutPageToggle]);
 
   return (
     <Html center position={[0, 50, 0]}>
@@ -39,6 +78,7 @@ export default function InfoBox({ toggleInfoBox, theme, openUserEmail }) {
           className="info"
           style={{
             display: open ? "block" : "none",
+            paddingBottom: aboutInfo ? "2.75rem" : "1rem",
           }}
         >
           <IconButton
@@ -75,22 +115,23 @@ export default function InfoBox({ toggleInfoBox, theme, openUserEmail }) {
           </div>
           <div
             id="description"
-            style={{ marginTop: aboutText ? "0.5rem" : "0.25rem" }}
+            style={{ marginTop: aboutInfo ? "0.75rem" : "0.25rem" }}
           >
             <Typography
               variant="subtitle2"
               sx={{
                 fontFamily: "var(--leva-fonts-mono)",
-                fontSize: aboutInfo ? ".78rem" : "0.82rem",
+                fontSize: aboutInfo ? ".75rem" : "0.82rem",
               }}
               color="prmimary"
             >
-              {aboutInfo ? aboutText : currentItemSelected.itemLongDescription}
+              {aboutInfo
+                ? aboutTextArr[aboutIndex].textA
+                : currentItemSelected.itemLongDescription}
             </Typography>
           </div>
           <div
             id="size"
-            // style={{ display: aboutInfo ? "none" : "block" }}
             style={{
               background: aboutInfo ? "lightGrey" : "transparent",
               borderRadius: aboutInfo ? "1rem" : "2rem",
@@ -104,24 +145,43 @@ export default function InfoBox({ toggleInfoBox, theme, openUserEmail }) {
               color="primary"
               sx={{
                 fontFamily: "var(--leva-fonts-mono)",
-                fontSize: aboutInfo ? ".78rem" : "0.82rem",
+                fontSize: aboutInfo ? ".75rem" : "0.82rem",
               }}
             >
-              {aboutInfo ? aboutTextB : currentItemSelected.size}
+              {aboutInfo
+                ? aboutTextArr[aboutIndex].textB
+                : currentItemSelected.size}
             </Typography>
           </div>
+          <div className="size">
+            <div>
+              <IconButton
+                onClick={(e) => openUserEmail(e)}
+                color="inherit"
+                sx={{
+                  display: aboutInfo ? "block" : "none",
+                  position: "absolute",
+                  pointerEvents: "auto",
+                  bottom: 0,
+                  left: "50%",
+                  transform: "translate(-50%)",
+                  justifyContent: "center",
+                  textAlign: "center",
+                }}
+                aria-label="contact by email"
+              >
+                <MailOutlineOutlined color="secondary" />
+              </IconButton>
+            </div>
+          </div>
           <IconButton
-            // onClick={(e) => openUserEmail(e)}
-            onClick={(e) => {
-              // set aboutText and aboutTextB values to next page (if end of pages length, then back to index 0)
-              console.log(e);
-            }}
+            onClick={(e) => nextPage(e)}
             color="inherit"
             sx={{
               display: aboutInfo ? "block" : "none",
               position: "absolute",
               pointerEvents: "auto",
-              top: "0.25rem",
+              top: "0.5rem",
               right: "0.5rem",
               padding: "0.5rem",
             }}
