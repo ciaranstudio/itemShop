@@ -16,7 +16,7 @@ import OpenInFullIcon from "@mui/icons-material/OpenInFull";
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
 import BuyButton from "./BuyButton.jsx";
 import SplitButton from "./SplitButton.jsx";
-import useWindowDimensions from "../helpers/useWindowDimensions";
+import useWindowDimensions from "../hooks/useWindowDimensions";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";

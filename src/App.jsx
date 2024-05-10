@@ -56,13 +56,13 @@ function App() {
     value: yPosRunHighTarg,
   };
 
-  // useRefs
+  // useRef
   const container = useRef();
 
   // loading progress hook
   const { active, progress, errors, item, loaded, total } = useProgress();
 
-  // useStates
+  // useState
   const [animDist, setAnimDist] = useState(0);
   const [stagePosY, setStagePosY] = useState(yPosRunLowTarg);
 
@@ -83,7 +83,7 @@ function App() {
   const setPartsOpen = useOptionStore((state) => state.setPartsOpen);
   const getRandomInt = useOptionStore((state) => state.getRandomInt);
 
-  // useEffects
+  // useEffect
   useEffect(() => {
     // Check if using a touch control device
     if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
@@ -228,6 +228,7 @@ function App() {
   const calculateItemPrice = useOptionStore(
     (state) => state.calculateItemPrice,
   );
+
   // update part(s) color option(s) using actions from store
   const handlePartOption = (e, itemName, partName, color, stopPropogation) => {
     if (e) {

@@ -18,7 +18,7 @@ import { Floor } from "./room/Floor.jsx";
 import { Walls } from "./room/Walls.jsx";
 import { objects, unselectedItem, shopItems } from "../data/objects.jsx";
 import { textures } from "../data/textures.jsx";
-import useWindowDimensions from "../helpers/useWindowDimensions";
+import useWindowDimensions from "../hooks/useWindowDimensions";
 import { useSnipcart } from "use-snipcart";
 import { Logo } from "./Logo.jsx";
 import { SelectIcon } from "./SelectIcon.jsx";
@@ -103,17 +103,17 @@ export default function Scene({
   const orbitPolarShowBgdNotShelf = Math.PI / 2 - Math.PI / 7.25; // 9.06 when arrowY was -0.25
   // animation constants for camera target animation
   const camTargAnimDelay = 0.1;
-  const camTargAnimDuration = 1;
+  const camTargAnimDuration = 0.75;
   // animation constants for camera position animation
   const camPosAnimDelay = 0.175;
   const camPosAnimDuration = 1.85;
 
-  // useRefs
+  // useRef
   const dirLightA = useRef();
   // const shadowCameraRef = useRef();
   const orbitRef = useRef();
 
-  // useStates
+  // useState
   const [snipcartLoaded, setSnipcartLoaded] = useState(false);
   const [cartCount, setCartCount] = useState(0);
   const [overlayAlpha, setOverlayAlpha] = useState(1);
@@ -192,7 +192,7 @@ export default function Scene({
     (state) => state.setArrowAnimActive,
   );
 
-  // helper hooks
+  // hooks
   const { height, width } = useWindowDimensions();
   // useHelper(shadowCameraRef, CameraHelper, 1, "lightBlue");
   useCursor(hovered);
@@ -234,7 +234,7 @@ export default function Scene({
   const arrowRotationUp = { value: Math.PI * 2 };
   const arrowRotationDown = { value: 0 };
 
-  // useEffects
+  // useEffect
   useEffect(() => {
     // prevent swipe back navigation gesture on iOS mobile devices
     const element = document.querySelector("canvas");
@@ -372,7 +372,7 @@ export default function Scene({
             setOverlayAlpha(overlayOpacity.value);
           },
           onComplete: () => {
-            // setInitialLoad(true);
+            window.document.body.style.cursor = "auto";
           },
         });
       }, 500);
@@ -1024,7 +1024,7 @@ export default function Scene({
       "mailto:" + email + "?subject=" + subject + "&body=" + emailBody;
   };
 
-  // useFrames
+  // useFrame
   useFrame((state, delta) => {
     if (controlsDragging) {
       setDragTime(dragTime + delta);
@@ -1032,8 +1032,8 @@ export default function Scene({
     }
   });
 
+  // gsap animation hooks
   // camera (target and position) animations
-  // gsap animation hooks (camera target animation and camera position animation)
   useGSAP(() => {
     // setAnimActive()
     if (
@@ -1289,8 +1289,7 @@ export default function Scene({
     }
   }, [showBackground, optionBoxItemToggle]);
 
-  // make animation hook for ArrowIcon to rotate on its x axis away from the user (towards -z from camera view)
-  // connect it to same animation toggle state variable in hook dependencies
+  // ArrowIcon rotation on x axis
   useGSAP(() => {
     if (!showBackground) {
       if (orbitRef.current) {
