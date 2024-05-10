@@ -5,14 +5,8 @@ import * as THREE from "three";
 export const Walls = ({ currentColor, currentTexture }) => {
   const { scene, nodes, materials } = useGLTF("./models/walls.gltf");
 
-  const [
-    map,
-    // displacementMap,
-    normalMap,
-    roughnessMap,
-    metalnessMap,
-    // aoMap,
-  ] = useTexture(currentTexture);
+  const [map, normalMap, roughnessMap, metalnessMap] =
+    useTexture(currentTexture);
 
   const repeatVal = 8;
 
@@ -31,11 +25,9 @@ export const Walls = ({ currentColor, currentTexture }) => {
   useLayoutEffect(() => {
     Object.assign(materials.Material, {
       map: map,
-      // displacementMap: displacementMap,
       normalMap: normalMap,
       roughnessMap: roughnessMap,
       metalnessMap: metalnessMap,
-      // aoMap: aoMap,
       color: currentColor,
     });
   }, [scene, nodes, materials]);
@@ -43,7 +35,6 @@ export const Walls = ({ currentColor, currentTexture }) => {
   useLayoutEffect(() => {
     scene.traverse((o) => {
       if (o.isMesh) {
-        // o.castShadow = true;
         o.receiveShadow = true;
         o.material.roughness = 1;
         o.material.metalness = 0;

@@ -14,23 +14,15 @@ export const ItemPart = ({ model, itemName, partName }) => {
   );
 
   // texture
-  const [
-    map,
-    // displacementMap,
-    normalMap,
-    roughnessMap,
-    metalnessMap,
-    // aoMap,
-  ] = useTexture(currentPartTexture);
+  const [map, normalMap, roughnessMap, metalnessMap] =
+    useTexture(currentPartTexture);
 
   useLayoutEffect(() => {
     Object.assign(materials.Material, {
       map: map,
-      // displacementMap: displacementMap,
       normalMap: normalMap,
       roughnessMap: roughnessMap,
       metalnessMap: metalnessMap,
-      // aoMap: aoMap,
       color: currentPartColor,
     });
   }, [

@@ -54,8 +54,6 @@ export default function BuyButton({ item, theme }) {
           color: "#ffffff",
           fontSize: "1rem",
           fontFamily: "var(--leva-fonts-mono)",
-          // color:
-          //   item === unselectedItem ? theme.palette.primary.light : "#929d84",
         }}
       >
         {optionSelectedPrice === 0 ? "..." : `$${optionSelectedPrice}`}

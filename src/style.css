@@ -49,18 +49,6 @@ body,
   -webkit-font-smoothing: antialiased;
 }
 
-/* .snipcart-modal__container {
-  width: 60% !important;
-  max-width: 540px !important;
-  margin-left: auto !important;
-  right: 0 !important;
-}
-
-.snipcart-modal__container.snipcart-layout--large {
-  width: 100% !important;
-  max-width: 100% !important;
-} */
-
 img {
   border-radius: 1rem;
 }
@@ -84,7 +72,6 @@ img {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  /* right: calc(50% - 11rem); */
   text-align: center;
   background: #c6cfd1;
   opacity: 1;
@@ -114,7 +101,6 @@ img {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  /* right: calc(50% - 9rem); */
   text-align: center;
   background: #b8c2c4;
   opacity: 0.96;
@@ -122,18 +108,15 @@ img {
   padding-top: 0.75rem;
   border-radius: 0.75rem;
   border: 0.085rem solid rgb(155, 155, 155);
-  /* font-size: 1.25rem; */
   pointer-events: none;
 }
 
 #title {
-  /* color: #212121; */
   margin-bottom: 0.25rem;
 }
 
 #description {
   background: lightGrey;
-  /* color: #212121; */
   padding: 0.85rem;
   border-radius: 1rem;
 }
@@ -142,7 +125,6 @@ img {
   margin-top: 0.75rem;
   margin-bottom: 0.25rem;
   font-size: 0.875rem;
-  /* color: #212121; */
   padding: 0.25rem;
   border-radius: 2rem;
   border: 2px solid lightGrey;
@@ -254,8 +236,6 @@ img {
   grid-template-columns: auto auto auto;
   text-align: center;
   background: lightGrey;
-  /* padding-top: 0.75rem;
-  padding-bottom: 0.25rem; */
 }
 
 .color-exit-btn {
@@ -282,7 +262,6 @@ img {
 }
 
 .color-shuffle-btn {
-  /* left: calc(50% - 4.75rem); */
   left: 50%;
   transform: translate(-50%);
   background: transparent;
@@ -312,16 +291,9 @@ img {
   transform: scale(1.1);
 }
 
-/* @media only screen and (max-width: 380px) {
-} */
-
-/* @media only screen and (max-width: 599px) and (min-width: 381px) {
-} */
-
 @media screen and (max-width: 900px) and (min-width: 600px) {
   .photos {
     width: 25rem;
-    /* right: calc(50% - 12.5rem); */
   }
   .slick-slide img {
     height: 37.5rem;
@@ -332,7 +304,6 @@ img {
 @media screen and (max-width: 1040px) and (min-width: 901px) {
   .photos {
     width: 27rem;
-    /* right: calc(50% - 13.5rem); */
   }
   .slick-slide img {
     height: 40.5rem;
@@ -343,26 +314,12 @@ img {
 @media screen and (max-width: 2000px) and (min-width: 1041px) {
   .photos {
     width: 30rem;
-    /* right: calc(50% - 15rem); */
   }
   .slick-slide img {
     height: 45rem;
     width: 30rem;
   }
 }
-
-/* need to make these queries for landscape orientation mobile screens exclusive to mobile devices, not on desktop/monitors */
-/*
-@media only screen and (max-width: 670px) and (min-width: 360px) and (orientation: landscape) {
-}
-@media only screen and (max-width: 935px) and (min-width: 671px) and (orientation: landscape) {
-}
-@media only screen and (max-width: 1200px) and (min-width: 936px) and (orientation: landscape) {
-}
-@media only screen and (max-width: 1400px) and (min-width: 1201px) and (orientation: landscape) {
-}
-@media only screen and (max-width: 1450px) and (min-width: 1401px) and (orientation: landscape) {
-} */
 
 /* snipcart customization */
 #snipcart {

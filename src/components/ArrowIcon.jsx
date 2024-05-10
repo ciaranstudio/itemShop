@@ -37,28 +37,11 @@ export const ArrowIcon = ({
       error: { main: "#d3d3d3" },
     },
     shadows: Array(25).fill("none"),
-    // components: {
-    //   MuiDrawer: {
-    //     styleOverrides: {
-    //       modal: {
-    //         ".MuiModal-backdrop": {
-    //           background: "none",
-    //         },
-    //       },
-    //     },
-    //   },
-    // },
   });
 
   // texture
-  const [
-    map,
-    // displacementMap,
-    normalMap,
-    roughnessMap,
-    metalnessMap,
-    // aoMap,
-  ] = useTexture(currentTexture);
+  const [map, normalMap, roughnessMap, metalnessMap] =
+    useTexture(currentTexture);
 
   // state from store
   const currentItemSelected = useOptionStore(
@@ -82,11 +65,9 @@ export const ArrowIcon = ({
   useLayoutEffect(() => {
     Object.assign(materials.Material, {
       map: map,
-      // displacementMap: displacementMap,
       normalMap: normalMap,
       roughnessMap: roughnessMap,
       metalnessMap: metalnessMap,
-      // aoMap: aoMap,
       color: currentColor,
     });
   }, [
@@ -104,7 +85,6 @@ export const ArrowIcon = ({
   useLayoutEffect(() => {
     const currentAnnotations = [];
     scene.traverse((o) => {
-      // console.log("o from scene.traverse in Annotations: ", o);
       if (o.isObject3D) {
         if (o.userData.name) {
           if (o.userData.name.startsWith("AnchorPoint")) {

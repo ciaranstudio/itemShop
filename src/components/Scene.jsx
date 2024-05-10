@@ -3,7 +3,6 @@ import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
 import {
   OrbitControls,
-  // useHelper,
   useTexture,
   Sky,
   ScreenSpace,
@@ -26,10 +25,6 @@ import { ArrowIcon } from "./ArrowIcon.jsx";
 import toast from "react-hot-toast";
 import { useOptionStore } from "../store/useOptionStore.tsx";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-// import { CameraHelper } from "three";
-// import { DirectionalLightHelper } from "three";
-// import { Perf } from "r3f-perf";
-// import { ShelfPositions } from "./room/ShelfPositions.jsx";
 
 export default function Scene({
   animDist,
@@ -316,10 +311,6 @@ export default function Scene({
       }
     };
   }, []);
-  // useEffect(() => {
-  //   // console.log("height: ", height);
-  //   // console.log("width: ", width);
-  // }, [height, width]);
   useEffect(() => {
     // let state = snipcart.getState();
     // console.log("snipCart state: ", state);
@@ -345,21 +336,6 @@ export default function Scene({
       }
     }
   }, [snipcartLoaded, cart, controlsDragging]);
-  // useEffect(() => {
-  //   if (snipcartLoaded) {
-  //     // console.log("snipcartLoaded: ", snipcartLoaded);
-  //     // console.log(window.Snipcart);
-  //     if (window.Snipcart.events) {
-  //       // console.log("events loaded");
-  //       window.Snipcart.events.on("item.removed", (cartItem) => {
-  //         console.log("item removed: ", cartItem);
-  //       });
-  //     }
-  //   }
-  // }, [snipcartLoaded]);
-  // const unsubscribe = window.Snipcart.events.on("item.removed", (cartItem) => {
-  //   console.log("item removed: ", cartItem);
-  // });
   useEffect(() => {
     if (sceneLoaded) {
       window.setTimeout(() => {
@@ -377,7 +353,6 @@ export default function Scene({
         });
       }, 500);
     }
-    // console.log(overlayGeometry);
   }, [sceneLoaded]);
   useEffect(() => {
     if (currentItemSelected === unselectedItem) {
@@ -385,7 +360,7 @@ export default function Scene({
     }
     //Implementing the setInterval method
     const interval = setInterval(() => {
-      setCount(count + 1);
+      setCount((prev) => prev + 1);
     }, 1500);
     // was 1000
     if (count === 2 && showBackground) {
@@ -613,91 +588,6 @@ export default function Scene({
       });
     }
   }, [showBackground]);
-  // useEffect(() => {
-  //   // prevent swipe back navigation gesture on iOS mobile devices
-  //   const element = document.querySelector("canvas");
-  //   element.addEventListener("touchstart", (e) => {
-  //     setIsTouching(true);
-  //     // is not near edge of view, exit
-  //     // if (e.pageX > 20 && e.pageX < window.innerWidth - 20) return; // suggested by reference showing this method of preventing edge swipes iOS
-  //     if (e.pageX > 30 && e.pageX < window.innerWidth - 30) return;
-  //     // prevent swipe to navigate gesture
-  //     e.preventDefault();
-  //   });
-  //   element.addEventListener("touchmove", (e) => {
-  //     setIsTouching(true);
-  //   });
-  //   element.addEventListener("touchend", (e) => {
-  //     setIsTouching(false);
-  //   });
-  //   // setInitialLoad(true);
-  //   if (orbitRef.current) {
-  //     orbitRef.current.addEventListener(
-  //       "start",
-  //       () => {
-  //         // console.log("start");
-  //         setDragTime(0);
-  //         setControlsDragging(true);
-  //         setIsTouching(true);
-  //         if (orbitRef.current.autoRotate) orbitRef.current.autoRotate = false;
-  //         setStartAzimuthAng(orbitRef.current.getAzimuthalAngle());
-  //       },
-  //       true,
-  //     );
-  //     orbitRef.current.addEventListener(
-  //       "change",
-  //       () => {
-  //         // console.log("change");
-  //         // setControlsDragging(true);
-  //       },
-  //       true,
-  //     );
-  //     orbitRef.current.addEventListener(
-  //       "end",
-  //       () => {
-  //         // console.log("end");
-  //         setIsTouching(false);
-  //         setControlsDragging(false);
-  //         setEndAzimuthAng(orbitRef.current.getAzimuthalAngle());
-  //       },
-  //       true,
-  //     );
-  //   }
-  //   return () => {
-  //     element.removeEventListener("touchstart", (e) => {
-  //       // prevent swipe to navigate gesture
-  //       console.log("removed event listener, 'touchstart'");
-  //     });
-  //     element.removeEventListener("touchmove", (e) => {
-  //       console.log("removed event listener, 'touchmove'");
-  //     });
-  //     element.removeEventListener("touchend", (e) => {
-  //       console.log("removed event listener, 'touchend'");
-  //     });
-  //     if (orbitRef.current) {
-  //       orbitRef.current.removeEventListener(
-  //         "start",
-  //         () => console.log("removed event listener, 'start'"),
-  //         true,
-  //       );
-  //       orbitRef.current.removeEventListener(
-  //         "change",
-  //         () => console.log("removed event listener, 'change'"),
-  //         true,
-  //       );
-  //       orbitRef.current.removeEventListener(
-  //         "end",
-  //         () => console.log("removed event listener, 'end'"),
-  //         true,
-  //       );
-  //       setControlsDragging(false);
-  //     }
-  //   };
-  // }, []);
-  // // useEffect(() => {
-  // //   // console.log("height: ", height);
-  // //   // console.log("width: ", width);
-  // // }, [height, width]);
   useEffect(() => {
     if (controlsDragging) {
       setPrevEndAzimuthAng(endAzimuthAng);

@@ -104,7 +104,7 @@ export default function OptionBox({
   const setAnimIconToggle = useOptionStore((state) => state.setAnimIconToggle);
   const getRandomInt = useOptionStore((state) => state.getRandomInt);
 
-  // useEffects
+  // useEffect
   // useEffect(() => {
   //   if (mobileView && !optionBoxHeightMin) {
   //     if (

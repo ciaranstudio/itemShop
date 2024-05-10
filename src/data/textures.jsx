@@ -1,6 +1,6 @@
 import * as THREE from "three";
 
-// ELI PAINT COLORS (GENERAL FINISHES MILK PAINT)
+// Eli's paint colors (GENERAL FINISHES - MILK PAINT)
 // https://www.oaktreesupply.com/products/general-finishes-milk-paints-quart?variant=40633282232519
 
 // ALABASTER

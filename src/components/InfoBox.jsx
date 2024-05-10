@@ -4,11 +4,9 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
-// import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import ReadMoreIcon from "@mui/icons-material/ReadMore";
 import IconButton from "@mui/material/IconButton";
 import { useOptionStore } from "../store/useOptionStore.tsx";
-import { MailOutlineOutlined } from "@mui/icons-material";
 
 export default function InfoBox({ toggleInfoBox, theme, openUserEmail }) {
   // about text blocks
@@ -40,7 +38,7 @@ export default function InfoBox({ toggleInfoBox, theme, openUserEmail }) {
     },
   ];
 
-  // useStates
+  // useState
   const [aboutPageToggle, setAboutPageToggle] = useState(false);
   const [aboutIndex, setAboutIndex] = useState(0);
 
@@ -51,15 +49,7 @@ export default function InfoBox({ toggleInfoBox, theme, openUserEmail }) {
   const open = useOptionStore((state) => state.open);
   const aboutInfo = useOptionStore((state) => state.aboutInfo);
 
-  // functions
-  const nextPage = (e) => {
-    if (e) {
-      e.preventDefault();
-      e.stopPropagation();
-    }
-    setAboutPageToggle(!aboutPageToggle);
-  };
-
+  // useEffect
   useEffect(() => {
     let nextIndex;
     if (aboutIndex === 4) {
@@ -69,6 +59,15 @@ export default function InfoBox({ toggleInfoBox, theme, openUserEmail }) {
     }
     setAboutIndex(nextIndex);
   }, [aboutPageToggle]);
+
+  // functions
+  const nextPage = (e) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    setAboutPageToggle(!aboutPageToggle);
+  };
 
   return (
     <Html center position={[0, 50, 0]}>

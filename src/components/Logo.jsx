@@ -23,23 +23,15 @@ export const Logo = ({ currentColor, currentTexture, openUserEmail }) => {
   );
 
   // texture
-  const [
-    map,
-    // displacementMap,
-    normalMap,
-    roughnessMap,
-    metalnessMap,
-    // aoMap,
-  ] = useTexture(currentTexture);
+  const [map, normalMap, roughnessMap, metalnessMap] =
+    useTexture(currentTexture);
 
   useLayoutEffect(() => {
     Object.assign(materials._0103_Blue, {
       map: map,
-      // displacementMap: displacementMap,
       normalMap: normalMap,
       roughnessMap: roughnessMap,
       metalnessMap: metalnessMap,
-      // aoMap: aoMap,
       color: currentColor,
     });
   }, [
@@ -62,25 +54,12 @@ export const Logo = ({ currentColor, currentTexture, openUserEmail }) => {
           if (o.userData.name.startsWith("AnchorPoint")) {
             currentAnnotations.push(
               <Html
-                // transform
                 center
                 key={o.uuid}
                 position={[o.position.x, o.position.y + 7.5, o.position.z]}
                 distanceFactor={0.25}
               >
-                <NavMenu
-                  open={open}
-                  setOpen={setOpen}
-                  showPhotos={showPhotos}
-                  setShowPhotos={setShowPhotos}
-                  // showPartOptions={showPartOptions}
-                  setShowPartOptions={setShowPartOptions}
-                  aboutInfo={aboutInfo}
-                  setAboutInfo={setAboutInfo}
-                  allPhotos={allPhotos}
-                  setAllPhotos={setAllPhotos}
-                  openUserEmail={openUserEmail}
-                />
+                <NavMenu openUserEmail={openUserEmail} />
               </Html>,
             );
           }

@@ -11,23 +11,15 @@ export const Bag = ({
   const [annotations, setAnnotations] = useState([]);
 
   // texture
-  const [
-    map,
-    // displacementMap,
-    normalMap,
-    roughnessMap,
-    metalnessMap,
-    // aoMap,
-  ] = useTexture(currentTexture);
+  const [map, normalMap, roughnessMap, metalnessMap] =
+    useTexture(currentTexture);
 
   useLayoutEffect(() => {
     Object.assign(materials._0043_SaddleBrown, {
       map: map,
-      // displacementMap: displacementMap,
       normalMap: normalMap,
       roughnessMap: roughnessMap,
       metalnessMap: metalnessMap,
-      // aoMap: aoMap,
       color: currentColor,
     });
   }, [
@@ -50,7 +42,6 @@ export const Bag = ({
           if (o.userData.name.startsWith("AnchorPoint")) {
             currentAnnotations.push(
               <Html
-                // transform
                 key={o.uuid}
                 position={[o.position.x, o.position.y, o.position.z]}
                 distanceFactor={0.25}
