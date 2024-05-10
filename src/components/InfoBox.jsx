@@ -95,21 +95,6 @@ export default function InfoBox({ toggleInfoBox, theme, openUserEmail }) {
           >
             <CloseOutlinedIcon color="success" />
           </IconButton>
-          <IconButton
-            onClick={(e) => nextPage(e)}
-            color="inherit"
-            sx={{
-              display: aboutInfo ? "block" : "none",
-              position: "absolute",
-              pointerEvents: "auto",
-              top: "0.25rem",
-              right: "0.5rem",
-              padding: "0.5rem",
-            }}
-            aria-label="contact by email"
-          >
-            <ReadMoreIcon color="secondary" />
-          </IconButton>
           <div
             id="title"
             style={{
@@ -171,7 +156,7 @@ export default function InfoBox({ toggleInfoBox, theme, openUserEmail }) {
           <div className="size">
             <div>
               <IconButton
-                onClick={(e) => openUserEmail(e)}
+                onClick={(e) => nextPage(e)}
                 color="inherit"
                 sx={{
                   display: aboutInfo ? "block" : "none",
@@ -180,12 +165,10 @@ export default function InfoBox({ toggleInfoBox, theme, openUserEmail }) {
                   bottom: 0,
                   left: "50%",
                   transform: "translate(-50%)",
-                  justifyContent: "center",
-                  textAlign: "center",
                 }}
                 aria-label="contact by email"
               >
-                <MailOutlineOutlined color="secondary" />
+                <ReadMoreIcon color="secondary" />
               </IconButton>
             </div>
           </div>
