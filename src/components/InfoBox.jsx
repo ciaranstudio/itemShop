@@ -162,6 +162,7 @@ export default function InfoBox({ toggleInfoBox, theme, openUserEmail }) {
                   position: "absolute",
                   pointerEvents: "auto",
                   bottom: 0,
+                  // right: "0.5rem",
                   left: "50%",
                   transform: "translate(-50%)",
                 }}
