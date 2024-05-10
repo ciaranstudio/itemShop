@@ -344,11 +344,11 @@ export default function Scene({
           duration: 3,
           value: 0,
           delay: 0, //
+          onStart: () => {
+            window.document.body.style.cursor = "auto";
+          },
           onUpdate: () => {
             setOverlayAlpha(overlayOpacity.value);
-          },
-          onComplete: () => {
-            window.document.body.style.cursor = "auto";
           },
         });
       }, 500);
