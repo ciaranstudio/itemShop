@@ -17,7 +17,7 @@ export default function SplitButton({
   // theme,
   randomCurrentItemParts,
 }) {
-  // useStates
+  // useState
   const [open, setOpen] = useState(false);
   const anchorRef = useRef(null);
   const [selectedIndex, setSelectedIndex] = useState(2);

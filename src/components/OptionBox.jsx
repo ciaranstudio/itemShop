@@ -44,7 +44,7 @@ export default function OptionBox({
 
   const breakpointWidthSmallest = 380;
 
-  // useStates
+  // useState
   const [mobilePosYMax, setMobilePosYMax] = useState(boxPosYMobileMax);
   const [mobilePosYMin, setMobilePosYMin] = useState(boxPosYMobileMin);
   const [desktopPosYMax, setDesktopPosYMax] = useState(boxPosYDesktopMax);
