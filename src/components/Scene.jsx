@@ -25,6 +25,14 @@ import { ArrowIcon } from "./interface/ArrowIcon.jsx";
 import toast from "react-hot-toast";
 import { useOptionStore } from "../store/useOptionStore.tsx";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import {
+  LIGHT,
+  ORBIT_CONTROLS,
+  ARROW_ICON,
+  CAM_TARG_ANIM,
+  CAM_POS_ANIM,
+  TOAST,
+} from "../data/constants.tsx";
 
 export default function Scene({
   animDist,
@@ -32,10 +40,6 @@ export default function Scene({
   handlePartOption,
   randomAllItemsParts,
   stagePosY,
-  toastDuration,
-  toastFontSize,
-  toastBackground,
-  toastColor,
 }) {
   // textures
   const [
@@ -79,33 +83,8 @@ export default function Scene({
     // aoMapPainted,
   ] = useTexture(textures.paintedTexture);
 
-  // constants
-  const dirLightXPosition = 2.5; // 2.5
-  const dirLightYPosition = 3.6; // 3.6
-  const dirLightZPosition = -3; // -3
-  const dirLightIntensity = 1.5;
-  const dirLightNormBias = 0.04; // 0.04 previously, adjusted to reduce shadow acne on Block inner shelf cavities
-  const dirLightMapSize = 512;
-  const dirLightCamNear = -5;
-  const dirLightCamFar = 8;
-  const dirLightCamLeft = -5;
-  const dirLightCamRight = 5;
-  const dirLightCamBottom = -5;
-  const dirLightCamTop = 5;
-  const ambLightIntensity = 1;
-  const arrowY = -0.3; // -0.25
-  const orbitPolarShowBgdShelf = Math.PI / 2 + Math.PI / 16;
-  const orbitPolarShowBgdNotShelf = Math.PI / 2 - Math.PI / 7.25; // 9.06 when arrowY was -0.25
-  // animation constants for camera target animation
-  const camTargAnimDelay = 0.1;
-  const camTargAnimDuration = 0.75;
-  // animation constants for camera position animation
-  const camPosAnimDelay = 0.175;
-  const camPosAnimDuration = 1.85;
-
   // useRef
   const dirLightA = useRef();
-  // const shadowCameraRef = useRef();
   const orbitRef = useRef();
 
   // useState
@@ -189,7 +168,6 @@ export default function Scene({
 
   // hooks
   const { height, width } = useWindowDimensions();
-  // useHelper(shadowCameraRef, CameraHelper, 1, "lightBlue");
   useCursor(hovered);
 
   // snipcart hook values
@@ -366,13 +344,13 @@ export default function Scene({
     if (count === 2 && showBackground) {
       toast.dismiss();
       toast("Cart", {
-        duration: toastDuration,
+        duration: TOAST.duration,
         position: "top-right",
         // Styling
         style: {
-          fontSize: toastFontSize,
-          background: toastBackground,
-          color: toastColor,
+          fontSize: TOAST.fontSize,
+          background: TOAST.background,
+          color: TOAST.color,
           fontFamily: "var(--leva-fonts-mono)",
         },
         // style: { background: "#adbaba", color: "#ffffff" },
@@ -391,13 +369,13 @@ export default function Scene({
         },
       });
       toast("Menu", {
-        duration: toastDuration,
+        duration: TOAST.duration,
         position: "top-left",
         // Styling
         style: {
-          fontSize: toastFontSize,
-          background: toastBackground,
-          color: toastColor,
+          fontSize: TOAST.fontSize,
+          background: TOAST.background,
+          color: TOAST.color,
           fontFamily: "var(--leva-fonts-mono)",
         },
         className: "",
@@ -417,13 +395,13 @@ export default function Scene({
     } else if (count === 5 && showBackground) {
       toast.dismiss();
       toast("Drag to rotate", {
-        duration: toastDuration,
+        duration: TOAST.duration,
         position: "top-left",
         // Styling
         style: {
-          fontSize: toastFontSize,
-          background: toastBackground,
-          color: toastColor,
+          fontSize: TOAST.fontSize,
+          background: TOAST.background,
+          color: TOAST.color,
           fontFamily: "var(--leva-fonts-mono)",
         },
         className: "",
@@ -440,13 +418,13 @@ export default function Scene({
       });
     } else if (count === 7 && showBackground) {
       toast("Pinch to zoom", {
-        duration: toastDuration,
+        duration: TOAST.duration,
         position: "top-left",
         // Styling
         style: {
-          fontSize: toastFontSize,
-          background: toastBackground,
-          color: toastColor,
+          fontSize: TOAST.fontSize,
+          background: TOAST.background,
+          color: TOAST.color,
           fontFamily: "var(--leva-fonts-mono)",
         },
         className: "",
@@ -463,13 +441,13 @@ export default function Scene({
       });
     } else if (count === 9 && showBackground) {
       toast("Tap to select", {
-        duration: toastDuration,
+        duration: TOAST.duration,
         position: "top-left",
         // Styling
         style: {
-          fontSize: toastFontSize,
-          background: toastBackground,
-          color: toastColor,
+          fontSize: TOAST.fontSize,
+          background: TOAST.background,
+          color: TOAST.color,
           fontFamily: "var(--leva-fonts-mono)",
         },
         className: "",
@@ -486,13 +464,13 @@ export default function Scene({
       });
     } else if (count === 12 && showBackground) {
       toast("Toggles options", {
-        duration: toastDuration,
+        duration: TOAST.duration,
         position: "top-left",
         // Styling
         style: {
-          fontSize: toastFontSize,
-          background: toastBackground,
-          color: toastColor,
+          fontSize: TOAST.fontSize,
+          background: TOAST.background,
+          color: TOAST.color,
           fontFamily: "var(--leva-fonts-mono)",
         },
         className: "",
@@ -539,13 +517,13 @@ export default function Scene({
     }
     if (!showBackground && previousItemSelected.itemName === "noSelect") {
       toast("Toggles background", {
-        duration: toastDuration,
+        duration: TOAST.duration,
         position: "top-left",
         // Styling
         style: {
-          fontSize: toastFontSize,
-          background: toastBackground,
-          color: toastColor,
+          fontSize: TOAST.fontSize,
+          background: TOAST.background,
+          color: TOAST.color,
           fontFamily: "var(--leva-fonts-mono)",
         },
         className: "",
@@ -563,13 +541,13 @@ export default function Scene({
         },
       });
       toast("Also toggles background", {
-        duration: toastDuration,
+        duration: TOAST.duration,
         position: "top-left",
         // Styling
         style: {
-          fontSize: toastFontSize,
-          background: toastBackground,
-          color: toastColor,
+          fontSize: TOAST.fontSize,
+          background: TOAST.background,
+          color: TOAST.color,
           fontFamily: "var(--leva-fonts-mono)",
         },
         className: "",
@@ -636,7 +614,7 @@ export default function Scene({
         if (allEqual(azArr) && dragTime > 0.5 && brokenCount < 4) {
           // document.getElementById("footer").innerHTML +=
           //   "might need to reset page, controls could be broken ";
-          setBrokenCount(brokenCount + 1);
+          setBrokenCount((prev) => prev + 1);
         }
       }
     }
@@ -958,14 +936,14 @@ export default function Scene({
       let tl = gsap.timeline();
       tl.to(controlsTargetVec, {
         delay: optionBoxItemChanged
-          ? camTargAnimDelay - 0.075
-          : camTargAnimDelay,
+          ? CAM_TARG_ANIM.camTargAnimDelay - 0.075
+          : CAM_TARG_ANIM.camTargAnimDelay,
         duration:
           previousItemSelected === unselectedItem
-            ? camTargAnimDuration - 0.15
+            ? CAM_TARG_ANIM.camTargAnimDuration - 0.15
             : optionBoxItemChanged
-              ? camTargAnimDuration * 1.5
-              : camTargAnimDuration,
+              ? CAM_TARG_ANIM.camTargAnimDuration * 1.5
+              : CAM_TARG_ANIM.camTargAnimDuration,
         x: currentItemSelected.position.x,
         y: currentItemSelected.position.y,
         z: currentItemSelected.position.z,
@@ -1001,11 +979,11 @@ export default function Scene({
       let tl = gsap.timeline();
       tl.to(controlsTargetVec, {
         delay: optionBoxItemChanged
-          ? camTargAnimDelay - 0.075
-          : camTargAnimDelay,
+          ? CAM_TARG_ANIM.camTargAnimDelay - 0.075
+          : CAM_TARG_ANIM.camTargAnimDelay,
         duration: optionBoxItemChanged
-          ? camTargAnimDuration * 1.5
-          : camTargAnimDuration,
+          ? CAM_TARG_ANIM.camTargAnimDuration * 1.5
+          : CAM_TARG_ANIM.camTargAnimDuration,
         x: currentItemSelected.position.x,
         y: currentItemSelected.position.y + 1,
         z: currentItemSelected.position.z,
@@ -1041,11 +1019,11 @@ export default function Scene({
       let tl = gsap.timeline();
       tl.to(controlsTargetVec, {
         delay: optionBoxItemChanged
-          ? camTargAnimDelay - 0.075
-          : camTargAnimDelay,
+          ? CAM_TARG_ANIM.camTargAnimDelay - 0.075
+          : CAM_TARG_ANIM.camTargAnimDelay,
         duration: optionBoxItemChanged
-          ? camTargAnimDuration * 1.5
-          : camTargAnimDuration,
+          ? CAM_TARG_ANIM.camTargAnimDuration * 1.5
+          : CAM_TARG_ANIM.camTargAnimDuration,
         x: currentItemSelected.position.x,
         y: currentItemSelected.position.y + 1.25,
         z: currentItemSelected.position.z,
@@ -1150,13 +1128,13 @@ export default function Scene({
           tl.to(controlsPositionVec, {
             delay:
               previousItemSelected === unselectedItem
-                ? camPosAnimDelay + 0.1
+                ? CAM_POS_ANIM.camPosAnimDelay + 0.1
                 : optionBoxItemChanged
-                  ? camPosAnimDelay + 0.2
-                  : camPosAnimDelay,
+                  ? CAM_POS_ANIM.camPosAnimDelay + 0.2
+                  : CAM_POS_ANIM.camPosAnimDelay,
             duration: optionBoxItemChanged
-              ? camPosAnimDuration + 0.75
-              : camPosAnimDuration,
+              ? CAM_POS_ANIM.camPosAnimDuration + 0.75
+              : CAM_POS_ANIM.camPosAnimDuration,
             x: currentItemSelected.position.x + xPlus,
             y: currentItemSelected.position.y + yPlus,
             z: currentItemSelected.position.z + zPlus,
@@ -1307,7 +1285,7 @@ export default function Scene({
           onPointerOut={() => hover(false)}
         >
           <mesh
-            position={[0, arrowY, 0]}
+            position={[0, ARROW_ICON.arrowY, 0]}
             scale={0.0055}
             rotation={[arrowRotationX, 0, 0]}
           >
@@ -1321,7 +1299,7 @@ export default function Scene({
             />
           </mesh>
           <group
-            position={[0, arrowY + 0.01, 0]}
+            position={[0, ARROW_ICON.arrowY + 0.01, 0]}
             // rotation={[arrowRotationX, 0, 0]}
           >
             <RingCircle
@@ -1345,9 +1323,9 @@ export default function Scene({
         minDistance={1.45} // 1.65 on 04/11/2024 // before 04/11/2024 1.75 good on iphone xr portrait // 1.375 // 60
         maxPolarAngle={
           showBackground && currentItemSelected.itemName.includes("shelf")
-            ? orbitPolarShowBgdShelf // Math.PI / 2 + Math.PI / 128
+            ? ORBIT_CONTROLS.orbitPolarShowBgdShelf // Math.PI / 2 + Math.PI / 128
             : showBackground && !currentItemSelected.itemName.includes("shelf")
-              ? orbitPolarShowBgdNotShelf // 04/11/24 - was Math.PI / 2 - Math.PI / 8
+              ? ORBIT_CONTROLS.orbitPolarShowBgdNotShelf // 04/11/24 - was Math.PI / 2 - Math.PI / 8
               : Math.PI * 2
         } // {Math.PI / 2 - Math.PI / 16}
         enableDamping={true}
@@ -1359,22 +1337,26 @@ export default function Scene({
       <directionalLight
         castShadow
         ref={dirLightA}
-        position={[dirLightXPosition, dirLightYPosition, dirLightZPosition]} // {[0, 60, 0]}
-        intensity={dirLightIntensity}
-        shadow-normalBias={dirLightNormBias}
-        shadow-mapSize-width={dirLightMapSize} // 5120
-        shadow-mapSize-height={dirLightMapSize}
-        shadow-camera-near={dirLightCamNear} // 50
-        shadow-camera-far={dirLightCamFar} // 115
-        shadow-camera-left={dirLightCamLeft} // -10
-        shadow-camera-bottom={dirLightCamBottom} // -10
-        shadow-camera-right={dirLightCamRight} // 10
-        shadow-camera-top={dirLightCamTop} // 150
+        position={[
+          LIGHT.dirLightXPosition,
+          LIGHT.dirLightYPosition,
+          LIGHT.dirLightZPosition,
+        ]} // {[0, 60, 0]}
+        intensity={LIGHT.dirLightIntensity}
+        shadow-normalBias={LIGHT.dirLightNormBias}
+        shadow-mapSize-width={LIGHT.dirLightMapSize} // 5120
+        shadow-mapSize-height={LIGHT.dirLightMapSize}
+        shadow-camera-near={LIGHT.dirLightCamNear} // 50
+        shadow-camera-far={LIGHT.dirLightCamFar} // 115
+        shadow-camera-left={LIGHT.dirLightCamLeft} // -10
+        shadow-camera-bottom={LIGHT.dirLightCamBottom} // -10
+        shadow-camera-right={LIGHT.dirLightCamRight} // 10
+        shadow-camera-top={LIGHT.dirLightCamTop} // 150
         // target={grampsRef.current}
       />
       {/* all objects (except logo, cart/bag, arrow / objects in ScreenSpace) */}
       <group position={[0, stagePosY, 0]}>
-        <ambientLight intensity={ambLightIntensity} />
+        <ambientLight intensity={LIGHT.ambLightIntensity} />
         {/* furniture items */}
         {shopItems.map((item, index) => {
           return (

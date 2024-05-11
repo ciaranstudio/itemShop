@@ -22,6 +22,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
 import toast from "react-hot-toast";
+import { OPTION_BOX_POS_Y } from "../../data/constants.tsx";
 
 export default function OptionBox({
   handlePartOption,
@@ -32,23 +33,19 @@ export default function OptionBox({
   // helper hook
   const { height, width } = useWindowDimensions();
 
-  // constants
-  const boxPosYMobileMax = 14; // 14 confirmed good on iPhone XR
-  const boxPosYMobileMin = 10.15; // 10.15 confirmed good on iPhone XR
-
-  const boxPosYDesktopMax = 4; // 4 confirmed good on my desktop monitor
-  const boxPosYDesktopMin = 1; // 1 confirmed good on my desktop monitor
-
-  const tinyScreenOffsetMinimized = 3.5; // -9.5
-  const tinyScreenOffsetNotMinimized = 4.25; // -10.25
-
-  const breakpointWidthSmallest = 380;
-
   // useState
-  const [mobilePosYMax, setMobilePosYMax] = useState(boxPosYMobileMax);
-  const [mobilePosYMin, setMobilePosYMin] = useState(boxPosYMobileMin);
-  const [desktopPosYMax, setDesktopPosYMax] = useState(boxPosYDesktopMax);
-  const [desktopPosYMin, setDesktopPosYMin] = useState(boxPosYDesktopMin);
+  const [mobilePosYMax, setMobilePosYMax] = useState(
+    OPTION_BOX_POS_Y.boxPosYMobileMax,
+  );
+  const [mobilePosYMin, setMobilePosYMin] = useState(
+    OPTION_BOX_POS_Y.boxPosYMobileMin,
+  );
+  const [desktopPosYMax, setDesktopPosYMax] = useState(
+    OPTION_BOX_POS_Y.boxPosYDesktopMax,
+  );
+  const [desktopPosYMin, setDesktopPosYMin] = useState(
+    OPTION_BOX_POS_Y.boxPosYDesktopMin,
+  );
   const [stainSingle, setStainSingle] = useState("");
   const [paintSingle, setPaintSingle] = useState("");
 
@@ -103,20 +100,6 @@ export default function OptionBox({
   );
   const setAnimIconToggle = useOptionStore((state) => state.setAnimIconToggle);
   const getRandomInt = useOptionStore((state) => state.getRandomInt);
-
-  // useEffect
-  // useEffect(() => {
-  //   if (mobileView && !optionBoxHeightMin) {
-  //     if (
-  //       currentItemSelected.itemName === "horse" ||
-  //       currentItemSelected.itemName.includes("shelf")
-  //     ) {
-  //       setMobilePosYMax(boxPosYMobileMax + 2.5);
-  //     } else {
-  //       setMobilePosYMax(boxPosYMobileMax);
-  //     }
-  //   }
-  // }, [currentItemSelected, mobileView, optionBoxHeightMin]);
 
   // functions
   const toggleOptionBoxHeight = (e) => {
@@ -177,7 +160,6 @@ export default function OptionBox({
     }
   };
   const itemMenuSelectHandler = (e, itemNo, popupState) => {
-    // console.log(popupState);
     if (!activeCamAnim) {
       setOptionBoxItemChanged(true);
       setOptionBoxItemToggle(!optionBoxItemToggle);
@@ -193,19 +175,23 @@ export default function OptionBox({
     <Html
       position={[
         0,
-        mobileView && !optionBoxHeightMin && width < breakpointWidthSmallest
-          ? mobilePosYMax + tinyScreenOffsetNotMinimized
-          : mobileView && optionBoxHeightMin && width > breakpointWidthSmallest
+        mobileView &&
+        !optionBoxHeightMin &&
+        width < OPTION_BOX_POS_Y.breakpointWidthSmallest
+          ? mobilePosYMax + OPTION_BOX_POS_Y.tinyScreenOffsetNotMinimized
+          : mobileView &&
+              optionBoxHeightMin &&
+              width > OPTION_BOX_POS_Y.breakpointWidthSmallest
             ? mobilePosYMin
             : !mobileView && !optionBoxHeightMin
               ? desktopPosYMax
               : mobileView &&
                   optionBoxHeightMin &&
-                  width < breakpointWidthSmallest
-                ? mobilePosYMin + tinyScreenOffsetMinimized
+                  width < OPTION_BOX_POS_Y.breakpointWidthSmallest
+                ? mobilePosYMin + OPTION_BOX_POS_Y.tinyScreenOffsetMinimized
                 : mobileView &&
                     !optionBoxHeightMin &&
-                    width > breakpointWidthSmallest
+                    width > OPTION_BOX_POS_Y.breakpointWidthSmallest
                   ? mobilePosYMax
                   : !mobileView && optionBoxHeightMin
                     ? desktopPosYMin

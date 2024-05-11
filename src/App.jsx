@@ -16,44 +16,28 @@ import { shopItems, unselectedItem } from "./data/objects.jsx";
 import { allOptions } from "./data/options.jsx";
 import { useOptionStore } from "./store/useOptionStore.tsx";
 import toast, { Toaster } from "react-hot-toast";
+import {
+  TOAST,
+  STAGE_POSITION_Y_ANIM,
+  ITEM_PARTS_ANIM,
+} from "./data/constants.tsx";
 
 function App() {
-  // constants
-  const toastDuration = 10000;
-  const toastFontSize = "0.9rem";
-  const toastBackground = "lightGrey";
-  const toastColor = "#212121";
-  // animation constants for position Y (up and down)
-  const yPosRunHighTarg = 0.015;
-  const yPosRunLowTarg = -0.075;
-  const stagePosYRunTarget = yPosRunHighTarg;
-  const stagePosYReturnTarget = yPosRunLowTarg;
-  const dropDelay = 0.15;
-  const dropDuration = 0.75;
-  const raiseDelay = 0.15;
-  const raiseDuration = 0.75;
-  // animation constants for exploding view animation / distance of parts from origin position (opening and closing exploding view)
-  const animDistRunTarget = 0.15;
-  const animDistReturnTarget = 0;
-  const runDelay = 1.2;
-  const runDuration = 0.9;
-  const returnDelay = 0.15;
-  const returnDuration = 0.9;
   // loading bar element for left to right on animation on app load
   const loadingBarElement = document.querySelector(".loading-bar");
   const toastId = toast;
   // animation value objects for object raise/lower animation and exploding view animation
   const animDistRun = {
-    value: animDistReturnTarget,
+    value: ITEM_PARTS_ANIM.animDistReturnTarget,
   };
   const animDistReturn = {
-    value: animDistRunTarget,
+    value: ITEM_PARTS_ANIM.animDistRunTarget,
   };
   const stagePosYRun = {
-    value: yPosRunLowTarg,
+    value: STAGE_POSITION_Y_ANIM.yPosRunLowTarg,
   };
   const stagePosYReturn = {
-    value: yPosRunHighTarg,
+    value: STAGE_POSITION_Y_ANIM.yPosRunHighTarg,
   };
 
   // useRef
@@ -64,7 +48,9 @@ function App() {
 
   // useState
   const [animDist, setAnimDist] = useState(0);
-  const [stagePosY, setStagePosY] = useState(yPosRunLowTarg);
+  const [stagePosY, setStagePosY] = useState(
+    STAGE_POSITION_Y_ANIM.yPosRunLowTarg,
+  );
 
   // state from store
   const animToggled = useOptionStore((state) => state.animToggled);
@@ -108,9 +94,9 @@ function App() {
       id: "loadingToast",
       position: "top-left",
       style: {
-        fontSize: toastFontSize,
-        background: toastBackground,
-        color: toastColor,
+        fontSize: TOAST.fontSize,
+        background: TOAST.background,
+        color: TOAST.color,
         fontFamily: "var(--leva-fonts-mono)",
         borderTop: "0.1rem solid #e0e0e0,",
       },
@@ -129,12 +115,12 @@ function App() {
           loadingBarElement.style.transform = "";
           toastId.success("All set!", {
             id: "loadingToast",
-            duration: toastDuration - 7000,
+            duration: TOAST.duration - 7000,
             position: "top-left",
             style: {
-              fontSize: toastFontSize,
-              background: toastBackground,
-              color: toastColor,
+              fontSize: TOAST.fontSize,
+              background: TOAST.background,
+              color: TOAST.color,
               fontFamily: "var(--leva-fonts-mono)",
               borderTop: "0.1rem solid #e0e0e0,",
             },
@@ -158,9 +144,9 @@ function App() {
         setAnimActive(true);
         let tl = gsap.timeline();
         tl.to(stagePosYRun, {
-          delay: raiseDelay,
-          duration: raiseDuration,
-          value: stagePosYRunTarget,
+          delay: STAGE_POSITION_Y_ANIM.raiseDelay,
+          duration: STAGE_POSITION_Y_ANIM.raiseDuration,
+          value: STAGE_POSITION_Y_ANIM.stagePosYRunTarget,
           ease: "easeIn",
           onUpdate: () => {
             setStagePosY(stagePosYRun.value);
@@ -171,12 +157,12 @@ function App() {
         tl.to(animDistRun, {
           delay:
             previousItemSelected === unselectedItem
-              ? runDelay + 0.5
+              ? ITEM_PARTS_ANIM.runDelay + 0.5
               : animIconToggle
-                ? runDelay - 1
-                : runDelay,
-          duration: runDuration,
-          value: animDistRunTarget,
+                ? ITEM_PARTS_ANIM.runDelay - 1
+                : ITEM_PARTS_ANIM.runDelay,
+          duration: ITEM_PARTS_ANIM.runDuration,
+          value: ITEM_PARTS_ANIM.animDistRunTarget,
           ease: "easeOut",
           onUpdate: () => {
             setAnimDist(animDistRun.value);
@@ -193,9 +179,9 @@ function App() {
         // close
         // close the object, bring parts back together, ending with no distance between them
         tl.to(animDistReturn, {
-          delay: returnDelay,
-          duration: returnDuration,
-          value: animDistReturnTarget,
+          delay: ITEM_PARTS_ANIM.returnDelay,
+          duration: ITEM_PARTS_ANIM.returnDuration,
+          value: ITEM_PARTS_ANIM.animDistReturnTarget,
           ease: "easeOut",
           onUpdate: () => {
             setAnimDist(animDistReturn.value);
@@ -203,9 +189,9 @@ function App() {
         });
 
         tl.to(stagePosYReturn, {
-          delay: dropDelay,
-          duration: dropDuration,
-          value: stagePosYReturnTarget,
+          delay: STAGE_POSITION_Y_ANIM.dropDelay,
+          duration: STAGE_POSITION_Y_ANIM.dropDuration,
+          value: STAGE_POSITION_Y_ANIM.stagePosYReturnTarget,
           ease: "easeIn",
           onUpdate: () => {
             setStagePosY(stagePosYReturn.value);
@@ -319,10 +305,6 @@ function App() {
               handlePartOption={handlePartOption}
               randomAllItemsParts={randomAllItemsParts}
               stagePosY={stagePosY}
-              toastDuration={toastDuration}
-              toastFontSize={toastFontSize}
-              toastBackground={toastBackground}
-              toastColor={toastColor}
             />
           </SnipcartProvider>
         </Suspense>
