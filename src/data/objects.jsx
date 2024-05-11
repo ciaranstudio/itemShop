@@ -1,5 +1,5 @@
-import Item from "./Item.jsx";
-import Part from "./Part.jsx";
+import Item from "./item/Item.jsx";
+import Part from "./item/Part.jsx";
 
 export const objects = {
   gramps: new Item(
