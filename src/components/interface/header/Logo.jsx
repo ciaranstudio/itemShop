@@ -1,7 +1,7 @@
 import React, { useState, useLayoutEffect } from "react";
 import { useGLTF, useTexture, Html } from "@react-three/drei";
-import { useOptionStore } from "../store/useOptionStore.tsx";
-import NavMenu from "./NavMenu";
+import { useOptionStore } from "../../../store/useOptionStore.tsx";
+import NavMenu from "./NavMenu.jsx";
 
 export const Logo = ({ currentColor, currentTexture, openUserEmail }) => {
   const { scene, nodes, materials } = useGLTF("./models/logoAnnotated.gltf");

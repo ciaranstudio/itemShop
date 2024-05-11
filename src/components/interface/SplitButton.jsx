@@ -9,7 +9,7 @@ import Popper from "@mui/material/Popper";
 import MenuItem from "@mui/material/MenuItem";
 import MenuList from "@mui/material/MenuList";
 import ShuffleOutlinedIcon from "@mui/icons-material/ShuffleOutlined";
-import { useOptionStore } from "../store/useOptionStore.tsx";
+import { useOptionStore } from "../../store/useOptionStore.tsx";
 
 const options = ["Stain", "Stains", "All", "Paints", "Paint"];
 
@@ -106,7 +106,7 @@ export default function SplitButton({
             <Paper
               sx={{
                 backgroundColor: "lightGrey",
-                border: "0.075rem solid rgb(255, 255, 255);",
+                border: "0.075rem solid rgb(33, 33, 33);",
               }}
             >
               <ClickAwayListener onClickAway={handleClose}>

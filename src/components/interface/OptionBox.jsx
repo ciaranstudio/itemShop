@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Html } from "@react-three/drei";
-import { useOptionStore } from "../store/useOptionStore.tsx";
-import { objects, shopItems } from "../data/objects.jsx";
-import { options, allOptions } from "../data/options.jsx";
+import { useOptionStore } from "../../store/useOptionStore.tsx";
+import { objects, shopItems } from "../../data/objects.jsx";
+import { options, allOptions } from "../../data/options.jsx";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
@@ -16,7 +16,7 @@ import OpenInFullIcon from "@mui/icons-material/OpenInFull";
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
 import BuyButton from "./BuyButton.jsx";
 import SplitButton from "./SplitButton.jsx";
-import useWindowDimensions from "../hooks/useWindowDimensions";
+import useWindowDimensions from "../../hooks/useWindowDimensions.jsx";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -291,7 +291,7 @@ export default function OptionBox({
                     sx={{
                       "& .MuiPaper-root": {
                         backgroundColor: "lightgrey",
-                        border: "0.075rem solid rgb(255, 255, 255);",
+                        border: "0.075rem solid rgb(33, 33, 33);",
                       },
                     }}
                     aria-label="item select menu"

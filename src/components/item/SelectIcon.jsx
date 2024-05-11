@@ -3,7 +3,7 @@ import { useGLTF, Html } from "@react-three/drei";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
-import { useOptionStore } from "../store/useOptionStore.tsx";
+import { useOptionStore } from "../../store/useOptionStore.tsx";
 
 export const SelectIcon = ({
   model,

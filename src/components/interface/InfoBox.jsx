@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import ReadMoreIcon from "@mui/icons-material/ReadMore";
 import IconButton from "@mui/material/IconButton";
-import { useOptionStore } from "../store/useOptionStore.tsx";
+import { useOptionStore } from "../../store/useOptionStore.tsx";
 
 export default function InfoBox({ toggleInfoBox, theme, openUserEmail }) {
   // about text blocks

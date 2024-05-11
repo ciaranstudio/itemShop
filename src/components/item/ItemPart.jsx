@@ -1,6 +1,6 @@
 import React, { useLayoutEffect } from "react";
 import { useGLTF, useTexture } from "@react-three/drei";
-import { useOptionStore } from "../store/useOptionStore.tsx";
+import { useOptionStore } from "../../store/useOptionStore.tsx";
 
 export const ItemPart = ({ model, itemName, partName }) => {
   const { scene, nodes, materials } = useGLTF(model);

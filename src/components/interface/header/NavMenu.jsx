@@ -3,7 +3,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
 import Box from "@mui/material/Box";
-import { useOptionStore } from "../store/useOptionStore.tsx";
+import { useOptionStore } from "../../../store/useOptionStore.tsx";
 
 export default function NavMenu({ openUserEmail }) {
   const selectHandler = (e, menuItem, popupState) => {

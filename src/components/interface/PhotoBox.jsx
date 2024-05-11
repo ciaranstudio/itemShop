@@ -5,8 +5,8 @@ import Typography from "@mui/material/Typography";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import IconButton from "@mui/material/IconButton";
 import SimpleSlider from "./SimpleSlider.jsx";
-import { allImages } from "../data/objects.jsx";
-import { useOptionStore } from "../store/useOptionStore.tsx";
+import { allImages } from "../../data/objects.jsx";
+import { useOptionStore } from "../../store/useOptionStore.tsx";
 
 export default function PhotoBox({ togglePhotoBox, theme }) {
   // state from store
