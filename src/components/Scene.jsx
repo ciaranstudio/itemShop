@@ -340,7 +340,6 @@ export default function Scene({
     const interval = setInterval(() => {
       setCount((prev) => prev + 1);
     }, 1500);
-    // was 1000
     if (count === 2 && showBackground) {
       toast.dismiss();
       toast("Cart", {
@@ -353,7 +352,6 @@ export default function Scene({
           color: TOAST.color,
           fontFamily: "var(--leva-fonts-mono)",
         },
-        // style: { background: "#adbaba", color: "#ffffff" },
         className: "",
         // Custom Icon
         // icon: "🛒",
@@ -1058,41 +1056,18 @@ export default function Scene({
     if (!showBackground) {
       if (orbitRef.current) {
         if (orbitRef.current.object.position !== targetVec) {
-          // console.log(
-          //   "checking controls current position: ",
-          //   orbitRef.current.object.position,
-          // );
           let xPlus = -1.65;
           let yPlus = 1.25;
           let zPlus = -1.165;
-
-          // // replace below if, elseIf block with map like one below:
-          // const keyControlMap = {
-          //   ArrowDown: "back",
-          //   ArrowLeft: "left",
-          //   ArrowRight: "right",
-          //   ArrowUp: "forward",
-          //   a: "left",
-          //   d: "right",
-          //   s: "back",
-          //   w: "forward",
-          //   A: "left",
-          //   D: "right",
-          //   S: "back",
-          //   W: "forward",
-          //   " ": "brake",
-          //   j: "jump",
-          //   J: "jump",
-          // };
 
           if (currentItemSelected.itemName === "gramps") {
             xPlus = -2.15; // -1.75
             yPlus = 1; // 0.5
             zPlus = -0.575; // -0.75
           } else if (currentItemSelected.itemName === "block") {
-            xPlus = -0.5; // 0 // -0.75
-            yPlus = 0.75; // 0.5 // 0.5
-            zPlus = -1.5; // 1.75 // -1.25
+            xPlus = -0.5;
+            yPlus = 0.75;
+            zPlus = -1.5;
           } else if (currentItemSelected.itemName === "horse") {
             xPlus = 2; // -1.75
             yPlus = 1.25; // 1.25

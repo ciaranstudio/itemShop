@@ -85,10 +85,7 @@ function App() {
   useEffect(() => {
     window.LoadSnipcart();
   }, []);
-  // useEffect(() => {
-  //   console.log("loaded: ", loaded);
-  //   console.log("total: ", total);
-  // }, [loaded, total]);
+
   useEffect(() => {
     toastId.loading("Loading...", {
       id: "loadingToast",
@@ -102,6 +99,7 @@ function App() {
       },
     });
   }, []);
+
   useEffect(() => {
     // loadingBarElement.style.transform = `scaleX(${progress / 100})`;
     loadingBarElement.style.transform = `scaleX(${loaded / 149})`;
@@ -129,6 +127,7 @@ function App() {
       }
     }
   }, [progress]);
+
   useEffect(() => {
     if (animIconToggle) animateParts();
   }, [animateButton]);

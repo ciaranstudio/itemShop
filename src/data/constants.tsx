@@ -1,9 +1,4 @@
-// export const PROJECT_MAP: Record<string, any> = {
-//   van: "GardenCenter",
-//   sphere: "PartList (debug)",
-//   pen: "PartList (admin)",
-//   stool: "EliBuilds",
-// };
+// constants
 
 // App
 // toast constants
@@ -46,19 +41,19 @@ export const ARROW_ICON = {
 };
 
 // GSAP
-// animation constants for camera target animation
+// animation of camera target (orbit controls)
 export const CAM_TARG_ANIM = {
   camTargAnimDelay: 0.1,
   camTargAnimDuration: 0.75,
 };
 
-// animation constants for camera position animation
+// animation of camera position (orbit controls)
 export const CAM_POS_ANIM = {
   camPosAnimDelay: 0.175,
   camPosAnimDuration: 1.85,
 };
 
-// animation constants for position Y
+// animation of stage position Y
 // (up and down)
 export const STAGE_POSITION_Y_ANIM = {
   yPosRunHighTarg: 0.015,
@@ -71,7 +66,7 @@ export const STAGE_POSITION_Y_ANIM = {
   raiseDuration: 0.75,
 };
 
-// animation constants for exploding view animation
+// parts animation
 // distance of parts from origin position
 // (opening and closing exploding view)
 export const ITEM_PARTS_ANIM = {
