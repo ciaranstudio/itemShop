@@ -1088,6 +1088,25 @@ export default function Scene({
           let yPlus = 1.25;
           let zPlus = -1.165;
 
+          // // replace below if, elseIf block with map like one below:
+          // const keyControlMap = {
+          //   ArrowDown: "back",
+          //   ArrowLeft: "left",
+          //   ArrowRight: "right",
+          //   ArrowUp: "forward",
+          //   a: "left",
+          //   d: "right",
+          //   s: "back",
+          //   w: "forward",
+          //   A: "left",
+          //   D: "right",
+          //   S: "back",
+          //   W: "forward",
+          //   " ": "brake",
+          //   j: "jump",
+          //   J: "jump",
+          // };
+
           if (currentItemSelected.itemName === "gramps") {
             xPlus = -2.15; // -1.75
             yPlus = 1; // 0.5
