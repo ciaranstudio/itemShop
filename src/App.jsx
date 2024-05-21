@@ -25,7 +25,7 @@ import {
 function App() {
   // loading bar element for left to right on animation on app load
   const loadingBarElement = document.querySelector(".loading-bar");
-  const toastId = toast;
+
   // animation value objects for object raise/lower animation and exploding view animation
   const animDistRun = {
     value: ITEM_PARTS_ANIM.animDistReturnTarget,
@@ -83,11 +83,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    window.LoadSnipcart();
-  }, []);
-
-  useEffect(() => {
-    toastId.loading("Loading...", {
+    toast.loading("Loading...", {
       id: "loadingToast",
       position: "top-left",
       style: {
@@ -111,7 +107,7 @@ function App() {
           // update loadingBarElement
           loadingBarElement.classList.add("ended");
           loadingBarElement.style.transform = "";
-          toastId.success("All set!", {
+          toast.success("All set!", {
             id: "loadingToast",
             duration: TOAST.duration - 7000,
             position: "top-left",
