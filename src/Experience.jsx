@@ -90,7 +90,7 @@ function Experience({ theme }) {
   useEffect(() => {
     toast.loading("Loading...", {
       id: "loadingToast",
-      position: "top-left",
+      position: "bottom-center",
       style: {
         fontSize: TOAST.fontSize,
         background: TOAST.background,
@@ -115,7 +115,7 @@ function Experience({ theme }) {
           toast.success("All set!", {
             id: "loadingToast",
             duration: TOAST.duration - 7000,
-            position: "top-left",
+            position: "bottom-center",
             style: {
               fontSize: TOAST.fontSize,
               background: TOAST.background,

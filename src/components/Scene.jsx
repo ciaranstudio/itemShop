@@ -397,7 +397,7 @@ export default function Scene({
       toast.dismiss();
       toast("Drag to rotate", {
         duration: TOAST.duration,
-        position: "top-left",
+        position: "top-right",
         // Styling
         style: {
           fontSize: TOAST.fontSize,
@@ -420,7 +420,7 @@ export default function Scene({
     } else if (count === 7 && showBackground) {
       toast("Pinch to zoom", {
         duration: TOAST.duration,
-        position: "top-left",
+        position: "top-right",
         // Styling
         style: {
           fontSize: TOAST.fontSize,
@@ -443,7 +443,7 @@ export default function Scene({
     } else if (count === 9 && showBackground) {
       toast("Tap to select", {
         duration: TOAST.duration,
-        position: "top-left",
+        position: "top-right",
         // Styling
         style: {
           fontSize: TOAST.fontSize,
@@ -466,7 +466,7 @@ export default function Scene({
     } else if (count === 12 && showBackground) {
       toast("Toggles options", {
         duration: TOAST.duration,
-        position: "top-left",
+        position: "top-right",
         // Styling
         style: {
           fontSize: TOAST.fontSize,
@@ -520,7 +520,7 @@ export default function Scene({
     if (!showBackground && previousItemSelected.itemName === "noSelect") {
       toast("Toggles background", {
         duration: TOAST.duration,
-        position: "top-left",
+        position: "top-right",
         // Styling
         style: {
           fontSize: TOAST.fontSize,
@@ -544,7 +544,7 @@ export default function Scene({
       });
       toast("Also toggles background", {
         duration: TOAST.duration,
-        position: "top-left",
+        position: "top-right",
         // Styling
         style: {
           fontSize: TOAST.fontSize,
