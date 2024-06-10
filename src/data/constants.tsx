@@ -1,6 +1,11 @@
 // constants
 
-// App
+// Experience
+// loaded magic number (total items to load before 3d scene is loaded)
+export const LOADED = {
+  nearTotal: 137,
+  total: 143,
+};
 // toast constants
 export const TOAST = {
   duration: 10000,

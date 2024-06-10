@@ -17,6 +17,7 @@ import { allOptions } from "./data/options.jsx";
 import { useOptionStore } from "./store/useOptionStore.tsx";
 import toast, { Toaster } from "react-hot-toast";
 import {
+  LOADED,
   TOAST,
   STAGE_POSITION_Y_ANIM,
   ITEM_PARTS_ANIM,
@@ -103,9 +104,9 @@ function Experience({ theme }) {
   useEffect(() => {
     // loadingBarElement.style.transform = `scaleX(${progress / 100})`;
     loadingBarElement.style.transform = `scaleX(${loaded / 149})`;
-    // console.log("progress: ", progress);
-    if (loaded >= 143) {
-      if (loaded / 149 === 1 || progress === 100) {
+    console.log("progress: ", progress, "loaded: ", loaded);
+    if (loaded >= LOADED.nearTotal) {
+      if (loaded / LOADED.total === 1 || progress === 100) {
         setSceneLoaded(true);
         window.setTimeout(() => {
           // update loadingBarElement
