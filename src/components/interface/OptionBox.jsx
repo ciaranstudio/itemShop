@@ -111,7 +111,6 @@ export default function OptionBox({
     e.preventDefault();
     e.stopPropagation();
     setAnimIconToggle(true);
-    // animateParts();
     setAnimateButton(!animateButton);
   };
   const randomCurrentItemParts = (e, currentItemName, type) => {
@@ -152,7 +151,7 @@ export default function OptionBox({
   const partShowBackground = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    // if animation is active disable
+    // if animation is active then disable
     if (!animActive && !showBackground) {
       setShowPartOptions(false);
       setShowBackground(true);

@@ -38,7 +38,7 @@ export default function PhotoBox({ togglePhotoBox, theme }) {
             }}
             aria-label="close photo box"
           >
-            <CloseOutlinedIcon color="success" />
+            <CloseOutlinedIcon fontSize="small" color="success" />
           </IconButton>
           <div
             id="title"

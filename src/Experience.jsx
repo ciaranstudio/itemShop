@@ -61,12 +61,15 @@ function Experience({ theme }) {
   const previousItemSelected = useOptionStore(
     (state) => state.previousItemSelected,
   );
+  const showBackground = useOptionStore((state) => state.showBackground);
+  const showPartOptions = useOptionStore((state) => state.showPartOptions);
 
   // actions from store
   const setMobileView = useOptionStore((state) => state.setMobileView);
   const setSceneLoaded = useOptionStore((state) => state.setSceneLoaded);
   const setAnimToggled = useOptionStore((state) => state.setAnimToggled);
   const setAnimActive = useOptionStore((state) => state.setAnimActive);
+  const setAnimIconToggle = useOptionStore((state) => state.setAnimIconToggle);
   const setPartsOpen = useOptionStore((state) => state.setPartsOpen);
   const getRandomInt = useOptionStore((state) => state.getRandomInt);
 
@@ -133,30 +136,33 @@ function Experience({ theme }) {
   const { contextSafe } = useGSAP({ scope: container });
   const animateParts = contextSafe(() => {
     if (!animActive) {
-      setAnimToggled(!animToggled);
       // check state of animation switch, if animToggled = false then open the object, if true close it
       if (!animToggled) {
         setPartsOpen(false);
         setAnimActive(true);
         let tl = gsap.timeline();
-        tl.to(stagePosYRun, {
-          delay: STAGE_POSITION_Y_ANIM.raiseDelay,
-          duration: STAGE_POSITION_Y_ANIM.raiseDuration,
-          value: STAGE_POSITION_Y_ANIM.stagePosYRunTarget,
-          ease: "easeIn",
-          onUpdate: () => {
-            setStagePosY(stagePosYRun.value);
-          },
-        });
+        // if (!animIconToggle) {
+        //   tl.to(stagePosYRun, {
+        //     delay: STAGE_POSITION_Y_ANIM.raiseDelay,
+        //     duration: STAGE_POSITION_Y_ANIM.raiseDuration,
+        //     value: STAGE_POSITION_Y_ANIM.stagePosYRunTarget,
+        //     ease: "easeIn",
+        //     onUpdate: () => {
+        //       setStagePosY(stagePosYRun.value);
+        //     },
+        //   });
+        // }
+
         // open
         // animating the item's parts away from eachother / opening parts, end of this animation partsOpen = true
         tl.to(animDistRun, {
           delay:
-            previousItemSelected === unselectedItem
-              ? ITEM_PARTS_ANIM.runDelay + 0.5
-              : animIconToggle
-                ? ITEM_PARTS_ANIM.runDelay - 1
-                : ITEM_PARTS_ANIM.runDelay,
+            // previousItemSelected === unselectedItem
+            //   ? ITEM_PARTS_ANIM.runDelay - 0.5
+            //   :
+            animIconToggle
+              ? ITEM_PARTS_ANIM.runDelay - 1
+              : ITEM_PARTS_ANIM.runDelay + 1.15,
           duration: ITEM_PARTS_ANIM.runDuration,
           value: ITEM_PARTS_ANIM.animDistRunTarget,
           ease: "easeOut",
@@ -164,8 +170,10 @@ function Experience({ theme }) {
             setAnimDist(animDistRun.value);
           },
           onComplete: () => {
+            setAnimIconToggle(false);
             setAnimActive(false);
             setPartsOpen(true);
+            setAnimToggled(!animToggled);
           },
         });
       } else if (animToggled) {
@@ -182,22 +190,54 @@ function Experience({ theme }) {
           onUpdate: () => {
             setAnimDist(animDistReturn.value);
           },
-        });
-
-        tl.to(stagePosYReturn, {
-          delay: STAGE_POSITION_Y_ANIM.dropDelay,
-          duration: STAGE_POSITION_Y_ANIM.dropDuration,
-          value: STAGE_POSITION_Y_ANIM.stagePosYReturnTarget,
-          ease: "easeIn",
-          onUpdate: () => {
-            setStagePosY(stagePosYReturn.value);
-          },
           onComplete: () => {
+            setAnimIconToggle(false);
             setPartsOpen(false);
             setAnimActive(false);
+            setAnimToggled(!animToggled);
           },
         });
+        // if (!animIconToggle) {
+        //   tl.to(stagePosYReturn, {
+        //     delay: STAGE_POSITION_Y_ANIM.dropDelay,
+        //     duration: STAGE_POSITION_Y_ANIM.dropDuration,
+        //     value: STAGE_POSITION_Y_ANIM.stagePosYReturnTarget,
+        //     ease: "easeIn",
+        //     onUpdate: () => {
+        //       setStagePosY(stagePosYReturn.value);
+        //     },
+        //     onComplete: () => {
+        //       setAnimIconToggle(false);
+        //       setPartsOpen(false);
+        //       setAnimActive(false);
+        //     },
+        //   });
+        // }
       }
+    }
+  });
+  const animateStageY = contextSafe(() => {
+    let tl = gsap.timeline();
+    if (!showBackground) {
+      tl.to(stagePosYRun, {
+        delay: STAGE_POSITION_Y_ANIM.raiseDelay,
+        duration: STAGE_POSITION_Y_ANIM.raiseDuration,
+        value: STAGE_POSITION_Y_ANIM.stagePosYRunTarget,
+        ease: "easeIn",
+        onUpdate: () => {
+          setStagePosY(stagePosYRun.value);
+        },
+      });
+    } else {
+      tl.to(stagePosYReturn, {
+        delay: STAGE_POSITION_Y_ANIM.dropDelay,
+        duration: STAGE_POSITION_Y_ANIM.dropDuration,
+        value: STAGE_POSITION_Y_ANIM.stagePosYReturnTarget,
+        ease: "easeIn",
+        onUpdate: () => {
+          setStagePosY(stagePosYReturn.value);
+        },
+      });
     }
   });
 
@@ -280,9 +320,6 @@ function Experience({ theme }) {
 
   return (
     <>
-      {/* <Toaster reverseOrder={true} /> */}
-      {/* <SnipcartProvider> */}
-      {/* <ResponsiveAppBar /> */}
       <Canvas
         ref={container}
         // flat
@@ -300,14 +337,13 @@ function Experience({ theme }) {
             theme={theme}
             animDist={animDist}
             animateParts={animateParts}
+            animateStageY={animateStageY}
             handlePartOption={handlePartOption}
             randomAllItemsParts={randomAllItemsParts}
             stagePosY={stagePosY}
           />
         </Suspense>
       </Canvas>
-      {/* </SnipcartProvider> */}
-      {/* <div id="footer">Eli Gfell Studio</div> */}
     </>
   );
 }

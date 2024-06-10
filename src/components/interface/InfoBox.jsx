@@ -7,8 +7,9 @@ import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import ReadMoreIcon from "@mui/icons-material/ReadMore";
 import IconButton from "@mui/material/IconButton";
 import { useOptionStore } from "../../store/useOptionStore.tsx";
+// import openUserEmail from "../../utils/openUserEmail.js";
 
-export default function InfoBox({ toggleInfoBox, theme, openUserEmail }) {
+export default function InfoBox({ toggleInfoBox, theme }) {
   // about text blocks
   const aboutTextArr = [
     {
@@ -92,7 +93,7 @@ export default function InfoBox({ toggleInfoBox, theme, openUserEmail }) {
             }}
             aria-label="close info box"
           >
-            <CloseOutlinedIcon color="success" />
+            <CloseOutlinedIcon fontSize="small" color="success" />
           </IconButton>
           <div
             id="title"

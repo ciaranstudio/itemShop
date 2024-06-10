@@ -33,12 +33,13 @@ import {
   CAM_POS_ANIM,
   TOAST,
 } from "../data/constants.tsx";
-import openUserEmail from "./interface/openUserEmail.js";
+import openUserEmail from "../utils/openUserEmail.js";
 
 export default function Scene({
   theme,
   animDist,
   animateParts,
+  animateStageY,
   handlePartOption,
   randomAllItemsParts,
   stagePosY,
@@ -509,9 +510,10 @@ export default function Scene({
     }
     if (!showBackground) {
       setOpen(false);
+      // animateStageY();
       animateParts();
     } else if (showBackground && currentItemSelected !== unselectedItem) {
-      setAnimIconToggle(false);
+      // animateStageY();
       setOptionBoxItemChanged(false);
       if (partsOpen) animateParts();
     }
@@ -566,6 +568,7 @@ export default function Scene({
       });
     }
   }, [showBackground]);
+
   useEffect(() => {
     if (controlsDragging) {
       setPrevEndAzimuthAng(endAzimuthAng);
@@ -880,17 +883,6 @@ export default function Scene({
       setShowPartOptions(true);
     }
   };
-  // const openUserEmail = (e) => {
-  //   if (e) {
-  //     e.preventDefault();
-  //     e.stopPropagation();
-  //   }
-  //   const email = "eliwgfell@gmail.com";
-  //   const subject = "Contact from shop";
-  //   const emailBody = "Yeah yeah yeah...";
-  //   document.location =
-  //     "mailto:" + email + "?subject=" + subject + "&body=" + emailBody;
-  // };
 
   // useFrame
   useFrame((state, delta) => {
@@ -1272,7 +1264,7 @@ export default function Scene({
               toggleInfoBox={toggleInfoBox}
               togglePhotoBox={togglePhotoBox}
               handlePartOption={handlePartOption}
-              openUserEmail={openUserEmail}
+              // openUserEmail={openUserEmail}
               theme={theme}
             />
           </mesh>

@@ -4,7 +4,7 @@ import * as THREE from "three";
 import { textures } from "../data/textures.jsx";
 import { options } from "../data/options.jsx";
 import { objects, unselectedItem } from "../data/objects.jsx";
-import Item from "../data/Item.jsx";
+import Item from "../data/item/Item.jsx";
 
 type State = {
   currentItemSelected: Item;

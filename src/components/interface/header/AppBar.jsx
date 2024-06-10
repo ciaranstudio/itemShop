@@ -16,7 +16,6 @@ import { styled } from "@mui/material/styles";
 import { createSvgIcon } from "@mui/material/utils";
 import { useOptionStore } from "../../../store/useOptionStore.tsx";
 import { useSnipcart } from "use-snipcart";
-// import openUserEmail from "../openUserEmail.js";
 
 const pages = [
   { navTitle: "About", menuItem: "about" },
@@ -25,15 +24,11 @@ const pages = [
   { navTitle: "Contact", menuItem: "contact" },
   { navTitle: "Exhibitions", menuItem: "exhibitions" },
 ];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function ResponsiveAppBar({ theme }) {
-  const allPhotos = useOptionStore((state) => state.allPhotos);
-  const aboutInfo = useOptionStore((state) => state.aboutInfo);
   // useState for Snipcart
   const [snipcartLoaded, setSnipcartLoaded] = useState(false);
   const [cartCount, setCartCount] = useState(0);
-
   // snipcart hook values
   const snipcart = useSnipcart();
   const { cart = {} } = useSnipcart();
@@ -65,7 +60,7 @@ function ResponsiveAppBar({ theme }) {
     }
   }, [snipcartLoaded, cart]);
 
-  // functions
+  // snipcart cart click function
   function handleCartClick() {
     if (snipcartLoaded) {
       window.Snipcart.api.theme.cart.open();
@@ -87,23 +82,16 @@ function ResponsiveAppBar({ theme }) {
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-  // const handleOpenUserMenu = (event) => {
-  //   setAnchorElUser(event.currentTarget);
-  // };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
 
-  // const handleCloseUserMenu = () => {
-  //   setAnchorElUser(null);
-  // };
-
   // state from store
   const open = useOptionStore((state) => state.open);
   const showPhotos = useOptionStore((state) => state.showPhotos);
-  // const allPhotos = useOptionStore((state) => state.allPhotos);
-  // const aboutInfo = useOptionStore((state) => state.aboutInfo);
+  const allPhotos = useOptionStore((state) => state.allPhotos);
+  const aboutInfo = useOptionStore((state) => state.aboutInfo);
 
   // actions from store
   const setOpen = useOptionStore((state) => state.setOpen);
@@ -163,32 +151,14 @@ function ResponsiveAppBar({ theme }) {
 
   const LogoIcon = createSvgIcon(
     <svg viewBox="0 -8 100 100" width="100">
-      {/* <image
-        x="0"
-        y="0"
-        width="1000"
-        height="1000"
-        preserveAspectRatio="none"
-        xlink:href="https://www.w3schools.com/html/pic_trulli.jpg"
-      /> */}
       <image href="logoTape.png" height="100" width="100" />
-      {/* <polygon points="100 100, 900 100, 900 900" /> */}
     </svg>,
     "Plus",
   );
 
   const BagIcon = createSvgIcon(
-    <svg viewBox="50 45 200 200" width="100">
-      {/* <image
-        x="0"
-        y="0"
-        width="1000"
-        height="1000"
-        preserveAspectRatio="none"
-        xlink:href="https://www.w3schools.com/html/pic_trulli.jpg"
-      /> */}
-      <image href="bag.png" height="300" width="300" />
-      {/* <polygon points="100 100, 900 100, 900 900" /> */}
+    <svg viewBox="45 35 200 200" width="100">
+      <image href="bag.png" height="285" width="285" />
     </svg>,
     "Plus",
   );
