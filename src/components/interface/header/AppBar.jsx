@@ -239,7 +239,12 @@ function ResponsiveAppBar({ theme }) {
                         : false
                   }
                 >
-                  <Typography textAlign="center">{page.navTitle}</Typography>
+                  <Typography
+                    textAlign="center"
+                    sx={{ fontFamily: "var(--leva-fonts-mono)" }}
+                  >
+                    {page.navTitle}
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -286,6 +291,7 @@ function ResponsiveAppBar({ theme }) {
                         : theme.palette.secondary.main
                   }`,
                   display: "block",
+                  fontFamily: "var(--leva-fonts-mono)",
                 }}
               >
                 {page.navTitle}
@@ -310,6 +316,7 @@ function ResponsiveAppBar({ theme }) {
                     // inheritViewBox
                     sx={{
                       fontSize: "60px",
+                      fontFamily: "var(--leva-fonts-mono)",
                       // transition: "all .5s",
                     }}
                     // fontSize="large"
