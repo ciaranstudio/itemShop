@@ -33,8 +33,10 @@ import {
   CAM_POS_ANIM,
   TOAST,
 } from "../data/constants.tsx";
+import openUserEmail from "./interface/openUserEmail.js";
 
 export default function Scene({
+  theme,
   animDist,
   animateParts,
   handlePartOption,
@@ -878,17 +880,17 @@ export default function Scene({
       setShowPartOptions(true);
     }
   };
-  const openUserEmail = (e) => {
-    if (e) {
-      e.preventDefault();
-      e.stopPropagation();
-    }
-    const email = "eliwgfell@gmail.com";
-    const subject = "Contact from shop";
-    const emailBody = "Yeah yeah yeah...";
-    document.location =
-      "mailto:" + email + "?subject=" + subject + "&body=" + emailBody;
-  };
+  // const openUserEmail = (e) => {
+  //   if (e) {
+  //     e.preventDefault();
+  //     e.stopPropagation();
+  //   }
+  //   const email = "eliwgfell@gmail.com";
+  //   const subject = "Contact from shop";
+  //   const emailBody = "Yeah yeah yeah...";
+  //   document.location =
+  //     "mailto:" + email + "?subject=" + subject + "&body=" + emailBody;
+  // };
 
   // useFrame
   useFrame((state, delta) => {
@@ -1207,7 +1209,7 @@ export default function Scene({
         <pointLight position={[width / 2750, 0.2, 0.1]} intensity={0.15} />
         {/* <pointLight position={[width / 3150, 0.2, 0.1]} intensity={0.15} /> */}
 
-        <mesh
+        {/* <mesh
           position={
             width >= 376 && width < 600 && mobileView
               ? [0.175, 0.345, 0]
@@ -1228,12 +1230,12 @@ export default function Scene({
             cartCount={cartCount}
             handleCartClick={handleCartClick}
           />
-        </mesh>
+        </mesh> */}
         <pointLight
           position={[-width / 3000 + 0.2, 0.5, 0.1]}
           intensity={0.75}
         />
-        <mesh
+        {/* <mesh
           position={
             width >= 376 && width < 600 && mobileView
               ? [-0.165, 0.345, 0]
@@ -1252,7 +1254,7 @@ export default function Scene({
             currentTexture={textures.paintedTexture}
             openUserEmail={openUserEmail}
           />
-        </mesh>
+        </mesh> */}
         {/* Arrow icon at bottom of screen */}
         <group
           onClick={handleArrowIconClick}
@@ -1271,6 +1273,7 @@ export default function Scene({
               togglePhotoBox={togglePhotoBox}
               handlePartOption={handlePartOption}
               openUserEmail={openUserEmail}
+              theme={theme}
             />
           </mesh>
           <group

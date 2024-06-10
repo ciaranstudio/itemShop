@@ -14,13 +14,13 @@ export const Logo = ({ currentColor, currentTexture, openUserEmail }) => {
   const aboutInfo = useOptionStore((state) => state.aboutInfo);
 
   // actions from store
-  const setOpen = useOptionStore((state) => state.setOpen);
-  const setShowPhotos = useOptionStore((state) => state.setShowPhotos);
-  const setAllPhotos = useOptionStore((state) => state.setAllPhotos);
-  const setAboutInfo = useOptionStore((state) => state.setAboutInfo);
-  const setShowPartOptions = useOptionStore(
-    (state) => state.setShowPartOptions,
-  );
+  // const setOpen = useOptionStore((state) => state.setOpen);
+  // const setShowPhotos = useOptionStore((state) => state.setShowPhotos);
+  // const setAllPhotos = useOptionStore((state) => state.setAllPhotos);
+  // const setAboutInfo = useOptionStore((state) => state.setAboutInfo);
+  // const setShowPartOptions = useOptionStore(
+  //   (state) => state.setShowPartOptions,
+  // );
 
   // texture
   const [map, normalMap, roughnessMap, metalnessMap] =

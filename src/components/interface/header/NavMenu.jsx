@@ -4,8 +4,9 @@ import MenuItem from "@mui/material/MenuItem";
 import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
 import Box from "@mui/material/Box";
 import { useOptionStore } from "../../../store/useOptionStore.tsx";
+import openUserEmail from "../openUserEmail.js";
 
-export default function NavMenu({ openUserEmail }) {
+export default function NavMenu() {
   const selectHandler = (e, menuItem, popupState) => {
     // console.log(popupState);
     if (menuItem === "about") {
@@ -72,9 +73,10 @@ export default function NavMenu({ openUserEmail }) {
           <Box
             {...bindTrigger(popupState)}
             sx={{
-              padding: "12rem",
-              paddingX: "14rem",
-              // border: "0.5rem solid white",
+              padding: "0.5rem",
+              // padding: "12rem",
+              // paddingX: "14rem",
+              border: "0.25rem solid white",
               borderRadius: "2rem",
               cursor: "pointer",
             }}

@@ -7,6 +7,7 @@ import { createTheme } from "@mui/material";
 import { useOptionStore } from "../../store/useOptionStore.tsx";
 
 export const ArrowIcon = ({
+  theme,
   currentColor,
   currentTexture,
   toggleInfoBox,
@@ -16,28 +17,6 @@ export const ArrowIcon = ({
 }) => {
   const { scene, nodes, materials } = useGLTF("./models/arrow.gltf");
   const [annotations, setAnnotations] = useState([]);
-
-  // mui theme
-  const theme = createTheme({
-    palette: {
-      primary: {
-        main: "#17385b", // "#373737"
-        light: "#bdbdbd",
-      },
-      secondary: {
-        main: "#636363",
-        light: "#E0E0E0",
-      },
-      success: {
-        main: "#929d84",
-        light: "#c8cec1",
-      },
-      info: { main: "#ffffff" },
-      warning: { main: "#BDBDBD" },
-      error: { main: "#d3d3d3" },
-    },
-    shadows: Array(25).fill("none"),
-  });
 
   // texture
   const [map, normalMap, roughnessMap, metalnessMap] =
