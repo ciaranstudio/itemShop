@@ -70,9 +70,12 @@ function ResponsiveAppBar({ theme }) {
   const StyledBadge = styled(Badge)(({ theme }) => ({
     "& .MuiBadge-badge": {
       right: 8,
-      top: 10,
-      border: `0.75px solid ${cartCount > 0 ? theme.palette.background.paper : "none"}`,
-      padding: "0 4px",
+      top: 12.15,
+      // border: `0.75px solid ${cartCount > 0 ? theme.palette.background.paper : "none"}`,
+      // padding: "0 4px",
+      backgroundColor: cartCount > 0 ? "#fffdf0" : "transparent",
+      color: "black",
+      fontWeight: "bold",
     },
   }));
 
@@ -150,184 +153,188 @@ function ResponsiveAppBar({ theme }) {
   };
 
   const LogoIcon = createSvgIcon(
-    <svg viewBox="0 -8 100 100" width="100">
-      <image href="logoTape.png" height="100" width="100" />
+    <svg viewBox="0 0 100 100" width="100">
+      <image href="logoTape.png" height="90" width="90" />
     </svg>,
     "Plus",
   );
 
   const BagIcon = createSvgIcon(
-    <svg viewBox="45 35 200 200" width="100">
-      <image href="bag.png" height="285" width="285" />
+    <svg viewBox="-25 0 200 200" width="100">
+      <image href="bag.png" height="200" width="200" />
     </svg>,
     "Plus",
   );
 
   return (
-    <AppBar position="fixed" color="transparent" elevation={0}>
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <SvgIcon
-            component={LogoIcon}
-            // inheritViewBox
-            sx={{
-              display: { xs: "none", md: "flex" },
-              mr: 1,
-              fontSize: "60px",
-              // transition: "all .5s",
-            }}
-            // fontSize="large"
-          ></SvgIcon>
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          ></Typography>
-
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              aria-label="main navigation menu"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="primary"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
+    <>
+      <AppBar position="fixed" color="transparent" elevation={0}>
+        <Container maxWidth="xl">
+          <Toolbar disableGutters>
+            <SvgIcon
+              component={LogoIcon}
+              // inheritViewBox
               sx={{
-                display: { xs: "block", md: "none" },
-                "& .MuiPaper-root": {
-                  backgroundColor: "lightgrey",
-                  border: "0.05rem solid rgb(155, 155, 155);",
-                },
+                display: { xs: "none", md: "flex" },
+                mr: 1,
+                fontSize: "60px",
+                pb: 1,
+                // transition: "all .5s",
               }}
-            >
-              {pages.map((page, i) => (
-                <MenuItem
-                  key={i}
-                  onClick={(e) => selectHandler(e, page.menuItem)}
-                  selected={
-                    aboutInfo && page.menuItem === "about"
-                      ? true
-                      : allPhotos && page.menuItem === "images"
-                        ? true
-                        : false
-                  }
-                >
-                  <Typography
-                    textAlign="center"
-                    sx={{ fontFamily: "var(--leva-fonts-mono)" }}
-                  >
-                    {page.navTitle}
-                  </Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-          <SvgIcon
-            component={LogoIcon}
-            // inheritViewBox
-            sx={{
-              display: { xs: "flex", md: "none" },
-              ml: 3.75,
-              fontSize: "60px",
-              // transition: "all .5s",
-            }}
-            // fontSize="large"
-          ></SvgIcon>
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: "flex", md: "none" },
-              flexGrow: 1,
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          ></Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page, i) => (
-              <Button
-                key={i}
-                onClick={(e) => selectHandler(e, page.menuItem)}
+              // fontSize="large"
+            ></SvgIcon>
+            <Typography
+              variant="h6"
+              noWrap
+              component="a"
+              href="#app-bar-with-responsive-menu"
+              sx={{
+                mr: 2,
+                display: { xs: "none", md: "flex" },
+                fontFamily: "monospace",
+                fontWeight: 700,
+                letterSpacing: ".3rem",
+                color: "inherit",
+                textDecoration: "none",
+              }}
+            ></Typography>
+
+            <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+              <IconButton
+                size="large"
+                aria-label="main navigation menu"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleOpenNavMenu}
+                color="primary"
+              >
+                <MenuIcon />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorElNav}
+                anchorOrigin={{
+                  vertical: "bottom",
+                  horizontal: "left",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "left",
+                }}
+                open={Boolean(anchorElNav)}
+                onClose={handleCloseNavMenu}
                 sx={{
-                  my: 2,
-                  color: `${
-                    aboutInfo && page.menuItem === "about"
-                      ? theme.palette.primary.main
-                      : allPhotos && page.menuItem === "images"
-                        ? theme.palette.primary.main
-                        : theme.palette.secondary.main
-                  }`,
-                  display: "block",
-                  fontFamily: "var(--leva-fonts-mono)",
+                  display: { xs: "block", md: "none" },
+                  "& .MuiPaper-root": {
+                    backgroundColor: "lightgrey",
+                    border: "0.05rem solid rgb(155, 155, 155);",
+                  },
                 }}
               >
-                {page.navTitle}
-              </Button>
-            ))}
-          </Box>
+                {pages.map((page, i) => (
+                  <MenuItem
+                    key={i}
+                    onClick={(e) => selectHandler(e, page.menuItem)}
+                    selected={
+                      aboutInfo && page.menuItem === "about"
+                        ? true
+                        : allPhotos && page.menuItem === "images"
+                          ? true
+                          : false
+                    }
+                  >
+                    <Typography
+                      textAlign="center"
+                      sx={{ fontFamily: "var(--leva-fonts-mono)" }}
+                    >
+                      {page.navTitle}
+                    </Typography>
+                  </MenuItem>
+                ))}
+              </Menu>
+            </Box>
+            <SvgIcon
+              component={LogoIcon}
+              // inheritViewBox
+              sx={{
+                display: { xs: "flex", md: "none" },
+                ml: 3.75,
+                fontSize: "60px",
+                // transition: "all .5s",
+              }}
+              // fontSize="large"
+            ></SvgIcon>
+            <Typography
+              variant="h5"
+              noWrap
+              component="a"
+              href="#app-bar-with-responsive-menu"
+              sx={{
+                mr: 2,
+                display: { xs: "flex", md: "none" },
+                flexGrow: 1,
+                fontFamily: "monospace",
+                fontWeight: 700,
+                letterSpacing: ".3rem",
+                color: "inherit",
+                textDecoration: "none",
+              }}
+            ></Typography>
+            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+              {pages.map((page, i) => (
+                <Button
+                  key={i}
+                  onClick={(e) => selectHandler(e, page.menuItem)}
+                  sx={{
+                    my: 2,
+                    color: `${
+                      aboutInfo && page.menuItem === "about"
+                        ? theme.palette.primary.main
+                        : allPhotos && page.menuItem === "images"
+                          ? theme.palette.primary.main
+                          : theme.palette.secondary.main
+                    }`,
+                    display: "block",
+                    fontFamily: "var(--leva-fonts-mono)",
+                  }}
+                >
+                  {page.navTitle}
+                </Button>
+              ))}
+            </Box>
 
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open cart">
-              {/* <div
+            <Box sx={{ flexGrow: 0 }}>
+              <Tooltip title="Open cart">
+                {/* <div
                 className="cart"
                 onClick={handleCartClick}
                 style={{ display: cartCount > 0 ? "block" : "none" }}
               ></div> */}
-              <StyledBadge
-                badgeContent={cartCount > 0 ? cartCount : ""}
-                color={cartCount > 0 ? "info" : "default"}
-              >
-                <IconButton onClick={handleCartClick} sx={{ p: 0 }}>
-                  <SvgIcon
-                    component={BagIcon}
-                    // inheritViewBox
-                    sx={{
-                      fontSize: "60px",
-                      fontFamily: "var(--leva-fonts-mono)",
-                      // transition: "all .5s",
-                    }}
-                    // fontSize="large"
-                  ></SvgIcon>
-                </IconButton>
-              </StyledBadge>
-            </Tooltip>
-          </Box>
-        </Toolbar>
-      </Container>
-    </AppBar>
+                <StyledBadge
+                  badgeContent={cartCount > 0 ? cartCount : ""}
+                  color={cartCount > 0 ? "info" : "default"}
+                >
+                  <IconButton onClick={handleCartClick} sx={{ p: 0 }}>
+                    <SvgIcon
+                      component={BagIcon}
+                      // inheritViewBox
+                      sx={{
+                        fontSize: "60px",
+                        fontFamily: "var(--leva-fonts-mono)",
+                        // transition: "all .5s",
+                      }}
+                      // fontSize="large"
+                    ></SvgIcon>
+                  </IconButton>
+                </StyledBadge>
+              </Tooltip>
+            </Box>
+          </Toolbar>
+        </Container>
+      </AppBar>
+      {/* <ResponsiveBottomBar /> */}
+    </>
   );
 }
 export default ResponsiveAppBar;

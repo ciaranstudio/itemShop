@@ -22,6 +22,7 @@ import toast, { Toaster } from "react-hot-toast";
 //   ITEM_PARTS_ANIM,
 // } from "./data/constants.tsx";
 import ResponsiveAppBar from "./components/interface/header/AppBar.jsx";
+import ResponsiveBottomBar from "./components/interface/header/BottomBar.jsx";
 import Experience from "./Experience.jsx";
 import { createTheme } from "@mui/material";
 
@@ -52,6 +53,7 @@ function App() {
       <Toaster reverseOrder={true} />
       <SnipcartProvider>
         <ResponsiveAppBar theme={theme} />
+        <ResponsiveBottomBar theme={theme} />
         <Experience theme={theme} />
       </SnipcartProvider>
       <div id="footer">Eli Gfell Studio</div>

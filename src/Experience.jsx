@@ -1,7 +1,6 @@
 import { useRef, useState, useEffect, Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import { useProgress } from "@react-three/drei";
-import { Leva } from "leva";
 import * as THREE from "three";
 import Scene from "./components/Scene.jsx";
 import Placeholder from "./components/Placeholder.jsx";
@@ -12,10 +11,10 @@ import Placeholder from "./components/Placeholder.jsx";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { textures } from "./data/textures.jsx";
-import { shopItems, unselectedItem } from "./data/objects.jsx";
+import { shopItems } from "./data/objects.jsx";
 import { allOptions } from "./data/options.jsx";
 import { useOptionStore } from "./store/useOptionStore.tsx";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import {
   LOADED,
   TOAST,
