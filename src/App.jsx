@@ -15,14 +15,14 @@ import { SnipcartProvider } from "use-snipcart";
 // import { shopItems, unselectedItem } from "./data/objects.jsx";
 // import { allOptions } from "./data/options.jsx";
 // import { useOptionStore } from "./store/useOptionStore.tsx";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 // import {
 //   TOAST,
 //   STAGE_POSITION_Y_ANIM,
 //   ITEM_PARTS_ANIM,
 // } from "./data/constants.tsx";
 import ResponsiveAppBar from "./components/interface/header/AppBar.jsx";
-import ResponsiveBottomBar from "./components/interface/header/BottomBar.jsx";
+// import ResponsiveBottomBar from "./components/interface/header/BottomBar.jsx";
 import Experience from "./Experience.jsx";
 import { createTheme } from "@mui/material";
 
@@ -53,10 +53,16 @@ function App() {
       <Toaster reverseOrder={true} />
       <SnipcartProvider>
         <ResponsiveAppBar theme={theme} />
-        <ResponsiveBottomBar theme={theme} />
+        {/* <ResponsiveBottomBar theme={theme} /> */}
         <Experience theme={theme} />
       </SnipcartProvider>
       <div id="footer">Eli Gfell Studio</div>
+      {/* <div className="bottom-B-test">
+        color options toggle, info button, open / close parts
+      </div> */}
+      {/* <div className="bottom-A-test">
+        item select, buy button, shuffle button / select
+      </div> */}
     </>
   );
 }

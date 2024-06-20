@@ -6,7 +6,7 @@ body,
   top: 0;
   left: 0;
   width: 100%;
-  height: calc(100% - 7rem);
+  height: 100%;
   background: #adbaba;
   margin: 0;
   -webkit-touch-callout: none;
@@ -19,6 +19,36 @@ body,
 
 #root:active {
   cursor: grabbing;
+}
+
+.bottom-A-test {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 3rem;
+  text-align: center;
+  background: #ffffff;
+  opacity: 0.98;
+  color: #2c69aa;
+  padding: 0.25rem;
+  font-size: 1rem;
+  pointer-events: none;
+  border-radius: 1rem;
+}
+
+.bottom-B-test {
+  position: absolute;
+  bottom: 3.5rem;
+  width: 100%;
+  height: 3rem;
+  text-align: center;
+  background: #ffffff;
+  opacity: 0.98;
+  color: #2c69aa;
+  padding: 0.25rem;
+  font-size: 1rem;
+  pointer-events: none;
+  border-radius: 1rem;
 }
 
 .loading-bar {
