@@ -67,28 +67,20 @@ export const objects = {
     ],
     [
       {
-        label: "San Francisco – Oakland Bay Bridge, United States",
-        imgPath: "https://images.unsplash.com/photo-1537944434965-cf4679d1a598",
+        label: "(In Progress) Block - no stain",
+        imgPath: "./placeholderPhotos/blockBare.jpeg",
       },
       {
-        label: "Bird",
-        imgPath: "https://images.unsplash.com/photo-1538032746644-0212e812a9e7",
+        label: "(In Progress) Gramps - no stain",
+        imgPath: "./placeholderPhotos/grampsBare.jpeg",
       },
       {
-        label: "Bali, Indonesia",
-        imgPath: "https://images.unsplash.com/photo-1537996194471-e657df975ab4",
+        label: "(In Progress) Gramps - black stain",
+        imgPath: "./placeholderPhotos/grampsBlack.jpeg",
       },
       {
-        label: "San Francisco – Oakland Bay Bridge, United States",
-        imgPath: "https://images.unsplash.com/photo-1537944434965-cf4679d1a598",
-      },
-      {
-        label: "Bird",
-        imgPath: "https://images.unsplash.com/photo-1538032746644-0212e812a9e7",
-      },
-      {
-        label: "Bali, Indonesia",
-        imgPath: "https://images.unsplash.com/photo-1537996194471-e657df975ab4",
+        label: "(In Progress) Squatter - no stain",
+        imgPath: "./placeholderPhotos/squatterBare.jpeg",
       },
     ],
   ),
@@ -136,28 +128,20 @@ export const objects = {
     ],
     [
       {
-        label: "San Francisco – Oakland Bay Bridge, United States",
-        imgPath: "https://images.unsplash.com/photo-1537944434965-cf4679d1a598",
+        label: "(In Progress) Block - no stain",
+        imgPath: "./placeholderPhotos/blockBare.jpeg",
       },
       {
-        label: "Bird",
-        imgPath: "https://images.unsplash.com/photo-1538032746644-0212e812a9e7",
+        label: "(In Progress) Gramps - no stain",
+        imgPath: "./placeholderPhotos/grampsBare.jpeg",
       },
       {
-        label: "Bali, Indonesia",
-        imgPath: "https://images.unsplash.com/photo-1537996194471-e657df975ab4",
+        label: "(In Progress) Gramps - black stain",
+        imgPath: "./placeholderPhotos/grampsBlack.jpeg",
       },
       {
-        label: "San Francisco – Oakland Bay Bridge, United States",
-        imgPath: "https://images.unsplash.com/photo-1537944434965-cf4679d1a598",
-      },
-      {
-        label: "Bird",
-        imgPath: "https://images.unsplash.com/photo-1538032746644-0212e812a9e7",
-      },
-      {
-        label: "Bali, Indonesia",
-        imgPath: "https://images.unsplash.com/photo-1537996194471-e657df975ab4",
+        label: "(In Progress) Squatter - no stain",
+        imgPath: "./placeholderPhotos/squatterBare.jpeg",
       },
     ],
   ),
@@ -212,28 +196,20 @@ export const objects = {
     ],
     [
       {
-        label: "San Francisco – Oakland Bay Bridge, United States",
-        imgPath: "https://images.unsplash.com/photo-1537944434965-cf4679d1a598",
+        label: "(In Progress) Block - no stain",
+        imgPath: "./placeholderPhotos/blockBare.jpeg",
       },
       {
-        label: "Bird",
-        imgPath: "https://images.unsplash.com/photo-1538032746644-0212e812a9e7",
+        label: "(In Progress) Gramps - no stain",
+        imgPath: "./placeholderPhotos/grampsBare.jpeg",
       },
       {
-        label: "Bali, Indonesia",
-        imgPath: "https://images.unsplash.com/photo-1537996194471-e657df975ab4",
+        label: "(In Progress) Gramps - black stain",
+        imgPath: "./placeholderPhotos/grampsBlack.jpeg",
       },
       {
-        label: "San Francisco – Oakland Bay Bridge, United States",
-        imgPath: "https://images.unsplash.com/photo-1537944434965-cf4679d1a598",
-      },
-      {
-        label: "Bird",
-        imgPath: "https://images.unsplash.com/photo-1538032746644-0212e812a9e7",
-      },
-      {
-        label: "Bali, Indonesia",
-        imgPath: "https://images.unsplash.com/photo-1537996194471-e657df975ab4",
+        label: "(In Progress) Squatter - no stain",
+        imgPath: "./placeholderPhotos/squatterBare.jpeg",
       },
     ],
   ),
@@ -295,28 +271,20 @@ export const objects = {
     ],
     [
       {
-        label: "San Francisco – Oakland Bay Bridge, United States",
-        imgPath: "https://images.unsplash.com/photo-1537944434965-cf4679d1a598",
+        label: "(In Progress) Block - no stain",
+        imgPath: "./placeholderPhotos/blockBare.jpeg",
       },
       {
-        label: "Bird",
-        imgPath: "https://images.unsplash.com/photo-1538032746644-0212e812a9e7",
+        label: "(In Progress) Gramps - no stain",
+        imgPath: "./placeholderPhotos/grampsBare.jpeg",
       },
       {
-        label: "Bali, Indonesia",
-        imgPath: "https://images.unsplash.com/photo-1537996194471-e657df975ab4",
+        label: "(In Progress) Gramps - black stain",
+        imgPath: "./placeholderPhotos/grampsBlack.jpeg",
       },
       {
-        label: "San Francisco – Oakland Bay Bridge, United States",
-        imgPath: "https://images.unsplash.com/photo-1537944434965-cf4679d1a598",
-      },
-      {
-        label: "Bird",
-        imgPath: "https://images.unsplash.com/photo-1538032746644-0212e812a9e7",
-      },
-      {
-        label: "Bali, Indonesia",
-        imgPath: "https://images.unsplash.com/photo-1537996194471-e657df975ab4",
+        label: "(In Progress) Squatter - no stain",
+        imgPath: "./placeholderPhotos/squatterBare.jpeg",
       },
     ],
   ),
@@ -357,28 +325,20 @@ export const objects = {
     ],
     [
       {
-        label: "San Francisco – Oakland Bay Bridge, United States",
-        imgPath: "https://images.unsplash.com/photo-1537944434965-cf4679d1a598",
+        label: "(In Progress) Block - no stain",
+        imgPath: "./placeholderPhotos/blockBare.jpeg",
       },
       {
-        label: "Bird",
-        imgPath: "https://images.unsplash.com/photo-1538032746644-0212e812a9e7",
+        label: "(In Progress) Gramps - no stain",
+        imgPath: "./placeholderPhotos/grampsBare.jpeg",
       },
       {
-        label: "Bali, Indonesia",
-        imgPath: "https://images.unsplash.com/photo-1537996194471-e657df975ab4",
+        label: "(In Progress) Gramps - black stain",
+        imgPath: "./placeholderPhotos/grampsBlack.jpeg",
       },
       {
-        label: "San Francisco – Oakland Bay Bridge, United States",
-        imgPath: "https://images.unsplash.com/photo-1537944434965-cf4679d1a598",
-      },
-      {
-        label: "Bird",
-        imgPath: "https://images.unsplash.com/photo-1538032746644-0212e812a9e7",
-      },
-      {
-        label: "Bali, Indonesia",
-        imgPath: "https://images.unsplash.com/photo-1537996194471-e657df975ab4",
+        label: "(In Progress) Squatter - no stain",
+        imgPath: "./placeholderPhotos/squatterBare.jpeg",
       },
     ],
   ),
@@ -419,28 +379,20 @@ export const objects = {
     ],
     [
       {
-        label: "San Francisco – Oakland Bay Bridge, United States",
-        imgPath: "https://images.unsplash.com/photo-1537944434965-cf4679d1a598",
+        label: "(In Progress) Block - no stain",
+        imgPath: "./placeholderPhotos/blockBare.jpeg",
       },
       {
-        label: "Bird",
-        imgPath: "https://images.unsplash.com/photo-1538032746644-0212e812a9e7",
+        label: "(In Progress) Gramps - no stain",
+        imgPath: "./placeholderPhotos/grampsBare.jpeg",
       },
       {
-        label: "Bali, Indonesia",
-        imgPath: "https://images.unsplash.com/photo-1537996194471-e657df975ab4",
+        label: "(In Progress) Gramps - black stain",
+        imgPath: "./placeholderPhotos/grampsBlack.jpeg",
       },
       {
-        label: "San Francisco – Oakland Bay Bridge, United States",
-        imgPath: "https://images.unsplash.com/photo-1537944434965-cf4679d1a598",
-      },
-      {
-        label: "Bird",
-        imgPath: "https://images.unsplash.com/photo-1538032746644-0212e812a9e7",
-      },
-      {
-        label: "Bali, Indonesia",
-        imgPath: "https://images.unsplash.com/photo-1537996194471-e657df975ab4",
+        label: "(In Progress) Squatter - no stain",
+        imgPath: "./placeholderPhotos/squatterBare.jpeg",
       },
     ],
   ),
@@ -488,28 +440,20 @@ export const objects = {
     ],
     [
       {
-        label: "San Francisco – Oakland Bay Bridge, United States",
-        imgPath: "https://images.unsplash.com/photo-1537944434965-cf4679d1a598",
+        label: "(In Progress) Block - no stain",
+        imgPath: "./placeholderPhotos/blockBare.jpeg",
       },
       {
-        label: "Bird",
-        imgPath: "https://images.unsplash.com/photo-1538032746644-0212e812a9e7",
+        label: "(In Progress) Gramps - no stain",
+        imgPath: "./placeholderPhotos/grampsBare.jpeg",
       },
       {
-        label: "Bali, Indonesia",
-        imgPath: "https://images.unsplash.com/photo-1537996194471-e657df975ab4",
+        label: "(In Progress) Gramps - black stain",
+        imgPath: "./placeholderPhotos/grampsBlack.jpeg",
       },
       {
-        label: "San Francisco – Oakland Bay Bridge, United States",
-        imgPath: "https://images.unsplash.com/photo-1537944434965-cf4679d1a598",
-      },
-      {
-        label: "Bird",
-        imgPath: "https://images.unsplash.com/photo-1538032746644-0212e812a9e7",
-      },
-      {
-        label: "Bali, Indonesia",
-        imgPath: "https://images.unsplash.com/photo-1537996194471-e657df975ab4",
+        label: "(In Progress) Squatter - no stain",
+        imgPath: "./placeholderPhotos/squatterBare.jpeg",
       },
     ],
   ),
@@ -557,28 +501,20 @@ export const objects = {
     ],
     [
       {
-        label: "San Francisco – Oakland Bay Bridge, United States",
-        imgPath: "https://images.unsplash.com/photo-1537944434965-cf4679d1a598",
+        label: "(In Progress) Block - no stain",
+        imgPath: "./placeholderPhotos/blockBare.jpeg",
       },
       {
-        label: "Bird",
-        imgPath: "https://images.unsplash.com/photo-1538032746644-0212e812a9e7",
+        label: "(In Progress) Gramps - no stain",
+        imgPath: "./placeholderPhotos/grampsBare.jpeg",
       },
       {
-        label: "Bali, Indonesia",
-        imgPath: "https://images.unsplash.com/photo-1537996194471-e657df975ab4",
+        label: "(In Progress) Gramps - black stain",
+        imgPath: "./placeholderPhotos/grampsBlack.jpeg",
       },
       {
-        label: "San Francisco – Oakland Bay Bridge, United States",
-        imgPath: "https://images.unsplash.com/photo-1537944434965-cf4679d1a598",
-      },
-      {
-        label: "Bird",
-        imgPath: "https://images.unsplash.com/photo-1538032746644-0212e812a9e7",
-      },
-      {
-        label: "Bali, Indonesia",
-        imgPath: "https://images.unsplash.com/photo-1537996194471-e657df975ab4",
+        label: "(In Progress) Squatter - no stain",
+        imgPath: "./placeholderPhotos/squatterBare.jpeg",
       },
     ],
   ),
@@ -599,28 +535,20 @@ export const unselectedItem = new Item(
   [new Part("", "", "", "", "")], // parts
   [
     {
-      label: "San Francisco – Oakland Bay Bridge, United States",
-      imgPath: "https://images.unsplash.com/photo-1537944434965-cf4679d1a598",
+      label: "(In Progress) Block - no stain",
+      imgPath: "./placeholderPhotos/blockBare.jpeg",
     },
     {
-      label: "Bird",
-      imgPath: "https://images.unsplash.com/photo-1538032746644-0212e812a9e7",
+      label: "(In Progress) Gramps - no stain",
+      imgPath: "./placeholderPhotos/grampsBare.jpeg",
     },
     {
-      label: "Bali, Indonesia",
-      imgPath: "https://images.unsplash.com/photo-1537996194471-e657df975ab4",
+      label: "(In Progress) Gramps - black stain",
+      imgPath: "./placeholderPhotos/grampsBlack.jpeg",
     },
     {
-      label: "San Francisco – Oakland Bay Bridge, United States",
-      imgPath: "https://images.unsplash.com/photo-1537944434965-cf4679d1a598",
-    },
-    {
-      label: "Bird",
-      imgPath: "https://images.unsplash.com/photo-1538032746644-0212e812a9e7",
-    },
-    {
-      label: "Bali, Indonesia",
-      imgPath: "https://images.unsplash.com/photo-1537996194471-e657df975ab4",
+      label: "(In Progress) Squatter - no stain",
+      imgPath: "./placeholderPhotos/squatterBare.jpeg",
     },
   ],
 );
@@ -638,27 +566,19 @@ export const shopItems = [
 
 export const allImages = [
   {
-    label: "San Francisco – Oakland Bay Bridge, United States",
-    imgPath: "https://images.unsplash.com/photo-1537944434965-cf4679d1a598",
+    label: "(In Progress) Block - no stain",
+    imgPath: "./placeholderPhotos/blockBare.jpeg",
   },
   {
-    label: "Bird",
-    imgPath: "https://images.unsplash.com/photo-1538032746644-0212e812a9e7",
+    label: "(In Progress) Gramps - no stain",
+    imgPath: "./placeholderPhotos/grampsBare.jpeg",
   },
   {
-    label: "Bali, Indonesia",
-    imgPath: "https://images.unsplash.com/photo-1537996194471-e657df975ab4",
+    label: "(In Progress) Gramps - black stain",
+    imgPath: "./placeholderPhotos/grampsBlack.jpeg",
   },
   {
-    label: "San Francisco – Oakland Bay Bridge, United States",
-    imgPath: "https://images.unsplash.com/photo-1537944434965-cf4679d1a598",
-  },
-  {
-    label: "Bird",
-    imgPath: "https://images.unsplash.com/photo-1538032746644-0212e812a9e7",
-  },
-  {
-    label: "Bali, Indonesia",
-    imgPath: "https://images.unsplash.com/photo-1537996194471-e657df975ab4",
+    label: "(In Progress) Squatter - no stain",
+    imgPath: "./placeholderPhotos/squatterBare.jpeg",
   },
 ];
