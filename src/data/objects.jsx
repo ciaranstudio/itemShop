@@ -67,20 +67,12 @@ export const objects = {
     ],
     [
       {
-        label: "(In Progress) Block - no stain",
-        imgPath: "./placeholderPhotos/blockBare.jpeg",
-      },
-      {
         label: "(In Progress) Gramps - no stain",
         imgPath: "./placeholderPhotos/grampsBare.jpeg",
       },
       {
         label: "(In Progress) Gramps - black stain",
         imgPath: "./placeholderPhotos/grampsBlack.jpeg",
-      },
-      {
-        label: "(In Progress) Squatter - no stain",
-        imgPath: "./placeholderPhotos/squatterBare.jpeg",
       },
     ],
   ),
@@ -127,18 +119,6 @@ export const objects = {
       ),
     ],
     [
-      {
-        label: "(In Progress) Block - no stain",
-        imgPath: "./placeholderPhotos/blockBare.jpeg",
-      },
-      {
-        label: "(In Progress) Gramps - no stain",
-        imgPath: "./placeholderPhotos/grampsBare.jpeg",
-      },
-      {
-        label: "(In Progress) Gramps - black stain",
-        imgPath: "./placeholderPhotos/grampsBlack.jpeg",
-      },
       {
         label: "(In Progress) Squatter - no stain",
         imgPath: "./placeholderPhotos/squatterBare.jpeg",
@@ -198,18 +178,6 @@ export const objects = {
       {
         label: "(In Progress) Block - no stain",
         imgPath: "./placeholderPhotos/blockBare.jpeg",
-      },
-      {
-        label: "(In Progress) Gramps - no stain",
-        imgPath: "./placeholderPhotos/grampsBare.jpeg",
-      },
-      {
-        label: "(In Progress) Gramps - black stain",
-        imgPath: "./placeholderPhotos/grampsBlack.jpeg",
-      },
-      {
-        label: "(In Progress) Squatter - no stain",
-        imgPath: "./placeholderPhotos/squatterBare.jpeg",
       },
     ],
   ),
