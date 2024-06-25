@@ -345,54 +345,54 @@ export default function Scene({
     }, 1500);
     if (count === 2 && showBackground) {
       toast.dismiss();
-      toast("Cart", {
-        duration: TOAST.duration,
-        position: "top-right",
-        // Styling
-        style: {
-          fontSize: TOAST.fontSize,
-          background: TOAST.background,
-          color: TOAST.color,
-          fontFamily: "var(--leva-fonts-mono)",
-        },
-        className: "",
-        // Custom Icon
-        // icon: "🛒",
-        // Change colors of success/error/loading icon
-        iconTheme: {
-          primary: "#000",
-          secondary: "#fff",
-        },
-        // Aria
-        ariaProps: {
-          role: "status",
-          "aria-live": "polite",
-        },
-      });
-      toast("Menu", {
-        duration: TOAST.duration,
-        position: "top-left",
-        // Styling
-        style: {
-          fontSize: TOAST.fontSize,
-          background: TOAST.background,
-          color: TOAST.color,
-          fontFamily: "var(--leva-fonts-mono)",
-        },
-        className: "",
-        // Custom Icon
-        // icon: "📑",
-        // Change colors of success/error/loading icon
-        iconTheme: {
-          primary: "#000",
-          secondary: "#fff",
-        },
-        // Aria
-        ariaProps: {
-          role: "status",
-          "aria-live": "polite",
-        },
-      });
+      // toast("Cart", {
+      //   duration: TOAST.duration,
+      //   position: "top-right",
+      //   // Styling
+      //   style: {
+      //     fontSize: TOAST.fontSize,
+      //     background: TOAST.background,
+      //     color: TOAST.color,
+      //     fontFamily: "var(--leva-fonts-mono)",
+      //   },
+      //   className: "",
+      //   // Custom Icon
+      //   // icon: "🛒",
+      //   // Change colors of success/error/loading icon
+      //   iconTheme: {
+      //     primary: "#000",
+      //     secondary: "#fff",
+      //   },
+      //   // Aria
+      //   ariaProps: {
+      //     role: "status",
+      //     "aria-live": "polite",
+      //   },
+      // });
+      // toast("Menu", {
+      //   duration: TOAST.duration,
+      //   position: "top-left",
+      //   // Styling
+      //   style: {
+      //     fontSize: TOAST.fontSize,
+      //     background: TOAST.background,
+      //     color: TOAST.color,
+      //     fontFamily: "var(--leva-fonts-mono)",
+      //   },
+      //   className: "",
+      //   // Custom Icon
+      //   // icon: "📑",
+      //   // Change colors of success/error/loading icon
+      //   iconTheme: {
+      //     primary: "#000",
+      //     secondary: "#fff",
+      //   },
+      //   // Aria
+      //   ariaProps: {
+      //     role: "status",
+      //     "aria-live": "polite",
+      //   },
+      // });
     } else if (count === 5 && showBackground) {
       toast.dismiss();
       toast("Drag to rotate", {
@@ -418,28 +418,28 @@ export default function Scene({
         },
       });
     } else if (count === 7 && showBackground) {
-      toast("Pinch to zoom", {
-        duration: TOAST.duration,
-        position: "top-right",
-        // Styling
-        style: {
-          fontSize: TOAST.fontSize,
-          background: TOAST.background,
-          color: TOAST.color,
-          fontFamily: "var(--leva-fonts-mono)",
-        },
-        className: "",
-        // Custom Icon
-        iconTheme: {
-          primary: "#000",
-          secondary: "#fff",
-        },
-        // Aria
-        ariaProps: {
-          role: "status",
-          "aria-live": "polite",
-        },
-      });
+      // toast("Pinch to zoom", {
+      //   duration: TOAST.duration,
+      //   position: "top-right",
+      //   // Styling
+      //   style: {
+      //     fontSize: TOAST.fontSize,
+      //     background: TOAST.background,
+      //     color: TOAST.color,
+      //     fontFamily: "var(--leva-fonts-mono)",
+      //   },
+      //   className: "",
+      //   // Custom Icon
+      //   iconTheme: {
+      //     primary: "#000",
+      //     secondary: "#fff",
+      //   },
+      //   // Aria
+      //   ariaProps: {
+      //     role: "status",
+      //     "aria-live": "polite",
+      //   },
+      // });
     } else if (count === 9 && showBackground) {
       toast("Tap to select", {
         duration: TOAST.duration,
@@ -542,30 +542,30 @@ export default function Scene({
           "aria-live": "polite",
         },
       });
-      toast("Also toggles background", {
-        duration: TOAST.duration,
-        position: "top-right",
-        // Styling
-        style: {
-          fontSize: TOAST.fontSize,
-          background: TOAST.background,
-          color: TOAST.color,
-          fontFamily: "var(--leva-fonts-mono)",
-        },
-        className: "",
-        // Custom Icon
-        icon: <KeyboardArrowUpIcon />,
-        // Change colors of success/error/loading icon
-        iconTheme: {
-          primary: "#000",
-          secondary: "#fff",
-        },
-        // Aria
-        ariaProps: {
-          role: "status",
-          "aria-live": "polite",
-        },
-      });
+      // toast("Also toggles background", {
+      //   duration: TOAST.duration,
+      //   position: "top-right",
+      //   // Styling
+      //   style: {
+      //     fontSize: TOAST.fontSize,
+      //     background: TOAST.background,
+      //     color: TOAST.color,
+      //     fontFamily: "var(--leva-fonts-mono)",
+      //   },
+      //   className: "",
+      //   // Custom Icon
+      //   icon: <KeyboardArrowUpIcon />,
+      //   // Change colors of success/error/loading icon
+      //   iconTheme: {
+      //     primary: "#000",
+      //     secondary: "#fff",
+      //   },
+      //   // Aria
+      //   ariaProps: {
+      //     role: "status",
+      //     "aria-live": "polite",
+      //   },
+      // });
     }
   }, [showBackground]);
 

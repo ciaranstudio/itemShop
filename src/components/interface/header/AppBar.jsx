@@ -69,8 +69,8 @@ function ResponsiveAppBar({ theme }) {
 
   const StyledBadge = styled(Badge)(({ theme }) => ({
     "& .MuiBadge-badge": {
-      right: 8,
-      top: 12.15,
+      right: 15,
+      top: 15,
       // border: `0.75px solid ${cartCount > 0 ? theme.palette.background.paper : "none"}`,
       // padding: "0 4px",
       backgroundColor: cartCount > 0 ? "#fffdf0" : "transparent",
@@ -160,7 +160,7 @@ function ResponsiveAppBar({ theme }) {
   );
 
   const BagIcon = createSvgIcon(
-    <svg viewBox="-25 0 200 200" width="100">
+    <svg viewBox="0 0 200 200" width="100">
       <image href="bag.png" height="200" width="200" />
     </svg>,
     "Plus",
