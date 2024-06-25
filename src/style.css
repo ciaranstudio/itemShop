@@ -115,7 +115,7 @@ img {
 }
 
 .slick-slide img {
-  height: 22.5rem;
+  height: 24rem;
   width: 18rem;
 }
 .slick-slide:not(:first-of-type) {
@@ -326,7 +326,7 @@ img {
     width: 25rem;
   }
   .slick-slide img {
-    height: 31.25rem;
+    height: 33.3333rem;
     width: 25rem;
   }
 }
@@ -336,7 +336,7 @@ img {
     width: 27rem;
   }
   .slick-slide img {
-    height: 33.75rem;
+    height: 36rem;
     width: 27rem;
   }
 }
@@ -346,7 +346,7 @@ img {
     width: 30rem;
   }
   .slick-slide img {
-    height: 37.5rem;
+    height: 40rem;
     width: 30rem;
   }
 }
