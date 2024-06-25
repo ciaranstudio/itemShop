@@ -3,7 +3,6 @@ import { useGLTF, useTexture } from "@react-three/drei";
 import InfoBox from "./InfoBox.jsx";
 import PhotoBox from "./PhotoBox.jsx";
 import OptionBox from "./OptionBox.jsx";
-// import { createTheme } from "@mui/material";
 import { useOptionStore } from "../../store/useOptionStore.tsx";
 
 export const ArrowIcon = ({

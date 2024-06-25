@@ -4,10 +4,6 @@ import { useProgress } from "@react-three/drei";
 import * as THREE from "three";
 import Scene from "./components/Scene.jsx";
 import Placeholder from "./components/Placeholder.jsx";
-// import "./style.css";
-// import "slick-carousel/slick/slick.css";
-// import "slick-carousel/slick/slick-theme.css";
-// import { SnipcartProvider } from "use-snipcart";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { textures } from "./data/textures.jsx";
@@ -21,7 +17,6 @@ import {
   STAGE_POSITION_Y_ANIM,
   ITEM_PARTS_ANIM,
 } from "./data/constants.tsx";
-// import ResponsiveAppBar from "./components/interface/header/AppBar.jsx";
 
 function Experience({ theme }) {
   // loading bar element for left to right on animation on app load
@@ -103,7 +98,7 @@ function Experience({ theme }) {
   useEffect(() => {
     // loadingBarElement.style.transform = `scaleX(${progress / 100})`;
     loadingBarElement.style.transform = `scaleX(${loaded / 149})`;
-    console.log("progress: ", progress, "loaded: ", loaded);
+    // console.log("progress: ", progress, "loaded: ", loaded);
     if (loaded >= LOADED.nearTotal) {
       if (loaded / LOADED.total === 1 || progress === 100) {
         setSceneLoaded(true);
@@ -140,7 +135,7 @@ function Experience({ theme }) {
       if (!animToggled) {
         setPartsOpen(false);
         setAnimActive(true);
-        let tl = gsap.timeline();
+        const tl = gsap.timeline();
         // if (!animIconToggle) {
         //   tl.to(stagePosYRun, {
         //     delay: STAGE_POSITION_Y_ANIM.raiseDelay,
@@ -178,7 +173,7 @@ function Experience({ theme }) {
         });
       } else if (animToggled) {
         setAnimActive(true);
-        let tl = gsap.timeline();
+        const tl = gsap.timeline();
 
         // close
         // close the object, bring parts back together, ending with no distance between them
@@ -217,7 +212,7 @@ function Experience({ theme }) {
     }
   });
   const animateStageY = contextSafe(() => {
-    let tl = gsap.timeline();
+    const tl = gsap.timeline();
     if (!showBackground) {
       tl.to(stagePosYRun, {
         delay: STAGE_POSITION_Y_ANIM.raiseDelay,
@@ -307,9 +302,9 @@ function Experience({ theme }) {
       e.preventDefault();
       e.stopPropagation();
     }
-    let randomAllItemsColors = shopItems.map((item) => {
-      let itemColors = item.parts.map((part) => {
-        let color = allOptions[getRandomInt(allOptions.length)];
+    const randomAllItemsColors = shopItems.map((item) => {
+      const itemColors = item.parts.map((part) => {
+        const color = allOptions[getRandomInt(allOptions.length)];
         handlePartOption(e, item.itemName, part.partName, color, false);
         return color;
       });
@@ -337,7 +332,7 @@ function Experience({ theme }) {
             theme={theme}
             animDist={animDist}
             animateParts={animateParts}
-            animateStageY={animateStageY}
+            // animateStageY={animateStageY}
             handlePartOption={handlePartOption}
             randomAllItemsParts={randomAllItemsParts}
             stagePosY={stagePosY}

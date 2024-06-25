@@ -106,7 +106,7 @@ function ResponsiveAppBar({ theme }) {
   );
 
   const selectHandler = (e, menuItem) => {
-    console.log(menuItem);
+    // console.log(menuItem);
     handleCloseNavMenu();
     setShowPartOptions(false);
     switch (menuItem) {

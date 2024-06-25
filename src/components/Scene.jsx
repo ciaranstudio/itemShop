@@ -11,7 +11,7 @@ import {
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ItemPart } from "./item/ItemPart.jsx";
-import { Bag } from "./interface/header/Bag.jsx";
+// import { Bag } from "./interface/header/Bag.jsx";
 import RingCircle from "./item/RingCircle.jsx";
 import { Floor } from "./room/Floor.jsx";
 import { Walls } from "./room/Walls.jsx";
@@ -19,7 +19,7 @@ import { objects, unselectedItem, shopItems } from "../data/objects.jsx";
 import { textures } from "../data/textures.jsx";
 import useWindowDimensions from "../hooks/useWindowDimensions";
 import { useSnipcart } from "use-snipcart";
-import { Logo } from "./interface/header/Logo.jsx";
+// import { Logo } from "./interface/header/Logo.jsx";
 import { SelectIcon } from "./item/SelectIcon.jsx";
 import { ArrowIcon } from "./interface/ArrowIcon.jsx";
 import toast from "react-hot-toast";
@@ -33,13 +33,13 @@ import {
   CAM_POS_ANIM,
   TOAST,
 } from "../data/constants.tsx";
-import openUserEmail from "../utils/openUserEmail.js";
+// import openUserEmail from "../utils/openUserEmail.js";
 
 export default function Scene({
   theme,
   animDist,
   animateParts,
-  animateStageY,
+  // animateStageY,
   handlePartOption,
   randomAllItemsParts,
   stagePosY,
@@ -925,7 +925,7 @@ export default function Scene({
       currentItemSelected.itemName !== "noSelect" &&
       !currentItemSelected.itemName.includes("shelf")
     ) {
-      let tl = gsap.timeline();
+      const tl = gsap.timeline();
       tl.to(controlsTargetVec, {
         delay: optionBoxItemChanged
           ? CAM_TARG_ANIM.camTargAnimDelay - 0.075
@@ -968,7 +968,7 @@ export default function Scene({
       currentItemSelected.itemName.includes("shelfA32") ||
       currentItemSelected.itemName.includes("shelfB16")
     ) {
-      let tl = gsap.timeline();
+      const tl = gsap.timeline();
       tl.to(controlsTargetVec, {
         delay: optionBoxItemChanged
           ? CAM_TARG_ANIM.camTargAnimDelay - 0.075
@@ -1008,7 +1008,7 @@ export default function Scene({
       currentItemSelected.itemName.includes("shelfA16") ||
       currentItemSelected.itemName.includes("shelfB32")
     ) {
-      let tl = gsap.timeline();
+      const tl = gsap.timeline();
       tl.to(controlsTargetVec, {
         delay: optionBoxItemChanged
           ? CAM_TARG_ANIM.camTargAnimDelay - 0.075
@@ -1093,7 +1093,7 @@ export default function Scene({
             orbitRef.current.object.position.y,
             orbitRef.current.object.position.z,
           );
-          let tl = gsap.timeline();
+          const tl = gsap.timeline();
           tl.to(controlsPositionVec, {
             delay:
               previousItemSelected === unselectedItem
@@ -1149,7 +1149,7 @@ export default function Scene({
   useGSAP(() => {
     if (!showBackground) {
       if (orbitRef.current) {
-        let tl = gsap.timeline();
+        const tl = gsap.timeline();
         tl.to(arrowRotationUp, {
           delay: 0.1,
           duration: 1.5,
@@ -1170,7 +1170,7 @@ export default function Scene({
         });
       }
     } else if (showBackground) {
-      let tl = gsap.timeline();
+      const tl = gsap.timeline();
       tl.to(arrowRotationDown, {
         delay: 0.1,
         duration: 1.5,
