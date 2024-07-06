@@ -73,7 +73,7 @@ function ResponsiveAppBar({ theme }) {
       top: 15,
       // border: `0.75px solid ${cartCount > 0 ? theme.palette.background.paper : "none"}`,
       // padding: "0 4px",
-      backgroundColor: cartCount > 0 ? "#fffdf0" : "transparent",
+      backgroundColor: cartCount > 0 ? "#dedede" : "transparent",
       color: "black",
       fontWeight: "bold",
     },
@@ -154,14 +154,14 @@ function ResponsiveAppBar({ theme }) {
 
   const LogoIcon = createSvgIcon(
     <svg viewBox="0 0 100 100" width="100">
-      <image href="logoTape.png" height="90" width="90" />
+      <image href="logoTape.png" height="100" width="100" />
     </svg>,
     "Plus",
   );
 
   const BagIcon = createSvgIcon(
-    <svg viewBox="0 0 200 200" width="100">
-      <image href="bag.png" height="200" width="200" />
+    <svg viewBox="0 0 100 100" width="100">
+      <image href="bag.png" height="100" width="100" />
     </svg>,
     "Plus",
   );
@@ -169,7 +169,12 @@ function ResponsiveAppBar({ theme }) {
   return (
     <>
       <AppBar position="fixed" color="transparent" elevation={0}>
-        <Container maxWidth="xl">
+        <Container
+          maxWidth="xl"
+          sx={{
+            pt: 0.5,
+          }}
+        >
           <Toolbar disableGutters>
             <SvgIcon
               component={LogoIcon}
@@ -246,7 +251,10 @@ function ResponsiveAppBar({ theme }) {
                   >
                     <Typography
                       textAlign="center"
-                      sx={{ fontFamily: "var(--leva-fonts-mono)" }}
+                      sx={{
+                        fontFamily: "var(--leva-fonts-mono)",
+                        fontSize: "0.9rem",
+                      }}
                     >
                       {page.navTitle}
                     </Typography>
@@ -320,7 +328,8 @@ function ResponsiveAppBar({ theme }) {
                       component={BagIcon}
                       // inheritViewBox
                       sx={{
-                        fontSize: "60px",
+                        fontSize: "64px",
+                        // fontSize: "60px",
                         fontFamily: "var(--leva-fonts-mono)",
                         // transition: "all .5s",
                       }}

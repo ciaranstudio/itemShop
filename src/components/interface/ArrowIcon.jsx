@@ -69,7 +69,8 @@ export const ArrowIcon = ({
             currentAnnotations.push(
               <group
                 key={o.uuid}
-                position={[o.position.x, o.position.y, o.position.z]}
+                // position={[o.position.x, o.position.y, o.position.z]}
+                position={[0, 0, 0]}
               >
                 <InfoBox
                   toggleInfoBox={toggleInfoBox}

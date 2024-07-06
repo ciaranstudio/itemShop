@@ -79,6 +79,8 @@ export default function NavMenu() {
               border: "0.25rem solid white",
               borderRadius: "2rem",
               cursor: "pointer",
+              // fontFamily: "var(--leva-fonts-mono)",
+              // fontSize: "0.5rem",
             }}
           ></Box>
           <Menu
@@ -93,34 +95,34 @@ export default function NavMenu() {
           >
             <MenuItem
               onClick={(e) => selectHandler(e, "about", popupState)}
-              sx={{ fontFamily: "var(--leva-fonts-mono)" }}
+              // sx={{ fontFamily: "var(--leva-fonts-mono)" }}
               selected={aboutInfo}
             >
               About
             </MenuItem>
             <MenuItem
               onClick={(e) => selectHandler(e, "images", popupState)}
-              sx={{ fontFamily: "var(--leva-fonts-mono)" }}
+              // sx={{ fontFamily: "var(--leva-fonts-mono)" }}
               selected={allPhotos}
             >
               Images
             </MenuItem>
             <MenuItem
               onClick={(e) => selectHandler(e, "custom", popupState)}
-              sx={{ fontFamily: "var(--leva-fonts-mono)" }}
+              // sx={{ fontFamily: "var(--leva-fonts-mono)" }}
             >
               Custom Work
             </MenuItem>
             <MenuItem
               // onClick={(e) => selectHandler(e, "contact", popupState)}
               onClick={(e) => openUserEmail(e)}
-              sx={{ fontFamily: "var(--leva-fonts-mono)" }}
+              // sx={{ fontFamily: "var(--leva-fonts-mono)" }}
             >
               Contact
             </MenuItem>
             <MenuItem
               onClick={(e) => selectHandler(e, "exhibitions", popupState)}
-              sx={{ fontFamily: "var(--leva-fonts-mono)" }}
+              // sx={{ fontFamily: "var(--leva-fonts-mono)" }}
             >
               Exhibitions
             </MenuItem>

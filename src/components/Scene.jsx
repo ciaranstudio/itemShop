@@ -1254,7 +1254,7 @@ export default function Scene({
           onPointerOut={() => hover(false)}
         >
           <mesh
-            position={[0, ARROW_ICON.arrowY, 0]}
+            position={[0, open || showPhotos ? ARROW_ICON.arrowY : -0.3, 0]}
             scale={0.0055}
             rotation={[arrowRotationX, 0, 0]}
           >
@@ -1285,6 +1285,7 @@ export default function Scene({
       <color args={["#adbaba"]} attach="background" />
       <mesh geometry={overlayGeometry} material={overlayMaterial}></mesh>
       <OrbitControls
+        enabled={!open}
         makeDefault
         ref={orbitRef}
         enableZoom={!animActive}
@@ -1325,7 +1326,7 @@ export default function Scene({
         // target={grampsRef.current}
       />
       {/* all objects (except logo, cart/bag, arrow / objects in ScreenSpace) */}
-      <group position={[0, stagePosY, 0]}>
+      <group position={[0, stagePosY, 0]} visible={!open}>
         <ambientLight intensity={LIGHT.ambLightIntensity} />
         {/* furniture items */}
         {shopItems.map((item, index) => {

@@ -2,18 +2,13 @@ import React, { useState, useEffect } from "react";
 import { Html } from "@react-three/drei";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material";
-import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import ReadMoreIcon from "@mui/icons-material/ReadMore";
 import IconButton from "@mui/material/IconButton";
 import { useOptionStore } from "../../store/useOptionStore.tsx";
-import { allImages } from "../../data/objects.jsx";
 
-export default function InfoBox({ toggleInfoBox, theme }) {
-  // infobox Y axis position for drei Html component
-  // const htmlPosY = 50;
-  const htmlPosY = 0;
+export default function HtmlTester({ toggleInfoBox, theme }) {
   // about text blocks
   const aboutTextArr = [
     {
@@ -74,25 +69,32 @@ export default function InfoBox({ toggleInfoBox, theme }) {
     setAboutPageToggle(!aboutPageToggle);
   };
 
-  const gridCells = [
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
-  ];
-
   return (
-    <Html center position={[0, htmlPosY, 0]}>
+    <Html center position={[0, 50, 0]}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-
         <div
           className="info"
           style={{
             display: open ? "block" : "none",
             paddingBottom: aboutInfo ? "2.75rem" : "1rem",
-            overflow: "auto",
-            pointerEvents: "auto",
           }}
         >
-          {/* <div
+          <IconButton
+            onClick={(e) => toggleInfoBox(e)}
+            color="inherit"
+            sx={{
+              position: "absolute",
+              pointerEvents: "auto",
+              top: "0.15rem",
+              left: "0.15rem",
+              padding: "0.5rem",
+            }}
+            aria-label="close info box"
+          >
+            <CloseOutlinedIcon fontSize="small" color="success" />
+          </IconButton>
+          <div
             id="title"
             style={{
               color: aboutInfo
@@ -109,8 +111,8 @@ export default function InfoBox({ toggleInfoBox, theme }) {
             >
               {aboutInfo ? "About" : currentItemSelected.itemTitle}
             </Typography>
-          </div> */}
-          {/* <div
+          </div>
+          <div
             id="description"
             style={{ marginTop: aboutInfo ? "0.75rem" : "0.25rem" }}
           >
@@ -149,9 +151,8 @@ export default function InfoBox({ toggleInfoBox, theme }) {
                 ? aboutTextArr[aboutIndex].textB
                 : currentItemSelected.size}
             </Typography>
-          </div> */}
-
-          {/* <div className="size">
+          </div>
+          <div className="size">
             <div>
               <IconButton
                 onClick={(e) => nextPage(e)}
@@ -170,56 +171,7 @@ export default function InfoBox({ toggleInfoBox, theme }) {
                 <ReadMoreIcon color="secondary" />
               </IconButton>
             </div>
-          </div> */}
-
-          <span
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              height: "100%",
-            }}
-          >
-            <div style={{ position: "sticky", top: 0 }}>
-              <IconButton
-                onClick={(e) => toggleInfoBox(e)}
-                color="inherit"
-                sx={{
-                  padding: "0.5rem",
-                }}
-                aria-label="close info box"
-              >
-                <CloseOutlinedIcon fontSize="small" color="success" />
-              </IconButton>
-            </div>
-          </span>
-          <Box
-            sx={{
-              display: "grid",
-              gridTemplateColumns: {
-                sm: "auto auto",
-                md: "auto auto auto",
-                lg: "auto auto auto auto",
-              },
-              columnGap: "1rem",
-              rowGap: "1rem",
-              borderRadius: "0.75rem",
-              // border: "0.085rem solid rgb(155, 155, 155)",
-              overflow: "auto",
-            }}
-          >
-            {allImages.map((m, index) => {
-              return (
-                <>
-                  <img
-                    key={index}
-                    style={{ objectFit: "contain", width: "100%" }}
-                    src={m.imgPath}
-                  ></img>
-                </>
-              );
-            })}
-          </Box>
+          </div>
         </div>
       </ThemeProvider>
     </Html>
