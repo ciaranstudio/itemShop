@@ -99,6 +99,7 @@ body,
 img {
   border-radius: 0.25rem;
   object-fit: contain;
+  opacity: 0.05;
 }
 
 #footer {

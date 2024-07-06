@@ -1,6 +1,6 @@
 import React, { useState, useLayoutEffect } from "react";
 import { useGLTF, useTexture } from "@react-three/drei";
-import InfoBox from "./InfoBox.jsx";
+import HtmlBox from "./HtmlBox.jsx";
 import PhotoBox from "./PhotoBox.jsx";
 import OptionBox from "./OptionBox.jsx";
 import { useOptionStore } from "../../store/useOptionStore.tsx";
@@ -72,10 +72,12 @@ export const ArrowIcon = ({
                 // position={[o.position.x, o.position.y, o.position.z]}
                 position={[0, 0, 0]}
               >
-                <InfoBox
+                <HtmlBox
                   toggleInfoBox={toggleInfoBox}
                   theme={theme}
                   // openUserEmail={openUserEmail}
+                  handlePartOption={handlePartOption}
+                  togglePhotoBox={togglePhotoBox}
                 />
                 <PhotoBox togglePhotoBox={togglePhotoBox} theme={theme} />
                 <OptionBox

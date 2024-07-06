@@ -75,7 +75,7 @@ function ResponsiveAppBar({ theme }) {
       // padding: "0 4px",
       backgroundColor: cartCount > 0 ? "#dedede" : "transparent",
       color: "black",
-      fontWeight: "bold",
+      // fontWeight: "bold",
     },
   }));
 

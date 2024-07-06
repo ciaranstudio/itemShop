@@ -395,28 +395,28 @@ export default function Scene({
       // });
     } else if (count === 5 && showBackground) {
       toast.dismiss();
-      toast("Drag to rotate", {
-        duration: TOAST.duration,
-        position: "top-right",
-        // Styling
-        style: {
-          fontSize: TOAST.fontSize,
-          background: TOAST.background,
-          color: TOAST.color,
-          fontFamily: "var(--leva-fonts-mono)",
-        },
-        className: "",
-        // Custom Icon
-        iconTheme: {
-          primary: "#000",
-          secondary: "#fff",
-        },
-        // Aria
-        ariaProps: {
-          role: "status",
-          "aria-live": "polite",
-        },
-      });
+      // toast("Drag to rotate", {
+      //   duration: TOAST.duration,
+      //   position: "top-right",
+      //   // Styling
+      //   style: {
+      //     fontSize: TOAST.fontSize,
+      //     background: TOAST.background,
+      //     color: TOAST.color,
+      //     fontFamily: "var(--leva-fonts-mono)",
+      //   },
+      //   className: "",
+      //   // Custom Icon
+      //   iconTheme: {
+      //     primary: "#000",
+      //     secondary: "#fff",
+      //   },
+      //   // Aria
+      //   ariaProps: {
+      //     role: "status",
+      //     "aria-live": "polite",
+      //   },
+      // });
     } else if (count === 7 && showBackground) {
       // toast("Pinch to zoom", {
       //   duration: TOAST.duration,
@@ -441,52 +441,52 @@ export default function Scene({
       //   },
       // });
     } else if (count === 9 && showBackground) {
-      toast("Tap to select", {
-        duration: TOAST.duration,
-        position: "top-right",
-        // Styling
-        style: {
-          fontSize: TOAST.fontSize,
-          background: TOAST.background,
-          color: TOAST.color,
-          fontFamily: "var(--leva-fonts-mono)",
-        },
-        className: "",
-        // Custom Icon
-        iconTheme: {
-          primary: "#000",
-          secondary: "#fff",
-        },
-        // Aria
-        ariaProps: {
-          role: "status",
-          "aria-live": "polite",
-        },
-      });
+      // toast("Tap to select", {
+      //   duration: TOAST.duration,
+      //   position: "top-right",
+      //   // Styling
+      //   style: {
+      //     fontSize: TOAST.fontSize,
+      //     background: TOAST.background,
+      //     color: TOAST.color,
+      //     fontFamily: "var(--leva-fonts-mono)",
+      //   },
+      //   className: "",
+      //   // Custom Icon
+      //   iconTheme: {
+      //     primary: "#000",
+      //     secondary: "#fff",
+      //   },
+      //   // Aria
+      //   ariaProps: {
+      //     role: "status",
+      //     "aria-live": "polite",
+      //   },
+      // });
     } else if (count === 12 && showBackground) {
-      toast("Toggles options", {
-        duration: TOAST.duration,
-        position: "top-right",
-        // Styling
-        style: {
-          fontSize: TOAST.fontSize,
-          background: TOAST.background,
-          color: TOAST.color,
-          fontFamily: "var(--leva-fonts-mono)",
-        },
-        className: "",
-        // Custom Icon
-        icon: <KeyboardArrowUpIcon />,
-        iconTheme: {
-          primary: "#000",
-          secondary: "#fff",
-        },
-        // Aria
-        ariaProps: {
-          role: "status",
-          "aria-live": "polite",
-        },
-      });
+      // toast("Toggles options", {
+      //   duration: TOAST.duration,
+      //   position: "top-right",
+      //   // Styling
+      //   style: {
+      //     fontSize: TOAST.fontSize,
+      //     background: TOAST.background,
+      //     color: TOAST.color,
+      //     fontFamily: "var(--leva-fonts-mono)",
+      //   },
+      //   className: "",
+      //   // Custom Icon
+      //   icon: <KeyboardArrowUpIcon />,
+      //   iconTheme: {
+      //     primary: "#000",
+      //     secondary: "#fff",
+      //   },
+      //   // Aria
+      //   ariaProps: {
+      //     role: "status",
+      //     "aria-live": "polite",
+      //   },
+      // });
     } else if (count === 17 && currentItemSelected === unselectedItem) {
       handleArrowIconClick(null);
     }
@@ -518,30 +518,30 @@ export default function Scene({
       if (partsOpen) animateParts();
     }
     if (!showBackground && previousItemSelected.itemName === "noSelect") {
-      toast("Toggles background", {
-        duration: TOAST.duration,
-        position: "top-right",
-        // Styling
-        style: {
-          fontSize: TOAST.fontSize,
-          background: TOAST.background,
-          color: TOAST.color,
-          fontFamily: "var(--leva-fonts-mono)",
-        },
-        className: "",
-        // Custom Icon
-        icon: "⮐",
-        // Change colors of success/error/loading icon
-        iconTheme: {
-          primary: "#000",
-          secondary: "#fff",
-        },
-        // Aria
-        ariaProps: {
-          role: "status",
-          "aria-live": "polite",
-        },
-      });
+      // toast("Toggles background", {
+      //   duration: TOAST.duration,
+      //   position: "top-right",
+      //   // Styling
+      //   style: {
+      //     fontSize: TOAST.fontSize,
+      //     background: TOAST.background,
+      //     color: TOAST.color,
+      //     fontFamily: "var(--leva-fonts-mono)",
+      //   },
+      //   className: "",
+      //   // Custom Icon
+      //   icon: "⮐",
+      //   // Change colors of success/error/loading icon
+      //   iconTheme: {
+      //     primary: "#000",
+      //     secondary: "#fff",
+      //   },
+      //   // Aria
+      //   ariaProps: {
+      //     role: "status",
+      //     "aria-live": "polite",
+      //   },
+      // });
       // toast("Also toggles background", {
       //   duration: TOAST.duration,
       //   position: "top-right",
@@ -1252,6 +1252,7 @@ export default function Scene({
           onClick={handleArrowIconClick}
           onPointerOver={() => hover(true)}
           onPointerOut={() => hover(false)}
+          visible={!open}
         >
           <mesh
             position={[0, open || showPhotos ? ARROW_ICON.arrowY : -0.3, 0]}
@@ -1326,7 +1327,7 @@ export default function Scene({
         // target={grampsRef.current}
       />
       {/* all objects (except logo, cart/bag, arrow / objects in ScreenSpace) */}
-      <group position={[0, stagePosY, 0]} visible={!open}>
+      <group position={[0, stagePosY, 0]}>
         <ambientLight intensity={LIGHT.ambLightIntensity} />
         {/* furniture items */}
         {shopItems.map((item, index) => {
