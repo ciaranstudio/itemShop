@@ -753,16 +753,17 @@ export default function Scene({
       setCurrentPartName(part.partName);
     }
   };
-  const handleDoubleClick = (e) => {
-    e.stopPropagation();
-    if (showBackground) {
-      if (!animActive) {
-        setOpen(false);
-        setShowPhotos(false);
-        setShowBackground(!showBackground);
-      }
-    }
-  };
+  // const handleDoubleClick = (e) => {
+  //   e.stopPropagation();
+  //   return;
+  //   // if (showBackground) {
+  //   //   if (!animActive) {
+  //   //     setOpen(false);
+  //   //     setShowPhotos(false);
+  //   //     setShowBackground(!showBackground);
+  //   //   }
+  //   // }
+  // };
   const handleArrowIconClick = (e) => {
     if (e) e.stopPropagation();
     toast.dismiss();
@@ -1252,7 +1253,6 @@ export default function Scene({
           onClick={handleArrowIconClick}
           onPointerOver={() => hover(true)}
           onPointerOut={() => hover(false)}
-          visible={!open}
         >
           <mesh
             position={[0, open || showPhotos ? ARROW_ICON.arrowY : -0.3, 0]}
@@ -1270,7 +1270,12 @@ export default function Scene({
             />
           </mesh>
           <group
-            position={[0, ARROW_ICON.arrowY + 0.01, 0]}
+            // position={[0, ARROW_ICON.arrowY + 0.01, 0]}
+            position={[
+              0,
+              open || showPhotos ? ARROW_ICON.arrowY + 0.01 : -0.3 + 0.01,
+              0,
+            ]}
             // rotation={[arrowRotationX, 0, 0]}
           >
             <RingCircle
@@ -1338,7 +1343,7 @@ export default function Scene({
               onPointerOver={() => hover(true)}
               onPointerOut={() => hover(false)}
               onClick={handleClick}
-              onDoubleClick={handleDoubleClick}
+              // onDoubleClick={handleDoubleClick}
               visible={
                 !showBackground && currentItemSelected === item
                   ? true

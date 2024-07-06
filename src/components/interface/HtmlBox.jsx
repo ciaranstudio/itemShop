@@ -253,6 +253,7 @@ export default function HmtlBox({
             paddingBottom: aboutInfo ? "2.75rem" : "1rem",
             overflow: "auto",
             pointerEvents: "auto",
+            marginTop: "2rem",
           }}
         >
           <div
@@ -783,7 +784,6 @@ export default function HmtlBox({
                       // right: "0.5rem",
                       left: "50%",
                       transform: "translate(-50%)",
-                      pointerEvents: "auto",
                     }}
                     aria-label="go to next about info slide"
                   >

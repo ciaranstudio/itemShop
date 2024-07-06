@@ -296,6 +296,7 @@ function ResponsiveAppBar({ theme }) {
                   onClick={(e) => selectHandler(e, page.menuItem)}
                   sx={{
                     my: 2,
+                    mx: 1.5,
                     color: `${
                       aboutInfo && page.menuItem === "about"
                         ? theme.palette.primary.main
