@@ -30,7 +30,7 @@ import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
 import toast from "react-hot-toast";
 import { OPTION_BOX_POS_Y } from "../../data/constants.tsx";
 
-export default function HtmlBox({
+export default function AboutInfo({
   toggleInfoBox,
   theme,
   handlePartOption,
@@ -255,6 +255,316 @@ export default function HtmlBox({
             marginTop: "2rem",
           }}
         >
+          <div
+            style={{
+              position: "absolute",
+              bottom: 0,
+              pointerEvents: "auto",
+              width: "100%",
+              maxWidth: "60vh",
+              left: "50%",
+              transform: "translate(-50%)",
+              zIndex: 3,
+            }}
+          >
+            <div
+              className="annotation-wrapper"
+              style={{
+                paddingTop: "0rem",
+                marginTop: "0rem",
+              }}
+            >
+              <IconButton
+                onClick={(e) => closePartOptions(e)}
+                color="primary"
+                sx={{
+                  position: "absolute",
+                  pointerEvents: "auto",
+                  top: "1",
+                  left: "0.25rem",
+                  padding: "0.5rem",
+                }}
+                aria-label="close order box"
+              >
+                <CloseOutlinedIcon color="success" fontSize="inherit" />
+              </IconButton>
+
+              <IconButton
+                onClick={(e) => partShowBackground(e)}
+                sx={{
+                  position: "absolute",
+                  pointerEvents: "auto",
+                  top: "1",
+                  right: "0.25rem",
+                  padding: "0.5rem",
+                }}
+                aria-label="show background"
+                disabled={animActive}
+              >
+                <KeyboardReturnIcon
+                  color={!animActive ? "info" : "warning"}
+                  fontSize="inherit"
+                />
+              </IconButton>
+
+              <span
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "auto auto auto auto",
+                  textAlign: "center",
+                  marginTop: "0.45rem",
+                  marginRight: "2rem",
+                  marginLeft: "2rem",
+                  border: "0.1rem solid rgb(155, 155, 155)",
+                  borderRadius: "2rem",
+                  backgroundColor: "rgb(233, 234, 233)",
+                }}
+              >
+                <span>
+                  <IconButton
+                    onClick={toggleAnimateParts}
+                    disabled={animActive ? true : false}
+                    sx={{
+                      padding: "0.5rem",
+                    }}
+                    aria-label="animate item parts to explode apart"
+                  >
+                    {optionBoxHeightMin ? (
+                      <OpenInFullIcon
+                        color={animActive ? "warning" : "success"}
+                        fontSize="inherit"
+                      />
+                    ) : (
+                      <OpenInFullIcon
+                        color={animActive ? "warning" : "success"}
+                        fontSize="inherit"
+                      />
+                    )}
+                  </IconButton>
+                </span>
+                <span>
+                  <IconButton
+                    onClick={togglePhotoBox}
+                    color="info"
+                    aria-label="toggle photo box"
+                    sx={{
+                      padding: "0.5rem",
+                    }}
+                  >
+                    <FilterOutlinedIcon fontSize="inherit" color="secondary" />
+                  </IconButton>
+                </span>
+                <span>
+                  <IconButton
+                    onClick={toggleInfoBox}
+                    color="info"
+                    aria-label="toggle info box"
+                    sx={{
+                      padding: "0.5rem",
+                    }}
+                  >
+                    <InfoOutlinedIcon fontSize="inherit" color="secondary" />
+                  </IconButton>
+                </span>
+                <span>
+                  <IconButton
+                    onClick={toggleOptionBoxHeight}
+                    color="white"
+                    sx={{
+                      padding: "0.5rem",
+                    }}
+                    aria-label="toggle minimize/maximize option box height"
+                  >
+                    {optionBoxHeightMin ? (
+                      <UnfoldMoreIcon color="secondary" fontSize="inherit" />
+                    ) : (
+                      <UnfoldLessIcon color="secondary" fontSize="inherit" />
+                    )}
+                  </IconButton>
+                </span>
+              </span>
+
+              <div
+                className="annotation"
+                style={{ display: optionBoxHeightMin ? "block" : "none" }}
+              >
+                <div className="annotation-options">
+                  {/* {o.userData.name} */}
+                  <div className="grid-container-stain">
+                    {options.stains.map((stain) => {
+                      return (
+                        <span key={stain}>
+                          <IconButton
+                            onClick={(e) =>
+                              handlePartOption(
+                                e,
+                                currentItemName,
+                                currentPartName,
+                                stain,
+                                true,
+                              )
+                            }
+                            color="info"
+                            aria-label="select stain color"
+                          >
+                            <CircleIcon
+                              fontSize="large"
+                              sx={{
+                                color:
+                                  stain === "white"
+                                    ? "#a89d93"
+                                    : stain === "natural"
+                                      ? "#908073"
+                                      : stain === "black"
+                                        ? "#635245"
+                                        : stain === "allBlack"
+                                          ? "#0b0502"
+                                          : "#ffffff",
+                                border:
+                                  thisPartColorName === stain
+                                    ? "0.15rem solid grey" // #5580b0
+                                    : "0.15rem solid lightGrey",
+                                borderRadius: "50%",
+                              }}
+                            />
+                          </IconButton>
+                        </span>
+                      );
+                    })}
+                  </div>
+
+                  <div className="grid-container-paint">
+                    {options.paints.map((paint) => {
+                      return (
+                        <span key={paint}>
+                          <IconButton
+                            onClick={(e) =>
+                              handlePartOption(
+                                e,
+                                currentItemName,
+                                currentPartName,
+                                paint,
+                                true,
+                              )
+                            }
+                            color="info"
+                            aria-label="select paint color"
+                          >
+                            <CircleIcon
+                              fontSize="large"
+                              sx={{
+                                color:
+                                  paint === "alabaster"
+                                    ? "#fffdf0"
+                                    : paint === "pink"
+                                      ? "#f2d1c6"
+                                      : paint === "basil"
+                                        ? "#929d84"
+                                        : paint === "yellow"
+                                          ? "#f2d684"
+                                          : paint === "blue"
+                                            ? "#96b0aa"
+                                            : paint === "gray"
+                                              ? "#8c8b81"
+                                              : "#ffffff",
+                                border:
+                                  thisPartColorName === paint
+                                    ? "0.15rem solid grey" // #5580b0
+                                    : "0.15rem solid lightGrey",
+                                borderRadius: "50%",
+                              }}
+                            />
+                          </IconButton>
+                        </span>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+              <span className="split-shuffle-block">
+                <div
+                  className="color-menu-item-title"
+                  style={{
+                    position: "static",
+                    top: "0",
+                    left: "0",
+                    transform: "none",
+                    paddingTop: "0.5rem",
+                  }}
+                >
+                  <PopupState variant="popover" popupId="demo-popup-menu">
+                    {(popupState) => (
+                      <React.Fragment>
+                        <Button
+                          variant="outlined"
+                          {...bindTrigger(popupState)}
+                          sx={{
+                            fontFamily: "var(--leva-fonts-mono)",
+                            fontSize: "1.1rem",
+                            backgroundColor: "rgb(233, 234, 233)",
+                          }}
+                          size="small"
+                          disabled={activeCamAnim ? true : false}
+                          aria-label="open item select list"
+                        >
+                          {currentItemSelected.itemTitle}
+                        </Button>
+                        <Menu
+                          {...bindMenu(popupState)}
+                          sx={{
+                            "& .MuiPaper-root": {
+                              backgroundColor: "lightgrey",
+                              border: "0.075rem solid rgb(33, 33, 33);",
+                            },
+                          }}
+                          aria-label="item select menu"
+                        >
+                          {shopItems.map((shopItem, index) => {
+                            return (
+                              <MenuItem
+                                key={shopItem.itemNo}
+                                onClick={(e) =>
+                                  itemMenuSelectHandler(
+                                    e,
+                                    shopItem.itemNo,
+                                    popupState,
+                                  )
+                                }
+                                sx={{ fontFamily: "var(--leva-fonts-mono)" }}
+                              >
+                                {shopItem.itemTitle}
+                              </MenuItem>
+                            );
+                          })}
+                        </Menu>
+                      </React.Fragment>
+                    )}
+                  </PopupState>
+                </div>
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "auto auto auto auto",
+                    columnGap: "1rem",
+                    alignItems: "center",
+                    paddingTop: "0.25rem",
+                  }}
+                >
+                  <span></span>
+                  <div>
+                    <SplitButton
+                      // theme={theme}
+                      currentItemName={currentItemName}
+                      randomCurrentItemParts={randomCurrentItemParts}
+                    />
+                  </div>
+                  <span className="buy-info-block">
+                    <BuyButton theme={theme} item={objects[currentItemName]} />
+                  </span>
+                </div>
+              </span>
+            </div>
+          </div>
           {/* <div
             id="title"
             style={{

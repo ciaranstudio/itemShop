@@ -24,16 +24,20 @@ import { SelectIcon } from "./item/SelectIcon.jsx";
 import { ArrowIcon } from "./interface/ArrowIcon.jsx";
 import toast from "react-hot-toast";
 import { useOptionStore } from "../store/useOptionStore.tsx";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+// import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import {
   LIGHT,
   ORBIT_CONTROLS,
   ARROW_ICON,
   CAM_TARG_ANIM,
   CAM_POS_ANIM,
-  TOAST,
+  // TOAST,
 } from "../data/constants.tsx";
 // import openUserEmail from "../utils/openUserEmail.js";
+// import HtmlBox from "./interface/HtmlBox.jsx";
+// import PhotoBox from "./interface/PhotoBox.jsx";
+// import OptionBox from "./interface/OptionBox.jsx";
+import { CenterAnchor } from "./interface/CenterAnchor.jsx";
 
 export default function Scene({
   theme,
@@ -1248,6 +1252,20 @@ export default function Scene({
             openUserEmail={openUserEmail}
           />
         </mesh> */}
+        {/* group of Html components (info, photos, options) in screen center (default [0,0,0] position) */}
+        <group
+          // position={[o.position.x, o.position.y, o.position.z]}
+          position={[0, 0, 0]}
+        >
+          <CenterAnchor
+            theme={theme}
+            currentColor={textures.alabasterPaint}
+            currentTexture={textures.whiteTexture}
+            toggleInfoBox={toggleInfoBox}
+            togglePhotoBox={togglePhotoBox}
+            handlePartOption={handlePartOption}
+          />
+        </group>
         {/* Arrow icon at bottom of screen */}
         <group
           onClick={handleArrowIconClick}
@@ -1262,11 +1280,11 @@ export default function Scene({
             <ArrowIcon
               currentColor={textures.alabasterPaint}
               currentTexture={textures.whiteTexture}
-              toggleInfoBox={toggleInfoBox}
-              togglePhotoBox={togglePhotoBox}
-              handlePartOption={handlePartOption}
-              // openUserEmail={openUserEmail}
-              theme={theme}
+              // toggleInfoBox={toggleInfoBox}
+              // togglePhotoBox={togglePhotoBox}
+              // handlePartOption={handlePartOption}
+              // // openUserEmail={openUserEmail}
+              // theme={theme}
             />
           </mesh>
           <group

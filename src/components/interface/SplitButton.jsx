@@ -94,6 +94,7 @@ export default function SplitButton({
         role={undefined}
         transition
         disablePortal
+        placement="right"
       >
         {({ TransitionProps, placement }) => (
           <Grow
@@ -105,7 +106,7 @@ export default function SplitButton({
           >
             <Paper
               sx={{
-                backgroundColor: "lightGrey",
+                backgroundColor: "white",
                 border: "0.075rem solid rgb(33, 33, 33);",
               }}
             >
