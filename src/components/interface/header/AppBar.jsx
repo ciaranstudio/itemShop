@@ -70,7 +70,7 @@ function ResponsiveAppBar({ theme }) {
   const StyledBadge = styled(Badge)(({ theme }) => ({
     "& .MuiBadge-badge": {
       right: 15,
-      top: 15,
+      top: 20,
       // border: `0.75px solid ${cartCount > 0 ? theme.palette.background.paper : "none"}`,
       // padding: "0 4px",
       backgroundColor: cartCount > 0 ? "#dedede" : "transparent",
@@ -153,14 +153,14 @@ function ResponsiveAppBar({ theme }) {
   };
 
   const LogoIcon = createSvgIcon(
-    <svg viewBox="0 0 100 100" width="100">
+    <svg viewBox="0 -10 100 100" width="100">
       <image href="logoTape.png" height="100" width="100" />
     </svg>,
     "Plus",
   );
 
   const BagIcon = createSvgIcon(
-    <svg viewBox="0 0 100 100" width="100">
+    <svg viewBox="0 -10 100 100" width="100">
       <image href="bag.png" height="100" width="100" />
     </svg>,
     "Plus",
@@ -295,8 +295,8 @@ function ResponsiveAppBar({ theme }) {
                   key={i}
                   onClick={(e) => selectHandler(e, page.menuItem)}
                   sx={{
-                    my: 2,
-                    mx: 1.5,
+                    my: 3,
+                    mx: 3,
                     color: `${
                       aboutInfo && page.menuItem === "about"
                         ? theme.palette.primary.main

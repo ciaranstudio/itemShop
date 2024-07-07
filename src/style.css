@@ -146,7 +146,7 @@ img {
 
 .info {
   position: absolute;
-  width: 80svw;
+  width: 90svw;
   height: 80svh;
   /* width: 18rem */
   top: 50%;
@@ -244,20 +244,19 @@ img {
   display: grid;
   grid-template-columns: auto auto auto auto;
   gap: 0;
-  padding: 0;
   /* margin-right: 0.15rem; */
-  border: 0.15rem solid rgb(170, 170, 170);
+  /* border: 0.15rem solid rgb(170, 170, 170); */
   border-radius: 1rem;
-  background-color: rgb(233, 234, 233);
+  /* background-color: rgb(233, 234, 233); */
 }
 
 .grid-container-paint {
   display: grid;
   grid-template-columns: auto auto auto auto auto auto;
   gap: 0;
-  border: 0.15rem solid rgb(170, 170, 170);
+  /* border: 0.15rem solid rgb(170, 170, 170); */
   border-radius: 1rem;
-  background-color: rgb(233, 234, 233);
+  /* background-color: rgb(233, 234, 233); */
 }
 
 .color-btn {

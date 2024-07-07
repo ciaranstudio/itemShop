@@ -29,6 +29,7 @@ import MenuItem from "@mui/material/MenuItem";
 import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
 import toast from "react-hot-toast";
 import { OPTION_BOX_POS_Y } from "../../data/constants.tsx";
+import ExpandIcon from "@mui/icons-material/Expand";
 
 export default function OptionsOnly({
   toggleInfoBox,
@@ -258,7 +259,7 @@ export default function OptionsOnly({
           <div
             style={{
               position: "absolute",
-              top: 150,
+              top: 100,
               pointerEvents: "auto",
               width: "100%",
               maxWidth: "60vh",
@@ -313,9 +314,9 @@ export default function OptionsOnly({
                   gridTemplateColumns: "auto auto auto auto auto",
                   textAlign: "center",
                   marginTop: "1rem",
-                  border: "0.1rem solid rgb(155, 155, 155)",
+                  border: "0.08rem solid rgb(233, 234, 233)",
                   borderRadius: "1rem",
-                  backgroundColor: "rgb(233, 234, 233)",
+                  // backgroundColor: "rgb(233, 234, 233)",
                 }}
               >
                 <span>
@@ -328,7 +329,7 @@ export default function OptionsOnly({
                     disabled={animActive}
                   >
                     <KeyboardReturnIcon
-                      color={!animActive ? "secondary" : "warning"}
+                      color={!animActive ? "info" : "secondary"}
                       fontSize="inherit"
                     />
                   </IconButton>
@@ -342,22 +343,10 @@ export default function OptionsOnly({
                     }}
                     aria-label="animate item parts to explode apart"
                   >
-                    <OpenInFullIcon
-                      color={animActive ? "secondary" : "success"}
+                    <ExpandIcon
+                      color={animActive ? "success" : "secondary"}
                       fontSize="inherit"
                     />
-                  </IconButton>
-                </span>
-                <span>
-                  <IconButton
-                    onClick={togglePhotoBox}
-                    color="info"
-                    aria-label="toggle photo box"
-                    sx={{
-                      padding: "0.5rem",
-                    }}
-                  >
-                    <FilterOutlinedIcon fontSize="inherit" color="secondary" />
                   </IconButton>
                 </span>
                 <span>
@@ -369,9 +358,22 @@ export default function OptionsOnly({
                       padding: "0.5rem",
                     }}
                   >
-                    <InfoOutlinedIcon fontSize="inherit" color="secondary" />
+                    <InfoOutlinedIcon color="info" fontSize="inherit" />
                   </IconButton>
                 </span>
+                <span>
+                  <IconButton
+                    onClick={togglePhotoBox}
+                    color="info"
+                    aria-label="toggle photo box"
+                    sx={{
+                      padding: "0.5rem",
+                    }}
+                  >
+                    <FilterOutlinedIcon color="secondary" fontSize="inherit" />
+                  </IconButton>
+                </span>
+
                 <span>
                   <IconButton
                     onClick={toggleOptionBoxHeight}
@@ -382,9 +384,9 @@ export default function OptionsOnly({
                     aria-label="toggle minimize/maximize option box height"
                   >
                     {optionBoxHeightMin ? (
-                      <UnfoldMoreIcon color="secondary" fontSize="inherit" />
+                      <UnfoldMoreIcon color="primary" fontSize="inherit" />
                     ) : (
-                      <UnfoldLessIcon color="secondary" fontSize="inherit" />
+                      <UnfoldLessIcon color="info" fontSize="inherit" />
                     )}
                   </IconButton>
                 </span>
@@ -414,7 +416,7 @@ export default function OptionsOnly({
                             aria-label="select stain color"
                           >
                             <CircleIcon
-                              fontSize="small"
+                              fontSize="medium"
                               sx={{
                                 color:
                                   stain === "white"
@@ -428,8 +430,8 @@ export default function OptionsOnly({
                                           : "#ffffff",
                                 border:
                                   thisPartColorName === stain
-                                    ? "0.15rem solid grey" // #5580b0
-                                    : "0.15rem solid lightGrey",
+                                    ? "0.075rem solid white" // #5580b0
+                                    : "none",
                                 borderRadius: "50%",
                               }}
                             />
@@ -457,7 +459,7 @@ export default function OptionsOnly({
                             aria-label="select paint color"
                           >
                             <CircleIcon
-                              fontSize="small"
+                              fontSize="medium"
                               sx={{
                                 color:
                                   paint === "alabaster"
@@ -475,8 +477,8 @@ export default function OptionsOnly({
                                               : "#ffffff",
                                 border:
                                   thisPartColorName === paint
-                                    ? "0.15rem solid grey" // #5580b0
-                                    : "0.15rem solid lightGrey",
+                                    ? "0.075rem solid white" // #5580b0
+                                    : "none",
                                 borderRadius: "50%",
                               }}
                             />

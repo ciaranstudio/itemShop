@@ -870,7 +870,7 @@ export default function Scene({
     if (showPartOptions) {
       setShowPartOptions(false);
     } else {
-      setShowPartOptions(true);
+      if (!showBackground) setShowPartOptions(true);
     }
   };
   const togglePhotoBox = (e) => {
@@ -885,7 +885,7 @@ export default function Scene({
     if (showPartOptions) {
       setShowPartOptions(false);
     } else {
-      setShowPartOptions(true);
+      if (!showBackground) setShowPartOptions(true);
     }
   };
 

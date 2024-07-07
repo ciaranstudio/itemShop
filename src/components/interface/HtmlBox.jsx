@@ -252,7 +252,7 @@ export default function HtmlBox({
             paddingBottom: "1rem",
             overflow: "auto",
             pointerEvents: "auto",
-            marginTop: "2rem",
+            marginTop: "1.5rem",
           }}
         >
           {/* <div
