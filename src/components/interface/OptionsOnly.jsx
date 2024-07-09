@@ -39,7 +39,6 @@ export default function OptionsOnly({
 }) {
   // infobox Y axis position for drei Html component
   // const htmlPosY = 50;
-  const htmlPosY = 0;
   // about text blocks
   const aboutTextArr = [
     {
@@ -243,7 +242,7 @@ export default function OptionsOnly({
   };
 
   return (
-    <Html center position={[0, htmlPosY, 0]}>
+    <Html center position={[0, 0, 0]}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <div

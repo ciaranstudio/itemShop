@@ -2,23 +2,26 @@ import { useRef, useState, useEffect, Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import { useProgress } from "@react-three/drei";
 import * as THREE from "three";
-import Scene from "./components/Scene.jsx";
-import Placeholder from "./components/Placeholder.jsx";
+import Scene from "./Scene.jsx";
+import Placeholder from "./Placeholder.jsx";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { textures } from "./data/textures.jsx";
-import { shopItems } from "./data/objects.jsx";
-import { allOptions } from "./data/options.jsx";
-import { useOptionStore } from "./store/useOptionStore.tsx";
+import { textures } from "../data/textures.jsx";
+import { shopItems } from "../data/objects.jsx";
+import { allOptions } from "../data/options.jsx";
+import { useOptionStore } from "../store/useOptionStore.tsx";
 import toast from "react-hot-toast";
 import {
   LOADED,
   TOAST,
   STAGE_POSITION_Y_ANIM,
   ITEM_PARTS_ANIM,
-} from "./data/constants.tsx";
+} from "../data/constants.tsx";
+import { useDashContext } from "../context/ViewContext";
 
 function Experience({ theme }) {
+  const { contextVal } = useDashContext();
+  console.log("contextVal: (Experience)", contextVal);
   // loading bar element for left to right on animation on app load
   const loadingBarElement = document.querySelector(".loading-bar");
 
@@ -40,7 +43,7 @@ function Experience({ theme }) {
   const container = useRef();
 
   // loading progress hook
-  const { active, progress, errors, item, loaded, total } = useProgress();
+  const { progress, loaded } = useProgress();
 
   // useState
   const [animDist, setAnimDist] = useState(0);

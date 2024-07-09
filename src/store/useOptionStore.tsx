@@ -6,7 +6,7 @@ import { options } from "../data/options.jsx";
 import { objects, unselectedItem } from "../data/objects.jsx";
 import Item from "../data/item/Item.jsx";
 
-type State = {
+export type State = {
   currentItemSelected: Item;
   previousItemSelected: Item;
   currentPartName: string;
@@ -423,7 +423,7 @@ type State = {
   };
 };
 
-type Action = {
+export type Action = {
   updatePartTexture: (
     itemName: string,
     partName: string,

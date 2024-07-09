@@ -1256,6 +1256,7 @@ export default function Scene({
         <group
           // position={[o.position.x, o.position.y, o.position.z]}
           position={[0, 0, 0]}
+          visible={false}
         >
           <CenterAnchor
             theme={theme}
@@ -1273,18 +1274,19 @@ export default function Scene({
           onPointerOut={() => hover(false)}
         >
           <mesh
-            position={[0, open || showPhotos ? ARROW_ICON.arrowY : -0.3, 0]}
+            // position={[0, open || showPhotos ? ARROW_ICON.arrowY : -0.3, 0]}
+            position={[0, ARROW_ICON.arrowY, 0]}
             scale={0.0055}
             rotation={[arrowRotationX, 0, 0]}
           >
             <ArrowIcon
               currentColor={textures.alabasterPaint}
               currentTexture={textures.whiteTexture}
-              // toggleInfoBox={toggleInfoBox}
-              // togglePhotoBox={togglePhotoBox}
-              // handlePartOption={handlePartOption}
-              // // openUserEmail={openUserEmail}
-              // theme={theme}
+              toggleInfoBox={toggleInfoBox}
+              togglePhotoBox={togglePhotoBox}
+              handlePartOption={handlePartOption}
+              // openUserEmail={openUserEmail}
+              theme={theme}
             />
           </mesh>
           <group

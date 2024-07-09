@@ -9,7 +9,7 @@ import ReadMoreIcon from "@mui/icons-material/ReadMore";
 import IconButton from "@mui/material/IconButton";
 import { useOptionStore } from "../../store/useOptionStore.tsx";
 import { allImages } from "../../data/objects.jsx";
-import OptionBox from "./OptionBox.jsx";
+// import OptionBox from "./OptionBox.jsx";
 
 import { objects, shopItems } from "../../data/objects.jsx";
 import { options, allOptions } from "../../data/options.jsx";

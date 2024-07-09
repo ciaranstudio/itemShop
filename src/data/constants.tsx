@@ -42,8 +42,7 @@ export const ORBIT_CONTROLS = {
 // Arrow icon
 // carrot arrow shaped icon bottom center (UI element)
 export const ARROW_ICON = {
-  arrowY: 0,
-  // arrowY: -0.3,
+  arrowY: -0.3,
 };
 
 // GSAP

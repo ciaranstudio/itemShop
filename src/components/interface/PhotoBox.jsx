@@ -4,11 +4,17 @@ import { ThemeProvider } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import IconButton from "@mui/material/IconButton";
-import SimpleSlider from "./SimpleSlider.jsx";
+// import SimpleSlider from "./SimpleSlider.jsx";
 import { allImages } from "../../data/objects.jsx";
 import { useOptionStore } from "../../store/useOptionStore.tsx";
+import PhotoGrid from "./PhotoGrid.jsx";
 
-export default function PhotoBox({ togglePhotoBox, theme }) {
+export default function PhotoBox({
+  toggleInfoBox,
+  handlePartOption,
+  togglePhotoBox,
+  theme,
+}) {
   // state from store
   const currentItemSelected = useOptionStore(
     (state) => state.currentItemSelected,
@@ -56,9 +62,16 @@ export default function PhotoBox({ togglePhotoBox, theme }) {
               {allPhotos ? "Images" : currentItemSelected.itemTitle}
             </Typography>
           </div>
-          <SimpleSlider
+          {/* <SimpleSlider
             images={allPhotos ? allImages : currentItemSelected.images}
-          />
+          /> */}
+          {/* <PhotoGrid
+            toggleInfoBox={toggleInfoBox}
+            theme={theme}
+            // openUserEmail={openUserEmail}
+            handlePartOption={handlePartOption}
+            togglePhotoBox={togglePhotoBox}
+          /> */}
         </div>
       </ThemeProvider>
     </Html>

@@ -5,8 +5,9 @@ import "slick-carousel/slick/slick-theme.css";
 import { SnipcartProvider } from "use-snipcart";
 import { Toaster } from "react-hot-toast";
 import ResponsiveAppBar from "./components/interface/header/AppBar.jsx";
-import Experience from "./Experience.jsx";
+import Experience from "./components/Experience.jsx";
 import { createTheme } from "@mui/material";
+import { DashContextProvider } from "./context/ViewContext";
 
 function App() {
   const theme = createTheme({
@@ -32,13 +33,15 @@ function App() {
 
   return (
     <>
-      <Toaster reverseOrder={true} />
-      <SnipcartProvider>
-        <ResponsiveAppBar theme={theme} />
-        {/* <ResponsiveBottomBar theme={theme} /> */}
-        <Experience theme={theme} />
-      </SnipcartProvider>
-      <div id="footer">Eli Gfell Studio</div>
+      <DashContextProvider>
+        <Toaster reverseOrder={true} />
+        <SnipcartProvider>
+          <ResponsiveAppBar theme={theme} />
+          {/* <ResponsiveBottomBar theme={theme} /> */}
+          <Experience theme={theme} />
+        </SnipcartProvider>
+        <div id="footer">Eli Gfell Studio</div>
+      </DashContextProvider>
       {/* <div className="bottom-B-test">
         color options toggle, info button, open / close parts
       </div> */}

@@ -9,28 +9,28 @@ import ReadMoreIcon from "@mui/icons-material/ReadMore";
 import IconButton from "@mui/material/IconButton";
 import { useOptionStore } from "../../store/useOptionStore.tsx";
 import { allImages } from "../../data/objects.jsx";
-import OptionBox from "./OptionBox.jsx";
+// import OptionBox from "./OptionBox.jsx";
 
 import { objects, shopItems } from "../../data/objects.jsx";
 import { options, allOptions } from "../../data/options.jsx";
-import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import FilterOutlinedIcon from "@mui/icons-material/FilterOutlined";
-import CircleIcon from "@mui/icons-material/Circle";
-import UnfoldLessIcon from "@mui/icons-material/UnfoldLess";
-import UnfoldMoreIcon from "@mui/icons-material/UnfoldMore";
-import OpenInFullIcon from "@mui/icons-material/OpenInFull";
-import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
-import BuyButton from "./BuyButton.jsx";
-import SplitButton from "./SplitButton.jsx";
+// import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+// import FilterOutlinedIcon from "@mui/icons-material/FilterOutlined";
+// import CircleIcon from "@mui/icons-material/Circle";
+// import UnfoldLessIcon from "@mui/icons-material/UnfoldLess";
+// import UnfoldMoreIcon from "@mui/icons-material/UnfoldMore";
+// import OpenInFullIcon from "@mui/icons-material/OpenInFull";
+// import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
+// import BuyButton from "./BuyButton.jsx";
+// import SplitButton from "./SplitButton.jsx";
 import useWindowDimensions from "../../hooks/useWindowDimensions.jsx";
-import Button from "@mui/material/Button";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
+// import Button from "@mui/material/Button";
+// import Menu from "@mui/material/Menu";
+// import MenuItem from "@mui/material/MenuItem";
+// import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
 import toast from "react-hot-toast";
 import { OPTION_BOX_POS_Y } from "../../data/constants.tsx";
 
-export default function HtmlBox({
+export default function PhotoGrid({
   toggleInfoBox,
   theme,
   handlePartOption,
@@ -252,7 +252,7 @@ export default function HtmlBox({
             paddingBottom: "1rem",
             overflow: "auto",
             pointerEvents: "auto",
-            marginTop: "1.5rem",
+            marginTop: "0.5rem",
           }}
         >
           {/* <div

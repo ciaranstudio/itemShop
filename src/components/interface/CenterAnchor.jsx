@@ -1,8 +1,8 @@
 import React, { useState, useLayoutEffect } from "react";
 import { useGLTF, useTexture } from "@react-three/drei";
-import HtmlBox from "./HtmlBox.jsx";
+import PhotoGrid from "./PhotoGrid.jsx";
 import PhotoBox from "./PhotoBox.jsx";
-import OptionBox from "./OptionBox.jsx";
+// import OptionBox from "./OptionBox.jsx";
 import { useOptionStore } from "../../store/useOptionStore.tsx";
 
 export const CenterAnchor = ({
@@ -11,10 +11,10 @@ export const CenterAnchor = ({
   currentTexture,
   toggleInfoBox,
   togglePhotoBox,
-  handlePartOption,
+  // handlePartOption,
   // openUserEmail,
 }) => {
-  const { scene, nodes, materials } = useGLTF("./models/arrow.gltf");
+  const { scene, nodes, materials } = useGLTF("./models/bag.gltf");
   const [annotations, setAnnotations] = useState([]);
 
   // texture
@@ -41,7 +41,7 @@ export const CenterAnchor = ({
   const activeCamAnim = useOptionStore((state) => state.activeCamAnim);
 
   useLayoutEffect(() => {
-    Object.assign(materials.Material, {
+    Object.assign(materials._0043_SaddleBrown, {
       map: map,
       normalMap: normalMap,
       roughnessMap: roughnessMap,
@@ -72,20 +72,25 @@ export const CenterAnchor = ({
                 // position={[o.position.x, o.position.y, o.position.z]}
                 position={[0, 0, 0]}
               >
-                <OptionBox
+                {/* <OptionBox
                   handlePartOption={handlePartOption}
                   toggleInfoBox={toggleInfoBox}
                   togglePhotoBox={togglePhotoBox}
                   theme={theme}
-                />
-                <HtmlBox
+                /> */}
+                <PhotoGrid
                   toggleInfoBox={toggleInfoBox}
-                  theme={theme}
                   // openUserEmail={openUserEmail}
-                  handlePartOption={handlePartOption}
+                  // handlePartOption={handlePartOption}
                   togglePhotoBox={togglePhotoBox}
+                  theme={theme}
                 />
-                <PhotoBox togglePhotoBox={togglePhotoBox} theme={theme} />
+                <PhotoBox
+                  toggleInfoBox={toggleInfoBox}
+                  // handlePartOption={handlePartOption}
+                  togglePhotoBox={togglePhotoBox}
+                  theme={theme}
+                />
               </group>,
             );
           }
