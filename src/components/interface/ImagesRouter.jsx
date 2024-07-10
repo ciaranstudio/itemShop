@@ -61,7 +61,7 @@ export default function ImagesRouter({ toggleInfoBox, togglePhotoBox, theme }) {
               toggleInfoBox={toggleInfoBox}
               togglePhotoBox={togglePhotoBox}
               theme={theme}
-              images={[allImages[2], allImages[3], allImages[2]]}
+              images={[allImages[2], allImages[2], allImages[2]]}
               flag={true}
             />
           ),
@@ -76,6 +76,34 @@ export default function ImagesRouter({ toggleInfoBox, togglePhotoBox, theme }) {
               togglePhotoBox={togglePhotoBox}
               theme={theme}
               images={[allImages[1], allImages[1], allImages[1]]}
+              flag={true}
+            />
+          ),
+          // loader: contactLoader,
+          // action: contactAction,
+        },
+        {
+          path: "custom",
+          element: (
+            <PhotoGrid
+              toggleInfoBox={toggleInfoBox}
+              togglePhotoBox={togglePhotoBox}
+              theme={theme}
+              images={[allImages[3], allImages[3], allImages[3]]}
+              flag={true}
+            />
+          ),
+          // loader: contactLoader,
+          // action: contactAction,
+        },
+        {
+          path: "exhibitions",
+          element: (
+            <PhotoGrid
+              toggleInfoBox={toggleInfoBox}
+              togglePhotoBox={togglePhotoBox}
+              theme={theme}
+              images={[allImages[4], allImages[4], allImages[4]]}
               flag={true}
             />
           ),

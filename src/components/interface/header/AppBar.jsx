@@ -16,6 +16,8 @@ import { styled } from "@mui/material/styles";
 import { createSvgIcon } from "@mui/material/utils";
 import { useOptionStore } from "../../../store/useOptionStore.tsx";
 import { useSnipcart } from "use-snipcart";
+// import { Link } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 const pages = [
   { navTitle: "About", menuItem: "about" },
@@ -105,6 +107,8 @@ function ResponsiveAppBar({ theme }) {
     (state) => state.setShowPartOptions,
   );
 
+  // const navigate = useNavigate();
+
   const selectHandler = (e, menuItem) => {
     // console.log(menuItem);
     handleCloseNavMenu();
@@ -115,9 +119,9 @@ function ResponsiveAppBar({ theme }) {
         if (!open) {
           setOpen(true);
         }
-
         setShowPhotos(false);
         setAllPhotos(false);
+        // navigate("/about");
         break;
       case "images":
         setAllPhotos(true);
@@ -127,6 +131,7 @@ function ResponsiveAppBar({ theme }) {
 
         setOpen(false);
         setAboutInfo(false);
+        // navigate("/images");
         break;
       case "custom":
         window.open(
@@ -309,6 +314,7 @@ function ResponsiveAppBar({ theme }) {
                   }}
                 >
                   {page.navTitle}
+                  {/* <Link to={`/${page.menuItem}`}>{page.navTitle}</Link> */}
                 </Button>
               ))}
             </Box>

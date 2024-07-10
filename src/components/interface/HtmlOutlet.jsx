@@ -66,59 +66,36 @@ export default function HtmlOutlet({ toggleInfoBox, togglePhotoBox, theme }) {
 
   return (
     <Html center position={[0, htmlPosY, 0]}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <div
-          className="info"
-          style={{
-            display: open ? "block" : "none",
-            paddingBottom: "1rem",
-            overflow: "auto",
-            pointerEvents: "auto",
-            marginTop: "0.5rem",
-          }}
-        >
-          <span
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              height: "100%",
-              pointerEvents: "auto",
-              zIndex: "1",
+      <span
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          height: "100%",
+          pointerEvents: "auto",
+          zIndex: "1",
+        }}
+      >
+        <span>
+          <IconButton
+            onClick={(e) => toggleInfoBox(e)}
+            color="inherit"
+            sx={{
+              padding: "0.5rem",
             }}
+            aria-label="close info box"
           >
-            <IconButton
-              onClick={(e) => toggleInfoBox(e)}
-              color="inherit"
-              sx={{
-                padding: "0.5rem",
-              }}
-              aria-label="close info box"
-            >
-              <CloseOutlinedIcon fontSize="small" color="success" />
-            </IconButton>
-          </span>
-          {/* <Outlet /> */}
-          {/* <PhotoGrid
-            toggleInfoBox={toggleInfoBox}
-            // openUserEmail={openUserEmail}
-            // handlePartOption={handlePartOption}
-            togglePhotoBox={togglePhotoBox}
-            theme={theme}
-            image={allImages}
-          /> */}
-
-          {/* <RouterProvider router={router} /> */}
-          <ImagesRouter
-            toggleInfoBox={toggleInfoBox}
-            // openUserEmail={openUserEmail}
-            // handlePartOption={handlePartOption}
-            togglePhotoBox={togglePhotoBox}
-            theme={theme}
-          />
-        </div>
-      </ThemeProvider>
+            <CloseOutlinedIcon fontSize="small" color="success" />
+          </IconButton>
+        </span>
+      </span>
+      <ImagesRouter
+        toggleInfoBox={toggleInfoBox}
+        // openUserEmail={openUserEmail}
+        // handlePartOption={handlePartOption}
+        togglePhotoBox={togglePhotoBox}
+        theme={theme}
+      />
     </Html>
   );
 }

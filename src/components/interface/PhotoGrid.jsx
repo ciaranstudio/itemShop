@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-// import { Html } from "@react-three/drei";
-// import CssBaseline from "@mui/material/CssBaseline";
-// import { ThemeProvider } from "@mui/material";
+import { Html } from "@react-three/drei";
+import CssBaseline from "@mui/material/CssBaseline";
+import { ThemeProvider } from "@mui/material";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
@@ -65,75 +65,89 @@ export default function PhotoGrid({
   }, [location]);
 
   return (
-    <>
-      {flag ? (
-        <h2>{routerLocation.pathname === "/" ? "home" : "not home"}</h2>
-      ) : (
-        <h2>false</h2>
-      )}
-      {/* photos grid */}
-      <span
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <div
+        className="info"
         style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          height: "100%",
-          pointerEvents: "auto",
-          zIndex: "1",
-        }}
-      >
-        <span>
-          <IconButton
-            onClick={(e) => toggleInfoBox(e)}
-            color="inherit"
-            sx={{
-              padding: "0.5rem",
-            }}
-            aria-label="close info box"
-          >
-            <CloseOutlinedIcon fontSize="small" color="success" />
-          </IconButton>
-        </span>
-      </span>
-      <Box
-        sx={{
-          display: "grid",
-          gridTemplateColumns: {
-            sm: "auto auto",
-            md: "auto auto auto",
-            lg: "auto auto auto auto",
-          },
-          columnGap: "1rem",
-          rowGap: "1rem",
-          borderRadius: "0.75rem",
-          // border: "0.085rem solid rgb(155, 155, 155)",
+          display: open ? "block" : "none",
+          paddingBottom: "1rem",
           overflow: "auto",
+          pointerEvents: open ? "auto" : "none",
+          marginTop: "0.5rem",
         }}
       >
-        {images.map((m, index) => {
-          return (
-            <img
-              key={index}
-              style={{
-                objectFit: "contain",
-                width: "100%",
-              }}
-              src={m.imgPath}
-            ></img>
-          );
-        })}
-        <span>
-          <Link to="/about">about</Link>
-        </span>
-        <br></br>
-        <span>
-          <Link to="/images">images</Link>
-        </span>
-        <br></br>
-        <span>
-          <Link to="/">home</Link>
-        </span>
-      </Box>
-    </>
+        <>
+          {flag ? (
+            <h2>{routerLocation.pathname === "/" ? "home" : "not home"}</h2>
+          ) : (
+            <h2>false</h2>
+          )}
+          {/* photos grid */}
+          <span
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              height: "100%",
+              pointerEvents: "auto",
+              zIndex: "1",
+            }}
+          >
+            <span>
+              <IconButton
+                onClick={(e) => toggleInfoBox(e)}
+                color="inherit"
+                sx={{
+                  padding: "0.5rem",
+                }}
+                aria-label="close info box"
+              >
+                <CloseOutlinedIcon fontSize="small" color="success" />
+              </IconButton>
+            </span>
+          </span>
+          <Box
+            sx={{
+              display: "grid",
+              gridTemplateColumns: {
+                sm: "auto auto",
+                md: "auto auto auto",
+                lg: "auto auto auto auto",
+              },
+              columnGap: "1rem",
+              rowGap: "1rem",
+              borderRadius: "0.75rem",
+              // border: "0.085rem solid rgb(155, 155, 155)",
+              overflow: "auto",
+            }}
+          >
+            {images.map((m, index) => {
+              return (
+                <img
+                  key={index}
+                  style={{
+                    objectFit: "contain",
+                    width: "100%",
+                  }}
+                  src={m.imgPath}
+                ></img>
+              );
+            })}
+            <span>
+              <Link to="/about">about</Link>
+            </span>
+            <br></br>
+            <span>
+              <Link to="/images">images</Link>
+            </span>
+            <br></br>
+            <span>
+              <Link to="/">home</Link>
+            </span>
+          </Box>
+        </>
+      </div>
+    </ThemeProvider>
   );
 }
