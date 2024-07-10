@@ -8,7 +8,7 @@ import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import ReadMoreIcon from "@mui/icons-material/ReadMore";
 import IconButton from "@mui/material/IconButton";
 import { useOptionStore } from "../../store/useOptionStore.tsx";
-
+import { allImages } from "../../data/objects.jsx";
 // import OptionBox from "./OptionBox.jsx";
 // import { objects, shopItems } from "../../data/objects.jsx";
 // import { options, allOptions } from "../../data/options.jsx";
@@ -29,24 +29,15 @@ import { useOptionStore } from "../../store/useOptionStore.tsx";
 // import toast from "react-hot-toast";
 // import { OPTION_BOX_POS_Y } from "../../data/constants.tsx";
 
-import { Link, useLocation } from "react-router-dom";
-import { useDashContext } from "../../context/ViewContext";
-
-export default function PhotoGrid({
+export default function AboutInfoBox({
   toggleInfoBox,
   theme,
   // handlePartOption,
   // togglePhotoBox,
-  images,
-  flag,
 }) {
   // infobox Y axis position for drei Html component
   // const htmlPosY = 50;
   const htmlPosY = 0;
-
-  const routerLocation = useLocation();
-  // const { location, setLocation } = useDashContext();
-
   // about text blocks
   const aboutTextArr = [
     {
@@ -89,10 +80,6 @@ export default function PhotoGrid({
 
   // useEffect
   useEffect(() => {
-    console.log("routerLocation: ", routerLocation);
-    // setLocation(routerLocation);
-  }, [routerLocation]);
-  useEffect(() => {
     let nextIndex;
     if (aboutIndex === 4) {
       nextIndex = 0;
@@ -119,11 +106,6 @@ export default function PhotoGrid({
 
   return (
     <>
-      {flag ? (
-        <h2>{routerLocation.pathname === "/" ? "home" : "not home"}</h2>
-      ) : (
-        <h2>false</h2>
-      )}
       {/* photos grid */}
       <span
         style={{
@@ -135,18 +117,16 @@ export default function PhotoGrid({
           zIndex: "1",
         }}
       >
-        <span>
-          <IconButton
-            onClick={(e) => toggleInfoBox(e)}
-            color="inherit"
-            sx={{
-              padding: "0.5rem",
-            }}
-            aria-label="close info box"
-          >
-            <CloseOutlinedIcon fontSize="small" color="success" />
-          </IconButton>
-        </span>
+        <IconButton
+          onClick={(e) => toggleInfoBox(e)}
+          color="inherit"
+          sx={{
+            padding: "0.5rem",
+          }}
+          aria-label="close info box"
+        >
+          <CloseOutlinedIcon fontSize="small" color="success" />
+        </IconButton>
       </span>
       <Box
         sx={{
@@ -163,7 +143,7 @@ export default function PhotoGrid({
           overflow: "auto",
         }}
       >
-        {images.map((m, index) => {
+        {allImages.map((m, index) => {
           return (
             <img
               key={index}
@@ -267,13 +247,6 @@ export default function PhotoGrid({
                 <ReadMoreIcon color="secondary" />
               </IconButton>
             </div>
-            <span>
-              <Link to="/about">about</Link>
-            </span>
-            <br></br>
-            <span>
-              <Link to="/">home</Link>
-            </span>
           </div>
         </Box>
       </Box>
