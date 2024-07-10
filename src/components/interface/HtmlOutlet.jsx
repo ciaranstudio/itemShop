@@ -9,7 +9,7 @@ import PhotoGrid from "./PhotoGrid.jsx";
 import PhotoBox from "./PhotoBox.jsx";
 import { allImages } from "../../data/objects.jsx";
 import ImagesRouter from "./ImagesRouter.jsx";
-import { Link } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 // import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -99,12 +99,14 @@ export default function HtmlOutlet({ toggleInfoBox, togglePhotoBox, theme }) {
               <CloseOutlinedIcon fontSize="small" color="success" />
             </IconButton>
           </span>
+          {/* <Outlet /> */}
           {/* <PhotoGrid
             toggleInfoBox={toggleInfoBox}
             // openUserEmail={openUserEmail}
             // handlePartOption={handlePartOption}
             togglePhotoBox={togglePhotoBox}
             theme={theme}
+            image={allImages}
           /> */}
 
           {/* <RouterProvider router={router} /> */}

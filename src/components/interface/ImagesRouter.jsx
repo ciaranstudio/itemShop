@@ -8,6 +8,7 @@ import { useOptionStore } from "../../store/useOptionStore.tsx";
 import PhotoGrid from "./PhotoGrid.jsx";
 import PhotoBox from "./PhotoBox.jsx";
 import { allImages } from "../../data/objects.jsx";
+import { Outlet } from "react-router-dom";
 
 import {
   createBrowserRouter,
@@ -15,20 +16,43 @@ import {
   Link,
   useLocation,
 } from "react-router-dom";
+import { DashContextProvider } from "../../context/ViewContext";
+import HtmlOutlet from "./HtmlOutlet.jsx";
 
 export default function ImagesRouter({ toggleInfoBox, togglePhotoBox, theme }) {
   const router = createBrowserRouter([
     {
+      // path: "/",
+      // element: (
+      //   <PhotoGrid
+      //     toggleInfoBox={toggleInfoBox}
+      //     togglePhotoBox={togglePhotoBox}
+      //     theme={theme}
+      //     images={[allImages[0], allImages[1], allImages[2]]}
+      //     flag={true}
+      //   />
+      // ),
+      // path: "about",
+      // element: (
+      //   <PhotoGrid
+      //     toggleInfoBox={toggleInfoBox}
+      //     togglePhotoBox={togglePhotoBox}
+      //     theme={theme}
+      //     images={[allImages[2], allImages[3], allImages[2]]}
+      //     flag={true}
+      //   />
+      // ),
+
+      // id: "root",
       path: "/",
       element: (
-        <PhotoGrid
-          toggleInfoBox={toggleInfoBox}
-          togglePhotoBox={togglePhotoBox}
-          theme={theme}
-          images={[allImages[0], allImages[1], allImages[2]]}
-          flag={true}
-        />
+        <>
+          <Outlet />
+        </>
       ),
+      // errorElement: <ErrorPage />,
+      // loader: rootLoader,
+      // action: rootAction,
       children: [
         {
           path: "about",
@@ -37,10 +61,26 @@ export default function ImagesRouter({ toggleInfoBox, togglePhotoBox, theme }) {
               toggleInfoBox={toggleInfoBox}
               togglePhotoBox={togglePhotoBox}
               theme={theme}
-              images={[allImages[3], allImages[4], allImages[5]]}
-              flag={false}
+              images={[allImages[2], allImages[3], allImages[2]]}
+              flag={true}
             />
           ),
+          // loader: contactLoader,
+          // action: contactAction,
+        },
+        {
+          path: "images",
+          element: (
+            <PhotoGrid
+              toggleInfoBox={toggleInfoBox}
+              togglePhotoBox={togglePhotoBox}
+              theme={theme}
+              images={[allImages[1], allImages[1], allImages[1]]}
+              flag={true}
+            />
+          ),
+          // loader: contactLoader,
+          // action: contactAction,
         },
       ],
     },
@@ -69,5 +109,9 @@ export default function ImagesRouter({ toggleInfoBox, togglePhotoBox, theme }) {
   // actions from store
   // functions
 
-  return <RouterProvider router={router} />;
+  return (
+    <DashContextProvider>
+      <RouterProvider router={router} />
+    </DashContextProvider>
+  );
 }

@@ -6,6 +6,7 @@ import { useGLTF, useTexture } from "@react-three/drei";
 import { useOptionStore } from "../../store/useOptionStore.tsx";
 import HtmlOutlet from "./HtmlOutlet.jsx";
 import { useDashContext } from "../../context/ViewContext";
+import ImagesRouter from "./ImagesRouter.jsx";
 
 export const CenterAnchor = ({
   theme,
@@ -21,7 +22,7 @@ export const CenterAnchor = ({
   const [annotations, setAnnotations] = useState([]);
 
   useEffect(() => {
-    setLocation("fuck you");
+    // setLocation(location);
     console.log("dash context location: ", location);
   }, [location]);
 
@@ -106,6 +107,13 @@ export const CenterAnchor = ({
                   togglePhotoBox={togglePhotoBox}
                   theme={theme}
                 />
+                {/* <ImagesRouter
+                  toggleInfoBox={toggleInfoBox}
+                  // openUserEmail={openUserEmail}
+                  // handlePartOption={handlePartOption}
+                  togglePhotoBox={togglePhotoBox}
+                  theme={theme}
+                /> */}
               </group>,
             );
           }
@@ -128,6 +136,7 @@ export const CenterAnchor = ({
     allPhotos,
     aboutInfo,
     mobileView,
+    location,
   ]);
 
   useLayoutEffect(() => {

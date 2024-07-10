@@ -21,7 +21,7 @@ import { useDashContext } from "../context/ViewContext";
 
 function Experience({ theme }) {
   const { contextVal } = useDashContext();
-  console.log("contextVal: (Experience)", contextVal);
+  // console.log("contextVal: (Experience)", contextVal);
   // loading bar element for left to right on animation on app load
   const loadingBarElement = document.querySelector(".loading-bar");
 

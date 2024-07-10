@@ -28,7 +28,7 @@ export const useDashContext = () =>
 
 export const DashContextProvider = ({ children }: PropsWithChildren<{}>) => {
   const storeState = useOptionStore((state) => state);
-  console.log("storeState: ", storeState);
+  // console.log("storeState: ", storeState);
   const [contextVal, setContextVal] =
     useState<IDashboardContext["contextVal"]>(storeState);
 
