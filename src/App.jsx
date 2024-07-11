@@ -8,6 +8,7 @@ import ResponsiveAppBar from "./components/interface/header/AppBar.jsx";
 import Experience from "./components/Experience.jsx";
 import { createTheme } from "@mui/material";
 import { DashContextProvider } from "./context/ViewContext";
+// import ImagesRouter from "./components/interface/ImagesRouter.jsx";
 
 function App() {
   const theme = createTheme({
@@ -38,6 +39,7 @@ function App() {
         <SnipcartProvider>
           <ResponsiveAppBar theme={theme} />
           {/* <ResponsiveBottomBar theme={theme} /> */}
+          {/* <ImagesRouter theme={theme} /> */}
           <Experience theme={theme} />
         </SnipcartProvider>
         <div id="footer">Eli Gfell Studio</div>

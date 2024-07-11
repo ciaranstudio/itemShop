@@ -9,6 +9,7 @@ import PhotoGrid from "./PhotoGrid.jsx";
 import PhotoBox from "./PhotoBox.jsx";
 import { allImages } from "../../data/objects.jsx";
 import { Outlet } from "react-router-dom";
+import ResponsiveAppBar from "./header/AppBar.jsx";
 
 import {
   createBrowserRouter,
@@ -18,101 +19,103 @@ import {
 } from "react-router-dom";
 import { DashContextProvider } from "../../context/ViewContext";
 import HtmlOutlet from "./HtmlOutlet.jsx";
+import { SnipcartProvider } from "use-snipcart/useSnipcart.js";
+import { router } from "./router.jsx";
 
 export default function ImagesRouter({ toggleInfoBox, togglePhotoBox, theme }) {
-  const router = createBrowserRouter([
-    {
-      // path: "/",
-      // element: (
-      //   <PhotoGrid
-      //     toggleInfoBox={toggleInfoBox}
-      //     togglePhotoBox={togglePhotoBox}
-      //     theme={theme}
-      //     images={[allImages[0], allImages[1], allImages[2]]}
-      //     flag={true}
-      //   />
-      // ),
-      // path: "about",
-      // element: (
-      //   <PhotoGrid
-      //     toggleInfoBox={toggleInfoBox}
-      //     togglePhotoBox={togglePhotoBox}
-      //     theme={theme}
-      //     images={[allImages[2], allImages[3], allImages[2]]}
-      //     flag={true}
-      //   />
-      // ),
+  // const router = createBrowserRouter([
+  //   {
+  //     // path: "/",
+  //     // element: (
+  //     //   <PhotoGrid
+  //     //     toggleInfoBox={toggleInfoBox}
+  //     //     togglePhotoBox={togglePhotoBox}
+  //     //     theme={theme}
+  //     //     images={[allImages[0], allImages[1], allImages[2]]}
+  //     //     flag={true}
+  //     //   />
+  //     // ),
+  //     // path: "about",
+  //     // element: (
+  //     //   <PhotoGrid
+  //     //     toggleInfoBox={toggleInfoBox}
+  //     //     togglePhotoBox={togglePhotoBox}
+  //     //     theme={theme}
+  //     //     images={[allImages[2], allImages[3], allImages[2]]}
+  //     //     flag={true}
+  //     //   />
+  //     // ),
 
-      // id: "root",
-      path: "/",
-      element: (
-        <>
-          <Outlet />
-        </>
-      ),
-      // errorElement: <ErrorPage />,
-      // loader: rootLoader,
-      // action: rootAction,
-      children: [
-        {
-          path: "about",
-          element: (
-            <PhotoGrid
-              toggleInfoBox={toggleInfoBox}
-              togglePhotoBox={togglePhotoBox}
-              theme={theme}
-              images={[allImages[2], allImages[2], allImages[2]]}
-              flag={true}
-            />
-          ),
-          // loader: contactLoader,
-          // action: contactAction,
-        },
-        {
-          path: "images",
-          element: (
-            <PhotoGrid
-              toggleInfoBox={toggleInfoBox}
-              togglePhotoBox={togglePhotoBox}
-              theme={theme}
-              images={[allImages[1], allImages[1], allImages[1]]}
-              flag={true}
-            />
-          ),
-          // loader: contactLoader,
-          // action: contactAction,
-        },
-        {
-          path: "custom",
-          element: (
-            <PhotoGrid
-              toggleInfoBox={toggleInfoBox}
-              togglePhotoBox={togglePhotoBox}
-              theme={theme}
-              images={[allImages[3], allImages[3], allImages[3]]}
-              flag={true}
-            />
-          ),
-          // loader: contactLoader,
-          // action: contactAction,
-        },
-        {
-          path: "exhibitions",
-          element: (
-            <PhotoGrid
-              toggleInfoBox={toggleInfoBox}
-              togglePhotoBox={togglePhotoBox}
-              theme={theme}
-              images={[allImages[4], allImages[4], allImages[4]]}
-              flag={true}
-            />
-          ),
-          // loader: contactLoader,
-          // action: contactAction,
-        },
-      ],
-    },
-  ]);
+  //     // id: "root",
+  //     path: "/",
+  //     element: (
+  //       <>
+  //         <Outlet />
+  //       </>
+  //     ),
+  //     // errorElement: <ErrorPage />,
+  //     // loader: rootLoader,
+  //     // action: rootAction,
+  //     children: [
+  //       {
+  //         path: "about",
+  //         element: (
+  //           <PhotoGrid
+  //             toggleInfoBox={toggleInfoBox}
+  //             togglePhotoBox={togglePhotoBox}
+  //             theme={theme}
+  //             images={[allImages[2], allImages[2], allImages[2]]}
+  //             flag={true}
+  //           />
+  //         ),
+  //         // loader: contactLoader,
+  //         // action: contactAction,
+  //       },
+  //       {
+  //         path: "images",
+  //         element: (
+  //           <PhotoGrid
+  //             toggleInfoBox={toggleInfoBox}
+  //             togglePhotoBox={togglePhotoBox}
+  //             theme={theme}
+  //             images={[allImages[1], allImages[1], allImages[1]]}
+  //             flag={true}
+  //           />
+  //         ),
+  //         // loader: contactLoader,
+  //         // action: contactAction,
+  //       },
+  //       {
+  //         path: "custom",
+  //         element: (
+  //           <PhotoGrid
+  //             toggleInfoBox={toggleInfoBox}
+  //             togglePhotoBox={togglePhotoBox}
+  //             theme={theme}
+  //             images={[allImages[3], allImages[3], allImages[3]]}
+  //             flag={true}
+  //           />
+  //         ),
+  //         // loader: contactLoader,
+  //         // action: contactAction,
+  //       },
+  //       {
+  //         path: "exhibitions",
+  //         element: (
+  //           <PhotoGrid
+  //             toggleInfoBox={toggleInfoBox}
+  //             togglePhotoBox={togglePhotoBox}
+  //             theme={theme}
+  //             images={[allImages[4], allImages[4], allImages[4]]}
+  //             flag={true}
+  //           />
+  //         ),
+  //         // loader: contactLoader,
+  //         // action: contactAction,
+  //       },
+  //     ],
+  //   },
+  // ]);
   // infobox Y axis position for drei Html component
   // const htmlPosY = 50;
   const htmlPosY = 0;

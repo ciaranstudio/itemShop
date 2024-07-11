@@ -31,6 +31,7 @@ import { useOptionStore } from "../../store/useOptionStore.tsx";
 
 import { Link, useLocation } from "react-router-dom";
 import { useDashContext } from "../../context/ViewContext";
+import { router } from "./router.jsx";
 
 export default function PhotoGrid({
   toggleInfoBox,
@@ -40,6 +41,9 @@ export default function PhotoGrid({
   images,
   flag,
 }) {
+  const goTo = (route) => {
+    router.navigate(route);
+  };
   // infobox Y axis position for drei Html component
   // const htmlPosY = 50;
   const htmlPosY = 0;
@@ -70,7 +74,6 @@ export default function PhotoGrid({
       <div
         className="info"
         style={{
-          display: open ? "block" : "none",
           paddingBottom: "1rem",
           overflow: "auto",
           pointerEvents: open ? "auto" : "none",
@@ -96,7 +99,7 @@ export default function PhotoGrid({
           >
             <span>
               <IconButton
-                onClick={(e) => toggleInfoBox(e)}
+                onClick={() => goTo("/")}
                 color="inherit"
                 sx={{
                   padding: "0.5rem",

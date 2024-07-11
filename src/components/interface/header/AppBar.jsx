@@ -16,8 +16,8 @@ import { styled } from "@mui/material/styles";
 import { createSvgIcon } from "@mui/material/utils";
 import { useOptionStore } from "../../../store/useOptionStore.tsx";
 import { useSnipcart } from "use-snipcart";
-// import { Link } from "react-router-dom";
-// import { useNavigate } from "react-router-dom";
+import { redirect } from "react-router-dom";
+import { router } from "../router.jsx";
 
 const pages = [
   { navTitle: "About", menuItem: "about" },
@@ -35,6 +35,10 @@ function ResponsiveAppBar({ theme }) {
   const snipcart = useSnipcart();
   const { cart = {} } = useSnipcart();
   const { subtotal = "0.00" } = cart;
+
+  const goTo = (route) => {
+    router.navigate(route);
+  };
 
   useEffect(() => {
     // let state = snipcart.getState();
@@ -107,31 +111,32 @@ function ResponsiveAppBar({ theme }) {
     (state) => state.setShowPartOptions,
   );
 
-  // const navigate = useNavigate();
-
   const selectHandler = (e, menuItem) => {
     // console.log(menuItem);
     handleCloseNavMenu();
     setShowPartOptions(false);
     switch (menuItem) {
       case "about":
-        setAboutInfo(true);
-        if (!open) {
-          setOpen(true);
-        }
-        setShowPhotos(false);
-        setAllPhotos(false);
-        // navigate("/about");
+        // setAboutInfo(true);
+        // if (!open) {
+        //   setOpen(true);
+        // }
+        // setShowPhotos(false);
+        // setAllPhotos(false);
+        // redirect("/about");
+        goTo("/about");
         break;
       case "images":
-        setAllPhotos(true);
-        if (!showPhotos) {
-          setShowPhotos(true);
-        }
+        // setAllPhotos(true);
+        // if (!showPhotos) {
+        //   setShowPhotos(true);
+        // }
 
-        setOpen(false);
-        setAboutInfo(false);
+        // setOpen(false);
+        // setAboutInfo(false);
         // navigate("/images");
+        // redirect("/images");
+        goTo("/images");
         break;
       case "custom":
         window.open(
@@ -139,6 +144,8 @@ function ResponsiveAppBar({ theme }) {
           "_blank",
           "noreferrer",
         );
+        // redirect("/custom");
+        goTo("/custom");
         break;
       case "contact":
         window.open(
@@ -146,6 +153,8 @@ function ResponsiveAppBar({ theme }) {
           "_blank",
           "noreferrer",
         );
+        // redirect("/contact");
+        goTo("/contact");
         break;
       case "exhibitions":
         window.open(
@@ -153,6 +162,8 @@ function ResponsiveAppBar({ theme }) {
           "_blank",
           "noreferrer",
         );
+        // redirect("/exhibitions");
+        goTo("/exhibitions");
         break;
     }
   };
@@ -254,6 +265,7 @@ function ResponsiveAppBar({ theme }) {
                           : false
                     }
                   >
+                    {/* <Link to={`/${page.menuItem}`}> */}
                     <Typography
                       textAlign="center"
                       sx={{
@@ -263,6 +275,7 @@ function ResponsiveAppBar({ theme }) {
                     >
                       {page.navTitle}
                     </Typography>
+                    {/* </Link> */}
                   </MenuItem>
                 ))}
               </Menu>
@@ -349,7 +362,6 @@ function ResponsiveAppBar({ theme }) {
           </Toolbar>
         </Container>
       </AppBar>
-      {/* <ResponsiveBottomBar /> */}
     </>
   );
 }

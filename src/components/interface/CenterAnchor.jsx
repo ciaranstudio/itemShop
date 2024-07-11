@@ -6,7 +6,7 @@ import { useGLTF, useTexture } from "@react-three/drei";
 import { useOptionStore } from "../../store/useOptionStore.tsx";
 import HtmlOutlet from "./HtmlOutlet.jsx";
 import { useDashContext } from "../../context/ViewContext";
-import ImagesRouter from "./ImagesRouter.jsx";
+// import ImagesRouter from "./ImagesRouter.jsx";
 
 export const CenterAnchor = ({
   theme,

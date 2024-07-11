@@ -10,10 +10,14 @@ import PhotoBox from "./PhotoBox.jsx";
 import { allImages } from "../../data/objects.jsx";
 import ImagesRouter from "./ImagesRouter.jsx";
 import { Outlet } from "react-router-dom";
+import { router } from "./router.jsx";
 
 // import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 export default function HtmlOutlet({ toggleInfoBox, togglePhotoBox, theme }) {
+  const goTo = (route) => {
+    router.navigate(route);
+  };
   // const router = createBrowserRouter([
   //   {
   //     path: "/",
