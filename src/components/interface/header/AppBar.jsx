@@ -16,7 +16,6 @@ import { styled } from "@mui/material/styles";
 import { createSvgIcon } from "@mui/material/utils";
 import { useOptionStore } from "../../../store/useOptionStore.tsx";
 import { useSnipcart } from "use-snipcart";
-import { redirect } from "react-router-dom";
 import { router } from "../router.jsx";
 
 const pages = [
@@ -170,7 +169,7 @@ function ResponsiveAppBar({ theme }) {
 
   const LogoIcon = createSvgIcon(
     <svg viewBox="0 -10 100 100" width="100">
-      <image href="logoTape.png" height="100" width="100" />
+      <image href="logoBlenderRender.png" height="100" width="100" />
     </svg>,
     "Plus",
   );
