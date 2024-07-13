@@ -37,7 +37,7 @@ export default function RingCircle({ selected, isShelf, itemName, forArrow }) {
       visible={selected}
       depthTest={false}
     >
-      <circleGeometry args={[forArrow ? 0.075 : 0.35, 64]} />
+      <circleGeometry args={[forArrow ? 0.075 : 0.42, 64]} />
       <meshBasicMaterial transparent opacity={0} side={THREE.DoubleSide} />
       <Edges
         threshold={90}

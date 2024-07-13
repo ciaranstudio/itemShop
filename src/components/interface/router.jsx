@@ -46,13 +46,27 @@ export const router = createBrowserRouter([
     // action: rootAction,
     children: [
       {
+        path: "sale",
+        element: (
+          <PhotoGrid
+            toggleInfoBox={toggleInfoBox}
+            togglePhotoBox={togglePhotoBox}
+            theme={theme}
+            images={[allImages[0], allImages[0], allImages[0]]}
+            flag={true}
+          />
+        ),
+        // loader: contactLoader,
+        // action: contactAction,
+      },
+      {
         path: "about",
         element: (
           <PhotoGrid
             toggleInfoBox={toggleInfoBox}
             togglePhotoBox={togglePhotoBox}
             theme={theme}
-            images={[allImages[2], allImages[2], allImages[2]]}
+            images={[allImages[1], allImages[1], allImages[1]]}
             flag={true}
           />
         ),
@@ -66,7 +80,7 @@ export const router = createBrowserRouter([
             toggleInfoBox={toggleInfoBox}
             togglePhotoBox={togglePhotoBox}
             theme={theme}
-            images={[allImages[1], allImages[1], allImages[1]]}
+            images={[allImages[2], allImages[2], allImages[2]]}
             flag={true}
           />
         ),
@@ -98,6 +112,22 @@ export const router = createBrowserRouter([
             flag={true}
           />
         ),
+
+        // loader: contactLoader,
+        // action: contactAction,
+      },
+      {
+        path: "contact",
+        element: (
+          <PhotoGrid
+            toggleInfoBox={toggleInfoBox}
+            togglePhotoBox={togglePhotoBox}
+            theme={theme}
+            images={[allImages[5], allImages[5], allImages[5]]}
+            flag={true}
+          />
+        ),
+
         // loader: contactLoader,
         // action: contactAction,
       },

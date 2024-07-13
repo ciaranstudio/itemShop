@@ -310,10 +310,10 @@ export default function OptionsOnly({
               <span
                 style={{
                   display: "grid",
-                  gridTemplateColumns: "auto auto auto auto auto",
+                  gridTemplateColumns: "auto auto auto auto",
                   textAlign: "center",
                   marginTop: "1rem",
-                  border: "0.08rem solid rgb(233, 234, 233)",
+                  border: "0.05rem solid rgb(233, 234, 233)",
                   borderRadius: "1rem",
                   // backgroundColor: "rgb(233, 234, 233)",
                 }}
@@ -328,7 +328,7 @@ export default function OptionsOnly({
                     disabled={animActive}
                   >
                     <KeyboardReturnIcon
-                      color={!animActive ? "info" : "secondary"}
+                      color={!animActive ? "primary" : "secondary"}
                       fontSize="inherit"
                     />
                   </IconButton>
@@ -343,7 +343,7 @@ export default function OptionsOnly({
                     aria-label="animate item parts to explode apart"
                   >
                     <ExpandIcon
-                      color={animActive ? "success" : "secondary"}
+                      color={animActive ? "secondary" : "primary"}
                       fontSize="inherit"
                     />
                   </IconButton>
@@ -357,10 +357,10 @@ export default function OptionsOnly({
                       padding: "0.5rem",
                     }}
                   >
-                    <InfoOutlinedIcon color="info" fontSize="inherit" />
+                    <InfoOutlinedIcon color="primary" fontSize="inherit" />
                   </IconButton>
                 </span>
-                <span>
+                {/* <span>
                   <IconButton
                     onClick={togglePhotoBox}
                     color="info"
@@ -371,7 +371,7 @@ export default function OptionsOnly({
                   >
                     <FilterOutlinedIcon color="secondary" fontSize="inherit" />
                   </IconButton>
-                </span>
+                </span> */}
 
                 <span>
                   <IconButton
@@ -383,9 +383,9 @@ export default function OptionsOnly({
                     aria-label="toggle minimize/maximize option box height"
                   >
                     {optionBoxHeightMin ? (
-                      <UnfoldMoreIcon color="primary" fontSize="inherit" />
+                      <UnfoldMoreIcon color="secondary" fontSize="inherit" />
                     ) : (
-                      <UnfoldLessIcon color="info" fontSize="inherit" />
+                      <UnfoldLessIcon color="primary" fontSize="inherit" />
                     )}
                   </IconButton>
                 </span>

@@ -81,11 +81,6 @@ export default function PhotoGrid({
         }}
       >
         <>
-          {flag ? (
-            <h2>{routerLocation.pathname === "/" ? "home" : "not home"}</h2>
-          ) : (
-            <h2>false</h2>
-          )}
           {/* photos grid */}
           <span
             style={{
@@ -137,19 +132,36 @@ export default function PhotoGrid({
                 ></img>
               );
             })}
-            <span>
-              <Link to="/about">about</Link>
-            </span>
-            <br></br>
-            <span>
-              <Link to="/images">images</Link>
-            </span>
-            <br></br>
-            <span>
-              <Link to="/">home</Link>
-            </span>
           </Box>
         </>
+        <div>
+          <span>
+            <Link to="/sale">sale</Link>
+          </span>
+          <br />
+          <span>
+            <Link to="/about">about</Link>
+          </span>
+          <br />
+
+          <span>
+            <Link to="/images">images</Link>
+          </span>
+          <br />
+
+          <span>
+            <Link to="/custom">custom</Link>
+          </span>
+          <br />
+
+          <span>
+            <Link to="/contact">contact</Link>
+          </span>
+          <br />
+          <span>
+            <Link to="/">home</Link>
+          </span>
+        </div>
       </div>
     </ThemeProvider>
   );
