@@ -17,11 +17,11 @@ import {
   STAGE_POSITION_Y_ANIM,
   ITEM_PARTS_ANIM,
 } from "../data/constants.tsx";
-import { useDashContext } from "../context/ViewContext";
+// import { useDashContext } from "../context/ViewContext";
 
 function Experience({ theme }) {
-  const { contextVal } = useDashContext();
-  // console.log("contextVal: (Experience)", contextVal);
+  // const { contextVal } = useDashContext();
+
   // loading bar element for left to right on animation on app load
   const loadingBarElement = document.querySelector(".loading-bar");
 
@@ -101,9 +101,9 @@ function Experience({ theme }) {
   useEffect(() => {
     // loadingBarElement.style.transform = `scaleX(${progress / 100})`;
     loadingBarElement.style.transform = `scaleX(${loaded / 149})`;
-    // console.log("progress: ", progress, "loaded: ", loaded);
+    console.log("progress: ", progress, "loaded: ", loaded);
     if (loaded >= LOADED.nearTotal) {
-      if (loaded / LOADED.total === 1 || progress === 100) {
+      if (loaded / LOADED.total === 1 && progress === 100) {
         setSceneLoaded(true);
         window.setTimeout(() => {
           // update loadingBarElement
@@ -139,17 +139,6 @@ function Experience({ theme }) {
         setPartsOpen(false);
         setAnimActive(true);
         const tl = gsap.timeline();
-        // if (!animIconToggle) {
-        //   tl.to(stagePosYRun, {
-        //     delay: STAGE_POSITION_Y_ANIM.raiseDelay,
-        //     duration: STAGE_POSITION_Y_ANIM.raiseDuration,
-        //     value: STAGE_POSITION_Y_ANIM.stagePosYRunTarget,
-        //     ease: "easeIn",
-        //     onUpdate: () => {
-        //       setStagePosY(stagePosYRun.value);
-        //     },
-        //   });
-        // }
 
         // open
         // animating the item's parts away from eachother / opening parts, end of this animation partsOpen = true
@@ -195,49 +184,33 @@ function Experience({ theme }) {
             setAnimToggled(!animToggled);
           },
         });
-        // if (!animIconToggle) {
-        //   tl.to(stagePosYReturn, {
-        //     delay: STAGE_POSITION_Y_ANIM.dropDelay,
-        //     duration: STAGE_POSITION_Y_ANIM.dropDuration,
-        //     value: STAGE_POSITION_Y_ANIM.stagePosYReturnTarget,
-        //     ease: "easeIn",
-        //     onUpdate: () => {
-        //       setStagePosY(stagePosYReturn.value);
-        //     },
-        //     onComplete: () => {
-        //       setAnimIconToggle(false);
-        //       setPartsOpen(false);
-        //       setAnimActive(false);
-        //     },
-        //   });
-        // }
       }
     }
   });
-  const animateStageY = contextSafe(() => {
-    const tl = gsap.timeline();
-    if (!showBackground) {
-      tl.to(stagePosYRun, {
-        delay: STAGE_POSITION_Y_ANIM.raiseDelay,
-        duration: STAGE_POSITION_Y_ANIM.raiseDuration,
-        value: STAGE_POSITION_Y_ANIM.stagePosYRunTarget,
-        ease: "easeIn",
-        onUpdate: () => {
-          setStagePosY(stagePosYRun.value);
-        },
-      });
-    } else {
-      tl.to(stagePosYReturn, {
-        delay: STAGE_POSITION_Y_ANIM.dropDelay,
-        duration: STAGE_POSITION_Y_ANIM.dropDuration,
-        value: STAGE_POSITION_Y_ANIM.stagePosYReturnTarget,
-        ease: "easeIn",
-        onUpdate: () => {
-          setStagePosY(stagePosYReturn.value);
-        },
-      });
-    }
-  });
+  // const animateStageY = contextSafe(() => {
+  //   const tl = gsap.timeline();
+  //   if (!showBackground) {
+  //     tl.to(stagePosYRun, {
+  //       delay: STAGE_POSITION_Y_ANIM.raiseDelay,
+  //       duration: STAGE_POSITION_Y_ANIM.raiseDuration,
+  //       value: STAGE_POSITION_Y_ANIM.stagePosYRunTarget,
+  //       ease: "easeIn",
+  //       onUpdate: () => {
+  //         setStagePosY(stagePosYRun.value);
+  //       },
+  //     });
+  //   } else {
+  //     tl.to(stagePosYReturn, {
+  //       delay: STAGE_POSITION_Y_ANIM.dropDelay,
+  //       duration: STAGE_POSITION_Y_ANIM.dropDuration,
+  //       value: STAGE_POSITION_Y_ANIM.stagePosYReturnTarget,
+  //       ease: "easeIn",
+  //       onUpdate: () => {
+  //         setStagePosY(stagePosYReturn.value);
+  //       },
+  //     });
+  //   }
+  // });
 
   // actions from store
   const updatePartColor = useOptionStore((state) => state.updatePartColor);
@@ -313,7 +286,7 @@ function Experience({ theme }) {
       });
       return itemColors;
     });
-    // console.log("random colors generated list: ", randomAllItemsColors);
+    console.log("random colors generated list: ", randomAllItemsColors);
   };
 
   return (
@@ -335,7 +308,6 @@ function Experience({ theme }) {
             theme={theme}
             animDist={animDist}
             animateParts={animateParts}
-            // animateStageY={animateStageY}
             handlePartOption={handlePartOption}
             randomAllItemsParts={randomAllItemsParts}
             stagePosY={stagePosY}

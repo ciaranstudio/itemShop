@@ -1,12 +1,7 @@
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Link,
-  useLocation,
-} from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 import PhotoGrid from "./PhotoGrid.jsx";
-import { theme } from "../../utils/theme.js";
+import { theme } from "../../data/theme.js";
 import { allImages } from "../../data/objects.jsx";
 import { toggleInfoBox } from "../../utils/toggleInfoPhoto.js";
 import { togglePhotoBox } from "../../utils/toggleInfoPhoto.js";
@@ -36,7 +31,7 @@ export const router = createBrowserRouter([
             folders={true}
           />
         ),
-        loader: loadImages,
+        // loader: loadImages,
         // action: contactAction,
       },
       {
@@ -50,7 +45,7 @@ export const router = createBrowserRouter([
             folders={true}
           />
         ),
-        loader: loadImages,
+        // loader: loadImages,
         // action: contactAction,
       },
       {
@@ -64,7 +59,7 @@ export const router = createBrowserRouter([
             folders={true}
           />
         ),
-        loader: loadImages,
+        // loader: loadImages,
         // action: contactAction,
       },
       {
@@ -78,7 +73,7 @@ export const router = createBrowserRouter([
             folders={true}
           />
         ),
-        loader: loadImages,
+        // loader: loadImages,
         // action: contactAction,
       },
       {
@@ -93,7 +88,7 @@ export const router = createBrowserRouter([
           />
         ),
 
-        loader: loadImages,
+        // loader: loadImages,
         // action: contactAction,
       },
       {
@@ -108,7 +103,7 @@ export const router = createBrowserRouter([
           />
         ),
 
-        loader: loadImages,
+        // loader: loadImages,
         // action: contactAction,
       },
     ],

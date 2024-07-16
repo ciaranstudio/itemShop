@@ -62,16 +62,9 @@ export default function PhotoBox({
               {allPhotos ? "Images" : currentItemSelected.itemTitle}
             </Typography>
           </div>
-          {/* <SimpleSlider
+          <SimpleSlider
             images={allPhotos ? allImages : currentItemSelected.images}
-          /> */}
-          {/* <PhotoGrid
-            toggleInfoBox={toggleInfoBox}
-            theme={theme}
-            // openUserEmail={openUserEmail}
-            handlePartOption={handlePartOption}
-            togglePhotoBox={togglePhotoBox}
-          /> */}
+          />
         </div>
       </ThemeProvider>
     </Html>

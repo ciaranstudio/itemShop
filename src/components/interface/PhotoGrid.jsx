@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { Html } from "@react-three/drei";
+import React, { useEffect } from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material";
 import Box from "@mui/material/Box";
@@ -9,22 +8,18 @@ import { useOptionStore } from "../../store/useOptionStore.tsx";
 import { Link, useLocation } from "react-router-dom";
 import { useDashContext } from "../../context/ViewContext";
 import { router } from "./router.jsx";
+import { unselectedItem } from "../../data/objects.jsx";
 
 export default function PhotoGrid({ theme, images, folders }) {
+  // router navigate function
   const goTo = (route) => {
     router.navigate(route);
   };
 
-  const returnTo3dView = () => {
-    setOpen(false);
-    goTo("/");
-  };
-
-  // infobox Y axis position for drei Html component
-  // const htmlPosY = 50;
-  const htmlPosY = 0;
-
+  // get location from Router hook
   const routerLocation = useLocation();
+
+  // get and set context location value
   const { location, setLocation } = useDashContext();
 
   // state from store
@@ -32,9 +27,34 @@ export default function PhotoGrid({ theme, images, folders }) {
     (state) => state.currentItemSelected,
   );
   const open = useOptionStore((state) => state.open);
+  const showBackground = useOptionStore((state) => state.showBackground);
+  const aboutInfo = useOptionStore((state) => state.aboutInfo);
+  const showPhotos = useOptionStore((state) => state.showPhotos);
+  const allPhotos = useOptionStore((state) => state.allPhotos);
 
   // action from store
+  const setShowBackground = useOptionStore((state) => state.setShowBackground);
+  const setShowPartOptions = useOptionStore(
+    (state) => state.setShowPartOptions,
+  );
   const setOpen = useOptionStore((state) => state.setOpen);
+  const setAboutInfo = useOptionStore((state) => state.setAboutInfo);
+  const setShowPhotos = useOptionStore((state) => state.setShowPhotos);
+  const setAllPhotos = useOptionStore((state) => state.setAllPhotos);
+
+  // go to 3d shop page and enable orbit controls with open state val (zustand store useStore)
+  const returnTo3dView = () => {
+    setOpen(false);
+    if (aboutInfo) setAboutInfo(false);
+    if (showPhotos) setShowPhotos(false);
+    if (allPhotos) setAllPhotos(false);
+    if (showBackground) {
+      if (currentItemSelected !== unselectedItem) setShowBackground(false);
+    } else {
+      setShowPartOptions(true);
+    }
+    goTo("/");
+  };
 
   // useEffect
   useEffect(() => {
@@ -48,7 +68,6 @@ export default function PhotoGrid({ theme, images, folders }) {
 
   useEffect(() => {
     console.log("dash location: ", location);
-    // setLocation(routerLocation);
   }, [location]);
 
   return (

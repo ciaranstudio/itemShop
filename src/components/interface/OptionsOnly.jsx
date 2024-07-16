@@ -2,23 +2,15 @@ import React, { useState, useEffect } from "react";
 import { Html } from "@react-three/drei";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
-import ReadMoreIcon from "@mui/icons-material/ReadMore";
 import IconButton from "@mui/material/IconButton";
 import { useOptionStore } from "../../store/useOptionStore.tsx";
-import { allImages } from "../../data/objects.jsx";
-import OptionBox from "./OptionBox.jsx";
-
 import { objects, shopItems } from "../../data/objects.jsx";
 import { options, allOptions } from "../../data/options.jsx";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import FilterOutlinedIcon from "@mui/icons-material/FilterOutlined";
 import CircleIcon from "@mui/icons-material/Circle";
 import UnfoldLessIcon from "@mui/icons-material/UnfoldLess";
 import UnfoldMoreIcon from "@mui/icons-material/UnfoldMore";
-import OpenInFullIcon from "@mui/icons-material/OpenInFull";
 import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
 import BuyButton from "./BuyButton.jsx";
 import SplitButton from "./SplitButton.jsx";
@@ -28,17 +20,13 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
 import toast from "react-hot-toast";
-import { OPTION_BOX_POS_Y } from "../../data/constants.tsx";
 import ExpandIcon from "@mui/icons-material/Expand";
 
 export default function OptionsOnly({
   toggleInfoBox,
   theme,
   handlePartOption,
-  togglePhotoBox,
 }) {
-  // infobox Y axis position for drei Html component
-  // const htmlPosY = 50;
   // about text blocks
   const aboutTextArr = [
     {
@@ -107,18 +95,6 @@ export default function OptionsOnly({
   const { height, width } = useWindowDimensions();
 
   // useState
-  const [mobilePosYMax, setMobilePosYMax] = useState(
-    OPTION_BOX_POS_Y.boxPosYMobileMax,
-  );
-  const [mobilePosYMin, setMobilePosYMin] = useState(
-    OPTION_BOX_POS_Y.boxPosYMobileMin,
-  );
-  const [desktopPosYMax, setDesktopPosYMax] = useState(
-    OPTION_BOX_POS_Y.boxPosYDesktopMax,
-  );
-  const [desktopPosYMin, setDesktopPosYMin] = useState(
-    OPTION_BOX_POS_Y.boxPosYDesktopMin,
-  );
   const [stainSingle, setStainSingle] = useState("");
   const [paintSingle, setPaintSingle] = useState("");
 
@@ -126,7 +102,6 @@ export default function OptionsOnly({
 
   const currentPartName = useOptionStore((state) => state.currentPartName);
   const currentItemName = useOptionStore((state) => state.currentItemName);
-  const mobileView = useOptionStore((state) => state.mobileView);
   const optionBoxHeightMin = useOptionStore(
     (state) => state.optionBoxHeightMin,
   );

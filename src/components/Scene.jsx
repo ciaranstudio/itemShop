@@ -11,7 +11,6 @@ import {
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ItemPart } from "./item/ItemPart.jsx";
-// import { Bag } from "./interface/header/Bag.jsx";
 import RingCircle from "./item/RingCircle.jsx";
 import { Floor } from "./room/Floor.jsx";
 import { Walls } from "./room/Walls.jsx";
@@ -19,31 +18,23 @@ import { objects, unselectedItem, shopItems } from "../data/objects.jsx";
 import { textures } from "../data/textures.jsx";
 import useWindowDimensions from "../hooks/useWindowDimensions";
 import { useSnipcart } from "use-snipcart";
-// import { Logo } from "./interface/header/Logo.jsx";
 import { SelectIcon } from "./item/SelectIcon.jsx";
 import { ArrowIcon } from "./interface/ArrowIcon.jsx";
 import toast from "react-hot-toast";
 import { useOptionStore } from "../store/useOptionStore.tsx";
-// import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import {
   LIGHT,
   ORBIT_CONTROLS,
   ARROW_ICON,
   CAM_TARG_ANIM,
   CAM_POS_ANIM,
-  // TOAST,
 } from "../data/constants.tsx";
-// import openUserEmail from "../utils/openUserEmail.js";
-// import HtmlBox from "./interface/HtmlBox.jsx";
-// import PhotoBox from "./interface/PhotoBox.jsx";
-// import OptionBox from "./interface/OptionBox.jsx";
 import { CenterAnchor } from "./interface/CenterAnchor.jsx";
 
 export default function Scene({
   theme,
   animDist,
   animateParts,
-  // animateStageY,
   handlePartOption,
   randomAllItemsParts,
   stagePosY,
@@ -168,7 +159,7 @@ export default function Scene({
     (state) => state.setActiveCamTargAnim,
   );
   const setActiveCamAnim = useOptionStore((state) => state.setActiveCamAnim);
-  const setAnimIconToggle = useOptionStore((state) => state.setAnimIconToggle);
+  // const setAnimIconToggle = useOptionStore((state) => state.setAnimIconToggle);
   const setArrowAnimActive = useOptionStore(
     (state) => state.setArrowAnimActive,
   );
@@ -715,11 +706,11 @@ export default function Scene({
   }, [isTouching]);
 
   // functions
-  function handleCartClick() {
-    if (snipcartLoaded) {
-      window.Snipcart.api.theme.cart.open();
-    }
-  }
+  // function handleCartClick() {
+  //   if (snipcartLoaded) {
+  //     window.Snipcart.api.theme.cart.open();
+  //   }
+  // }
   const handleClick = (e) => {
     e.stopPropagation();
     const { eventObject } = e;
@@ -830,35 +821,7 @@ export default function Scene({
     let position = [x, y, z];
     return position;
   };
-  // switch block for use later on, replace ternary chains in position props throughout
-  // switch (itemName) {
-  //   case "gramps":
-  //     setOptionBoxItemChanged(shopItems[itemName]);
-  //     break;
-  //   case "squatter":
-  //     setOptionBoxItemChanged();
-  //     break;
-  //   case "block":
-  //     setOptionBoxItemChanged();
-  //     break;
-  //   case "horse":
-  //     setOptionBoxItemChanged();
-  //     break;
-  //   case "shelfA16":
-  //     setOptionBoxItemChanged();
-  //     break;
-  //   case "shelfA32":
-  //     setOptionBoxItemChanged();
-  //     break;
-  //   case "shelfB16":
-  //     setOptionBoxItemChanged();
-  //     break;
-  //   case "shelfB32":
-  //     setOptionBoxItemChanged();
-  //     break;
-  //   // case "none":
-  //   //   break;
-  // }
+
   const toggleInfoBox = (e) => {
     if (e) {
       e.preventDefault();

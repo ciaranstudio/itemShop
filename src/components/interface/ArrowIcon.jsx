@@ -1,7 +1,5 @@
 import React, { useState, useLayoutEffect } from "react";
 import { useGLTF, useTexture } from "@react-three/drei";
-// import HtmlBox from "./HtmlBox.jsx";
-// import PhotoBox from "./PhotoBox.jsx";
 import OptionBox from "./OptionBox.jsx";
 import { useOptionStore } from "../../store/useOptionStore.tsx";
 
@@ -12,7 +10,6 @@ export const ArrowIcon = ({
   toggleInfoBox,
   togglePhotoBox,
   handlePartOption,
-  // openUserEmail,
 }) => {
   const { scene, nodes, materials } = useGLTF("./models/arrow.gltf");
   const [annotations, setAnnotations] = useState([]);
@@ -29,9 +26,6 @@ export const ArrowIcon = ({
   const currentItemName = useOptionStore((state) => state.currentItemName);
   const mobileView = useOptionStore((state) => state.mobileView);
   const open = useOptionStore((state) => state.open);
-  const showPhotos = useOptionStore((state) => state.showPhotos);
-  const allPhotos = useOptionStore((state) => state.allPhotos);
-  const aboutInfo = useOptionStore((state) => state.aboutInfo);
   const optionBoxHeightMin = useOptionStore(
     (state) => state.optionBoxHeightMin,
   );
@@ -72,14 +66,6 @@ export const ArrowIcon = ({
                 // position={[o.position.x, o.position.y, o.position.z]}
                 position={[0, 0, 0]}
               >
-                {/* <HtmlBox
-                  toggleInfoBox={toggleInfoBox}
-                  theme={theme}
-                  // openUserEmail={openUserEmail}
-                  handlePartOption={handlePartOption}
-                  togglePhotoBox={togglePhotoBox}
-                /> */}
-                {/* <PhotoBox togglePhotoBox={togglePhotoBox} theme={theme} /> */}
                 <OptionBox
                   handlePartOption={handlePartOption}
                   toggleInfoBox={toggleInfoBox}
@@ -96,7 +82,6 @@ export const ArrowIcon = ({
   }, [
     scene,
     open,
-    // showPhotos,
     currentItemSelected,
     currentItemName,
     currentPartName,
@@ -105,8 +90,6 @@ export const ArrowIcon = ({
     optionBoxHeightMin,
     animActive,
     activeCamAnim,
-    // allPhotos,
-    // aboutInfo,
     mobileView,
   ]);
 
@@ -121,6 +104,5 @@ export const ArrowIcon = ({
     });
   }, []);
 
-  // return <primitive object={scene} />;
   return <primitive object={scene}>{annotations}</primitive>;
 };

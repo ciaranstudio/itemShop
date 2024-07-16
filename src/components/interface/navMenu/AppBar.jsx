@@ -17,23 +17,17 @@ import { createSvgIcon } from "@mui/material/utils";
 import { useOptionStore } from "../../../store/useOptionStore.tsx";
 import { useSnipcart } from "use-snipcart";
 import { router } from "../router.jsx";
-
-const pages = [
-  { navTitle: "About", menuItem: "about" },
-  { navTitle: "Images", menuItem: "images" },
-  { navTitle: "Custom Work", menuItem: "custom" },
-  { navTitle: "Contact", menuItem: "contact" },
-  { navTitle: "Exhibitions", menuItem: "exhibitions" },
-];
+import { PAGES } from "../../../data/constants.tsx";
 
 function ResponsiveAppBar({ theme }) {
   // useState for Snipcart
   const [snipcartLoaded, setSnipcartLoaded] = useState(false);
   const [cartCount, setCartCount] = useState(0);
+
   // snipcart hook values
-  const snipcart = useSnipcart();
+  // const snipcart = useSnipcart();
   const { cart = {} } = useSnipcart();
-  const { subtotal = "0.00" } = cart;
+  // const { subtotal = "0.00" } = cart;
 
   const goTo = (route) => {
     router.navigate(route);
@@ -96,45 +90,25 @@ function ResponsiveAppBar({ theme }) {
   };
 
   // state from store
-  const open = useOptionStore((state) => state.open);
-  const showPhotos = useOptionStore((state) => state.showPhotos);
   const allPhotos = useOptionStore((state) => state.allPhotos);
   const aboutInfo = useOptionStore((state) => state.aboutInfo);
 
   // actions from store
-  const setOpen = useOptionStore((state) => state.setOpen);
-  const setShowPhotos = useOptionStore((state) => state.setShowPhotos);
-  const setAllPhotos = useOptionStore((state) => state.setAllPhotos);
-  const setAboutInfo = useOptionStore((state) => state.setAboutInfo);
   const setShowPartOptions = useOptionStore(
     (state) => state.setShowPartOptions,
   );
 
+  // navigation selection function utlizing router navigation method
+  //  to access links outside of Router context
   const selectHandler = (e, menuItem) => {
     // console.log(menuItem);
     handleCloseNavMenu();
     setShowPartOptions(false);
     switch (menuItem) {
       case "about":
-        // setAboutInfo(true);
-        // if (!open) {
-        //   setOpen(true);
-        // }
-        // setShowPhotos(false);
-        // setAllPhotos(false);
-        // redirect("/about");
         goTo("/about");
         break;
       case "images":
-        // setAllPhotos(true);
-        // if (!showPhotos) {
-        //   setShowPhotos(true);
-        // }
-
-        // setOpen(false);
-        // setAboutInfo(false);
-        // navigate("/images");
-        // redirect("/images");
         goTo("/images");
         break;
       case "custom":
@@ -143,7 +117,6 @@ function ResponsiveAppBar({ theme }) {
           "_blank",
           "noreferrer",
         );
-        // redirect("/custom");
         goTo("/custom");
         break;
       case "contact":
@@ -152,7 +125,6 @@ function ResponsiveAppBar({ theme }) {
           "_blank",
           "noreferrer",
         );
-        // redirect("/contact");
         goTo("/contact");
         break;
       case "exhibitions":
@@ -161,7 +133,6 @@ function ResponsiveAppBar({ theme }) {
           "_blank",
           "noreferrer",
         );
-        // redirect("/exhibitions");
         goTo("/exhibitions");
         break;
     }
@@ -252,7 +223,7 @@ function ResponsiveAppBar({ theme }) {
                   },
                 }}
               >
-                {pages.map((page, i) => (
+                {PAGES.map((page, i) => (
                   <MenuItem
                     key={i}
                     onClick={(e) => selectHandler(e, page.menuItem)}
@@ -307,7 +278,7 @@ function ResponsiveAppBar({ theme }) {
               }}
             ></Typography>
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-              {pages.map((page, i) => (
+              {PAGES.map((page, i) => (
                 <Button
                   key={i}
                   onClick={(e) => selectHandler(e, page.menuItem)}
@@ -326,18 +297,12 @@ function ResponsiveAppBar({ theme }) {
                   }}
                 >
                   {page.navTitle}
-                  {/* <Link to={`/${page.menuItem}`}>{page.navTitle}</Link> */}
                 </Button>
               ))}
             </Box>
 
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open cart">
-                {/* <div
-                className="cart"
-                onClick={handleCartClick}
-                style={{ display: cartCount > 0 ? "block" : "none" }}
-              ></div> */}
                 <StyledBadge
                   badgeContent={cartCount > 0 ? cartCount : ""}
                   color={cartCount > 0 ? "info" : "default"}

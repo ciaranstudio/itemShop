@@ -3,8 +3,8 @@
 // Experience
 // loaded magic number (total items to load before 3d scene is loaded)
 export const LOADED = {
-  nearTotal: 137,
-  total: 143,
+  nearTotal: 140,
+  total: 146,
 };
 // toast constants
 export const TOAST = {
@@ -97,3 +97,13 @@ export const OPTION_BOX_POS_Y = {
 
   breakpointWidthSmallest: 380,
 };
+
+// Router
+// pages for AppBar navigation list
+export const PAGES = [
+  { navTitle: "About", menuItem: "about" },
+  { navTitle: "Images", menuItem: "images" },
+  { navTitle: "Custom Work", menuItem: "custom" },
+  { navTitle: "Contact", menuItem: "contact" },
+  { navTitle: "Exhibitions", menuItem: "exhibitions" },
+];
