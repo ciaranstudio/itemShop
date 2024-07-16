@@ -1,21 +1,86 @@
-// import { toggleInfoBox } from "./toggleInfoPhoto.js";
-// import { togglePhotoBox } from "./toggleInfoPhoto.js";
 // import { useOptionStore } from "../store/useOptionStore.tsx";
-import { Link, useLocation } from "react-router-dom";
-import { useDashContext } from "../context/ViewContext";
+// import { Link, useLocation } from "react-router-dom";
+// import { useDashContext } from "../context/ViewContext";
+import { allImages } from "../data/objects";
 
-export async function loadImages({ params }) {
-  //   toggleInfoBox();
-  //   const open = useOptionStore((state) => state.open);
-  //   const setOpen = useOptionStore((state) => state.setOpen);
-  //   setOpen(false);
-  // get location from Router hook
-  // const routerLocation = useLocation();
+export async function loadShopImages({ params }) {
+  console.log("params = ", params);
+  const images = allImages;
+  if (!images) {
+    throw new Response("", {
+      status: 404,
+      statusText: "Not Found",
+    });
+  }
+  return { images };
+}
 
-  // get and set context location value
-  // const { location, setLocation } = useDashContext();
-  // console.log("routerLocation: ", routerLocation);
-  // console.log("location: ", location);
-  console.log("params: ", params);
+export async function loadItemImages({ params }) {
+  console.log("params = ", params);
+  const images = allImages;
+  if (!images) {
+    throw new Response("", {
+      status: 404,
+      statusText: "Not Found",
+    });
+  }
+  return { images };
+}
+
+export async function loadArtImages(params) {
+  console.log("params = ", params);
+  const images = allImages;
+  if (!images) {
+    throw new Response("", {
+      status: 404,
+      statusText: "Not Found",
+    });
+  }
+  return { images };
+}
+
+export async function loadCustomImages(params) {
+  console.log("params = ", params);
+  const images = allImages;
+  if (!images) {
+    throw new Response("", {
+      status: 404,
+      statusText: "Not Found",
+    });
+  }
+  return { images };
+}
+
+export async function loadSaleImages({ request }) {
+  console.log("request: ", request);
+  // const url = new URL(request.url);
+  // console.log("request url:", url);
+  // const contacts = await getContacts();
+  // return { contacts };
   return null;
 }
+
+export async function loadAboutImages(params) {
+  console.log("params = ", params);
+  const images = allImages;
+  if (!images) {
+    throw new Response("", {
+      status: 404,
+      statusText: "Not Found",
+    });
+  }
+  return { images };
+}
+
+// export async function loadImage({ params }) {
+//   // const contact = await getContact(params.contactId);
+//   console.log("params.imageId = ", params.imageId);
+//   const image = allImages[params.imageId];
+//   if (!image) {
+//     throw new Response("", {
+//       status: 404,
+//       statusText: "Not Found",
+//     });
+//   }
+//   return { image };
+// }

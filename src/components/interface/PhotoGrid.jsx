@@ -1,16 +1,23 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material";
 import Box from "@mui/material/Box";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import IconButton from "@mui/material/IconButton";
 import { useOptionStore } from "../../store/useOptionStore.tsx";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useLoaderData } from "react-router-dom";
 import { useDashContext } from "../../context/ViewContext";
 import { router } from "./router.jsx";
 import { unselectedItem } from "../../data/objects.jsx";
 
-export default function PhotoGrid({ theme, images, folders }) {
+export default function PhotoGrid({ theme, folders, single }) {
+  // selected image useState
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  // Router loader data
+  const data = useLoaderData();
+  console.log("useLoader data: ", data);
+
   // router navigate function
   const goTo = (route) => {
     router.navigate(route);
@@ -64,6 +71,7 @@ export default function PhotoGrid({ theme, images, folders }) {
   useEffect(() => {
     console.log("routerLocation: ", routerLocation);
     setLocation(routerLocation);
+    setSelectedImage(null);
   }, [routerLocation]);
 
   useEffect(() => {
@@ -82,63 +90,121 @@ export default function PhotoGrid({ theme, images, folders }) {
           marginTop: "0.5rem",
         }}
       >
-        <>
-          {/* photos grid */}
-          <span
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              height: "100%",
-              pointerEvents: "auto",
-              zIndex: "1",
-            }}
-          >
-            <span>
-              <IconButton
-                onClick={returnTo3dView}
-                color="inherit"
-                sx={{
-                  padding: "0.5rem",
-                }}
-                aria-label="close info box"
-              >
-                <CloseOutlinedIcon fontSize="small" color="success" />
-              </IconButton>
-            </span>
-          </span>
-          <Box
-            sx={{
-              display: "grid",
-              gridTemplateColumns: {
-                sm: "auto auto",
-                md: "auto auto auto",
-                lg: "auto auto auto auto",
-              },
-              columnGap: "1rem",
-              rowGap: "1rem",
-              borderRadius: "0.75rem",
-              // border: "0.085rem solid rgb(155, 155, 155)",
-              overflow: "auto",
-            }}
-          >
-            {images.map((m, index) => {
-              return (
-                <img
-                  key={index}
-                  style={{
-                    objectFit: "contain",
-                    width: "100%",
+        {selectedImage === null ? (
+          <>
+            {/* photos grid */}
+            <span
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                height: "100%",
+                pointerEvents: "auto",
+                zIndex: "1",
+              }}
+            >
+              <span>
+                <IconButton
+                  onClick={returnTo3dView}
+                  color="inherit"
+                  sx={{
+                    padding: "0.5rem",
                   }}
-                  src={m.imgPath}
-                ></img>
-              );
-            })}
-          </Box>
-        </>
+                  aria-label="close info box"
+                >
+                  <CloseOutlinedIcon fontSize="small" color="success" />
+                </IconButton>
+              </span>
+            </span>
+            <Box
+              sx={{
+                display: "grid",
+                gridTemplateColumns: {
+                  sm: "auto auto",
+                  md: "auto auto auto",
+                  lg: "auto auto auto auto",
+                },
+                columnGap: "1rem",
+                rowGap: "1rem",
+                borderRadius: "0.75rem",
+                // border: "0.085rem solid rgb(155, 155, 155)",
+                overflow: "auto",
+              }}
+            >
+              {data.images.map((m, index) => {
+                return (
+                  <img
+                    key={index}
+                    style={{
+                      objectFit: "contain",
+                      width: "100%",
+                    }}
+                    src={m.imgPath}
+                    onClick={() => {
+                      setSelectedImage(m);
+                    }}
+                  ></img>
+                );
+              })}
+            </Box>
+          </>
+        ) : (
+          <>
+            <span
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                height: "100%",
+                pointerEvents: "auto",
+                zIndex: "1",
+              }}
+            >
+              <span>
+                <IconButton
+                  onClick={() => {
+                    setSelectedImage(null);
+                  }}
+                  color="inherit"
+                  sx={{
+                    padding: "0.5rem",
+                  }}
+                  aria-label="close info box"
+                >
+                  <CloseOutlinedIcon fontSize="small" color="success" />
+                </IconButton>
+              </span>
+            </span>
+            <Box
+              sx={{
+                display: "grid",
+                gridTemplateColumns: {
+                  sm: "auto",
+                },
+                borderRadius: "0.75rem",
+                // border: "0.085rem solid rgb(155, 155, 155)",
+                overflow: "auto",
+              }}
+            >
+              <img
+                style={{
+                  objectFit: "contain",
+                  width: "100%",
+                }}
+                src={selectedImage.imgPath}
+              ></img>
+            </Box>
+          </>
+        )}
+
         <div>
           <span>
             <Link to="/">home</Link>
+          </span>
+        </div>
+        <div>
+          <span>
+            <Link to="/gramps">gramps</Link>
           </span>
         </div>
       </div>
