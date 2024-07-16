@@ -24,6 +24,7 @@
     "@react-three/csg": "^3.2.0",
     "@react-three/drei": "^9.95.0",
     "@react-three/fiber": "^8.15.14",
+    "firebase": "^10.12.3",
     "gsap": "^3.12.4",
     "immer": "^10.0.4",
     "leva": "^0.9.35",
@@ -35,6 +36,7 @@
     "react-router-dom": "^6.24.1",
     "react-slick": "^0.30.2",
     "slick-carousel": "^1.8.1",
+    "sort-by": "^1.2.0",
     "three": "^0.160.0",
     "use-snipcart": "^1.2.0",
     "zustand": "^4.5.2"
