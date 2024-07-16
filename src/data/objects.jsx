@@ -582,3 +582,21 @@ export const allImages = [
     imgPath: "./placeholderPhotos/squatterBare.jpeg",
   },
 ];
+
+// structure for image object:
+// {
+//   id: 0000,
+//   isShopItem: false,
+//   isArtwork: false,
+//   isCustomWork: false,
+//   price: 0,
+//   label: "",
+//   name: "",
+//   materials: "",
+//   year: "",
+//   title: "",
+//   location: "",
+//   imgPath: "./placeholderPhotos/squatterBare.jpeg",
+//   hasSubFolder: true,
+//   subFolderImgPaths: ["./placeholderPhotos/squatterBare.jpeg", "./placeholderPhotos/squatterBare.jpeg", "./placeholderPhotos/squatterBare.jpeg"]
+// },

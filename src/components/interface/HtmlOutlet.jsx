@@ -1,59 +1,35 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Html } from "@react-three/drei";
-import CssBaseline from "@mui/material/CssBaseline";
-import { ThemeProvider } from "@mui/material";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import IconButton from "@mui/material/IconButton";
 import { useOptionStore } from "../../store/useOptionStore.tsx";
-import PhotoGrid from "./PhotoGrid.jsx";
-import PhotoBox from "./PhotoBox.jsx";
-import { allImages } from "../../data/objects.jsx";
 import ImagesRouter from "./ImagesRouter.jsx";
-import { Outlet } from "react-router-dom";
 import { router } from "./router.jsx";
-
-// import { createBrowserRouter, RouterProvider } from "react-router-dom";
+// import { useDashContext } from "../../context/ViewContext";
 
 export default function HtmlOutlet({ toggleInfoBox, togglePhotoBox, theme }) {
   const goTo = (route) => {
+    // if (route === "/") setOpen(false);
     router.navigate(route);
   };
-  // const router = createBrowserRouter([
-  //   {
-  //     path: "/",
-  //     element: (
-  //       <PhotoGrid
-  //         toggleInfoBox={toggleInfoBox}
-  //         togglePhotoBox={togglePhotoBox}
-  //         theme={theme}
-  //         images={[allImages[0], allImages[1], allImages[2]]}
-  //       />
-  //     ),
-  //     children: [
-  //       {
-  //         path: "about",
-  //         element: (
-  //           <PhotoGrid
-  //             toggleInfoBox={toggleInfoBox}
-  //             togglePhotoBox={togglePhotoBox}
-  //             theme={theme}
-  //             images={[allImages[3], allImages[4], allImages[5]]}
-  //           />
-  //         ),
-  //       },
-  //     ],
-  //   },
-  // ]);
+
   // infobox Y axis position for drei Html component
   // const htmlPosY = 50;
   const htmlPosY = 0;
-  // about text blocks
-  // useState
+
+  // const { location, setLocation } = useDashContext();
 
   // state from store
-  const open = useOptionStore((state) => state.open);
+  // const open = useOptionStore((state) => state.open);
+
+  // action from store
+  // const setOpen = useOptionStore((state) => state.setOpen);
 
   // useEffect
+  // useEffect(() => {
+  //   if (location.pathName === "/") setOpen(false);
+  // }, [location]);
+
   // useEffect(() => {
   //   let nextIndex;
   //   if (aboutIndex === 4) {
@@ -63,10 +39,6 @@ export default function HtmlOutlet({ toggleInfoBox, togglePhotoBox, theme }) {
   //   }
   //   setAboutIndex(nextIndex);
   // }, [aboutPageToggle]);
-
-  // state from store
-  // actions from store
-  // functions
 
   return (
     <Html center position={[0, htmlPosY, 0]}>

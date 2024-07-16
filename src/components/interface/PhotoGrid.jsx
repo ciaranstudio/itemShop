@@ -3,47 +3,23 @@ import { Html } from "@react-three/drei";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
-import ReadMoreIcon from "@mui/icons-material/ReadMore";
 import IconButton from "@mui/material/IconButton";
 import { useOptionStore } from "../../store/useOptionStore.tsx";
-
-// import OptionBox from "./OptionBox.jsx";
-// import { objects, shopItems } from "../../data/objects.jsx";
-// import { options, allOptions } from "../../data/options.jsx";
-// import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-// import FilterOutlinedIcon from "@mui/icons-material/FilterOutlined";
-// import CircleIcon from "@mui/icons-material/Circle";
-// import UnfoldLessIcon from "@mui/icons-material/UnfoldLess";
-// import UnfoldMoreIcon from "@mui/icons-material/UnfoldMore";
-// import OpenInFullIcon from "@mui/icons-material/OpenInFull";
-// import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
-// import BuyButton from "./BuyButton.jsx";
-// import SplitButton from "./SplitButton.jsx";
-// import useWindowDimensions from "../../hooks/useWindowDimensions.jsx";
-// import Button from "@mui/material/Button";
-// import Menu from "@mui/material/Menu";
-// import MenuItem from "@mui/material/MenuItem";
-// import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
-// import toast from "react-hot-toast";
-// import { OPTION_BOX_POS_Y } from "../../data/constants.tsx";
-
 import { Link, useLocation } from "react-router-dom";
 import { useDashContext } from "../../context/ViewContext";
 import { router } from "./router.jsx";
 
-export default function PhotoGrid({
-  toggleInfoBox,
-  theme,
-  // handlePartOption,
-  // togglePhotoBox,
-  images,
-  flag,
-}) {
+export default function PhotoGrid({ theme, images, folders }) {
   const goTo = (route) => {
     router.navigate(route);
   };
+
+  const returnTo3dView = () => {
+    setOpen(false);
+    goTo("/");
+  };
+
   // infobox Y axis position for drei Html component
   // const htmlPosY = 50;
   const htmlPosY = 0;
@@ -57,7 +33,14 @@ export default function PhotoGrid({
   );
   const open = useOptionStore((state) => state.open);
 
+  // action from store
+  const setOpen = useOptionStore((state) => state.setOpen);
+
   // useEffect
+  useEffect(() => {
+    setOpen(true);
+  }, []);
+
   useEffect(() => {
     console.log("routerLocation: ", routerLocation);
     setLocation(routerLocation);
@@ -94,7 +77,7 @@ export default function PhotoGrid({
           >
             <span>
               <IconButton
-                onClick={() => goTo("/")}
+                onClick={returnTo3dView}
                 color="inherit"
                 sx={{
                   padding: "0.5rem",
@@ -135,29 +118,6 @@ export default function PhotoGrid({
           </Box>
         </>
         <div>
-          <span>
-            <Link to="/sale">sale</Link>
-          </span>
-          <br />
-          <span>
-            <Link to="/about">about</Link>
-          </span>
-          <br />
-
-          <span>
-            <Link to="/images">images</Link>
-          </span>
-          <br />
-
-          <span>
-            <Link to="/custom">custom</Link>
-          </span>
-          <br />
-
-          <span>
-            <Link to="/contact">contact</Link>
-          </span>
-          <br />
           <span>
             <Link to="/">home</Link>
           </span>

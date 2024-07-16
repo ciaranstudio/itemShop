@@ -6,34 +6,14 @@ import {
 } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 import PhotoGrid from "./PhotoGrid.jsx";
-import { toggleInfoBox } from "../../utils/toggleInfoPhoto.js";
-import { togglePhotoBox } from "../../utils/toggleInfoPhoto.js";
 import { theme } from "../../utils/theme.js";
 import { allImages } from "../../data/objects.jsx";
+import { toggleInfoBox } from "../../utils/toggleInfoPhoto.js";
+import { togglePhotoBox } from "../../utils/toggleInfoPhoto.js";
+import { loadImages } from "../../utils/loadImages.js";
 
 export const router = createBrowserRouter([
   {
-    // path: "/",
-    // element: (
-    //   <PhotoGrid
-    //     toggleInfoBox={toggleInfoBox}
-    //     togglePhotoBox={togglePhotoBox}
-    //     theme={theme}
-    //     images={[allImages[0], allImages[1], allImages[2]]}
-    //     flag={true}
-    //   />
-    // ),
-    // path: "about",
-    // element: (
-    //   <PhotoGrid
-    //     toggleInfoBox={toggleInfoBox}
-    //     togglePhotoBox={togglePhotoBox}
-    //     theme={theme}
-    //     images={[allImages[2], allImages[3], allImages[2]]}
-    //     flag={true}
-    //   />
-    // ),
-
     // id: "root",
     path: "/",
     element: (
@@ -42,7 +22,7 @@ export const router = createBrowserRouter([
       </>
     ),
     // errorElement: <ErrorPage />,
-    // loader: rootLoader,
+    loader: loadImages,
     // action: rootAction,
     children: [
       {
@@ -53,10 +33,10 @@ export const router = createBrowserRouter([
             togglePhotoBox={togglePhotoBox}
             theme={theme}
             images={[allImages[0], allImages[0], allImages[0]]}
-            flag={true}
+            folders={true}
           />
         ),
-        // loader: contactLoader,
+        loader: loadImages,
         // action: contactAction,
       },
       {
@@ -67,10 +47,10 @@ export const router = createBrowserRouter([
             togglePhotoBox={togglePhotoBox}
             theme={theme}
             images={[allImages[1], allImages[1], allImages[1]]}
-            flag={true}
+            folders={true}
           />
         ),
-        // loader: contactLoader,
+        loader: loadImages,
         // action: contactAction,
       },
       {
@@ -81,10 +61,10 @@ export const router = createBrowserRouter([
             togglePhotoBox={togglePhotoBox}
             theme={theme}
             images={[allImages[2], allImages[2], allImages[2]]}
-            flag={true}
+            folders={true}
           />
         ),
-        // loader: contactLoader,
+        loader: loadImages,
         // action: contactAction,
       },
       {
@@ -95,10 +75,10 @@ export const router = createBrowserRouter([
             togglePhotoBox={togglePhotoBox}
             theme={theme}
             images={[allImages[3], allImages[3], allImages[3]]}
-            flag={true}
+            folders={true}
           />
         ),
-        // loader: contactLoader,
+        loader: loadImages,
         // action: contactAction,
       },
       {
@@ -109,11 +89,11 @@ export const router = createBrowserRouter([
             togglePhotoBox={togglePhotoBox}
             theme={theme}
             images={[allImages[4], allImages[4], allImages[4]]}
-            flag={true}
+            folders={true}
           />
         ),
 
-        // loader: contactLoader,
+        loader: loadImages,
         // action: contactAction,
       },
       {
@@ -124,11 +104,11 @@ export const router = createBrowserRouter([
             togglePhotoBox={togglePhotoBox}
             theme={theme}
             images={[allImages[5], allImages[5], allImages[5]]}
-            flag={true}
+            folders={true}
           />
         ),
 
-        // loader: contactLoader,
+        loader: loadImages,
         // action: contactAction,
       },
     ],
