@@ -164,7 +164,7 @@ export default function Root() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Box sx={{ display: "flex" }}>
+        <Box sx={{ display: "flex", width: "100svw" }}>
           <CssBaseline />
           <AppBar position="absolute" open={open} color="primary">
             <Toolbar
