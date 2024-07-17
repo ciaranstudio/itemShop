@@ -1,0 +1,9 @@
+const id: Number = 1; // use what firebase generates, uuid is the index value for each record as a doc in firestore collection
+const label: String = "images"; // page route name (for now)
+const title: string = "gramps"; // item title (art title or descriptive title or retail title)
+const year: Number = 2024; // year of release
+const materials: String[] = ["wood", "paint"]; // art materials / build items
+const practiceType: String = "shop"; // shop | art | custom (for grouping sets of image objects with filter / onto pages)
+const objectType: String = "furniture";
+const imgPath: String[] = ["url1", "url2"];
+const multiple: boolean = true;

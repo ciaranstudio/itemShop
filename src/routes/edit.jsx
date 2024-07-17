@@ -3,27 +3,73 @@ import { updateContact } from "../data/contacts";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
+// import Input from "@mui/material/Input";
 
 export async function action({ request, params }) {
   const formData = await request.formData();
+  const imageFiles = [];
+  for (const key of formData.keys()) {
+    if (key.startsWith("imgPath")) {
+      const file = formData.get(key);
+      imageFiles.push(file);
+    }
+  }
   const updates = Object.fromEntries(formData);
+  for (var key in updates) {
+    if (updates.hasOwnProperty(key)) {
+      //Now, object[key] is the current value
+      console.log("key: ", key);
+      if (key.startsWith("imgPath")) delete updates[key];
+    }
+  }
+  Object.defineProperty(updates, "imgPath", { value: imageFiles });
+  console.log("Updates: ", updates);
   await updateContact(params.contactId, updates);
   return redirect(`/admin/contacts/${params.contactId}`);
 }
 
+// const ariaLabel = { "aria-label": "image file upload" };
+
 export default function EditContact() {
   const { contact } = useLoaderData();
   const navigate = useNavigate();
-  console.log(contact);
 
   return (
     <>
-      <Form method="post">
+      <Form method="post" encType="multipart/form-data">
         <Box
           sx={{
             "& > :not(style)": { p: 1, width: "100%" },
           }}
         >
+          <Box
+            sx={{
+              maxWidth: "md",
+            }}
+          >
+            <TextField
+              id="outlined-basic"
+              // label="Outlined"
+              name="imgPath0"
+              variant="outlined"
+              type="file"
+              // inputProps={{
+              //   multiple: true,
+              //   accept: "image/*",
+              // }}
+            />
+            <TextField
+              id="outlined-basic"
+              // label="Outlined"
+              name="imgPath1"
+              variant="outlined"
+              type="file"
+              // inputProps={{
+              //   multiple: true,
+              //   accept: "image/*",
+              // }}
+            />
+          </Box>
           <Box
             sx={{
               maxWidth: "md",

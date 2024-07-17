@@ -56,6 +56,7 @@ export async function updateContact(id, updates) {
   if (!contact) throw new Error("No contact found for", id);
 
   const docRef = doc(db, "participants", id);
+  console.log("updates to send to Firebase: ", updates);
   await updateDoc(docRef, updates);
 
   return contact;
