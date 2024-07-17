@@ -1,8 +1,17 @@
-import { Form, useLoaderData, redirect, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import {
+  Form,
+  useLoaderData,
+  redirect,
+  useNavigate,
+  useLocation,
+} from "react-router-dom";
 import { updateContact } from "../data/contacts";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
+import { useDashContext } from "../context/ViewContext";
+import { useOptionStore } from "../store/useOptionStore.tsx";
 // import Input from "@mui/material/Input";
 
 export async function action({ request, params }) {
@@ -31,8 +40,32 @@ export async function action({ request, params }) {
 // const ariaLabel = { "aria-label": "image file upload" };
 
 export default function EditContact() {
+  // get location from Router hook
+  // const routerLocation = useLocation();
+  // // get and set context location value
+  // const { location, setLocation } = useDashContext();
+  // disable three controls so that scroll works in admin interface with open set to true
+  const setStoreOpen = useOptionStore((state) => state.setOpen);
+
+  // useEffect
+  // useEffect(() => {
+  //   setStoreOpen(true);
+  // }, []);
+
+  // useEffect(() => {
+  //   console.log("routerLocation: ", routerLocation);
+  //   setLocation(routerLocation);
+  // }, [routerLocation]);
+
   const { contact } = useLoaderData();
   const navigate = useNavigate();
+
+  const [fileInputCount, setFileInputCount] = useState(1);
+  const [fileInputArray, setFileInputArray] = useState([]);
+  useEffect(() => {
+    setFileInputArray(Array(fileInputCount).fill(0));
+    setStoreOpen(true);
+  }, [fileInputCount]);
 
   return (
     <>
@@ -47,28 +80,32 @@ export default function EditContact() {
               maxWidth: "md",
             }}
           >
-            <TextField
-              id="outlined-basic"
-              // label="Outlined"
-              name="imgPath0"
+            {fileInputArray.map(() => {
+              return (
+                <TextField
+                  id="outlined-basic"
+                  // label="Outlined"
+                  name="imgPath0"
+                  variant="outlined"
+                  type="file"
+                  // inputProps={{
+                  //   multiple: true,
+                  //   accept: "image/*",
+                  // }}
+                />
+              );
+            })}
+            <Button
+              component="button"
               variant="outlined"
-              type="file"
-              // inputProps={{
-              //   multiple: true,
-              //   accept: "image/*",
-              // }}
-            />
-            <TextField
-              id="outlined-basic"
-              // label="Outlined"
-              name="imgPath1"
-              variant="outlined"
-              type="file"
-              // inputProps={{
-              //   multiple: true,
-              //   accept: "image/*",
-              // }}
-            />
+              color="primary"
+              onClick={() => {
+                setFileInputCount((prev) => prev + 1);
+              }}
+              sx={{ mt: 1 }}
+            >
+              Add image
+            </Button>
           </Box>
           <Box
             sx={{

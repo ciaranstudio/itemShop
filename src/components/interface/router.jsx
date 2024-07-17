@@ -3,18 +3,18 @@ import { authProvider } from "../../data/authProvider";
 import Root, {
   loader as rootLoader,
   action as rootAction,
-} from "../../routes/Root";
+} from "../../routes/root";
 import Contact, {
   loader as contactLoader,
   action as contactAction,
-} from "../../routes/Contact";
-import EditContact, { action as editAction } from "../../routes/Edit";
-import { action as destroyAction } from "../../routes/Destroy";
-import Index from "../../routes/Index";
+} from "../../routes/contact";
+import EditContact, { action as editAction } from "../../routes/edit";
+import { action as destroyAction } from "../../routes/destroy";
+import Index from "../../routes/index";
 import LoginPage, {
   loader as loginLoader,
   action as loginAction,
-} from "../../routes/Login";
+} from "../../routes/login";
 
 import { Outlet } from "react-router-dom";
 import PhotoGrid from "./PhotoGrid.jsx";

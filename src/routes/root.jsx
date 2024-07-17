@@ -7,6 +7,7 @@ import {
   Form,
   redirect,
   useNavigate,
+  useLocation,
 } from "react-router-dom";
 import { getContacts, createContact } from "../data/contacts";
 import { authProvider } from "../data/authProvider";
@@ -40,6 +41,8 @@ import ExpandMore from "@mui/icons-material/ExpandMore";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import Clear from "@mui/icons-material/Clear";
+import { useDashContext } from "../context/ViewContext";
+import { useOptionStore } from "../store/useOptionStore.tsx";
 
 export async function action() {
   const contact = await createContact();
@@ -109,6 +112,13 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 export default function Root() {
+  // get location from Router hook
+  const routerLocation = useLocation();
+  // get and set context location value
+  const { location, setLocation } = useDashContext();
+  // disable three controls so that scroll works in admin interface with open set to true
+  const setStoreOpen = useOptionStore((state) => state.setOpen);
+
   // useState
   const [open, setOpen] = useState(false);
   const [openNestedList, setOpenNestedList] = useState(false);
@@ -160,6 +170,16 @@ export default function Root() {
   useEffect(() => {
     setValue(null);
   }, []);
+
+  // useEffect
+  useEffect(() => {
+    setStoreOpen(true);
+  }, []);
+
+  useEffect(() => {
+    console.log("routerLocation: ", routerLocation);
+    setLocation(routerLocation);
+  }, [routerLocation]);
 
   return (
     <>
@@ -357,6 +377,7 @@ export default function Root() {
                       display: "flex",
                       flexDirection: "column",
                       maxWidth: "77.5ch",
+                      overflow: "auto",
                     }}
                   >
                     <Outlet />
