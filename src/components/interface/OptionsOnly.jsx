@@ -64,32 +64,32 @@ export default function OptionsOnly({
   const currentItemSelected = useOptionStore(
     (state) => state.currentItemSelected,
   );
-  const open = useOptionStore((state) => state.open);
-  const aboutInfo = useOptionStore((state) => state.aboutInfo);
+  // const open = useOptionStore((state) => state.open);
+  // const aboutInfo = useOptionStore((state) => state.aboutInfo);
 
   // useEffect
-  useEffect(() => {
-    let nextIndex;
-    if (aboutIndex === 4) {
-      nextIndex = 0;
-    } else {
-      nextIndex = aboutIndex + 1;
-    }
-    setAboutIndex(nextIndex);
-  }, [aboutPageToggle]);
+  // useEffect(() => {
+  //   let nextIndex;
+  //   if (aboutIndex === 4) {
+  //     nextIndex = 0;
+  //   } else {
+  //     nextIndex = aboutIndex + 1;
+  //   }
+  //   setAboutIndex(nextIndex);
+  // }, [aboutPageToggle]);
 
   // functions
-  const nextPage = (e) => {
-    if (e) {
-      e.preventDefault();
-      e.stopPropagation();
-    }
-    setAboutPageToggle(!aboutPageToggle);
-  };
+  // const nextPage = (e) => {
+  //   if (e) {
+  //     e.preventDefault();
+  //     e.stopPropagation();
+  //   }
+  //   setAboutPageToggle(!aboutPageToggle);
+  // };
 
-  const gridCells = [
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
-  ];
+  // const gridCells = [
+  //   1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
+  // ];
 
   // helper hook
   const { height, width } = useWindowDimensions();
@@ -187,7 +187,7 @@ export default function OptionsOnly({
       handlePartOption(e, currentItemName, part.partName, color, false);
       return color;
     });
-    console.log("random colors generated list: ", randomThisItemColors);
+    // console.log("random colors generated list: ", randomThisItemColors);
   };
   const closePartOptions = (e) => {
     e.preventDefault();

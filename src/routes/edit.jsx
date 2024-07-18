@@ -4,13 +4,13 @@ import {
   useLoaderData,
   redirect,
   useNavigate,
-  useLocation,
+  // useLocation,
 } from "react-router-dom";
 import { updateContact } from "../data/contacts";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import { useDashContext } from "../context/ViewContext";
+// import { useDashContext } from "../context/ViewContext";
 import { useOptionStore } from "../store/useOptionStore.tsx";
 // import Input from "@mui/material/Input";
 
@@ -32,7 +32,7 @@ export async function action({ request, params }) {
     }
   }
   Object.defineProperty(updates, "imgPath", { value: imageFiles });
-  console.log("Updates: ", updates);
+  console.log("Updates in Edit formData action: ", updates);
   await updateContact(params.contactId, updates);
   return redirect(`/admin/contacts/${params.contactId}`);
 }
@@ -46,7 +46,6 @@ export default function EditContact() {
   // const { location, setLocation } = useDashContext();
   // disable three controls so that scroll works in admin interface with open set to true
   const setStoreOpen = useOptionStore((state) => state.setOpen);
-
   // useEffect
   // useEffect(() => {
   //   setStoreOpen(true);

@@ -116,7 +116,7 @@ export default function Root() {
   const routerLocation = useLocation();
   // get and set context location value
   const { location, setLocation } = useDashContext();
-  // disable three controls so that scroll works in admin interface with open set to true
+  // store function disable three controls so that scroll works in admin interface with open set to true
   const setStoreOpen = useOptionStore((state) => state.setOpen);
 
   // useState
@@ -177,8 +177,8 @@ export default function Root() {
   }, []);
 
   useEffect(() => {
-    console.log("routerLocation: ", routerLocation);
-    setLocation(routerLocation);
+    console.log("routerLocation from Root: ", routerLocation);
+    // setLocation(routerLocation);
   }, [routerLocation]);
 
   return (
@@ -220,7 +220,7 @@ export default function Root() {
                 aria-label="Search contacts"
                 value={value}
                 onChange={(event, newValue) => {
-                  console.log("newValue: ", newValue);
+                  // console.log("newValue: ", newValue);
                   setValue(newValue);
                 }}
                 inputValue={inputValue}

@@ -31,15 +31,16 @@ import {
   loadSaleImages,
   loadAboutImages,
 } from "../../utils/loadImages.js";
+import HtmlOutletRoot from "./HtmlOutletRoot.jsx";
 
 export const router = createBrowserRouter([
   {
     // id: "root",
     path: "/",
     element: (
-      <>
+      <HtmlOutletRoot>
         <Outlet />
-      </>
+      </HtmlOutletRoot>
     ),
     errorElement: <ErrorPage />,
     // loader: loadImages,

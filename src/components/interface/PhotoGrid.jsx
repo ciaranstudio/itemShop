@@ -16,7 +16,9 @@ export default function PhotoGrid({ theme, folders, single }) {
 
   // Router loader data
   const data = useLoaderData();
-  console.log("useLoader data: ", data);
+  useEffect(() => {
+    console.log("useLoader data in PhotoGrid: ", data);
+  }, [data]);
 
   // router navigate function
   const goTo = (route) => {
@@ -69,14 +71,17 @@ export default function PhotoGrid({ theme, folders, single }) {
   }, []);
 
   useEffect(() => {
-    console.log("routerLocation: ", routerLocation);
+    console.log(
+      "routerLocation from PhotoGrid (setting context location): ",
+      routerLocation,
+    );
     setLocation(routerLocation);
     setSelectedImage(null);
   }, [routerLocation]);
 
-  useEffect(() => {
-    console.log("dash location: ", location);
-  }, [location]);
+  // useEffect(() => {
+  //   console.log("dash location: ", location);
+  // }, [location]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -88,6 +93,7 @@ export default function PhotoGrid({ theme, folders, single }) {
           overflow: "auto",
           pointerEvents: open ? "auto" : "none",
           marginTop: "0.5rem",
+          overflow: selectedImage === null ? "auto" : "hidden",
         }}
       >
         {selectedImage === null ? (
@@ -183,13 +189,14 @@ export default function PhotoGrid({ theme, folders, single }) {
                 },
                 borderRadius: "0.75rem",
                 // border: "0.085rem solid rgb(155, 155, 155)",
-                overflow: "auto",
+                justifyContent: "center",
+                mt: 3,
               }}
             >
               <img
                 style={{
                   objectFit: "contain",
-                  width: "100%",
+                  maxHeight: "80vh",
                 }}
                 src={selectedImage.imgPath}
               ></img>
@@ -197,7 +204,7 @@ export default function PhotoGrid({ theme, folders, single }) {
           </>
         )}
 
-        <div>
+        {/* <div>
           <span>
             <Link to="/">home</Link>
           </span>
@@ -206,7 +213,7 @@ export default function PhotoGrid({ theme, folders, single }) {
           <span>
             <Link to="/gramps">gramps</Link>
           </span>
-        </div>
+        </div> */}
       </div>
     </ThemeProvider>
   );

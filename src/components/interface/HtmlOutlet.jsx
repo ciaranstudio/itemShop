@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Html } from "@react-three/drei";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import IconButton from "@mui/material/IconButton";

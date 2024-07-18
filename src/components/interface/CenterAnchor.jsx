@@ -2,7 +2,6 @@ import React, { useState, useLayoutEffect, useEffect } from "react";
 import { useGLTF, useTexture } from "@react-three/drei";
 import { useOptionStore } from "../../store/useOptionStore.tsx";
 import HtmlOutlet from "./HtmlOutlet.jsx";
-import { useDashContext } from "../../context/ViewContext";
 
 export const CenterAnchor = ({
   theme,
@@ -11,14 +10,8 @@ export const CenterAnchor = ({
   toggleInfoBox,
   togglePhotoBox,
 }) => {
-  const { location, setLocation } = useDashContext();
   const { scene, nodes, materials } = useGLTF("./models/logoAnnotated.gltf");
   const [annotations, setAnnotations] = useState([]);
-
-  useEffect(() => {
-    // setLocation(location);
-    console.log("dash context location: ", location);
-  }, [location]);
 
   // texture
   const [map, normalMap, roughnessMap, metalnessMap] =
