@@ -6,6 +6,7 @@ import {
   getDoc,
   getDocs,
   addDoc,
+  setDoc,
   updateDoc,
   deleteDoc,
   Timestamp,
@@ -13,7 +14,7 @@ import {
 import { db } from "../firebaseConfig";
 
 export async function getContacts() {
-  const querySnapshot = await getDocs(collection(db, "participants"));
+  const querySnapshot = await getDocs(collection(db, "imageRecords"));
   let contacts = [];
   querySnapshot.forEach((doc) => {
     contacts.push({ ...doc.data(), id: doc.id });
@@ -25,7 +26,7 @@ export async function createContact() {
   let contact;
   let contacts = await getContacts();
   try {
-    const docRef = await addDoc(collection(db, "participants"), {
+    const docRef = await addDoc(collection(db, "imageRecords"), {
       createdAt: Timestamp.now(),
     });
     let id = docRef.id;
@@ -39,7 +40,7 @@ export async function createContact() {
 
 export async function getContact(id) {
   let contact;
-  const docRef = doc(db, "participants", id);
+  const docRef = doc(db, "imageRecords", id);
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
@@ -55,16 +56,30 @@ export async function updateContact(id, updates) {
   let contact = getContact(id);
   if (!contact) throw new Error("No contact found for", id);
 
-  const docRef = doc(db, "participants", id);
+  const docRef = doc(db, "imageRecords", id);
   console.log(
     "updates to send to Firebase (from update function in 'contacts'): ",
     updates,
   );
-  await updateDoc(docRef, updates);
+  // Update Firestore with the URLs array
+  try {
+    await setDoc(
+      docRef,
+      {
+        imgPath: updates.imgPath,
+      },
+      { merge: true },
+    ).then((r) => {
+      console.log("done");
+    });
+    await updateDoc(docRef, updates);
+  } catch (err) {
+    alert(err);
+  }
 
   return contact;
 }
 
 export async function deleteContact(id) {
-  await deleteDoc(doc(db, "participants", id));
+  await deleteDoc(doc(db, "imageRecords", id));
 }

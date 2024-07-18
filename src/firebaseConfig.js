@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getStorage } from "firebase/storage";
+// import { getStorage } from "firebase/storage";
 import { getFirestore } from "firebase/firestore";
 // import { getAnalytics } from "firebase/analytics";
 // import firebase from "firebase/compat/app";
@@ -29,8 +29,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 // const analytics = getAnalytics(app);
 const db = getFirestore(app);
-const storage = getStorage(app);
+// const storage = getStorage(app);
 const auth = getAuth();
 console.log(import.meta.env.REACT_APP_API_KEY);
 
-export { app, db, storage, auth };
+export { app, db, auth };

@@ -13,26 +13,67 @@ import TextField from "@mui/material/TextField";
 // import { useDashContext } from "../context/ViewContext";
 import { useOptionStore } from "../store/useOptionStore.tsx";
 // import Input from "@mui/material/Input";
+// import { storage } from "../firebaseConfig.js";
+import {
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "firebase/storage";
 
 export async function action({ request, params }) {
   const formData = await request.formData();
   const imageFiles = [];
+  let routeFolder = "";
   for (const key of formData.keys()) {
+    console.log("key: ", key);
+    if (key.startsWith("route")) {
+      routeFolder = formData.get(key);
+      console.log("routeFolder: ", routeFolder);
+    }
     if (key.startsWith("imgPath")) {
       const file = formData.get(key);
+      console.log(file);
       imageFiles.push(file);
     }
   }
+
+  // Get a reference to the storage service, which is used to create references in your storage bucket
+  const storage = getStorage();
+
+  // Create a storage reference from our storage service
+  // const storageRef = ref(storage);
+
+  const promises = [];
+  // // const storage = getStorage();
+
+  for (var i = 0; i < imageFiles.length; i++) {
+    const file = imageFiles[i];
+    if (file !== null) {
+      const storage = getStorage();
+      const storageRef = ref(storage, `${routeFolder}/${file.name}`);
+
+      promises.push(
+        uploadBytesResumable(storageRef, file).then((uploadResult) => {
+          return getDownloadURL(uploadResult.ref);
+        }),
+      );
+    }
+  }
+  // Get all the downloadURLs
+  const photos = await Promise.all(promises);
+  console.log("Photos (downloadURLs): ", photos);
+
   const updates = Object.fromEntries(formData);
   for (var key in updates) {
     if (updates.hasOwnProperty(key)) {
-      //Now, object[key] is the current value
-      console.log("key: ", key);
+      // object[key] is the current value
       if (key.startsWith("imgPath")) delete updates[key];
     }
   }
-  Object.defineProperty(updates, "imgPath", { value: imageFiles });
+  Object.defineProperty(updates, "imgPath", { value: photos });
   console.log("Updates in Edit formData action: ", updates);
+
   await updateContact(params.contactId, updates);
   return redirect(`/admin/contacts/${params.contactId}`);
 }
@@ -77,14 +118,23 @@ export default function EditContact() {
           <Box
             sx={{
               maxWidth: "md",
+              m: 0,
             }}
           >
-            {fileInputArray.map(() => {
+            {contact.imgPath.length} images uploaded
+          </Box>
+          <Box
+            sx={{
+              maxWidth: "md",
+            }}
+          >
+            {fileInputArray.map((file, index) => {
               return (
                 <TextField
+                  key={index}
                   id="outlined-basic"
                   // label="Outlined"
-                  name="imgPath0"
+                  name={`imgPath${index}`}
                   variant="outlined"
                   type="file"
                   // inputProps={{

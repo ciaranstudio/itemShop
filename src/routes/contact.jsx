@@ -128,6 +128,14 @@ export default function Contact() {
         >
           {contact.description && <>{contact.description}</>}
         </Typography>
+        <Typography
+          variant="body2"
+          color="inherit"
+          paragraph
+          sx={{ pt: 0, pr: { sm: 2, md: 6 }, color: "#455A64" }}
+        >
+          {contact.imgPath.length} images uploaded
+        </Typography>
       </Box>
     </>
   );
