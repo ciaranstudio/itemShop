@@ -31,7 +31,7 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import PeopleIcon from "@mui/icons-material/People";
+// import PeopleIcon from "@mui/icons-material/People";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 import Collapse from "@mui/material/Collapse";
 import StarIcon from "@mui/icons-material/Star";

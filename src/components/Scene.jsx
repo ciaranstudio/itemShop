@@ -504,7 +504,7 @@ export default function Scene({
       // setShowPartOptions(true);
     }
     if (!showBackground) {
-      setOpen(false);
+      // setOpen(false);
       // animateStageY();
       animateParts();
     } else if (showBackground && currentItemSelected !== unselectedItem) {
@@ -766,14 +766,14 @@ export default function Scene({
       setShowPartOptions(false);
       setCurrentItemSelected(objects.gramps);
       setTimeout(() => {
-        setOpen(false);
+        // setOpen(false);
         setShowPhotos(false);
         setShowBackground(!showBackground);
       }, "750");
     } else {
       if (!animActive && !arrowAnimActive) {
         setShowPartOptions(false);
-        setOpen(false);
+        // setOpen(false);
         setShowPhotos(false);
         setShowBackground(!showBackground);
       }
@@ -842,7 +842,7 @@ export default function Scene({
       e.stopPropagation();
     }
     setAllPhotos(false);
-    setOpen(false);
+    // setOpen(false);
     setShowPhotos(!showPhotos);
 
     if (showPartOptions) {
