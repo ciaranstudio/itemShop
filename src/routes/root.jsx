@@ -43,6 +43,7 @@ import TextField from "@mui/material/TextField";
 import Clear from "@mui/icons-material/Clear";
 import { useDashContext } from "../context/ViewContext";
 import { useOptionStore } from "../store/useOptionStore.tsx";
+import ImageIcon from "@mui/icons-material/Image";
 
 export async function action() {
   const contact = await createContact();
@@ -227,18 +228,22 @@ export default function Root() {
                 onInputChange={(event, newInputValue) => {
                   setInputValue(newInputValue);
                 }}
+                // isOptionEqualToValue={(option, value) =>
+                //   option.first + " " + option.last ===
+                //   value.first + " " + value.last
+                // }
+                // getOptionLabel={(option) => option.first + " " + option.last}
                 isOptionEqualToValue={(option, value) =>
-                  option.first + " " + option.last ===
-                  value.first + " " + value.last
+                  option.title === value.title
                 }
-                getOptionLabel={(option) => option.first + " " + option.last}
+                getOptionLabel={(option) => option.title}
                 options={contacts}
                 loading={loading}
                 renderInput={(params) => (
                   <TextField
                     {...params}
                     variant="outlined"
-                    label="Participant"
+                    label="Search (title)"
                     size="small"
                     InputLabelProps={{
                       sx: {
@@ -313,9 +318,9 @@ export default function Root() {
               <Divider sx={{ my: 1 }} />
               <ListItemButton onClick={handleNestedClick}>
                 <ListItemIcon>
-                  <PeopleIcon />
+                  <ImageIcon />
                 </ListItemIcon>
-                <ListItemText primary="Members" />
+                <ListItemText primary="Images" />
                 {openNestedList ? <ExpandLess /> : <ExpandMore />}
               </ListItemButton>
 
@@ -336,9 +341,9 @@ export default function Root() {
                         </ListItemIcon>
                         <ListItemText
                           primary={
-                            contact.first || contact.last ? (
+                            contact.title || contact.year ? (
                               <>
-                                {contact.first} {contact.last}
+                                {contact.title} {contact.year}
                               </>
                             ) : (
                               <i>No Name</i>

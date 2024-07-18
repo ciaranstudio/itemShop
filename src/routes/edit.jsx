@@ -91,17 +91,18 @@ export default function EditContact() {
                   //   multiple: true,
                   //   accept: "image/*",
                   // }}
+                  sx={{ my: 1, mr: 1 }}
                 />
               );
             })}
             <Button
               component="button"
               variant="outlined"
-              color="primary"
+              color="info"
               onClick={() => {
                 setFileInputCount((prev) => prev + 1);
               }}
-              sx={{ mt: 1 }}
+              sx={{ my: 1 }}
             >
               Add image
             </Button>
@@ -113,17 +114,17 @@ export default function EditContact() {
           >
             <TextField
               id="outlined-uncontrolled"
-              label="First name"
-              name="first"
-              defaultValue={contact.first}
+              label="Title"
+              name="title"
+              defaultValue={contact.title}
               size="small"
               sx={{ mr: 1, mb: { xs: 1, sm: 0 }, input: { color: "#546E7A" } }}
             />
             <TextField
               id="outlined-uncontrolled"
-              label="Last name"
-              name="last"
-              defaultValue={contact.last}
+              label="Year"
+              name="year"
+              defaultValue={contact.year}
               size="small"
               sx={{ mr: 1, input: { color: "#546E7A" } }}
             />
@@ -135,17 +136,17 @@ export default function EditContact() {
           >
             <TextField
               id="outlined-uncontrolled"
-              label="@instagram"
-              defaultValue={contact.instagram}
-              name="instagram"
+              label="Materials"
+              defaultValue={contact.materials}
+              name="materials"
               size="small"
               sx={{ mr: 1, mb: { xs: 1, sm: 0 }, input: { color: "#607D8B" } }}
             />
             <TextField
               id="outlined-uncontrolled"
-              label="Artist website"
-              defaultValue={contact.website}
-              name="website"
+              label="Route"
+              defaultValue={contact.route}
+              name="route"
               size="small"
               sx={{ mr: 1, mb: 1, input: { color: "#607D8B" } }}
             />
@@ -153,11 +154,11 @@ export default function EditContact() {
 
           <TextField
             id="outlined-uncontrolled"
-            label="Artist bio..."
-            defaultValue={contact.notes}
+            label="Description"
+            defaultValue={contact.description}
             multiline
             minRows={12}
-            name="notes"
+            name="description"
             size="small"
             inputProps={{ style: { color: "#546E7A" } }}
           />

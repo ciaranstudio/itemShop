@@ -46,12 +46,10 @@ export default function Contact() {
             gutterBottom
             sx={{ flexGrow: 1, color: "#424242", mb: 2 }}
           >
-            {contact.first || contact.last ? (
-              <>
-                {contact.first} {contact.last}
-              </>
+            {contact.title || contact.year ? (
+              <>{contact.title}</>
             ) : (
-              <i>No Name</i>
+              <i>No Title</i>
             )}
           </Typography>
         </Box>
@@ -89,24 +87,35 @@ export default function Contact() {
         </Box>
 
         <Typography variant="subtitle1" color="inherit" sx={{ mt: 0, py: 0 }}>
-          {contact.instagram && (
+          {contact.year && (
             <Link
-              href={`https://instagram.com/${contact.instagram}`}
+              href={`https://instagram.com/${contact.year}`}
               rel="noreferrer"
               sx={{ mr: 3, textDecoration: "none" }}
             >
-              {contact.instagram}
+              {contact.year}
+            </Link>
+          )}
+        </Typography>
+        <Typography variant="subtitle1" color="inherit" sx={{ mt: 0, py: 0 }}>
+          {contact.materials && (
+            <Link
+              href={`https://instagram.com/${contact.materials}`}
+              rel="noreferrer"
+              sx={{ mr: 3, textDecoration: "none" }}
+            >
+              {contact.materials}
             </Link>
           )}
         </Typography>
         <Typography variant="subtitle1" color="inherit" sx={{ mt: 0 }}>
-          {contact.website && (
+          {contact.route && (
             <Link
-              href={`https://instagram.com/${contact.instagram}`}
+              href={`https://instagram.com/${contact.route}`}
               rel="noreferrer"
               sx={{ textDecoration: "none" }}
             >
-              {contact.website}
+              {contact.route}
             </Link>
           )}
         </Typography>
@@ -117,7 +126,7 @@ export default function Contact() {
           paragraph
           sx={{ pt: 1, pr: { sm: 2, md: 6 }, color: "#455A64" }}
         >
-          {contact.notes && <>{contact.notes}</>}
+          {contact.description && <>{contact.description}</>}
         </Typography>
       </Box>
     </>
