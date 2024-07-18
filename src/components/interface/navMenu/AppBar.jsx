@@ -20,6 +20,7 @@ import { router } from "../router.jsx";
 import { PAGES } from "../../../data/constants.tsx";
 
 function ResponsiveAppBar({ theme }) {
+  const [selectedNavItem, setSelectedNavItem] = useState("");
   // useState for Snipcart
   const [snipcartLoaded, setSnipcartLoaded] = useState(false);
   const [cartCount, setCartCount] = useState(0);
@@ -106,33 +107,38 @@ function ResponsiveAppBar({ theme }) {
     setShowPartOptions(false);
     switch (menuItem) {
       case "about":
+        setSelectedNavItem("about");
         goTo("/about");
         break;
       case "images":
+        setSelectedNavItem("images");
         goTo("/images");
         break;
       case "custom":
-        window.open(
-          "https://www.eligfellstudio.com/new-page",
-          "_blank",
-          "noreferrer",
-        );
+        setSelectedNavItem("custom");
+        // window.open(
+        //   "https://www.eligfellstudio.com/new-page",
+        //   "_blank",
+        //   "noreferrer",
+        // );
         goTo("/custom");
         break;
       case "contact":
-        window.open(
-          "https://www.eligfellstudio.com/contact-1",
-          "_blank",
-          "noreferrer",
-        );
+        setSelectedNavItem("contact");
+        // window.open(
+        //   "https://www.eligfellstudio.com/contact-1",
+        //   "_blank",
+        //   "noreferrer",
+        // );
         goTo("/contact");
         break;
       case "exhibitions":
-        window.open(
-          "https://cargocollective.com/eligfell",
-          "_blank",
-          "noreferrer",
-        );
+        setSelectedNavItem("exhibitions");
+        // window.open(
+        //   "https://cargocollective.com/eligfell",
+        //   "_blank",
+        //   "noreferrer",
+        // );
         goTo("/exhibitions");
         break;
     }
@@ -227,13 +233,7 @@ function ResponsiveAppBar({ theme }) {
                   <MenuItem
                     key={i}
                     onClick={(e) => selectHandler(e, page.menuItem)}
-                    selected={
-                      aboutInfo && page.menuItem === "about"
-                        ? true
-                        : allPhotos && page.menuItem === "images"
-                          ? true
-                          : false
-                    }
+                    selected={selectedNavItem === page.menuItem}
                   >
                     {/* <Link to={`/${page.menuItem}`}> */}
                     <Typography
@@ -285,13 +285,17 @@ function ResponsiveAppBar({ theme }) {
                   sx={{
                     my: 3,
                     mx: 3,
-                    color: `${
-                      aboutInfo && page.menuItem === "about"
-                        ? theme.palette.primary.main
-                        : allPhotos && page.menuItem === "images"
-                          ? theme.palette.primary.main
-                          : theme.palette.secondary.main
-                    }`,
+                    // color: `${
+                    //   aboutInfo && page.menuItem === "about"
+                    //     ? theme.palette.primary.main
+                    //     : allPhotos && page.menuItem === "images"
+                    //       ? theme.palette.primary.main
+                    //       : theme.palette.secondary.main
+                    // }`,
+                    color:
+                      selectedNavItem === page.menuItem
+                        ? theme.palette.primary.warning
+                        : theme.palette.primary.main,
                     display: "block",
                     fontFamily: "var(--leva-fonts-mono)",
                   }}
