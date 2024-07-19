@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Form, useLoaderData, redirect, useNavigate } from "react-router-dom";
-import { updateImageRecord } from "./records.js";
+import { updateImageRecord } from "../utils/records.js";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";

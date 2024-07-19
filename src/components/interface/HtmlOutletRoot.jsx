@@ -27,9 +27,9 @@ export default function HtmlOutletRoot({ children }) {
     (state) => state.setPreviousItemSelected,
   );
   const setShowBackground = useOptionStore((state) => state.setShowBackground);
-  // const setShowPartOptions = useOptionStore(
-  //   (state) => state.setShowPartOptions,
-  // );
+  const setShowPartOptions = useOptionStore(
+    (state) => state.setShowPartOptions,
+  );
 
   // get location from Router hook
   const routerLocation = useLocation();
@@ -37,7 +37,7 @@ export default function HtmlOutletRoot({ children }) {
   useEffect(() => {
     // console.log("routerLocation in HtmlOutletRoot: ", routerLocation);
     setLocationPathname(routerLocation.pathname);
-
+    setSelectedImage(null);
     if (routerLocation.pathname === "/" || routerLocation.pathname === "") {
       setOpen(false);
     } else {
@@ -50,32 +50,32 @@ export default function HtmlOutletRoot({ children }) {
             setShowBackground(false);
           }, 500);
       } else {
-        // setShowPartOptions(true);
-        setShowBackground(true);
-        setTimeout(() => {
-          setShowBackground(false);
-        }, 1500);
+        setShowPartOptions(true);
+        // setShowBackground(true);
+        // setTimeout(() => {
+        //   setShowBackground(false);
+        // }, 1500);
         // setShowBackground(false);
       }
-      if (selectedImage !== null) {
-        if (selectedImage.route === "shop") {
-          const tempSelectedTitle = selectedImage.title;
-          const titleMatch = (element) =>
-            element.itemTitle === tempSelectedTitle;
-          if (titleMatch) {
-            let matchedItem = shopItems.find(titleMatch);
-            console.log("matched item from shop image click: ", matchedItem);
-            setPreviousItemSelected(currentItemSelected);
-            setCurrentItemSelected(matchedItem);
-          }
-        }
-        setSelectedImage(null);
-      }
+    } else {
+      setShowBackground(true);
     }
   }, [routerLocation]);
 
   useEffect(() => {
     console.log("selectedImage: ", selectedImage);
+    if (selectedImage !== null) {
+      if (selectedImage.route === "shop") {
+        const tempSelectedTitle = selectedImage.title;
+        const titleMatch = (element) => element.itemTitle === tempSelectedTitle;
+        if (titleMatch) {
+          let matchedItem = shopItems.find(titleMatch);
+          console.log("matched item from shop image click: ", matchedItem);
+          setPreviousItemSelected(currentItemSelected);
+          setCurrentItemSelected(matchedItem);
+        }
+      }
+    }
   }, [selectedImage]);
 
   // useEffect(() => {

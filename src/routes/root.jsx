@@ -9,7 +9,7 @@ import {
   useNavigate,
   useLocation,
 } from "react-router-dom";
-import { getImageRecords, createImageRecord } from "./records.js";
+import { getImageRecords, createImageRecord } from "../utils/records.js";
 import { authProvider } from "../data/authProvider.jsx";
 import AuthStatus from "../components/interface/AuthStatus.jsx";
 import Copyright from "../components/interface/Copyright.jsx";

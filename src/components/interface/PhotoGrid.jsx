@@ -95,10 +95,10 @@ export default function PhotoGrid({ theme }) {
     // }
     if (m.imgPath.length > 1) {
       setSelectedImage(m);
+      console.log("show grid of related (sub) images");
     } else {
-      console.log(
-        "go to single view route (and set context to hold selected image record id ?",
-      );
+      setSelectedImage(m);
+      console.log("go to single view route of selected image");
     }
   };
 

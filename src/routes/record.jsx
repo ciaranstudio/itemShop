@@ -1,5 +1,5 @@
 import { Form, useLoaderData, useFetcher } from "react-router-dom";
-import { getImageRecord, updateImageRecord } from "./records";
+import { getImageRecord, updateImageRecord } from "../utils/records";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";

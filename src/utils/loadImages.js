@@ -1,4 +1,4 @@
-import { getImageRecords } from "../routes/records";
+import { getImageRecords } from "./records";
 import { allImages } from "../data/objects";
 
 export async function loadShopImages() {
