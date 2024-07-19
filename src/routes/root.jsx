@@ -11,8 +11,8 @@ import {
 } from "react-router-dom";
 import { getImageRecords, createImageRecord } from "./records.js";
 import { authProvider } from "../data/authProvider.jsx";
-import AuthStatus from "../components/AuthStatus.jsx";
-import Copyright from "../components/Copyright.jsx";
+import AuthStatus from "../components/interface/AuthStatus.jsx";
+import Copyright from "../components/interface/Copyright.jsx";
 import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import MuiDrawer from "@mui/material/Drawer";

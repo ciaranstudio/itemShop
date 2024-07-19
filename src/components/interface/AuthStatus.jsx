@@ -4,8 +4,8 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import { useDashContext } from "../context/ViewContext";
-import { useOptionStore } from "../store/useOptionStore.tsx";
+// import { useDashContext } from "../../context/ViewContext";
+import { useOptionStore } from "../../store/useOptionStore.tsx";
 
 export default function AuthStatus() {
   let fetcher = useFetcher();
@@ -14,7 +14,7 @@ export default function AuthStatus() {
   // get location from Router hook
   const routerLocation = useLocation();
   // get and set context location value
-  const { location, setLocation } = useDashContext();
+  // const { location, setLocation } = useDashContext();
   // store function disable three controls so that scroll works in admin interface with open set to true
   const setStoreOpen = useOptionStore((state) => state.setOpen);
 

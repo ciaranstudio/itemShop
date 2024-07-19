@@ -8,14 +8,16 @@ import { useOptionStore } from "../../store/useOptionStore.tsx";
 import { useLocation, useLoaderData } from "react-router-dom";
 // import { useDashContext } from "../../context/ViewContext";
 import { router } from "./router.jsx";
-// import { unselectedItem } from "../../data/objects.jsx";
+import { unselectedItem } from "../../data/objects.jsx";
+import { shopItems } from "../../data/objects.jsx";
 
-export default function PhotoGrid({ theme, folders, single }) {
+export default function PhotoGrid({ theme }) {
   // selected image useState
   const [selectedImage, setSelectedImage] = useState(null);
 
   // Router loader data
   const data = useLoaderData();
+
   useEffect(() => {
     console.log("useLoader data in PhotoGrid: ", data);
   }, [data]);
@@ -33,19 +35,28 @@ export default function PhotoGrid({ theme, folders, single }) {
 
   // state from store
   const open = useOptionStore((state) => state.open);
-  // const currentItemSelected = useOptionStore(
-  //   (state) => state.currentItemSelected,
+  const currentItemSelected = useOptionStore(
+    (state) => state.currentItemSelected,
+  );
+  // const previousItemSelected = useOptionStore(
+  //   (state) => state.previousItemSelected,
   // );
-  // const showBackground = useOptionStore((state) => state.showBackground);
+  const showBackground = useOptionStore((state) => state.showBackground);
   // const aboutInfo = useOptionStore((state) => state.aboutInfo);
   // const showPhotos = useOptionStore((state) => state.showPhotos);
   // const allPhotos = useOptionStore((state) => state.allPhotos);
 
   // action from store
-  // const setShowBackground = useOptionStore((state) => state.setShowBackground);
-  // const setShowPartOptions = useOptionStore(
-  //   (state) => state.setShowPartOptions,
-  // );
+  const setCurrentItemSelected = useOptionStore(
+    (state) => state.setCurrentItemSelected,
+  );
+  const setPreviousItemSelected = useOptionStore(
+    (state) => state.setPreviousItemSelected,
+  );
+  const setShowBackground = useOptionStore((state) => state.setShowBackground);
+  const setShowPartOptions = useOptionStore(
+    (state) => state.setShowPartOptions,
+  );
   // const setOpen = useOptionStore((state) => state.setOpen);
   // const setAboutInfo = useOptionStore((state) => state.setAboutInfo);
   // const setShowPhotos = useOptionStore((state) => state.setShowPhotos);
@@ -58,17 +69,17 @@ export default function PhotoGrid({ theme, folders, single }) {
     // if (aboutInfo) setAboutInfo(false);
     // if (showPhotos) setShowPhotos(false);
     // if (allPhotos) setAllPhotos(false);
-    // if (showBackground) {
-    //   if (currentItemSelected !== unselectedItem) setShowBackground(false);
-    // } else {
-    //   setShowPartOptions(true);
-    // }
+    if (showBackground) {
+      if (currentItemSelected !== unselectedItem) setShowBackground(false);
+    } else {
+      setShowPartOptions(true);
+    }
   };
 
-  // useEffect
+  // useEffect;
   // useEffect(() => {
   //   setOpen(true);
-  // }, []);
+  // }, [selectedImage]);
 
   useEffect(() => {
     console.log(
@@ -93,10 +104,10 @@ export default function PhotoGrid({ theme, folders, single }) {
           overflow: "auto",
           pointerEvents: open ? "auto" : "none",
           marginTop: "0.5rem",
-          overflow: selectedImage === null ? "auto" : "hidden",
+          // overflow: selectedImage === null ? "auto" : "hidden",
         }}
       >
-        {selectedImage === null ? (
+        {selectedImage === null && data ? (
           <>
             {/* photos grid */}
             <span
@@ -134,7 +145,7 @@ export default function PhotoGrid({ theme, folders, single }) {
                 rowGap: "1rem",
                 borderRadius: "0.75rem",
                 // border: "0.085rem solid rgb(155, 155, 155)",
-                overflow: "auto",
+                // overflow: "auto",
               }}
             >
               {data.images.map((m, index) => {
@@ -145,9 +156,93 @@ export default function PhotoGrid({ theme, folders, single }) {
                       objectFit: "contain",
                       width: "100%",
                     }}
-                    src={m.imgPath}
+                    src={m.imgPath[0]}
                     onClick={() => {
-                      setSelectedImage(m);
+                      if (m.route === "shop") {
+                        const tempSelectedTitle = m.title;
+                        const titleMatch = (element) =>
+                          element.itemTitle === tempSelectedTitle;
+                        if (titleMatch) {
+                          let matchedItem = shopItems.find(titleMatch);
+                          console.log(
+                            "matched item from shop image click: ",
+                            matchedItem,
+                          );
+                          setPreviousItemSelected(currentItemSelected);
+                          setCurrentItemSelected(matchedItem);
+                        }
+                      }
+                      if (m.imgPath.length > 1) {
+                        setSelectedImage(m);
+                      } else {
+                        console.log(
+                          "go to single view route (and set context to hold selected image record id ?",
+                        );
+                      }
+                    }}
+                  ></img>
+                );
+              })}
+            </Box>
+          </>
+        ) : selectedImage && selectedImage.imgPath.length > 1 ? (
+          <>
+            {/* photos grid */}
+            <span
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                height: "100%",
+                pointerEvents: "auto",
+                zIndex: "1",
+              }}
+            >
+              <span>
+                <IconButton
+                  // onClick={returnTo3dView}
+                  onClick={() => {
+                    setSelectedImage(null);
+                  }}
+                  color="inherit"
+                  sx={{
+                    padding: "0.5rem",
+                  }}
+                  aria-label="close info box"
+                >
+                  <CloseOutlinedIcon fontSize="small" color="success" />
+                </IconButton>
+              </span>
+            </span>
+            <Box
+              sx={{
+                display: "grid",
+                gridTemplateColumns: {
+                  sm: "auto auto",
+                  md: "auto auto auto",
+                  lg: "auto auto auto auto",
+                },
+                columnGap: "1rem",
+                rowGap: "1rem",
+                borderRadius: "0.75rem",
+                // border: "0.085rem solid rgb(155, 155, 155)",
+                // overflow: "auto",
+              }}
+            >
+              {selectedImage.imgPath.map((m, index) => {
+                return (
+                  <img
+                    key={index}
+                    style={{
+                      objectFit: "contain",
+                      width: "100%",
+                    }}
+                    src={m}
+                    onClick={() => {
+                      // setSelectedImage(m);
+                      console.log(
+                        "go to single view route (and set context to hold selected image record id ?",
+                      );
                     }}
                   ></img>
                 );
@@ -156,7 +251,7 @@ export default function PhotoGrid({ theme, folders, single }) {
           </>
         ) : (
           <>
-            <span
+            {/* <span
               style={{
                 position: "absolute",
                 top: 0,
@@ -198,9 +293,9 @@ export default function PhotoGrid({ theme, folders, single }) {
                   objectFit: "contain",
                   maxHeight: "80vh",
                 }}
-                src={selectedImage.imgPath}
+                src={selectedImage.imgPath[0]}
               ></img>
-            </Box>
+            </Box> */}
           </>
         )}
 

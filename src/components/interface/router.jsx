@@ -17,11 +17,11 @@ import LoginPage, {
 } from "../../routes/login";
 import { Outlet } from "react-router-dom";
 import PhotoGrid from "./PhotoGrid.jsx";
-import ErrorPage from "../ErrorPage";
+import ErrorPage from "./ErrorPage.jsx";
 import { theme } from "../../data/theme.js";
-import { allImages } from "../../data/objects.jsx";
-import { toggleInfoBox } from "../../utils/toggleInfoPhoto.js";
-import { togglePhotoBox } from "../../utils/toggleInfoPhoto.js";
+// import { allImages } from "../../data/objects.jsx";
+// import { toggleInfoBox } from "../../utils/toggleInfoPhoto.js";
+// import { togglePhotoBox } from "../../utils/toggleInfoPhoto.js";
 import {
   loadShopImages,
   // loadItemImages,
@@ -45,12 +45,41 @@ export const router = createBrowserRouter([
     // loader: loadImages,
     // action: rootAction,
     children: [
+      {
+        path: "shop",
+        element: <PhotoGrid theme={theme} />,
+        loader: loadShopImages,
+        // action: recordAction,
+      },
+      {
+        path: "custom",
+        element: <PhotoGrid theme={theme} />,
+        loader: loadCustomImages,
+        // action: recordAction,
+      },
+      {
+        path: "artwork",
+        element: <PhotoGrid theme={theme} />,
+
+        loader: loadArtImages,
+        // action: recordAction,
+      },
+      {
+        path: "about",
+        element: <PhotoGrid theme={theme} />,
+        loader: loadAboutImages,
+        // action: recordAction,
+      },
+      {
+        path: "contact",
+        element: <PhotoGrid theme={theme} />,
+        // loader: loadImages,
+        // action: recordAction,
+      },
       // {
       //   path: "sale",
       //   element: (
       //     <PhotoGrid
-      //       toggleInfoBox={toggleInfoBox}
-      //       togglePhotoBox={togglePhotoBox}
       //       theme={theme}
       //     />
       //   ),
@@ -61,76 +90,12 @@ export const router = createBrowserRouter([
       //   path: ":itemName",
       //   element: (
       //     <PhotoGrid
-      //       toggleInfoBox={toggleInfoBox}
-      //       togglePhotoBox={togglePhotoBox}
       //       theme={theme}
       //     />
       //   ),
       //   loader: loadItemImages,
       //   // action: recordAction,
       // },
-      {
-        path: "shop",
-        element: (
-          <PhotoGrid
-            toggleInfoBox={toggleInfoBox}
-            togglePhotoBox={togglePhotoBox}
-            theme={theme}
-            images={[allImages[2], allImages[2], allImages[2]]}
-          />
-        ),
-        loader: loadShopImages,
-        // action: recordAction,
-      },
-      {
-        path: "custom",
-        element: (
-          <PhotoGrid
-            toggleInfoBox={toggleInfoBox}
-            togglePhotoBox={togglePhotoBox}
-            theme={theme}
-          />
-        ),
-        loader: loadCustomImages,
-        // action: recordAction,
-      },
-      {
-        path: "artwork",
-        element: (
-          <PhotoGrid
-            toggleInfoBox={toggleInfoBox}
-            togglePhotoBox={togglePhotoBox}
-            theme={theme}
-          />
-        ),
-
-        loader: loadArtImages,
-        // action: recordAction,
-      },
-      {
-        path: "about",
-        element: (
-          <PhotoGrid
-            toggleInfoBox={toggleInfoBox}
-            togglePhotoBox={togglePhotoBox}
-            theme={theme}
-          />
-        ),
-        loader: loadAboutImages,
-        // action: recordAction,
-      },
-      {
-        path: "contact",
-        element: (
-          <PhotoGrid
-            toggleInfoBox={toggleInfoBox}
-            togglePhotoBox={togglePhotoBox}
-            theme={theme}
-          />
-        ),
-        // loader: loadImages,
-        // action: recordAction,
-      },
     ],
   },
   {

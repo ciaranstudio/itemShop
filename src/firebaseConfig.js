@@ -31,6 +31,5 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 // const storage = getStorage(app);
 const auth = getAuth();
-console.log(import.meta.env.REACT_APP_API_KEY);
 
 export { app, db, auth };

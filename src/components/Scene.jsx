@@ -728,9 +728,9 @@ export default function Scene({
         // );
         let matchedItem = shopItems.find(positionMatch);
         // console.log("matchedItem from handleClick function: ", matchedItem);
-        if (currentItemSelected === unselectedItem) {
-          randomAllItemsParts(false);
-        }
+        // if (currentItemSelected === unselectedItem) {
+        //   randomAllItemsParts(false);
+        // }
         setPreviousItemSelected(currentItemSelected);
         setCurrentItemSelected(matchedItem);
       }

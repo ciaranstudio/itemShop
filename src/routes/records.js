@@ -19,7 +19,7 @@ export async function getImageRecords() {
   querySnapshot.forEach((doc) => {
     imageRecords.push({ ...doc.data(), id: doc.id });
   });
-  return imageRecords.sort(sortBy("last", "createdAt"));
+  return imageRecords.sort(sortBy("title", "createdAt"));
 }
 
 export async function createImageRecord() {
