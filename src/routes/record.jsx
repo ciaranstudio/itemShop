@@ -1,7 +1,6 @@
 import { Form, useLoaderData, useFetcher } from "react-router-dom";
-import { getContact, updateContact } from "../data/contacts";
+import { getImageRecord, updateImageRecord } from "./records";
 import Typography from "@mui/material/Typography";
-import Link from "@mui/material/Link";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import StarIcon from "@mui/icons-material/Star";
@@ -10,24 +9,28 @@ import IconButton from "@mui/material/IconButton";
 
 export async function action({ request, params }) {
   let formData = await request.formData();
-  return updateContact(params.contactId, {
-    favorite: formData.get("favorite") === "true",
-  });
+  return updateImageRecord(
+    params.imageRecordId,
+    {
+      favorite: formData.get("favorite") === "true",
+    },
+    true,
+  );
 }
 
 export async function loader({ params }) {
-  const contact = await getContact(params.contactId);
-  if (!contact) {
+  const imageRecord = await getImageRecord(params.imageRecordId);
+  if (!imageRecord) {
     throw new Response("", {
       status: 404,
       statusText: "Not Found",
     });
   }
-  return { contact };
+  return { imageRecord };
 }
 
-export default function Contact() {
-  const { contact } = useLoaderData();
+export default function Record() {
+  const { imageRecord } = useLoaderData();
 
   return (
     <>
@@ -46,15 +49,15 @@ export default function Contact() {
             gutterBottom
             sx={{ flexGrow: 1, color: "#424242", mb: 2 }}
           >
-            {contact.title || contact.year ? (
-              <>{contact.title}</>
+            {imageRecord.title || imageRecord.year ? (
+              <>{imageRecord.title}</>
             ) : (
               <i>No Title</i>
             )}
           </Typography>
         </Box>
         <Box sx={{ display: "flex", mb: 1, pr: { xs: 0, sm: 1, md: 6 } }}>
-          <Favorite contact={contact} />
+          <Favorite imageRecord={imageRecord} />
           <Form action="edit">
             <Button
               type="submit"
@@ -87,37 +90,13 @@ export default function Contact() {
         </Box>
 
         <Typography variant="subtitle1" color="inherit" sx={{ mt: 0, py: 0 }}>
-          {contact.year && (
-            <Link
-              href={`https://instagram.com/${contact.year}`}
-              rel="noreferrer"
-              sx={{ mr: 3, textDecoration: "none" }}
-            >
-              {contact.year}
-            </Link>
-          )}
+          {imageRecord.year && <>{imageRecord.year}</>}
         </Typography>
         <Typography variant="subtitle1" color="inherit" sx={{ mt: 0, py: 0 }}>
-          {contact.materials && (
-            <Link
-              href={`https://instagram.com/${contact.materials}`}
-              rel="noreferrer"
-              sx={{ mr: 3, textDecoration: "none" }}
-            >
-              {contact.materials}
-            </Link>
-          )}
+          {imageRecord.materials && <>{imageRecord.materials}</>}
         </Typography>
         <Typography variant="subtitle1" color="inherit" sx={{ mt: 0 }}>
-          {contact.route && (
-            <Link
-              href={`https://instagram.com/${contact.route}`}
-              rel="noreferrer"
-              sx={{ textDecoration: "none" }}
-            >
-              {contact.route}
-            </Link>
-          )}
+          {imageRecord.route && <>{imageRecord.route}</>}
         </Typography>
 
         <Typography
@@ -126,7 +105,7 @@ export default function Contact() {
           paragraph
           sx={{ pt: 1, pr: { sm: 2, md: 6 }, color: "#455A64" }}
         >
-          {contact.description && <>{contact.description}</>}
+          {imageRecord.description && <>{imageRecord.description}</>}
         </Typography>
         <Typography
           variant="body2"
@@ -134,17 +113,23 @@ export default function Contact() {
           paragraph
           sx={{ pt: 0, pr: { sm: 2, md: 6 }, color: "#455A64" }}
         >
-          {contact.imgPath.length} images uploaded
+          {imageRecord.imgPath && (
+            <>
+              {imageRecord.imgPath.length}
+              {imageRecord.imgPath.length === 1 ? " image " : " images "}
+              uploaded
+            </>
+          )}
         </Typography>
       </Box>
     </>
   );
 }
 
-function Favorite({ contact }) {
+function Favorite({ imageRecord }) {
   const fetcher = useFetcher();
 
-  let favorite = contact.favorite;
+  let favorite = imageRecord.favorite;
   if (fetcher.formData) {
     favorite = fetcher.formData.get("favorite") === "true";
   }

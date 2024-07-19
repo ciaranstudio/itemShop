@@ -1,19 +1,11 @@
 import { useState, useEffect } from "react";
-import {
-  Form,
-  useLoaderData,
-  redirect,
-  useNavigate,
-  // useLocation,
-} from "react-router-dom";
-import { updateContact } from "../data/contacts";
+import { Form, useLoaderData, redirect, useNavigate } from "react-router-dom";
+import { updateImageRecord } from "./records.js";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-// import { useDashContext } from "../context/ViewContext";
 import { useOptionStore } from "../store/useOptionStore.tsx";
-// import Input from "@mui/material/Input";
-// import { storage } from "../firebaseConfig.js";
+
 import {
   getStorage,
   ref,
@@ -38,14 +30,7 @@ export async function action({ request, params }) {
     }
   }
 
-  // Get a reference to the storage service, which is used to create references in your storage bucket
-  const storage = getStorage();
-
-  // Create a storage reference from our storage service
-  // const storageRef = ref(storage);
-
   const promises = [];
-  // // const storage = getStorage();
 
   for (var i = 0; i < imageFiles.length; i++) {
     const file = imageFiles[i];
@@ -74,30 +59,16 @@ export async function action({ request, params }) {
   Object.defineProperty(updates, "imgPath", { value: photos });
   console.log("Updates in Edit formData action: ", updates);
 
-  await updateContact(params.contactId, updates);
-  return redirect(`/admin/contacts/${params.contactId}`);
+  await updateImageRecord(params.imageRecordId, updates, false);
+  return redirect(`/admin/records/${params.imageRecordId}`);
 }
 
 // const ariaLabel = { "aria-label": "image file upload" };
 
-export default function EditContact() {
-  // get location from Router hook
-  // const routerLocation = useLocation();
-  // // get and set context location value
-  // const { location, setLocation } = useDashContext();
-  // disable three controls so that scroll works in admin interface with open set to true
+export default function EditRecord() {
   const setStoreOpen = useOptionStore((state) => state.setOpen);
-  // useEffect
-  // useEffect(() => {
-  //   setStoreOpen(true);
-  // }, []);
 
-  // useEffect(() => {
-  //   console.log("routerLocation: ", routerLocation);
-  //   setLocation(routerLocation);
-  // }, [routerLocation]);
-
-  const { contact } = useLoaderData();
+  const { imageRecord } = useLoaderData();
   const navigate = useNavigate();
 
   const [fileInputCount, setFileInputCount] = useState(1);
@@ -121,7 +92,9 @@ export default function EditContact() {
               m: 0,
             }}
           >
-            {contact.imgPath.length} images uploaded
+            {imageRecord.imgPath && (
+              <>{imageRecord.imgPath.length} images uploaded</>
+            )}
           </Box>
           <Box
             sx={{
@@ -166,7 +139,7 @@ export default function EditContact() {
               id="outlined-uncontrolled"
               label="Title"
               name="title"
-              defaultValue={contact.title}
+              defaultValue={imageRecord.title}
               size="small"
               sx={{ mr: 1, mb: { xs: 1, sm: 0 }, input: { color: "#546E7A" } }}
             />
@@ -174,7 +147,7 @@ export default function EditContact() {
               id="outlined-uncontrolled"
               label="Year"
               name="year"
-              defaultValue={contact.year}
+              defaultValue={imageRecord.year}
               size="small"
               sx={{ mr: 1, input: { color: "#546E7A" } }}
             />
@@ -187,7 +160,7 @@ export default function EditContact() {
             <TextField
               id="outlined-uncontrolled"
               label="Materials"
-              defaultValue={contact.materials}
+              defaultValue={imageRecord.materials}
               name="materials"
               size="small"
               sx={{ mr: 1, mb: { xs: 1, sm: 0 }, input: { color: "#607D8B" } }}
@@ -195,7 +168,7 @@ export default function EditContact() {
             <TextField
               id="outlined-uncontrolled"
               label="Route"
-              defaultValue={contact.route}
+              defaultValue={imageRecord.route}
               name="route"
               size="small"
               sx={{ mr: 1, mb: 1, input: { color: "#607D8B" } }}
@@ -205,7 +178,7 @@ export default function EditContact() {
           <TextField
             id="outlined-uncontrolled"
             label="Description"
-            defaultValue={contact.description}
+            defaultValue={imageRecord.description}
             multiline
             minRows={12}
             name="description"

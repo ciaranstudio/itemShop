@@ -101,9 +101,10 @@ export const OPTION_BOX_POS_Y = {
 // Router
 // pages for AppBar navigation list
 export const PAGES = [
-  { navTitle: "About", menuItem: "about" },
-  { navTitle: "Images", menuItem: "images" },
-  { navTitle: "Custom Work", menuItem: "custom" },
-  { navTitle: "Contact", menuItem: "contact" },
-  { navTitle: "Exhibitions", menuItem: "exhibitions" },
+  { navTitle: "HOME", menuItem: "home" },
+  { navTitle: "SHOP", menuItem: "shop" },
+  { navTitle: "CUSTOM WORK", menuItem: "custom" },
+  { navTitle: "ARTWORK", menuItem: "artwork" },
+  { navTitle: "ABOUT", menuItem: "about" },
+  { navTitle: "CONTACT", menuItem: "contact" },
 ];

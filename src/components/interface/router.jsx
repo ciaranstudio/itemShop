@@ -3,19 +3,18 @@ import { authProvider } from "../../data/authProvider";
 import Root, {
   loader as rootLoader,
   action as rootAction,
-} from "../../routes/root";
-import Contact, {
-  loader as contactLoader,
-  action as contactAction,
-} from "../../routes/contact";
-import EditContact, { action as editAction } from "../../routes/edit";
+} from "../../routes/root.jsx";
+import Record, {
+  loader as recordLoader,
+  action as recordAction,
+} from "../../routes/record.jsx";
+import EditRecord, { action as editAction } from "../../routes/edit.jsx";
 import { action as destroyAction } from "../../routes/destroy";
 import Index from "../../routes/index";
 import LoginPage, {
   loader as loginLoader,
   action as loginAction,
 } from "../../routes/login";
-
 import { Outlet } from "react-router-dom";
 import PhotoGrid from "./PhotoGrid.jsx";
 import ErrorPage from "../ErrorPage";
@@ -25,10 +24,10 @@ import { toggleInfoBox } from "../../utils/toggleInfoPhoto.js";
 import { togglePhotoBox } from "../../utils/toggleInfoPhoto.js";
 import {
   loadShopImages,
-  loadItemImages,
+  // loadItemImages,
   loadArtImages,
   loadCustomImages,
-  loadSaleImages,
+  // loadSaleImages,
   loadAboutImages,
 } from "../../utils/loadImages.js";
 import HtmlOutletRoot from "./HtmlOutletRoot.jsx";
@@ -46,62 +45,42 @@ export const router = createBrowserRouter([
     // loader: loadImages,
     // action: rootAction,
     children: [
+      // {
+      //   path: "sale",
+      //   element: (
+      //     <PhotoGrid
+      //       toggleInfoBox={toggleInfoBox}
+      //       togglePhotoBox={togglePhotoBox}
+      //       theme={theme}
+      //     />
+      //   ),
+      //   loader: loadSaleImages,
+      //   // action: recordAction,
+      // },
+      // {
+      //   path: ":itemName",
+      //   element: (
+      //     <PhotoGrid
+      //       toggleInfoBox={toggleInfoBox}
+      //       togglePhotoBox={togglePhotoBox}
+      //       theme={theme}
+      //     />
+      //   ),
+      //   loader: loadItemImages,
+      //   // action: recordAction,
+      // },
       {
-        path: "sale",
-        element: (
-          <PhotoGrid
-            toggleInfoBox={toggleInfoBox}
-            togglePhotoBox={togglePhotoBox}
-            theme={theme}
-            folders={true}
-            single={false}
-          />
-        ),
-        loader: loadSaleImages,
-        // action: contactAction,
-      },
-      {
-        path: "about",
-        element: (
-          <PhotoGrid
-            toggleInfoBox={toggleInfoBox}
-            togglePhotoBox={togglePhotoBox}
-            theme={theme}
-            folders={true}
-            single={false}
-          />
-        ),
-        loader: loadAboutImages,
-        // action: contactAction,
-      },
-      {
-        path: "images",
+        path: "shop",
         element: (
           <PhotoGrid
             toggleInfoBox={toggleInfoBox}
             togglePhotoBox={togglePhotoBox}
             theme={theme}
             images={[allImages[2], allImages[2], allImages[2]]}
-            folders={true}
-            single={false}
           />
         ),
         loader: loadShopImages,
-        // action: contactAction,
-      },
-      {
-        path: ":itemName",
-        element: (
-          <PhotoGrid
-            toggleInfoBox={toggleInfoBox}
-            togglePhotoBox={togglePhotoBox}
-            theme={theme}
-            folders={true}
-            single={true}
-          />
-        ),
-        loader: loadItemImages,
-        // action: contactAction,
+        // action: recordAction,
       },
       {
         path: "custom",
@@ -110,27 +89,35 @@ export const router = createBrowserRouter([
             toggleInfoBox={toggleInfoBox}
             togglePhotoBox={togglePhotoBox}
             theme={theme}
-            folders={true}
-            single={false}
           />
         ),
         loader: loadCustomImages,
-        // action: contactAction,
+        // action: recordAction,
       },
       {
-        path: "exhibitions",
+        path: "artwork",
         element: (
           <PhotoGrid
             toggleInfoBox={toggleInfoBox}
             togglePhotoBox={togglePhotoBox}
             theme={theme}
-            folders={true}
-            single={false}
           />
         ),
 
         loader: loadArtImages,
-        // action: contactAction,
+        // action: recordAction,
+      },
+      {
+        path: "about",
+        element: (
+          <PhotoGrid
+            toggleInfoBox={toggleInfoBox}
+            togglePhotoBox={togglePhotoBox}
+            theme={theme}
+          />
+        ),
+        loader: loadAboutImages,
+        // action: recordAction,
       },
       {
         path: "contact",
@@ -139,12 +126,10 @@ export const router = createBrowserRouter([
             toggleInfoBox={toggleInfoBox}
             togglePhotoBox={togglePhotoBox}
             theme={theme}
-            folders={true}
-            single={false}
           />
         ),
         // loader: loadImages,
-        // action: contactAction,
+        // action: recordAction,
       },
     ],
   },
@@ -158,19 +143,19 @@ export const router = createBrowserRouter([
     children: [
       { index: true, element: <Index /> },
       {
-        path: "contacts/:contactId",
-        element: <Contact />,
-        loader: contactLoader,
-        action: contactAction,
+        path: "records/:imageRecordId",
+        element: <Record />,
+        loader: recordLoader,
+        action: recordAction,
       },
       {
-        path: "contacts/:contactId/edit",
-        element: <EditContact />,
-        loader: contactLoader,
+        path: "records/:imageRecordId/edit",
+        element: <EditRecord />,
+        loader: recordLoader,
         action: editAction,
       },
       {
-        path: "contacts/:contactId/destroy",
+        path: "records/:imageRecordId/destroy",
         action: destroyAction,
       },
     ],

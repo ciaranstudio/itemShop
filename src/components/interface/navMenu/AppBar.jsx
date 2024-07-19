@@ -99,20 +99,20 @@ function ResponsiveAppBar({ theme }) {
     (state) => state.setShowPartOptions,
   );
 
-  // navigation selection function utlizing router navigation method
+  // navigation selection function utlizing router navigation method (goTo())
   //  to access links outside of Router context
   const selectHandler = (e, menuItem) => {
     // console.log(menuItem);
     handleCloseNavMenu();
     setShowPartOptions(false);
     switch (menuItem) {
-      case "about":
-        setSelectedNavItem("about");
-        goTo("/about");
+      case "home":
+        setSelectedNavItem("home");
+        goTo("/");
         break;
-      case "images":
-        setSelectedNavItem("images");
-        goTo("/images");
+      case "shop":
+        setSelectedNavItem("shop");
+        goTo("/shop");
         break;
       case "custom":
         setSelectedNavItem("custom");
@@ -123,6 +123,19 @@ function ResponsiveAppBar({ theme }) {
         // );
         goTo("/custom");
         break;
+      case "artwork":
+        setSelectedNavItem("artwork");
+        // window.open(
+        //   "https://cargocollective.com/eligfell",
+        //   "_blank",
+        //   "noreferrer",
+        // );
+        goTo("/artwork");
+        break;
+      case "about":
+        setSelectedNavItem("about");
+        goTo("/about");
+        break;
       case "contact":
         setSelectedNavItem("contact");
         // window.open(
@@ -131,15 +144,6 @@ function ResponsiveAppBar({ theme }) {
         //   "noreferrer",
         // );
         goTo("/contact");
-        break;
-      case "exhibitions":
-        setSelectedNavItem("exhibitions");
-        // window.open(
-        //   "https://cargocollective.com/eligfell",
-        //   "_blank",
-        //   "noreferrer",
-        // );
-        goTo("/exhibitions");
         break;
     }
   };

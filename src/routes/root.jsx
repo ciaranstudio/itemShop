@@ -9,10 +9,10 @@ import {
   useNavigate,
   useLocation,
 } from "react-router-dom";
-import { getContacts, createContact } from "../data/contacts";
-import { authProvider } from "../data/authProvider";
-import AuthStatus from "../components/AuthStatus";
-import Copyright from "../components/Copyright";
+import { getImageRecords, createImageRecord } from "./records.js";
+import { authProvider } from "../data/authProvider.jsx";
+import AuthStatus from "../components/AuthStatus.jsx";
+import Copyright from "../components/Copyright.jsx";
 import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import MuiDrawer from "@mui/material/Drawer";
@@ -41,17 +41,16 @@ import ExpandMore from "@mui/icons-material/ExpandMore";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import Clear from "@mui/icons-material/Clear";
-import { useDashContext } from "../context/ViewContext";
 import { useOptionStore } from "../store/useOptionStore.tsx";
 import ImageIcon from "@mui/icons-material/Image";
 
 export async function action() {
-  const contact = await createContact();
-  return redirect(`/admin/contacts/${contact.id}/edit`);
+  const imageRecord = await createImageRecord();
+  return redirect(`/admin/records/${imageRecord.id}/edit`);
 }
 
 export async function loader({ request }) {
-  const contacts = await getContacts();
+  const imageRecords = await getImageRecords();
   const email = authProvider.email;
 
   if (!authProvider.isAuthenticated) {
@@ -59,7 +58,7 @@ export async function loader({ request }) {
     params.set("from", new URL(request.url).pathname);
     return redirect("/login?" + params.toString());
   } else {
-    return { contacts, email };
+    return { imageRecords, email };
   }
 }
 
@@ -115,8 +114,6 @@ const Drawer = styled(MuiDrawer, {
 export default function Root() {
   // get location from Router hook
   const routerLocation = useLocation();
-  // get and set context location value
-  const { location, setLocation } = useDashContext();
   // store function disable three controls so that scroll works in admin interface with open set to true
   const setStoreOpen = useOptionStore((state) => state.setOpen);
 
@@ -135,12 +132,12 @@ export default function Root() {
     setOpen(true);
     setOpenNestedList(!openNestedList);
   };
-  const { contacts } = useLoaderData();
+  const { imageRecords } = useLoaderData();
   const navigate = useNavigate();
   const [selectedIndex, setSelectedIndex] = useState(null);
-  const [value, setValue] = useState(contacts[0]);
+  const [value, setValue] = useState(imageRecords[0]);
   const [inputValue, setInputValue] = useState("");
-  const loading = value && contacts.length === 0;
+  const loading = value && imageRecords.length === 0;
 
   const handleListItemClick = (id) => {
     setSelectedIndex(id);
@@ -163,7 +160,7 @@ export default function Root() {
   // useEffect
   useEffect(() => {
     if (value) {
-      navigate(`contacts/${value.id}`);
+      navigate(`records/${value.id}`);
       handleListItemClick(value.id);
     }
   }, [value]);
@@ -218,7 +215,7 @@ export default function Root() {
                 }
                 selectOnFocus={false}
                 forcePopupIcon={false}
-                aria-label="Search contacts"
+                aria-label="Search image records"
                 value={value}
                 onChange={(event, newValue) => {
                   // console.log("newValue: ", newValue);
@@ -237,7 +234,7 @@ export default function Root() {
                   option.title === value.title
                 }
                 getOptionLabel={(option) => option.title}
-                options={contacts}
+                options={imageRecords}
                 loading={loading}
                 renderInput={(params) => (
                   <TextField
@@ -325,28 +322,28 @@ export default function Root() {
               </ListItemButton>
 
               <Collapse in={openNestedList} timeout="auto" unmountOnExit>
-                {contacts.length ? (
+                {imageRecords.length ? (
                   <List component="div" disablePadding>
-                    {contacts.map((contact, index) => (
+                    {imageRecords.map((imageRecord, index) => (
                       <ListItemButton
                         sx={{ pl: 3 }}
-                        key={contact.id}
+                        key={imageRecord.id}
                         component={Link}
-                        to={`contacts/${contact.id}`}
-                        selected={selectedIndex === contact.id}
-                        onClick={() => handleListItemClick(contact.id)}
+                        to={`records/${imageRecord.id}`}
+                        selected={selectedIndex === imageRecord.id}
+                        onClick={() => handleListItemClick(imageRecord.id)}
                       >
                         <ListItemIcon>
-                          {contact.favorite ? <StarIcon /> : <StarBorder />}
+                          {imageRecord.favorite ? <StarIcon /> : <StarBorder />}
                         </ListItemIcon>
                         <ListItemText
                           primary={
-                            contact.title || contact.year ? (
+                            imageRecord.title || imageRecord.year ? (
                               <>
-                                {contact.title} {contact.year}
+                                {imageRecord.title} {imageRecord.year}
                               </>
                             ) : (
-                              <i>No Name</i>
+                              <i>No title</i>
                             )
                           }
                         />
@@ -354,8 +351,8 @@ export default function Root() {
                     ))}
                   </List>
                 ) : (
-                  <p>
-                    <i>No contacts</i>
+                  <p style={{ textAlign: "center" }}>
+                    <i>No records</i>
                   </p>
                 )}
               </Collapse>

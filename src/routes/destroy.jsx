@@ -1,7 +1,7 @@
 import { redirect } from "react-router-dom";
-import { deleteContact } from "../data/contacts";
+import { deleteImageRecord } from "./records";
 
 export async function action({ params }) {
-  await deleteContact(params.contactId);
+  await deleteImageRecord(params.imageRecordId);
   return redirect("/admin");
 }

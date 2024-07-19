@@ -5,10 +5,10 @@ import Box from "@mui/material/Box";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import IconButton from "@mui/material/IconButton";
 import { useOptionStore } from "../../store/useOptionStore.tsx";
-import { Link, useLocation, useLoaderData } from "react-router-dom";
-import { useDashContext } from "../../context/ViewContext";
+import { useLocation, useLoaderData } from "react-router-dom";
+// import { useDashContext } from "../../context/ViewContext";
 import { router } from "./router.jsx";
-import { unselectedItem } from "../../data/objects.jsx";
+// import { unselectedItem } from "../../data/objects.jsx";
 
 export default function PhotoGrid({ theme, folders, single }) {
   // selected image useState
@@ -29,53 +29,53 @@ export default function PhotoGrid({ theme, folders, single }) {
   const routerLocation = useLocation();
 
   // get and set context location value
-  const { location, setLocation } = useDashContext();
+  // const { location, setLocation } = useDashContext();
 
   // state from store
-  const currentItemSelected = useOptionStore(
-    (state) => state.currentItemSelected,
-  );
   const open = useOptionStore((state) => state.open);
-  const showBackground = useOptionStore((state) => state.showBackground);
-  const aboutInfo = useOptionStore((state) => state.aboutInfo);
-  const showPhotos = useOptionStore((state) => state.showPhotos);
-  const allPhotos = useOptionStore((state) => state.allPhotos);
+  // const currentItemSelected = useOptionStore(
+  //   (state) => state.currentItemSelected,
+  // );
+  // const showBackground = useOptionStore((state) => state.showBackground);
+  // const aboutInfo = useOptionStore((state) => state.aboutInfo);
+  // const showPhotos = useOptionStore((state) => state.showPhotos);
+  // const allPhotos = useOptionStore((state) => state.allPhotos);
 
   // action from store
-  const setShowBackground = useOptionStore((state) => state.setShowBackground);
-  const setShowPartOptions = useOptionStore(
-    (state) => state.setShowPartOptions,
-  );
-  const setOpen = useOptionStore((state) => state.setOpen);
-  const setAboutInfo = useOptionStore((state) => state.setAboutInfo);
-  const setShowPhotos = useOptionStore((state) => state.setShowPhotos);
-  const setAllPhotos = useOptionStore((state) => state.setAllPhotos);
+  // const setShowBackground = useOptionStore((state) => state.setShowBackground);
+  // const setShowPartOptions = useOptionStore(
+  //   (state) => state.setShowPartOptions,
+  // );
+  // const setOpen = useOptionStore((state) => state.setOpen);
+  // const setAboutInfo = useOptionStore((state) => state.setAboutInfo);
+  // const setShowPhotos = useOptionStore((state) => state.setShowPhotos);
+  // const setAllPhotos = useOptionStore((state) => state.setAllPhotos);
 
   // go to 3d shop page and enable orbit controls with open state val (zustand store useStore)
   const returnTo3dView = () => {
-    setOpen(false);
-    if (aboutInfo) setAboutInfo(false);
-    if (showPhotos) setShowPhotos(false);
-    if (allPhotos) setAllPhotos(false);
-    if (showBackground) {
-      if (currentItemSelected !== unselectedItem) setShowBackground(false);
-    } else {
-      setShowPartOptions(true);
-    }
     goTo("/");
+    // setOpen(false);
+    // if (aboutInfo) setAboutInfo(false);
+    // if (showPhotos) setShowPhotos(false);
+    // if (allPhotos) setAllPhotos(false);
+    // if (showBackground) {
+    //   if (currentItemSelected !== unselectedItem) setShowBackground(false);
+    // } else {
+    //   setShowPartOptions(true);
+    // }
   };
 
   // useEffect
-  useEffect(() => {
-    setOpen(true);
-  }, []);
+  // useEffect(() => {
+  //   setOpen(true);
+  // }, []);
 
   useEffect(() => {
     console.log(
-      "routerLocation from PhotoGrid (setting context location): ",
+      "routerLocation from PhotoGrid (setting selectedImage to null): ",
       routerLocation,
     );
-    setLocation(routerLocation);
+    // setLocation(routerLocation);
     setSelectedImage(null);
   }, [routerLocation]);
 
