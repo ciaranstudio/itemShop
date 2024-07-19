@@ -6,7 +6,6 @@ import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import IconButton from "@mui/material/IconButton";
 import { useOptionStore } from "../../store/useOptionStore.tsx";
 import { useLocation, useLoaderData } from "react-router-dom";
-// import { useDashContext } from "../../context/ViewContext";
 import { router } from "./router.jsx";
 import { unselectedItem } from "../../data/objects.jsx";
 import { shopItems } from "../../data/objects.jsx";
@@ -84,6 +83,8 @@ export default function PhotoGrid({ theme }) {
     }
   };
 
+  const handleImageClick = () => {};
+
   // useEffect;
   // useEffect(() => {
   //   setOpen(true);
@@ -97,10 +98,6 @@ export default function PhotoGrid({ theme }) {
     // setLocation(routerLocation);
     setSelectedImage(null);
   }, [routerLocation]);
-
-  // useEffect(() => {
-  //   console.log("dash location: ", location);
-  // }, [location]);
 
   return (
     <ThemeProvider theme={theme}>

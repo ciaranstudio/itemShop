@@ -8,14 +8,10 @@ import {
   useState,
 } from "react";
 import useContextWrapper from "../hooks/useContextWrapper";
-import { State, useOptionStore } from "../store/useOptionStore";
-// import { Action } from "../store/useOptionStore";
 
 interface IDashboardContext {
-  contextVal: State | undefined;
+  contextVal: boolean;
   setContextVal: Dispatch<SetStateAction<IDashboardContext["contextVal"]>>;
-  location: Location | any;
-  setLocation: Dispatch<SetStateAction<IDashboardContext["location"]>>;
 }
 
 export const DashContext = createContext<IDashboardContext | null>(null);
@@ -27,15 +23,11 @@ export const useDashContext = () =>
   });
 
 export const DashContextProvider = ({ children }: PropsWithChildren<{}>) => {
-  const storeState = useOptionStore((state) => state);
-  // console.log("storeState: ", storeState);
   const [contextVal, setContextVal] =
-    useState<IDashboardContext["contextVal"]>(storeState);
+    useState<IDashboardContext["contextVal"]>(false);
 
-  const [location, setLocation] = useState<IDashboardContext["location"]>("");
-  // get state values for State and Action props from zustand store hook
   const value = useMemo(
-    () => ({ contextVal, setContextVal, location, setLocation }),
+    () => ({ contextVal, setContextVal }),
     [contextVal, location],
   );
 

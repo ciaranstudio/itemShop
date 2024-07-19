@@ -71,7 +71,9 @@ export async function updateImageRecord(id, updates, favorite) {
         },
         { merge: true },
       ).then((r) => {
-        console.log("done");
+        console.log(
+          "updating Firestore document with final imgPath array: done",
+        );
       });
     }
     await updateDoc(docRef, updates);

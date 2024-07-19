@@ -1,7 +1,4 @@
 import { getImageRecords } from "../routes/records";
-// import { useOptionStore } from "../store/useOptionStore.tsx";
-// import { Link, useLocation } from "react-router-dom";
-// import { useDashContext } from "../context/ViewContext";
 import { allImages } from "../data/objects";
 
 export async function loadShopImages() {

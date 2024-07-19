@@ -20,6 +20,16 @@ import { router } from "../router.jsx";
 import { PAGES } from "../../../data/constants.tsx";
 
 function ResponsiveAppBar({ theme }) {
+  // state from store
+  // const allPhotos = useOptionStore((state) => state.allPhotos);
+  // const aboutInfo = useOptionStore((state) => state.aboutInfo);
+  const locationPathname = useOptionStore((state) => state.locationPathname);
+
+  // actions from store
+  const setShowPartOptions = useOptionStore(
+    (state) => state.setShowPartOptions,
+  );
+
   const [selectedNavItem, setSelectedNavItem] = useState("");
   // useState for Snipcart
   const [snipcartLoaded, setSnipcartLoaded] = useState(false);
@@ -48,6 +58,7 @@ function ResponsiveAppBar({ theme }) {
       setSnipcartLoaded(false);
     };
   }, [window.Snipcart]);
+
   useEffect(() => {
     if (snipcartLoaded) {
       if (cart) {
@@ -59,6 +70,33 @@ function ResponsiveAppBar({ theme }) {
       }
     }
   }, [snipcartLoaded, cart]);
+
+  useEffect(() => {
+    // console.log("locationPathname (store) from AppBar: ", locationPathname);
+    switch (locationPathname) {
+      case "":
+        setSelectedNavItem("home");
+        break;
+      case "/":
+        setSelectedNavItem("home");
+        break;
+      case "/shop":
+        setSelectedNavItem("shop");
+        break;
+      case "/custom":
+        setSelectedNavItem("custom");
+        break;
+      case "/artwork":
+        setSelectedNavItem("artwork");
+        break;
+      case "/about":
+        setSelectedNavItem("about");
+        break;
+      case "/contact":
+        setSelectedNavItem("contact");
+        break;
+    }
+  }, [locationPathname]);
 
   // snipcart cart click function
   function handleCartClick() {
@@ -90,15 +128,6 @@ function ResponsiveAppBar({ theme }) {
     setAnchorElNav(null);
   };
 
-  // state from store
-  const allPhotos = useOptionStore((state) => state.allPhotos);
-  const aboutInfo = useOptionStore((state) => state.aboutInfo);
-
-  // actions from store
-  const setShowPartOptions = useOptionStore(
-    (state) => state.setShowPartOptions,
-  );
-
   // navigation selection function utlizing router navigation method (goTo())
   //  to access links outside of Router context
   const selectHandler = (e, menuItem) => {
@@ -107,15 +136,15 @@ function ResponsiveAppBar({ theme }) {
     setShowPartOptions(false);
     switch (menuItem) {
       case "home":
-        setSelectedNavItem("home");
+        // setSelectedNavItem("home");
         goTo("/");
         break;
       case "shop":
-        setSelectedNavItem("shop");
+        // setSelectedNavItem("shop");
         goTo("/shop");
         break;
       case "custom":
-        setSelectedNavItem("custom");
+        // setSelectedNavItem("custom");
         // window.open(
         //   "https://www.eligfellstudio.com/new-page",
         //   "_blank",
@@ -124,7 +153,7 @@ function ResponsiveAppBar({ theme }) {
         goTo("/custom");
         break;
       case "artwork":
-        setSelectedNavItem("artwork");
+        // setSelectedNavItem("artwork");
         // window.open(
         //   "https://cargocollective.com/eligfell",
         //   "_blank",
@@ -133,11 +162,11 @@ function ResponsiveAppBar({ theme }) {
         goTo("/artwork");
         break;
       case "about":
-        setSelectedNavItem("about");
+        // setSelectedNavItem("about");
         goTo("/about");
         break;
       case "contact":
-        setSelectedNavItem("contact");
+        // setSelectedNavItem("contact");
         // window.open(
         //   "https://www.eligfellstudio.com/contact-1",
         //   "_blank",

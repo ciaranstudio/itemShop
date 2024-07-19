@@ -1,26 +1,38 @@
 import React, { useEffect } from "react";
-import { useDashContext } from "../../context/ViewContext";
-import { useLocation } from "react-router-dom";
 import { useOptionStore } from "../../store/useOptionStore.tsx";
+import { useLocation } from "react-router-dom";
 
 export default function HtmlOutletRoot({ children }) {
+  // state from store
+  const locationPathname = useOptionStore((state) => state.locationPathname);
+  const open = useOptionStore((state) => state.open);
+
   // action from store
   const setOpen = useOptionStore((state) => state.setOpen);
-  // context hook
-  const { location, setLocation } = useDashContext();
+  const setLocationPathname = useOptionStore(
+    (state) => state.setLocationPathname,
+  );
+
   // get location from Router hook
   const routerLocation = useLocation();
+
   useEffect(() => {
-    console.log("routerLocation in HtmlOutletRoot: ", routerLocation);
-    setLocation(routerLocation);
-  }, [routerLocation]);
-  useEffect(() => {
-    console.log("dash context location in HtmlOutletRoot: ", location);
-    if (location.pathname === "/") {
+    // console.log("routerLocation in HtmlOutletRoot: ", routerLocation);
+    setLocationPathname(routerLocation.pathname);
+    if (routerLocation.pathname === "/" || routerLocation.pathname === "") {
       setOpen(false);
     } else {
       setOpen(true);
     }
-  }, [location]);
+  }, [routerLocation]);
+
+  // useEffect(() => {
+  //   console.log(
+  //     "router location (store) in HtmlOutletRoot: ",
+  //     locationPathname,
+  //   );
+  //   console.log("open (store state): ", open);
+  // }, [locationPathname]);
+
   return <>{children}</>;
 }

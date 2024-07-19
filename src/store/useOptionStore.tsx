@@ -421,6 +421,7 @@ export type State = {
       };
     };
   };
+  locationPathname: string;
 };
 
 export type Action = {
@@ -465,6 +466,7 @@ export type Action = {
   setAnimateButton: (value: boolean) => void;
   getRandomInt: (max: number) => number;
   setArrowAnimActive: (value: boolean) => void;
+  setLocationPathname: (value: string) => void;
 };
 
 export const useOptionStore = create<State & Action>((set) => ({
@@ -939,6 +941,7 @@ export const useOptionStore = create<State & Action>((set) => ({
       },
     },
   },
+  locationPathname: "",
   calculateItemPrice: (itemName) =>
     set(
       produce((state: State) => {
@@ -1209,6 +1212,12 @@ export const useOptionStore = create<State & Action>((set) => ({
     set(
       produce((state: State) => {
         state.arrowAnimActive = value;
+      }),
+    ),
+  setLocationPathname: (value) =>
+    set(
+      produce((state: State) => {
+        state.locationPathname = value;
       }),
     ),
 }));

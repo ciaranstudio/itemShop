@@ -17,7 +17,6 @@ import {
   STAGE_POSITION_Y_ANIM,
   ITEM_PARTS_ANIM,
 } from "../data/constants.tsx";
-// import { useDashContext } from "../context/ViewContext";
 
 function Experience({ theme }) {
   // const { contextVal } = useDashContext();

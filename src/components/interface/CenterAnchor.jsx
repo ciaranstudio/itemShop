@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect, useEffect } from "react";
+import React, { useState, useLayoutEffect } from "react";
 import { useGLTF, useTexture } from "@react-three/drei";
 import { useOptionStore } from "../../store/useOptionStore.tsx";
 import HtmlOutlet from "./HtmlOutlet.jsx";

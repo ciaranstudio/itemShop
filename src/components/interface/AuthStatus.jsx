@@ -1,10 +1,9 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useFetcher, useLocation } from "react-router-dom";
 import LogoutIcon from "@mui/icons-material/Logout";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-// import { useDashContext } from "../../context/ViewContext";
 import { useOptionStore } from "../../store/useOptionStore.tsx";
 
 export default function AuthStatus() {
@@ -13,8 +12,7 @@ export default function AuthStatus() {
 
   // get location from Router hook
   const routerLocation = useLocation();
-  // get and set context location value
-  // const { location, setLocation } = useDashContext();
+
   // store function disable three controls so that scroll works in admin interface with open set to true
   const setStoreOpen = useOptionStore((state) => state.setOpen);
 
@@ -23,13 +21,13 @@ export default function AuthStatus() {
     setStoreOpen(false);
   }, [isLoggingOut]);
 
-  useEffect(() => {
-    console.log(
-      "routerLocation in AuthStatus component (when logging out): ",
-      routerLocation,
-    );
-    // setLocation(routerLocation);
-  }, [routerLocation]);
+  // useEffect(() => {
+  //   console.log(
+  //     "routerLocation in AuthStatus component (when logging out): ",
+  //     routerLocation,
+  //   );
+  //   // setLocation(routerLocation);
+  // }, [routerLocation]);
 
   return (
     <div>

@@ -5,7 +5,6 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { useOptionStore } from "../store/useOptionStore.tsx";
-
 import {
   getStorage,
   ref,
@@ -18,14 +17,14 @@ export async function action({ request, params }) {
   const imageFiles = [];
   let routeFolder = "";
   for (const key of formData.keys()) {
-    console.log("key: ", key);
+    // console.log("key: ", key);
     if (key.startsWith("route")) {
       routeFolder = formData.get(key);
-      console.log("routeFolder: ", routeFolder);
+      // console.log("routeFolder: ", routeFolder);
     }
     if (key.startsWith("imgPath")) {
       const file = formData.get(key);
-      console.log(file);
+      // console.log(file);
       imageFiles.push(file);
     }
   }
@@ -47,7 +46,10 @@ export async function action({ request, params }) {
   }
   // Get all the downloadURLs
   const photos = await Promise.all(promises);
-  console.log("Photos (downloadURLs): ", photos);
+  // console.log(
+  //   "Prepped photos (downloadURLs) for Firebase Storage upload: ",
+  //   photos,
+  // );
 
   const updates = Object.fromEntries(formData);
   for (var key in updates) {
@@ -57,7 +59,7 @@ export async function action({ request, params }) {
     }
   }
   Object.defineProperty(updates, "imgPath", { value: photos });
-  console.log("Updates in Edit formData action: ", updates);
+  // console.log("Updates in Edit formData action: ", updates);
 
   await updateImageRecord(params.imageRecordId, updates, false);
   return redirect(`/admin/records/${params.imageRecordId}`);

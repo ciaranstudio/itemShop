@@ -7,7 +7,7 @@ import IconButton from "@mui/material/IconButton";
 // import SimpleSlider from "./SimpleSlider.jsx";
 import { allImages } from "../../data/objects.jsx";
 import { useOptionStore } from "../../store/useOptionStore.tsx";
-import PhotoGrid from "./PhotoGrid.jsx";
+// import PhotoGrid from "./PhotoGrid.jsx";
 
 export default function PhotoBox({
   toggleInfoBox,
