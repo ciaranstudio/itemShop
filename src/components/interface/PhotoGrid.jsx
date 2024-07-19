@@ -70,9 +70,17 @@ export default function PhotoGrid({ theme }) {
     // if (showPhotos) setShowPhotos(false);
     // if (allPhotos) setAllPhotos(false);
     if (showBackground) {
-      if (currentItemSelected !== unselectedItem) setShowBackground(false);
+      if (currentItemSelected !== unselectedItem)
+        setTimeout(() => {
+          setShowBackground(false);
+        }, 500);
     } else {
-      setShowPartOptions(true);
+      // setShowPartOptions(true);
+      setShowBackground(true);
+      setTimeout(() => {
+        setShowBackground(false);
+      }, 1500);
+      // setShowBackground(false);
     }
   };
 

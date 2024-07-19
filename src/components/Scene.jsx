@@ -1235,6 +1235,7 @@ export default function Scene({
           onClick={handleArrowIconClick}
           onPointerOver={() => hover(true)}
           onPointerOut={() => hover(false)}
+          visible={!open}
         >
           <mesh
             // position={[0, open || showPhotos ? ARROW_ICON.arrowY : -0.3, 0]}
@@ -1315,7 +1316,7 @@ export default function Scene({
         // target={grampsRef.current}
       />
       {/* all objects (except logo, cart/bag, arrow / objects in ScreenSpace) */}
-      <group position={[0, stagePosY, 0]}>
+      <group position={[0, stagePosY, 0]} visible={!open}>
         <ambientLight intensity={LIGHT.ambLightIntensity} />
         {/* furniture items */}
         {shopItems.map((item, index) => {
