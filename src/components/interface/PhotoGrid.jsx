@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material";
 import Box from "@mui/material/Box";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import IconButton from "@mui/material/IconButton";
 import { useOptionStore } from "../../store/useOptionStore.tsx";
-import { useLocation, useLoaderData } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import { router } from "./router.jsx";
-import { unselectedItem } from "../../data/objects.jsx";
-import { shopItems } from "../../data/objects.jsx";
+// import { unselectedItem } from "../../data/objects.jsx";
+// import { shopItems } from "../../data/objects.jsx";
 
 export default function PhotoGrid({ theme }) {
   // selected image useState
-  const [selectedImage, setSelectedImage] = useState(null);
+  // const [selectedImage, setSelectedImage] = useState(null);
 
   // Router loader data
   const data = useLoaderData();
@@ -27,35 +27,34 @@ export default function PhotoGrid({ theme }) {
   };
 
   // get location from Router hook
-  const routerLocation = useLocation();
-
-  // get and set context location value
-  // const { location, setLocation } = useDashContext();
+  // const routerLocation = useLocation();
 
   // state from store
   const open = useOptionStore((state) => state.open);
-  const currentItemSelected = useOptionStore(
-    (state) => state.currentItemSelected,
-  );
+  const selectedImage = useOptionStore((state) => state.selectedImage);
+  // const currentItemSelected = useOptionStore(
+  //   (state) => state.currentItemSelected,
+  // );
   // const previousItemSelected = useOptionStore(
   //   (state) => state.previousItemSelected,
   // );
-  const showBackground = useOptionStore((state) => state.showBackground);
+  // const showBackground = useOptionStore((state) => state.showBackground);
   // const aboutInfo = useOptionStore((state) => state.aboutInfo);
   // const showPhotos = useOptionStore((state) => state.showPhotos);
   // const allPhotos = useOptionStore((state) => state.allPhotos);
 
   // action from store
-  const setCurrentItemSelected = useOptionStore(
-    (state) => state.setCurrentItemSelected,
-  );
-  const setPreviousItemSelected = useOptionStore(
-    (state) => state.setPreviousItemSelected,
-  );
-  const setShowBackground = useOptionStore((state) => state.setShowBackground);
-  const setShowPartOptions = useOptionStore(
-    (state) => state.setShowPartOptions,
-  );
+  const setSelectedImage = useOptionStore((state) => state.setSelectedImage);
+  // const setCurrentItemSelected = useOptionStore(
+  //   (state) => state.setCurrentItemSelected,
+  // );
+  // const setPreviousItemSelected = useOptionStore(
+  //   (state) => state.setPreviousItemSelected,
+  // );
+  // const setShowBackground = useOptionStore((state) => state.setShowBackground);
+  // const setShowPartOptions = useOptionStore(
+  //   (state) => state.setShowPartOptions,
+  // );
   // const setOpen = useOptionStore((state) => state.setOpen);
   // const setAboutInfo = useOptionStore((state) => state.setAboutInfo);
   // const setShowPhotos = useOptionStore((state) => state.setShowPhotos);
@@ -68,36 +67,40 @@ export default function PhotoGrid({ theme }) {
     // if (aboutInfo) setAboutInfo(false);
     // if (showPhotos) setShowPhotos(false);
     // if (allPhotos) setAllPhotos(false);
-    if (showBackground) {
-      if (currentItemSelected !== unselectedItem)
-        setTimeout(() => {
-          setShowBackground(false);
-        }, 500);
-    } else {
-      // setShowPartOptions(true);
-      setShowBackground(true);
-      setTimeout(() => {
-        setShowBackground(false);
-      }, 1500);
-      // setShowBackground(false);
-    }
+    // if (showBackground) {
+    //   if (currentItemSelected !== unselectedItem)
+    //     setTimeout(() => {
+    //       setShowBackground(false);
+    //     }, 500);
+    // } else {
+    //   // setShowPartOptions(true);
+    //   setShowBackground(true);
+    //   setTimeout(() => {
+    //     setShowBackground(false);
+    //   }, 1500);
+    //   // setShowBackground(false);
+    // }
   };
 
-  const handleImageClick = () => {};
-
-  // useEffect;
-  // useEffect(() => {
-  //   setOpen(true);
-  // }, [selectedImage]);
-
-  useEffect(() => {
-    console.log(
-      "routerLocation from PhotoGrid (setting selectedImage to null): ",
-      routerLocation,
-    );
-    // setLocation(routerLocation);
-    setSelectedImage(null);
-  }, [routerLocation]);
+  const handleImageClick = (m) => () => {
+    // if (m.route === "shop") {
+    //   const tempSelectedTitle = m.title;
+    //   const titleMatch = (element) => element.itemTitle === tempSelectedTitle;
+    //   if (titleMatch) {
+    //     let matchedItem = shopItems.find(titleMatch);
+    //     console.log("matched item from shop image click: ", matchedItem);
+    //     setPreviousItemSelected(currentItemSelected);
+    //     setCurrentItemSelected(matchedItem);
+    //   }
+    // }
+    if (m.imgPath.length > 1) {
+      setSelectedImage(m);
+    } else {
+      console.log(
+        "go to single view route (and set context to hold selected image record id ?",
+      );
+    }
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -162,29 +165,7 @@ export default function PhotoGrid({ theme }) {
                       width: "100%",
                     }}
                     src={m.imgPath[0]}
-                    onClick={() => {
-                      if (m.route === "shop") {
-                        const tempSelectedTitle = m.title;
-                        const titleMatch = (element) =>
-                          element.itemTitle === tempSelectedTitle;
-                        if (titleMatch) {
-                          let matchedItem = shopItems.find(titleMatch);
-                          console.log(
-                            "matched item from shop image click: ",
-                            matchedItem,
-                          );
-                          setPreviousItemSelected(currentItemSelected);
-                          setCurrentItemSelected(matchedItem);
-                        }
-                      }
-                      if (m.imgPath.length > 1) {
-                        setSelectedImage(m);
-                      } else {
-                        console.log(
-                          "go to single view route (and set context to hold selected image record id ?",
-                        );
-                      }
-                    }}
+                    onClick={handleImageClick(m)}
                   ></img>
                 );
               })}
