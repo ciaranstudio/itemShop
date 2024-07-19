@@ -16,7 +16,8 @@ import { styled } from "@mui/material/styles";
 import { createSvgIcon } from "@mui/material/utils";
 import { useOptionStore } from "../../../store/useOptionStore.tsx";
 import { useSnipcart } from "use-snipcart";
-import { router } from "../../../utils/router.jsx";
+// import { router } from "../../../utils/router.jsx";
+import { goTo } from "../../../utils/goTo.js";
 import { PAGES } from "../../../data/constants.tsx";
 
 function ResponsiveAppBar({ theme }) {
@@ -40,9 +41,9 @@ function ResponsiveAppBar({ theme }) {
   const { cart = {} } = useSnipcart();
   // const { subtotal = "0.00" } = cart;
 
-  const goTo = (route) => {
-    router.navigate(route);
-  };
+  // const goTo = (route) => {
+  //   router.navigate(route);
+  // };
 
   useEffect(() => {
     // let state = snipcart.getState();

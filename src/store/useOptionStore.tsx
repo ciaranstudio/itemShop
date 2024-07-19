@@ -423,6 +423,7 @@ export type State = {
   };
   locationPathname: string;
   selectedImage: any;
+  selectedImageIndex: number;
 };
 
 export type Action = {
@@ -468,7 +469,8 @@ export type Action = {
   getRandomInt: (max: number) => number;
   setArrowAnimActive: (value: boolean) => void;
   setLocationPathname: (value: string) => void;
-  setSelectedImage: (value: string) => void;
+  setSelectedImage: (value: any) => void;
+  setSelectedImageIndex: (value: number) => void;
 };
 
 export const useOptionStore = create<State & Action>((set) => ({
@@ -945,6 +947,7 @@ export const useOptionStore = create<State & Action>((set) => ({
   },
   locationPathname: "",
   selectedImage: null,
+  selectedImageIndex: 0,
   calculateItemPrice: (itemName) =>
     set(
       produce((state: State) => {
@@ -1227,6 +1230,12 @@ export const useOptionStore = create<State & Action>((set) => ({
     set(
       produce((state: State) => {
         state.selectedImage = value;
+      }),
+    ),
+  setSelectedImageIndex: (value) =>
+    set(
+      produce((state: State) => {
+        state.selectedImageIndex = value;
       }),
     ),
 }));

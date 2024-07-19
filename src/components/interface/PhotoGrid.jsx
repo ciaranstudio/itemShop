@@ -6,7 +6,8 @@ import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import IconButton from "@mui/material/IconButton";
 import { useOptionStore } from "../../store/useOptionStore.tsx";
 import { useLoaderData } from "react-router-dom";
-import { router } from "../../utils/router.jsx";
+// import { router } from "../../utils/router.jsx";
+import { goTo } from "../../utils/goTo.js";
 // import { unselectedItem } from "../../data/objects.jsx";
 // import { shopItems } from "../../data/objects.jsx";
 
@@ -22,9 +23,9 @@ export default function PhotoGrid({ theme }) {
   }, [data]);
 
   // router navigate function
-  const goTo = (route) => {
-    router.navigate(route);
-  };
+  // const goTo = (route) => {
+  //   router.navigate(route);
+  // };
 
   // get location from Router hook
   // const routerLocation = useLocation();
@@ -32,6 +33,9 @@ export default function PhotoGrid({ theme }) {
   // state from store
   const open = useOptionStore((state) => state.open);
   const selectedImage = useOptionStore((state) => state.selectedImage);
+  const selectedImageIndex = useOptionStore(
+    (state) => state.selectedImageIndex,
+  );
   // const currentItemSelected = useOptionStore(
   //   (state) => state.currentItemSelected,
   // );
@@ -45,6 +49,9 @@ export default function PhotoGrid({ theme }) {
 
   // action from store
   const setSelectedImage = useOptionStore((state) => state.setSelectedImage);
+  const setSelectedImageIndex = useOptionStore(
+    (state) => state.setSelectedImageIndex,
+  );
   // const setCurrentItemSelected = useOptionStore(
   //   (state) => state.setCurrentItemSelected,
   // );
@@ -82,9 +89,9 @@ export default function PhotoGrid({ theme }) {
     // }
   };
 
-  const handleImageClick = (m) => () => {
-    // if (m.route === "shop") {
-    //   const tempSelectedTitle = m.title;
+  const handleImageClickOuterGrid = (imageRecord) => () => {
+    // if (imageRecord.route === "shop") {
+    //   const tempSelectedTitle = imageRecord.title;
     //   const titleMatch = (element) => element.itemTitle === tempSelectedTitle;
     //   if (titleMatch) {
     //     let matchedItem = shopItems.find(titleMatch);
@@ -93,13 +100,20 @@ export default function PhotoGrid({ theme }) {
     //     setCurrentItemSelected(matchedItem);
     //   }
     // }
-    if (m.imgPath.length > 1) {
-      setSelectedImage(m);
+    if (imageRecord.imgPath.length > 1) {
+      setSelectedImage(imageRecord);
       console.log("show grid of related (sub) images");
     } else {
-      setSelectedImage(m);
+      setSelectedImage(imageRecord);
+      setSelectedImageIndex(0);
+      goTo("/view");
       console.log("go to single view route of selected image");
     }
+  };
+
+  const handleImageClickInnerGrid = (index) => () => {
+    setSelectedImageIndex(index);
+    goTo("/view");
   };
 
   return (
@@ -156,7 +170,7 @@ export default function PhotoGrid({ theme }) {
                 // overflow: "auto",
               }}
             >
-              {data.images.map((m, index) => {
+              {data.images.map((imageRecord, index) => {
                 return (
                   <img
                     key={index}
@@ -164,8 +178,8 @@ export default function PhotoGrid({ theme }) {
                       objectFit: "contain",
                       width: "100%",
                     }}
-                    src={m.imgPath[0]}
-                    onClick={handleImageClick(m)}
+                    src={imageRecord.imgPath[0]}
+                    onClick={handleImageClickOuterGrid(imageRecord)}
                   ></img>
                 );
               })}
@@ -215,7 +229,7 @@ export default function PhotoGrid({ theme }) {
                 // overflow: "auto",
               }}
             >
-              {selectedImage.imgPath.map((m, index) => {
+              {selectedImage.imgPath.map((image, index) => {
                 return (
                   <img
                     key={index}
@@ -223,13 +237,8 @@ export default function PhotoGrid({ theme }) {
                       objectFit: "contain",
                       width: "100%",
                     }}
-                    src={m}
-                    onClick={() => {
-                      // setSelectedImage(m);
-                      console.log(
-                        "go to single view route (and set context to hold selected image record id ?",
-                      );
-                    }}
+                    src={image}
+                    onClick={handleImageClickInnerGrid(index)}
                   ></img>
                 );
               })}

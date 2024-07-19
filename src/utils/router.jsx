@@ -17,6 +17,7 @@ import LoginPage, {
 } from "../routes/login.jsx";
 import { Outlet } from "react-router-dom";
 import PhotoGrid from "../components/interface/PhotoGrid.jsx";
+import PhotoSingle from "../components/interface/PhotoSingle.jsx";
 import ErrorPage from "../components/interface/ErrorPage.jsx";
 import { theme } from "../data/theme.js";
 // import { allImages } from "../../data/objects.jsx";
@@ -45,6 +46,12 @@ export const router = createBrowserRouter([
     // loader: loadImages,
     // action: rootAction,
     children: [
+      {
+        path: "view",
+        element: <PhotoSingle theme={theme} />,
+        // loader: loadSingleImage,
+        // action: recordAction,
+      },
       {
         path: "shop",
         element: <PhotoGrid theme={theme} />,

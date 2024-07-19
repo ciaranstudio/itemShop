@@ -3,10 +3,14 @@ import { useOptionStore } from "../../store/useOptionStore.tsx";
 import { useLocation } from "react-router-dom";
 import { unselectedItem } from "../../data/objects.jsx";
 import { shopItems } from "../../data/objects.jsx";
+import { goTo } from "../../utils/goTo.js";
 
 export default function HtmlOutletRoot({ children }) {
   // state from store
   const selectedImage = useOptionStore((state) => state.selectedImage);
+  const selectedImageIndex = useOptionStore(
+    (state) => state.selectedImageIndex,
+  );
   // const locationPathname = useOptionStore((state) => state.locationPathname);
   // const open = useOptionStore((state) => state.open);
   const showBackground = useOptionStore((state) => state.showBackground);
@@ -37,25 +41,30 @@ export default function HtmlOutletRoot({ children }) {
   useEffect(() => {
     // console.log("routerLocation in HtmlOutletRoot: ", routerLocation);
     setLocationPathname(routerLocation.pathname);
-    setSelectedImage(null);
+    if (routerLocation.pathname !== "/view") {
+      setSelectedImage(null);
+    }
     if (routerLocation.pathname === "/" || routerLocation.pathname === "") {
       setOpen(false);
     } else {
       setOpen(true);
     }
     if (routerLocation.pathname === "/") {
-      if (showBackground) {
-        if (currentItemSelected !== unselectedItem)
-          setTimeout(() => {
-            setShowBackground(false);
-          }, 500);
-      } else {
-        setShowPartOptions(true);
-        // setShowBackground(true);
-        // setTimeout(() => {
-        //   setShowBackground(false);
-        // }, 1500);
-        // setShowBackground(false);
+      if (currentItemSelected !== unselectedItem) {
+        if (showBackground) {
+          setShowBackground(false);
+          // if (currentItemSelected !== unselectedItem)
+          //   setTimeout(() => {
+          //     setShowBackground(false);
+          //   }, 500);
+        } else {
+          setShowPartOptions(true);
+          // setShowBackground(true);
+          // setTimeout(() => {
+          //   setShowBackground(false);
+          // }, 1500);
+          // setShowBackground(false);
+        }
       }
     } else {
       setShowBackground(true);
@@ -77,6 +86,11 @@ export default function HtmlOutletRoot({ children }) {
       }
     }
   }, [selectedImage]);
+
+  useEffect(() => {
+    console.log("selectedImage: ", selectedImage);
+    console.log("selectedImageIndex: ", selectedImageIndex);
+  }, [selectedImageIndex]);
 
   // useEffect(() => {
   //   console.log(
