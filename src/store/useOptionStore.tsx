@@ -17,7 +17,7 @@ export type State = {
   showPhotos: boolean;
   allPhotos: boolean;
   aboutInfo: boolean;
-  optionBoxHeightMin: boolean;
+  showPaintOptions: boolean;
   showBackground: boolean;
   showPartOptions: boolean;
   optionBoxItemChanged: boolean;
@@ -452,7 +452,7 @@ export type Action = {
   setShowPhotos: (value: boolean) => void;
   setAllPhotos: (value: boolean) => void;
   setAboutInfo: (value: boolean) => void;
-  setOptionBoxHeightMin: (value: boolean) => void;
+  setShowPaintOptions: (value: boolean) => void;
   setShowBackground: (value: boolean) => void;
   setShowPartOptions: (value: boolean) => void;
   setOptionBoxItemChanged: (value: boolean) => void;
@@ -482,7 +482,7 @@ export const useOptionStore = create<State & Action>((set) => ({
   showPhotos: false,
   allPhotos: false,
   aboutInfo: false,
-  optionBoxHeightMin: false,
+  showPaintOptions: false,
   showBackground: true,
   showPartOptions: false,
   optionBoxItemChanged: false,
@@ -1130,10 +1130,10 @@ export const useOptionStore = create<State & Action>((set) => ({
         state.aboutInfo = value;
       }),
     ),
-  setOptionBoxHeightMin: (value) =>
+  setShowPaintOptions: (value) =>
     set(
       produce((state: State) => {
-        state.optionBoxHeightMin = value;
+        state.showPaintOptions = value;
       }),
     ),
   setShowBackground: (value) =>

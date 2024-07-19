@@ -21,6 +21,8 @@ import MenuItem from "@mui/material/MenuItem";
 import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
 import toast from "react-hot-toast";
 import ExpandIcon from "@mui/icons-material/Expand";
+import PaletteIcon from "@mui/icons-material/Palette";
+import PaletteOutlinedIcon from "@mui/icons-material/PaletteOutlined";
 
 export default function OptionsOnly({
   toggleInfoBox,
@@ -99,12 +101,9 @@ export default function OptionsOnly({
   const [paintSingle, setPaintSingle] = useState("");
 
   // state from store
-
   const currentPartName = useOptionStore((state) => state.currentPartName);
   const currentItemName = useOptionStore((state) => state.currentItemName);
-  const optionBoxHeightMin = useOptionStore(
-    (state) => state.optionBoxHeightMin,
-  );
+  const showPaintOptions = useOptionStore((state) => state.showPaintOptions);
   const showBackground = useOptionStore((state) => state.showBackground);
   const showPartOptions = useOptionStore((state) => state.showPartOptions);
   const optionBoxItemToggle = useOptionStore(
@@ -131,8 +130,8 @@ export default function OptionsOnly({
   const setCurrentItemName = useOptionStore(
     (state) => state.setCurrentItemName,
   );
-  const setOptionBoxHeightMin = useOptionStore(
-    (state) => state.setOptionBoxHeightMin,
+  const setShowPaintOptions = useOptionStore(
+    (state) => state.setShowPaintOptions,
   );
   const setShowBackground = useOptionStore((state) => state.setShowBackground);
   const setShowPartOptions = useOptionStore(
@@ -148,10 +147,10 @@ export default function OptionsOnly({
   const getRandomInt = useOptionStore((state) => state.getRandomInt);
 
   // functions
-  const toggleOptionBoxHeight = (e) => {
+  const toggleShowPaintOptions = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    setOptionBoxHeightMin(!optionBoxHeightMin);
+    setShowPaintOptions(!showPaintOptions);
   };
   const toggleAnimateParts = (e) => {
     e.preventDefault();
@@ -351,17 +350,17 @@ export default function OptionsOnly({
 
                 <span>
                   <IconButton
-                    onClick={toggleOptionBoxHeight}
+                    onClick={toggleShowPaintOptions}
                     color="white"
                     sx={{
                       padding: "0.5rem",
                     }}
                     aria-label="toggle minimize/maximize option box height"
                   >
-                    {optionBoxHeightMin ? (
-                      <UnfoldMoreIcon color="secondary" fontSize="inherit" />
+                    {showPaintOptions ? (
+                      <PaletteIcon color="secondary" fontSize="inherit" />
                     ) : (
-                      <UnfoldLessIcon color="primary" fontSize="inherit" />
+                      <PaletteOutlinedIcon color="primary" fontSize="inherit" />
                     )}
                   </IconButton>
                 </span>
@@ -369,7 +368,7 @@ export default function OptionsOnly({
 
               <div
                 className="annotation"
-                style={{ display: optionBoxHeightMin ? "block" : "none" }}
+                style={{ display: showPaintOptions ? "block" : "none" }}
               >
                 <div className="annotation-options">
                   {/* {o.userData.name} */}

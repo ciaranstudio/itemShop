@@ -142,8 +142,8 @@ export default function Scene({
   const setShowPhotos = useOptionStore((state) => state.setShowPhotos);
   const setAllPhotos = useOptionStore((state) => state.setAllPhotos);
   const setAboutInfo = useOptionStore((state) => state.setAboutInfo);
-  const setOptionBoxHeightMin = useOptionStore(
-    (state) => state.setOptionBoxHeightMin,
+  const setShowPaintOptions = useOptionStore(
+    (state) => state.setShowPaintOptions,
   );
   const setShowBackground = useOptionStore((state) => state.setShowBackground);
   const setShowPartOptions = useOptionStore(
@@ -500,7 +500,7 @@ export default function Scene({
       setCurrentPartName(
         objects[currentItemSelected.itemName].parts[0].partName,
       );
-      setOptionBoxHeightMin(false);
+      setShowPaintOptions(false);
       // setShowPartOptions(true);
     }
     if (!showBackground) {
