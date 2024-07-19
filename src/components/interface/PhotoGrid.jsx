@@ -6,7 +6,7 @@ import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import IconButton from "@mui/material/IconButton";
 import { useOptionStore } from "../../store/useOptionStore.tsx";
 import { useLoaderData } from "react-router-dom";
-import { router } from "./router.jsx";
+import { router } from "../../utils/router.jsx";
 // import { unselectedItem } from "../../data/objects.jsx";
 // import { shopItems } from "../../data/objects.jsx";
 

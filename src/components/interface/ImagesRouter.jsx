@@ -1,7 +1,7 @@
 import React from "react";
 import { RouterProvider } from "react-router-dom";
 import { DashContextProvider } from "../../context/ViewContext";
-import { router } from "./router.jsx";
+import { router } from "../../utils/router.jsx";
 
 export default function ImagesRouter() {
   return (

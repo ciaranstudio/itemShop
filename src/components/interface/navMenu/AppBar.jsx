@@ -16,7 +16,7 @@ import { styled } from "@mui/material/styles";
 import { createSvgIcon } from "@mui/material/utils";
 import { useOptionStore } from "../../../store/useOptionStore.tsx";
 import { useSnipcart } from "use-snipcart";
-import { router } from "../router.jsx";
+import { router } from "../../../utils/router.jsx";
 import { PAGES } from "../../../data/constants.tsx";
 
 function ResponsiveAppBar({ theme }) {
@@ -185,7 +185,7 @@ function ResponsiveAppBar({ theme }) {
   );
 
   const BagIcon = createSvgIcon(
-    <svg viewBox="0 -10 100 100" width="100">
+    <svg viewBox="0 0 100 100" width="100">
       <image href="bag.png" height="100" width="100" />
     </svg>,
     "Plus",
@@ -194,12 +194,7 @@ function ResponsiveAppBar({ theme }) {
   return (
     <>
       <AppBar position="fixed" color="transparent" elevation={0}>
-        <Container
-          maxWidth="xl"
-          sx={{
-            pt: 0.5,
-          }}
-        >
+        <Container maxWidth="xl">
           <Toolbar disableGutters>
             <SvgIcon
               component={LogoIcon}

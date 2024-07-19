@@ -1,24 +1,24 @@
 import { createBrowserRouter, redirect } from "react-router-dom";
-import { authProvider } from "../../data/authProvider";
+import { authProvider } from "../data/authProvider.jsx";
 import Root, {
   loader as rootLoader,
   action as rootAction,
-} from "../../routes/root.jsx";
+} from "../routes/root.jsx";
 import Record, {
   loader as recordLoader,
   action as recordAction,
-} from "../../routes/record.jsx";
-import EditRecord, { action as editAction } from "../../routes/edit.jsx";
-import { action as destroyAction } from "../../routes/destroy";
-import Index from "../../routes/index";
+} from "../routes/record.jsx";
+import EditRecord, { action as editAction } from "../routes/edit.jsx";
+import { action as destroyAction } from "../routes/destroy.jsx";
+import Index from "../routes/index";
 import LoginPage, {
   loader as loginLoader,
   action as loginAction,
-} from "../../routes/login";
+} from "../routes/login.jsx";
 import { Outlet } from "react-router-dom";
-import PhotoGrid from "./PhotoGrid.jsx";
-import ErrorPage from "./ErrorPage.jsx";
-import { theme } from "../../data/theme.js";
+import PhotoGrid from "../components/interface/PhotoGrid.jsx";
+import ErrorPage from "../components/interface/ErrorPage.jsx";
+import { theme } from "../data/theme.js";
 // import { allImages } from "../../data/objects.jsx";
 // import { toggleInfoBox } from "../../utils/toggleInfoPhoto.js";
 // import { togglePhotoBox } from "../../utils/toggleInfoPhoto.js";
@@ -29,8 +29,8 @@ import {
   loadCustomImages,
   // loadSaleImages,
   loadAboutImages,
-} from "../../utils/loadImages.js";
-import HtmlOutletRoot from "./HtmlOutletRoot.jsx";
+} from "./loadImages.js";
+import HtmlOutletRoot from "../components/interface/HtmlOutletRoot.jsx";
 
 export const router = createBrowserRouter([
   {
