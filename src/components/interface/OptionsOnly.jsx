@@ -288,9 +288,11 @@ export default function OptionsOnly({
                   gridTemplateColumns: "auto auto auto auto",
                   textAlign: "center",
                   marginTop: "1rem",
-                  border: "0.05rem solid rgb(233, 234, 233)",
+                  border: "0.1rem solid rgb(233, 234, 233)",
                   borderRadius: "1rem",
-                  // backgroundColor: "rgb(233, 234, 233)",
+                  backgroundColor: showPaintOptions
+                    ? "transparent"
+                    : "rgb(233, 234, 233)",
                 }}
               >
                 <span>
@@ -404,7 +406,7 @@ export default function OptionsOnly({
                                           : "#ffffff",
                                 border:
                                   thisPartColorName === stain
-                                    ? "0.075rem solid white" // #5580b0
+                                    ? "0.125rem solid brown" // #5580b0
                                     : "none",
                                 borderRadius: "50%",
                               }}
@@ -451,7 +453,7 @@ export default function OptionsOnly({
                                               : "#ffffff",
                                 border:
                                   thisPartColorName === paint
-                                    ? "0.075rem solid white" // #5580b0
+                                    ? "0.125rem solid grey" // #5580b0
                                     : "none",
                                 borderRadius: "50%",
                               }}

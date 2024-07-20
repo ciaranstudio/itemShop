@@ -33,6 +33,7 @@ export const ArrowIcon = ({
   const showPartOptions = useOptionStore((state) => state.showPartOptions);
   const animActive = useOptionStore((state) => state.animActive);
   const activeCamAnim = useOptionStore((state) => state.activeCamAnim);
+  const showPaintOptions = useOptionStore((state) => state.showPaintOptions);
 
   useLayoutEffect(() => {
     Object.assign(materials.Material, {
@@ -57,6 +58,15 @@ export const ArrowIcon = ({
   useLayoutEffect(() => {
     const currentAnnotations = [];
     scene.traverse((o) => {
+      // if (o.isMesh) {
+      //   if (showPaintOptions) {
+      //     o.material.transparent = true;
+      //     o.material.opacity = 0.5;
+      //   } else {
+      //     o.material.transparent = false;
+      //     o.material.opacity = 1.0;
+      //   }
+      // }
       if (o.isObject3D) {
         if (o.userData.name) {
           if (o.userData.name.startsWith("AnchorPoint")) {
@@ -91,6 +101,7 @@ export const ArrowIcon = ({
     animActive,
     activeCamAnim,
     mobileView,
+    // showPaintOptions,
   ]);
 
   useLayoutEffect(() => {
@@ -103,6 +114,20 @@ export const ArrowIcon = ({
       }
     });
   }, []);
+
+  // useLayoutEffect(() => {
+  //   scene.traverse((o) => {
+  //     if (o.isMesh) {
+  //       if (showPaintOptions) {
+  //         o.material.transparent = true;
+  //         o.material.opacity = 0.5;
+  //       } else {
+  //         o.material.transparent = false;
+  //         o.material.opacity = 1.0;
+  //       }
+  //     }
+  //   });
+  // }, [showPaintOptions]);
 
   return <primitive object={scene}>{annotations}</primitive>;
 };

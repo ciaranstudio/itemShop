@@ -266,8 +266,10 @@ img {
   gap: 0;
   /* margin-right: 0.15rem; */
   /* border: 0.15rem solid rgb(170, 170, 170); */
-  border-radius: 1rem;
-  /* background-color: rgb(233, 234, 233); */
+  /* border-radius: 1rem; */
+  border-top-right-radius: 1rem;
+  border-top-left-radius: 1rem;
+  background-color: rgb(233, 234, 233);
 }
 
 .grid-container-paint {
@@ -275,8 +277,9 @@ img {
   grid-template-columns: auto auto auto auto auto auto;
   gap: 0;
   /* border: 0.15rem solid rgb(170, 170, 170); */
-  border-radius: 1rem;
-  /* background-color: rgb(233, 234, 233); */
+  border-bottom-right-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+  background-color: rgb(233, 234, 233);
 }
 
 .color-btn {

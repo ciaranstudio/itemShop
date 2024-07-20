@@ -123,6 +123,7 @@ export default function Scene({
   const animActive = useOptionStore((state) => state.animActive);
   const partsOpen = useOptionStore((state) => state.partsOpen);
   const arrowAnimActive = useOptionStore((state) => state.arrowAnimActive);
+  const showPaintOptions = useOptionStore((state) => state.showPaintOptions);
   // const mobileView = useOptionStore((state) => state.mobileView);
 
   // actions from store
@@ -509,6 +510,7 @@ export default function Scene({
       animateParts();
     } else if (showBackground && currentItemSelected !== unselectedItem) {
       // animateStageY();
+      setShowPaintOptions(false);
       setOptionBoxItemChanged(false);
       if (partsOpen) animateParts();
     }
@@ -761,24 +763,29 @@ export default function Scene({
   // };
   const handleArrowIconClick = (e) => {
     if (e) e.stopPropagation();
-    toast.dismiss();
-    if (currentItemSelected === unselectedItem) {
-      setShowPartOptions(false);
-      setCurrentItemSelected(objects.gramps);
-      setTimeout(() => {
-        // setOpen(false);
-        setShowPhotos(false);
-        setShowBackground(!showBackground);
-      }, "750");
-    } else {
-      if (!animActive && !arrowAnimActive) {
+    // if showPaintOptions is true then disable this click handler
+    // (paint options layer on top of this arrow icon on mobile devices)
+    // toast.dismiss();
+    if (!showPaintOptions) {
+      if (currentItemSelected === unselectedItem) {
         setShowPartOptions(false);
-        // setOpen(false);
-        setShowPhotos(false);
-        setShowBackground(!showBackground);
+        setCurrentItemSelected(objects.gramps);
+        setTimeout(() => {
+          // setOpen(false);
+          setShowPhotos(false);
+          setShowBackground(!showBackground);
+        }, "750");
+      } else {
+        if (!animActive && !arrowAnimActive) {
+          setShowPartOptions(false);
+          // setOpen(false);
+          setShowPhotos(false);
+          setShowBackground(!showBackground);
+        }
       }
     }
   };
+
   // const handleOffClick = (e) => {
   //   e.stopPropagation();
   //   // console.log("onPointerMissed click");

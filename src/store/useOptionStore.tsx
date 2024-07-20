@@ -484,7 +484,7 @@ export const useOptionStore = create<State & Action>((set) => ({
   showPhotos: false,
   allPhotos: false,
   aboutInfo: false,
-  showPaintOptions: true,
+  showPaintOptions: false,
   showBackground: true,
   showPartOptions: false,
   optionBoxItemChanged: false,
