@@ -1324,7 +1324,13 @@ export default function Scene({
       {/* all objects (except logo, cart/bag, arrow / objects in ScreenSpace) */}
       <group
         position={[0, stagePosY, 0]}
-        visible={!open || locationPathname === "/info" ? true : false}
+        visible={
+          !open ||
+          locationPathname === "/info" ||
+          locationPathname === "/contact"
+            ? true
+            : false
+        }
       >
         <ambientLight intensity={LIGHT.ambLightIntensity} />
         {/* furniture items */}

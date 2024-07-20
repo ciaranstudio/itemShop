@@ -4,8 +4,8 @@ const openUserEmail = (e) => {
     e.stopPropagation();
   }
   const email = "eliwgfell@gmail.com";
-  const subject = "Contact from shop";
-  const emailBody = "Yeah yeah yeah...";
+  const subject = "Contact from eligfell.com";
+  const emailBody = "";
   document.location =
     "mailto:" + email + "?subject=" + subject + "&body=" + emailBody;
 };
