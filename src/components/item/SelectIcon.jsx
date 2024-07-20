@@ -47,13 +47,18 @@ export const SelectIcon = ({
                 center
                 style={{
                   display:
-                    currentItemName === itemName &&
-                    currentPartName === partName &&
-                    showPartOptions &&
-                    !showBackground
+                    currentItemName === itemName && currentPartName === partName
                       ? "block"
                       : "none",
                 }}
+                // style={{
+                //   display:
+                //     currentItemName === itemName &&
+                //     currentPartName === partName &&
+                //     !showBackground
+                //       ? "block"
+                //       : "none",
+                // }}
               >
                 <div style={{ pointerEvents: "none", userSelect: "none" }}>
                   <button className="part-select-icon">

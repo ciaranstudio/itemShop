@@ -1252,7 +1252,9 @@ export default function Scene({
             rotation={[arrowRotationX, 0, 0]}
           >
             <ArrowIcon
-              currentColor={textures.alabasterPaint}
+              currentColor={
+                showPaintOptions ? textures.bluePaint : textures.alabasterPaint
+              }
               currentTexture={textures.whiteTexture}
               // toggleInfoBox={toggleInfoBox}
               // togglePhotoBox={togglePhotoBox}
