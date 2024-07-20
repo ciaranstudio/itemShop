@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Html } from "@react-three/drei";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material";
-import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
+// import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import IconButton from "@mui/material/IconButton";
 import { useOptionStore } from "../../store/useOptionStore.tsx";
 import { objects, shopItems } from "../../data/objects.js";
@@ -11,7 +11,7 @@ import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import CircleIcon from "@mui/icons-material/Circle";
 // import UnfoldLessIcon from "@mui/icons-material/UnfoldLess";
 // import UnfoldMoreIcon from "@mui/icons-material/UnfoldMore";
-import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
+// import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
 import BuyButton from "./BuyButton.jsx";
 import SplitButton from "./SplitButton.jsx";
 import useWindowDimensions from "../../hooks/useWindowDimensions.jsx";
@@ -19,53 +19,27 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
-import toast from "react-hot-toast";
+// import toast from "react-hot-toast";
 import ExpandIcon from "@mui/icons-material/Expand";
 import PaletteIcon from "@mui/icons-material/Palette";
 import PaletteOutlinedIcon from "@mui/icons-material/PaletteOutlined";
+import { unselectedItem } from "../../data/objects.js";
+// import VisibilityIcon from "@mui/icons-material/Visibility";
+// import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
+import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
+import { goTo } from "../../utils/goTo.js";
 
 export default function OptionsOnly({
-  toggleInfoBox,
+  // toggleInfoBox,
   theme,
   handlePartOption,
 }) {
-  // about text blocks
-  const aboutTextArr = [
-    {
-      id: 0,
-      textA: `This shop is meant to be an experimental and collaborative space. My designs are conceptually playful but functional and accessible.`,
-      textB: `Each piece is a unique artwork designed with utility and versatility in mind.`,
-    },
-    {
-      id: 1,
-      textA: `This deliberately humble furniture line is available in fully interchangeable, customizable paints and finishes.`,
-      textB: `Every design is built to last and made by hand at my studio in Cleveland, OH.`,
-    },
-    {
-      id: 2,
-      textA: `I use locally sawn white and red oak finished with hardwax oil for stained components. Painted components are made from poplar and MDO coated with vegan milk paint.`,
-      textB: `We\’re a small family-run operation and everything is made to order. Customers can expect lead times of 6-8 weeks for most orders.`,
-    },
-    {
-      id: 3,
-      textA: `We communicate at each stage of the process from design to production to shipping.`,
-      textB: `We work with care and precision, but value character over perfection.`,
-    },
-    {
-      id: 4,
-      textA: `Feel free to reach out to me with any questions, inquiries or ideas. I\’m always happy to discuss custom design work.`,
-      textB: `My team also provides custom wood working, finish carpentry, cabinetry, painting, art handling and consultation services for the greater Cleveland, OH area.`,
-    },
-  ];
-
-  // useState
-  const [aboutPageToggle, setAboutPageToggle] = useState(false);
-  const [aboutIndex, setAboutIndex] = useState(0);
-
   // state from store
   const currentItemSelected = useOptionStore(
     (state) => state.currentItemSelected,
   );
+  const locationPathname = useOptionStore((state) => state.locationPathname);
   // const open = useOptionStore((state) => state.open);
   // const aboutInfo = useOptionStore((state) => state.aboutInfo);
 
@@ -105,7 +79,7 @@ export default function OptionsOnly({
   const currentItemName = useOptionStore((state) => state.currentItemName);
   const showPaintOptions = useOptionStore((state) => state.showPaintOptions);
   const showBackground = useOptionStore((state) => state.showBackground);
-  const showPartOptions = useOptionStore((state) => state.showPartOptions);
+  // const showPartOptions = useOptionStore((state) => state.showPartOptions);
   const optionBoxItemToggle = useOptionStore(
     (state) => state.optionBoxItemToggle,
   );
@@ -188,19 +162,22 @@ export default function OptionsOnly({
     });
     // console.log("random colors generated list: ", randomThisItemColors);
   };
-  const closePartOptions = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setShowPartOptions(false);
-  };
-  const partShowBackground = (e) => {
+  // const closePartOptions = (e) => {
+  //   e.preventDefault();
+  //   e.stopPropagation();
+  //   // setShowPartOptions(false);
+  // };
+  const partToggleBackground = (e) => {
     e.preventDefault();
     e.stopPropagation();
     // if animation is active then disable
     if (!animActive && !showBackground) {
-      setShowPartOptions(false);
+      // setShowPartOptions(false);
       setShowBackground(true);
-      toast.dismiss();
+      // toast.dismiss();
+    } else if (!animActive && showBackground) {
+      setShowBackground(false);
+      // toast.dismiss();
     }
   };
   const itemMenuSelectHandler = (e, itemNo, popupState) => {
@@ -215,6 +192,30 @@ export default function OptionsOnly({
     popupState.close();
   };
 
+  const getIconColor = (anim) => {
+    let color = "primary";
+    const showBackgroundColor = "info";
+    const showBackgroundColorAnim = "secondary";
+    const hideBackgroundColor = "primary";
+    const hideBackgroundColorAnim = "secondary";
+
+    if (showBackground) {
+      if (anim) {
+        color = !animActive ? showBackgroundColor : showBackgroundColorAnim;
+      } else {
+        color = showBackgroundColor;
+      }
+    } else {
+      if (anim) {
+        color = !animActive ? hideBackgroundColor : hideBackgroundColorAnim;
+      } else {
+        color = hideBackgroundColor;
+      }
+    }
+
+    return color;
+  };
+
   return (
     <Html center position={[0, 0, 0]}>
       <ThemeProvider theme={theme}>
@@ -222,7 +223,10 @@ export default function OptionsOnly({
         <div
           className="info"
           style={{
-            display: showPartOptions ? "block" : "none",
+            display:
+              locationPathname === "/" && currentItemSelected !== unselectedItem
+                ? "block"
+                : "none",
             paddingBottom: "1rem",
             overflow: "auto",
             // pointerEvents: "auto",
@@ -249,7 +253,7 @@ export default function OptionsOnly({
                 marginTop: "0rem",
               }}
             >
-              <IconButton
+              {/* <IconButton
                 onClick={(e) => closePartOptions(e)}
                 color="primary"
                 sx={{
@@ -262,7 +266,7 @@ export default function OptionsOnly({
                 aria-label="close order box"
               >
                 <CloseOutlinedIcon color="success" fontSize="inherit" />
-              </IconButton>
+              </IconButton> */}
 
               {/* <IconButton
                 onClick={(e) => partShowBackground(e)}
@@ -290,24 +294,32 @@ export default function OptionsOnly({
                   marginTop: "1rem",
                   border: "0.1rem solid rgb(233, 234, 233)",
                   borderRadius: "1rem",
-                  backgroundColor: showPaintOptions
-                    ? "transparent"
-                    : "rgb(233, 234, 233)",
+                  // backgroundColor: showPaintOptions
+                  //   ? "transparent"
+                  //   : "rgb(233, 234, 233)",
+                  backgroundColor: "transparent",
                 }}
               >
                 <span>
                   <IconButton
-                    onClick={(e) => partShowBackground(e)}
+                    onClick={(e) => partToggleBackground(e)}
                     sx={{
                       padding: "0.5rem",
                     }}
                     aria-label="show background"
                     disabled={animActive}
                   >
-                    <KeyboardReturnIcon
-                      color={!animActive ? "primary" : "secondary"}
-                      fontSize="inherit"
-                    />
+                    {showBackground ? (
+                      <VisibilityOutlinedIcon
+                        color={getIconColor(true)}
+                        fontSize="inherit"
+                      />
+                    ) : (
+                      <VisibilityOffOutlinedIcon
+                        color={getIconColor(true)}
+                        fontSize="inherit"
+                      />
+                    )}
                   </IconButton>
                 </span>
                 <span>
@@ -319,22 +331,21 @@ export default function OptionsOnly({
                     }}
                     aria-label="animate item parts to explode apart"
                   >
-                    <ExpandIcon
-                      color={animActive ? "secondary" : "primary"}
-                      fontSize="inherit"
-                    />
+                    <ExpandIcon color={getIconColor(true)} fontSize="inherit" />
                   </IconButton>
                 </span>
                 <span>
                   <IconButton
-                    onClick={toggleInfoBox}
-                    color="info"
+                    onClick={() => goTo("/info")}
                     aria-label="toggle info box"
                     sx={{
                       padding: "0.5rem",
                     }}
                   >
-                    <InfoOutlinedIcon color="primary" fontSize="inherit" />
+                    <InfoOutlinedIcon
+                      color={getIconColor(false)}
+                      fontSize="inherit"
+                    />
                   </IconButton>
                 </span>
                 {/* <span>
@@ -349,20 +360,24 @@ export default function OptionsOnly({
                     <FilterOutlinedIcon color="secondary" fontSize="inherit" />
                   </IconButton>
                 </span> */}
-
                 <span>
                   <IconButton
                     onClick={toggleShowPaintOptions}
-                    color="white"
                     sx={{
                       padding: "0.5rem",
                     }}
                     aria-label="toggle minimize/maximize option box height"
                   >
                     {showPaintOptions ? (
-                      <PaletteIcon color="primary" fontSize="inherit" />
+                      <PaletteIcon
+                        color={getIconColor(false)}
+                        fontSize="inherit"
+                      />
                     ) : (
-                      <PaletteOutlinedIcon color="primary" fontSize="inherit" />
+                      <PaletteOutlinedIcon
+                        color={getIconColor(false)}
+                        fontSize="inherit"
+                      />
                     )}
                   </IconButton>
                 </span>

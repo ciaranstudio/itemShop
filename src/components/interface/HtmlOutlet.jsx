@@ -4,10 +4,11 @@ import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import IconButton from "@mui/material/IconButton";
 import ImagesRouter from "./ImagesRouter.jsx";
 
-export default function HtmlOutlet({ toggleInfoBox, togglePhotoBox, theme }) {
+export default function HtmlOutlet({ theme }) {
   return (
     <Html center position={[0, 0, 0]}>
-      <span
+      {/* open (store state value controlling enable/disable of OrbitControls in Three Scene) toggle button for testing */}
+      {/* <span
         style={{
           position: "absolute",
           top: 0,
@@ -29,10 +30,10 @@ export default function HtmlOutlet({ toggleInfoBox, togglePhotoBox, theme }) {
             <CloseOutlinedIcon fontSize="small" color="success" />
           </IconButton>
         </span>
-      </span>
+      </span> */}
       <ImagesRouter
-        toggleInfoBox={toggleInfoBox}
-        togglePhotoBox={togglePhotoBox}
+        // toggleInfoBox={toggleInfoBox}
+        // togglePhotoBox={togglePhotoBox}
         theme={theme}
       />
     </Html>

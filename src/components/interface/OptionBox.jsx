@@ -5,8 +5,8 @@ import { useOptionStore } from "../../store/useOptionStore.tsx";
 
 export default function OptionBox({
   handlePartOption,
-  toggleInfoBox,
-  togglePhotoBox,
+  // toggleInfoBox,
+  // togglePhotoBox,
   theme,
 }) {
   const mobileView = useOptionStore((state) => state.mobileView);
@@ -22,8 +22,8 @@ export default function OptionBox({
     >
       <OptionsOnly
         handlePartOption={handlePartOption}
-        toggleInfoBox={toggleInfoBox}
-        togglePhotoBox={togglePhotoBox}
+        // toggleInfoBox={toggleInfoBox}
+        // togglePhotoBox={togglePhotoBox}
         theme={theme}
       />
     </group>

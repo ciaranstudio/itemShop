@@ -7,10 +7,11 @@ import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import IconButton from "@mui/material/IconButton";
 import { useOptionStore } from "../../store/useOptionStore.tsx";
 // import { useLoaderData } from "react-router-dom";
-import { router } from "../../utils/router.jsx";
+// import { router } from "../../utils/router.jsx";
 // import { unselectedItem } from "../../data/objects.jsx";
 // import { shopItems } from "../../data/objects.jsx";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { goTo } from "../../utils/goTo.js";
 
 export default function PhotoSingle({ theme }) {
   // selected image useState
@@ -20,9 +21,9 @@ export default function PhotoSingle({ theme }) {
   // const data = useLoaderData();
 
   // router navigate function
-  const goTo = (route) => {
-    router.navigate(route);
-  };
+  // const goTo = (route) => {
+  //   router.navigate(route);
+  // };
 
   // get location from Router hook
   // const routerLocation = useLocation();

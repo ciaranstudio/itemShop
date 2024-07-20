@@ -32,6 +32,7 @@ import {
   loadAboutImages,
 } from "./loadImages.js";
 import HtmlOutletRoot from "../components/interface/HtmlOutletRoot.jsx";
+import ItemDescBox from "../components/interface/ItemDescBox.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -46,6 +47,12 @@ export const router = createBrowserRouter([
     // loader: loadImages,
     // action: rootAction,
     children: [
+      {
+        path: "info",
+        element: <ItemDescBox theme={theme} />,
+        // loader: loadSingleImage,
+        // action: recordAction,
+      },
       {
         path: "view",
         element: <PhotoSingle theme={theme} />,

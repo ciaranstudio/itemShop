@@ -111,7 +111,7 @@ export default function Scene({
   );
   const sceneLoaded = useOptionStore((state) => state.sceneLoaded);
   const open = useOptionStore((state) => state.open);
-  const showPhotos = useOptionStore((state) => state.showPhotos);
+  // const showPhotos = useOptionStore((state) => state.showPhotos);
   const showBackground = useOptionStore((state) => state.showBackground);
   const showPartOptions = useOptionStore((state) => state.showPartOptions);
   const optionBoxItemChanged = useOptionStore(
@@ -125,6 +125,7 @@ export default function Scene({
   const arrowAnimActive = useOptionStore((state) => state.arrowAnimActive);
   const showPaintOptions = useOptionStore((state) => state.showPaintOptions);
   // const mobileView = useOptionStore((state) => state.mobileView);
+  const locationPathname = useOptionStore((state) => state.locationPathname);
 
   // actions from store
   const setCurrentItemSelected = useOptionStore(
@@ -140,9 +141,9 @@ export default function Scene({
     (state) => state.setCurrentItemName,
   );
   const setOpen = useOptionStore((state) => state.setOpen);
-  const setShowPhotos = useOptionStore((state) => state.setShowPhotos);
-  const setAllPhotos = useOptionStore((state) => state.setAllPhotos);
-  const setAboutInfo = useOptionStore((state) => state.setAboutInfo);
+  // const setShowPhotos = useOptionStore((state) => state.setShowPhotos);
+  // const setAllPhotos = useOptionStore((state) => state.setAllPhotos);
+  // const setAboutInfo = useOptionStore((state) => state.setAboutInfo);
   const setShowPaintOptions = useOptionStore(
     (state) => state.setShowPaintOptions,
   );
@@ -340,7 +341,7 @@ export default function Scene({
       setCount((prev) => prev + 1);
     }, 1500);
     if (count === 2 && showBackground) {
-      toast.dismiss();
+      // // toast.dismiss();
       // toast("Cart", {
       //   duration: TOAST.duration,
       //   position: "top-right",
@@ -390,7 +391,7 @@ export default function Scene({
       //   },
       // });
     } else if (count === 5 && showBackground) {
-      toast.dismiss();
+      // // toast.dismiss();
       // toast("Drag to rotate", {
       //   duration: TOAST.duration,
       //   position: "top-right",
@@ -740,7 +741,7 @@ export default function Scene({
   };
   const handleItemPartClick = (e, part) => {
     if (!showBackground) {
-      if (!showPhotos && !open && !arrowAnimActive) setShowPartOptions(true);
+      // if (!open && !arrowAnimActive) setShowPartOptions(true);
       if (part.itemName === currentItemSelected.itemName) {
         setCurrentItemName(part.itemName);
         setCurrentPartName(part.partName);
@@ -765,21 +766,21 @@ export default function Scene({
     if (e) e.stopPropagation();
     // if showPaintOptions is true then disable this click handler
     // (paint options layer on top of this arrow icon on mobile devices)
-    // toast.dismiss();
+    // // // toast.dismiss();
     if (!showPaintOptions) {
       if (currentItemSelected === unselectedItem) {
-        setShowPartOptions(false);
+        // setShowPartOptions(false);
         setCurrentItemSelected(objects.gramps);
         setTimeout(() => {
           // setOpen(false);
-          setShowPhotos(false);
+          // setShowPhotos(false);
           setShowBackground(!showBackground);
         }, "750");
       } else {
         if (!animActive && !arrowAnimActive) {
-          setShowPartOptions(false);
+          // setShowPartOptions(false);
           // setOpen(false);
-          setShowPhotos(false);
+          // setShowPhotos(false);
           setShowBackground(!showBackground);
         }
       }
@@ -829,35 +830,35 @@ export default function Scene({
     return position;
   };
 
-  const toggleInfoBox = (e) => {
-    if (e) {
-      e.preventDefault();
-      e.stopPropagation();
-    }
-    setAboutInfo(false);
-    setOpen(!open);
-    setShowPhotos(false);
-    if (showPartOptions) {
-      setShowPartOptions(false);
-    } else {
-      if (!showBackground) setShowPartOptions(true);
-    }
-  };
-  const togglePhotoBox = (e) => {
-    if (e) {
-      e.preventDefault();
-      e.stopPropagation();
-    }
-    setAllPhotos(false);
-    // setOpen(false);
-    setShowPhotos(!showPhotos);
+  // const toggleInfoBox = (e) => {
+  //   if (e) {
+  //     e.preventDefault();
+  //     e.stopPropagation();
+  //   }
+  //   // setAboutInfo(false);
+  //   setOpen(!open);
+  //   // setShowPhotos(false);
+  //   if (showPartOptions) {
+  //     setShowPartOptions(false);
+  //   } else {
+  //     if (!showBackground) setShowPartOptions(true);
+  //   }
+  // };
+  // const togglePhotoBox = (e) => {
+  //   if (e) {
+  //     e.preventDefault();
+  //     e.stopPropagation();
+  //   }
+  //   setAllPhotos(false);
+  //   // setOpen(false);
+  //   // setShowPhotos(!showPhotos);
 
-    if (showPartOptions) {
-      setShowPartOptions(false);
-    } else {
-      if (!showBackground) setShowPartOptions(true);
-    }
-  };
+  //   if (showPartOptions) {
+  //     setShowPartOptions(false);
+  //   } else {
+  //     if (!showBackground) setShowPartOptions(true);
+  //   }
+  // };
 
   // useFrame
   useFrame((state, delta) => {
@@ -1132,7 +1133,7 @@ export default function Scene({
           ease: "easeIn",
           onStart: () => {
             setArrowAnimActive(true);
-            setShowPartOptions(false);
+            // setShowPartOptions(false);
           },
           onUpdate: () => {
             // console.log("arrowRotationX: ", arrowRotationX);
@@ -1140,7 +1141,7 @@ export default function Scene({
           },
           onComplete: () => {
             setArrowAnimActive(false);
-            setShowPartOptions(true);
+            // setShowPartOptions(true);
           },
         });
       }
@@ -1232,8 +1233,8 @@ export default function Scene({
             theme={theme}
             currentColor={textures.alabasterPaint}
             currentTexture={textures.whiteTexture}
-            toggleInfoBox={toggleInfoBox}
-            togglePhotoBox={togglePhotoBox}
+            // toggleInfoBox={toggleInfoBox}
+            // togglePhotoBox={togglePhotoBox}
             handlePartOption={handlePartOption}
           />
         </group>
@@ -1253,8 +1254,8 @@ export default function Scene({
             <ArrowIcon
               currentColor={textures.alabasterPaint}
               currentTexture={textures.whiteTexture}
-              toggleInfoBox={toggleInfoBox}
-              togglePhotoBox={togglePhotoBox}
+              // toggleInfoBox={toggleInfoBox}
+              // togglePhotoBox={togglePhotoBox}
               handlePartOption={handlePartOption}
               // openUserEmail={openUserEmail}
               theme={theme}
@@ -1262,11 +1263,7 @@ export default function Scene({
           </mesh>
           <group
             // position={[0, ARROW_ICON.arrowY + 0.01, 0]}
-            position={[
-              0,
-              open || showPhotos ? ARROW_ICON.arrowY + 0.01 : -0.3 + 0.01,
-              0,
-            ]}
+            position={[0, open ? ARROW_ICON.arrowY + 0.01 : -0.3 + 0.01, 0]}
             // rotation={[arrowRotationX, 0, 0]}
           >
             <RingCircle
@@ -1323,7 +1320,10 @@ export default function Scene({
         // target={grampsRef.current}
       />
       {/* all objects (except logo, cart/bag, arrow / objects in ScreenSpace) */}
-      <group position={[0, stagePosY, 0]} visible={!open}>
+      <group
+        position={[0, stagePosY, 0]}
+        visible={!open || locationPathname === "/info" ? true : false}
+      >
         <ambientLight intensity={LIGHT.ambLightIntensity} />
         {/* furniture items */}
         {shopItems.map((item, index) => {

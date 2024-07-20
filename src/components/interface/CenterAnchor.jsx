@@ -7,8 +7,8 @@ export const CenterAnchor = ({
   theme,
   currentColor,
   currentTexture,
-  toggleInfoBox,
-  togglePhotoBox,
+  // toggleInfoBox,
+  // togglePhotoBox,
 }) => {
   const { scene, nodes, materials } = useGLTF("./models/logoAnnotated.gltf");
   const [annotations, setAnnotations] = useState([]);
@@ -20,9 +20,11 @@ export const CenterAnchor = ({
   // state from store
   const mobileView = useOptionStore((state) => state.mobileView);
   const open = useOptionStore((state) => state.open);
-  const showPhotos = useOptionStore((state) => state.showPhotos);
-  const allPhotos = useOptionStore((state) => state.allPhotos);
-  const aboutInfo = useOptionStore((state) => state.aboutInfo);
+  // const showPhotos = useOptionStore((state) => state.showPhotos);
+  // const allPhotos = useOptionStore((state) => state.allPhotos);
+  // const aboutInfo = useOptionStore((state) => state.aboutInfo);
+  const selectedImage = useOptionStore((state) => state.selectedImage);
+  const locationPathname = useOptionStore((state) => state.locationPathname);
 
   useLayoutEffect(() => {
     Object.assign(materials._0103_Blue, {
@@ -57,8 +59,8 @@ export const CenterAnchor = ({
                 position={[0, 0, 0]}
               >
                 <HtmlOutlet
-                  toggleInfoBox={toggleInfoBox}
-                  togglePhotoBox={togglePhotoBox}
+                  // toggleInfoBox={toggleInfoBox}
+                  // togglePhotoBox={togglePhotoBox}
                   theme={theme}
                 />
               </group>,
@@ -68,7 +70,7 @@ export const CenterAnchor = ({
       }
     });
     setAnnotations(currentAnnotations);
-  }, [scene, open, showPhotos, allPhotos, aboutInfo, mobileView, location]);
+  }, [scene, open, mobileView, locationPathname, selectedImage]);
 
   useLayoutEffect(() => {
     scene.traverse((o) => {

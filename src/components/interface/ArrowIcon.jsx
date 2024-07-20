@@ -7,8 +7,8 @@ export const ArrowIcon = ({
   theme,
   currentColor,
   currentTexture,
-  toggleInfoBox,
-  togglePhotoBox,
+  // toggleInfoBox,
+  // togglePhotoBox,
   handlePartOption,
 }) => {
   const { scene, nodes, materials } = useGLTF("./models/arrow.gltf");
@@ -33,7 +33,7 @@ export const ArrowIcon = ({
   const showPartOptions = useOptionStore((state) => state.showPartOptions);
   const animActive = useOptionStore((state) => state.animActive);
   const activeCamAnim = useOptionStore((state) => state.activeCamAnim);
-  const showPaintOptions = useOptionStore((state) => state.showPaintOptions);
+  // const showPaintOptions = useOptionStore((state) => state.showPaintOptions);
 
   useLayoutEffect(() => {
     Object.assign(materials.Material, {
@@ -78,8 +78,8 @@ export const ArrowIcon = ({
               >
                 <OptionBox
                   handlePartOption={handlePartOption}
-                  toggleInfoBox={toggleInfoBox}
-                  togglePhotoBox={togglePhotoBox}
+                  // toggleInfoBox={toggleInfoBox}
+                  // togglePhotoBox={togglePhotoBox}
                   theme={theme}
                 />
               </group>,
