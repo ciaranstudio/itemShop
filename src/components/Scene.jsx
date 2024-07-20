@@ -1327,7 +1327,8 @@ export default function Scene({
         visible={
           !open ||
           locationPathname === "/info" ||
-          locationPathname === "/contact"
+          locationPathname === "/contact" ||
+          locationPathname === "/about"
             ? true
             : false
         }

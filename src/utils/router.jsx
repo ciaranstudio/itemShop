@@ -34,6 +34,7 @@ import {
 import HtmlOutletRoot from "../components/interface/HtmlOutletRoot.jsx";
 import ItemDescBox from "../components/interface/ItemDescBox.jsx";
 import ContactBox from "../components/interface/ContactBox.jsx";
+import AboutBox from "../components/interface/AboutBox.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -81,7 +82,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "about",
-        element: <PhotoGrid theme={theme} />,
+        element: <AboutBox theme={theme} />,
         loader: loadAboutImages,
         // action: recordAction,
       },
