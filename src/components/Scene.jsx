@@ -14,8 +14,8 @@ import { ItemPart } from "./item/ItemPart.jsx";
 import RingCircle from "./item/RingCircle.jsx";
 import { Floor } from "./room/Floor.jsx";
 import { Walls } from "./room/Walls.jsx";
-import { objects, unselectedItem, shopItems } from "../data/objects.jsx";
-import { textures } from "../data/textures.jsx";
+import { objects, unselectedItem, shopItems } from "../data/objects.js";
+import { textures } from "../data/textures.js";
 import useWindowDimensions from "../hooks/useWindowDimensions";
 import { useSnipcart } from "use-snipcart";
 import { SelectIcon } from "./item/SelectIcon.jsx";
@@ -28,7 +28,7 @@ import {
   ARROW_ICON,
   CAM_TARG_ANIM,
   CAM_POS_ANIM,
-} from "../data/constants.tsx";
+} from "../data/constants.js";
 import { CenterAnchor } from "./interface/CenterAnchor.jsx";
 
 export default function Scene({
@@ -123,7 +123,7 @@ export default function Scene({
   const animActive = useOptionStore((state) => state.animActive);
   const partsOpen = useOptionStore((state) => state.partsOpen);
   const arrowAnimActive = useOptionStore((state) => state.arrowAnimActive);
-  const mobileView = useOptionStore((state) => state.mobileView);
+  // const mobileView = useOptionStore((state) => state.mobileView);
 
   // actions from store
   const setCurrentItemSelected = useOptionStore(
@@ -500,7 +500,7 @@ export default function Scene({
       setCurrentPartName(
         objects[currentItemSelected.itemName].parts[0].partName,
       );
-      setShowPaintOptions(false);
+      setShowPaintOptions(true);
       // setShowPartOptions(true);
     }
     if (!showBackground) {

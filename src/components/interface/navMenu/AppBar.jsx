@@ -18,7 +18,7 @@ import { useOptionStore } from "../../../store/useOptionStore.tsx";
 import { useSnipcart } from "use-snipcart";
 // import { router } from "../../../utils/router.jsx";
 import { goTo } from "../../../utils/goTo.js";
-import { PAGES } from "../../../data/constants.tsx";
+import { PAGES } from "../../../data/constants.js";
 
 function ResponsiveAppBar({ theme }) {
   // state from store

@@ -10,7 +10,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import { getImageRecords, createImageRecord } from "../utils/records.js";
-import { authProvider } from "../data/authProvider.jsx";
+import { authProvider } from "../data/authProvider.js";
 import AuthStatus from "../components/interface/AuthStatus.jsx";
 import Copyright from "../components/interface/Copyright.jsx";
 import { styled, createTheme, ThemeProvider } from "@mui/material/styles";

@@ -2,8 +2,8 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material";
 import Button from "@mui/material/Button";
 import { useOptionStore } from "../../store/useOptionStore.tsx";
-import { unselectedItem } from "../../data/objects.jsx";
-import { objects } from "../../data/objects.jsx";
+import { unselectedItem } from "../../data/objects.js";
+import { objects } from "../../data/objects.js";
 
 export default function BuyButton({ item, theme }) {
   // state from store

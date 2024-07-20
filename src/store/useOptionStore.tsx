@@ -1,9 +1,9 @@
 import { create } from "zustand";
 import { produce } from "immer";
 import * as THREE from "three";
-import { textures } from "../data/textures.jsx";
-import { options } from "../data/options.jsx";
-import { objects, unselectedItem } from "../data/objects.jsx";
+import { textures } from "../data/textures.js";
+import { options } from "../data/options.js";
+import { objects, unselectedItem } from "../data/objects.js";
 import Item from "../data/item/Item.jsx";
 
 export type State = {
@@ -484,7 +484,7 @@ export const useOptionStore = create<State & Action>((set) => ({
   showPhotos: false,
   allPhotos: false,
   aboutInfo: false,
-  showPaintOptions: false,
+  showPaintOptions: true,
   showBackground: true,
   showPartOptions: false,
   optionBoxItemChanged: false,

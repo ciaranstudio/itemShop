@@ -1,5 +1,5 @@
 import { createBrowserRouter, redirect } from "react-router-dom";
-import { authProvider } from "../data/authProvider.jsx";
+import { authProvider } from "../data/authProvider.js";
 import Root, {
   loader as rootLoader,
   action as rootAction,

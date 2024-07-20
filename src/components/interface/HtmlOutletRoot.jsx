@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useOptionStore } from "../../store/useOptionStore.tsx";
 import { useLocation } from "react-router-dom";
-import { unselectedItem } from "../../data/objects.jsx";
-import { shopItems } from "../../data/objects.jsx";
-import { goTo } from "../../utils/goTo.js";
+import { unselectedItem } from "../../data/objects.js";
+import { shopItems } from "../../data/objects.js";
+// import { goTo } from "../../utils/goTo.js";
 
 export default function HtmlOutletRoot({ children }) {
   // state from store

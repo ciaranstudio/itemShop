@@ -85,17 +85,9 @@ export const ITEM_PARTS_ANIM = {
 
 // OptionBox
 // option box position (Y) constants
-export const OPTION_BOX_POS_Y = {
-  boxPosYMobileMax: 14,
-  boxPosYMobileMin: 10.15,
-
-  boxPosYDesktopMax: 4,
-  boxPosYDesktopMin: 1,
-
-  tinyScreenOffsetMinimized: 3.5,
-  tinyScreenOffsetNotMinimized: 4.25,
-
-  breakpointWidthSmallest: 380,
+export const OPTION_BOX = {
+  verticalPositionMobile: 8,
+  verticalPositionDesktop: 4,
 };
 
 // Router

@@ -6,9 +6,9 @@ import Scene from "./Scene.jsx";
 import Placeholder from "./Placeholder.jsx";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { textures } from "../data/textures.jsx";
-import { shopItems } from "../data/objects.jsx";
-import { allOptions } from "../data/options.jsx";
+import { textures } from "../data/textures.js";
+import { shopItems } from "../data/objects.js";
+import { allOptions } from "../data/options.js";
 import { useOptionStore } from "../store/useOptionStore.tsx";
 import toast from "react-hot-toast";
 import {
@@ -16,7 +16,7 @@ import {
   TOAST,
   STAGE_POSITION_Y_ANIM,
   ITEM_PARTS_ANIM,
-} from "../data/constants.tsx";
+} from "../data/constants.js";
 
 function Experience({ theme }) {
   // const { contextVal } = useDashContext();
@@ -55,11 +55,11 @@ function Experience({ theme }) {
   const animActive = useOptionStore((state) => state.animActive);
   const animIconToggle = useOptionStore((state) => state.animIconToggle);
   const animateButton = useOptionStore((state) => state.animateButton);
-  const previousItemSelected = useOptionStore(
-    (state) => state.previousItemSelected,
-  );
-  const showBackground = useOptionStore((state) => state.showBackground);
-  const showPartOptions = useOptionStore((state) => state.showPartOptions);
+  // const previousItemSelected = useOptionStore(
+  //   (state) => state.previousItemSelected,
+  // );
+  // const showBackground = useOptionStore((state) => state.showBackground);
+  // const showPartOptions = useOptionStore((state) => state.showPartOptions);
 
   // actions from store
   const setMobileView = useOptionStore((state) => state.setMobileView);
