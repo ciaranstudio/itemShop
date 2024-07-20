@@ -75,7 +75,10 @@ export default function HtmlOutletRoot({ children }) {
     console.log("selectedImage: ", selectedImage);
     if (selectedImage !== null) {
       if (selectedImage.route === "shop") {
-        const tempSelectedTitle = selectedImage.title;
+        const tempSelectedTitle = selectedImage.title.substring(
+          0,
+          selectedImage.title.indexOf("_"),
+        );
         const titleMatch = (element) => element.itemTitle === tempSelectedTitle;
         if (titleMatch) {
           let matchedItem = shopItems.find(titleMatch);

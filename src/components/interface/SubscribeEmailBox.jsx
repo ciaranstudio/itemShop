@@ -93,8 +93,7 @@ export default function SubscribeEmailBox({ theme }) {
             }}
             color="prmimary"
           >
-            Sign up for our pre-sale mailing list. We'll email you when items
-            are released.
+            Check back next week to sign up for our pre-sale mailing list.
           </Typography>
         </div>
         <div
