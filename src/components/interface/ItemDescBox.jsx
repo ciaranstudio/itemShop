@@ -19,32 +19,32 @@ export default function ItemDescBox({ theme }) {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <div
-        className="info"
+        className="shop-item-description"
         style={{
           // display: open ? "block" : "none",
           paddingBottom: "1rem",
         }}
       >
-        <IconButton
-          onClick={(e) => goTo("/")}
-          color="inherit"
-          sx={{
-            position: "absolute",
-            pointerEvents: "auto",
-            top: "0.15rem",
-            left: "0.15rem",
-            padding: "0.5rem",
-          }}
-          aria-label="close info box"
-        >
-          <CloseOutlinedIcon color="success" />
-        </IconButton>
         <div
           id="title"
           style={{
-            color: theme.palette.primary.main,
+            color: theme.palette.info.main,
           }}
         >
+          <IconButton
+            onClick={(e) => goTo("/")}
+            color="inherit"
+            sx={{
+              position: "absolute",
+              pointerEvents: "auto",
+              top: -4,
+              left: 0,
+              padding: "0.5rem",
+            }}
+            aria-label="close info box"
+          >
+            <CloseOutlinedIcon color="info" fontSize={"small"} />
+          </IconButton>
           <Typography
             variant="h6"
             sx={{
@@ -79,10 +79,10 @@ export default function ItemDescBox({ theme }) {
         >
           <Typography
             variant="subtitle2"
-            color="primary"
             sx={{
               fontFamily: "var(--leva-fonts-mono)",
               fontSize: "0.82rem",
+              color: theme.palette.info.main,
             }}
           >
             {currentItemSelected.size}

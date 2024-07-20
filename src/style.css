@@ -144,6 +144,27 @@ img {
   display: block;
 }
 
+.shop-item-description {
+  /* position: absolute;
+  width: 90vw; */
+  /* max-width: 90svw;
+  max-height: 80svh; */
+  /* width: 18rem */
+  /* top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); */
+  text-align: center;
+  /* background: #b8c2c4; */
+  width: 20rem;
+  background: transparent;
+  /* opacity: 0.96; */
+  /* margin-top: 1rem; */
+  /* margin-bottom: 2rem; */
+  border-radius: 0.25rem;
+  /* border: 0.085rem solid rgb(155, 155, 155); */
+  pointer-events: none;
+}
+
 .single-view {
   /* position: absolute;
   width: 90vw; */
