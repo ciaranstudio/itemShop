@@ -86,3 +86,17 @@ export async function updateImageRecord(id, updates, favorite) {
 export async function deleteImageRecord(id) {
   await deleteDoc(doc(db, "imageRecords", id));
 }
+
+// export async function createSubscribedEmailRecord() {
+//   let emailRecord;
+//   try {
+//     const docRef = await addDoc(collection(db, "subscribedEmails"), {
+//       createdAt: Timestamp.now(),
+//     });
+//     let id = docRef.id;
+//     emailRecord = { id, createdAt: docRef.createdAt };
+//   } catch (e) {
+//     console.error("Error adding document: ", e);
+//   }
+//   return emailRecord;
+// }

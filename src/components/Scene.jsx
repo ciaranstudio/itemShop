@@ -1328,7 +1328,8 @@ export default function Scene({
           !open ||
           locationPathname === "/info" ||
           locationPathname === "/contact" ||
-          locationPathname === "/about"
+          locationPathname === "/about" ||
+          locationPathname === "/subscribe"
             ? true
             : false
         }

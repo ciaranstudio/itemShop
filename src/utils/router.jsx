@@ -35,6 +35,8 @@ import HtmlOutletRoot from "../components/interface/HtmlOutletRoot.jsx";
 import ItemDescBox from "../components/interface/ItemDescBox.jsx";
 import ContactBox from "../components/interface/ContactBox.jsx";
 import AboutBox from "../components/interface/AboutBox.jsx";
+import SubscribeEmailBox from "../components/interface/SubscribeEmailBox.jsx";
+// import { createSubscribedEmailRecord } from "./records.js";
 
 export const router = createBrowserRouter([
   {
@@ -91,6 +93,12 @@ export const router = createBrowserRouter([
         element: <ContactBox theme={theme} />,
         // loader: loadImages,
         // action: recordAction,
+      },
+      {
+        path: "subscribe",
+        element: <SubscribeEmailBox theme={theme} />,
+        // loader: loadSingleImage,
+        // action: createSubscribedEmailRecord,
       },
       // {
       //   path: "sale",

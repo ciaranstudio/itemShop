@@ -424,6 +424,7 @@ export type State = {
   locationPathname: string;
   selectedImage: any;
   selectedImageIndex: number;
+  signedUpForMailingList: boolean;
 };
 
 export type Action = {
@@ -471,6 +472,7 @@ export type Action = {
   setLocationPathname: (value: string) => void;
   setSelectedImage: (value: any) => void;
   setSelectedImageIndex: (value: number) => void;
+  setSignedUpForMailingList: (value: boolean) => void;
 };
 
 export const useOptionStore = create<State & Action>((set) => ({
@@ -948,6 +950,7 @@ export const useOptionStore = create<State & Action>((set) => ({
   locationPathname: "",
   selectedImage: null,
   selectedImageIndex: 0,
+  signedUpForMailingList: false,
   calculateItemPrice: (itemName) =>
     set(
       produce((state: State) => {
@@ -1236,6 +1239,12 @@ export const useOptionStore = create<State & Action>((set) => ({
     set(
       produce((state: State) => {
         state.selectedImageIndex = value;
+      }),
+    ),
+  setSignedUpForMailingList: (value) =>
+    set(
+      produce((state: State) => {
+        state.signedUpForMailingList = value;
       }),
     ),
 }));

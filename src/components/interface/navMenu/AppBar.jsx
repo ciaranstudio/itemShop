@@ -101,9 +101,11 @@ function ResponsiveAppBar({ theme }) {
 
   // snipcart cart click function
   function handleCartClick() {
-    if (snipcartLoaded) {
-      window.Snipcart.api.theme.cart.open();
-    }
+    goTo("/subscribe");
+    // if (snipcartLoaded) {
+    //   window.Snipcart.api.theme.cart.open();
+    // }
+    // open the sign up for shop release email list component / route
   }
 
   const StyledBadge = styled(Badge)(({ theme }) => ({
