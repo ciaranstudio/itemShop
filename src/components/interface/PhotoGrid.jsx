@@ -34,9 +34,9 @@ export default function PhotoGrid({ theme }) {
   // state from store
   const open = useOptionStore((state) => state.open);
   const selectedImage = useOptionStore((state) => state.selectedImage);
-  const selectedImageIndex = useOptionStore(
-    (state) => state.selectedImageIndex,
-  );
+  // const selectedImageIndex = useOptionStore(
+  //   (state) => state.selectedImageIndex,
+  // );
   // const currentItemSelected = useOptionStore(
   //   (state) => state.currentItemSelected,
   // );
@@ -53,6 +53,8 @@ export default function PhotoGrid({ theme }) {
   const setSelectedImageIndex = useOptionStore(
     (state) => state.setSelectedImageIndex,
   );
+  const mobileView = useOptionStore((state) => state.mobileView);
+
   // const setCurrentItemSelected = useOptionStore(
   //   (state) => state.setCurrentItemSelected,
   // );
@@ -156,6 +158,7 @@ export default function PhotoGrid({ theme }) {
                 </IconButton>
               </span>
             </span>
+
             <Box
               sx={{
                 display: "grid",
@@ -184,31 +187,6 @@ export default function PhotoGrid({ theme }) {
                   ></img>
                 );
               })}
-            </Box>
-            <Box sx={{ display: "flex" }}>
-              <span
-                style={{
-                  position: "absolute",
-                  // top: "50%",
-                  left: 0,
-                  // transform: "translate(-50%, -50%)",
-                  pointerEvents: "auto",
-                  zIndex: "1",
-                }}
-              >
-                <span>
-                  <IconButton
-                    onClick={returnTo3dView}
-                    color="inherit"
-                    sx={{
-                      py: "0.9rem",
-                    }}
-                    aria-label="close info box"
-                  >
-                    <CloseOutlinedIcon fontSize="small" color="secondary" />
-                  </IconButton>
-                </span>
-              </span>
             </Box>
           </>
         ) : selectedImage && selectedImage.imgPath.length > 1 ? (
@@ -240,7 +218,7 @@ export default function PhotoGrid({ theme }) {
                 </IconButton>
               </span>
             </span> */}
-            <Box sx={{ display: "flex" }}>
+            {/* <Box sx={{ display: "flex" }}>
               <span
                 style={{
                   position: "absolute",
@@ -267,30 +245,7 @@ export default function PhotoGrid({ theme }) {
                   </IconButton>
                 </span>
               </span>
-              {/* <span
-                style={{
-                  position: "absolute",
-                  // top: "50%",
-                  right: 0,
-                  // transform: "translate(-50%, -50%)",
-                  pointerEvents: "auto",
-                  zIndex: "1",
-                }}
-              >
-                <span>
-                  <IconButton
-                    onClick={returnTo3dView}
-                    color="inherit"
-                    sx={{
-                      py: "0.9rem",
-                    }}
-                    aria-label="close info box"
-                  >
-                    <CloseOutlinedIcon fontSize="small" color="info" />
-                  </IconButton>
-                </span>
-              </span> */}
-            </Box>
+            </Box> */}
 
             <Box
               sx={{

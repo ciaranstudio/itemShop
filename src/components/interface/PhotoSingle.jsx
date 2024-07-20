@@ -34,6 +34,7 @@ export default function PhotoSingle({ theme }) {
   const selectedImageIndex = useOptionStore(
     (state) => state.selectedImageIndex,
   );
+  const mobileView = useOptionStore((state) => state.mobileView);
   // const currentItemSelected = useOptionStore(
   //   (state) => state.currentItemSelected,
   // );

@@ -47,7 +47,9 @@ export const SelectIcon = ({
                 center
                 style={{
                   display:
-                    currentItemName === itemName && currentPartName === partName
+                    currentItemName === itemName &&
+                    currentPartName === partName &&
+                    !open
                       ? "block"
                       : "none",
                 }}
