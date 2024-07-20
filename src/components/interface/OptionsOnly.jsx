@@ -360,7 +360,7 @@ export default function OptionsOnly({
                     aria-label="toggle minimize/maximize option box height"
                   >
                     {showPaintOptions ? (
-                      <PaletteIcon color="secondary" fontSize="inherit" />
+                      <PaletteIcon color="primary" fontSize="inherit" />
                     ) : (
                       <PaletteOutlinedIcon color="primary" fontSize="inherit" />
                     )}

@@ -12,6 +12,8 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 
+// TODO: Create toggle in edit form to enable or disable the Storage upload / file handling aspect of this,
+// no need for it if image has not been updated.
 export async function action({ request, params }) {
   const formData = await request.formData();
   const imageFiles = [];
