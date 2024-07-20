@@ -21,6 +21,7 @@ export const SelectIcon = ({
   const currentItemName = useOptionStore((state) => state.currentItemName);
   const showBackground = useOptionStore((state) => state.showBackground);
   const showPartOptions = useOptionStore((state) => state.showPartOptions);
+  const open = useOptionStore((state) => state.open);
 
   useLayoutEffect(() => {
     const currentAnnotations = [];
@@ -88,6 +89,7 @@ export const SelectIcon = ({
     currentPartName,
     showPartOptions,
     showBackground,
+    open,
   ]);
 
   return (

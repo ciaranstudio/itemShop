@@ -117,7 +117,7 @@ export default function PhotoSingle({ theme }) {
       <div
         className="single-view"
         style={{
-          paddingBottom: "1rem",
+          paddingBottom: "3rem",
           overflow: "auto",
           pointerEvents: open ? "auto" : "none",
           marginTop: "0.5rem",
@@ -136,6 +136,55 @@ export default function PhotoSingle({ theme }) {
             mt: 7,
           }}
         >
+          <span
+            style={{
+              position: "absolute",
+              bottom: 0,
+              // top: 20,
+              // top: "50%",
+              // left: "50%",
+              // transform: "translate(-50%, -50%)",
+              pointerEvents: "auto",
+              zIndex: "1",
+            }}
+          >
+            <span>
+              <IconButton
+                // onClick={() => goTo("/shop")}
+                onClick={() => {
+                  goTo("/shop");
+                }}
+                sx={{
+                  py: "0.9rem",
+                }}
+                aria-label="close info box"
+              >
+                <ArrowBackIcon fontSize="small" color="secondary" />
+              </IconButton>
+            </span>
+          </span>
+          <span
+            style={{
+              position: "absolute",
+              bottom: 0,
+              right: 0,
+              // transform: "translate(-50%, -50%)",
+              pointerEvents: "auto",
+              zIndex: "1",
+            }}
+          >
+            <span>
+              <IconButton
+                onClick={returnTo3dView}
+                sx={{
+                  py: "0.9rem",
+                }}
+                aria-label="close info box"
+              >
+                <CloseOutlinedIcon fontSize="small" color="secondary" />
+              </IconButton>
+            </span>
+          </span>
           {selectedImage && (
             <img
               style={{
@@ -148,7 +197,8 @@ export default function PhotoSingle({ theme }) {
             ></img>
           )}
         </Box>
-        <Box
+        {/* caption text box showing title, year, materials (for shop items, year field holds short item description) */}
+        {/* <Box
           sx={{
             display: "grid",
             gridTemplateColumns: "auto, auto, auto",
@@ -160,52 +210,6 @@ export default function PhotoSingle({ theme }) {
         >
           {selectedImage && (
             <>
-              <span
-                style={{
-                  position: "absolute",
-                  // top: "50%",
-                  // left: "50%",
-                  // transform: "translate(-50%, -50%)",
-                  pointerEvents: "auto",
-                  zIndex: "1",
-                }}
-              >
-                <span>
-                  <IconButton
-                    onClick={() => goTo("/shop")}
-                    color="inherit"
-                    sx={{
-                      py: "0.9rem",
-                    }}
-                    aria-label="close info box"
-                  >
-                    <ArrowBackIcon fontSize="small" color="secondary" />
-                  </IconButton>
-                </span>
-              </span>
-              <span
-                style={{
-                  position: "absolute",
-                  // top: "50%",
-                  right: 0,
-                  // transform: "translate(-50%, -50%)",
-                  pointerEvents: "auto",
-                  zIndex: "1",
-                }}
-              >
-                <span>
-                  <IconButton
-                    onClick={returnTo3dView}
-                    color="inherit"
-                    sx={{
-                      py: "0.9rem",
-                    }}
-                    aria-label="close info box"
-                  >
-                    <CloseOutlinedIcon fontSize="small" color="secondary" />
-                  </IconButton>
-                </span>
-              </span>
               <Typography variant="subtitle2" color="inherit">
                 {selectedImage.title && <>{selectedImage.title}</>}
               </Typography>
@@ -217,7 +221,7 @@ export default function PhotoSingle({ theme }) {
               </Typography>
             </>
           )}
-        </Box>
+        </Box> */}
 
         {/* <div>
           <span>

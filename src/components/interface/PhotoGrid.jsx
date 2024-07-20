@@ -262,24 +262,10 @@ export default function PhotoGrid({ theme }) {
                 // overflow: "auto",
               }}
             >
-              {selectedImage.imgPath.map((image, index) => {
-                return (
-                  <img
-                    key={index}
-                    style={{
-                      objectFit: "contain",
-                      width: "100%",
-                    }}
-                    src={image}
-                    onClick={handleImageClickInnerGrid(index)}
-                  ></img>
-                );
-              })}
-            </Box>
-            <Box sx={{ display: "flex" }}>
               <span
                 style={{
                   position: "absolute",
+                  // top: 20,
                   // top: "50%",
                   // left: "50%",
                   // transform: "translate(-50%, -50%)",
@@ -293,13 +279,12 @@ export default function PhotoGrid({ theme }) {
                     onClick={() => {
                       setSelectedImage(null);
                     }}
-                    color="inherit"
                     sx={{
                       py: "0.9rem",
                     }}
                     aria-label="close info box"
                   >
-                    <ArrowBackIcon fontSize="small" color="secondary" />
+                    <ArrowBackIcon fontSize="small" color="info" />
                   </IconButton>
                 </span>
               </span>
@@ -316,16 +301,28 @@ export default function PhotoGrid({ theme }) {
                 <span>
                   <IconButton
                     onClick={returnTo3dView}
-                    color="inherit"
                     sx={{
                       py: "0.9rem",
                     }}
                     aria-label="close info box"
                   >
-                    <CloseOutlinedIcon fontSize="small" color="secondary" />
+                    <CloseOutlinedIcon fontSize="small" color="info" />
                   </IconButton>
                 </span>
               </span>
+              {selectedImage.imgPath.map((image, index) => {
+                return (
+                  <img
+                    key={index}
+                    style={{
+                      objectFit: "contain",
+                      width: "100%",
+                    }}
+                    src={image}
+                    onClick={handleImageClickInnerGrid(index)}
+                  ></img>
+                );
+              })}
             </Box>
           </>
         ) : (
