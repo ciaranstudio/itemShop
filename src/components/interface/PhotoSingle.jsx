@@ -111,7 +111,7 @@ export default function PhotoSingle({ theme }) {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <div
-        className="info"
+        className="single-view"
         style={{
           paddingBottom: "1rem",
           overflow: "auto",
@@ -158,8 +158,10 @@ export default function PhotoSingle({ theme }) {
           {selectedImage && (
             <img
               style={{
-                objectFit: "contain",
-                maxHeight: "75vh",
+                // objectFit: "contain",
+                maxWidth: "90svw",
+                height: "75svh",
+                // maxHeight: "75vh",
               }}
               src={selectedImage.imgPath[selectedImageIndex]}
             ></img>

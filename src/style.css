@@ -144,6 +144,26 @@ img {
   display: block;
 }
 
+.single-view {
+  /* position: absolute;
+  width: 90vw; */
+  /* max-width: 90svw;
+  max-height: 80svh; */
+  /* width: 18rem */
+  /* top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center; */
+  /* background: #b8c2c4; */
+  background: transparent;
+  /* opacity: 0.96; */
+  /* margin-top: 1rem; */
+  margin-bottom: 2rem;
+  border-radius: 0.25rem;
+  /* border: 0.085rem solid rgb(155, 155, 155); */
+  pointer-events: none;
+}
+
 .info {
   position: absolute;
   width: 90svw;
@@ -372,6 +392,11 @@ img {
   .slick-slide img {
     height: 40rem;
     width: 30rem;
+  }
+}
+@media only screen and (orientation: landscape) {
+  .single-view {
+    margin-bottom: 0rem;
   }
 }
 
