@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
+// import Typography from "@mui/material/Typography";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import IconButton from "@mui/material/IconButton";
 import { useOptionStore } from "../../store/useOptionStore.tsx";
@@ -12,6 +12,7 @@ import { useOptionStore } from "../../store/useOptionStore.tsx";
 // import { shopItems } from "../../data/objects.jsx";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { goTo } from "../../utils/goTo.js";
+import { useNavigate } from "react-router-dom";
 
 export default function PhotoSingle({ theme }) {
   // selected image useState
@@ -110,7 +111,7 @@ export default function PhotoSingle({ theme }) {
   //     console.log("go to single view route of selected image");
   //   }
   // };
-
+  const navigate = useNavigate();
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -152,7 +153,7 @@ export default function PhotoSingle({ theme }) {
               <IconButton
                 // onClick={() => goTo("/shop")}
                 onClick={() => {
-                  goTo("/shop");
+                  navigate(-1);
                 }}
                 sx={{
                   py: "0.9rem",

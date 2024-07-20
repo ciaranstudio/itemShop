@@ -1,7 +1,8 @@
 import sortBy from "sort-by";
-
 import {
   collection,
+  query,
+  where,
   doc,
   getDoc,
   getDocs,
@@ -14,6 +15,9 @@ import {
 import { db } from "../firebaseConfig";
 
 export async function getImageRecords() {
+  // const imageRecordsRef = collection(db, "imageRecords");
+  // const q = query(imageRecordsRef, where("route", "==", "shop"));
+  // const querySnapshot = await getDocs(q);
   const querySnapshot = await getDocs(collection(db, "imageRecords"));
   let imageRecords = [];
   querySnapshot.forEach((doc) => {
@@ -85,6 +89,18 @@ export async function updateImageRecord(id, updates, favorite) {
 
 export async function deleteImageRecord(id) {
   await deleteDoc(doc(db, "imageRecords", id));
+}
+
+export async function getRouteImages(route) {
+  const imageRecordsRef = collection(db, "imageRecords");
+  const q = query(imageRecordsRef, where("route", "==", route));
+  const querySnapshot = await getDocs(q);
+  // const querySnapshot = await getDocs(collection(db, "imageRecords"));
+  let imageRecords = [];
+  querySnapshot.forEach((doc) => {
+    imageRecords.push({ ...doc.data(), id: doc.id });
+  });
+  return imageRecords.sort(sortBy("title", "createdAt"));
 }
 
 // export async function createSubscribedEmailRecord() {

@@ -26,7 +26,7 @@ import { theme } from "../data/theme.js";
 import {
   loadShopImages,
   // loadItemImages,
-  loadArtImages,
+  loadArtworkImages,
   loadCustomImages,
   // loadSaleImages,
   loadAboutImages,
@@ -79,7 +79,7 @@ export const router = createBrowserRouter([
         path: "artwork",
         element: <PhotoGrid theme={theme} />,
 
-        loader: loadArtImages,
+        loader: loadArtworkImages,
         // action: recordAction,
       },
       {

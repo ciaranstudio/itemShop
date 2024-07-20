@@ -1,33 +1,22 @@
 import { getImageRecords } from "./records";
+import { getRouteImages } from "./records";
 import { allImages } from "../data/objects";
 
 export async function loadShopImages() {
-  const images = await getImageRecords();
+  const images = await getRouteImages("shop");
   console.log("imageRecords (from loadShopImages): ", images);
   return { images };
 }
 
-export async function loadCustomImages(params) {
-  console.log("params = ", params);
-  const images = allImages;
-  if (!images) {
-    throw new Response("", {
-      status: 404,
-      statusText: "Not Found",
-    });
-  }
+export async function loadCustomImages() {
+  const images = await getRouteImages("custom");
+  console.log("imageRecords (from loadShopImages): ", images);
   return { images };
 }
 
-export async function loadArtImages(params) {
-  console.log("params = ", params);
-  const images = allImages;
-  if (!images) {
-    throw new Response("", {
-      status: 404,
-      statusText: "Not Found",
-    });
-  }
+export async function loadArtworkImages() {
+  const images = await getRouteImages("artwork");
+  console.log("imageRecords (from loadShopImages): ", images);
   return { images };
 }
 
