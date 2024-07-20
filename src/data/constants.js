@@ -100,3 +100,32 @@ export const PAGES = [
   { navTitle: "ABOUT", menuItem: "about" },
   { navTitle: "CONTACT", menuItem: "contact" },
 ];
+
+// About route/page shop description information
+export const ABOUT_TEXT = [
+  {
+    id: 0,
+    textA: `This shop is meant to be an experimental and collaborative space. My designs are conceptually playful but functional and accessible.`,
+    textB: `Each piece is a unique artwork designed with utility and versatility in mind.`,
+  },
+  {
+    id: 1,
+    textA: `This deliberately humble furniture line is available in fully interchangeable, customizable paints and finishes.`,
+    textB: `Every design is built to last and made by hand at my studio in Cleveland, OH.`,
+  },
+  {
+    id: 2,
+    textA: `I use locally sawn white and red oak finished with hardwax oil for stained components. Painted components are made from poplar and MDO coated with vegan milk paint.`,
+    textB: `We\’re a small family-run operation and everything is made to order. Customers can expect lead times of 6-8 weeks for most orders.`,
+  },
+  {
+    id: 3,
+    textA: `We communicate at each stage of the process from design to production to shipping.`,
+    textB: `We work with care and precision, but value character over perfection.`,
+  },
+  {
+    id: 4,
+    textA: `Feel free to reach out to me with any questions, inquiries or ideas. I\’m always happy to discuss custom design work.`,
+    textB: `My team also provides custom wood working, finish carpentry, cabinetry, painting, art handling and consultation services for the greater Cleveland, OH area.`,
+  },
+];
