@@ -10,6 +10,7 @@ import { useLoaderData } from "react-router-dom";
 import { goTo } from "../../utils/goTo.js";
 // import { unselectedItem } from "../../data/objects.jsx";
 // import { shopItems } from "../../data/objects.jsx";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 export default function PhotoGrid({ theme }) {
   // selected image useState
@@ -151,7 +152,7 @@ export default function PhotoGrid({ theme }) {
                   }}
                   aria-label="close info box"
                 >
-                  <CloseOutlinedIcon fontSize="small" color="success" />
+                  <CloseOutlinedIcon fontSize="small" color="info" />
                 </IconButton>
               </span>
             </span>
@@ -184,11 +185,36 @@ export default function PhotoGrid({ theme }) {
                 );
               })}
             </Box>
+            <Box sx={{ display: "flex" }}>
+              <span
+                style={{
+                  position: "absolute",
+                  // top: "50%",
+                  left: 0,
+                  // transform: "translate(-50%, -50%)",
+                  pointerEvents: "auto",
+                  zIndex: "1",
+                }}
+              >
+                <span>
+                  <IconButton
+                    onClick={returnTo3dView}
+                    color="inherit"
+                    sx={{
+                      py: "0.9rem",
+                    }}
+                    aria-label="close info box"
+                  >
+                    <CloseOutlinedIcon fontSize="small" color="secondary" />
+                  </IconButton>
+                </span>
+              </span>
+            </Box>
           </>
         ) : selectedImage && selectedImage.imgPath.length > 1 ? (
           <>
             {/* photos grid */}
-            <span
+            {/* <span
               style={{
                 position: "absolute",
                 top: 0,
@@ -210,10 +236,62 @@ export default function PhotoGrid({ theme }) {
                   }}
                   aria-label="close info box"
                 >
-                  <CloseOutlinedIcon fontSize="small" color="success" />
+                  <ArrowBackIcon fontSize="small" color="info" />
                 </IconButton>
               </span>
-            </span>
+            </span> */}
+            <Box sx={{ display: "flex" }}>
+              <span
+                style={{
+                  position: "absolute",
+                  // top: "50%",
+                  // left: "50%",
+                  // transform: "translate(-50%, -50%)",
+                  pointerEvents: "auto",
+                  zIndex: "1",
+                }}
+              >
+                <span>
+                  <IconButton
+                    // onClick={() => goTo("/shop")}
+                    onClick={() => {
+                      setSelectedImage(null);
+                    }}
+                    color="inherit"
+                    sx={{
+                      py: "0.9rem",
+                    }}
+                    aria-label="close info box"
+                  >
+                    <ArrowBackIcon fontSize="small" color="info" />
+                  </IconButton>
+                </span>
+              </span>
+              {/* <span
+                style={{
+                  position: "absolute",
+                  // top: "50%",
+                  right: 0,
+                  // transform: "translate(-50%, -50%)",
+                  pointerEvents: "auto",
+                  zIndex: "1",
+                }}
+              >
+                <span>
+                  <IconButton
+                    onClick={returnTo3dView}
+                    color="inherit"
+                    sx={{
+                      py: "0.9rem",
+                    }}
+                    aria-label="close info box"
+                  >
+                    <CloseOutlinedIcon fontSize="small" color="info" />
+                  </IconButton>
+                </span>
+              </span> */}
+            </Box>
+
             <Box
               sx={{
                 display: "grid",
@@ -242,6 +320,57 @@ export default function PhotoGrid({ theme }) {
                   ></img>
                 );
               })}
+            </Box>
+            <Box sx={{ display: "flex" }}>
+              <span
+                style={{
+                  position: "absolute",
+                  // top: "50%",
+                  // left: "50%",
+                  // transform: "translate(-50%, -50%)",
+                  pointerEvents: "auto",
+                  zIndex: "1",
+                }}
+              >
+                <span>
+                  <IconButton
+                    // onClick={() => goTo("/shop")}
+                    onClick={() => {
+                      setSelectedImage(null);
+                    }}
+                    color="inherit"
+                    sx={{
+                      py: "0.9rem",
+                    }}
+                    aria-label="close info box"
+                  >
+                    <ArrowBackIcon fontSize="small" color="secondary" />
+                  </IconButton>
+                </span>
+              </span>
+              <span
+                style={{
+                  position: "absolute",
+                  // top: "50%",
+                  right: 0,
+                  // transform: "translate(-50%, -50%)",
+                  pointerEvents: "auto",
+                  zIndex: "1",
+                }}
+              >
+                <span>
+                  <IconButton
+                    onClick={returnTo3dView}
+                    color="inherit"
+                    sx={{
+                      py: "0.9rem",
+                    }}
+                    aria-label="close info box"
+                  >
+                    <CloseOutlinedIcon fontSize="small" color="secondary" />
+                  </IconButton>
+                </span>
+              </span>
             </Box>
           </>
         ) : (

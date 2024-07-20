@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material";
 import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import IconButton from "@mui/material/IconButton";
 import { useOptionStore } from "../../store/useOptionStore.tsx";
@@ -9,6 +10,7 @@ import { useOptionStore } from "../../store/useOptionStore.tsx";
 import { router } from "../../utils/router.jsx";
 // import { unselectedItem } from "../../data/objects.jsx";
 // import { shopItems } from "../../data/objects.jsx";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 export default function PhotoSingle({ theme }) {
   // selected image useState
@@ -120,29 +122,6 @@ export default function PhotoSingle({ theme }) {
           // overflow: selectedImage === null ? "auto" : "hidden",
         }}
       >
-        <span
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            height: "100%",
-            pointerEvents: "auto",
-            zIndex: "1",
-          }}
-        >
-          <span>
-            <IconButton
-              onClick={returnTo3dView}
-              color="inherit"
-              sx={{
-                padding: "0.5rem",
-              }}
-              aria-label="close info box"
-            >
-              <CloseOutlinedIcon fontSize="small" color="success" />
-            </IconButton>
-          </span>
-        </span>
         <Box
           sx={{
             display: "grid",
@@ -152,7 +131,7 @@ export default function PhotoSingle({ theme }) {
             borderRadius: "0.75rem",
             // border: "0.085rem solid rgb(155, 155, 155)",
             justifyContent: "center",
-            mt: 3,
+            mt: 7,
           }}
         >
           {selectedImage && (
@@ -165,6 +144,76 @@ export default function PhotoSingle({ theme }) {
               }}
               src={selectedImage.imgPath[selectedImageIndex]}
             ></img>
+          )}
+        </Box>
+        <Box
+          sx={{
+            display: "grid",
+            gridTemplateColumns: "auto, auto, auto",
+            borderRadius: "0.75rem",
+            // border: "0.085rem solid rgb(155, 155, 155)",
+            textAlign: "center",
+            mt: 1.5,
+          }}
+        >
+          {selectedImage && (
+            <>
+              <span
+                style={{
+                  position: "absolute",
+                  // top: "50%",
+                  // left: "50%",
+                  // transform: "translate(-50%, -50%)",
+                  pointerEvents: "auto",
+                  zIndex: "1",
+                }}
+              >
+                <span>
+                  <IconButton
+                    onClick={() => goTo("/shop")}
+                    color="inherit"
+                    sx={{
+                      py: "0.9rem",
+                    }}
+                    aria-label="close info box"
+                  >
+                    <ArrowBackIcon fontSize="small" color="secondary" />
+                  </IconButton>
+                </span>
+              </span>
+              <span
+                style={{
+                  position: "absolute",
+                  // top: "50%",
+                  right: 0,
+                  // transform: "translate(-50%, -50%)",
+                  pointerEvents: "auto",
+                  zIndex: "1",
+                }}
+              >
+                <span>
+                  <IconButton
+                    onClick={returnTo3dView}
+                    color="inherit"
+                    sx={{
+                      py: "0.9rem",
+                    }}
+                    aria-label="close info box"
+                  >
+                    <CloseOutlinedIcon fontSize="small" color="secondary" />
+                  </IconButton>
+                </span>
+              </span>
+              <Typography variant="subtitle2" color="inherit">
+                {selectedImage.title && <>{selectedImage.title}</>}
+              </Typography>
+              <Typography variant="subtitle2" color="inherit">
+                {selectedImage.year && <>{selectedImage.year}</>}
+              </Typography>
+              <Typography variant="subtitle2" color="inherit">
+                {selectedImage.materials && <>{selectedImage.materials}</>}
+              </Typography>
+            </>
           )}
         </Box>
 

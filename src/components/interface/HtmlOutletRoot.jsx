@@ -58,7 +58,7 @@ export default function HtmlOutletRoot({ children }) {
           //     setShowBackground(false);
           //   }, 500);
         } else {
-          setShowPartOptions(true);
+          // setShowPartOptions(true);
           // setShowBackground(true);
           // setTimeout(() => {
           //   setShowBackground(false);

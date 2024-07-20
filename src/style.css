@@ -158,7 +158,7 @@ img {
   background: transparent;
   /* opacity: 0.96; */
   /* margin-top: 1rem; */
-  margin-bottom: 2rem;
+  /* margin-bottom: 2rem; */
   border-radius: 0.25rem;
   /* border: 0.085rem solid rgb(155, 155, 155); */
   pointer-events: none;
@@ -386,6 +386,9 @@ img {
     height: 36rem;
     width: 27rem;
   }
+  /* .single-view {
+    margin-bottom: 0rem;
+  } */
 }
 
 @media screen and (max-width: 2000px) and (min-width: 1041px) {
@@ -398,9 +401,9 @@ img {
   }
 }
 @media only screen and (orientation: landscape) {
-  .single-view {
+  /* .single-view {
     margin-bottom: 0rem;
-  }
+  } */
 }
 
 .snipcart__font--default,
