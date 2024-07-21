@@ -3,7 +3,7 @@ const openUserEmail = (e) => {
     e.preventDefault();
     e.stopPropagation();
   }
-  const email = "eliwgfell@gmail.com";
+  const email = "eligfellstudio@gmail.com";
   const subject = "Contact from eligfell.com";
   const emailBody = "";
   document.location =

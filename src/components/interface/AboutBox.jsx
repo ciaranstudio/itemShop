@@ -129,7 +129,7 @@ export default function AboutBox({ theme }) {
             right: 0,
             transform: "translate(-50%)",
           }}
-          aria-label="contact by email"
+          // aria-label="contact by email"
         >
           <ReadMoreIcon color="info" />
         </IconButton>

@@ -87,7 +87,7 @@ export default function ContactBox({ theme }) {
               color: theme.palette.primary.main,
             }}
           >
-            eliwgfell@gmail.com
+            eligfellstudio@gmail.com
           </Typography>
           <Typography
             variant="subtitle2"
