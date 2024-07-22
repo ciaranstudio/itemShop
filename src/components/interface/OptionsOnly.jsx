@@ -234,24 +234,25 @@ export default function OptionsOnly({
           }}
         >
           <div
-            style={{
-              position: "absolute",
-              top: 100,
-              pointerEvents: "auto",
-              width: "100%",
-              maxWidth: "30rem",
-              // maxWidth: "60vw",
-              left: "50%",
-              transform: "translate(-50%)",
-              zIndex: 3,
-            }}
+            className="options-box"
+            // style={{
+            //   position: "absolute",
+            //   top: 100,
+            //   pointerEvents: "auto",
+            //   width: "100%",
+            //   maxWidth: "30rem",
+            //   // maxWidth: "60vw",
+            //   left: "50%",
+            //   transform: "translate(-50%)",
+            //   zIndex: 3,
+            // }}
           >
             <div
               className="annotation-wrapper"
-              style={{
-                paddingTop: "0rem",
-                marginTop: "0rem",
-              }}
+              // style={{
+              //   paddingTop: "0rem",
+              //   marginTop: "0rem",
+              // }}
             >
               {/* <IconButton
                 onClick={(e) => closePartOptions(e)}

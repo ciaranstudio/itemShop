@@ -52,6 +52,7 @@ export default function ContactBox({ theme }) {
             sx={{
               fontFamily: "var(--leva-fonts-mono)",
               fontSize: "1.125rem",
+              mb: 1,
             }}
           >
             CONTACT
@@ -75,8 +76,6 @@ export default function ContactBox({ theme }) {
             background: "rgb(233, 234, 233)",
             borderRadius: "2rem",
             border: "2px solid lightGrey",
-            padding: "0.25rem",
-            marginTop: "0.75rem",
           }}
         >
           <Typography

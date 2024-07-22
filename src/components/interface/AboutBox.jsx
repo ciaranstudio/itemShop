@@ -78,6 +78,7 @@ export default function AboutBox({ theme }) {
             sx={{
               fontFamily: "var(--leva-fonts-mono)",
               fontSize: "1.125rem",
+              mb: 1,
             }}
           >
             ABOUT
@@ -101,8 +102,6 @@ export default function AboutBox({ theme }) {
             background: "rgb(233, 234, 233)",
             // borderRadius: "2rem",
             border: "2px solid lightGrey",
-            padding: "0.25rem",
-            marginTop: "0.75rem",
           }}
         >
           <Typography

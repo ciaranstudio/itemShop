@@ -1398,7 +1398,8 @@ export default function Scene({
           visible={
             showBackground &&
             locationPathname !== "/about" &&
-            locationPathname !== "/contact"
+            locationPathname !== "/contact" &&
+            locationPathname !== "/info"
           }
         >
           <Walls
