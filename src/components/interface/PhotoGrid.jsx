@@ -11,6 +11,7 @@ import { goTo } from "../../utils/goTo.js";
 // import { unselectedItem } from "../../data/objects.jsx";
 // import { shopItems } from "../../data/objects.jsx";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 
 export default function PhotoGrid({ theme }) {
   // selected image useState
@@ -160,39 +161,47 @@ export default function PhotoGrid({ theme }) {
             </span>
 
             <Box
-              sx={{
-                display: "grid",
-                gridTemplateColumns: {
-                  sm: "auto auto",
-                  md: "auto auto auto",
-                  lg: "auto auto auto auto",
-                },
-                columnGap: "1rem",
-                rowGap: "1rem",
-                borderRadius: "0.75rem",
-                // border: "0.085rem solid rgb(155, 155, 155)",
-                // overflow: "auto",
-              }}
+              sx={
+                {
+                  // display: "grid",
+                  // gridTemplateColumns: {
+                  //   sm: "auto auto",
+                  //   md: "auto auto auto",
+                  //   lg: "auto auto auto auto",
+                  // },
+                  // columnGap: "1rem",
+                  // rowGap: "1rem",
+                  // borderRadius: "0.75rem",
+                  // border: "0.085rem solid rgb(155, 155, 155)",
+                  // overflow: "auto",
+                }
+              }
             >
-              {data.images.map((imageRecord, index) => {
-                return (
-                  <img
-                    key={index}
-                    style={{
-                      objectFit: "contain",
-                      width: "100%",
-                    }}
-                    src={imageRecord.imgPath[0]}
-                    onClick={handleImageClickOuterGrid(imageRecord)}
-                  ></img>
-                );
-              })}
+              <ResponsiveMasonry
+                columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}
+              >
+                <Masonry gutter="1rem">
+                  {data.images.map((imageRecord, index) => {
+                    return (
+                      <img
+                        key={index}
+                        style={{
+                          objectFit: "contain",
+                          width: "100%",
+                        }}
+                        src={imageRecord.imgPath[0]}
+                        onClick={handleImageClickOuterGrid(imageRecord)}
+                      ></img>
+                    );
+                  })}
+                </Masonry>
+              </ResponsiveMasonry>
             </Box>
           </>
         ) : selectedImage && selectedImage.imgPath.length > 1 ? (
           <>
             {/* photos grid */}
-            {/* <span
+            <span
               style={{
                 position: "absolute",
                 top: 0,
@@ -217,7 +226,30 @@ export default function PhotoGrid({ theme }) {
                   <ArrowBackIcon fontSize="small" color="info" />
                 </IconButton>
               </span>
-            </span> */}
+            </span>
+            <span
+              style={{
+                position: "absolute",
+                top: 0,
+                right: 0,
+                height: "100%",
+                pointerEvents: "auto",
+                zIndex: "1",
+              }}
+            >
+              <span>
+                <IconButton
+                  onClick={returnTo3dView}
+                  color="inherit"
+                  sx={{
+                    padding: "0.5rem",
+                  }}
+                  aria-label="close info box"
+                >
+                  <CloseOutlinedIcon fontSize="small" color="info" />
+                </IconButton>
+              </span>
+            </span>
             {/* <Box sx={{ display: "flex" }}>
               <span
                 style={{
@@ -249,80 +281,38 @@ export default function PhotoGrid({ theme }) {
 
             <Box
               sx={{
-                display: "grid",
-                gridTemplateColumns: {
-                  sm: "auto auto",
-                  md: "auto auto auto",
-                  lg: "auto auto auto auto",
-                },
-                columnGap: "1rem",
-                rowGap: "1rem",
+                // display: "grid",
+                // gridTemplateColumns: {
+                //   sm: "auto auto",
+                //   md: "auto auto auto",
+                //   lg: "auto auto auto auto",
+                // },
+                // columnGap: "1rem",
+                // rowGap: "1rem",
                 borderRadius: "0.75rem",
                 // border: "0.085rem solid rgb(155, 155, 155)",
                 // overflow: "auto",
               }}
             >
-              <span
-                style={{
-                  position: "absolute",
-                  // top: 20,
-                  // top: "50%",
-                  // left: "50%",
-                  // transform: "translate(-50%, -50%)",
-                  pointerEvents: "auto",
-                  zIndex: "1",
-                }}
+              <ResponsiveMasonry
+                columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}
               >
-                <span>
-                  <IconButton
-                    // onClick={() => goTo("/shop")}
-                    onClick={() => {
-                      setSelectedImage(null);
-                    }}
-                    sx={{
-                      py: "0.9rem",
-                    }}
-                    aria-label="close info box"
-                  >
-                    <ArrowBackIcon fontSize="small" color="info" />
-                  </IconButton>
-                </span>
-              </span>
-              <span
-                style={{
-                  position: "absolute",
-                  // top: "50%",
-                  right: 0,
-                  // transform: "translate(-50%, -50%)",
-                  pointerEvents: "auto",
-                  zIndex: "1",
-                }}
-              >
-                <span>
-                  <IconButton
-                    onClick={returnTo3dView}
-                    sx={{
-                      py: "0.9rem",
-                    }}
-                    aria-label="close info box"
-                  >
-                    <CloseOutlinedIcon fontSize="small" color="info" />
-                  </IconButton>
-                </span>
-              </span>
-              {selectedImage.imgPath.map((image, index) => {
-                return (
-                  <img
-                    key={index}
-                    style={{
-                      objectFit: "contain",
-                      width: "100%",
-                    }}
-                    src={image}
-                    onClick={handleImageClickInnerGrid(index)}
-                  ></img>
-                );
-              })}
+                <Masonry gutter="1rem">
+                  {selectedImage.imgPath.map((image, index) => {
+                    return (
+                      <img
+                        key={index}
+                        style={{
+                          objectFit: "contain",
+                          width: "100%",
+                        }}
+                        src={image}
+                        onClick={handleImageClickInnerGrid(index)}
+                      ></img>
+                    );
+                  })}
+                </Masonry>
+              </ResponsiveMasonry>
             </Box>
           </>
         ) : (
