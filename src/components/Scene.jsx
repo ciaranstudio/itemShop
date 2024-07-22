@@ -1394,7 +1394,13 @@ export default function Scene({
         </mesh>
 
         {/* wallsAndMoulding */}
-        <mesh visible={showBackground}>
+        <mesh
+          visible={
+            showBackground &&
+            locationPathname !== "/about" &&
+            locationPathname !== "/contact"
+          }
+        >
           <Walls
             currentColor={textures.floorStain}
             currentTexture={textures.paintedTexture}
