@@ -37,7 +37,7 @@ export default function ItemDescBox({ theme }) {
             sx={{
               position: "absolute",
               pointerEvents: "auto",
-              top: -4,
+              top: -3,
               left: 0,
               padding: "0.5rem",
             }}
@@ -55,7 +55,7 @@ export default function ItemDescBox({ theme }) {
             {currentItemSelected.itemTitle}
           </Typography>
         </div>
-        <div id="description" style={{ marginTop: "0.25rem" }}>
+        <div id="description" style={{ marginTop: 0 }}>
           <Typography
             variant="subtitle2"
             sx={{

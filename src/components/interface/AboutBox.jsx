@@ -65,7 +65,7 @@ export default function AboutBox({ theme }) {
             sx={{
               position: "absolute",
               pointerEvents: "auto",
-              top: -4,
+              top: -3,
               left: 0,
               padding: "0.5rem",
             }}

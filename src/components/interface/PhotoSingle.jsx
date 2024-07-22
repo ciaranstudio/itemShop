@@ -155,9 +155,9 @@ export default function PhotoSingle({ theme }) {
                 onClick={() => {
                   navigate(-1);
                 }}
-                sx={{
-                  py: "0.9rem",
-                }}
+                // sx={{
+                //   py: "0.9rem",
+                // }}
                 aria-label="close info box"
               >
                 <ArrowBackIcon fontSize="small" color="secondary" />
@@ -177,9 +177,9 @@ export default function PhotoSingle({ theme }) {
             <span>
               <IconButton
                 onClick={returnTo3dView}
-                sx={{
-                  py: "0.9rem",
-                }}
+                // sx={{
+                //   py: "0.9rem",
+                // }}
                 aria-label="close info box"
               >
                 <CloseOutlinedIcon fontSize="small" color="secondary" />
