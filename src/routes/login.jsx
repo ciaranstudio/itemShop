@@ -15,17 +15,17 @@ export async function action({ request }) {
   let formData = await request.formData();
   let email = formData.get("email");
   let password = formData.get("password");
-  // Validate form inputs and return validation errors
+  // validate form inputs and return validation errors
   if (!email || !password) {
     return {
       error: "You must provide an credentials to log in",
     };
   }
-  // Sign in and redirect to the proper destination if successful
+  // sign in and redirect to the proper destination if successful
   try {
     await authProvider.signin(email, password).then(() => {});
   } catch (error) {
-    // Handle invalid username/password combinations
+    // handle invalid username/password combinations
   }
   let redirectTo = formData.get("redirectTo");
   return redirect(redirectTo || "/admin");

@@ -3,7 +3,6 @@ import { useOptionStore } from "../../store/useOptionStore.tsx";
 import { useLocation } from "react-router-dom";
 import { unselectedItem } from "../../data/objects.js";
 import { shopItems } from "../../data/objects.js";
-// import { goTo } from "../../utils/goTo.js";
 
 export default function HtmlOutletRoot({ children }) {
   // state from store
@@ -11,8 +10,6 @@ export default function HtmlOutletRoot({ children }) {
   const selectedImageIndex = useOptionStore(
     (state) => state.selectedImageIndex,
   );
-  // const locationPathname = useOptionStore((state) => state.locationPathname);
-  // const open = useOptionStore((state) => state.open);
   const showBackground = useOptionStore((state) => state.showBackground);
   const currentItemSelected = useOptionStore(
     (state) => state.currentItemSelected,
@@ -39,7 +36,6 @@ export default function HtmlOutletRoot({ children }) {
   const routerLocation = useLocation();
 
   useEffect(() => {
-    // console.log("routerLocation in HtmlOutletRoot: ", routerLocation);
     setLocationPathname(routerLocation.pathname);
     if (routerLocation.pathname !== "/view") {
       setSelectedImage(null);
@@ -53,17 +49,6 @@ export default function HtmlOutletRoot({ children }) {
       if (currentItemSelected !== unselectedItem) {
         if (showBackground) {
           setShowBackground(false);
-          // if (currentItemSelected !== unselectedItem)
-          //   setTimeout(() => {
-          //     setShowBackground(false);
-          //   }, 500);
-        } else {
-          // setShowPartOptions(true);
-          // setShowBackground(true);
-          // setTimeout(() => {
-          //   setShowBackground(false);
-          // }, 1500);
-          // setShowBackground(false);
         }
       }
     } else {
@@ -94,14 +79,6 @@ export default function HtmlOutletRoot({ children }) {
     console.log("selectedImage: ", selectedImage);
     console.log("selectedImageIndex: ", selectedImageIndex);
   }, [selectedImageIndex]);
-
-  // useEffect(() => {
-  //   console.log(
-  //     "router location (store) in HtmlOutletRoot: ",
-  //     locationPathname,
-  //   );
-  //   console.log("open (store state): ", open);
-  // }, [locationPathname]);
 
   return <>{children}</>;
 }

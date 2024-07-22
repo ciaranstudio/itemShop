@@ -1,41 +1,11 @@
 import React from "react";
 import { Html } from "@react-three/drei";
-import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
-import IconButton from "@mui/material/IconButton";
 import ImagesRouter from "./ImagesRouter.jsx";
 
 export default function HtmlOutlet({ theme }) {
   return (
     <Html center position={[0, 0, 0]}>
-      {/* open (store state value controlling enable/disable of OrbitControls in Three Scene) toggle button for testing */}
-      {/* <span
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          height: "100%",
-          pointerEvents: "auto",
-          zIndex: "1",
-        }}
-      >
-        <span>
-          <IconButton
-            onClick={(e) => toggleInfoBox(e)}
-            color="inherit"
-            sx={{
-              padding: "0.5rem",
-            }}
-            aria-label="close info box"
-          >
-            <CloseOutlinedIcon fontSize="small" color="success" />
-          </IconButton>
-        </span>
-      </span> */}
-      <ImagesRouter
-        // toggleInfoBox={toggleInfoBox}
-        // togglePhotoBox={togglePhotoBox}
-        theme={theme}
-      />
+      <ImagesRouter theme={theme} />
     </Html>
   );
 }

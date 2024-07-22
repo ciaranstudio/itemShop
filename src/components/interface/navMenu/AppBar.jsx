@@ -16,14 +16,11 @@ import { styled } from "@mui/material/styles";
 import { createSvgIcon } from "@mui/material/utils";
 import { useOptionStore } from "../../../store/useOptionStore.tsx";
 import { useSnipcart } from "use-snipcart";
-// import { router } from "../../../utils/router.jsx";
 import { goTo } from "../../../utils/goTo.js";
 import { PAGES } from "../../../data/constants.js";
 
 function ResponsiveAppBar({ theme }) {
   // state from store
-  // const allPhotos = useOptionStore((state) => state.allPhotos);
-  // const aboutInfo = useOptionStore((state) => state.aboutInfo);
   const locationPathname = useOptionStore((state) => state.locationPathname);
 
   // actions from store
@@ -32,6 +29,7 @@ function ResponsiveAppBar({ theme }) {
   );
 
   const [selectedNavItem, setSelectedNavItem] = useState("");
+
   // useState for Snipcart
   const [snipcartLoaded, setSnipcartLoaded] = useState(false);
   const [cartCount, setCartCount] = useState(0);
@@ -41,16 +39,10 @@ function ResponsiveAppBar({ theme }) {
   const { cart = {} } = useSnipcart();
   // const { subtotal = "0.00" } = cart;
 
-  // const goTo = (route) => {
-  //   router.navigate(route);
-  // };
-
   useEffect(() => {
-    // let state = snipcart.getState();
-    // console.log("snipCart state: ", state);
+    // const state = snipcart.getState();
     if (window.Snipcart) {
       setSnipcartLoaded(true);
-      // console.log("window.Snipcart.api: ", window.Snipcart);
       if (cart.items) setCartCount(cart.items.count);
     } else {
       setSnipcartLoaded(false);
@@ -73,7 +65,6 @@ function ResponsiveAppBar({ theme }) {
   }, [snipcartLoaded, cart]);
 
   useEffect(() => {
-    // console.log("locationPathname (store) from AppBar: ", locationPathname);
     switch (locationPathname) {
       case "":
         setSelectedNavItem("home");
@@ -101,27 +92,23 @@ function ResponsiveAppBar({ theme }) {
 
   // snipcart cart click function
   function handleCartClick() {
+    // open the sign up for shop release email list form component / route
     goTo("/subscribe");
     // if (snipcartLoaded) {
     //   window.Snipcart.api.theme.cart.open();
     // }
-    // open the sign up for shop release email list component / route
   }
 
   const StyledBadge = styled(Badge)(({ theme }) => ({
     "& .MuiBadge-badge": {
       right: 15,
       top: 20,
-      // border: `0.75px solid ${cartCount > 0 ? theme.palette.background.paper : "none"}`,
-      // padding: "0 4px",
       backgroundColor: cartCount > 0 ? "#dedede" : "transparent",
       color: "black",
-      // fontWeight: "bold",
     },
   }));
 
   const [anchorElNav, setAnchorElNav] = useState(null);
-  // const [anchorElUser, setAnchorElUser] = useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -131,8 +118,8 @@ function ResponsiveAppBar({ theme }) {
     setAnchorElNav(null);
   };
 
-  // navigation selection function utlizing router navigation method (goTo())
-  //  to access links outside of Router context
+  // navigation selection function utlizing router navigation method
+  // (goTo() method in utils directory) o access links outside of Router context
   const selectHandler = (e, menuItem) => {
     // console.log(menuItem);
     handleCloseNavMenu();
@@ -201,15 +188,12 @@ function ResponsiveAppBar({ theme }) {
           <Toolbar disableGutters>
             <SvgIcon
               component={LogoIcon}
-              // inheritViewBox
               sx={{
                 display: { xs: "none", md: "flex" },
                 mr: 1,
                 fontSize: "60px",
                 pb: 1,
-                // transition: "all .5s",
               }}
-              // fontSize="large"
             ></SvgIcon>
             <Typography
               variant="h6"
@@ -266,7 +250,6 @@ function ResponsiveAppBar({ theme }) {
                     onClick={(e) => selectHandler(e, page.menuItem)}
                     selected={selectedNavItem === page.menuItem}
                   >
-                    {/* <Link to={`/${page.menuItem}`}> */}
                     <Typography
                       textAlign="center"
                       sx={{
@@ -276,21 +259,17 @@ function ResponsiveAppBar({ theme }) {
                     >
                       {page.navTitle}
                     </Typography>
-                    {/* </Link> */}
                   </MenuItem>
                 ))}
               </Menu>
             </Box>
             <SvgIcon
               component={LogoIcon}
-              // inheritViewBox
               sx={{
                 display: { xs: "flex", md: "none" },
                 ml: 3.75,
                 fontSize: "60px",
-                // transition: "all .5s",
               }}
-              // fontSize="large"
             ></SvgIcon>
             <Typography
               variant="h5"
@@ -316,13 +295,6 @@ function ResponsiveAppBar({ theme }) {
                   sx={{
                     my: 3,
                     mx: 3,
-                    // color: `${
-                    //   aboutInfo && page.menuItem === "about"
-                    //     ? theme.palette.primary.main
-                    //     : allPhotos && page.menuItem === "images"
-                    //       ? theme.palette.primary.main
-                    //       : theme.palette.secondary.main
-                    // }`,
                     color:
                       selectedNavItem === page.menuItem
                         ? theme.palette.primary.warning
@@ -345,14 +317,10 @@ function ResponsiveAppBar({ theme }) {
                   <IconButton onClick={handleCartClick} sx={{ p: 0 }}>
                     <SvgIcon
                       component={BagIcon}
-                      // inheritViewBox
                       sx={{
                         fontSize: "64px",
-                        // fontSize: "60px",
                         fontFamily: "var(--leva-fonts-mono)",
-                        // transition: "all .5s",
                       }}
-                      // fontSize="large"
                     ></SvgIcon>
                   </IconButton>
                 </StyledBadge>

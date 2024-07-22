@@ -7,7 +7,7 @@ export const authProvider = {
   async signout() {
     await signOut(auth)
       .then(() => {
-        // Sign-out successful.
+        // sign-out successful.
         authProvider.isAuthenticated = false;
         authProvider.email = "";
         authProvider.password = "";
@@ -15,14 +15,14 @@ export const authProvider = {
         redirect("/");
       })
       .catch((error) => {
-        // An error happened.
+        // an error happened.
         console.log(error);
       });
   },
   async signin(email, password) {
     await signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // Signed in
+        // signed in
         this.user = userCredential.user;
         this.isAuthenticated = true;
       })

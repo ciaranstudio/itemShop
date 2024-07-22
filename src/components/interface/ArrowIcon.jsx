@@ -7,8 +7,6 @@ export const ArrowIcon = ({
   theme,
   currentColor,
   currentTexture,
-  // toggleInfoBox,
-  // togglePhotoBox,
   handlePartOption,
 }) => {
   const { scene, nodes, materials } = useGLTF("./models/arrow.gltf");
@@ -33,7 +31,6 @@ export const ArrowIcon = ({
   const showPartOptions = useOptionStore((state) => state.showPartOptions);
   const animActive = useOptionStore((state) => state.animActive);
   const activeCamAnim = useOptionStore((state) => state.activeCamAnim);
-  // const showPaintOptions = useOptionStore((state) => state.showPaintOptions);
 
   useLayoutEffect(() => {
     Object.assign(materials.Material, {
@@ -58,30 +55,12 @@ export const ArrowIcon = ({
   useLayoutEffect(() => {
     const currentAnnotations = [];
     scene.traverse((o) => {
-      // if (o.isMesh) {
-      //   if (showPaintOptions) {
-      //     o.material.transparent = true;
-      //     o.material.opacity = 0.5;
-      //   } else {
-      //     o.material.transparent = false;
-      //     o.material.opacity = 1.0;
-      //   }
-      // }
       if (o.isObject3D) {
         if (o.userData.name) {
           if (o.userData.name.startsWith("AnchorPoint")) {
             currentAnnotations.push(
-              <group
-                key={o.uuid}
-                // position={[o.position.x, o.position.y, o.position.z]}
-                position={[0, 0, 0]}
-              >
-                <OptionBox
-                  handlePartOption={handlePartOption}
-                  // toggleInfoBox={toggleInfoBox}
-                  // togglePhotoBox={togglePhotoBox}
-                  theme={theme}
-                />
+              <group key={o.uuid} position={[0, 0, 0]}>
+                <OptionBox handlePartOption={handlePartOption} theme={theme} />
               </group>,
             );
           }
@@ -101,7 +80,6 @@ export const ArrowIcon = ({
     animActive,
     activeCamAnim,
     mobileView,
-    // showPaintOptions,
   ]);
 
   useLayoutEffect(() => {
@@ -114,20 +92,6 @@ export const ArrowIcon = ({
       }
     });
   }, []);
-
-  // useLayoutEffect(() => {
-  //   scene.traverse((o) => {
-  //     if (o.isMesh) {
-  //       if (showPaintOptions) {
-  //         o.material.transparent = true;
-  //         o.material.opacity = 0.5;
-  //       } else {
-  //         o.material.transparent = false;
-  //         o.material.opacity = 1.0;
-  //       }
-  //     }
-  //   });
-  // }, [showPaintOptions]);
 
   return <primitive object={scene}>{annotations}</primitive>;
 };

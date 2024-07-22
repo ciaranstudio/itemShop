@@ -3,13 +3,7 @@ import { useGLTF, useTexture } from "@react-three/drei";
 import { useOptionStore } from "../../store/useOptionStore.tsx";
 import HtmlOutlet from "./HtmlOutlet.jsx";
 
-export const CenterAnchor = ({
-  theme,
-  currentColor,
-  currentTexture,
-  // toggleInfoBox,
-  // togglePhotoBox,
-}) => {
+export const CenterAnchor = ({ theme, currentColor, currentTexture }) => {
   const { scene, nodes, materials } = useGLTF("./models/logoAnnotated.gltf");
   const [annotations, setAnnotations] = useState([]);
 
@@ -20,9 +14,6 @@ export const CenterAnchor = ({
   // state from store
   const mobileView = useOptionStore((state) => state.mobileView);
   const open = useOptionStore((state) => state.open);
-  // const showPhotos = useOptionStore((state) => state.showPhotos);
-  // const allPhotos = useOptionStore((state) => state.allPhotos);
-  // const aboutInfo = useOptionStore((state) => state.aboutInfo);
   const selectedImage = useOptionStore((state) => state.selectedImage);
   const locationPathname = useOptionStore((state) => state.locationPathname);
 
@@ -53,16 +44,8 @@ export const CenterAnchor = ({
         if (o.userData.name) {
           if (o.userData.name.startsWith("AnchorPoint")) {
             currentAnnotations.push(
-              <group
-                key={o.uuid}
-                // position={[o.position.x, o.position.y, o.position.z]}
-                position={[0, 0, 0]}
-              >
-                <HtmlOutlet
-                  // toggleInfoBox={toggleInfoBox}
-                  // togglePhotoBox={togglePhotoBox}
-                  theme={theme}
-                />
+              <group key={o.uuid} position={[0, 0, 0]}>
+                <HtmlOutlet theme={theme} />
               </group>,
             );
           }

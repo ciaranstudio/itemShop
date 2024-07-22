@@ -13,10 +13,7 @@ import { useOptionStore } from "../../store/useOptionStore.tsx";
 
 const options = ["Stain", "Stains", "All", "Paints", "Paint"];
 
-export default function SplitButton({
-  // theme,
-  randomCurrentItemParts,
-}) {
+export default function SplitButton({ randomCurrentItemParts }) {
   // useState
   const [open, setOpen] = useState(false);
   const anchorRef = useRef(null);
@@ -27,7 +24,6 @@ export default function SplitButton({
 
   // functions
   const handleClick = (e) => {
-    // console.info(`You clicked ${options[selectedIndex]}`);
     if (selectedIndex === 0) {
       randomCurrentItemParts(e, currentItemName, "stainSingle");
     } else if (selectedIndex === 1) {

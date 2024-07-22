@@ -1,6 +1,6 @@
 // constants
 
-// Experience
+// experience
 // loaded magic number (total items to load before 3d scene is loaded)
 export const LOADED = {
   nearTotal: 140,
@@ -14,7 +14,7 @@ export const TOAST = {
   color: "#212121",
 };
 
-// Lights
+// lights
 // directional light constants
 export const LIGHT = {
   dirLightXPosition: 2.5,
@@ -32,14 +32,14 @@ export const LIGHT = {
   ambLightIntensity: 1,
 };
 
-// Orbit controls
+// orbit controls
 // polar angle min/max limits
 export const ORBIT_CONTROLS = {
   orbitPolarShowBgdShelf: Math.PI / 2 + Math.PI / 16,
   orbitPolarShowBgdNotShelf: Math.PI / 2 - Math.PI / 7.25,
 };
 
-// Arrow icon
+// arrow icon
 // carrot arrow shaped icon bottom center (UI element)
 export const ARROW_ICON = {
   arrowY: -0.3,
@@ -83,14 +83,14 @@ export const ITEM_PARTS_ANIM = {
   returnDuration: 0.9,
 };
 
-// OptionBox
+// optionBox
 // option box position (Y) constants
 export const OPTION_BOX = {
   verticalPositionMobile: 8,
   verticalPositionDesktop: 4,
 };
 
-// Router
+// router
 // pages for AppBar navigation list
 export const PAGES = [
   { navTitle: "HOME", menuItem: "home" },
@@ -101,7 +101,7 @@ export const PAGES = [
   { navTitle: "CONTACT", menuItem: "contact" },
 ];
 
-// About route/page shop description information
+// about route/page shop description information
 export const ABOUT_TEXT = [
   {
     id: 0,

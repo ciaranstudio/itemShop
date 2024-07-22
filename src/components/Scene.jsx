@@ -20,7 +20,7 @@ import useWindowDimensions from "../hooks/useWindowDimensions";
 import { useSnipcart } from "use-snipcart";
 import { SelectIcon } from "./item/SelectIcon.jsx";
 import { ArrowIcon } from "./interface/ArrowIcon.jsx";
-import toast from "react-hot-toast";
+// import toast from "react-hot-toast";
 import { useOptionStore } from "../store/useOptionStore.tsx";
 import {
   LIGHT,
@@ -111,7 +111,6 @@ export default function Scene({
   );
   const sceneLoaded = useOptionStore((state) => state.sceneLoaded);
   const open = useOptionStore((state) => state.open);
-  // const showPhotos = useOptionStore((state) => state.showPhotos);
   const showBackground = useOptionStore((state) => state.showBackground);
   const showPartOptions = useOptionStore((state) => state.showPartOptions);
   const optionBoxItemChanged = useOptionStore(
@@ -124,7 +123,6 @@ export default function Scene({
   const partsOpen = useOptionStore((state) => state.partsOpen);
   const arrowAnimActive = useOptionStore((state) => state.arrowAnimActive);
   const showPaintOptions = useOptionStore((state) => state.showPaintOptions);
-  // const mobileView = useOptionStore((state) => state.mobileView);
   const locationPathname = useOptionStore((state) => state.locationPathname);
 
   // actions from store
@@ -140,17 +138,10 @@ export default function Scene({
   const setCurrentItemName = useOptionStore(
     (state) => state.setCurrentItemName,
   );
-  const setOpen = useOptionStore((state) => state.setOpen);
-  // const setShowPhotos = useOptionStore((state) => state.setShowPhotos);
-  // const setAllPhotos = useOptionStore((state) => state.setAllPhotos);
-  // const setAboutInfo = useOptionStore((state) => state.setAboutInfo);
   const setShowPaintOptions = useOptionStore(
     (state) => state.setShowPaintOptions,
   );
   const setShowBackground = useOptionStore((state) => state.setShowBackground);
-  const setShowPartOptions = useOptionStore(
-    (state) => state.setShowPartOptions,
-  );
   const setOptionBoxItemChanged = useOptionStore(
     (state) => state.setOptionBoxItemChanged,
   );
@@ -161,13 +152,12 @@ export default function Scene({
     (state) => state.setActiveCamTargAnim,
   );
   const setActiveCamAnim = useOptionStore((state) => state.setActiveCamAnim);
-  // const setAnimIconToggle = useOptionStore((state) => state.setAnimIconToggle);
   const setArrowAnimActive = useOptionStore(
     (state) => state.setArrowAnimActive,
   );
 
   // hooks
-  const { height, width } = useWindowDimensions();
+  const { width } = useWindowDimensions();
   useCursor(hovered);
 
   // snipcart hook values
@@ -239,14 +229,14 @@ export default function Scene({
         },
         true,
       );
-      orbitRef.current.addEventListener(
-        "change",
-        () => {
-          // console.log("change");
-          // setControlsDragging(true);
-        },
-        true,
-      );
+      // orbitRef.current.addEventListener(
+      //   "change",
+      //   () => {
+      //     // console.log("change");
+      //     // setControlsDragging(true);
+      //   },
+      //   true,
+      // );
       orbitRef.current.addEventListener(
         "end",
         () => {
@@ -275,11 +265,11 @@ export default function Scene({
           () => console.log("removed event listener, 'start'"),
           true,
         );
-        orbitRef.current.removeEventListener(
-          "change",
-          () => console.log("removed event listener, 'change'"),
-          true,
-        );
+        // orbitRef.current.removeEventListener(
+        //   "change",
+        //   () => console.log("removed event listener, 'change'"),
+        //   true,
+        // );
         orbitRef.current.removeEventListener(
           "end",
           () => console.log("removed event listener, 'end'"),
@@ -290,11 +280,9 @@ export default function Scene({
     };
   }, []);
   useEffect(() => {
-    // let state = snipcart.getState();
-    // console.log("snipCart state: ", state);
+    // const state = snipcart.getState();
     if (window.Snipcart) {
       setSnipcartLoaded(true);
-      // console.log("window.Snipcart.api: ", window.Snipcart);
       if (cart.items) setCartCount(cart.items.count);
     } else {
       setSnipcartLoaded(false);
@@ -336,7 +324,7 @@ export default function Scene({
     if (currentItemSelected === unselectedItem) {
       randomAllItemsParts(false);
     }
-    //Implementing the setInterval method
+    // shuffle color randomly on initial load counter
     const interval = setInterval(() => {
       setCount((prev) => prev + 1);
     }, 1500);
@@ -503,14 +491,10 @@ export default function Scene({
         objects[currentItemSelected.itemName].parts[0].partName,
       );
       setShowPaintOptions(true);
-      // setShowPartOptions(true);
     }
     if (!showBackground) {
-      // setOpen(false);
-      // animateStageY();
       animateParts();
     } else if (showBackground && currentItemSelected !== unselectedItem) {
-      // animateStageY();
       setShowPaintOptions(false);
       setOptionBoxItemChanged(false);
       if (partsOpen) animateParts();
@@ -741,7 +725,6 @@ export default function Scene({
   };
   const handleItemPartClick = (e, part) => {
     if (!showBackground) {
-      // if (!open && !arrowAnimActive) setShowPartOptions(true);
       if (part.itemName === currentItemSelected.itemName) {
         setCurrentItemName(part.itemName);
         setCurrentPartName(part.partName);
@@ -751,36 +734,20 @@ export default function Scene({
       setCurrentPartName(part.partName);
     }
   };
-  // const handleDoubleClick = (e) => {
-  //   e.stopPropagation();
-  //   return;
-  //   // if (showBackground) {
-  //   //   if (!animActive) {
-  //   //     setOpen(false);
-  //   //     setShowPhotos(false);
-  //   //     setShowBackground(!showBackground);
-  //   //   }
-  //   // }
-  // };
+
   const handleArrowIconClick = (e) => {
     if (e) e.stopPropagation();
     // if showPaintOptions is true then disable this click handler
     // (paint options layer on top of this arrow icon on mobile devices)
-    // // // toast.dismiss();
+    // // toast.dismiss();
     if (!showPaintOptions) {
       if (currentItemSelected === unselectedItem) {
-        // setShowPartOptions(false);
         setCurrentItemSelected(objects.gramps);
         setTimeout(() => {
-          // setOpen(false);
-          // setShowPhotos(false);
           setShowBackground(!showBackground);
         }, "750");
       } else {
         if (!animActive && !arrowAnimActive) {
-          // setShowPartOptions(false);
-          // setOpen(false);
-          // setShowPhotos(false);
           setShowBackground(!showBackground);
         }
       }
@@ -829,36 +796,6 @@ export default function Scene({
     let position = [x, y, z];
     return position;
   };
-
-  // const toggleInfoBox = (e) => {
-  //   if (e) {
-  //     e.preventDefault();
-  //     e.stopPropagation();
-  //   }
-  //   // setAboutInfo(false);
-  //   setOpen(!open);
-  //   // setShowPhotos(false);
-  //   if (showPartOptions) {
-  //     setShowPartOptions(false);
-  //   } else {
-  //     if (!showBackground) setShowPartOptions(true);
-  //   }
-  // };
-  // const togglePhotoBox = (e) => {
-  //   if (e) {
-  //     e.preventDefault();
-  //     e.stopPropagation();
-  //   }
-  //   setAllPhotos(false);
-  //   // setOpen(false);
-  //   // setShowPhotos(!showPhotos);
-
-  //   if (showPartOptions) {
-  //     setShowPartOptions(false);
-  //   } else {
-  //     if (!showBackground) setShowPartOptions(true);
-  //   }
-  // };
 
   // useFrame
   useFrame((state, delta) => {
@@ -1110,7 +1047,7 @@ export default function Scene({
               orbitRef.current.enableZoom = true;
               setActiveCamPosAnim(false);
               setActiveCamAnim(false);
-              // set a timeout to delay this toggle of autoRotate?
+              // TODO: set a timeout to delay this toggle of autoRotate?
               orbitRef.current.autoRotate = true;
               orbitRef.current.autoRotateSpeed = 1.1;
               // setOptionBoxItemChanged(false);
@@ -1133,15 +1070,12 @@ export default function Scene({
           ease: "easeIn",
           onStart: () => {
             setArrowAnimActive(true);
-            // setShowPartOptions(false);
           },
           onUpdate: () => {
-            // console.log("arrowRotationX: ", arrowRotationX);
             setArrowRotationX(arrowRotationUp.value);
           },
           onComplete: () => {
             setArrowAnimActive(false);
-            // setShowPartOptions(true);
           },
         });
       }
@@ -1160,7 +1094,6 @@ export default function Scene({
         },
         onComplete: () => {
           setArrowAnimActive(false);
-          // setShowPartOptions(true);
         },
       });
     }
@@ -1169,72 +1102,20 @@ export default function Scene({
   return (
     <>
       {/* <Perf position="bottom-left" /> */}
-      {/* Logo and Cart/Bag at top of screen */}
+      {/* ArrowIcon object and invisible CenterAnchor objects for pinning Html option box, photo grid / single views, and other routes */}
       <ScreenSpace depth={1}>
         {/* light in very center for illuminating on zoom in !showBackground desktop / wide screens */}
         <pointLight position={[0, 0.3, 0.75]} intensity={0.9} />
-        {/* <pointLight position={[0, 0.3, 0.25]} intensity={0.15} /> */}
         <pointLight position={[width / 2750, 0.2, 0.1]} intensity={0.15} />
-        {/* <pointLight position={[width / 3150, 0.2, 0.1]} intensity={0.15} /> */}
-
-        {/* <mesh
-          position={
-            width >= 376 && width < 600 && mobileView
-              ? [0.175, 0.345, 0]
-              : width < 376 && mobileView
-                ? [0.21, 0.345, 0]
-                : width >= 600 && width < 1100 && mobileView
-                  ? [0.23, 0.345, 0]
-                  : [width / 2750, 0.345, 0]
-          }
-          scale={0.125}
-          onClick={handleCartClick}
-          onPointerOver={() => hover(true)}
-          onPointerOut={() => hover(false)}
-        >
-          <Bag
-            currentColor={textures.brownBag}
-            currentTexture={textures.paintedTexture}
-            cartCount={cartCount}
-            handleCartClick={handleCartClick}
-          />
-        </mesh> */}
         <pointLight
           position={[-width / 3000 + 0.2, 0.5, 0.1]}
           intensity={0.75}
         />
-        {/* <mesh
-          position={
-            width >= 376 && width < 600 && mobileView
-              ? [-0.165, 0.345, 0]
-              : width < 376 && mobileView
-                ? [-0.19, 0.345, 0]
-                : width >= 600 && width < 1100 && mobileView
-                  ? [-0.21, 0.345, 0]
-                  : [-width / 3000, 0.35, 0]
-          }
-          onPointerOver={() => hover(true)}
-          onPointerOut={() => hover(false)}
-          scale={0.005}
-        >
-          <Logo
-            currentColor={textures.blueTape}
-            currentTexture={textures.paintedTexture}
-            openUserEmail={openUserEmail}
-          />
-        </mesh> */}
-        {/* group of Html components (info, photos, options) in screen center (default [0,0,0] position) */}
-        <group
-          // position={[o.position.x, o.position.y, o.position.z]}
-          position={[0, 0, 0]}
-          visible={false}
-        >
+        <group position={[0, 0, 0]} visible={false}>
           <CenterAnchor
             theme={theme}
             currentColor={textures.alabasterPaint}
             currentTexture={textures.whiteTexture}
-            // toggleInfoBox={toggleInfoBox}
-            // togglePhotoBox={togglePhotoBox}
             handlePartOption={handlePartOption}
           />
         </group>
@@ -1246,7 +1127,6 @@ export default function Scene({
           visible={!open}
         >
           <mesh
-            // position={[0, open || showPhotos ? ARROW_ICON.arrowY : -0.3, 0]}
             position={[0, ARROW_ICON.arrowY, 0]}
             scale={0.0055}
             rotation={[arrowRotationX, 0, 0]}
@@ -1256,17 +1136,12 @@ export default function Scene({
                 showPaintOptions ? textures.bluePaint : textures.alabasterPaint
               }
               currentTexture={textures.whiteTexture}
-              // toggleInfoBox={toggleInfoBox}
-              // togglePhotoBox={togglePhotoBox}
               handlePartOption={handlePartOption}
-              // openUserEmail={openUserEmail}
               theme={theme}
             />
           </mesh>
           <group
-            // position={[0, ARROW_ICON.arrowY + 0.01, 0]}
             position={[0, open ? ARROW_ICON.arrowY + 0.01 : -0.3 + 0.01, 0]}
-            // rotation={[arrowRotationX, 0, 0]}
           >
             <RingCircle
               selected={false}
@@ -1407,10 +1282,6 @@ export default function Scene({
             currentTexture={textures.paintedTexture}
           />
         </mesh>
-        {/* shelfPositions */}
-        {/* <mesh>
-          <ShelfPositions />
-        </mesh> */}
       </group>
     </>
   );

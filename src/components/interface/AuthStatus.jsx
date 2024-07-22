@@ -13,21 +13,14 @@ export default function AuthStatus() {
   // get location from Router hook
   const routerLocation = useLocation();
 
-  // store function disable three controls so that scroll works in admin interface with open set to true
+  // store function to disable three controls
+  // so that scroll works in admin interface when open is set to true
   const setStoreOpen = useOptionStore((state) => state.setOpen);
 
   // useEffect
   useEffect(() => {
     setStoreOpen(false);
   }, [isLoggingOut]);
-
-  // useEffect(() => {
-  //   console.log(
-  //     "routerLocation in AuthStatus component (when logging out): ",
-  //     routerLocation,
-  //   );
-  //   // setLocation(routerLocation);
-  // }, [routerLocation]);
 
   return (
     <div>

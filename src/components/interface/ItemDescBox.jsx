@@ -12,16 +12,13 @@ export default function ItemDescBox({ theme }) {
   const currentItemSelected = useOptionStore(
     (state) => state.currentItemSelected,
   );
-  const open = useOptionStore((state) => state.open);
 
   return (
-    // <Html center position={[0, 50, 0]}>
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <div
         className="shop-item-description"
         style={{
-          // display: open ? "block" : "none",
           paddingBottom: "1rem",
         }}
       >
@@ -90,6 +87,5 @@ export default function ItemDescBox({ theme }) {
         </div>
       </div>
     </ThemeProvider>
-    // </Html>
   );
 }

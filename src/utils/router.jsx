@@ -20,15 +20,10 @@ import PhotoGrid from "../components/interface/PhotoGrid.jsx";
 import PhotoSingle from "../components/interface/PhotoSingle.jsx";
 import ErrorPage from "../components/interface/ErrorPage.jsx";
 import { theme } from "../data/theme.js";
-// import { allImages } from "../../data/objects.jsx";
-// import { toggleInfoBox } from "../../utils/toggleInfoPhoto.js";
-// import { togglePhotoBox } from "../../utils/toggleInfoPhoto.js";
 import {
   loadShopImages,
-  // loadItemImages,
   loadArtworkImages,
   loadCustomImages,
-  // loadSaleImages,
   loadAboutImages,
 } from "./loadImages.js";
 import HtmlOutletRoot from "../components/interface/HtmlOutletRoot.jsx";
@@ -48,56 +43,43 @@ export const router = createBrowserRouter([
       </HtmlOutletRoot>
     ),
     errorElement: <ErrorPage />,
-    // loader: loadImages,
-    // action: rootAction,
     children: [
       {
         path: "info",
         element: <ItemDescBox theme={theme} />,
-        // loader: loadSingleImage,
-        // action: recordAction,
       },
       {
         path: "view",
         element: <PhotoSingle theme={theme} />,
-        // loader: loadSingleImage,
-        // action: recordAction,
       },
       {
         path: "shop",
         element: <PhotoGrid theme={theme} />,
         loader: loadShopImages,
-        // action: recordAction,
       },
       {
         path: "custom",
         element: <PhotoGrid theme={theme} />,
         loader: loadCustomImages,
-        // action: recordAction,
       },
       {
         path: "artwork",
         element: <PhotoGrid theme={theme} />,
 
         loader: loadArtworkImages,
-        // action: recordAction,
       },
       {
         path: "about",
         element: <AboutBox theme={theme} />,
         loader: loadAboutImages,
-        // action: recordAction,
       },
       {
         path: "contact",
         element: <ContactBox theme={theme} />,
-        // loader: loadImages,
-        // action: recordAction,
       },
       {
         path: "subscribe",
         element: <SubscribeEmailBox theme={theme} />,
-        // loader: loadSingleImage,
         // action: createSubscribedEmailRecord,
       },
       // {
@@ -117,8 +99,6 @@ export const router = createBrowserRouter([
       //       theme={theme}
       //     />
       //   ),
-      //   loader: loadItemImages,
-      //   // action: recordAction,
       // },
     ],
   },

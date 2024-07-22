@@ -4,19 +4,11 @@ import { ThemeProvider } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import IconButton from "@mui/material/IconButton";
-// import { useOptionStore } from "../../store/useOptionStore.tsx";
 import { goTo } from "../../utils/goTo.js";
-// import openUserEmail from "../../utils/openUserEmail.js";
 import ReadMoreIcon from "@mui/icons-material/ReadMore";
 import { ABOUT_TEXT } from "../../data/constants.js";
 
 export default function AboutBox({ theme }) {
-  // state from store
-  // const currentItemSelected = useOptionStore(
-  //   (state) => state.currentItemSelected,
-  // );
-  // const open = useOptionStore((state) => state.open);
-
   // useState
   const [aboutPageToggle, setAboutPageToggle] = useState(false);
   const [aboutIndex, setAboutIndex] = useState(0);
@@ -43,13 +35,11 @@ export default function AboutBox({ theme }) {
   };
 
   return (
-    // <Html center position={[0, 50, 0]}>
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <div
         className="shop-item-description"
         style={{
-          // display: open ? "block" : "none",
           paddingBottom: "1rem",
         }}
       >
@@ -100,7 +90,6 @@ export default function AboutBox({ theme }) {
           id="description"
           style={{
             background: "rgb(233, 234, 233)",
-            // borderRadius: "2rem",
             border: "2px solid lightGrey",
           }}
         >
@@ -124,7 +113,6 @@ export default function AboutBox({ theme }) {
             position: "absolute",
             pointerEvents: "auto",
             bottom: -24,
-            // right: "0.5rem",
             right: 0,
             transform: "translate(-50%)",
           }}
@@ -134,6 +122,5 @@ export default function AboutBox({ theme }) {
         </IconButton>
       </div>
     </ThemeProvider>
-    // </Html>
   );
 }

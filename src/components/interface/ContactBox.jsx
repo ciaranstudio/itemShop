@@ -4,26 +4,17 @@ import { ThemeProvider } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import IconButton from "@mui/material/IconButton";
-import { useOptionStore } from "../../store/useOptionStore.tsx";
 import { goTo } from "../../utils/goTo.js";
 import openUserEmail from "../../utils/openUserEmail.js";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 
 export default function ContactBox({ theme }) {
-  // state from store
-  const currentItemSelected = useOptionStore(
-    (state) => state.currentItemSelected,
-  );
-  const open = useOptionStore((state) => state.open);
-
   return (
-    // <Html center position={[0, 50, 0]}>
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <div
         className="shop-item-description"
         style={{
-          // display: open ? "block" : "none",
           paddingBottom: "1rem",
         }}
       >
@@ -34,7 +25,7 @@ export default function ContactBox({ theme }) {
           }}
         >
           <IconButton
-            onClick={(e) => goTo("/")}
+            onClick={() => goTo("/")}
             color="inherit"
             sx={{
               position: "absolute",
@@ -102,14 +93,12 @@ export default function ContactBox({ theme }) {
       </div>
       <div className="size">
         <IconButton
-          // onClick={(e) => openUserEmail()}
           onClick={openUserEmail}
           color="inherit"
           sx={{
             position: "absolute",
             pointerEvents: "auto",
             bottom: -24,
-            // right: "0.5rem",
             left: "50%",
             transform: "translate(-50%)",
           }}
@@ -119,6 +108,5 @@ export default function ContactBox({ theme }) {
         </IconButton>
       </div>
     </ThemeProvider>
-    // </Html>
   );
 }

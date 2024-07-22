@@ -173,11 +173,6 @@ export default function Root() {
     setStoreOpen(true);
   }, []);
 
-  // useEffect(() => {
-  //   // console.log("routerLocation from Root: ", routerLocation);
-  //   // setLocation(routerLocation);
-  // }, [routerLocation]);
-
   return (
     <>
       <ThemeProvider theme={theme}>

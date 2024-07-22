@@ -55,11 +55,6 @@ function Experience({ theme }) {
   const animActive = useOptionStore((state) => state.animActive);
   const animIconToggle = useOptionStore((state) => state.animIconToggle);
   const animateButton = useOptionStore((state) => state.animateButton);
-  // const previousItemSelected = useOptionStore(
-  //   (state) => state.previousItemSelected,
-  // );
-  // const showBackground = useOptionStore((state) => state.showBackground);
-  // const showPartOptions = useOptionStore((state) => state.showPartOptions);
 
   // actions from store
   const setMobileView = useOptionStore((state) => state.setMobileView);
@@ -120,7 +115,7 @@ function Experience({ theme }) {
               borderTop: "0.1rem solid #e0e0e0,",
             },
           });
-        }, 50); // was 500
+        }, 50);
       }
     }
   }, [progress]);

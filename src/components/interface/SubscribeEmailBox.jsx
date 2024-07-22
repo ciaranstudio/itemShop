@@ -4,15 +4,15 @@ import { ThemeProvider } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import IconButton from "@mui/material/IconButton";
-import { useOptionStore } from "../../store/useOptionStore.tsx";
+// import { useOptionStore } from "../../store/useOptionStore.tsx";
 import { goTo } from "../../utils/goTo.js";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import {
-  Form,
-  // useLoaderData, redirect, useNavigate
-} from "react-router-dom";
+// import Box from "@mui/material/Box";
+// import Button from "@mui/material/Button";
+// import TextField from "@mui/material/TextField";
+// import {
+//   Form,
+//   // useLoaderData, redirect, useNavigate
+// } from "react-router-dom";
 // import { createSubscribedEmailRecord } from "../../utils/records.js";
 
 // export async function action({ request }) {
@@ -29,28 +29,22 @@ import {
 
 export default function SubscribeEmailBox({ theme }) {
   // state from store
-  // const currentItemSelected = useOptionStore(
-  //   (state) => state.currentItemSelected,
+  // const signedUpForMailingList = useOptionStore(
+  //   (state) => state.signedUpForMailingList,
   // );
-  // const open = useOptionStore((state) => state.open);
-  const signedUpForMailingList = useOptionStore(
-    (state) => state.signedUpForMailingList,
-  );
 
   // actions from store
-  const setSignedUpForMailingList = useOptionStore(
-    (state) => state.setSignedUpForMailingList,
-  );
+  // const setSignedUpForMailingList = useOptionStore(
+  //   (state) => state.setSignedUpForMailingList,
+  // );
 
   return (
-    // <Html center position={[0, 50, 0]}>
     <ThemeProvider theme={theme}>
       <CssBaseline />
 
       <div
         className="shop-item-description"
         style={{
-          // display: open ? "block" : "none",
           paddingBottom: "1rem",
         }}
       >
@@ -61,7 +55,7 @@ export default function SubscribeEmailBox({ theme }) {
           }}
         >
           <IconButton
-            onClick={(e) => goTo("/")}
+            onClick={() => goTo("/")}
             color="inherit"
             sx={{
               position: "absolute",
@@ -174,24 +168,6 @@ export default function SubscribeEmailBox({ theme }) {
           </span>
         </Box>
       </Form> */}
-      {/* <div className="size">
-        <IconButton
-          // onClick={(e) => openUserEmail()}
-          onClick={openUserEmail}
-          color="inherit"
-          sx={{
-            position: "absolute",
-            pointerEvents: "auto",
-            bottom: -24,
-            // right: "0.5rem",
-            left: "50%",
-            transform: "translate(-50%)",
-          }}
-          aria-label="contact by email"
-        >
-          <EmailOutlinedIcon color="info" />
-        </IconButton>
-      </div> */}
     </ThemeProvider>
     // </Html>
   );
