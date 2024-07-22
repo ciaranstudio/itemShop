@@ -23,13 +23,14 @@ export default function AboutBox({ theme }) {
 
   // useEffect
   useEffect(() => {
-    let nextIndex;
-    if (aboutIndex === 4) {
-      nextIndex = 0;
-    } else {
-      nextIndex = aboutIndex + 1;
+    if (aboutPageToggle) {
+      if (aboutIndex === ABOUT_TEXT.length - 1) {
+        setAboutIndex(0);
+      } else {
+        setAboutIndex((prev) => prev + 1);
+      }
+      setAboutPageToggle(false);
     }
-    setAboutIndex(nextIndex);
   }, [aboutPageToggle]);
 
   // functions
@@ -118,7 +119,6 @@ export default function AboutBox({ theme }) {
       </div>
       <div className="size">
         <IconButton
-          // onClick={(e) => openUserEmail()}
           onClick={nextPage}
           color="inherit"
           sx={{
@@ -129,7 +129,7 @@ export default function AboutBox({ theme }) {
             right: 0,
             transform: "translate(-50%)",
           }}
-          // aria-label="contact by email"
+          aria-label="next page of About info"
         >
           <ReadMoreIcon color="info" />
         </IconButton>

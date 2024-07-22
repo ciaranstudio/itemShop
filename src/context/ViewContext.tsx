@@ -26,10 +26,7 @@ export const DashContextProvider = ({ children }: PropsWithChildren<{}>) => {
   const [contextVal, setContextVal] =
     useState<IDashboardContext["contextVal"]>(false);
 
-  const value = useMemo(
-    () => ({ contextVal, setContextVal }),
-    [contextVal, location],
-  );
+  const value = useMemo(() => ({ contextVal, setContextVal }), [contextVal]);
 
   return <DashContext.Provider value={value}>{children}</DashContext.Provider>;
 };

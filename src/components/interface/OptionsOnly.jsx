@@ -292,7 +292,7 @@ export default function OptionsOnly({
                   gridTemplateColumns: "auto auto auto auto",
                   textAlign: "center",
                   marginTop: "1rem",
-                  border: "0.1rem solid rgb(233, 234, 233)",
+                  border: "0.075rem solid rgb(233, 234, 233)",
                   borderRadius: "1rem",
                   // backgroundColor: showPaintOptions
                   //   ? "transparent"

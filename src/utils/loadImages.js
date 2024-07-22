@@ -1,4 +1,4 @@
-import { getImageRecords } from "./records";
+// import { getImageRecords } from "./records";
 import { getRouteImages } from "./records";
 import { allImages } from "../data/objects";
 
@@ -10,13 +10,13 @@ export async function loadShopImages() {
 
 export async function loadCustomImages() {
   const images = await getRouteImages("custom");
-  console.log("imageRecords (from loadShopImages): ", images);
+  console.log("imageRecords (from loadCustomImages): ", images);
   return { images };
 }
 
 export async function loadArtworkImages() {
   const images = await getRouteImages("artwork");
-  console.log("imageRecords (from loadShopImages): ", images);
+  console.log("imageRecords (from loadArtworkImages): ", images);
   return { images };
 }
 
