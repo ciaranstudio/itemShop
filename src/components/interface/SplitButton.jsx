@@ -1,4 +1,6 @@
 import { useRef, useState } from "react";
+import CssBaseline from "@mui/material/CssBaseline";
+import { ThemeProvider } from "@mui/material";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
@@ -10,6 +12,7 @@ import MenuItem from "@mui/material/MenuItem";
 import MenuList from "@mui/material/MenuList";
 import ShuffleOutlinedIcon from "@mui/icons-material/ShuffleOutlined";
 import { useOptionStore } from "../../store/useOptionStore.tsx";
+import { theme } from "../../data/theme.js";
 
 const options = ["Stain", "Stains", "All", "Paints", "Paint"];
 
@@ -52,79 +55,81 @@ export default function SplitButton({ randomCurrentItemParts }) {
 
   return (
     <>
-      <ButtonGroup
-        variant="outlined"
-        ref={anchorRef}
-        aria-label="Button group with a nested menu"
-        color="primary"
-      >
-        <Button
-          onClick={handleClick}
-          // startIcon={<ShuffleOutlinedIcon color="primary" />}
-          sx={{
-            fontFamily: "var(--leva-fonts-mono)",
-            backgroundColor: "rgb(233, 234, 233)",
-          }}
-          aria-label="shuffle colors randomly"
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <ButtonGroup
+          variant="outlined"
+          ref={anchorRef}
+          aria-label="Button group with a nested menu"
+          color="primary"
         >
-          {/* {options[selectedIndex]} */}
-          <ShuffleOutlinedIcon color="primary" />
-        </Button>
-        <Button
-          size="small"
-          aria-controls={open ? "split-button-menu" : undefined}
-          aria-expanded={open ? "true" : undefined}
-          aria-label="select shuffle colors option"
-          aria-haspopup="menu"
-          onClick={handleToggle}
-          sx={{ backgroundColor: "rgb(233, 234, 233)" }}
-        >
-          <ArrowDropDownIcon />
-        </Button>
-      </ButtonGroup>
-      <Popper
-        sx={{
-          zIndex: 1,
-        }}
-        open={open}
-        anchorEl={anchorRef.current}
-        role={undefined}
-        transition
-        disablePortal
-        placement="right"
-      >
-        {({ TransitionProps, placement }) => (
-          <Grow
-            {...TransitionProps}
-            style={{
-              transformOrigin:
-                placement === "bottom" ? "center top" : "center bottom",
+          <Button
+            onClick={handleClick}
+            // startIcon={<ShuffleOutlinedIcon color="primary" />}
+            sx={{
+              backgroundColor: "rgb(233, 234, 233)",
             }}
+            aria-label="shuffle colors randomly"
           >
-            <Paper
-              sx={{
-                backgroundColor: "white",
-                border: "0.075rem solid rgb(33, 33, 33);",
+            {/* {options[selectedIndex]} */}
+            <ShuffleOutlinedIcon color="primary" />
+          </Button>
+          <Button
+            size="small"
+            aria-controls={open ? "split-button-menu" : undefined}
+            aria-expanded={open ? "true" : undefined}
+            aria-label="select shuffle colors option"
+            aria-haspopup="menu"
+            onClick={handleToggle}
+            sx={{ backgroundColor: "rgb(233, 234, 233)" }}
+          >
+            <ArrowDropDownIcon />
+          </Button>
+        </ButtonGroup>
+        <Popper
+          sx={{
+            zIndex: 1,
+          }}
+          open={open}
+          anchorEl={anchorRef.current}
+          role={undefined}
+          transition
+          disablePortal
+          placement="right"
+        >
+          {({ TransitionProps, placement }) => (
+            <Grow
+              {...TransitionProps}
+              style={{
+                transformOrigin:
+                  placement === "bottom" ? "center top" : "center bottom",
               }}
             >
-              <ClickAwayListener onClickAway={handleClose}>
-                <MenuList id="split-button-menu" autoFocusItem>
-                  {options.map((option, index) => (
-                    <MenuItem
-                      key={option}
-                      selected={index === selectedIndex}
-                      onClick={(event) => handleMenuItemClick(event, index)}
-                      sx={{ fontFamily: "var(--leva-fonts-mono)" }}
-                    >
-                      {option}
-                    </MenuItem>
-                  ))}
-                </MenuList>
-              </ClickAwayListener>
-            </Paper>
-          </Grow>
-        )}
-      </Popper>
+              <Paper
+                sx={{
+                  backgroundColor: "white",
+                  border: "0.075rem solid rgb(33, 33, 33);",
+                }}
+              >
+                <ClickAwayListener onClickAway={handleClose}>
+                  <MenuList id="split-button-menu" autoFocusItem>
+                    {options.map((option, index) => (
+                      <MenuItem
+                        key={option}
+                        selected={index === selectedIndex}
+                        onClick={(event) => handleMenuItemClick(event, index)}
+                        sx={{ fontFamily: "var(--leva-fonts-mono)" }}
+                      >
+                        {option}
+                      </MenuItem>
+                    ))}
+                  </MenuList>
+                </ClickAwayListener>
+              </Paper>
+            </Grow>
+          )}
+        </Popper>
+      </ThemeProvider>
     </>
   );
 }

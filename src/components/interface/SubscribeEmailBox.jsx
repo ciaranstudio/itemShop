@@ -6,6 +6,7 @@ import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import IconButton from "@mui/material/IconButton";
 // import { useOptionStore } from "../../store/useOptionStore.tsx";
 import { goTo } from "../../utils/goTo.js";
+import { theme } from "../../data/theme.js";
 // import Box from "@mui/material/Box";
 // import Button from "@mui/material/Button";
 // import TextField from "@mui/material/TextField";
@@ -27,7 +28,7 @@ import { goTo } from "../../utils/goTo.js";
 //   return redirect(`/subscribe`);
 // }
 
-export default function SubscribeEmailBox({ theme }) {
+export default function SubscribeEmailBox() {
   // state from store
   // const signedUpForMailingList = useOptionStore(
   //   (state) => state.signedUpForMailingList,
@@ -71,7 +72,6 @@ export default function SubscribeEmailBox({ theme }) {
           <Typography
             variant="h6"
             sx={{
-              fontFamily: "var(--leva-fonts-mono)",
               fontSize: "1.125rem",
             }}
           >
@@ -82,7 +82,6 @@ export default function SubscribeEmailBox({ theme }) {
           <Typography
             variant="subtitle2"
             sx={{
-              fontFamily: "var(--leva-fonts-mono)",
               fontSize: "0.82rem",
             }}
             color="prmimary"
@@ -103,7 +102,6 @@ export default function SubscribeEmailBox({ theme }) {
           <Typography
             variant="subtitle2"
             sx={{
-              fontFamily: "var(--leva-fonts-mono)",
               fontSize: "0.82rem",
               color: theme.palette.primary.main,
             }}
@@ -113,7 +111,6 @@ export default function SubscribeEmailBox({ theme }) {
           <Typography
             variant="subtitle2"
             sx={{
-              fontFamily: "var(--leva-fonts-mono)",
               fontSize: "0.82rem",
               color: theme.palette.primary.main,
             }}
@@ -158,8 +155,7 @@ export default function SubscribeEmailBox({ theme }) {
                 display: "inline",
                 pointerEvents: "auto",
                 color: "#ffffff",
-                fontSize: "1rem",
-                fontFamily: "var(--leva-fonts-mono)",
+                fontSize: "1rem",             
               }}
               // onClick={}
             >

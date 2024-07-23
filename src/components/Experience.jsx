@@ -95,7 +95,7 @@ function Experience({ theme }) {
   useEffect(() => {
     // loadingBarElement.style.transform = `scaleX(${progress / 100})`;
     loadingBarElement.style.transform = `scaleX(${loaded / 149})`;
-    console.log("progress: ", progress, "loaded: ", loaded);
+    // console.log("progress: ", progress, "loaded: ", loaded);
     if (loaded >= LOADED.nearTotal) {
       if (loaded / LOADED.total === 1 && progress === 100) {
         setSceneLoaded(true);

@@ -46,40 +46,40 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "info",
-        element: <ItemDescBox theme={theme} />,
+        element: <ItemDescBox />,
       },
       {
         path: "view",
-        element: <PhotoSingle theme={theme} />,
+        element: <PhotoSingle />,
       },
       {
         path: "shop",
-        element: <PhotoGrid theme={theme} />,
+        element: <PhotoGrid />,
         loader: loadShopImages,
       },
       {
         path: "custom",
-        element: <PhotoGrid theme={theme} />,
+        element: <PhotoGrid />,
         loader: loadCustomImages,
       },
       {
         path: "artwork",
-        element: <PhotoGrid theme={theme} />,
+        element: <PhotoGrid />,
 
         loader: loadArtworkImages,
       },
       {
         path: "about",
-        element: <AboutBox theme={theme} />,
+        element: <AboutBox />,
         loader: loadAboutImages,
       },
       {
         path: "contact",
-        element: <ContactBox theme={theme} />,
+        element: <ContactBox />,
       },
       {
         path: "subscribe",
-        element: <SubscribeEmailBox theme={theme} />,
+        element: <SubscribeEmailBox />,
         // action: createSubscribedEmailRecord,
       },
       // {

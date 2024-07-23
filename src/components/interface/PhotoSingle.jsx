@@ -5,10 +5,12 @@ import Box from "@mui/material/Box";
 import { useOptionStore } from "../../store/useOptionStore.tsx";
 import { goTo } from "../../utils/goTo.js";
 import CaptionBox from "./CaptionBox.jsx";
+import { theme } from "../../data/theme.js";
 
-export default function PhotoSingle({ theme }) {
+export default function PhotoSingle() {
   // state from store
   const open = useOptionStore((state) => state.open);
+  const locationPathname = useOptionStore((state) => state.locationPathname);
   const selectedImage = useOptionStore((state) => state.selectedImage);
   const selectedImageIndex = useOptionStore(
     (state) => state.selectedImageIndex,
@@ -49,32 +51,7 @@ export default function PhotoSingle({ theme }) {
             ></img>
           )}
         </Box>
-        <CaptionBox />
-        {/* caption text box showing title, year, materials (for shop items, year field holds short item description) */}
-        {/* <Box
-          sx={{
-            display: "grid",
-            gridTemplateColumns: "auto, auto, auto",
-            borderRadius: "0.75rem",
-            // border: "0.085rem solid rgb(155, 155, 155)",
-            textAlign: "center",
-            mt: 1.5,
-          }}
-        >
-          {selectedImage && (
-            <>
-              <Typography variant="subtitle2" color="inherit">
-                {selectedImage.title && <>{selectedImage.title}</>}
-              </Typography>
-              <Typography variant="subtitle2" color="inherit">
-                {selectedImage.year && <>{selectedImage.year}</>}
-              </Typography>
-              <Typography variant="subtitle2" color="inherit">
-                {selectedImage.materials && <>{selectedImage.materials}</>}
-              </Typography>
-            </>
-          )}
-        </Box> */}
+        {selectedImage && selectedImage.route !== "custom" && <CaptionBox />}
       </div>
     </ThemeProvider>
   );

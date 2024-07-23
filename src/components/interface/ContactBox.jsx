@@ -7,8 +7,9 @@ import IconButton from "@mui/material/IconButton";
 import { goTo } from "../../utils/goTo.js";
 import openUserEmail from "../../utils/openUserEmail.js";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
+import { theme } from "../../data/theme.js";
 
-export default function ContactBox({ theme }) {
+export default function ContactBox() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -41,7 +42,6 @@ export default function ContactBox({ theme }) {
           <Typography
             variant="h6"
             sx={{
-              fontFamily: "var(--leva-fonts-mono)",
               fontSize: "1.125rem",
               mb: 1,
             }}
@@ -72,7 +72,6 @@ export default function ContactBox({ theme }) {
           <Typography
             variant="subtitle2"
             sx={{
-              fontFamily: "var(--leva-fonts-mono)",
               fontSize: "0.82rem",
               color: theme.palette.primary.main,
             }}
@@ -82,7 +81,6 @@ export default function ContactBox({ theme }) {
           <Typography
             variant="subtitle2"
             sx={{
-              fontFamily: "var(--leva-fonts-mono)",
               fontSize: "0.82rem",
               color: theme.palette.primary.main,
             }}

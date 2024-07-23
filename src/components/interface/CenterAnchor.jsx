@@ -3,7 +3,7 @@ import { useGLTF, useTexture } from "@react-three/drei";
 import { useOptionStore } from "../../store/useOptionStore.tsx";
 import HtmlOutlet from "./HtmlOutlet.jsx";
 
-export const CenterAnchor = ({ theme, currentColor, currentTexture }) => {
+export const CenterAnchor = ({ currentColor, currentTexture }) => {
   const { scene, nodes, materials } = useGLTF("./models/logoAnnotated.gltf");
   const [annotations, setAnnotations] = useState([]);
 
@@ -45,7 +45,7 @@ export const CenterAnchor = ({ theme, currentColor, currentTexture }) => {
           if (o.userData.name.startsWith("AnchorPoint")) {
             currentAnnotations.push(
               <group key={o.uuid} position={[0, 0, 0]}>
-                <HtmlOutlet theme={theme} />
+                <HtmlOutlet />
               </group>,
             );
           }

@@ -19,7 +19,7 @@ export default function Copyright(props) {
         }}
         style={{ textDecoration: "none", color: "#9E9E9E" }}
       >
-        {"(working title) "} {new Date().getFullYear()}
+        {""} {new Date().getFullYear()}
       </Link>
     </Typography>
   );

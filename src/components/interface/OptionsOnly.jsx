@@ -22,8 +22,9 @@ import { unselectedItem } from "../../data/objects.js";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
 import { goTo } from "../../utils/goTo.js";
+import { theme } from "../../data/theme.js";
 
-export default function OptionsOnly({ theme, handlePartOption }) {
+export default function OptionsOnly({ handlePartOption }) {
   // state from store
   const currentItemSelected = useOptionStore(
     (state) => state.currentItemSelected,

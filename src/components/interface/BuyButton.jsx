@@ -4,8 +4,9 @@ import Button from "@mui/material/Button";
 import { useOptionStore } from "../../store/useOptionStore.tsx";
 import { unselectedItem } from "../../data/objects.js";
 import { objects } from "../../data/objects.js";
+import { theme } from "../../data/theme.js";
 
-export default function BuyButton({ item, theme }) {
+export default function BuyButton({ item }) {
   // state from store
   const optionSelectedPrice = useOptionStore(
     (state) =>
@@ -53,7 +54,6 @@ export default function BuyButton({ item, theme }) {
           pointerEvents: "auto",
           color: "#ffffff",
           fontSize: "1rem",
-          fontFamily: "var(--leva-fonts-mono)",
         }}
       >
         {optionSelectedPrice === 0 ? "..." : `$${optionSelectedPrice}`}

@@ -6,8 +6,9 @@ import { useOptionStore } from "../../store/useOptionStore.tsx";
 import { useLoaderData } from "react-router-dom";
 import { goTo } from "../../utils/goTo.js";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
+import { theme } from "../../data/theme.js";
 
-export default function PhotoGrid({ theme }) {
+export default function PhotoGrid() {
   // router loader data
   const data = useLoaderData();
 

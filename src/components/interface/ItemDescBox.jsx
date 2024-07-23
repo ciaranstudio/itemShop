@@ -6,8 +6,9 @@ import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import IconButton from "@mui/material/IconButton";
 import { useOptionStore } from "../../store/useOptionStore.tsx";
 import { goTo } from "../../utils/goTo.js";
+import { theme } from "../../data/theme.js";
 
-export default function ItemDescBox({ theme }) {
+export default function ItemDescBox() {
   // state from store
   const currentItemSelected = useOptionStore(
     (state) => state.currentItemSelected,
@@ -45,7 +46,6 @@ export default function ItemDescBox({ theme }) {
           <Typography
             variant="h6"
             sx={{
-              fontFamily: "var(--leva-fonts-mono)",
               fontSize: "1.125rem",
             }}
           >
@@ -56,7 +56,6 @@ export default function ItemDescBox({ theme }) {
           <Typography
             variant="subtitle2"
             sx={{
-              fontFamily: "var(--leva-fonts-mono)",
               fontSize: "0.82rem",
             }}
             color="prmimary"
@@ -77,7 +76,6 @@ export default function ItemDescBox({ theme }) {
           <Typography
             variant="subtitle2"
             sx={{
-              fontFamily: "var(--leva-fonts-mono)",
               fontSize: "0.82rem",
               color: theme.palette.info.main,
             }}

@@ -7,8 +7,9 @@ import IconButton from "@mui/material/IconButton";
 import { goTo } from "../../utils/goTo.js";
 import ReadMoreIcon from "@mui/icons-material/ReadMore";
 import { ABOUT_TEXT } from "../../data/constants.js";
+import { theme } from "../../data/theme.js";
 
-export default function AboutBox({ theme }) {
+export default function AboutBox() {
   // useState
   const [aboutPageToggle, setAboutPageToggle] = useState(false);
   const [aboutIndex, setAboutIndex] = useState(0);
@@ -66,7 +67,6 @@ export default function AboutBox({ theme }) {
           <Typography
             variant="h6"
             sx={{
-              fontFamily: "var(--leva-fonts-mono)",
               fontSize: "1.125rem",
               mb: 1,
             }}
@@ -78,7 +78,6 @@ export default function AboutBox({ theme }) {
           <Typography
             variant="subtitle2"
             sx={{
-              fontFamily: "var(--leva-fonts-mono)",
               fontSize: "0.82rem",
             }}
             color="prmimary"
@@ -96,7 +95,6 @@ export default function AboutBox({ theme }) {
           <Typography
             variant="subtitle2"
             sx={{
-              fontFamily: "var(--leva-fonts-mono)",
               fontSize: "0.82rem",
               color: theme.palette.primary.main,
             }}

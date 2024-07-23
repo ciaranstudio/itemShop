@@ -3,7 +3,7 @@ import OptionsOnly from "./OptionsOnly.jsx";
 import { OPTION_BOX } from "../../data/constants.js";
 import { useOptionStore } from "../../store/useOptionStore.tsx";
 
-export default function OptionBox({ handlePartOption, theme }) {
+export default function OptionBox({ handlePartOption }) {
   const mobileView = useOptionStore((state) => state.mobileView);
   return (
     <group
@@ -15,7 +15,7 @@ export default function OptionBox({ handlePartOption, theme }) {
         0,
       ]}
     >
-      <OptionsOnly handlePartOption={handlePartOption} theme={theme} />
+      <OptionsOnly handlePartOption={handlePartOption} />
     </group>
   );
 }

@@ -4,7 +4,6 @@ import OptionBox from "./OptionBox.jsx";
 import { useOptionStore } from "../../store/useOptionStore.tsx";
 
 export const ArrowIcon = ({
-  theme,
   currentColor,
   currentTexture,
   handlePartOption,
@@ -60,7 +59,7 @@ export const ArrowIcon = ({
           if (o.userData.name.startsWith("AnchorPoint")) {
             currentAnnotations.push(
               <group key={o.uuid} position={[0, 0, 0]}>
-                <OptionBox handlePartOption={handlePartOption} theme={theme} />
+                <OptionBox handlePartOption={handlePartOption} />
               </group>,
             );
           }
