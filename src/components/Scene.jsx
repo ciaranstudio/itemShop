@@ -701,26 +701,15 @@ export default function Scene({
   const handleClick = (e) => {
     e.stopPropagation();
     const { eventObject } = e;
-    // console.log(eventObject.position);
     if (showBackground) {
       let tempObjectPosition = eventObject.position;
       let positionMatch = (element) =>
         element.position.x === tempObjectPosition.x &&
         element.position.y === tempObjectPosition.y &&
         element.position.z === tempObjectPosition.z;
-      if (positionMatch) {
-        // console.log(
-        //   "shopItems.find(positionMatch): ",
-        //   shopItems.find(positionMatch),
-        // );
-        let matchedItem = shopItems.find(positionMatch);
-        // console.log("matchedItem from handleClick function: ", matchedItem);
-        // if (currentItemSelected === unselectedItem) {
-        //   randomAllItemsParts(false);
-        // }
-        setPreviousItemSelected(currentItemSelected);
-        setCurrentItemSelected(matchedItem);
-      }
+      let matchedItem = shopItems.find(positionMatch);
+      setPreviousItemSelected(currentItemSelected);
+      setCurrentItemSelected(matchedItem);
     }
   };
   const handleItemPartClick = (e, part) => {

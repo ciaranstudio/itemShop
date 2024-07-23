@@ -15,6 +15,7 @@ export default function CaptionBox() {
       <Box>
         <span
           style={{
+            display: "none",
             position: "fixed",
             bottom: height < 700 ? "1rem" : 0,
             left: "50%",

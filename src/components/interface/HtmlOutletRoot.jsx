@@ -65,12 +65,12 @@ export default function HtmlOutletRoot({ children }) {
           selectedImage.title.indexOf("_"),
         );
         const titleMatch = (element) => element.itemTitle === tempSelectedTitle;
-        if (titleMatch) {
-          let matchedItem = shopItems.find(titleMatch);
-          console.log("matched item from shop image click: ", matchedItem);
-          setPreviousItemSelected(currentItemSelected);
-          setCurrentItemSelected(matchedItem);
-        }
+        // if (titleMatch) {
+        const matchedItem = shopItems.find(titleMatch);
+        console.log("matched item from shop image click: ", matchedItem);
+        setPreviousItemSelected(currentItemSelected);
+        setCurrentItemSelected(matchedItem);
+        // }
       }
     }
   }, [selectedImage]);
