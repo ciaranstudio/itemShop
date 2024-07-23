@@ -61,7 +61,7 @@ export default function SubscribeEmailBox() {
             sx={{
               position: "absolute",
               pointerEvents: "auto",
-              top: -4,
+              top: -3,
               left: 0,
               padding: "0.5rem",
             }}
@@ -73,6 +73,7 @@ export default function SubscribeEmailBox() {
             variant="h6"
             sx={{
               fontSize: "1.125rem",
+              mb: 1,
             }}
           >
             PRE-SALE LIST

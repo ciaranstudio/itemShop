@@ -9,6 +9,7 @@ import StorefrontIcon from "@mui/icons-material/Storefront";
 import { useOptionStore } from "../../store/useOptionStore.tsx";
 import { goTo } from "../../utils/goTo.js";
 import { theme } from "../../data/theme.js";
+// import CaptionBox from "./CaptionBox.jsx";
 
 export default function PhotoNavControls() {
   const locationPathname = useOptionStore((state) => state.locationPathname);
@@ -75,6 +76,11 @@ export default function PhotoNavControls() {
                 <ArrowBackIcon sx={{ fontSize: "20px", mr: 1 }} />
                 Back
               </Button>
+              {/* <Button>
+                {selectedImage && selectedImage.route !== "custom" && (
+                  <CaptionBox />
+                )}
+              </Button> */}
               <Button
                 onClick={() => {
                   goTo("/");

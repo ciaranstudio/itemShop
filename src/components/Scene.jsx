@@ -957,21 +957,21 @@ export default function Scene({
           let zPlus = -1.165;
 
           if (currentItemSelected.itemName === "gramps") {
-            xPlus = -2.15; // -1.75
-            yPlus = 1; // 0.5
-            zPlus = -0.575; // -0.75
+            xPlus = -1.5; // xPlus = -2.15; // -1.75
+            yPlus = 0.75; // yPlus = 1; // 0.5
+            zPlus = -0.575; // zPlus = -0.575; // -0.75
           } else if (currentItemSelected.itemName === "block") {
             xPlus = -0.5;
-            yPlus = 0.75;
-            zPlus = -1.5;
+            yPlus = 0.25; //   yPlus = 0.75;
+            zPlus = -0.75; // zPlus = -1.5;
           } else if (currentItemSelected.itemName === "horse") {
-            xPlus = 2; // -1.75
-            yPlus = 1.25; // 1.25
-            zPlus = -2.5; // -2.1
+            xPlus = 2; // xPlus = 2; // -1.75
+            yPlus = 1.5; // yPlus = 1.25; // 1.25
+            zPlus = -1.75; // zPlus = -2.5; // -2.1
           } else if (currentItemSelected.itemName === "squatter") {
-            xPlus = 1.95; // 1.75
-            yPlus = 0.75; // 0.5
-            zPlus = 1.15; // 1
+            xPlus = 1.25; // xPlus = 1.95; // 1.75
+            yPlus = 0.75; // yPlus = 0.75; // 0.5
+            zPlus = 1.15; // zPlus = 1.15; // 1
           } else if (currentItemSelected.itemName === "shelfA16") {
             xPlus = 1.5; // 1 // 1.5
             yPlus = 2; // 1.75 // 1.25
@@ -1094,12 +1094,19 @@ export default function Scene({
       {/* ArrowIcon object and invisible CenterAnchor objects for pinning Html option box, photo grid / single views, and other routes */}
       <ScreenSpace depth={1}>
         {/* light in very center for illuminating on zoom in !showBackground desktop / wide screens */}
-        <pointLight position={[0, 0.3, 0.75]} intensity={0.9} />
-        <pointLight position={[width / 2750, 0.2, 0.1]} intensity={0.15} />
         <pointLight
+          position={[0.15, 0.1, 0.56]}
+          intensity={LIGHT.pointLightIntensity}
+        />
+        {/* <pointLight position={[width / 2750, 0.2, 0.1]} intensity={0.15} /> */}
+        <pointLight
+          position={[-0.15, 0.1, 0.56]}
+          intensity={LIGHT.pointLightIntensity}
+        />
+        {/* <pointLight
           position={[-width / 3000 + 0.2, 0.5, 0.1]}
           intensity={0.75}
-        />
+        /> */}
         <group position={[0, 0, 0]} visible={false}>
           <CenterAnchor
             theme={theme}

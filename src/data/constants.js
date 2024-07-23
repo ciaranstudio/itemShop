@@ -20,7 +20,7 @@ export const LIGHT = {
   dirLightXPosition: 2.5,
   dirLightYPosition: 3.6,
   dirLightZPosition: -3,
-  dirLightIntensity: 1.5,
+  dirLightIntensity: 2.75, // 1.5
   dirLightNormBias: 0.04,
   dirLightMapSize: 512,
   dirLightCamNear: -5,
@@ -29,7 +29,8 @@ export const LIGHT = {
   dirLightCamRight: 5,
   dirLightCamBottom: -5,
   dirLightCamTop: 5,
-  ambLightIntensity: 1,
+  ambLightIntensity: 0.35, // 1
+  pointLightIntensity: 0.75,
 };
 
 // orbit controls

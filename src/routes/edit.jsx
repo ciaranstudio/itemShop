@@ -19,7 +19,7 @@ export async function action({ request, params }) {
   const imageFiles = [];
   let routeFolder = "";
   for (const key of formData.keys()) {
-    // console.log("key: ", key);
+    console.log("key: ", key);
     if (key.startsWith("route")) {
       routeFolder = formData.get(key);
       // console.log("routeFolder: ", routeFolder);
@@ -90,16 +90,20 @@ export default function EditRecord() {
             "& > :not(style)": { p: 1, width: "100%" },
           }}
         >
-          <Box
+          {/* <Box
             sx={{
               maxWidth: "md",
               m: 0,
             }}
           >
             {imageRecord.imgPath && (
-              <>{imageRecord.imgPath.length} images uploaded</>
+              <>
+                {imageRecord.imgPath.length}
+                {imageRecord.imgPath.length === 1 ? " image " : " images "}
+                uploaded
+              </>
             )}
-          </Box>
+          </Box> */}
           <Box
             sx={{
               maxWidth: "md",
@@ -109,8 +113,8 @@ export default function EditRecord() {
               return (
                 <TextField
                   key={index}
-                  id="outlined-basic"
-                  // label="Outlined"
+                  id={`edit_file${index}`}
+                  // label={`${file.imgPath}`}
                   name={`imgPath${index}`}
                   variant="outlined"
                   type="file"
@@ -140,7 +144,7 @@ export default function EditRecord() {
             }}
           >
             <TextField
-              id="outlined-uncontrolled"
+              id="edit_title"
               label="Title"
               name="title"
               defaultValue={imageRecord.title}
@@ -148,7 +152,7 @@ export default function EditRecord() {
               sx={{ mr: 1, mb: { xs: 1, sm: 0 }, input: { color: "#546E7A" } }}
             />
             <TextField
-              id="outlined-uncontrolled"
+              id="edit_year"
               label="Year"
               name="year"
               defaultValue={imageRecord.year}
@@ -162,7 +166,7 @@ export default function EditRecord() {
             }}
           >
             <TextField
-              id="outlined-uncontrolled"
+              id="edit_materials"
               label="Materials"
               defaultValue={imageRecord.materials}
               name="materials"
@@ -170,7 +174,7 @@ export default function EditRecord() {
               sx={{ mr: 1, mb: { xs: 1, sm: 0 }, input: { color: "#607D8B" } }}
             />
             <TextField
-              id="outlined-uncontrolled"
+              id="edit_route"
               label="Route"
               defaultValue={imageRecord.route}
               name="route"
@@ -180,12 +184,12 @@ export default function EditRecord() {
           </Box>
 
           <TextField
-            id="outlined-uncontrolled"
+            id="edit_description"
             label="Description"
             defaultValue={imageRecord.description}
+            name="description"
             multiline
             minRows={12}
-            name="description"
             size="small"
             inputProps={{ style: { color: "#546E7A" } }}
           />

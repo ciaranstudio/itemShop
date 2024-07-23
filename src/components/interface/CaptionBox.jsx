@@ -50,7 +50,7 @@ export default function CaptionBox() {
             left: "50%",
             transform: "translate( -50%)",
             width: "80svw",
-            zIndex: 3,
+            zIndex: 2,
           }}
         >
           <Box
