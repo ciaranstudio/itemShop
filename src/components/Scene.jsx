@@ -957,7 +957,7 @@ export default function Scene({
           let zPlus = -1.165;
 
           if (currentItemSelected.itemName === "gramps") {
-            xPlus = -1.5; // xPlus = -2.15; // -1.75
+            xPlus = -1.75; // xPlus = -2.15; // -1.75
             yPlus = 0.75; // yPlus = 1; // 0.5
             zPlus = -0.575; // zPlus = -0.575; // -0.75
           } else if (currentItemSelected.itemName === "block") {
@@ -969,9 +969,9 @@ export default function Scene({
             yPlus = 1.5; // yPlus = 1.25; // 1.25
             zPlus = -1.75; // zPlus = -2.5; // -2.1
           } else if (currentItemSelected.itemName === "squatter") {
-            xPlus = 1.25; // xPlus = 1.95; // 1.75
-            yPlus = 0.75; // yPlus = 0.75; // 0.5
-            zPlus = 1.15; // zPlus = 1.15; // 1
+            xPlus = 1.75; // xPlus = 1.95; // 1.75
+            yPlus = 0.5; // yPlus = 0.75; // 0.5
+            zPlus = 0.6375; // zPlus = 1.15; // 1
           } else if (currentItemSelected.itemName === "shelfA16") {
             xPlus = 1.5; // 1 // 1.5
             yPlus = 2; // 1.75 // 1.25
