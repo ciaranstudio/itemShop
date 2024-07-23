@@ -56,7 +56,7 @@ export async function getImageRecord(id) {
   return imageRecord ?? null;
 }
 
-export async function updateImageRecord(id, updates, favorite) {
+export async function updateImageRecord(id, updates, updateImagesCheck) {
   let imageRecord = getImageRecord(id);
   if (!imageRecord) throw new Error("No image record found for", id);
 
@@ -67,11 +67,42 @@ export async function updateImageRecord(id, updates, favorite) {
   );
   // Update Firestore with the URLs array
   try {
-    if (!favorite) {
+    if (updateImagesCheck) {
       await setDoc(
         docRef,
         {
           imgPath: updates.imgPath,
+        },
+        { merge: true },
+      ).then((r) => {
+        console.log(
+          "updating Firestore document with final imgPath array: done",
+        );
+      });
+    }
+    await updateDoc(docRef, updates);
+  } catch (err) {
+    alert(err);
+  }
+  return imageRecord;
+}
+
+export async function updateImageRecordFav(id, updates, favorite) {
+  let imageRecord = getImageRecord(id);
+  if (!imageRecord) throw new Error("No image record found for", id);
+
+  const docRef = doc(db, "imageRecords", id);
+  console.log(
+    "updates to send to Firebase (from update function in 'imageRecords'): ",
+    updates,
+  );
+  // Update Firestore with the URLs array
+  try {
+    if (favorite) {
+      await setDoc(
+        docRef,
+        {
+          favorite: updates.favorite,
         },
         { merge: true },
       ).then((r) => {

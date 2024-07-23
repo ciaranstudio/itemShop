@@ -4,6 +4,7 @@ import { updateImageRecord } from "../utils/records.js";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
+import Checkbox from "@mui/material/Checkbox";
 import { useOptionStore } from "../store/useOptionStore.tsx";
 import {
   getStorage,
@@ -15,13 +16,21 @@ import {
 // TODO: Create toggle in edit form to enable or disable the Storage upload / file handling aspect of this,
 // no need for it if image has not been updated.
 export async function action({ request, params }) {
+  // state from store
+  // const updateImgPathEdit = useOptionStore((state) => state.updateImgPathEdit);
+
   const formData = await request.formData();
   const imageFiles = [];
   let routeFolder = "";
+  let updateImagesCheck = false;
   for (const key of formData.keys()) {
     console.log("key: ", key);
     if (key.startsWith("route")) {
       routeFolder = formData.get(key);
+      // console.log("routeFolder: ", routeFolder);
+    }
+    if (key.startsWith("imgUpdate")) {
+      updateImagesCheck = formData.get(key);
       // console.log("routeFolder: ", routeFolder);
     }
     if (key.startsWith("imgPath")) {
@@ -30,9 +39,7 @@ export async function action({ request, params }) {
       imageFiles.push(file);
     }
   }
-
   const promises = [];
-
   for (var i = 0; i < imageFiles.length; i++) {
     const file = imageFiles[i];
     if (file !== null) {
@@ -52,7 +59,6 @@ export async function action({ request, params }) {
   //   "Prepped photos (downloadURLs) for Firebase Storage upload: ",
   //   photos,
   // );
-
   const updates = Object.fromEntries(formData);
   for (var key in updates) {
     if (updates.hasOwnProperty(key)) {
@@ -60,17 +66,24 @@ export async function action({ request, params }) {
       if (key.startsWith("imgPath")) delete updates[key];
     }
   }
-  Object.defineProperty(updates, "imgPath", { value: photos });
+  if (updateImagesCheck)
+    Object.defineProperty(updates, "imgPath", { value: photos });
   // console.log("Updates in Edit formData action: ", updates);
-
-  await updateImageRecord(params.imageRecordId, updates, false);
+  await updateImageRecord(params.imageRecordId, updates, updateImagesCheck);
   return redirect(`/admin/records/${params.imageRecordId}`);
 }
 
 // const ariaLabel = { "aria-label": "image file upload" };
 
 export default function EditRecord() {
+  // state from store
+  // const updateImgPathEdit = useOptionStore((state) => state.updateImgPathEdit);
+
+  // action from store
   const setStoreOpen = useOptionStore((state) => state.setOpen);
+  // const setUpdateImgPathEdit = useOptionStore(
+  //   (state) => state.setUpdateImgPathEdit,
+  // );
 
   const { imageRecord } = useLoaderData();
   const navigate = useNavigate();
@@ -81,6 +94,21 @@ export default function EditRecord() {
     setFileInputArray(Array(fileInputCount).fill(0));
     setStoreOpen(true);
   }, [fileInputCount]);
+
+  const [checked, setChecked] = useState(false);
+
+  const handleCheckBoxClick = (event) => {
+    setChecked((prev) => !prev);
+  };
+
+  // useEffect(() => {
+  //   console.log("checked: ", checked);
+  //   setUpdateImgPathEdit(checked);
+  // }, [checked]);
+
+  // useEffect(() => {
+  //   console.log("updateImgPathEdit: ", updateImgPathEdit);
+  // }, [updateImgPathEdit]);
 
   return (
     <>
@@ -133,10 +161,16 @@ export default function EditRecord() {
               onClick={() => {
                 setFileInputCount((prev) => prev + 1);
               }}
-              sx={{ my: 1 }}
+              sx={{ my: { sm: 1 } }}
             >
               Add image
             </Button>
+            <Checkbox
+              onClick={handleCheckBoxClick}
+              inputProps={{ "aria-label": "controlled" }}
+              name="imgUpdateCheckbox"
+              checked={checked}
+            />
           </Box>
           <Box
             sx={{
@@ -179,7 +213,7 @@ export default function EditRecord() {
               defaultValue={imageRecord.route}
               name="route"
               size="small"
-              sx={{ mr: 1, mb: 1, input: { color: "#607D8B" } }}
+              sx={{ mr: 1, input: { color: "#607D8B" } }}
             />
           </Box>
 
