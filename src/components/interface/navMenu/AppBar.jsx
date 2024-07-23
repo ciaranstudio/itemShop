@@ -18,6 +18,7 @@ import { useOptionStore } from "../../../store/useOptionStore.tsx";
 import { useSnipcart } from "use-snipcart";
 import { goTo } from "../../../utils/goTo.js";
 import { PAGES } from "../../../data/constants.js";
+import PhotoNavControls from "../PhotoNavControls.jsx";
 
 function ResponsiveAppBar({ theme }) {
   // state from store
@@ -327,6 +328,7 @@ function ResponsiveAppBar({ theme }) {
               </Tooltip>
             </Box>
           </Toolbar>
+          <PhotoNavControls />
         </Container>
       </AppBar>
     </>

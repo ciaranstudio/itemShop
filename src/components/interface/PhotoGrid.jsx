@@ -54,10 +54,8 @@ export default function PhotoGrid({ theme }) {
       <div
         className="info"
         style={{
-          paddingBottom: "1rem",
           overflow: "auto",
           pointerEvents: open ? "auto" : "none",
-          marginTop: "0.5rem",
         }}
       >
         {selectedImage === null && data ? (
