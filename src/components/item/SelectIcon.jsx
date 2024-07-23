@@ -50,7 +50,8 @@ export const SelectIcon = ({
                   display:
                     currentItemName === itemName &&
                     currentPartName === partName &&
-                    !open
+                    !open &&
+                    !showBackground
                       ? "block"
                       : "none",
                 }}
