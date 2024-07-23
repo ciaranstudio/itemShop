@@ -10,7 +10,7 @@ import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import CircleIcon from "@mui/icons-material/Circle";
 import BuyButton from "./BuyButton.jsx";
 import SplitButton from "./SplitButton.jsx";
-import useWindowDimensions from "../../hooks/useWindowDimensions.jsx";
+// import useWindowDimensions from "../../hooks/useWindowDimensions.jsx";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -31,7 +31,7 @@ export default function OptionsOnly({ theme, handlePartOption }) {
   const locationPathname = useOptionStore((state) => state.locationPathname);
 
   // helper hook
-  const { height, width } = useWindowDimensions();
+  // const { height, width } = useWindowDimensions();
 
   // useState
   const [stainSingle, setStainSingle] = useState("");
@@ -186,7 +186,9 @@ export default function OptionsOnly({ theme, handlePartOption }) {
           className="options"
           style={{
             display:
-              locationPathname === "/" && currentItemSelected !== unselectedItem
+              locationPathname === "/" &&
+              currentItemSelected !== unselectedItem &&
+              !showBackground
                 ? "block"
                 : "none",
           }}

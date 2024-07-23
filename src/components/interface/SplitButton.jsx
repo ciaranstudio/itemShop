@@ -60,14 +60,15 @@ export default function SplitButton({ randomCurrentItemParts }) {
       >
         <Button
           onClick={handleClick}
-          startIcon={<ShuffleOutlinedIcon color="primary" />}
+          // startIcon={<ShuffleOutlinedIcon color="primary" />}
           sx={{
             fontFamily: "var(--leva-fonts-mono)",
             backgroundColor: "rgb(233, 234, 233)",
           }}
           aria-label="shuffle colors randomly"
         >
-          {options[selectedIndex]}
+          {/* {options[selectedIndex]} */}
+          <ShuffleOutlinedIcon color="primary" />
         </Button>
         <Button
           size="small"

@@ -8,8 +8,10 @@ import ResponsiveAppBar from "./components/interface/navMenu/AppBar.jsx";
 import Experience from "./components/Experience.jsx";
 import { theme } from "./data/theme.js";
 import { DashContextProvider } from "./context/ViewContext";
+import { useOptionStore } from "./store/useOptionStore.tsx";
 
 function App() {
+  const open = useOptionStore((state) => state.open);
   return (
     <>
       <DashContextProvider>
@@ -18,7 +20,9 @@ function App() {
           <ResponsiveAppBar theme={theme} />
           <Experience theme={theme} />
         </SnipcartProvider>
-        <div id="footer">Eli Gfell Studio</div>
+        <div id="footer" style={{ display: open ? "none" : "block" }}>
+          Eli Gfell Studio
+        </div>
       </DashContextProvider>
     </>
   );

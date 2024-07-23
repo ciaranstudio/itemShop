@@ -125,14 +125,13 @@ img {
   transform: translate(-50%, -50%);
   text-align: center;
   background: transparent;
-
   border-radius: 0.25rem;
   pointer-events: none;
 }
 
 .options {
   position: absolute;
-  width: 80svw;
+  width: 100svw;
   height: 80svh;
   top: 50%;
   left: 50%;

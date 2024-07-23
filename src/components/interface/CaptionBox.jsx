@@ -28,7 +28,7 @@ export default function CaptionBox() {
               }}
               aria-label="toggle artwork caption info"
             >
-              <InfoOutlinedIcon fontSize="medium" color="primary" />
+              <InfoOutlinedIcon fontSize="medium" color="secondary" />
             </IconButton>
           </span>
         </span>
@@ -89,7 +89,7 @@ export default function CaptionBox() {
                     }}
                     aria-label="toggle artwork caption info"
                   >
-                    <InfoOutlinedIcon fontSize="medium" color="primary" />
+                    <InfoOutlinedIcon fontSize="medium" color="secondary" />
                   </IconButton>
                 </span>
               </span>
