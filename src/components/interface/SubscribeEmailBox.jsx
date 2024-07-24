@@ -4,11 +4,11 @@ import { ThemeProvider } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import IconButton from "@mui/material/IconButton";
+import Button from "@mui/material/Button";
 // import { useOptionStore } from "../../store/useOptionStore.tsx";
 import { goTo } from "../../utils/goTo.js";
 import { theme } from "../../data/theme.js";
 // import Box from "@mui/material/Box";
-// import Button from "@mui/material/Button";
 // import TextField from "@mui/material/TextField";
 // import {
 //   Form,
@@ -87,8 +87,21 @@ export default function SubscribeEmailBox() {
             }}
             color="prmimary"
           >
-            Check back next week to sign up for our pre-sale mailing list.
+            Click below to sign up:
           </Typography>
+          <Button
+            variant="outlined"
+            sx={{
+              pointerEvents: "auto",
+              mt: 1,
+              backgroundColor: "rgb(233, 234, 233)",
+            }}
+            onClick={() => {
+              window.open("http://eepurl.com/iUjMH-/", "_blank", "noreferrer");
+            }}
+          >
+            Sign up
+          </Button>
         </div>
         <div
           id="description"
