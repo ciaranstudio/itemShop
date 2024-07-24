@@ -87,8 +87,10 @@ export const ITEM_PARTS_ANIM = {
 // optionBox
 // option box position (Y) constants
 export const OPTION_BOX = {
-  verticalPositionMobile: 8,
-  verticalPositionDesktop: 4,
+  verticalPositionMobileSmall: 18,
+  verticalPositionMobileReg: 4,
+  verticalPositionDesktop: 0,
+  landscapePositionAll: 60,
 };
 
 // router
