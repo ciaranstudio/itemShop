@@ -164,6 +164,8 @@ export default function EditRecord() {
                   {imageRecord.imgPath.length}
                   {imageRecord.imgPath.length === 1 ? " image " : " images "}
                   uploaded
+                  {/* : {imageRecord.imgPath} */}
+                  {/* <img src={imageRecord.imgPath}></img> */}
                 </>
               )}
             </Typography>
@@ -248,6 +250,32 @@ export default function EditRecord() {
               size="small"
               sx={{ mr: 1, input: { color: "#607D8B" } }}
             />
+          </Box>
+          <Box
+            sx={{
+              maxWidth: "md",
+            }}
+          >
+            <TextField
+              id="edit_order"
+              label="Order"
+              name="order"
+              defaultValue={imageRecord.order}
+              size="small"
+              sx={{
+                mr: 1,
+                mb: { xs: 1, sm: 1 },
+                input: { color: "#546E7A" },
+              }}
+            />
+            {/* <TextField
+              id="edit_parts"
+              label="parts"
+              name="parts"
+              defaultValue={imageRecord.parts}
+              size="small"
+              sx={{ mr: 1, input: { color: "#546E7A" } }}
+            /> */}
           </Box>
 
           <TextField
