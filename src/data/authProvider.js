@@ -1,5 +1,6 @@
 import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { auth } from "../firebaseConfig";
+import { redirect } from "react-router-dom";
 
 export const authProvider = {
   isAuthenticated: false,

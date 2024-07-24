@@ -140,12 +140,18 @@ export async function getRouteImages(route) {
   const imageRecordsRef = collection(db, "imageRecords");
   const q = query(imageRecordsRef, where("route", "==", route));
   const querySnapshot = await getDocs(q);
-  // const querySnapshot = await getDocs(collection(db, "imageRecords"));
   let imageRecords = [];
   querySnapshot.forEach((doc) => {
     imageRecords.push({ ...doc.data(), id: doc.id });
   });
-  return imageRecords.sort(sortBy("title", "createdAt"));
+  const compare = (a, b) => {
+    if (Number(a.order) > Number(b.order)) return 1;
+    if (Number(a.order) < Number(b.order)) return -1;
+    return 0;
+  };
+  console.log("imageRecords (sorted): ", imageRecords.sort(compare));
+  return imageRecords.sort(compare);
+  // return imageRecords.sort(sortBy("order", "createdAt"));
 }
 
 // export async function createSubscribedEmailRecord() {

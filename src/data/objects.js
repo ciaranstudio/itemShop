@@ -66,14 +66,14 @@ export const objects = {
       ),
     ],
     [
-      {
-        label: "(In Progress) Gramps - no stain",
-        imgPath: "./placeholderPhotos/grampsBare.jpeg",
-      },
-      {
-        label: "(In Progress) Gramps - black stain",
-        imgPath: "./placeholderPhotos/grampsBlack.jpeg",
-      },
+      // {
+      //   label: "(In Progress) Gramps - no stain",
+      //   imgPath: "./placeholderPhotos/grampsBare.jpeg",
+      // },
+      // {
+      //   label: "(In Progress) Gramps - black stain",
+      //   imgPath: "./placeholderPhotos/grampsBlack.jpeg",
+      // },
     ],
   ),
   squatter: new Item(
@@ -120,8 +120,8 @@ export const objects = {
     ],
     [
       {
-        label: "(In Progress) Squatter - no stain",
-        imgPath: "./placeholderPhotos/squatterBare.jpeg",
+        // label: "(In Progress) Squatter - no stain",
+        // imgPath: "./placeholderPhotos/squatterBare.jpeg",
       },
     ],
   ),
@@ -176,8 +176,8 @@ export const objects = {
     ],
     [
       {
-        label: "(In Progress) Block - no stain",
-        imgPath: "./placeholderPhotos/blockBare.jpeg",
+        // label: "(In Progress) Block - no stain",
+        // imgPath: "./placeholderPhotos/blockBare.jpeg",
       },
     ],
   ),
@@ -238,22 +238,22 @@ export const objects = {
       ),
     ],
     [
-      {
-        label: "(In Progress) Block - no stain",
-        imgPath: "./placeholderPhotos/blockBare.jpeg",
-      },
-      {
-        label: "(In Progress) Gramps - no stain",
-        imgPath: "./placeholderPhotos/grampsBare.jpeg",
-      },
-      {
-        label: "(In Progress) Gramps - black stain",
-        imgPath: "./placeholderPhotos/grampsBlack.jpeg",
-      },
-      {
-        label: "(In Progress) Squatter - no stain",
-        imgPath: "./placeholderPhotos/squatterBare.jpeg",
-      },
+      // {
+      //   label: "(In Progress) Block - no stain",
+      //   imgPath: "./placeholderPhotos/blockBare.jpeg",
+      // },
+      // {
+      //   label: "(In Progress) Gramps - no stain",
+      //   imgPath: "./placeholderPhotos/grampsBare.jpeg",
+      // },
+      // {
+      //   label: "(In Progress) Gramps - black stain",
+      //   imgPath: "./placeholderPhotos/grampsBlack.jpeg",
+      // },
+      // {
+      //   label: "(In Progress) Squatter - no stain",
+      //   imgPath: "./placeholderPhotos/squatterBare.jpeg",
+      // },
     ],
   ),
   shelfA16: new Item(
@@ -292,22 +292,22 @@ export const objects = {
       ),
     ],
     [
-      {
-        label: "(In Progress) Block - no stain",
-        imgPath: "./placeholderPhotos/blockBare.jpeg",
-      },
-      {
-        label: "(In Progress) Gramps - no stain",
-        imgPath: "./placeholderPhotos/grampsBare.jpeg",
-      },
-      {
-        label: "(In Progress) Gramps - black stain",
-        imgPath: "./placeholderPhotos/grampsBlack.jpeg",
-      },
-      {
-        label: "(In Progress) Squatter - no stain",
-        imgPath: "./placeholderPhotos/squatterBare.jpeg",
-      },
+      // {
+      //   label: "(In Progress) Block - no stain",
+      //   imgPath: "./placeholderPhotos/blockBare.jpeg",
+      // },
+      // {
+      //   label: "(In Progress) Gramps - no stain",
+      //   imgPath: "./placeholderPhotos/grampsBare.jpeg",
+      // },
+      // {
+      //   label: "(In Progress) Gramps - black stain",
+      //   imgPath: "./placeholderPhotos/grampsBlack.jpeg",
+      // },
+      // {
+      //   label: "(In Progress) Squatter - no stain",
+      //   imgPath: "./placeholderPhotos/squatterBare.jpeg",
+      // },
     ],
   ),
   shelfA32: new Item(
@@ -346,22 +346,22 @@ export const objects = {
       ),
     ],
     [
-      {
-        label: "(In Progress) Block - no stain",
-        imgPath: "./placeholderPhotos/blockBare.jpeg",
-      },
-      {
-        label: "(In Progress) Gramps - no stain",
-        imgPath: "./placeholderPhotos/grampsBare.jpeg",
-      },
-      {
-        label: "(In Progress) Gramps - black stain",
-        imgPath: "./placeholderPhotos/grampsBlack.jpeg",
-      },
-      {
-        label: "(In Progress) Squatter - no stain",
-        imgPath: "./placeholderPhotos/squatterBare.jpeg",
-      },
+      // {
+      //   label: "(In Progress) Block - no stain",
+      //   imgPath: "./placeholderPhotos/blockBare.jpeg",
+      // },
+      // {
+      //   label: "(In Progress) Gramps - no stain",
+      //   imgPath: "./placeholderPhotos/grampsBare.jpeg",
+      // },
+      // {
+      //   label: "(In Progress) Gramps - black stain",
+      //   imgPath: "./placeholderPhotos/grampsBlack.jpeg",
+      // },
+      // {
+      //   label: "(In Progress) Squatter - no stain",
+      //   imgPath: "./placeholderPhotos/squatterBare.jpeg",
+      // },
     ],
   ),
   shelfB16: new Item(
@@ -407,22 +407,22 @@ export const objects = {
       ),
     ],
     [
-      {
-        label: "(In Progress) Block - no stain",
-        imgPath: "./placeholderPhotos/blockBare.jpeg",
-      },
-      {
-        label: "(In Progress) Gramps - no stain",
-        imgPath: "./placeholderPhotos/grampsBare.jpeg",
-      },
-      {
-        label: "(In Progress) Gramps - black stain",
-        imgPath: "./placeholderPhotos/grampsBlack.jpeg",
-      },
-      {
-        label: "(In Progress) Squatter - no stain",
-        imgPath: "./placeholderPhotos/squatterBare.jpeg",
-      },
+      // {
+      //   label: "(In Progress) Block - no stain",
+      //   imgPath: "./placeholderPhotos/blockBare.jpeg",
+      // },
+      // {
+      //   label: "(In Progress) Gramps - no stain",
+      //   imgPath: "./placeholderPhotos/grampsBare.jpeg",
+      // },
+      // {
+      //   label: "(In Progress) Gramps - black stain",
+      //   imgPath: "./placeholderPhotos/grampsBlack.jpeg",
+      // },
+      // {
+      //   label: "(In Progress) Squatter - no stain",
+      //   imgPath: "./placeholderPhotos/squatterBare.jpeg",
+      // },
     ],
   ),
   shelfB32: new Item(
@@ -468,22 +468,22 @@ export const objects = {
       ),
     ],
     [
-      {
-        label: "(In Progress) Block - no stain",
-        imgPath: "./placeholderPhotos/blockBare.jpeg",
-      },
-      {
-        label: "(In Progress) Gramps - no stain",
-        imgPath: "./placeholderPhotos/grampsBare.jpeg",
-      },
-      {
-        label: "(In Progress) Gramps - black stain",
-        imgPath: "./placeholderPhotos/grampsBlack.jpeg",
-      },
-      {
-        label: "(In Progress) Squatter - no stain",
-        imgPath: "./placeholderPhotos/squatterBare.jpeg",
-      },
+      // {
+      //   label: "(In Progress) Block - no stain",
+      //   imgPath: "./placeholderPhotos/blockBare.jpeg",
+      // },
+      // {
+      //   label: "(In Progress) Gramps - no stain",
+      //   imgPath: "./placeholderPhotos/grampsBare.jpeg",
+      // },
+      // {
+      //   label: "(In Progress) Gramps - black stain",
+      //   imgPath: "./placeholderPhotos/grampsBlack.jpeg",
+      // },
+      // {
+      //   label: "(In Progress) Squatter - no stain",
+      //   imgPath: "./placeholderPhotos/squatterBare.jpeg",
+      // },
     ],
   ),
 };
@@ -502,22 +502,22 @@ export const unselectedItem = new Item(
   { x: 0, y: 0, z: 0 }, // position
   [new Part("", "", "", "", "")], // parts
   [
-    {
-      label: "(In Progress) Block - no stain",
-      imgPath: "./placeholderPhotos/blockBare.jpeg",
-    },
-    {
-      label: "(In Progress) Gramps - no stain",
-      imgPath: "./placeholderPhotos/grampsBare.jpeg",
-    },
-    {
-      label: "(In Progress) Gramps - black stain",
-      imgPath: "./placeholderPhotos/grampsBlack.jpeg",
-    },
-    {
-      label: "(In Progress) Squatter - no stain",
-      imgPath: "./placeholderPhotos/squatterBare.jpeg",
-    },
+    // {
+    //   label: "(In Progress) Block - no stain",
+    //   imgPath: "./placeholderPhotos/blockBare.jpeg",
+    // },
+    // {
+    //   label: "(In Progress) Gramps - no stain",
+    //   imgPath: "./placeholderPhotos/grampsBare.jpeg",
+    // },
+    // {
+    //   label: "(In Progress) Gramps - black stain",
+    //   imgPath: "./placeholderPhotos/grampsBlack.jpeg",
+    // },
+    // {
+    //   label: "(In Progress) Squatter - no stain",
+    //   imgPath: "./placeholderPhotos/squatterBare.jpeg",
+    // },
   ],
 );
 
@@ -533,70 +533,52 @@ export const shopItems = [
 ];
 
 export const allImages = [
-  {
-    label: "(In Progress) Block - no stain",
-    imgPath: "./placeholderPhotos/blockBare.jpeg",
-  },
-  {
-    label: "(In Progress) Gramps - no stain",
-    imgPath: "./placeholderPhotos/grampsBare.jpeg",
-  },
-  {
-    label: "(In Progress) Gramps - black stain",
-    imgPath: "./placeholderPhotos/grampsBlack.jpeg",
-  },
-  {
-    label: "(In Progress) Squatter - no stain",
-    imgPath: "./placeholderPhotos/squatterBare.jpeg",
-  },
-  {
-    label: "(In Progress) Block - no stain",
-    imgPath: "./placeholderPhotos/blockBare.jpeg",
-  },
-  {
-    label: "(In Progress) Gramps - no stain",
-    imgPath: "./placeholderPhotos/grampsBare.jpeg",
-  },
-  {
-    label: "(In Progress) Gramps - black stain",
-    imgPath: "./placeholderPhotos/grampsBlack.jpeg",
-  },
-  {
-    label: "(In Progress) Squatter - no stain",
-    imgPath: "./placeholderPhotos/squatterBare.jpeg",
-  },
-  {
-    label: "(In Progress) Block - no stain",
-    imgPath: "./placeholderPhotos/blockBare.jpeg",
-  },
-  {
-    label: "(In Progress) Gramps - no stain",
-    imgPath: "./placeholderPhotos/grampsBare.jpeg",
-  },
-  {
-    label: "(In Progress) Gramps - black stain",
-    imgPath: "./placeholderPhotos/grampsBlack.jpeg",
-  },
-  {
-    label: "(In Progress) Squatter - no stain",
-    imgPath: "./placeholderPhotos/squatterBare.jpeg",
-  },
+  // {
+  //   label: "(In Progress) Block - no stain",
+  //   imgPath: "./placeholderPhotos/blockBare.jpeg",
+  // },
+  // {
+  //   label: "(In Progress) Gramps - no stain",
+  //   imgPath: "./placeholderPhotos/grampsBare.jpeg",
+  // },
+  // {
+  //   label: "(In Progress) Gramps - black stain",
+  //   imgPath: "./placeholderPhotos/grampsBlack.jpeg",
+  // },
+  // {
+  //   label: "(In Progress) Squatter - no stain",
+  //   imgPath: "./placeholderPhotos/squatterBare.jpeg",
+  // },
+  // {
+  //   label: "(In Progress) Block - no stain",
+  //   imgPath: "./placeholderPhotos/blockBare.jpeg",
+  // },
+  // {
+  //   label: "(In Progress) Gramps - no stain",
+  //   imgPath: "./placeholderPhotos/grampsBare.jpeg",
+  // },
+  // {
+  //   label: "(In Progress) Gramps - black stain",
+  //   imgPath: "./placeholderPhotos/grampsBlack.jpeg",
+  // },
+  // {
+  //   label: "(In Progress) Squatter - no stain",
+  //   imgPath: "./placeholderPhotos/squatterBare.jpeg",
+  // },
+  // {
+  //   label: "(In Progress) Block - no stain",
+  //   imgPath: "./placeholderPhotos/blockBare.jpeg",
+  // },
+  // {
+  //   label: "(In Progress) Gramps - no stain",
+  //   imgPath: "./placeholderPhotos/grampsBare.jpeg",
+  // },
+  // {
+  //   label: "(In Progress) Gramps - black stain",
+  //   imgPath: "./placeholderPhotos/grampsBlack.jpeg",
+  // },
+  // {
+  //   label: "(In Progress) Squatter - no stain",
+  //   imgPath: "./placeholderPhotos/squatterBare.jpeg",
+  // },
 ];
-
-// structure for image object:
-// {
-//   id: 0000,
-//   isShopItem: false,
-//   isArtwork: false,
-//   isCustomWork: false,
-//   price: 0,
-//   label: "",
-//   name: "",
-//   materials: "",
-//   year: "",
-//   title: "",
-//   location: "",
-//   imgPath: "./placeholderPhotos/squatterBare.jpeg",
-//   hasSubFolder: true,
-//   subFolderImgPaths: ["./placeholderPhotos/squatterBare.jpeg", "./placeholderPhotos/squatterBare.jpeg", "./placeholderPhotos/squatterBare.jpeg"]
-// },

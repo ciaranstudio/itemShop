@@ -96,6 +96,12 @@ export default function Record() {
         <Typography variant="subtitle1" color="inherit" sx={{ mt: 0, py: 0 }}>
           {imageRecord.materials && <>{imageRecord.materials}</>}
         </Typography>
+        <Typography variant="subtitle1" color="inherit" sx={{ mt: 0, py: 0 }}>
+          {imageRecord.size && <>{imageRecord.size}</>}
+        </Typography>
+        <Typography variant="subtitle1" color="inherit" sx={{ mt: 0, py: 0 }}>
+          {imageRecord.order && <>#{imageRecord.order}</>}
+        </Typography>
         <Typography variant="subtitle1" color="inherit" sx={{ mt: 0 }}>
           {imageRecord.route && <>{imageRecord.route}</>}
         </Typography>

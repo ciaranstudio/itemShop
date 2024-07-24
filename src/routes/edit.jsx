@@ -261,10 +261,10 @@ export default function EditRecord() {
             }}
           >
             <TextField
-              id="edit_order"
-              label="Order"
-              name="order"
-              defaultValue={imageRecord.order}
+              id="edit_size"
+              label="Size"
+              name="size"
+              defaultValue={imageRecord.size}
               size="small"
               sx={{
                 mr: 1,
@@ -272,14 +272,14 @@ export default function EditRecord() {
                 input: { color: "#546E7A" },
               }}
             />
-            {/* <TextField
-              id="edit_parts"
-              label="parts"
-              name="parts"
-              defaultValue={imageRecord.parts}
+            <TextField
+              id="edit_order"
+              label="Order"
+              name="order"
+              defaultValue={imageRecord.order}
               size="small"
               sx={{ mr: 1, input: { color: "#546E7A" } }}
-            /> */}
+            />
           </Box>
 
           <TextField

@@ -60,14 +60,15 @@ export default function CaptionBox() {
               border: "0.085rem solid rgb(155, 155, 155)",
               textAlign: "center",
               padding: "1rem",
-              paddingTop: "0.5rem",
+              paddingTop: "0.75rem",
               paddingBottom: "2.5rem",
               backgroundColor: "rgb(233, 234, 233)",
+              maxWidth: "22rem",
             }}
           >
             {selectedImage && (
               <>
-                <Typography variant="subtitle1" color="inherit">
+                <Typography variant="subtitle2" color="inherit">
                   {selectedImage.title && selectedImage.route === "shop" ? (
                     selectedImage.title.substring(
                       0,
@@ -84,6 +85,14 @@ export default function CaptionBox() {
                 </Typography>
                 <Typography variant="subtitle2" color="inherit">
                   {selectedImage.materials && <>{selectedImage.materials}</>}
+                </Typography>
+                <Typography variant="subtitle2" color="inherit">
+                  {selectedImage.size && <>{selectedImage.size}</>}
+                </Typography>
+                <Typography variant="subtitle2" color="inherit">
+                  {selectedImage.description && (
+                    <>{selectedImage.description}</>
+                  )}
                 </Typography>
                 <span
                   style={{
