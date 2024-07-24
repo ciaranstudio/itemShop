@@ -5,6 +5,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Checkbox from "@mui/material/Checkbox";
+import Typography from "@mui/material/Typography";
 import { useOptionStore } from "../store/useOptionStore.tsx";
 import {
   getStorage,
@@ -132,46 +133,78 @@ export default function EditRecord() {
               </>
             )}
           </Box> */}
+
           <Box
             sx={{
               maxWidth: "md",
+              m: 0,
             }}
           >
-            {fileInputArray.map((file, index) => {
-              return (
-                <TextField
-                  key={index}
-                  id={`edit_file${index}`}
-                  // label={`${file.imgPath}`}
-                  name={`imgPath${index}`}
-                  variant="outlined"
-                  type="file"
-                  // inputProps={{
-                  //   multiple: true,
-                  //   accept: "image/*",
-                  // }}
-                  sx={{ my: 1, mr: 1 }}
-                />
-              );
-            })}
-            <Button
-              component="button"
-              variant="outlined"
-              color="info"
-              onClick={() => {
-                setFileInputCount((prev) => prev + 1);
+            <Box
+              sx={{
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "start",
               }}
-              sx={{ my: { sm: 1 } }}
             >
-              Add image
-            </Button>
-            <Checkbox
-              onClick={handleCheckBoxClick}
-              inputProps={{ "aria-label": "controlled" }}
-              name="imgUpdateCheckbox"
-              checked={checked}
-            />
+              <Checkbox
+                onClick={handleCheckBoxClick}
+                inputProps={{ "aria-label": "controlled" }}
+                name="imgUpdateCheckbox"
+                checked={checked}
+                sx={{ p: 0, mr: 1 }}
+              />
+              <Typography variant="body2" color="inherit">
+                Update image(s)?
+              </Typography>
+            </Box>
+            <Typography variant="body2" color="inherit">
+              {imageRecord.imgPath && (
+                <>
+                  {imageRecord.imgPath.length}
+                  {imageRecord.imgPath.length === 1 ? " image " : " images "}
+                  uploaded
+                </>
+              )}
+            </Typography>
           </Box>
+
+          {checked && (
+            <Box
+              sx={{
+                maxWidth: "md",
+              }}
+            >
+              {fileInputArray.map((file, index) => {
+                return (
+                  <TextField
+                    key={index}
+                    id={`edit_file${index}`}
+                    name={`imgPath${index}`}
+                    variant="outlined"
+                    type="file"
+                    // inputProps={{
+                    //   multiple: true,
+                    //   accept: "image/*",
+                    // }}
+                    sx={{ mb: 1, mr: 1 }}
+                  />
+                );
+              })}
+              <Button
+                component="button"
+                variant="outlined"
+                color="info"
+                onClick={() => {
+                  setFileInputCount((prev) => prev + 1);
+                }}
+                sx={{ my: { sm: 1 } }}
+              >
+                Add image
+              </Button>
+            </Box>
+          )}
+
           <Box
             sx={{
               maxWidth: "md",
