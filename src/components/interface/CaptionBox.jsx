@@ -5,6 +5,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import useWindowDimensions from "../../hooks/useWindowDimensions.jsx";
 import { useOptionStore } from "../../store/useOptionStore.tsx";
 import { theme } from "../../data/theme.js";
@@ -59,20 +60,24 @@ export default function CaptionBox() {
               border: "0.085rem solid rgb(155, 155, 155)",
               textAlign: "center",
               padding: "1rem",
+              paddingTop: "0.5rem",
               paddingBottom: "2.5rem",
               backgroundColor: "rgb(233, 234, 233)",
             }}
           >
             {selectedImage && (
               <>
-                <Typography variant="subtitle2" color="inherit">
-                  {selectedImage.title && <>{selectedImage.title}</>}
-                </Typography>
-                <Typography variant="subtitle2" color="inherit">
-                  {selectedImage.title && <>{selectedImage.title}</>}
-                </Typography>
-                <Typography variant="subtitle2" color="inherit">
-                  {selectedImage.title && <>{selectedImage.title}</>}
+                <Typography variant="subtitle1" color="inherit">
+                  {selectedImage.title && selectedImage.route === "shop" ? (
+                    selectedImage.title.substring(
+                      0,
+                      selectedImage.title.indexOf("_"),
+                    )
+                  ) : selectedImage.title && selectedImage.route !== "shop" ? (
+                    selectedImage.title
+                  ) : (
+                    <></>
+                  )}
                 </Typography>
                 <Typography variant="subtitle2" color="inherit">
                   {selectedImage.year && <>{selectedImage.year}</>}
@@ -95,7 +100,7 @@ export default function CaptionBox() {
                       }}
                       aria-label="toggle artwork caption info"
                     >
-                      <InfoOutlinedIcon fontSize="medium" color="secondary" />
+                      <CloseOutlinedIcon fontSize="small" color="warning" />
                     </IconButton>
                   </span>
                 </span>

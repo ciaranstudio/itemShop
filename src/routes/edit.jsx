@@ -168,8 +168,7 @@ export default function EditRecord() {
                 <>
                   {imageRecord.imgPath.length}
                   {imageRecord.imgPath.length === 1 ? " image " : " images "}
-                  uploaded
-                  {/* : {imageRecord.imgPath} */}
+                  uploaded : {imageRecord.imgPath}
                   {/* <img src={imageRecord.imgPath}></img> */}
                 </>
               )}
