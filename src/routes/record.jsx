@@ -1,5 +1,5 @@
 import { Form, useLoaderData, useFetcher } from "react-router-dom";
-import { getImageRecord, updateImageRecordFav } from "../utils/records";
+import { getImageRecord, updateImageRecord } from "../utils/records";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -9,11 +9,12 @@ import IconButton from "@mui/material/IconButton";
 
 export async function action({ request, params }) {
   let formData = await request.formData();
-  return updateImageRecordFav(
+  return updateImageRecord(
     params.imageRecordId,
     {
       favorite: formData.get("favorite") === "true",
     },
+    false,
     true,
   );
 }

@@ -70,7 +70,12 @@ export async function action({ request, params }) {
   if (updateImagesCheck)
     Object.defineProperty(updates, "imgPath", { value: photos });
   // console.log("Updates in Edit formData action: ", updates);
-  await updateImageRecord(params.imageRecordId, updates, updateImagesCheck);
+  await updateImageRecord(
+    params.imageRecordId,
+    updates,
+    updateImagesCheck,
+    false,
+  );
   return redirect(`/admin/records/${params.imageRecordId}`);
 }
 

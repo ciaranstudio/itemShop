@@ -56,7 +56,12 @@ export async function getImageRecord(id) {
   return imageRecord ?? null;
 }
 
-export async function updateImageRecord(id, updates, updateImagesCheck) {
+export async function updateImageRecord(
+  id,
+  updates,
+  updateImagesCheck,
+  favorite,
+) {
   let imageRecord = getImageRecord(id);
   if (!imageRecord) throw new Error("No image record found for", id);
 
@@ -80,24 +85,6 @@ export async function updateImageRecord(id, updates, updateImagesCheck) {
         );
       });
     }
-    await updateDoc(docRef, updates);
-  } catch (err) {
-    alert(err);
-  }
-  return imageRecord;
-}
-
-export async function updateImageRecordFav(id, updates, favorite) {
-  let imageRecord = getImageRecord(id);
-  if (!imageRecord) throw new Error("No image record found for", id);
-
-  const docRef = doc(db, "imageRecords", id);
-  console.log(
-    "updates to send to Firebase (from update function in 'imageRecords'): ",
-    updates,
-  );
-  // Update Firestore with the URLs array
-  try {
     if (favorite) {
       await setDoc(
         docRef,
@@ -106,9 +93,7 @@ export async function updateImageRecordFav(id, updates, favorite) {
         },
         { merge: true },
       ).then((r) => {
-        console.log(
-          "updating Firestore document with final imgPath array: done",
-        );
+        console.log("updating Firestore document favorite prop value");
       });
     }
     await updateDoc(docRef, updates);
@@ -117,6 +102,35 @@ export async function updateImageRecordFav(id, updates, favorite) {
   }
   return imageRecord;
 }
+
+// export async function updateImageRecordFav(id, updates, favorite) {
+//   let imageRecord = getImageRecord(id);
+//   if (!imageRecord) throw new Error("No image record found for", id);
+
+//   const docRef = doc(db, "imageRecords", id);
+//   console.log(
+//     "updates to send to Firebase (from update function in 'imageRecords'): ",
+//     updates,
+//   );
+//   // Update Firestore with the URLs array
+//   try {
+//     if (favorite) {
+//       await setDoc(
+//         docRef,
+//         {
+//           favorite: updates.favorite,
+//         },
+//         { merge: true },
+//       ).then((r) => {
+//         console.log("updating Firestore document favorite prop value");
+//       });
+//     }
+//     await updateDoc(docRef, updates);
+//   } catch (err) {
+//     alert(err);
+//   }
+//   return imageRecord;
+// }
 
 export async function deleteImageRecord(id) {
   await deleteDoc(doc(db, "imageRecords", id));
