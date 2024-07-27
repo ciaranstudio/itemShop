@@ -14,6 +14,15 @@ export const TOAST = {
   color: "#212121",
 };
 
+// contact details for contact page
+export const CONTACT = {
+  address: "10252 Berea Rd, Cleveland, OH 44102",
+  email: "eligfellstudio@gmail.com",
+  phone: "330-524-7748",
+  emailSubject: "Contact from eligfell.com",
+  emailBody: "",
+};
+
 // lights
 // directional light constants
 export const LIGHT = {

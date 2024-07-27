@@ -101,11 +101,13 @@ img {
 }
 
 .shop-item-description {
+  position: relative;
   text-align: center;
   width: 20rem;
   background: transparent;
   border-radius: 0.25rem;
   pointer-events: none;
+  margin-top: 50svh;
 }
 
 .single-view {

@@ -68,7 +68,7 @@ export default function CaptionBox() {
           >
             {selectedImage && (
               <>
-                <Typography variant="subtitle2" color="inherit">
+                <Typography variant="subtitle2" color="inherit" sx={{ mb: 1 }}>
                   {selectedImage.title && selectedImage.route === "shop" ? (
                     selectedImage.title.substring(
                       0,
@@ -80,16 +80,20 @@ export default function CaptionBox() {
                     <></>
                   )}
                 </Typography>
-                <Typography variant="subtitle2" color="inherit">
+                <Typography variant="body2" color="inherit" sx={{ mb: 1 }}>
                   {selectedImage.year && <>{selectedImage.year}</>}
                 </Typography>
-                <Typography variant="subtitle2" color="inherit">
+                <Typography variant="body2" color="inherit" sx={{ mb: 1 }}>
                   {selectedImage.materials && <>{selectedImage.materials}</>}
                 </Typography>
-                <Typography variant="subtitle2" color="inherit">
+                <Typography variant="body2" color="inherit">
                   {selectedImage.size && <>{selectedImage.size}</>}
                 </Typography>
-                <Typography variant="subtitle2" color="inherit">
+                <Typography
+                  variant="caption"
+                  color="inherit"
+                  sx={{ mt: selectedImage.description ? 1 : 0 }}
+                >
                   {selectedImage.description && (
                     <>{selectedImage.description}</>
                   )}

@@ -26,7 +26,7 @@ export default function ItemDescBox() {
         <div
           id="title"
           style={{
-            color: theme.palette.info.main,
+            color: theme.palette.primary.main,
           }}
         >
           <IconButton
@@ -41,12 +41,13 @@ export default function ItemDescBox() {
             }}
             aria-label="close info box"
           >
-            <CloseOutlinedIcon color="info" fontSize={"small"} />
+            <CloseOutlinedIcon color="primary" fontSize={"small"} />
           </IconButton>
           <Typography
             variant="h6"
             sx={{
               fontSize: "1.125rem",
+              color: theme.palette.info.main,
             }}
           >
             {currentItemSelected.itemTitle}
@@ -77,7 +78,7 @@ export default function ItemDescBox() {
             variant="subtitle2"
             sx={{
               fontSize: "0.82rem",
-              color: theme.palette.info.main,
+              color: theme.palette.primary.main,
             }}
           >
             {currentItemSelected.size}

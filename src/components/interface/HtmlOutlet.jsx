@@ -20,7 +20,7 @@ export default function HtmlOutlet() {
     (state) => state.setPreviousItemSelected,
   );
   useEffect(() => {
-    console.log("selectedImage: ", selectedImage);
+    // console.log("selectedImage: ", selectedImage);
     if (selectedImage !== null) {
       if (selectedImage.route === "shop") {
         const tempSelectedTitle = selectedImage.title.substring(
@@ -30,7 +30,7 @@ export default function HtmlOutlet() {
         const titleMatch = (element) => element.itemTitle === tempSelectedTitle;
         // if (titleMatch) {
         const matchedItem = shopItems.find(titleMatch);
-        console.log("matched item from shop image click: ", matchedItem);
+        // console.log("matched item from shop image click: ", matchedItem);
         setPreviousItemSelected(currentItemSelected);
         setCurrentItemSelected(matchedItem);
         // }
@@ -38,14 +38,14 @@ export default function HtmlOutlet() {
     }
   }, [selectedImage]);
 
-  useEffect(() => {
-    console.log("selectedImage: ", selectedImage);
-    console.log("selectedImageIndex: ", selectedImageIndex);
-  }, [selectedImageIndex]);
+  // useEffect(() => {
+  //   console.log("selectedImage: ", selectedImage);
+  //   console.log("selectedImageIndex: ", selectedImageIndex);
+  // }, [selectedImageIndex]);
 
-  useEffect(() => {
-    console.log("currentItemSelected: ", currentItemSelected);
-  }, [currentItemSelected]);
+  // useEffect(() => {
+  //   console.log("currentItemSelected: ", currentItemSelected);
+  // }, [currentItemSelected]);
   return (
     <Html center position={[0, 0, 0]}>
       <ImagesRouter />

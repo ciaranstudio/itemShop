@@ -1,11 +1,13 @@
+import { CONTACT } from "../data/constants.js";
+
 const openUserEmail = (e) => {
   if (e) {
     e.preventDefault();
     e.stopPropagation();
   }
-  const email = "eligfellstudio@gmail.com";
-  const subject = "Contact from eligfell.com";
-  const emailBody = "";
+  const email = CONTACT.email;
+  const subject = CONTACT.emailSubject;
+  const emailBody = CONTACT.emailBody;
   document.location =
     "mailto:" + email + "?subject=" + subject + "&body=" + emailBody;
 };

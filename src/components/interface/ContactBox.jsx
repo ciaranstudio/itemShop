@@ -8,6 +8,7 @@ import { goTo } from "../../utils/goTo.js";
 import openUserEmail from "../../utils/openUserEmail.js";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import { theme } from "../../data/theme.js";
+import { CONTACT } from "../../data/constants.js";
 
 export default function ContactBox() {
   return (
@@ -22,7 +23,7 @@ export default function ContactBox() {
         <div
           id="title"
           style={{
-            color: theme.palette.info.main,
+            color: theme.palette.primary.main,
           }}
         >
           <IconButton
@@ -35,15 +36,16 @@ export default function ContactBox() {
               left: 0,
               padding: "0.5rem",
             }}
-            aria-label="close info box"
+            aria-label="close contact box"
           >
-            <CloseOutlinedIcon color="info" fontSize={"small"} />
+            <CloseOutlinedIcon color="primary" fontSize={"small"} />
           </IconButton>
           <Typography
             variant="h6"
             sx={{
               fontSize: "1.125rem",
               mb: 1,
+              color: theme.palette.info.main,
             }}
           >
             CONTACT
@@ -58,7 +60,7 @@ export default function ContactBox() {
             }}
             color="prmimary"
           >
-            10252 Berea Rd Cleveland OH 44102
+            {CONTACT.address}
           </Typography>
         </div>
         <div
@@ -76,7 +78,7 @@ export default function ContactBox() {
               color: theme.palette.primary.main,
             }}
           >
-            eligfellstudio@gmail.com
+            {CONTACT.email}
           </Typography>
           <Typography
             variant="subtitle2"
@@ -85,7 +87,7 @@ export default function ContactBox() {
               color: theme.palette.primary.main,
             }}
           >
-            330-524-7748
+            {CONTACT.phone}
           </Typography>
         </div>
       </div>
@@ -102,7 +104,7 @@ export default function ContactBox() {
           }}
           aria-label="contact by email"
         >
-          <EmailOutlinedIcon color="info" />
+          <EmailOutlinedIcon color="primary" />
         </IconButton>
       </div>
     </ThemeProvider>

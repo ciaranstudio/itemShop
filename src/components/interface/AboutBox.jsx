@@ -62,7 +62,7 @@ export default function AboutBox() {
             }}
             aria-label="close info box"
           >
-            <CloseOutlinedIcon color="info" fontSize={"small"} />
+            <CloseOutlinedIcon color="primary" fontSize={"small"} />
           </IconButton>
           <Typography
             variant="h6"
@@ -116,7 +116,7 @@ export default function AboutBox() {
           }}
           aria-label="next page of About info"
         >
-          <ReadMoreIcon color="info" />
+          <ReadMoreIcon color="primary" />
         </IconButton>
       </div>
     </ThemeProvider>
