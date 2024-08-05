@@ -875,7 +875,7 @@ export default function Scene({ animDist, animateParts, stagePosY }) {
         duration: adminFlag
           ? 0.1
           : previousItemSelected === unselectedItem
-            ? CAM_TARG_ANIM.camTargAnimDuration - 0.15
+            ? CAM_TARG_ANIM.camTargAnimDuration + 0.35 // CAM_TARG_ANIM.camTargAnimDuration - 0.15
             : optionBoxItemChanged
               ? CAM_TARG_ANIM.camTargAnimDuration * 1.5
               : CAM_TARG_ANIM.camTargAnimDuration,
@@ -1055,9 +1055,11 @@ export default function Scene({ animDist, animateParts, stagePosY }) {
                   : CAM_POS_ANIM.camPosAnimDelay,
             duration: adminFlag
               ? 0.1
-              : optionBoxItemChanged
-                ? CAM_POS_ANIM.camPosAnimDuration + 0.75
-                : CAM_POS_ANIM.camPosAnimDuration,
+              : previousItemSelected === unselectedItem
+                ? CAM_POS_ANIM.camPosAnimDuration + 1
+                : optionBoxItemChanged
+                  ? CAM_POS_ANIM.camPosAnimDuration + 0.75
+                  : CAM_POS_ANIM.camPosAnimDuration,
             x: currentItemSelected.position.x + xPlus,
             y: currentItemSelected.position.y + yPlus,
             z: currentItemSelected.position.z + zPlus,

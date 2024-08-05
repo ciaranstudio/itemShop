@@ -96,6 +96,9 @@ export default function EditRecord() {
   // action from store
   const setStoreOpen = useOptionStore((state) => state.setOpen);
   const setAdminFlag = useOptionStore((state) => state.setAdminFlag);
+  const setCurrentPartName = useOptionStore(
+    (state) => state.setCurrentPartName,
+  );
 
   const { imageRecord } = useLoaderData();
   const navigate = useNavigate();
@@ -128,6 +131,10 @@ export default function EditRecord() {
   useEffect(() => {
     console.log("currentPartColorName: ", currentPartColorName);
   }, [currentPartColorName]);
+
+  useEffect(() => {
+    console.log("currentItemSelected: ", currentItemSelected);
+  }, [currentItemSelected]);
 
   return (
     <>
@@ -328,12 +335,52 @@ export default function EditRecord() {
               <Typography variant="body2" color="inherit">
                 Set part options?
               </Typography>
-              {currentPartName}
-              {currentPartColorName}
             </Box>
           </Box>
         </Box>
-        <Box>{showShopOptions && <OptionsOnly />}</Box>
+        <Box>
+          {showShopOptions && (
+            <>
+              <Box>
+                {currentPartName}:{currentPartColorName}
+                <hr />
+              </Box>
+              <Box
+                sx={{
+                  display: "grid",
+                  gridTemplateColumns: {
+                    sm: "auto auto",
+                    md: "auto auto auto",
+                    lg: "auto auto auto auto",
+                  },
+                  gap: 0,
+                  maxWidth: "20rem",
+                }}
+              >
+                {currentItemSelected.parts.map((part, index) => {
+                  return (
+                    <Button
+                      key={index}
+                      variant="outlined"
+                      onClick={() => {
+                        setCurrentPartName(part.partName);
+                      }}
+                      sx={{ width: "10rem", m: 0.5 }}
+                      color={
+                        currentPartName === part.partName ? "primary" : "info"
+                      }
+                    >
+                      {part.descPartName}
+                    </Button>
+                  );
+                })}
+              </Box>
+              <OptionsOnly />
+              <hr />
+            </>
+          )}
+        </Box>
+
         <Box sx={{ display: "flex", pl: 0.25, pt: 1 }}>
           <Button
             type="submit"
