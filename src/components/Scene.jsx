@@ -867,11 +867,14 @@ export default function Scene({ animDist, animateParts, stagePosY }) {
     ) {
       const tl = gsap.timeline();
       tl.to(controlsTargetVec, {
-        delay: optionBoxItemChanged
-          ? CAM_TARG_ANIM.camTargAnimDelay - 0.075
-          : CAM_TARG_ANIM.camTargAnimDelay,
-        duration:
-          previousItemSelected === unselectedItem
+        delay: adminFlag
+          ? 0.1
+          : optionBoxItemChanged
+            ? CAM_TARG_ANIM.camTargAnimDelay - 0.075
+            : CAM_TARG_ANIM.camTargAnimDelay,
+        duration: adminFlag
+          ? 0.1
+          : previousItemSelected === unselectedItem
             ? CAM_TARG_ANIM.camTargAnimDuration - 0.15
             : optionBoxItemChanged
               ? CAM_TARG_ANIM.camTargAnimDuration * 1.5
@@ -910,12 +913,16 @@ export default function Scene({ animDist, animateParts, stagePosY }) {
     ) {
       const tl = gsap.timeline();
       tl.to(controlsTargetVec, {
-        delay: optionBoxItemChanged
-          ? CAM_TARG_ANIM.camTargAnimDelay - 0.075
-          : CAM_TARG_ANIM.camTargAnimDelay,
-        duration: optionBoxItemChanged
-          ? CAM_TARG_ANIM.camTargAnimDuration * 1.5
-          : CAM_TARG_ANIM.camTargAnimDuration,
+        delay: adminFlag
+          ? 0.1
+          : optionBoxItemChanged
+            ? CAM_TARG_ANIM.camTargAnimDelay - 0.075
+            : CAM_TARG_ANIM.camTargAnimDelay,
+        duration: adminFlag
+          ? 0.1
+          : optionBoxItemChanged
+            ? CAM_TARG_ANIM.camTargAnimDuration * 1.5
+            : CAM_TARG_ANIM.camTargAnimDuration,
         x: currentItemSelected.position.x,
         y: currentItemSelected.position.y + 1,
         z: currentItemSelected.position.z,
@@ -950,12 +957,16 @@ export default function Scene({ animDist, animateParts, stagePosY }) {
     ) {
       const tl = gsap.timeline();
       tl.to(controlsTargetVec, {
-        delay: optionBoxItemChanged
-          ? CAM_TARG_ANIM.camTargAnimDelay - 0.075
-          : CAM_TARG_ANIM.camTargAnimDelay,
-        duration: optionBoxItemChanged
-          ? CAM_TARG_ANIM.camTargAnimDuration * 1.5
-          : CAM_TARG_ANIM.camTargAnimDuration,
+        delay: adminFlag
+          ? 0.1
+          : optionBoxItemChanged
+            ? CAM_TARG_ANIM.camTargAnimDelay - 0.075
+            : CAM_TARG_ANIM.camTargAnimDelay,
+        duration: adminFlag
+          ? 0.1
+          : optionBoxItemChanged
+            ? CAM_TARG_ANIM.camTargAnimDuration * 1.5
+            : CAM_TARG_ANIM.camTargAnimDuration,
         x: currentItemSelected.position.x,
         y: currentItemSelected.position.y + 1.25,
         z: currentItemSelected.position.z,
@@ -1035,15 +1046,18 @@ export default function Scene({ animDist, animateParts, stagePosY }) {
           );
           const tl = gsap.timeline();
           tl.to(controlsPositionVec, {
-            delay:
-              previousItemSelected === unselectedItem
+            delay: adminFlag
+              ? 0.1
+              : previousItemSelected === unselectedItem
                 ? CAM_POS_ANIM.camPosAnimDelay + 0.1
                 : optionBoxItemChanged
                   ? CAM_POS_ANIM.camPosAnimDelay + 0.2
                   : CAM_POS_ANIM.camPosAnimDelay,
-            duration: optionBoxItemChanged
-              ? CAM_POS_ANIM.camPosAnimDuration + 0.75
-              : CAM_POS_ANIM.camPosAnimDuration,
+            duration: adminFlag
+              ? 0.1
+              : optionBoxItemChanged
+                ? CAM_POS_ANIM.camPosAnimDuration + 0.75
+                : CAM_POS_ANIM.camPosAnimDuration,
             x: currentItemSelected.position.x + xPlus,
             y: currentItemSelected.position.y + yPlus,
             z: currentItemSelected.position.z + zPlus,

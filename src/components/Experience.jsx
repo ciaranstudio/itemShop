@@ -44,6 +44,7 @@ function Experience() {
   const animActive = useOptionStore((state) => state.animActive);
   const animIconToggle = useOptionStore((state) => state.animIconToggle);
   const animateButton = useOptionStore((state) => state.animateButton);
+  const adminFlag = useOptionStore((state) => state.adminFlag);
 
   // actions from store
   const setMobileView = useOptionStore((state) => state.setMobileView);
@@ -126,10 +127,12 @@ function Experience() {
             // previousItemSelected === unselectedItem
             //   ? ITEM_PARTS_ANIM.runDelay - 0.5
             //   :
-            animIconToggle
-              ? ITEM_PARTS_ANIM.runDelay - 1
-              : ITEM_PARTS_ANIM.runDelay + 1.15,
-          duration: ITEM_PARTS_ANIM.runDuration,
+            adminFlag
+              ? 0.1
+              : animIconToggle
+                ? ITEM_PARTS_ANIM.runDelay - 1
+                : ITEM_PARTS_ANIM.runDelay + 1.15,
+          duration: adminFlag ? 0.1 : ITEM_PARTS_ANIM.runDuration,
           value: ITEM_PARTS_ANIM.animDistRunTarget,
           ease: "easeOut",
           onUpdate: () => {
@@ -149,8 +152,8 @@ function Experience() {
         // close
         // close the object, bring parts back together, ending with no distance between them
         tl.to(animDistReturn, {
-          delay: ITEM_PARTS_ANIM.returnDelay,
-          duration: ITEM_PARTS_ANIM.returnDuration,
+          delay: adminFlag ? 0.1 : ITEM_PARTS_ANIM.returnDelay,
+          duration: adminFlag ? 0.1 : ITEM_PARTS_ANIM.returnDuration,
           value: ITEM_PARTS_ANIM.animDistReturnTarget,
           ease: "easeOut",
           onUpdate: () => {
