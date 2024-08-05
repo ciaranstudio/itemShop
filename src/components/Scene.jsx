@@ -16,6 +16,7 @@ import { Floor } from "./room/Floor.jsx";
 import { Walls } from "./room/Walls.jsx";
 import { objects, unselectedItem, shopItems } from "../data/objects.js";
 import { textures } from "../data/textures.js";
+import { allOptions } from "../data/options.js";
 import useWindowDimensions from "../hooks/useWindowDimensions";
 import { useSnipcart } from "use-snipcart";
 import { SelectIcon } from "./item/SelectIcon.jsx";
@@ -30,15 +31,9 @@ import {
   CAM_POS_ANIM,
 } from "../data/constants.js";
 import { CenterAnchor } from "./interface/CenterAnchor.jsx";
+import { handlePartOption } from "../utils/handlePartOption.js";
 
-export default function Scene({
-  theme,
-  animDist,
-  animateParts,
-  handlePartOption,
-  randomAllItemsParts,
-  stagePosY,
-}) {
+export default function Scene({ theme, animDist, animateParts, stagePosY }) {
   // textures
   const [
     colorMapWhiteStain,
@@ -155,6 +150,44 @@ export default function Scene({
   const setArrowAnimActive = useOptionStore(
     (state) => state.setArrowAnimActive,
   );
+
+  // actions from store for randomAllItemsParts()
+  const updatePartColor = useOptionStore((state) => state.updatePartColor);
+  const updatePartColorName = useOptionStore(
+    (state) => state.updatePartColorName,
+  );
+  const updatePartTexture = useOptionStore((state) => state.updatePartTexture);
+  const calculateItemPrice = useOptionStore(
+    (state) => state.calculateItemPrice,
+  );
+  const getRandomInt = useOptionStore((state) => state.getRandomInt);
+
+  // random colors for all item parts on initinal load
+  const randomAllItemsParts = (e) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    const randomAllItemsColors = shopItems.map((item) => {
+      const itemColors = item.parts.map((part) => {
+        const color = allOptions[getRandomInt(allOptions.length)];
+        handlePartOption(
+          e,
+          item.itemName,
+          part.partName,
+          color,
+          false,
+          updatePartColor,
+          updatePartColorName,
+          updatePartTexture,
+          calculateItemPrice,
+        );
+        return color;
+      });
+      return itemColors;
+    });
+    // console.log("random colors generated list: ", randomAllItemsColors);
+  };
 
   // hooks
   const { width } = useWindowDimensions();
@@ -1109,10 +1142,8 @@ export default function Scene({
         /> */}
         <group position={[0, 0, 0]} visible={false}>
           <CenterAnchor
-            theme={theme}
             currentColor={textures.alabasterPaint}
             currentTexture={textures.whiteTexture}
-            handlePartOption={handlePartOption}
           />
         </group>
         {/* Arrow icon at bottom of screen */}
@@ -1132,8 +1163,6 @@ export default function Scene({
                 showPaintOptions ? textures.bluePaint : textures.alabasterPaint
               }
               currentTexture={textures.whiteTexture}
-              handlePartOption={handlePartOption}
-              theme={theme}
             />
           </mesh>
           <group

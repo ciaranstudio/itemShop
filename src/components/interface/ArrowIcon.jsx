@@ -3,11 +3,7 @@ import { useGLTF, useTexture } from "@react-three/drei";
 import OptionBox from "./OptionBox.jsx";
 import { useOptionStore } from "../../store/useOptionStore.tsx";
 
-export const ArrowIcon = ({
-  currentColor,
-  currentTexture,
-  handlePartOption,
-}) => {
+export const ArrowIcon = ({ currentColor, currentTexture }) => {
   const { scene, nodes, materials } = useGLTF("./models/arrow.gltf");
   const [annotations, setAnnotations] = useState([]);
 
@@ -59,7 +55,7 @@ export const ArrowIcon = ({
           if (o.userData.name.startsWith("AnchorPoint")) {
             currentAnnotations.push(
               <group key={o.uuid} position={[0, 0, 0]}>
-                <OptionBox handlePartOption={handlePartOption} />
+                <OptionBox />
               </group>,
             );
           }

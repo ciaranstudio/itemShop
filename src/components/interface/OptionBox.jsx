@@ -1,12 +1,16 @@
 import React from "react";
-import OptionsOnly from "./OptionsOnly.jsx";
-import { OPTION_BOX } from "../../data/constants.js";
+import { Html } from "@react-three/drei";
 import { useOptionStore } from "../../store/useOptionStore.tsx";
 import useWindowDimensions from "../../hooks/useWindowDimensions.jsx";
+import OptionsOnly from "./OptionsOnly.jsx";
+import { OPTION_BOX } from "../../data/constants.js";
 
-export default function OptionBox({ handlePartOption }) {
-  const mobileView = useOptionStore((state) => state.mobileView);
+export default function OptionBox() {
   const { width, height } = useWindowDimensions();
+
+  // state from store
+  const mobileView = useOptionStore((state) => state.mobileView);
+
   return (
     <group
       position={[
@@ -21,7 +25,9 @@ export default function OptionBox({ handlePartOption }) {
         0,
       ]}
     >
-      <OptionsOnly handlePartOption={handlePartOption} />
+      <Html center position={[0, 0, 0]}>
+        <OptionsOnly />
+      </Html>
     </group>
   );
 }
