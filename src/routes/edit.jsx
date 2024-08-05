@@ -83,13 +83,19 @@ export async function action({ request, params }) {
 
 export default function EditRecord() {
   // state from store
-  // const updateImgPathEdit = useOptionStore((state) => state.updateImgPathEdit);
+  const adminFlag = useOptionStore((state) => state.adminFlag);
+  const currentItemSelected = useOptionStore(
+    (state) => state.currentItemSelected,
+  );
+  const currentItemName = useOptionStore((state) => state.currentItemName);
+  const currentPartName = useOptionStore((state) => state.currentPartName);
+  const currentPartColorName = useOptionStore(
+    (state) => state.items[currentItemName].parts[currentPartName].colorName,
+  );
 
   // action from store
   const setStoreOpen = useOptionStore((state) => state.setOpen);
-  // const setUpdateImgPathEdit = useOptionStore(
-  //   (state) => state.setUpdateImgPathEdit,
-  // );
+  const setAdminFlag = useOptionStore((state) => state.setAdminFlag);
 
   const { imageRecord } = useLoaderData();
   const navigate = useNavigate();
@@ -106,6 +112,7 @@ export default function EditRecord() {
   const [showShopOptions, setShowShopOptions] = useState(false);
 
   const handleCheckBoxClick = (type) => () => {
+    setAdminFlag(true);
     if (type === "images") {
       setShowFileInputs((prev) => !prev);
     } else if (type === "shop") {
@@ -114,14 +121,13 @@ export default function EditRecord() {
     // setChecked((prev) => !prev);
   };
 
-  // useEffect(() => {
-  //   console.log("checked: ", checked);
-  //   setUpdateImgPathEdit(checked);
-  // }, [checked]);
+  useEffect(() => {
+    console.log("adminFlag: ", adminFlag);
+  }, [adminFlag]);
 
-  // useEffect(() => {
-  //   console.log("updateImgPathEdit: ", updateImgPathEdit);
-  // }, [updateImgPathEdit]);
+  useEffect(() => {
+    console.log("currentPartColorName: ", currentPartColorName);
+  }, [currentPartColorName]);
 
   return (
     <>
@@ -322,10 +328,12 @@ export default function EditRecord() {
               <Typography variant="body2" color="inherit">
                 Set part options?
               </Typography>
+              {currentPartName}
+              {currentPartColorName}
             </Box>
           </Box>
         </Box>
-        <Box>{showShopOptions && <OptionsOnly admin={true} />}</Box>
+        <Box>{showShopOptions && <OptionsOnly />}</Box>
         <Box sx={{ display: "flex", pl: 0.25, pt: 1 }}>
           <Button
             type="submit"

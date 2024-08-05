@@ -425,7 +425,7 @@ export type State = {
   selectedImage: any;
   selectedImageIndex: number;
   signedUpForMailingList: boolean;
-  // updateImgPathEdit: boolean;
+  adminFlag: boolean;
 };
 
 export type Action = {
@@ -474,7 +474,7 @@ export type Action = {
   setSelectedImage: (value: any) => void;
   setSelectedImageIndex: (value: number) => void;
   setSignedUpForMailingList: (value: boolean) => void;
-  // setUpdateImgPathEdit: (value: boolean) => void;
+  setAdminFlag: (value: boolean) => void;
 };
 
 export const useOptionStore = create<State & Action>((set) => ({
@@ -953,7 +953,7 @@ export const useOptionStore = create<State & Action>((set) => ({
   selectedImage: null,
   selectedImageIndex: 0,
   signedUpForMailingList: false,
-  // updateImgPathEdit: false,
+  adminFlag: false,
   calculateItemPrice: (itemName) =>
     set(
       produce((state: State) => {
@@ -1250,10 +1250,10 @@ export const useOptionStore = create<State & Action>((set) => ({
         state.signedUpForMailingList = value;
       }),
     ),
-  // setUpdateImgPathEdit: (value) =>
-  //   set(
-  //     produce((state: State) => {
-  //       state.updateImgPathEdit = value;
-  //     }),
-  //   ),
+  setAdminFlag: (value) =>
+    set(
+      produce((state: State) => {
+        state.adminFlag = value;
+      }),
+    ),
 }));

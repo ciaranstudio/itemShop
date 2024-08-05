@@ -121,6 +121,7 @@ export default function Scene({ animDist, animateParts, stagePosY }) {
   const arrowAnimActive = useOptionStore((state) => state.arrowAnimActive);
   const showPaintOptions = useOptionStore((state) => state.showPaintOptions);
   const locationPathname = useOptionStore((state) => state.locationPathname);
+  const adminFlag = useOptionStore((state) => state.adminFlag);
 
   // actions from store
   const setCurrentItemSelected = useOptionStore(
@@ -355,14 +356,17 @@ export default function Scene({ animDist, animateParts, stagePosY }) {
     }
   }, [sceneLoaded]);
   useEffect(() => {
+    if (adminFlag) handleArrowIconClick(null);
+  }, [adminFlag]);
+  useEffect(() => {
     if (currentItemSelected === unselectedItem) {
       randomAllItemsParts(false);
     }
     // shuffle color randomly on initial load counter
     const interval = setInterval(() => {
       setCount((prev) => prev + 1);
-    }, 1500);
-    if (count === 2 && showBackground) {
+    }, 1000);
+    if (count === 4 && showBackground) {
       // // toast.dismiss();
       // toast("Cart", {
       //   duration: TOAST.duration,
@@ -412,6 +416,8 @@ export default function Scene({ animDist, animateParts, stagePosY }) {
       //     "aria-live": "polite",
       //   },
       // });
+    } else if (count === 3 && currentItemSelected === unselectedItem) {
+      handleArrowIconClick(null);
     } else if (count === 5 && showBackground) {
       // // toast.dismiss();
       // toast("Drag to rotate", {
@@ -506,8 +512,6 @@ export default function Scene({ animDist, animateParts, stagePosY }) {
       //     "aria-live": "polite",
       //   },
       // });
-    } else if (count === 17 && currentItemSelected === unselectedItem) {
-      handleArrowIconClick(null);
     }
     //Clearing the interval
     return () => clearInterval(interval);

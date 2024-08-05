@@ -25,7 +25,7 @@ import { goTo } from "../../utils/goTo.js";
 import { theme } from "../../data/theme.js";
 import { handlePartOption } from "../../utils/handlePartOption.js";
 
-export default function OptionsOnly({ admin }) {
+export default function OptionsOnly() {
   // helper hook
   // const { height, width } = useWindowDimensions();
 
@@ -51,7 +51,7 @@ export default function OptionsOnly({ admin }) {
     (state) => state.items[currentItemName].parts[currentPartName].colorName,
   );
   const animateButton = useOptionStore((state) => state.animateButton);
-  const setAnimateButton = useOptionStore((state) => state.setAnimateButton);
+  const adminFlag = useOptionStore((state) => state.adminFlag);
 
   // actions from store
   const setCurrentItemSelected = useOptionStore(
@@ -90,6 +90,7 @@ export default function OptionsOnly({ admin }) {
   const calculateItemPrice = useOptionStore(
     (state) => state.calculateItemPrice,
   );
+  const setAnimateButton = useOptionStore((state) => state.setAnimateButton);
 
   // functions
   const toggleShowPaintOptions = (e) => {
@@ -204,7 +205,7 @@ export default function OptionsOnly({ admin }) {
       !showBackground
     ) {
       return true;
-    } else if (admin) {
+    } else if (adminFlag) {
       return true;
     } else {
       return false;
@@ -216,14 +217,17 @@ export default function OptionsOnly({ admin }) {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <div
-        className={admin ? "admin-options" : "options"}
+        className={adminFlag ? "admin-options" : "options"}
         style={{
           display: showOptionsBox() ? "block" : "none",
         }}
       >
-        <div className={admin ? "admin-options-box" : "options-box"}>
+        <div className={adminFlag ? "admin-options-box" : "options-box"}>
           <div className="annotation-wrapper">
-            <span className="annotation-wrapper-span">
+            <span
+              className="annotation-wrapper-span"
+              style={{ display: adminFlag ? "none" : "grid" }}
+            >
               <span>
                 <IconButton
                   onClick={(e) => partToggleBackground(e)}
