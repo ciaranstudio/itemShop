@@ -144,7 +144,6 @@ img {
   padding-bottom: 1rem;
   border-radius: 0.25rem;
   overflow: auto;
-
   pointer-events: none;
 }
 
@@ -157,6 +156,20 @@ img {
   left: 50%;
   transform: translate(-50%);
   z-index: 3;
+}
+
+.admin-options {
+  position: static;
+  width: 100%;
+  text-align: center;
+  overflow: auto;
+  pointer-events: none;
+}
+
+.admin-options-box {
+  pointer-events: auto;
+  width: 100%;
+  max-width: 24rem;
 }
 
 #title {
@@ -192,7 +205,7 @@ img {
   cursor: pointer;
 }
 
-.annotation {
+.colors-box {
   text-align: center;
   color: #181c20;
   padding-top: 0.35rem;
@@ -201,7 +214,7 @@ img {
   cursor: grab;
 }
 
-.annotation:active {
+.colors-box:active {
   cursor: grabbing;
 }
 
@@ -222,13 +235,13 @@ img {
   background-color: transparent;
 }
 
-.annotation-options {
+.colors-box-buttons {
   display: grid;
   grid-template-columns: auto;
   width: 100%;
 }
 
-.color-menu-item-title {
+.menu-item-title {
   margin: 0;
   text-align: center;
   user-select: none;

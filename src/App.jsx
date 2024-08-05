@@ -6,7 +6,6 @@ import { SnipcartProvider } from "use-snipcart";
 import { Toaster } from "react-hot-toast";
 import ResponsiveAppBar from "./components/interface/navMenu/AppBar.jsx";
 import Experience from "./components/Experience.jsx";
-import { theme } from "./data/theme.js";
 import { DashContextProvider } from "./context/ViewContext";
 import { useOptionStore } from "./store/useOptionStore.tsx";
 
@@ -17,8 +16,8 @@ function App() {
       <DashContextProvider>
         <Toaster reverseOrder={true} />
         <SnipcartProvider>
-          <ResponsiveAppBar theme={theme} />
-          <Experience theme={theme} />
+          <ResponsiveAppBar />
+          <Experience />
         </SnipcartProvider>
         <div id="footer" style={{ display: open ? "none" : "block" }}>
           Eli Gfell Studio

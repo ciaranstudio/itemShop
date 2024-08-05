@@ -162,7 +162,7 @@ export default function EditRecord() {
               <Checkbox
                 onClick={handleCheckBoxClick("images")}
                 inputProps={{ "aria-label": "controlled" }}
-                name="imgUpdateCheckbox"
+                name="showFileInputs"
                 checked={showFileInputs}
                 sx={{ p: 0, mr: 1 }}
               />
@@ -315,7 +315,7 @@ export default function EditRecord() {
               <Checkbox
                 onClick={handleCheckBoxClick("shop")}
                 inputProps={{ "aria-label": "controlled" }}
-                name="imgUpdateCheckbox"
+                name="showShopOptions"
                 checked={showShopOptions}
                 sx={{ p: 0, mr: 1 }}
               />
@@ -324,10 +324,8 @@ export default function EditRecord() {
               </Typography>
             </Box>
           </Box>
-
-          {/* {showShopOptions && <OptionsOnly />} */}
         </Box>
-
+        <Box>{showShopOptions && <OptionsOnly admin={true} />}</Box>
         <Box sx={{ display: "flex", pl: 0.25, pt: 1 }}>
           <Button
             type="submit"

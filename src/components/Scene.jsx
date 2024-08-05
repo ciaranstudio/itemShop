@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
+// import { Perf } from "r3f-perf";
 import {
   OrbitControls,
   useTexture,
@@ -32,8 +33,9 @@ import {
 } from "../data/constants.js";
 import { CenterAnchor } from "./interface/CenterAnchor.jsx";
 import { handlePartOption } from "../utils/handlePartOption.js";
+// import { theme } from "../data/theme.js";
 
-export default function Scene({ theme, animDist, animateParts, stagePosY }) {
+export default function Scene({ animDist, animateParts, stagePosY }) {
   // textures
   const [
     colorMapWhiteStain,
@@ -151,7 +153,6 @@ export default function Scene({ theme, animDist, animateParts, stagePosY }) {
     (state) => state.setArrowAnimActive,
   );
 
-  // actions from store for randomAllItemsParts()
   const updatePartColor = useOptionStore((state) => state.updatePartColor);
   const updatePartColorName = useOptionStore(
     (state) => state.updatePartColorName,

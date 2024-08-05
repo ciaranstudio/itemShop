@@ -26,7 +26,7 @@ export default function OptionBox() {
       ]}
     >
       <Html center position={[0, 0, 0]}>
-        <OptionsOnly />
+        <OptionsOnly admin={false} />
       </Html>
     </group>
   );

@@ -25,7 +25,7 @@ import { goTo } from "../../utils/goTo.js";
 import { theme } from "../../data/theme.js";
 import { handlePartOption } from "../../utils/handlePartOption.js";
 
-export default function OptionsOnly() {
+export default function OptionsOnly({ admin }) {
   // helper hook
   // const { height, width } = useWindowDimensions();
 
@@ -197,22 +197,31 @@ export default function OptionsOnly() {
     return color;
   };
 
+  const showOptionsBox = () => {
+    if (
+      locationPathname === "/" &&
+      currentItemSelected !== unselectedItem &&
+      !showBackground
+    ) {
+      return true;
+    } else if (admin) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   return (
     // <Html center position={[0, 0, 0]}>
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <div
-        className="options"
+        className={admin ? "admin-options" : "options"}
         style={{
-          display:
-            locationPathname === "/" &&
-            currentItemSelected !== unselectedItem &&
-            !showBackground
-              ? "block"
-              : "none",
+          display: showOptionsBox() ? "block" : "none",
         }}
       >
-        <div className="options-box">
+        <div className={admin ? "admin-options-box" : "options-box"}>
           <div className="annotation-wrapper">
             <span className="annotation-wrapper-span">
               <span>
@@ -286,10 +295,10 @@ export default function OptionsOnly() {
               </span>
             </span>
             <div
-              className="annotation"
+              className="colors-box"
               style={{ display: showPaintOptions ? "block" : "none" }}
             >
-              <div className="annotation-options">
+              <div className="colors-box-buttons">
                 <div className="grid-container-stain">
                   {options.stains.map((stain) => {
                     return (
@@ -390,7 +399,7 @@ export default function OptionsOnly() {
               </div>
             </div>
             <span className="split-shuffle-block">
-              <div className="color-menu-item-title">
+              <div className="menu-item-title">
                 <PopupState variant="popover" popupId="demo-popup-menu">
                   {(popupState) => (
                     <React.Fragment>
@@ -450,7 +459,7 @@ export default function OptionsOnly() {
                   randomCurrentItemParts={randomCurrentItemParts}
                 />
               </div>
-              <BuyButton theme={theme} item={objects[currentItemName]} />
+              <BuyButton item={objects[currentItemName]} />
             </span>
           </div>
         </div>

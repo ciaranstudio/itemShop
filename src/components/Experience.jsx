@@ -15,7 +15,7 @@ import {
   ITEM_PARTS_ANIM,
 } from "../data/constants.js";
 
-function Experience({ theme }) {
+function Experience() {
   // loading bar element for left to right on animation on app load
   const loadingBarElement = document.querySelector(".loading-bar");
 
@@ -25,12 +25,6 @@ function Experience({ theme }) {
   };
   const animDistReturn = {
     value: ITEM_PARTS_ANIM.animDistRunTarget,
-  };
-  const stagePosYRun = {
-    value: STAGE_POSITION_Y_ANIM.yPosRunLowTarg,
-  };
-  const stagePosYReturn = {
-    value: STAGE_POSITION_Y_ANIM.yPosRunHighTarg,
   };
 
   // useRef
@@ -70,9 +64,6 @@ function Experience({ theme }) {
       setMobileView(false);
     }
     window.LoadSnipcart();
-  }, []);
-
-  useEffect(() => {
     toast.loading("Loading...", {
       id: "loadingToast",
       position: "bottom-center",
@@ -192,7 +183,6 @@ function Experience({ theme }) {
       >
         <Suspense fallback={<Placeholder />}>
           <Scene
-            theme={theme}
             animDist={animDist}
             animateParts={animateParts}
             stagePosY={stagePosY}

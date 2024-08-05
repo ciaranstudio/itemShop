@@ -81,7 +81,7 @@ export const handlePartOption = (
         partName,
         color,
         textures.paintedTexture,
-        textures.yellowPaint,
+        textures.pinkPaint,
       );
       break;
     case "basil":
