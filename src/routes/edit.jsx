@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Form, useLoaderData, redirect, useNavigate } from "react-router-dom";
 import { updateImageRecord } from "../utils/records.js";
 import { useOptionStore } from "../store/useOptionStore.tsx";
@@ -126,8 +126,12 @@ export default function EditRecord() {
   };
 
   useEffect(() => {
-    console.log("adminFlag: ", adminFlag);
-  }, [adminFlag]);
+    if (showFileInputs) {
+      setAdminFlag(true);
+    } else {
+      setAdminFlag(false);
+    }
+  }, [showFileInputs]);
 
   useEffect(() => {
     console.log("currentPartColorName: ", currentPartColorName);
@@ -350,9 +354,10 @@ export default function EditRecord() {
                 sx={{
                   display: "grid",
                   gridTemplateColumns: "auto auto",
-                  gap: 1,
-                  maxWidth: "22rem",
+                  gap: 2,
+                  maxWidth: "20rem",
                   alignItems: "center",
+                  my: 2,
                 }}
               >
                 {currentItemSelected.parts.map((part, index) => {
@@ -361,27 +366,40 @@ export default function EditRecord() {
                     part.partName,
                   );
                   return (
-                    <Button
-                      key={index}
-                      variant="outlined"
-                      onClick={() => {
-                        setCurrentPartName(part.partName);
-                      }}
-                      sx={{ width: "100%" }}
-                      color={
-                        currentPartName === part.partName ? "primary" : "info"
-                      }
-                      size="small"
-                    >
-                      {truncateString(part.descPartName)}
-                      {" :  "}
-                      {colorName}
-                    </Button>
+                    <React.Fragment key={index}>
+                      <Button
+                        key={index}
+                        variant="outlined"
+                        onClick={() => {
+                          setCurrentPartName(part.partName);
+                        }}
+                        color={
+                          currentPartName === part.partName ? "primary" : "info"
+                        }
+                        size="small"
+                        sx={{ width: "10rem" }}
+                      >
+                        {truncateString(part.descPartName)}
+                        {/* {" :  "}
+                        {colorName} */}
+                      </Button>
+                      <TextField
+                        id="edit_materials"
+                        label="Color"
+                        value={colorName}
+                        name={part.partName}
+                        size="small"
+                        sx={{
+                          width: "10rem",
+                          input: { color: "#607D8B" },
+                        }}
+                        disabled
+                      />
+                    </React.Fragment>
                   );
                 })}
               </Box>
               <OptionsOnly />
-
               <hr />
             </>
           )}

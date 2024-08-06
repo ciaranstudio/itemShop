@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import { Html } from "@react-three/drei";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
@@ -10,7 +9,6 @@ import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import CircleIcon from "@mui/icons-material/Circle";
 import BuyButton from "./BuyButton.jsx";
 import SplitButton from "./SplitButton.jsx";
-// import useWindowDimensions from "../../hooks/useWindowDimensions.jsx";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -26,9 +24,6 @@ import { theme } from "../../data/theme.js";
 import { handlePartOption } from "../../utils/handlePartOption.js";
 
 export default function OptionsOnly() {
-  // helper hook
-  // const { height, width } = useWindowDimensions();
-
   // useState
   const [stainSingle, setStainSingle] = useState("");
   const [paintSingle, setPaintSingle] = useState("");
@@ -194,32 +189,23 @@ export default function OptionsOnly() {
         color = hideBackgroundColor;
       }
     }
-
     return color;
   };
 
-  const showOptionsBox = () => {
-    if (
-      locationPathname === "/" &&
-      currentItemSelected !== unselectedItem &&
-      !showBackground
-    ) {
-      return true;
-    } else if (adminFlag) {
-      return true;
-    } else {
-      return false;
-    }
-  };
-
   return (
-    // <Html center position={[0, 0, 0]}>
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <div
         className={adminFlag ? "admin-options" : "options"}
         style={{
-          display: showOptionsBox() ? "block" : "none",
+          display:
+            locationPathname === "/" &&
+            currentItemSelected !== unselectedItem &&
+            !showBackground
+              ? "block"
+              : adminFlag
+                ? "block"
+                : "none",
         }}
       >
         <div className={adminFlag ? "admin-options-box" : "options-box"}>
@@ -402,7 +388,11 @@ export default function OptionsOnly() {
                 </div>
               </div>
             </div>
-            <span className="split-shuffle-block">
+            <span
+              className={
+                adminFlag ? "admin-shuffle-block" : "split-shuffle-block"
+              }
+            >
               <div className="menu-item-title">
                 <PopupState variant="popover" popupId="demo-popup-menu">
                   {(popupState) => (
@@ -469,6 +459,5 @@ export default function OptionsOnly() {
         </div>
       </div>
     </ThemeProvider>
-    // </Html>
   );
 }

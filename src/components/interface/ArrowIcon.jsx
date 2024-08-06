@@ -26,6 +26,7 @@ export const ArrowIcon = ({ currentColor, currentTexture }) => {
   const showPartOptions = useOptionStore((state) => state.showPartOptions);
   const animActive = useOptionStore((state) => state.animActive);
   const activeCamAnim = useOptionStore((state) => state.activeCamAnim);
+  const adminFlag = useOptionStore((state) => state.adminFlag);
 
   useLayoutEffect(() => {
     Object.assign(materials.Material, {
@@ -75,6 +76,7 @@ export const ArrowIcon = ({ currentColor, currentTexture }) => {
     animActive,
     activeCamAnim,
     mobileView,
+    adminFlag,
   ]);
 
   useLayoutEffect(() => {

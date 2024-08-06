@@ -1,5 +1,5 @@
 export function truncateString(str) {
-  const num = 7;
+  const num = 12;
   if (str.length <= num) {
     return str;
   }

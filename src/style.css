@@ -303,6 +303,15 @@ img {
   align-items: center;
 }
 
+.admin-shuffle-block {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 1rem;
+  justify-content: start;
+  margin-top: 1rem;
+  align-items: center;
+}
+
 .buy-info-block {
   padding-left: 1rem;
   padding-right: 1rem;
