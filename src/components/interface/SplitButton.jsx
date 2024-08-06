@@ -96,7 +96,8 @@ export default function SplitButton({ randomCurrentItemParts }) {
           role={undefined}
           transition
           // disablePortal
-          placement={adminFlag ? "top" : "right"}
+          disablePortal={adminFlag ? false : true}
+          placement={adminFlag ? "right" : "right"}
         >
           {({ TransitionProps, placement }) => (
             <Grow
