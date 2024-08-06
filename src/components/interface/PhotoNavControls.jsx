@@ -17,7 +17,7 @@ export default function PhotoNavControls() {
   const setSelectedImage = useOptionStore((state) => state.setSelectedImage);
 
   const backButtonHandler = () => {
-    console.log("selectedImage: ", selectedImage);
+    // console.log("selectedImage: ", selectedImage);
     if (locationPathname !== "/view") {
       if (!selectedImage) {
         goTo("/");

@@ -421,8 +421,8 @@ export default function OptionsOnly() {
                         }}
                         aria-label="item select menu"
                         anchorOrigin={{
-                          vertical: "bottom",
-                          horizontal: "right",
+                          vertical: adminFlag ? "top" : "top",
+                          horizontal: adminFlag ? "top" : "right",
                         }}
                       >
                         {shopItems.map((shopItem) => {

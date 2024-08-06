@@ -397,6 +397,7 @@ export default function EditRecord() {
                       <TextField
                         id={`edit_colors${index}`}
                         name={part.partName}
+                        // name={`${part.partName}_${part.partName}`}
                         label="Color"
                         value={colorName}
                         size="small"
@@ -409,13 +410,14 @@ export default function EditRecord() {
                   );
                 })}
               </Box>
+
               <OptionsOnly />
-              <Box>
+
+              {/* <Box>
                 <Typography variant="body2" color="inherit">
                   {currentPartName}_{currentPartColorName}
                 </Typography>
-              </Box>
-              <hr />
+              </Box> */}
             </>
           )}
         </Box>

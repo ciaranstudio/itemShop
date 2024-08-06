@@ -9,10 +9,10 @@ export default function HtmlOutletRoot({ children }) {
   const currentItemSelected = useOptionStore(
     (state) => state.currentItemSelected,
   );
-  const adminFlag = useOptionStore((state) => state.adminFlag);
-  useEffect(() => {
-    console.log("adminFlag: ", adminFlag);
-  }, [adminFlag]);
+  // const adminFlag = useOptionStore((state) => state.adminFlag);
+  // useEffect(() => {
+  //   console.log("adminFlag: ", adminFlag);
+  // }, [adminFlag]);
 
   // action from store
   const setSelectedImage = useOptionStore((state) => state.setSelectedImage);

@@ -10,7 +10,7 @@ import { theme } from "../../data/theme.js";
 export default function PhotoSingle() {
   // state from store
   const open = useOptionStore((state) => state.open);
-  const locationPathname = useOptionStore((state) => state.locationPathname);
+  // const locationPathname = useOptionStore((state) => state.locationPathname);
   const selectedImage = useOptionStore((state) => state.selectedImage);
   const selectedImageIndex = useOptionStore(
     (state) => state.selectedImageIndex,

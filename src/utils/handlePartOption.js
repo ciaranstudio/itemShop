@@ -72,7 +72,7 @@ export const handlePartOption = (
         partName,
         color,
         textures.paintedTexture,
-        textures.basilPaint,
+        textures.alabasterPaint,
       );
       break;
     case "pink":
@@ -90,7 +90,7 @@ export const handlePartOption = (
         partName,
         color,
         textures.paintedTexture,
-        textures.yellowPaint,
+        textures.basilPaint,
       );
       break;
     case "yellow":
