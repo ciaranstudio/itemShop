@@ -69,7 +69,7 @@ export async function action({ request, params }) {
   }
   if (updateImagesCheck)
     Object.defineProperty(updates, "imgPath", { value: photos });
-  // console.log("Updates in Edit formData action: ", updates);
+  console.log("Updates in Edit formData action: ", updates);
   await updateImageRecord(
     params.imageRecordId,
     updates,
@@ -320,34 +320,43 @@ export default function EditRecord() {
 
           <Box
             sx={{
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "start",
               maxWidth: "md",
             }}
           >
-            <Box
-              sx={{
-                display: "inline-flex",
-                alignItems: "center",
-                justifyContent: "start",
-              }}
-            >
-              <Checkbox
-                onClick={handleCheckBoxClick("shop")}
-                inputProps={{ "aria-label": "controlled" }}
-                name="showShopOptions"
-                checked={showShopOptions}
-                sx={{ p: 0, mr: 1 }}
-              />
-              <Typography variant="body2" color="inherit">
-                Set part options?
-              </Typography>
-            </Box>
+            <Checkbox
+              onClick={handleCheckBoxClick("shop")}
+              inputProps={{ "aria-label": "controlled" }}
+              name="shop"
+              checked={showShopOptions}
+              sx={{ p: 0, mr: 1 }}
+            />
+            <Typography variant="body2" color="inherit">
+              Update part colors?
+            </Typography>
+            {/* need a listing of the current data value for shop item (if present) here so you don't need to 
+              click the set part options checkbox to see what has been set already */}
           </Box>
         </Box>
+
         <Box>
           {showShopOptions && (
             <>
               <Box>
-                {currentPartName}:{currentPartColorName}
+                <TextField
+                  id="edit_itemName"
+                  label="Current Item"
+                  value={currentItemName}
+                  name="itemName"
+                  size="small"
+                  sx={{
+                    width: "10rem",
+                    input: { color: "#607D8B" },
+                    my: 1.5,
+                  }}
+                />
                 <hr />
               </Box>
               <Box
@@ -369,12 +378,14 @@ export default function EditRecord() {
                     <React.Fragment key={index}>
                       <Button
                         key={index}
-                        variant="outlined"
+                        variant="contained"
                         onClick={() => {
                           setCurrentPartName(part.partName);
                         }}
                         color={
-                          currentPartName === part.partName ? "primary" : "info"
+                          currentPartName === part.partName
+                            ? "primary"
+                            : "secondary"
                         }
                         size="small"
                         sx={{ width: "10rem" }}
@@ -384,22 +395,26 @@ export default function EditRecord() {
                         {colorName} */}
                       </Button>
                       <TextField
-                        id="edit_materials"
+                        id={`edit_colors${index}`}
+                        name={part.partName}
                         label="Color"
                         value={colorName}
-                        name={part.partName}
                         size="small"
                         sx={{
                           width: "10rem",
                           input: { color: "#607D8B" },
                         }}
-                        disabled
                       />
                     </React.Fragment>
                   );
                 })}
               </Box>
               <OptionsOnly />
+              <Box>
+                <Typography variant="body2" color="inherit">
+                  {currentPartName}_{currentPartColorName}
+                </Typography>
+              </Box>
               <hr />
             </>
           )}
