@@ -3,11 +3,7 @@ import { useGLTF, useTexture } from "@react-three/drei";
 import OptionBox from "./OptionBox.jsx";
 import { useOptionStore } from "../../store/useOptionStore.tsx";
 
-export const ArrowIcon = ({
-  currentColor,
-  currentTexture,
-  handlePartOption,
-}) => {
+export const ArrowIcon = ({ currentColor, currentTexture }) => {
   const { scene, nodes, materials } = useGLTF("./models/arrow.gltf");
   const [annotations, setAnnotations] = useState([]);
 
@@ -30,6 +26,7 @@ export const ArrowIcon = ({
   const showPartOptions = useOptionStore((state) => state.showPartOptions);
   const animActive = useOptionStore((state) => state.animActive);
   const activeCamAnim = useOptionStore((state) => state.activeCamAnim);
+  const adminFlag = useOptionStore((state) => state.adminFlag);
 
   useLayoutEffect(() => {
     Object.assign(materials.Material, {
@@ -59,7 +56,7 @@ export const ArrowIcon = ({
           if (o.userData.name.startsWith("AnchorPoint")) {
             currentAnnotations.push(
               <group key={o.uuid} position={[0, 0, 0]}>
-                <OptionBox handlePartOption={handlePartOption} />
+                <OptionBox />
               </group>,
             );
           }
@@ -79,6 +76,7 @@ export const ArrowIcon = ({
     animActive,
     activeCamAnim,
     mobileView,
+    adminFlag,
   ]);
 
   useLayoutEffect(() => {

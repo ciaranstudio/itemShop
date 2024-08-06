@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Html } from "@react-three/drei";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
@@ -10,7 +9,6 @@ import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import CircleIcon from "@mui/icons-material/Circle";
 import BuyButton from "./BuyButton.jsx";
 import SplitButton from "./SplitButton.jsx";
-// import useWindowDimensions from "../../hooks/useWindowDimensions.jsx";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -23,22 +21,18 @@ import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
 import { goTo } from "../../utils/goTo.js";
 import { theme } from "../../data/theme.js";
+import { handlePartOption } from "../../utils/handlePartOption.js";
 
-export default function OptionsOnly({ handlePartOption }) {
-  // state from store
-  const currentItemSelected = useOptionStore(
-    (state) => state.currentItemSelected,
-  );
-  const locationPathname = useOptionStore((state) => state.locationPathname);
-
-  // helper hook
-  // const { height, width } = useWindowDimensions();
-
+export default function OptionsOnly() {
   // useState
   const [stainSingle, setStainSingle] = useState("");
   const [paintSingle, setPaintSingle] = useState("");
 
   // state from store
+  const currentItemSelected = useOptionStore(
+    (state) => state.currentItemSelected,
+  );
+  const locationPathname = useOptionStore((state) => state.locationPathname);
   const currentPartName = useOptionStore((state) => state.currentPartName);
   const currentItemName = useOptionStore((state) => state.currentItemName);
   const showPaintOptions = useOptionStore((state) => state.showPaintOptions);
@@ -52,7 +46,7 @@ export default function OptionsOnly({ handlePartOption }) {
     (state) => state.items[currentItemName].parts[currentPartName].colorName,
   );
   const animateButton = useOptionStore((state) => state.animateButton);
-  const setAnimateButton = useOptionStore((state) => state.setAnimateButton);
+  const adminFlag = useOptionStore((state) => state.adminFlag);
 
   // actions from store
   const setCurrentItemSelected = useOptionStore(
@@ -71,9 +65,9 @@ export default function OptionsOnly({ handlePartOption }) {
     (state) => state.setShowPaintOptions,
   );
   const setShowBackground = useOptionStore((state) => state.setShowBackground);
-  const setShowPartOptions = useOptionStore(
-    (state) => state.setShowPartOptions,
-  );
+  // const setShowPartOptions = useOptionStore(
+  //   (state) => state.setShowPartOptions,
+  // );
   const setOptionBoxItemChanged = useOptionStore(
     (state) => state.setOptionBoxItemChanged,
   );
@@ -82,6 +76,16 @@ export default function OptionsOnly({ handlePartOption }) {
   );
   const setAnimIconToggle = useOptionStore((state) => state.setAnimIconToggle);
   const getRandomInt = useOptionStore((state) => state.getRandomInt);
+  // actions from store
+  const updatePartColor = useOptionStore((state) => state.updatePartColor);
+  const updatePartColorName = useOptionStore(
+    (state) => state.updatePartColorName,
+  );
+  const updatePartTexture = useOptionStore((state) => state.updatePartTexture);
+  const calculateItemPrice = useOptionStore(
+    (state) => state.calculateItemPrice,
+  );
+  const setAnimateButton = useOptionStore((state) => state.setAnimateButton);
 
   // functions
   const toggleShowPaintOptions = (e) => {
@@ -120,10 +124,20 @@ export default function OptionsOnly({ handlePartOption }) {
       } else if (type === "paintSingle") {
         color = tempPaintSingle;
       }
-      handlePartOption(e, currentItemName, part.partName, color, false);
+      handlePartOption(
+        e,
+        currentItemName,
+        part.partName,
+        color,
+        false,
+        updatePartColor,
+        updatePartColorName,
+        updatePartTexture,
+        calculateItemPrice,
+      );
       return color;
     });
-    // console.log("random colors generated list: ", randomThisItemColors);
+    console.log("random colors generated list: ", randomThisItemColors);
   };
   // const closePartOptions = (e) => {
   //   e.preventDefault();
@@ -175,261 +189,275 @@ export default function OptionsOnly({ handlePartOption }) {
         color = hideBackgroundColor;
       }
     }
-
     return color;
   };
 
   return (
-    <Html center position={[0, 0, 0]}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <div
-          className="options"
-          style={{
-            display:
-              locationPathname === "/" &&
-              currentItemSelected !== unselectedItem &&
-              !showBackground
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <div
+        className={adminFlag ? "admin-options" : "options"}
+        style={{
+          display:
+            locationPathname === "/" &&
+            currentItemSelected !== unselectedItem &&
+            !showBackground
+              ? "block"
+              : adminFlag
                 ? "block"
                 : "none",
-          }}
-        >
-          <div className="options-box">
-            <div className="annotation-wrapper">
-              <span className="annotation-wrapper-span">
-                <span>
-                  <IconButton
-                    onClick={(e) => partToggleBackground(e)}
-                    sx={{
-                      padding: "0.5rem",
-                    }}
-                    aria-label="show background"
-                    disabled={animActive}
-                  >
-                    {showBackground ? (
-                      <VisibilityOutlinedIcon
-                        color={getIconColor(true)}
-                        fontSize="inherit"
-                      />
-                    ) : (
-                      <VisibilityOffOutlinedIcon
-                        color={getIconColor(true)}
-                        fontSize="inherit"
-                      />
-                    )}
-                  </IconButton>
-                </span>
-                <span>
-                  <IconButton
-                    onClick={toggleAnimateParts}
-                    disabled={animActive ? true : false}
-                    sx={{
-                      padding: "0.5rem",
-                    }}
-                    aria-label="animate item parts to explode apart"
-                  >
-                    <ExpandIcon color={getIconColor(true)} fontSize="inherit" />
-                  </IconButton>
-                </span>
-                <span>
-                  <IconButton
-                    onClick={() => goTo("/info")}
-                    aria-label="toggle info box"
-                    sx={{
-                      padding: "0.5rem",
-                    }}
-                  >
-                    <InfoOutlinedIcon
+        }}
+      >
+        <div className={adminFlag ? "admin-options-box" : "options-box"}>
+          <div className="annotation-wrapper">
+            <span
+              className="annotation-wrapper-span"
+              style={{ display: adminFlag ? "none" : "grid" }}
+            >
+              <span>
+                <IconButton
+                  onClick={(e) => partToggleBackground(e)}
+                  sx={{
+                    padding: "0.5rem",
+                  }}
+                  aria-label="show background"
+                  disabled={animActive}
+                >
+                  {showBackground ? (
+                    <VisibilityOutlinedIcon
+                      color={getIconColor(true)}
+                      fontSize="inherit"
+                    />
+                  ) : (
+                    <VisibilityOffOutlinedIcon
+                      color={getIconColor(true)}
+                      fontSize="inherit"
+                    />
+                  )}
+                </IconButton>
+              </span>
+              <span>
+                <IconButton
+                  onClick={toggleAnimateParts}
+                  disabled={animActive ? true : false}
+                  sx={{
+                    padding: "0.5rem",
+                  }}
+                  aria-label="animate item parts to explode apart"
+                >
+                  <ExpandIcon color={getIconColor(true)} fontSize="inherit" />
+                </IconButton>
+              </span>
+              <span>
+                <IconButton
+                  onClick={() => goTo("/info")}
+                  aria-label="toggle info box"
+                  sx={{
+                    padding: "0.5rem",
+                  }}
+                >
+                  <InfoOutlinedIcon
+                    color={getIconColor(false)}
+                    fontSize="inherit"
+                  />
+                </IconButton>
+              </span>
+              <span>
+                <IconButton
+                  onClick={toggleShowPaintOptions}
+                  sx={{
+                    padding: "0.5rem",
+                  }}
+                  aria-label="toggle minimize/maximize option box height"
+                >
+                  {showPaintOptions ? (
+                    <PaletteIcon
                       color={getIconColor(false)}
                       fontSize="inherit"
                     />
-                  </IconButton>
-                </span>
-                <span>
-                  <IconButton
-                    onClick={toggleShowPaintOptions}
-                    sx={{
-                      padding: "0.5rem",
-                    }}
-                    aria-label="toggle minimize/maximize option box height"
-                  >
-                    {showPaintOptions ? (
-                      <PaletteIcon
-                        color={getIconColor(false)}
-                        fontSize="inherit"
-                      />
-                    ) : (
-                      <PaletteOutlinedIcon
-                        color={getIconColor(false)}
-                        fontSize="inherit"
-                      />
-                    )}
-                  </IconButton>
-                </span>
+                  ) : (
+                    <PaletteOutlinedIcon
+                      color={getIconColor(false)}
+                      fontSize="inherit"
+                    />
+                  )}
+                </IconButton>
               </span>
-              <div
-                className="annotation"
-                style={{ display: showPaintOptions ? "block" : "none" }}
-              >
-                <div className="annotation-options">
-                  <div className="grid-container-stain">
-                    {options.stains.map((stain) => {
-                      return (
-                        <span key={stain}>
-                          <IconButton
-                            onClick={(e) =>
-                              handlePartOption(
-                                e,
-                                currentItemName,
-                                currentPartName,
-                                stain,
-                                true,
-                              )
-                            }
-                            color="info"
-                            aria-label="select stain color"
-                          >
-                            <CircleIcon
-                              fontSize="medium"
-                              sx={{
-                                color:
-                                  stain === "white"
-                                    ? "#a89d93"
-                                    : stain === "natural"
-                                      ? "#908073"
-                                      : stain === "black"
-                                        ? "#635245"
-                                        : stain === "allBlack"
-                                          ? "#0b0502"
-                                          : "#ffffff",
-                                border:
-                                  thisPartColorName === stain
-                                    ? "0.125rem solid brown" // #5580b0
-                                    : "none",
-                                borderRadius: "50%",
-                              }}
-                            />
-                          </IconButton>
-                        </span>
-                      );
-                    })}
-                  </div>
+            </span>
+            <div
+              className="colors-box"
+              style={{ display: showPaintOptions ? "block" : "none" }}
+            >
+              <div className="colors-box-buttons">
+                <div className="grid-container-stain">
+                  {options.stains.map((stain) => {
+                    return (
+                      <span key={stain}>
+                        <IconButton
+                          onClick={(e) =>
+                            handlePartOption(
+                              e,
+                              currentItemName,
+                              currentPartName,
+                              stain,
+                              true,
+                              updatePartColor,
+                              updatePartColorName,
+                              updatePartTexture,
+                              calculateItemPrice,
+                            )
+                          }
+                          color="info"
+                          aria-label="select stain color"
+                        >
+                          <CircleIcon
+                            fontSize="medium"
+                            sx={{
+                              color:
+                                stain === "white"
+                                  ? "#a89d93"
+                                  : stain === "natural"
+                                    ? "#908073"
+                                    : stain === "black"
+                                      ? "#635245"
+                                      : stain === "allBlack"
+                                        ? "#0b0502"
+                                        : "#ffffff",
+                              border:
+                                thisPartColorName === stain
+                                  ? "0.125rem solid brown" // #5580b0
+                                  : "none",
+                              borderRadius: "50%",
+                            }}
+                          />
+                        </IconButton>
+                      </span>
+                    );
+                  })}
+                </div>
 
-                  <div className="grid-container-paint">
-                    {options.paints.map((paint) => {
-                      return (
-                        <span key={paint}>
-                          <IconButton
-                            onClick={(e) =>
-                              handlePartOption(
-                                e,
-                                currentItemName,
-                                currentPartName,
-                                paint,
-                                true,
-                              )
-                            }
-                            color="info"
-                            aria-label="select paint color"
-                          >
-                            <CircleIcon
-                              fontSize="medium"
-                              sx={{
-                                color:
-                                  paint === "alabaster"
-                                    ? "#fffdf0"
-                                    : paint === "pink"
-                                      ? "#f2d1c6"
-                                      : paint === "basil"
-                                        ? "#929d84"
-                                        : paint === "yellow"
-                                          ? "#f2d684"
-                                          : paint === "blue"
-                                            ? "#96b0aa"
-                                            : paint === "gray"
-                                              ? "#8c8b81"
-                                              : "#ffffff",
-                                border:
-                                  thisPartColorName === paint
-                                    ? "0.125rem solid grey" // #5580b0
-                                    : "none",
-                                borderRadius: "50%",
-                              }}
-                            />
-                          </IconButton>
-                        </span>
-                      );
-                    })}
-                  </div>
+                <div className="grid-container-paint">
+                  {options.paints.map((paint) => {
+                    return (
+                      <span key={paint}>
+                        <IconButton
+                          onClick={(e) =>
+                            handlePartOption(
+                              e,
+                              currentItemName,
+                              currentPartName,
+                              paint,
+                              true,
+                              updatePartColor,
+                              updatePartColorName,
+                              updatePartTexture,
+                              calculateItemPrice,
+                            )
+                          }
+                          color="info"
+                          aria-label="select paint color"
+                        >
+                          <CircleIcon
+                            fontSize="medium"
+                            sx={{
+                              color:
+                                paint === "alabaster"
+                                  ? "#fffdf0"
+                                  : paint === "pink"
+                                    ? "#f2d1c6"
+                                    : paint === "basil"
+                                      ? "#929d84"
+                                      : paint === "yellow"
+                                        ? "#f2d684"
+                                        : paint === "blue"
+                                          ? "#96b0aa"
+                                          : paint === "gray"
+                                            ? "#8c8b81"
+                                            : "#ffffff",
+                              border:
+                                thisPartColorName === paint
+                                  ? "0.125rem solid grey" // #5580b0
+                                  : "none",
+                              borderRadius: "50%",
+                            }}
+                          />
+                        </IconButton>
+                      </span>
+                    );
+                  })}
                 </div>
               </div>
-              <span className="split-shuffle-block">
-                <div className="color-menu-item-title">
-                  <PopupState variant="popover" popupId="demo-popup-menu">
-                    {(popupState) => (
-                      <React.Fragment>
-                        <Button
-                          variant="outlined"
-                          {...bindTrigger(popupState)}
-                          sx={{
-                            fontFamily: "var(--leva-fonts-mono)",
-                            fontSize: "1.1rem",
-                            backgroundColor: "rgb(233, 234, 233)",
-                          }}
-                          size="small"
-                          disabled={activeCamAnim ? true : false}
-                          aria-label="open item select list"
-                        >
-                          {currentItemSelected.itemTitle}
-                        </Button>
-                        <Menu
-                          {...bindMenu(popupState)}
-                          sx={{
-                            "& .MuiPaper-root": {
-                              backgroundColor: "white",
-                              border: "0.075rem solid rgb(33, 33, 33);",
-                            },
-                          }}
-                          aria-label="item select menu"
-                          anchorOrigin={{
-                            vertical: "bottom",
-                            horizontal: "right",
-                          }}
-                        >
-                          {shopItems.map((shopItem) => {
-                            return (
-                              <MenuItem
-                                key={shopItem.itemNo}
-                                onClick={(e) =>
-                                  itemMenuSelectHandler(
-                                    e,
-                                    shopItem.itemNo,
-                                    popupState,
-                                  )
-                                }
-                                sx={{ fontFamily: "var(--leva-fonts-mono)" }}
-                              >
-                                {shopItem.itemTitle}
-                              </MenuItem>
-                            );
-                          })}
-                        </Menu>
-                      </React.Fragment>
-                    )}
-                  </PopupState>
-                </div>
-                <div>
-                  <SplitButton
-                    currentItemName={currentItemName}
-                    randomCurrentItemParts={randomCurrentItemParts}
-                  />
-                </div>
-                <BuyButton theme={theme} item={objects[currentItemName]} />
-              </span>
             </div>
+            <span
+              className={
+                adminFlag ? "admin-shuffle-block" : "split-shuffle-block"
+              }
+            >
+              <div className="menu-item-title">
+                <PopupState variant="popover" popupId="demo-popup-menu">
+                  {(popupState) => (
+                    <React.Fragment>
+                      <Button
+                        variant="outlined"
+                        {...bindTrigger(popupState)}
+                        sx={{
+                          fontFamily: "var(--leva-fonts-mono)",
+                          fontSize: "1.1rem",
+                          backgroundColor: "rgb(233, 234, 233)",
+                        }}
+                        size="small"
+                        disabled={activeCamAnim ? true : false}
+                        aria-label="open item select list"
+                      >
+                        {currentItemSelected.itemTitle}
+                      </Button>
+                      <Menu
+                        {...bindMenu(popupState)}
+                        sx={{
+                          "& .MuiPaper-root": {
+                            backgroundColor: "white",
+                            border: "0.075rem solid rgb(33, 33, 33);",
+                          },
+                        }}
+                        aria-label="item select menu"
+                        anchorOrigin={{
+                          vertical: adminFlag ? "top" : "top",
+                          horizontal: adminFlag ? "top" : "right",
+                        }}
+                      >
+                        {shopItems.map((shopItem) => {
+                          return (
+                            <MenuItem
+                              key={shopItem.itemNo}
+                              onClick={(e) =>
+                                itemMenuSelectHandler(
+                                  e,
+                                  shopItem.itemNo,
+                                  popupState,
+                                )
+                              }
+                              sx={{ fontFamily: "var(--leva-fonts-mono)" }}
+                            >
+                              {shopItem.itemTitle}
+                            </MenuItem>
+                          );
+                        })}
+                      </Menu>
+                    </React.Fragment>
+                  )}
+                </PopupState>
+              </div>
+              <div>
+                <SplitButton
+                  currentItemName={currentItemName}
+                  randomCurrentItemParts={randomCurrentItemParts}
+                />
+              </div>
+              <BuyButton item={objects[currentItemName]} />
+            </span>
           </div>
         </div>
-      </ThemeProvider>
-    </Html>
+      </div>
+    </ThemeProvider>
   );
 }

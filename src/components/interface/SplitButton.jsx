@@ -24,6 +24,7 @@ export default function SplitButton({ randomCurrentItemParts }) {
 
   // state from store
   const currentItemName = useOptionStore((state) => state.currentItemName);
+  const adminFlag = useOptionStore((state) => state.adminFlag);
 
   // functions
   const handleClick = (e) => {
@@ -94,15 +95,16 @@ export default function SplitButton({ randomCurrentItemParts }) {
           anchorEl={anchorRef.current}
           role={undefined}
           transition
-          disablePortal
-          placement="right"
+          // disablePortal
+          disablePortal={adminFlag ? false : true}
+          placement={adminFlag ? "right" : "right"}
         >
           {({ TransitionProps, placement }) => (
             <Grow
               {...TransitionProps}
               style={{
                 transformOrigin:
-                  placement === "bottom" ? "center top" : "center bottom",
+                  placement === "right" ? "bottom center" : "bottom center",
               }}
             >
               <Paper

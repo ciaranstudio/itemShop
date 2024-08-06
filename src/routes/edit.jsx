@@ -1,11 +1,6 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Form, useLoaderData, redirect, useNavigate } from "react-router-dom";
 import { updateImageRecord } from "../utils/records.js";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import Checkbox from "@mui/material/Checkbox";
-import Typography from "@mui/material/Typography";
 import { useOptionStore } from "../store/useOptionStore.tsx";
 import {
   getStorage,
@@ -13,13 +8,18 @@ import {
   uploadBytesResumable,
   getDownloadURL,
 } from "firebase/storage";
-
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import Checkbox from "@mui/material/Checkbox";
+import Typography from "@mui/material/Typography";
+import OptionsOnly from "../components/interface/OptionsOnly.jsx";
+import { truncateString } from "../utils/truncateString.js";
 // TODO: Create toggle in edit form to enable or disable the Storage upload / file handling aspect of this,
 // no need for it if image has not been updated.
 export async function action({ request, params }) {
   // state from store
   // const updateImgPathEdit = useOptionStore((state) => state.updateImgPathEdit);
-
   const formData = await request.formData();
   const imageFiles = [];
   let routeFolder = "";
@@ -69,7 +69,7 @@ export async function action({ request, params }) {
   }
   if (updateImagesCheck)
     Object.defineProperty(updates, "imgPath", { value: photos });
-  // console.log("Updates in Edit formData action: ", updates);
+  console.log("Updates in Edit formData action: ", updates);
   await updateImageRecord(
     params.imageRecordId,
     updates,
@@ -83,13 +83,23 @@ export async function action({ request, params }) {
 
 export default function EditRecord() {
   // state from store
-  // const updateImgPathEdit = useOptionStore((state) => state.updateImgPathEdit);
+  const adminFlag = useOptionStore((state) => state.adminFlag);
+  const currentItemSelected = useOptionStore(
+    (state) => state.currentItemSelected,
+  );
+  const currentItemName = useOptionStore((state) => state.currentItemName);
+  const currentPartName = useOptionStore((state) => state.currentPartName);
+  const currentPartColorName = useOptionStore(
+    (state) => state.items[currentItemName].parts[currentPartName].colorName,
+  );
 
   // action from store
   const setStoreOpen = useOptionStore((state) => state.setOpen);
-  // const setUpdateImgPathEdit = useOptionStore(
-  //   (state) => state.setUpdateImgPathEdit,
-  // );
+  const setAdminFlag = useOptionStore((state) => state.setAdminFlag);
+  const setCurrentPartName = useOptionStore(
+    (state) => state.setCurrentPartName,
+  );
+  const getPartColorName = useOptionStore((state) => state.getPartColorName);
 
   const { imageRecord } = useLoaderData();
   const navigate = useNavigate();
@@ -101,20 +111,35 @@ export default function EditRecord() {
     setStoreOpen(true);
   }, [fileInputCount]);
 
-  const [checked, setChecked] = useState(false);
+  // const [checked, setChecked] = useState(false);
+  const [showFileInputs, setShowFileInputs] = useState(false);
+  const [showShopOptions, setShowShopOptions] = useState(false);
 
-  const handleCheckBoxClick = (event) => {
-    setChecked((prev) => !prev);
+  const handleCheckBoxClick = (type) => () => {
+    setAdminFlag(true);
+    if (type === "images") {
+      setShowFileInputs((prev) => !prev);
+    } else if (type === "shop") {
+      setShowShopOptions((prev) => !prev);
+    }
+    // setChecked((prev) => !prev);
   };
 
-  // useEffect(() => {
-  //   console.log("checked: ", checked);
-  //   setUpdateImgPathEdit(checked);
-  // }, [checked]);
+  useEffect(() => {
+    if (showFileInputs) {
+      setAdminFlag(true);
+    } else {
+      setAdminFlag(false);
+    }
+  }, [showFileInputs]);
 
-  // useEffect(() => {
-  //   console.log("updateImgPathEdit: ", updateImgPathEdit);
-  // }, [updateImgPathEdit]);
+  useEffect(() => {
+    console.log("currentPartColorName: ", currentPartColorName);
+  }, [currentPartColorName]);
+
+  useEffect(() => {
+    console.log("currentItemSelected: ", currentItemSelected);
+  }, [currentItemSelected]);
 
   return (
     <>
@@ -153,10 +178,10 @@ export default function EditRecord() {
               }}
             >
               <Checkbox
-                onClick={handleCheckBoxClick}
+                onClick={handleCheckBoxClick("images")}
                 inputProps={{ "aria-label": "controlled" }}
-                name="imgUpdateCheckbox"
-                checked={checked}
+                name="showFileInputs"
+                checked={showFileInputs}
                 sx={{ p: 0, mr: 1 }}
               />
               <Typography variant="body2" color="inherit">
@@ -175,7 +200,7 @@ export default function EditRecord() {
             </Typography>
           </Box>
 
-          {checked && (
+          {showFileInputs && (
             <Box
               sx={{
                 maxWidth: "md",
@@ -288,10 +313,113 @@ export default function EditRecord() {
             defaultValue={imageRecord.description}
             name="description"
             multiline
-            minRows={12}
+            minRows={6} //  minRows={12}
             size="small"
             inputProps={{ style: { color: "#546E7A" } }}
           />
+
+          <Box
+            sx={{
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "start",
+              maxWidth: "md",
+            }}
+          >
+            <Checkbox
+              onClick={handleCheckBoxClick("shop")}
+              inputProps={{ "aria-label": "controlled" }}
+              name="shop"
+              checked={showShopOptions}
+              sx={{ p: 0, mr: 1 }}
+            />
+            <Typography variant="body2" color="inherit">
+              Update part colors?
+            </Typography>
+            {/* TODO: need a listing of the current data value for shop item (if present) here so you don't need to 
+              click the set part options checkbox to see what has been set already */}
+          </Box>
+        </Box>
+
+        <Box>
+          {showShopOptions && (
+            <>
+              <Box>
+                <TextField
+                  id="edit_itemName"
+                  label="Current Item"
+                  value={currentItemName}
+                  name="itemName"
+                  size="small"
+                  sx={{
+                    width: "10rem",
+                    input: { color: "#607D8B" },
+                    my: 1.5,
+                  }}
+                />
+                <hr />
+              </Box>
+              <Box
+                sx={{
+                  display: "grid",
+                  gridTemplateColumns: "auto auto",
+                  gap: 2,
+                  maxWidth: "20rem",
+                  alignItems: "center",
+                  my: 2,
+                }}
+              >
+                {currentItemSelected.parts.map((part, index) => {
+                  const colorName = getPartColorName(
+                    part.itemName,
+                    part.partName,
+                  );
+                  return (
+                    <React.Fragment key={index}>
+                      <Button
+                        key={index}
+                        variant="contained"
+                        onClick={() => {
+                          setCurrentPartName(part.partName);
+                        }}
+                        color={
+                          currentPartName === part.partName
+                            ? "primary"
+                            : "secondary"
+                        }
+                        size="small"
+                        sx={{ width: "10rem" }}
+                      >
+                        {truncateString(part.descPartName)}
+                        {/* {" :  "}
+                        {colorName} */}
+                      </Button>
+                      <TextField
+                        id={`edit_colors${index}`}
+                        name={part.partName}
+                        // name={`${part.partName}_${part.partName}`}
+                        label="Color"
+                        value={colorName}
+                        size="small"
+                        sx={{
+                          width: "10rem",
+                          input: { color: "#607D8B" },
+                        }}
+                      />
+                    </React.Fragment>
+                  );
+                })}
+              </Box>
+
+              <OptionsOnly />
+
+              {/* <Box>
+                <Typography variant="body2" color="inherit">
+                  {currentPartName}_{currentPartColorName}
+                </Typography>
+              </Box> */}
+            </>
+          )}
         </Box>
 
         <Box sx={{ display: "flex", pl: 0.25, pt: 1 }}>

@@ -425,7 +425,7 @@ export type State = {
   selectedImage: any;
   selectedImageIndex: number;
   signedUpForMailingList: boolean;
-  // updateImgPathEdit: boolean;
+  adminFlag: boolean;
 };
 
 export type Action = {
@@ -474,10 +474,11 @@ export type Action = {
   setSelectedImage: (value: any) => void;
   setSelectedImageIndex: (value: number) => void;
   setSignedUpForMailingList: (value: boolean) => void;
-  // setUpdateImgPathEdit: (value: boolean) => void;
+  setAdminFlag: (value: boolean) => void;
+  getPartColorName: (itemName: string, partName: string) => any;
 };
 
-export const useOptionStore = create<State & Action>((set) => ({
+export const useOptionStore = create<State & Action>((set, get) => ({
   currentItemSelected: unselectedItem,
   previousItemSelected: unselectedItem,
   currentPartName: "top",
@@ -543,49 +544,49 @@ export const useOptionStore = create<State & Action>((set) => ({
       optionSelectedPrice: 0,
       parts: {
         top: {
-          partName: "top",
+          partName: objects.gramps.parts[0].partName, // "top",
           colorType: "default",
           colorName: "default",
           color: textures.whiteStain,
           texture: textures.paintedTexture,
         },
         barBottom: {
-          partName: "bottom bar",
+          partName: objects.gramps.parts[1].partName, // "bottomBar",
           colorType: "default",
           colorName: "default",
           color: textures.whiteStain,
           texture: textures.paintedTexture,
         },
         barTop: {
-          partName: "top bar",
+          partName: objects.gramps.parts[2].partName, // "topBar",
           colorType: "default",
           colorName: "default",
           color: textures.whiteStain,
           texture: textures.paintedTexture,
         },
         leg1: {
-          partName: "leg 1",
+          partName: objects.gramps.parts[3].partName, // "leg1",
           colorType: "default",
           colorName: "default",
           color: textures.whiteStain,
           texture: textures.paintedTexture,
         },
         leg2: {
-          partName: "leg 2",
+          partName: objects.gramps.parts[4].partName, // "leg 2",
           colorType: "default",
           colorName: "default",
           color: textures.whiteStain,
           texture: textures.paintedTexture,
         },
         leg3: {
-          partName: "leg 3",
+          partName: objects.gramps.parts[5].partName, // "leg 3",
           colorType: "default",
           colorName: "default",
           color: textures.whiteStain,
           texture: textures.paintedTexture,
         },
         leg4: {
-          partName: "leg 4",
+          partName: objects.gramps.parts[6].partName, // "leg 4",
           colorType: "default",
           colorName: "default",
           color: textures.whiteStain,
@@ -609,28 +610,28 @@ export const useOptionStore = create<State & Action>((set) => ({
       optionSelectedPrice: 0,
       parts: {
         top: {
-          partName: "top",
+          partName: objects.squatter.parts[0].partName, // "top",
           colorType: "default",
           colorName: "default",
           color: textures.whiteStain,
           texture: textures.paintedTexture,
         },
         centerPanel: {
-          partName: "center panel",
+          partName: objects.squatter.parts[1].partName, // "center panel",
           colorType: "default",
           colorName: "default",
           color: textures.whiteStain,
           texture: textures.paintedTexture,
         },
         side1: {
-          partName: "side 1",
+          partName: objects.squatter.parts[2].partName, // "side 1",
           colorType: "default",
           colorName: "default",
           color: textures.whiteStain,
           texture: textures.paintedTexture,
         },
         side2: {
-          partName: "side 2",
+          partName: objects.squatter.parts[3].partName, // "side 2",
           colorType: "default",
           colorName: "default",
           color: textures.whiteStain,
@@ -666,35 +667,35 @@ export const useOptionStore = create<State & Action>((set) => ({
       optionSelectedPrice: 0,
       parts: {
         shelfTop: {
-          partName: "top shelf",
+          partName: objects.block.parts[0].partName, // "top shelf",
           colorType: "default",
           colorName: "default",
           color: textures.whiteStain,
           texture: textures.paintedTexture,
         },
         shelfMiddle: {
-          partName: "middle shelf",
+          partName: objects.block.parts[1].partName, // "middle shelf",
           colorType: "default",
           colorName: "default",
           color: textures.whiteStain,
           texture: textures.paintedTexture,
         },
         shelfBottom: {
-          partName: "bottom shelf",
+          partName: objects.block.parts[2].partName, // "bottom shelf",
           colorType: "default",
           colorName: "default",
           color: textures.whiteStain,
           texture: textures.paintedTexture,
         },
         side1: {
-          partName: "side 1",
+          partName: objects.block.parts[3].partName, // "side 1",
           colorType: "default",
           colorName: "default",
           color: textures.whiteStain,
           texture: textures.paintedTexture,
         },
         side2: {
-          partName: "side 2",
+          partName: objects.block.parts[4].partName, // "side 2",
           colorType: "default",
           colorName: "default",
           color: textures.whiteStain,
@@ -739,42 +740,42 @@ export const useOptionStore = create<State & Action>((set) => ({
       optionSelectedPrice: 0,
       parts: {
         top: {
-          partName: "top",
+          partName: objects.horse.parts[0].partName, // "top",
           colorType: "default",
           colorName: "default",
           color: textures.whiteStain,
           texture: textures.paintedTexture,
         },
         barInner: {
-          partName: "inner bar",
+          partName: objects.horse.parts[1].partName, // "inner bar",
           colorType: "default",
           colorName: "default",
           color: textures.whiteStain,
           texture: textures.paintedTexture,
         },
         leg1: {
-          partName: "leg 1",
+          partName: objects.horse.parts[2].partName, // "leg 1",
           colorType: "default",
           colorName: "default",
           color: textures.whiteStain,
           texture: textures.paintedTexture,
         },
         leg2: {
-          partName: "leg 2",
+          partName: objects.horse.parts[3].partName, // "leg 2",
           colorType: "default",
           colorName: "default",
           color: textures.whiteStain,
           texture: textures.paintedTexture,
         },
         leg3: {
-          partName: "leg 3",
+          partName: objects.horse.parts[4].partName, // "leg 3",
           colorType: "default",
           colorName: "default",
           color: textures.whiteStain,
           texture: textures.paintedTexture,
         },
         leg4: {
-          partName: "leg 4",
+          partName: objects.horse.parts[5].partName, // "leg 4",
           colorType: "default",
           colorName: "default",
           color: textures.whiteStain,
@@ -798,21 +799,21 @@ export const useOptionStore = create<State & Action>((set) => ({
       optionSelectedPrice: 0,
       parts: {
         top: {
-          partName: "top",
+          partName: objects.shelfA16.parts[0].partName, // "top",
           colorType: "default",
           colorName: "default",
           color: textures.whiteStain,
           texture: textures.paintedTexture,
         },
         bottom: {
-          partName: "bottom",
+          partName: objects.shelfA16.parts[1].partName, // "bottom",
           colorType: "default",
           colorName: "default",
           color: textures.whiteStain,
           texture: textures.paintedTexture,
         },
         cleat: {
-          partName: "cleat",
+          partName: objects.shelfA16.parts[2].partName, // "cleat",
           colorType: "default",
           colorName: "default",
           color: textures.whiteStain,
@@ -836,21 +837,21 @@ export const useOptionStore = create<State & Action>((set) => ({
       optionSelectedPrice: 0,
       parts: {
         top: {
-          partName: "top",
+          partName: objects.shelfA32.parts[0].partName, // "top",
           colorType: "default",
           colorName: "default",
           color: textures.whiteStain,
           texture: textures.paintedTexture,
         },
         bottom: {
-          partName: "bottom",
+          partName: objects.shelfA32.parts[1].partName, // "bottom",
           colorType: "default",
           colorName: "default",
           color: textures.whiteStain,
           texture: textures.paintedTexture,
         },
         cleat: {
-          partName: "cleat",
+          partName: objects.shelfA32.parts[2].partName, // "cleat",
           colorType: "default",
           colorName: "default",
           color: textures.whiteStain,
@@ -874,28 +875,28 @@ export const useOptionStore = create<State & Action>((set) => ({
       optionSelectedPrice: 0,
       parts: {
         top: {
-          partName: "top",
+          partName: objects.shelfB16.parts[0].partName, // "top",
           colorType: "default",
           colorName: "default",
           color: textures.whiteStain,
           texture: textures.paintedTexture,
         },
         middle: {
-          partName: "middle",
+          partName: objects.shelfB16.parts[1].partName, //"middle",
           colorType: "default",
           colorName: "default",
           color: textures.whiteStain,
           texture: textures.paintedTexture,
         },
         bottom: {
-          partName: "bottom",
+          partName: objects.shelfB16.parts[2].partName, // "bottom",
           colorType: "default",
           colorName: "default",
           color: textures.whiteStain,
           texture: textures.paintedTexture,
         },
         cleat: {
-          partName: "cleat",
+          partName: objects.shelfB16.parts[3].partName, // "cleat",
           colorType: "default",
           colorName: "default",
           color: textures.whiteStain,
@@ -919,28 +920,28 @@ export const useOptionStore = create<State & Action>((set) => ({
       optionSelectedPrice: 0,
       parts: {
         top: {
-          partName: "top",
+          partName: objects.shelfB32.parts[0].partName, // "top",
           colorType: "default",
           colorName: "default",
           color: textures.whiteStain,
           texture: textures.paintedTexture,
         },
         middle: {
-          partName: "middle",
+          partName: objects.shelfB32.parts[1].partName, // "middle",
           colorType: "default",
           colorName: "default",
           color: textures.whiteStain,
           texture: textures.paintedTexture,
         },
         bottom: {
-          partName: "bottom",
+          partName: objects.shelfB32.parts[2].partName, // "bottom",
           colorType: "default",
           colorName: "default",
           color: textures.whiteStain,
           texture: textures.paintedTexture,
         },
         cleat: {
-          partName: "cleat",
+          partName: objects.shelfB32.parts[3].partName, // "cleat",
           colorType: "default",
           colorName: "default",
           color: textures.whiteStain,
@@ -953,7 +954,7 @@ export const useOptionStore = create<State & Action>((set) => ({
   selectedImage: null,
   selectedImageIndex: 0,
   signedUpForMailingList: false,
-  // updateImgPathEdit: false,
+  adminFlag: false,
   calculateItemPrice: (itemName) =>
     set(
       produce((state: State) => {
@@ -1250,10 +1251,14 @@ export const useOptionStore = create<State & Action>((set) => ({
         state.signedUpForMailingList = value;
       }),
     ),
-  // setUpdateImgPathEdit: (value) =>
-  //   set(
-  //     produce((state: State) => {
-  //       state.updateImgPathEdit = value;
-  //     }),
-  //   ),
+  setAdminFlag: (value) =>
+    set(
+      produce((state: State) => {
+        state.adminFlag = value;
+      }),
+    ),
+  getPartColorName: (itemName, partName) => {
+    const result = get().items[itemName].parts[partName].colorName;
+    return result;
+  },
 }));

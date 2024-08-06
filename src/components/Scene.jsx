@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
+// import { Perf } from "r3f-perf";
 import {
   OrbitControls,
   useTexture,
@@ -16,6 +17,7 @@ import { Floor } from "./room/Floor.jsx";
 import { Walls } from "./room/Walls.jsx";
 import { objects, unselectedItem, shopItems } from "../data/objects.js";
 import { textures } from "../data/textures.js";
+import { allOptions } from "../data/options.js";
 import useWindowDimensions from "../hooks/useWindowDimensions";
 import { useSnipcart } from "use-snipcart";
 import { SelectIcon } from "./item/SelectIcon.jsx";
@@ -30,15 +32,10 @@ import {
   CAM_POS_ANIM,
 } from "../data/constants.js";
 import { CenterAnchor } from "./interface/CenterAnchor.jsx";
+import { handlePartOption } from "../utils/handlePartOption.js";
+// import { theme } from "../data/theme.js";
 
-export default function Scene({
-  theme,
-  animDist,
-  animateParts,
-  handlePartOption,
-  randomAllItemsParts,
-  stagePosY,
-}) {
+export default function Scene({ animDist, animateParts, stagePosY }) {
   // textures
   const [
     colorMapWhiteStain,
@@ -124,6 +121,7 @@ export default function Scene({
   const arrowAnimActive = useOptionStore((state) => state.arrowAnimActive);
   const showPaintOptions = useOptionStore((state) => state.showPaintOptions);
   const locationPathname = useOptionStore((state) => state.locationPathname);
+  const adminFlag = useOptionStore((state) => state.adminFlag);
 
   // actions from store
   const setCurrentItemSelected = useOptionStore(
@@ -155,6 +153,43 @@ export default function Scene({
   const setArrowAnimActive = useOptionStore(
     (state) => state.setArrowAnimActive,
   );
+
+  const updatePartColor = useOptionStore((state) => state.updatePartColor);
+  const updatePartColorName = useOptionStore(
+    (state) => state.updatePartColorName,
+  );
+  const updatePartTexture = useOptionStore((state) => state.updatePartTexture);
+  const calculateItemPrice = useOptionStore(
+    (state) => state.calculateItemPrice,
+  );
+  const getRandomInt = useOptionStore((state) => state.getRandomInt);
+
+  // random colors for all item parts on initinal load
+  const randomAllItemsParts = (e) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    const randomAllItemsColors = shopItems.map((item) => {
+      const itemColors = item.parts.map((part) => {
+        const color = allOptions[getRandomInt(allOptions.length)];
+        handlePartOption(
+          e,
+          item.itemName,
+          part.partName,
+          color,
+          false,
+          updatePartColor,
+          updatePartColorName,
+          updatePartTexture,
+          calculateItemPrice,
+        );
+        return color;
+      });
+      return itemColors;
+    });
+    // console.log("random colors generated list: ", randomAllItemsColors);
+  };
 
   // hooks
   const { width } = useWindowDimensions();
@@ -321,14 +356,17 @@ export default function Scene({
     }
   }, [sceneLoaded]);
   useEffect(() => {
+    if (adminFlag) handleArrowIconClick(null);
+  }, [adminFlag]);
+  useEffect(() => {
     if (currentItemSelected === unselectedItem) {
       randomAllItemsParts(false);
     }
     // shuffle color randomly on initial load counter
     const interval = setInterval(() => {
       setCount((prev) => prev + 1);
-    }, 1500);
-    if (count === 2 && showBackground) {
+    }, 1000);
+    if (count === 4 && showBackground) {
       // // toast.dismiss();
       // toast("Cart", {
       //   duration: TOAST.duration,
@@ -378,6 +416,8 @@ export default function Scene({
       //     "aria-live": "polite",
       //   },
       // });
+    } else if (count === 3 && currentItemSelected === unselectedItem) {
+      handleArrowIconClick(null);
     } else if (count === 5 && showBackground) {
       // // toast.dismiss();
       // toast("Drag to rotate", {
@@ -472,8 +512,6 @@ export default function Scene({
       //     "aria-live": "polite",
       //   },
       // });
-    } else if (count === 17 && currentItemSelected === unselectedItem) {
-      handleArrowIconClick(null);
     }
     //Clearing the interval
     return () => clearInterval(interval);
@@ -829,12 +867,15 @@ export default function Scene({
     ) {
       const tl = gsap.timeline();
       tl.to(controlsTargetVec, {
-        delay: optionBoxItemChanged
-          ? CAM_TARG_ANIM.camTargAnimDelay - 0.075
-          : CAM_TARG_ANIM.camTargAnimDelay,
-        duration:
-          previousItemSelected === unselectedItem
-            ? CAM_TARG_ANIM.camTargAnimDuration - 0.15
+        delay: adminFlag
+          ? 0.1
+          : optionBoxItemChanged
+            ? CAM_TARG_ANIM.camTargAnimDelay - 0.075
+            : CAM_TARG_ANIM.camTargAnimDelay,
+        duration: adminFlag
+          ? 0.1
+          : previousItemSelected === unselectedItem
+            ? CAM_TARG_ANIM.camTargAnimDuration + 0.35 // CAM_TARG_ANIM.camTargAnimDuration - 0.15
             : optionBoxItemChanged
               ? CAM_TARG_ANIM.camTargAnimDuration * 1.5
               : CAM_TARG_ANIM.camTargAnimDuration,
@@ -872,12 +913,16 @@ export default function Scene({
     ) {
       const tl = gsap.timeline();
       tl.to(controlsTargetVec, {
-        delay: optionBoxItemChanged
-          ? CAM_TARG_ANIM.camTargAnimDelay - 0.075
-          : CAM_TARG_ANIM.camTargAnimDelay,
-        duration: optionBoxItemChanged
-          ? CAM_TARG_ANIM.camTargAnimDuration * 1.5
-          : CAM_TARG_ANIM.camTargAnimDuration,
+        delay: adminFlag
+          ? 0.1
+          : optionBoxItemChanged
+            ? CAM_TARG_ANIM.camTargAnimDelay - 0.075
+            : CAM_TARG_ANIM.camTargAnimDelay,
+        duration: adminFlag
+          ? 0.1
+          : optionBoxItemChanged
+            ? CAM_TARG_ANIM.camTargAnimDuration * 1.5
+            : CAM_TARG_ANIM.camTargAnimDuration,
         x: currentItemSelected.position.x,
         y: currentItemSelected.position.y + 1,
         z: currentItemSelected.position.z,
@@ -912,12 +957,16 @@ export default function Scene({
     ) {
       const tl = gsap.timeline();
       tl.to(controlsTargetVec, {
-        delay: optionBoxItemChanged
-          ? CAM_TARG_ANIM.camTargAnimDelay - 0.075
-          : CAM_TARG_ANIM.camTargAnimDelay,
-        duration: optionBoxItemChanged
-          ? CAM_TARG_ANIM.camTargAnimDuration * 1.5
-          : CAM_TARG_ANIM.camTargAnimDuration,
+        delay: adminFlag
+          ? 0.1
+          : optionBoxItemChanged
+            ? CAM_TARG_ANIM.camTargAnimDelay - 0.075
+            : CAM_TARG_ANIM.camTargAnimDelay,
+        duration: adminFlag
+          ? 0.1
+          : optionBoxItemChanged
+            ? CAM_TARG_ANIM.camTargAnimDuration * 1.5
+            : CAM_TARG_ANIM.camTargAnimDuration,
         x: currentItemSelected.position.x,
         y: currentItemSelected.position.y + 1.25,
         z: currentItemSelected.position.z,
@@ -997,15 +1046,20 @@ export default function Scene({
           );
           const tl = gsap.timeline();
           tl.to(controlsPositionVec, {
-            delay:
-              previousItemSelected === unselectedItem
+            delay: adminFlag
+              ? 0.1
+              : previousItemSelected === unselectedItem
                 ? CAM_POS_ANIM.camPosAnimDelay + 0.1
                 : optionBoxItemChanged
                   ? CAM_POS_ANIM.camPosAnimDelay + 0.2
                   : CAM_POS_ANIM.camPosAnimDelay,
-            duration: optionBoxItemChanged
-              ? CAM_POS_ANIM.camPosAnimDuration + 0.75
-              : CAM_POS_ANIM.camPosAnimDuration,
+            duration: adminFlag
+              ? 0.1
+              : previousItemSelected === unselectedItem
+                ? CAM_POS_ANIM.camPosAnimDuration + 1
+                : optionBoxItemChanged
+                  ? CAM_POS_ANIM.camPosAnimDuration + 0.75
+                  : CAM_POS_ANIM.camPosAnimDuration,
             x: currentItemSelected.position.x + xPlus,
             y: currentItemSelected.position.y + yPlus,
             z: currentItemSelected.position.z + zPlus,
@@ -1109,10 +1163,8 @@ export default function Scene({
         /> */}
         <group position={[0, 0, 0]} visible={false}>
           <CenterAnchor
-            theme={theme}
             currentColor={textures.alabasterPaint}
             currentTexture={textures.whiteTexture}
-            handlePartOption={handlePartOption}
           />
         </group>
         {/* Arrow icon at bottom of screen */}
@@ -1132,8 +1184,6 @@ export default function Scene({
                 showPaintOptions ? textures.bluePaint : textures.alabasterPaint
               }
               currentTexture={textures.whiteTexture}
-              handlePartOption={handlePartOption}
-              theme={theme}
             />
           </mesh>
           <group

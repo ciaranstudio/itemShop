@@ -19,8 +19,9 @@ import { useSnipcart } from "use-snipcart";
 import { goTo } from "../../../utils/goTo.js";
 import { PAGES } from "../../../data/constants.js";
 import PhotoNavControls from "../PhotoNavControls.jsx";
+import { theme } from "../../../data/theme.js";
 
-function ResponsiveAppBar({ theme }) {
+function ResponsiveAppBar() {
   // state from store
   const locationPathname = useOptionStore((state) => state.locationPathname);
 

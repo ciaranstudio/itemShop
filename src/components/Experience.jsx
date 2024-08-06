@@ -6,9 +6,6 @@ import Scene from "./Scene.jsx";
 import Placeholder from "./Placeholder.jsx";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { textures } from "../data/textures.js";
-import { shopItems } from "../data/objects.js";
-import { allOptions } from "../data/options.js";
 import { useOptionStore } from "../store/useOptionStore.tsx";
 import toast from "react-hot-toast";
 import {
@@ -18,9 +15,7 @@ import {
   ITEM_PARTS_ANIM,
 } from "../data/constants.js";
 
-function Experience({ theme }) {
-  // const { contextVal } = useDashContext();
-
+function Experience() {
   // loading bar element for left to right on animation on app load
   const loadingBarElement = document.querySelector(".loading-bar");
 
@@ -30,12 +25,6 @@ function Experience({ theme }) {
   };
   const animDistReturn = {
     value: ITEM_PARTS_ANIM.animDistRunTarget,
-  };
-  const stagePosYRun = {
-    value: STAGE_POSITION_Y_ANIM.yPosRunLowTarg,
-  };
-  const stagePosYReturn = {
-    value: STAGE_POSITION_Y_ANIM.yPosRunHighTarg,
   };
 
   // useRef
@@ -55,6 +44,7 @@ function Experience({ theme }) {
   const animActive = useOptionStore((state) => state.animActive);
   const animIconToggle = useOptionStore((state) => state.animIconToggle);
   const animateButton = useOptionStore((state) => state.animateButton);
+  const adminFlag = useOptionStore((state) => state.adminFlag);
 
   // actions from store
   const setMobileView = useOptionStore((state) => state.setMobileView);
@@ -63,7 +53,6 @@ function Experience({ theme }) {
   const setAnimActive = useOptionStore((state) => state.setAnimActive);
   const setAnimIconToggle = useOptionStore((state) => state.setAnimIconToggle);
   const setPartsOpen = useOptionStore((state) => state.setPartsOpen);
-  const getRandomInt = useOptionStore((state) => state.getRandomInt);
 
   // useEffect
   useEffect(() => {
@@ -76,9 +65,6 @@ function Experience({ theme }) {
       setMobileView(false);
     }
     window.LoadSnipcart();
-  }, []);
-
-  useEffect(() => {
     toast.loading("Loading...", {
       id: "loadingToast",
       position: "bottom-center",
@@ -141,10 +127,12 @@ function Experience({ theme }) {
             // previousItemSelected === unselectedItem
             //   ? ITEM_PARTS_ANIM.runDelay - 0.5
             //   :
-            animIconToggle
-              ? ITEM_PARTS_ANIM.runDelay - 1
-              : ITEM_PARTS_ANIM.runDelay + 1.15,
-          duration: ITEM_PARTS_ANIM.runDuration,
+            adminFlag
+              ? 0.1
+              : animIconToggle
+                ? ITEM_PARTS_ANIM.runDelay - 1
+                : ITEM_PARTS_ANIM.runDelay + 1.15,
+          duration: adminFlag ? 0.1 : ITEM_PARTS_ANIM.runDuration,
           value: ITEM_PARTS_ANIM.animDistRunTarget,
           ease: "easeOut",
           onUpdate: () => {
@@ -164,8 +152,8 @@ function Experience({ theme }) {
         // close
         // close the object, bring parts back together, ending with no distance between them
         tl.to(animDistReturn, {
-          delay: ITEM_PARTS_ANIM.returnDelay,
-          duration: ITEM_PARTS_ANIM.returnDuration,
+          delay: adminFlag ? 0.1 : ITEM_PARTS_ANIM.returnDelay,
+          duration: adminFlag ? 0.1 : ITEM_PARTS_ANIM.returnDuration,
           value: ITEM_PARTS_ANIM.animDistReturnTarget,
           ease: "easeOut",
           onUpdate: () => {
@@ -181,107 +169,6 @@ function Experience({ theme }) {
       }
     }
   });
-  // const animateStageY = contextSafe(() => {
-  //   const tl = gsap.timeline();
-  //   if (!showBackground) {
-  //     tl.to(stagePosYRun, {
-  //       delay: STAGE_POSITION_Y_ANIM.raiseDelay,
-  //       duration: STAGE_POSITION_Y_ANIM.raiseDuration,
-  //       value: STAGE_POSITION_Y_ANIM.stagePosYRunTarget,
-  //       ease: "easeIn",
-  //       onUpdate: () => {
-  //         setStagePosY(stagePosYRun.value);
-  //       },
-  //     });
-  //   } else {
-  //     tl.to(stagePosYReturn, {
-  //       delay: STAGE_POSITION_Y_ANIM.dropDelay,
-  //       duration: STAGE_POSITION_Y_ANIM.dropDuration,
-  //       value: STAGE_POSITION_Y_ANIM.stagePosYReturnTarget,
-  //       ease: "easeIn",
-  //       onUpdate: () => {
-  //         setStagePosY(stagePosYReturn.value);
-  //       },
-  //     });
-  //   }
-  // });
-
-  // actions from store
-  const updatePartColor = useOptionStore((state) => state.updatePartColor);
-  const updatePartColorName = useOptionStore(
-    (state) => state.updatePartColorName,
-  );
-  const updatePartTexture = useOptionStore((state) => state.updatePartTexture);
-  const calculateItemPrice = useOptionStore(
-    (state) => state.calculateItemPrice,
-  );
-
-  // update part(s) color option(s) using actions from store
-  const handlePartOption = (e, itemName, partName, color, stopPropogation) => {
-    if (e) {
-      e.preventDefault();
-      if (stopPropogation) {
-        e.stopPropagation();
-      }
-    }
-    if (color === "white") {
-      updatePartTexture(itemName, partName, textures.whiteTexture);
-      updatePartColor(itemName, partName, textures.whiteStain);
-      updatePartColorName(itemName, partName, "white");
-    } else if (color === "natural") {
-      updatePartTexture(itemName, partName, textures.naturalTexture);
-      updatePartColor(itemName, partName, textures.naturalStain);
-      updatePartColorName(itemName, partName, "natural");
-    } else if (color === "black") {
-      updatePartTexture(itemName, partName, textures.blackTexture);
-      updatePartColor(itemName, partName, textures.blackStain);
-      updatePartColorName(itemName, partName, "black");
-    } else if (color === "allBlack") {
-      updatePartTexture(itemName, partName, textures.allBlackTexture);
-      updatePartColor(itemName, partName, textures.allBlackStain);
-      updatePartColorName(itemName, partName, "allBlack");
-    } else if (color === "alabaster") {
-      updatePartTexture(itemName, partName, textures.paintedTexture);
-      updatePartColor(itemName, partName, textures.alabasterPaint);
-      updatePartColorName(itemName, partName, "alabaster");
-    } else if (color === "pink") {
-      updatePartTexture(itemName, partName, textures.paintedTexture);
-      updatePartColor(itemName, partName, textures.pinkPaint);
-      updatePartColorName(itemName, partName, "pink");
-    } else if (color === "basil") {
-      updatePartTexture(itemName, partName, textures.paintedTexture);
-      updatePartColor(itemName, partName, textures.basilPaint);
-      updatePartColorName(itemName, partName, "basil");
-    } else if (color === "yellow") {
-      updatePartTexture(itemName, partName, textures.paintedTexture);
-      updatePartColor(itemName, partName, textures.yellowPaint);
-      updatePartColorName(itemName, partName, "yellow");
-    } else if (color === "blue") {
-      updatePartTexture(itemName, partName, textures.paintedTexture);
-      updatePartColor(itemName, partName, textures.bluePaint);
-      updatePartColorName(itemName, partName, "blue");
-    } else if (color === "gray") {
-      updatePartTexture(itemName, partName, textures.paintedTexture);
-      updatePartColor(itemName, partName, textures.grayPaint);
-      updatePartColorName(itemName, partName, "gray");
-    }
-    calculateItemPrice(itemName);
-  };
-  const randomAllItemsParts = (e) => {
-    if (e) {
-      e.preventDefault();
-      e.stopPropagation();
-    }
-    const randomAllItemsColors = shopItems.map((item) => {
-      const itemColors = item.parts.map((part) => {
-        const color = allOptions[getRandomInt(allOptions.length)];
-        handlePartOption(e, item.itemName, part.partName, color, false);
-        return color;
-      });
-      return itemColors;
-    });
-    // console.log("random colors generated list: ", randomAllItemsColors);
-  };
 
   return (
     <>
@@ -299,11 +186,8 @@ function Experience({ theme }) {
       >
         <Suspense fallback={<Placeholder />}>
           <Scene
-            theme={theme}
             animDist={animDist}
             animateParts={animateParts}
-            handlePartOption={handlePartOption}
-            randomAllItemsParts={randomAllItemsParts}
             stagePosY={stagePosY}
           />
         </Suspense>
