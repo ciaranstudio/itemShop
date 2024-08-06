@@ -16,6 +16,7 @@ export const CenterAnchor = ({ currentColor, currentTexture }) => {
   const open = useOptionStore((state) => state.open);
   const selectedImage = useOptionStore((state) => state.selectedImage);
   const locationPathname = useOptionStore((state) => state.locationPathname);
+  const currentItemName = useOptionStore((state) => state.currentItemName);
 
   useLayoutEffect(() => {
     Object.assign(materials._0103_Blue, {
@@ -53,7 +54,14 @@ export const CenterAnchor = ({ currentColor, currentTexture }) => {
       }
     });
     setAnnotations(currentAnnotations);
-  }, [scene, open, mobileView, locationPathname, selectedImage]);
+  }, [
+    scene,
+    open,
+    mobileView,
+    locationPathname,
+    selectedImage,
+    // currentItemName,
+  ]);
 
   useLayoutEffect(() => {
     scene.traverse((o) => {
