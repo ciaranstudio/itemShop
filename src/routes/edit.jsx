@@ -14,7 +14,7 @@ import TextField from "@mui/material/TextField";
 import Checkbox from "@mui/material/Checkbox";
 import Typography from "@mui/material/Typography";
 import OptionsOnly from "../components/interface/OptionsOnly.jsx";
-
+import { truncateString } from "../utils/truncateString.js";
 // TODO: Create toggle in edit form to enable or disable the Storage upload / file handling aspect of this,
 // no need for it if image has not been updated.
 export async function action({ request, params }) {
@@ -99,6 +99,7 @@ export default function EditRecord() {
   const setCurrentPartName = useOptionStore(
     (state) => state.setCurrentPartName,
   );
+  const getPartColorName = useOptionStore((state) => state.getPartColorName);
 
   const { imageRecord } = useLoaderData();
   const navigate = useNavigate();
@@ -348,16 +349,17 @@ export default function EditRecord() {
               <Box
                 sx={{
                   display: "grid",
-                  gridTemplateColumns: {
-                    sm: "auto auto",
-                    md: "auto auto auto",
-                    lg: "auto auto auto auto",
-                  },
-                  gap: 0,
-                  maxWidth: "20rem",
+                  gridTemplateColumns: "auto auto",
+                  gap: 1,
+                  maxWidth: "22rem",
+                  alignItems: "center",
                 }}
               >
                 {currentItemSelected.parts.map((part, index) => {
+                  const colorName = getPartColorName(
+                    part.itemName,
+                    part.partName,
+                  );
                   return (
                     <Button
                       key={index}
@@ -365,17 +367,21 @@ export default function EditRecord() {
                       onClick={() => {
                         setCurrentPartName(part.partName);
                       }}
-                      sx={{ width: "10rem", m: 0.5 }}
+                      sx={{ width: "100%" }}
                       color={
                         currentPartName === part.partName ? "primary" : "info"
                       }
+                      size="small"
                     >
-                      {part.descPartName}
+                      {truncateString(part.descPartName)}
+                      {" :  "}
+                      {colorName}
                     </Button>
                   );
                 })}
               </Box>
               <OptionsOnly />
+
               <hr />
             </>
           )}
