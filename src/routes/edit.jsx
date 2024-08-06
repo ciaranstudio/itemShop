@@ -336,7 +336,7 @@ export default function EditRecord() {
             <Typography variant="body2" color="inherit">
               Update part colors?
             </Typography>
-            {/* need a listing of the current data value for shop item (if present) here so you don't need to 
+            {/* TODO: need a listing of the current data value for shop item (if present) here so you don't need to 
               click the set part options checkbox to see what has been set already */}
           </Box>
         </Box>
