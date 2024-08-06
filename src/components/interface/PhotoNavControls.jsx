@@ -10,10 +10,16 @@ import { useOptionStore } from "../../store/useOptionStore.tsx";
 import { goTo } from "../../utils/goTo.js";
 import { theme } from "../../data/theme.js";
 // import CaptionBox from "./CaptionBox.jsx";
+import BuyButton from "./BuyButton.jsx";
+import { objects } from "../../data/objects.js";
 
 export default function PhotoNavControls() {
   const locationPathname = useOptionStore((state) => state.locationPathname);
   const selectedImage = useOptionStore((state) => state.selectedImage);
+  const currentItemSelected = useOptionStore(
+    (state) => state.currentItemSelected,
+  );
+
   const setSelectedImage = useOptionStore((state) => state.setSelectedImage);
 
   const backButtonHandler = () => {
@@ -90,6 +96,12 @@ export default function PhotoNavControls() {
                 <StorefrontIcon sx={{ fontSize: "20px", mr: 1 }} />
                 Shop
               </Button>
+              {(selectedImage && locationPathname === "/shop") ||
+              locationPathname === "/view" ? (
+                <BuyButton item={currentItemSelected} />
+              ) : (
+                ""
+              )}
             </ButtonGroup>
           ) : (
             <Button onClick={backButtonHandler} color="secondary">
