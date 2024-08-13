@@ -416,8 +416,6 @@ export default function Scene({ animDist, animateParts, stagePosY }) {
       //     "aria-live": "polite",
       //   },
       // });
-    } else if (count === 3 && currentItemSelected === unselectedItem) {
-      handleArrowIconClick(null);
     } else if (count === 5 && showBackground) {
       // // toast.dismiss();
       // toast("Drag to rotate", {
@@ -488,6 +486,8 @@ export default function Scene({ animDist, animateParts, stagePosY }) {
       //     "aria-live": "polite",
       //   },
       // });
+    } else if (count === 10 && currentItemSelected === unselectedItem) {
+      handleArrowIconClick(null);
     } else if (count === 12 && showBackground) {
       // toast("Toggles options", {
       //   duration: TOAST.duration,
@@ -875,7 +875,7 @@ export default function Scene({ animDist, animateParts, stagePosY }) {
         duration: adminFlag
           ? 0.1
           : previousItemSelected === unselectedItem
-            ? CAM_TARG_ANIM.camTargAnimDuration + 0.35 // CAM_TARG_ANIM.camTargAnimDuration - 0.15
+            ? CAM_TARG_ANIM.camTargAnimDuration + 0.5 // CAM_TARG_ANIM.camTargAnimDuration - 0.15
             : optionBoxItemChanged
               ? CAM_TARG_ANIM.camTargAnimDuration * 1.5
               : CAM_TARG_ANIM.camTargAnimDuration,
