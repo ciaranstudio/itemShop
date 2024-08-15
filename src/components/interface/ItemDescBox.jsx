@@ -78,7 +78,7 @@ export default function ItemDescBox() {
             variant="subtitle2"
             sx={{
               fontSize: "0.82rem",
-              color: theme.palette.primary.main,
+              color: theme.palette.info.main,
             }}
           >
             {currentItemSelected.size}
