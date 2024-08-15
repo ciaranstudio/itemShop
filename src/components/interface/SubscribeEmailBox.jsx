@@ -67,7 +67,7 @@ export default function SubscribeEmailBox() {
             }}
             aria-label="close info box"
           >
-            <CloseOutlinedIcon color="info" fontSize={"small"} />
+            <CloseOutlinedIcon color="primary" fontSize={"small"} />
           </IconButton>
           <Typography
             variant="h6"

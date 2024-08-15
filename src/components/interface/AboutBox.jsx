@@ -64,6 +64,20 @@ export default function AboutBox() {
           >
             <CloseOutlinedIcon color="primary" fontSize={"small"} />
           </IconButton>
+          <IconButton
+            onClick={nextPage}
+            color="inherit"
+            sx={{
+              position: "absolute",
+              pointerEvents: "auto",
+              top: -3,
+              right: 0,
+              padding: "0.5rem",
+            }}
+            aria-label="next page of About info"
+          >
+            <ReadMoreIcon color="primary" />
+          </IconButton>
           <Typography
             variant="h6"
             sx={{
@@ -102,22 +116,6 @@ export default function AboutBox() {
             {ABOUT_TEXT[aboutIndex].textB}
           </Typography>
         </div>
-      </div>
-      <div className="size">
-        <IconButton
-          onClick={nextPage}
-          color="inherit"
-          sx={{
-            position: "absolute",
-            pointerEvents: "auto",
-            bottom: -24,
-            right: 0,
-            transform: "translate(-50%)",
-          }}
-          aria-label="next page of About info"
-        >
-          <ReadMoreIcon color="primary" />
-        </IconButton>
       </div>
     </ThemeProvider>
   );
