@@ -170,15 +170,15 @@ function ResponsiveAppBar() {
   };
 
   const LogoIcon = createSvgIcon(
-    <svg viewBox="0 -10 100 100" width="100">
-      <image href="logoBlenderRender.png" height="100" width="100" />
+    <svg viewBox="0 0 100 100" width="100">
+      <image href="logo.png" height="115" width="115" />
     </svg>,
     "Plus",
   );
 
   const BagIcon = createSvgIcon(
-    <svg viewBox="0 0 100 100" width="100">
-      <image href="bag.png" height="100" width="100" />
+    <svg viewBox="0 10 100 100" width="100">
+      <image href="bag.png" height="115" width="115" />
     </svg>,
     "Plus",
   );
